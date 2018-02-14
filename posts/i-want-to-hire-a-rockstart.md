@@ -5,7 +5,6 @@ categories:
 - Culture
 date: 2018-02-12
 title: "I want to hire a rock star!" Ok...wait, what?"
-image: -
 ---
 
 As a Recruiter, we have all been there. A new role opens up at your company, and you are approached by the hiring manager to discuss the KSAs (knowledge, skills, aptitude) required for the best person for their team. 
