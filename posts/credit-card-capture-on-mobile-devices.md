@@ -3,7 +3,7 @@ authors:
 - Ryan Hill
 categories:
 - 
-date: 2000-11-30T00:00:00.000Z
+date: 
 title: "Credit Card capture on mobile devices"
 image: 
 ---

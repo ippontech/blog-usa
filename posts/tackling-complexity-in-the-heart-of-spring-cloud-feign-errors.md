@@ -3,7 +3,7 @@ authors:
 - Colin Damon
 categories:
 - 
-date: null
+date: 
 title: "Tackling complexity in the heart of Spring Cloud Feign errors"
 image: 
 ---

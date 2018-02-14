@@ -10,7 +10,7 @@ categories:
 - Serverless
 - FaaS
 - Steve HOUËL
-date: null
+date: 
 title: "How to do Serverless"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/12/te-le-chargement.png
 ---

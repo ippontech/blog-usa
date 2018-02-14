@@ -3,7 +3,7 @@ authors:
 - Doug Mengistu
 categories:
 - 
-date: null
+date: 
 title: "Customer Oriented Sentiment Analysis"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/10/COSA-Blog--2-.png
 ---

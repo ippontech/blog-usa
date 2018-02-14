@@ -9,7 +9,7 @@ categories:
 - Architectures
 - AWS
 - GCP
-date: null
+date: 
 title: "Serverless Architectures"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/12/Serverless-Evolution-1.jpg
 ---

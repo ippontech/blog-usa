@@ -3,7 +3,7 @@ authors:
 - Alexandre Pocheau
 categories:
 - 
-date: null
+date: 
 title: "Tips and reminders for using Docker daily"
 image: 
 ---
