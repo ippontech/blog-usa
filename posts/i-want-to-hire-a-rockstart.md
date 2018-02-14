@@ -5,7 +5,7 @@ categories:
 - Culture
 date: 2018-02-12
 title: "I want to hire a rock star!" Ok...wait, what?"
-image: 
+image: -
 ---
 
 As a Recruiter, we have all been there. A new role opens up at your company, and you are approached by the hiring manager to discuss the KSAs (knowledge, skills, aptitude) required for the best person for their team. 
@@ -16,7 +16,7 @@ The intake meeting is coming to a close. You have verified with the Hiring Manag
 
 You ask yourself, What does that mean? Then you press the Hiring Manager for more detail on what makes a person perfect for this role. They repeat the requirements back to you. Naturally, you question your sanity, and then you try to decipher what makes a qualified candidate a Rockstar in their eyes. What more does this person need? The answer: A LOT MORE.
 
-![Hire-Rockstar-Developer-Comic](/content/images/2018/02/Hire-Rockstar-Developer-Comic.jpg)
+![Hire-Rockstar-Developer-Comic](https://github.com/ippontech/blog-usa/blob/master/images/Hire-Rockstar-Developer-Comic.jpg?raw=true)
 
 The foundation of a qualified candidate is just that - their qualifications and experience to successfully do the job at hand. However, there are many things to consider outside of just being able to do the job. Will this person believe in your company's vision and mission? Will they build relationships with their peers and colleagues? Will people like working with them? Will they like working with your current employees? These are all simple requirements that can often be overlooked. 
 
