@@ -36,7 +36,7 @@ In this article, we are referring to the second definition because it is more re
 The term "Serverless" is confusing because regardless of the implementation, there is still inevitably a server involved. The main difference is that the company creating and supporting an application, running on  a Serverless platform, effectively outsources the server management aspects to a provider (AWS, Google, Azure,...), and so can focus only on the functional part of the application.
 
 ## Some use cases
-Let's now study concrete cases of using Serverless. You can find more details on these architectures and even real examples by visiting the awslabs github (https://github.com/awslabs).
+Let's now study concrete cases of using Serverless. You can find more details on these architectures and even real examples by visiting [Amazon Web Services - Labs](https://github.com/awslabs).
 
 ### Real-time file processing
 The first architecture we will see is about file processing. This architecture works very well when you need to have several transformations of a datasource before you can generate different output formats.
@@ -50,7 +50,7 @@ By combining FaaS with other managed services, developers can create powerful We
 
 This architecture is an example of a dynamic voting web application, receiving information through SMS (using a BaaS service like Twilio or Amazon Pinpoint), aggregates the totals in a database and uses a file manager (S3 Bucket) to make the results available in real time.
 
-This architecture can be quickly generated using Infra As Code technologies (CloudFormation, Terraform).
+This architecture can be quickly generated using Infrastructure As Code technologies (CloudFormation, Terraform).
 
 ![alt](http://www.allthingsdistributed.com/images/serverless-webapp.png)
 
@@ -73,11 +73,11 @@ Before I start looking at what Serverless can do for you and what it can offer, 
 We can indeed find similarities between some PaaS services, such as Heroku, which offers on the fly deployments of our application, triggered by a simple command execution. However, these do not yet provide the abstraction level necessary to be considered Serverless. We always need to overallocate resources to ensure the healthy execution of our application or system.
 
 ### Containers
-Containers are becoming increasingly popular these days, especially since Docker. We can indeed find some similarities between FaaS and containers. But remember, FaaS offers a layer of abstraction such that we no longer have the notion of a system process, as opposed to Docker which is based on the notion of an unique process.
+Containers are becoming increasingly popular these days, especially since Docker. We can indeed find some similarities between FaaS and containers. But remember, FaaS offers a layer of abstraction so that we no longer have the notion of a system process, as opposed to Docker which is based on the notion of an unique process.
 
-Among these similarities, we find the argument of scaling up. This functionality is readily  available at the container level with systems such as Kubernetes, Rancher or Mesos. In this case we can ask ourselves the question of why use FaaS when we can use containers ?
+Among these similarities, we find the argument of scaling up. This functionality is readily  available at the container level with systems such as Kubernetes, Rancher or Mesos. In this case we can ask ourselves the question of why use FaaS when we can use containers?
 
-It is important to know that despite the buzz surrounding them, it is still immature and many companies are still struggling to shift their containers infrastructure into production. In addition, container-level scaling systems are still far from reaching the maturity of the FaaS, even if this gap tends to narrow itself with the introduction of new services such as Horizontal Pod Auto Scaling for Kubernetes or systems like AWS ECS (Elastic container service).
+It is important to know that despite the buzz surrounding them, it is still immature and many companies are still struggling to shift their containers infrastructure into production. In addition, container-level scaling systems are still far from reaching the maturity of the FaaS, even if this gap tends to narrow itself with the introduction of new services such as Horizontal Pod Auto Scaling for Kubernetes or systems like AWS ECS (Elastic Container Service).
 
 Finally, the choice of technology will depend on the use case.
 
@@ -99,19 +99,19 @@ While some shared infrastructure (hardware, network) can result in direct cost s
 This advantage, however, is not too different from what you will get by using technologies such as Infrastructure as a Service (IaaS) or Platform as a Service (PaaS).
 
 ### Reduced development cost
-To illustrate this point, let us take the case of authentication as an example. Many applications develop their own authentication and user management services, thereby implementing their own security levels. This functionality often includes::
+To illustrate this point, let us take the case of authentication as an example. Many applications develop their own authentication and user management services, thereby implementing their own security levels. This functionality often includes:
 * User registration and validation (Registration Deletion)
 * Password recovery
 * Connection and access to services
 
 We find these features in most applications today. Even if application-generating solutions such as **JHipster** allow you to quickly generate several types of authentication implementations, it is still up to the developer to maintain this code and evolve it. Today, we are seeing the emergence of services such as Auth0 that provide "plug-and-play" authentication functionality so that the application can directly use these features while shifting the maintenance responsibility to   the service provider.
-Another example that lends itself to reducing costs is the use of synchronized database services such as **Firebase** (https://firebase.google.com/). These use cases are common in mobile architectures that would favor direct communication between the client (mobile) and the database. These hosted services effectively eliminate the need for a backend database  and associated administrative costs. This system also provides a new security layer that  brings fine grained data access management controls associated with individual user profiles.
+Another example that lends itself to reducing costs is the use of synchronized database services such as [Firebase](https://firebase.google.com/). These use cases are common in mobile architectures that would favor direct communication between the client (mobile) and the database. These hosted services effectively eliminate the need for a backend database  and associated administrative costs. This system also provides a new security layer that  brings fine grained data access management controls associated with individual user profiles.
 
 ### Autoscaling
-For me, one of the most important advantages of Serverless is the automatic, elastic, and above all supplier-managed horizontal scaling. This can translate into several advantages, mainly at the infrastructure level, but above all it allows you to only pay for what you really need. You can get billed for the amount of computation time used (as fine grained as 100 ms for AWS Lambda) or for the amount of data recovered or analyzed. Depending on your architecture and Use Cases this can generate huge savings for you.
+For me, one of the most important advantages of Serverless is the automatic, elastic, and above all supplier-managed horizontal scaling. This can translate into several advantages, mainly at the infrastructure level, but above all it allows you to only pay for what you really need. You can get billed for the amount of computation time used (as fine grained as 100 ms for AWS Lambda) or for the amount of data recovered or analyzed. Depending on your architecture and Use Cases, this can generate huge savings for you.
 
 One example of cost optimization is the occasional use of a function. For instance, let's say you run a server application that processes only 1 request every minute, takes 50 ms to process a request, and your average CPU usage for one hour is 0.1%. From a server workload perspective, this is extremely inefficient.
-FaaS technology captures this inefficiency and allows you to pay only for what you consume, i. e. 100ms (minimum value) per minute, less than 0.5% of the total time.
+FaaS technology captures this inefficiency and allows you to pay only for what you consume, i.e. 100ms (minimum value) per minute, less than 0.5% of the total time.
 
 ### Be a better developer, think about optimization
 While this new architecture offers new features such as scalability, it still faces the constraints of application development. In this way, the function optimization phase takes on even more value as it not only improves the response time for users, but also saves money on the bill. For example, for an operation that initially takes 1 second and after optimization takes 200ms, we will have an immediate 80% invoice discount.
@@ -123,10 +123,10 @@ With traditional servers, there is inevitably waste in terms of maintenance and 
 ## Drawbacks
 As unicorns do not exist, Serverless also comes with its share of inconveniences and constraints that are not to be taken lightly, as these could become your worst nightmare depending on your use cases.
 
-However, these drawbacks can be separated in two categories: those inherent with this new kind of architecture, and those that result from its youth and its lack of tools and solutions.
+However, these drawbacks can be separated into two categories: those inherent with this new kind of architecture, and those that result from its youth and its lack of tools and solutions.
 
 ### Cloud provider lock-in
-The first, and not the least for me, is the strong dependency we create with the service provider. At the time of this writing, no specification has been released in order to adopt a common language between suppliers. Even if some frameworks (like serverless.com) try to break down these limitations, when designing your solution and choosing the functionality, you will have to choose a single supplier to guarantee a certain homogeneity of communication between the different layers and to overcome the locking that the suppliers make of their services. For example, for the API Gateway to AWS Lambda connection, you need to use both AWS services to guarantee it will work. You will still be able to find gateways to use multiple service providers (Authentication through Auth0, DB with Firebase and API + Lambda on AWS) but in this case, it will make administration and billing estimation for your solution very difficult.
+The first, and not the least for me, is the strong dependency we create with the service provider. At the time of this writing, no specification has been released in order to adopt a common language between suppliers. Even if some frameworks (like [serverless.com](https://serverless.com/)) try to break these limitations, when designing your solution and choosing the functionality, you will have to choose a single supplier to guarantee a certain homogeneity of communication between the different layers and to overcome the locking that the suppliers make of their services. For example, for the API Gateway to AWS Lambda connection, you need to use both AWS services to guarantee it will work. You will still be able to find gateways to use multiple service providers (Authentication through Auth0, DB with Firebase and API + Lambda on AWS) but in this case, it will make administration and billing estimation for your solution very difficult.
 
 The same goes for the code used to write the functions, as it is specific to each supplier and you will therefore have to foresee a rewriting cost when moving to another supplier.
 
@@ -141,32 +141,32 @@ I couldn't write an article about Serverless without mentioning the security of 
 * Because the services you use are shared, you inherit the security issues inherent in the multi-holder service. For example, access to other client data through process sharing.
 
 ### Implementation Drawbacks
-Let us now turn to the drawbacks inherent in the currently available solutions. Let’s keep in mind that this should evolve quickly given its rapid growth.
+Let us now turn to the drawbacks inherent in the currently available solutions. Let's keep in mind that this should evolve quickly given its rapid growth.
 
 #### Execution time
 A current limitation is maximum execution time for FaaS. Currently there is a 5 minute limit AWS Lambda, and a 9 minute limit for Google Cloud Functions. This constraint restricts the scope of Use Cases such as video processing or some batch work.
 
 #### Function warm up
-Another disadvantage that some FaaS implementations cause is the latency at startup (named cold start). In addition to the function’s execution time, there is also up to a 10 second warming latency depending on the context (example when using a JVM). This is why some suppliers like Google restrict the number of compatible languages for their functions and thus allow only the use of Javascript (which is understandable given the performance of their engine).
+Another disadvantage that some FaaS implementations cause is the latency at startup (named cold start). In addition to the function's execution time, there is also up to a 10 second warming latency depending on the context (example when using a JVM). This is why some suppliers like Google restrict the number of compatible languages for their functions and thus allow only the use of Javascript (which is understandable given the performance of their engine).
 
 Similarly we can observe network latencies when several lambda functions are created in series. We will detail this in more detail in the next paragraph.
 
 #### Tests
-Since there is a lot of talk about development, the same goes for tests. Even if some people think that "Testing is doubting", we have to deal with this point, especially since it is a serious drawback when using this type of service.
+There is a lot to say about development, and the same goes for tests. Even if some people think that "Testing is doubting", we have to deal with this point, especially since it is a serious drawback when using this type of service.
 
-Some may think that because of the isolation of each function, it may be relatively easy to test them. Those people are right when speaking about unit tests because it's just a piece of code, but when we talk about integration tests it is not as straightforward. New questions arise, due to dependencies on external services (database, authentication). In these cases we need to think about their scope, and the relevance of carrying out these end-to-end tests. The majority of service providers don’t offer testing specific functionality, such as easy before and after state management, or specific costing rules for tests.
+Some may think that because of the isolation of each function, it may be relatively easy to test them. Those people are right when speaking about unit tests because it's just a piece of code, but when we talk about integration tests it is not as straightforward. New questions arise, due to dependencies on external services (database, authentication). In these cases we need to think about their scope, and the relevance of carrying out these end-to-end tests. The majority of service providers don't offer testing specific functionality, such as easy before and after state management, or specific costing rules for tests.
 
 When attempting to develop and test locally, you will need local stub systems that are not necessarily provided. On this point, Google differentiates itself from others by the fact that all its solutions are generally based on Open Source systems, so the community is quickly developing stubs for those services.
 
 The same applies to the integration of FaaS services. It is still difficult to find a local implementation of the structure that embeds the functions. We will therefore have to use the final environment directly. Although staging concepts separate test use from production use, unfortunately this does not apply to all services.
 
 #### Deployment & versioning
-Currently, no successful pattern has been established for the packaging and deployment phase`s. That's why we are rapidly facing constraints on atomic function deployment. Take the case of a series of functions that run, to ensure a consistent deployment, you will have to stop your service at the origin of the triggering events, then deploy all your functions and then activate the service again. This can be a major problem for applications requiring high availability. The same goes for the application versioning and rollback phase.
+Currently, no successful pattern has been established for the packaging and deployment phases. That's why we are rapidly facing constraints on atomic function deployment. Take the case of a series of functions that run, to ensure a consistent deployment, you will have to stop your service at the origin of the triggering events, then deploy all your functions and then activate the service again. This can be a major problem for applications requiring high availability. The same goes for the application versioning and rollback phase.
 
 #### Supervision
 To date, the only possible solutions for monitoring and debugging your functions in detail are those provided by the service provider and are generally relatively immature. Even though enormous efforts are being made as with the release of AWS X-Ray, there is still a long way to go in order to have a complete and specific FaaS solution.
 
 # To conclude
-We have seen in this article that Serverless can bring a lot of automation and benefits, but it’s not the only and best solution for your future architecture. You first need to think about your constraints before to choose this kind of services.
+We have seen in this article that Serverless technologies can bring a lot of automation and benefits, but it's not the only and best solution for your future architecture. You first need to think about your constraints before to choose this kind of services.
 
-You should also remember that Serverless is still young. For your information, AWS Lambda technology launched 2 years ago and Google Functions have just been released to Beta phase. We still have few real case studies on massive serverless architectures, the first official one was during AWS re:Invent event on November 2017. But we can guarantee a good future for this technology given the way it evolves.
+You should also remember that Serverless is still young. For your information, AWS Lambda technology launched 2 years ago and Google Functions have just been released to Beta phase. We still have few real case studies on massive serverless architectures, the first official one was during AWS re:Invent event in November 2017. But we can guarantee a good future for this technology given the way it evolves.
