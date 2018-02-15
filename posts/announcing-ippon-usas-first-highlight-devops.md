@@ -13,7 +13,7 @@ Our expert technologists are working to produce articles and events to shine a n
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/03/highlight_2017--1-.jpg)
 
-RSVP to our Ippevent at the Lucky Strike Power Plant in RVA on Wednesday, March 29th at 5:30pm: 
+RSVP to our Ippevent at the Lucky Strike Power Plant in RVA on Wednesday, March 29th at 5:30pm:
 
 [The DevOps Approach: Providing Stability, Facilitating Change, and Reducing Risk](https://www.meetup.com/Ippon-Technologies-USA-Meetup/events/238143658/)
 

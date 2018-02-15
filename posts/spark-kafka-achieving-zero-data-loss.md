@@ -12,7 +12,6 @@ Kafka and Spark Streaming are two technologies that fit well together. Both are 
 
 **TL;DR – Connect to Kafka using Spark’s Direct Stream approach and store offsets back to ZooKeeper (code provided below) – Don’t use Spark Checkpoints.**
 
-
 ## Overview of the problem
 
 Spark Streaming can connect to Kafka using two approaches described in the [Kafka Integration Guide](http://spark.apache.org/docs/latest/streaming-kafka-integration.html). The first approach, which uses a receiver, is less than ideal in terms of parallelism, forcing you to create multiple DStreams to increase the throughput. As a matter of fact, most people tend to depreciate it in favor of the *Direct Stream* approach that appeared in Spark 1.3 (see the [blog post on Databricks’ blog](https://databricks.com/blog/2015/03/30/improvements-to-kafka-integration-of-spark-streaming.html)and a [blog post of the main contributor](https://github.com/koeninger/kafka-exactly-once/blob/master/blogpost.md)).
@@ -27,7 +26,6 @@ That being said, if you use the Direct Stream approach, you have 2 options to av
 - Keeping track of the offsets that have been processed.
 
 When you read Spark’s documentation, checkpoints seem to be the way to go but they actually don’t come without their problems. Let’s first review why they are not a practical approach before describing an alternative one.
-
 
 ## Spark Checkpoints
 
@@ -131,7 +129,6 @@ Now, assuming you’re ok with all of this, you might hit a third issue with the
 
 </div>[I raised the problem on StackOverflow](http://stackoverflow.com/questions/36987875/writing-spark-checkpoints-to-s3-is-too-slow) but couldn’t find anyone using S3 to write checkpoints. Since we didn’t have a HDFS file system on hand, and since checkpoints were overall quite painful, we decided to consider another approach: manually dealing with checkpoints.
 
-
 ## Manually dealing with checkpoints
 
 Here is the idea:
@@ -190,7 +187,6 @@ private def readOffsets(...): Option[Map[TopicAndPartition, Long]] = {
 }
 ```
 
-
 ## Writing the offsets to ZooKeeper
 
 So now comes the question of where to store the offsets. The datastore you choose should be distributed and always accessible so that any Spark node can access despite failures.
@@ -224,7 +220,6 @@ Then, if you restart the application, you should see the following logs:
 ```
 
 So far, this code has proved to be reliable and we’re happy to share it with you [on GitHub](https://github.com/ippontech/spark-kafka-source)!
-
 
 ## EDIT – Our application recovered gracefully from a network outage!
 

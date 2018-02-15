@@ -35,7 +35,6 @@ Many thanks to:
 - [Thibault Duchateau](https://twitter.com/tduchateau) and [Romain Lespinasse](https://twitter.com/rlespinasse) from the Dandelion Project, for correcting their library at an unbelievable speed.
 - [James Ward](https://twitter.com/_JamesWard), the author of WebJars, for best practices in using his library.
 
-
 ## Creating a JMeter test
 
 First of all, we have configured the application to be in “production” mode:
@@ -65,7 +64,6 @@ We have also run those tests on several other computers, with the same results (
 The first results are as follow: the application quickly goes up to **285 requests per second (req/sec)**, then slows down and throws “**java.lang.OutOfMemoryError: Java heap space**” errors after nearly 700 users. We then have lots of HTTP errors, and the application gets so slow it is not usable anymore.
 
 Of course, we can give more memory to the application, so that it can handle our 5000 users. With 1 Gigabytes of heap, the application can handle the load, with a result of **548 req/sec and 0,2% of HTTP errors**.
-
 
 ## Conclusion of part 1
 

@@ -13,7 +13,6 @@ image:
 
 This is part 5 of our 5-part series on improving the performance of the Spring-petclinic application. Here are [part 1](https://test-ippon.ghost.io/improving-the-performance-of-the-spring-petclinic-sample-application-part-1-of-5/), [part 2](https://test-ippon.ghost.io/improving-the-performance-of-the-spring-petclinic-sample-application-part-2-of-5/), [part 3](https://test-ippon.ghost.io/improving-the-performance-of-the-spring-petclinic-sample-application-part-3-of-5/) and [part 4](https://test-ippon.ghost.io/improving-the-performance-of-the-spring-petclinic-sample-application-part-4-of-5/).
 
-
 ## Adding more cache
 
 To increase application performance, one of the classic solutions is to add more cache. We already have a cache configured in the application, it is on the [JpaVetRepositoryImpl](https://github.com/jdubois/spring-petclinic/blob/681026758d2f80082c4597ec0393bff07c95be65/src/main/java/org/springframework/samples/petclinic/repository/jpa/JpaVetRepositoryImpl.java#L44).
@@ -29,7 +28,6 @@ You can see those changes in the following commit:
 
 **Our final result goes up to 1225 req/sec**. That’s only a 15% performance boost, but please note that we have a very small database, and that it is running locally. On a real-world system, the improvement should be better, especially for the JpaOwnerRepositoryImpl.findByLastName() method.
 
-
 ## Extreme testing
 
 We decided to do an extreme testing session, in order to see if we really stabilized the application (using Tomcat’s NIO connector and going stateless, specifically).
@@ -43,7 +41,6 @@ Our results are extremely good:
 - The application runs smoothly, and stabilizes at **1565 req/sec** !!
 
 This is, of course, an excellent result.
-
 
 ## Conclusion and final thoughts
 

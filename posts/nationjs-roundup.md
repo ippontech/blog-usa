@@ -13,8 +13,6 @@ image:
 
 Recently we had the opportunity to attend NationJS, a Mid-Atlantic JavaScript conference held in Silver Springs, Maryland which had 300 attendees and thirteen speakers. A wide variety of interesting JavaScript topics were discussed, ranging from testing, writing documentation, interfacing with hardware, and much more.
 
- 
-
 Click on a link below to be taken directly to that section of the article.
 
 - **[Becoming A Happy Javascripter by Julia Allyce](#julia)**
@@ -27,8 +25,6 @@ Click on a link below to be taken directly to that section of the article.
 - **[High Performance in the Critical Rendering Path by Nicolas Bevacqua](#nicolas)**
 - **[JavaScript Rehab for Grunters and Gulpers by Erik Isaksen](#erik)**
 - **[React is “Functional” by John K Paul](#john)**
-
- 
 
 ### **Becoming A Happy Javascripter by Julia Allyce**
 
@@ -47,8 +43,6 @@ Click on a link below to be taken directly to that section of the article.
 <span style="font-weight: 400">The last thing Julia touched on was what to do when you actually get the job: help out the new guy, make sure they are learning to the best of their ability. Become a mentor by going to Meetups and schools; try to pass on your knowledge to those that are wanting to learn.</span>
 
 <span style="font-weight: 400">A good read to look into: </span><span style="text-decoration: underline"><span style="font-weight: 400">Eloquent Javascripts</span></span><span style="font-weight: 400"> by Majijn Haverbeke</span>
-
- 
 
 ### How to Stop Hating your Test Suite by Justin Searls
 
@@ -70,8 +64,6 @@ Click on a link below to be taken directly to that section of the article.
 
 <span style="font-weight: 400">One of the last topics Justin covered, still not out of breath mind you, was the difference between a true negative and a false negative and the need to know the difference and keep track of when they happen. A true negative is when the test fails because you have broken code somewhere, and causes a developer to come and fix the code. A false negative is when the test fails because the test was written poorly or just plain wrong, and does not tell you if the code is broken or not which results in someone having to rewrite the test case and test again. Obviously it is best if the test case fails for code-breaking reasons. Keeping track of when a true negative happens versus a false negative will allow you to know if test cases are frequently being created incorrectly. This will help to sort through good and bad testers/developers.</span>
 
- 
-
 ### **documentation.js by Tom MacWright**
 
 <span style="font-weight: 400">Tom MacWright presented a library called </span>[<span style="font-weight: 400">JSDoc</span>](http://usejsdoc.org/)<span style="font-weight: 400">, which is very similar to </span>[<span style="font-weight: 400">Javadocs</span>](https://en.wikipedia.org/wiki/Javadoc)<span style="font-weight: 400"> and has similar notation which allows one to document their JavaScript. Often people argue that document generators are unnecessary because we strive to write self documenting code, or that it is overly verbose to describe all the required properties. </span>
@@ -81,8 +73,6 @@ Click on a link below to be taken directly to that section of the article.
 <span style="font-weight: 400">The purpose of JSDoc is to bring back the use of documentation generators as opposed to handling this manually in a markdown file. This library becomes more useful thanks to the ES6 module system, while our code is modular, the documentation should not be. With JSDoc all the documentation will be in one place, even if the code is not.</span>
 
 <span style="font-weight: 400">JSDoc is a cool library for generating documentation for your JavaScript code in multiple forms (it can generate HTML, and Markdown for you), and worth checking out.</span>
-
- 
 
 ### **Hardware for the Softworld by Stacey Mulcahy**
 
@@ -96,8 +86,6 @@ Click on a link below to be taken directly to that section of the article.
 
 <span style="font-weight: 400">Follow </span>[<span style="font-weight: 400">@bitchwhocodes</span>](https://twitter.com/bitchwhocodes?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor)<span style="font-weight: 400"> if any of the above sounds intriguing.</span>
 
- 
-
 ### **Writing Command Line Applications in Node.js by Josh Finnie**
 
 <span style="font-weight: 400">Following a short break, Josh Finnie got on the stage to talk about Node.js. Josh is a full-stack engineer at </span>[<span style="font-weight: 400">TrackMaven</span>](http://trackmaven.com/)<span style="font-weight: 400"> and runs NodeDC’s Node Nights, checkout their meetup events </span>[<span style="font-weight: 400">here</span>](http://www.meetup.com/node-dc/)<span style="font-weight: 400">.</span>
@@ -110,8 +98,6 @@ Click on a link below to be taken directly to that section of the article.
 
 <span style="font-weight: 400">Watch for updates on ES6 implementation for </span>[<span style="font-weight: 400">Node.js</span>](https://nodejs.org/en/docs/es6/)<span style="font-weight: 400"> and </span>[<span style="font-weight: 400">Babel.js</span>](https://babeljs.io/docs/learn-es2015/)<span style="font-weight: 400">. </span>
 
- 
-
 ### **Building a musical instrument with the Web Audio API by Steve Kinney (**[**Talk Resources**](https://github.com/stevekinney/making-music)**)**
 
 <span style="font-weight: 400">Following Josh Finnie, we have Steve Kinney who will be talking about the </span>[<span style="font-weight: 400">Web Audio API</span>](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)<span style="font-weight: 400"> (a synthesizer that was added to </span>[<span style="font-weight: 400">most browsers</span>](http://caniuse.com/#feat=audio-api)<span style="font-weight: 400">). Steve Kinney is the Co-Director of Academics at </span>[<span style="font-weight: 400">Turing School</span>](http://turing.io)<span style="font-weight: 400">. This talk speaks of how to interact with the web audio api at multiple levels and in multiple applications (which use different techniques).</span>
@@ -121,8 +107,6 @@ Click on a link below to be taken directly to that section of the article.
 <span style="font-weight: 400">Afterward, we built something a bit more complex using an interesting helper library, </span>[<span style="font-weight: 400">Octavian</span>](https://github.com/stevekinney/octavian)<span style="font-weight: 400">. With this library we can forget about what frequency a given musical note is, and instead reference it by name; now we can simulate more interesting instruments (or even create our own instruments). To do this, we simply bind some event to create and start an oscillator at a given note (which is easy thanks to Octavian).</span>
 
 <span style="font-weight: 400">The piano example used simple key press events, but this is not required, as the next example shows. Using a face tracking library we can emit sounds based on facial position as recognized by the camera.</span>
-
- 
 
 ### **Analytics and Tracking Tools on Single Page Apps with AngularJS by Lizz Somerfield**
 
@@ -136,8 +120,6 @@ Click on a link below to be taken directly to that section of the article.
 
 [<span style="font-weight: 400">Here</span>](https://support.google.com/analytics/answer/6166898?hl=en&ref_topic=6163649)<span style="font-weight: 400"> is another great tutorial with much more in-depth steps on GTM. </span>
 
- 
-
 ### **High Performance in the Critical Rendering Path by Nicolas Bevacqua (**[**Talk Resources**](https://speakerdeck.com/bevacqua/high-performance-in-the-critical-path)**)**
 
 <span style="font-weight: 400">Nicolas Bevacqua is a JavaScript and web performance consultant and author of </span>[<span style="font-weight: 400">JavaScript Application Design</span>](https://bevacqua.io/buildfirst)<span style="font-weight: 400"> from Buenos Aires, Argentina. Speed is very important in web development, Amazon recently found that a 100 ms increase in latency led to a 20% drop in traffic. In this talk Nicolas outlines many methods to increase performance, and also suggests tools to monitor performance.</span>
@@ -150,8 +132,6 @@ Click on a link below to be taken directly to that section of the article.
 
 <span style="font-weight: 400">Performance is important and should be monitored consistently from the beginning. Set a budget and enforce it to keep the app from growing, and becoming bloated, and make sure you optimize your content. These will lead to a better experience for your users, and should be a major priority.</span>
 
- 
-
 ### **JavaScript Rehab for Grunters and Gulpers by Erik Isaksen (**[**Talk Resources**](https://docs.google.com/presentation/d/1HxPQNMtoTM_CBLjkC-khiQ_o556WRHj6XkQ2FZXJlL4/edit#slide=id.p)**)**
 
 <span style="font-weight: 400">Erik Isaksen is a web developer with Deloitte Digital and speaks about the growing complexity of web development. Lots of new tools are appearing, and managing everything can become overwhelming in a world where the UI/UX expectations continually grow.</span>
@@ -159,8 +139,6 @@ Click on a link below to be taken directly to that section of the article.
 <span style="font-weight: 400">Grunt and Gulp are two tools used to automate tasks that are no longer possible to do manually, but abusing these with overly complex tasks can lead to more time automating the task than it would have taken to do it manually. The takeaway of this is that a task should be small and meaningful.</span>
 
 <span style="font-weight: 400">Sticking with the concept of increasing productivity, web developers should look into using yeoman app generators, such as an angular app generator, a default one exists (but I encourage readers to look into </span>[<span style="font-weight: 400">JHipster</span>](http://jhipster.github.io/)<span style="font-weight: 400"> if they haven’t already).</span>
-
- 
 
 ### **React is “Functional” by John K Paul (**[**Talk Resources**](http://johnkpaul.github.io/presentations/nationjs/2015/react-is-functional/assets/player/KeynoteDHTMLPlayer.html#0)**)**
 

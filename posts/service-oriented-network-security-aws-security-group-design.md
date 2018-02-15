@@ -19,8 +19,6 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/1
 
 <span style="font-weight: 400;">With the introduction of microservices we are seeing an increasing breadth of services necessarily available on the same subnets. As the web of microservice interoperation becomes more complicated a more adaptive security model should be implemented that better enables the constantly changing needs of your applications while still retaining high levels of security. </span>
 
- 
-
 #### **Endpoint Categorization**
 
 <span style="font-weight: 400;">The key feature that has enabled the ability to build an adaptive security model around your services is Endpoint Categorization. This is essentially the ability to target security groups with other security groups giving you the ability to categorize your security endpoints based on the service that they provide. Instead of needing to specify a CIDR block (IP Range) that a specific rule targets for permissions you can now target a security group by name meaning that any instance with that security group has that permission.</span>
@@ -28,8 +26,6 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/1
 [![Image shows rules in the security group applied to the front end web instances, allowing only instances with the “ELB-FrontEnd-Web” security group to contact it on ports 80 and 443.](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/06/1.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/06/1.png)Image shows rules in the security group applied to the front end web instances, allowing only instances with the “ELB-FrontEnd-Web” security group to contact it on ports 80 and 443.
 
 The ability to categorize your endpoints in this manner opens up a world of tighter security throughout your network transparent to your underlying network architecture. Taking advantage of this small feature can make a big difference in your security footprint (open ports per host). </span>
-
- 
 
 #### **Example**
 
@@ -46,8 +42,6 @@ The ability to categorize your endpoints in this manner opens up a world of tigh
 - <span style="font-weight: 400;">MySQL – RDBMS: MySQL has been around for a very long time, and continues to be a favorite of web programmers due to it’s ease of use, management and maintenance. (</span>[<span style="font-weight: 400;">https://www.mysql.com/</span>](https://www.mysql.com/)<span style="font-weight: 400;">)</span>
 - <span style="font-weight: 400;">ELB – Elastic Load Balancer: We will be using Amazon’s ELB service to distribute load.</span>
 
- 
-
 **Network Layout:**
 
 <span style="font-weight: 400;">While we are focusing on service oriented security there may still be a number of things that fit a classic subnet security model. Let’s set up a classic 3-tiered subnet stack with the addition of a DMZ to further isolate internet access. Here is the network model for our application:</span>
@@ -58,8 +52,6 @@ The ability to categorize your endpoints in this manner opens up a world of tigh
 - <span style="font-weight: 400;">Web Tier CIDR: 10.20.1.0/24</span>
 - <span style="font-weight: 400;">App Tier CIDR: 10.20.2.0/24</span>
 - <span style="font-weight: 400;">Data Tier CIDR: 10.20.3.0/24</span>
-
- 
 
 **The DMZ Tier:**
 
@@ -83,8 +75,6 @@ The ability to categorize your endpoints in this manner opens up a world of tigh
 
 <span style="font-weight: 400;">The arrows in this graphic show only the flow of data for our application, but not for a number of things going on around it (logging, monitoring, etc.). In this tiered model, the rule should stand that every layer can only communicate with the layer directly above and with the layer directly below it. To this point the most important thing that we are doing is preventing the web tier from communicating directly with the data tier. This not only has the HUGE benefit of abstracting our data model via an API (the middle tier) but also preventing customer facing systems from having access to query level data architecturally preventing any kind of data injection or abuse. </span>
 
- 
-
 #### **Security Groups**
 
 <span style="font-weight: 400;">Now that we know what our stack uses and how it’s laid out we will take a look at how to build out security groups. </span>
@@ -104,8 +94,6 @@ The ability to categorize your endpoints in this manner opens up a world of tigh
 <span style="font-weight: 400;">We are using the AdminAccess Security Group that we created above as the target for access to port 8125 (StatsD) and 2003 (Graphite) because all machines that will need to communicate with Graphite / StatsD will also have this AdminAccess Security Group. As we add new machines to the AdminAccess group, they will automagically gain access to communicate with instances in this group. </span>
 
 <span style="font-weight: 400;">ELK – Very similarly, we will want to be able to access Kibana securely from our office network, and yet ensure that machines have access to deposit logs into ElasticSearch (assuming they are on the same instance). </span>
-
- 
 
 **Application Stack**
 
@@ -131,8 +119,6 @@ The App Tier ELB now needs to open up it’s own port 7200 for access from the F
 
 >[![Inbound rules for the “MySQL” Security Group.](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/06/10.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/06/10.png)Inbound rules for the “MySQL” Security Group.
 
-
-
 <span style="font-weight: 400;">And everything is chained together. Now our services are free to autoscale without fear of small network boundaries, or allowing access to non-relevant ports. </span>
 
 <span style="font-weight: 400;">This example has been specific to Inbound Rules, but the same can be applied to Outbound rules you will just have to make exceptions for internet access if necessary. Note: You do not have to account for the use of </span>[<span style="font-weight: 400;">ephemeral ports</span>](https://en.wikipedia.org/wiki/Ephemeral_port)<span style="font-weight: 400;"> for Output access with security groups, as they remember connection state, however ACL’s do not and will need the ephemeral port range allowed. </span>
@@ -155,8 +141,6 @@ The App Tier ELB now needs to open up it’s own port 7200 for access from the F
 - <span style="font-weight: 400;">25 rules * 10 groups = 250 (This should be adequate for most Service Oriented Security implementations to function correctly.)</span>
 - <span style="font-weight: 400;">10 rules * 25 groups = 250 (Security groups subscription should probably be automated at this level to alleviate management pains, 10 rules can be tight for some situations, but is still usually enough.)</span>
 - <span style="font-weight: 400;">5 rules * 50 groups = 250 (I’m not even sure AWS will actually do this for you. You should probably think about adding a VPC if you are approaching this need.)</span>
-
- 
 
 #### **Conclusion**
 

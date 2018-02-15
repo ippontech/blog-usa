@@ -127,7 +127,7 @@ $docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}' $
 ```
 Which gives us:
 ```
-$docker-ips             
+$docker-ips
 IP ADDRESS	CONTAINER ID        IMAGE                                         COMMAND                  CREATED             STATUS              PORTS                                      NAMES
 172.23.0.2 	9a039e8c80d1        mysql:8.0.3                                   "docker-entrypoint..."   26 minutes ago      Up 26 minutes       3306/tcp                                   reverseproxy_mysql_1
 172.21.0.3 172.23.0.3 	592d5cb33180        owncloud:10.0.3                               "docker-entrypoint..."   26 minutes ago      Up 26 minutes       0.0.0.0:8080->80/tcp                       reverseproxy_owncloud_1
@@ -137,7 +137,7 @@ IP ADDRESS	CONTAINER ID        IMAGE                                         COM
 ```
 Way better ! Well, not quite, because the display is broken again due to the IP’s length which is not always the same. Let’s delete the columns *Command* and *Created* and put *IP ADDRESS* in the last position:
 ```
-$function docker-ips() {        
+$function docker-ips() {
     docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Ports}}\t{{.Status}}" | while read line; do
         if `echo $line | grep -q 'CONTAINER ID'`; then
             echo -e "$line\tIP ADDRESS"
@@ -151,10 +151,10 @@ $function docker-ips() {
 
 $docker-ips
 CONTAINER ID        IMAGE                                         NAMES                        PORTS                                      STATUS	IP ADDRESS
-9a039e8c80d1        mysql:8.0.3                                   reverseproxy_mysql_1         3306/tcp                                   Up 30 minutes	172.23.0.2 
-592d5cb33180        owncloud:10.0.3                               reverseproxy_owncloud_1      0.0.0.0:8080->80/tcp                       Up 30 minutes	172.21.0.3 172.23.0.3 
-3c9a4976da73        jrcs/letsencrypt-nginx-proxy-companion:v1.5   reverseproxy_letsencrypt_1                                              Up 30 minutes	172.21.0.4 
-1c2c18ca14b3        jwilder/nginx-proxy                           reverseproxy_nginx-proxy_1   0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp   Up 30 minutes	172.21.0.2 
+9a039e8c80d1        mysql:8.0.3                                   reverseproxy_mysql_1         3306/tcp                                   Up 30 minutes	172.23.0.2
+592d5cb33180        owncloud:10.0.3                               reverseproxy_owncloud_1      0.0.0.0:8080->80/tcp                       Up 30 minutes	172.21.0.3 172.23.0.3
+3c9a4976da73        jrcs/letsencrypt-nginx-proxy-companion:v1.5   reverseproxy_letsencrypt_1                                              Up 30 minutes	172.21.0.4
+1c2c18ca14b3        jwilder/nginx-proxy                           reverseproxy_nginx-proxy_1   0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp   Up 30 minutes	172.21.0.2
 185859d2f7c6        portainer/portainer                           portainer                    0.0.0.0:9000->9000/tcp                     Up 6 hours	172.17.0.2
 ```
 Beautiful ! But still not perfect…
@@ -175,7 +175,7 @@ $docker ps -
 ```
 To enable the user to use those parameters, I made a last modification to the ‘*docker ps*’ call to forward command line parameters:
 ```
-$function docker-ips() {        
+$function docker-ips() {
     docker ps $@ --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Ports}}\t{{.Status}}" | while read line; do
         if `echo $line | grep -q 'CONTAINER ID'`; then
             echo -e "$line\tIP ADDRESS"
@@ -187,7 +187,7 @@ $function docker-ips() {
     done;
 }
 
-$docker-ips --filter ancestor=owncloud:10.0.3                                   
+$docker-ips --filter ancestor=owncloud:10.0.3
 CONTAINER ID        IMAGE               NAMES                     PORTS                  STATUS	IP ADDRESS
 592d5cb33180        owncloud:10.0.3     reverseproxy_owncloud_1   0.0.0.0:8080->80/tcp   Up 37 minutes	172.21.0.3 172.23.0.3
 ```

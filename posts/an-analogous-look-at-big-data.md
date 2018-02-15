@@ -10,22 +10,13 @@ image:
 
 I am not going to harp on the details of particular Big Data tools or semantics in this article. I am going to compare our digital problem and solution with a physical scenario. I would also like to venture a guess at the future evolution of the Big Data ecosystem and its potential impact on technology as a whole. The purpose of the analogous approach is not to dumb it down, but to allow us to look at the problem from a simplistic perspective.
 
- 
-
-
 ## Definition
 
 First we need to define what “Big Data” is. To me, “Big Data” is a loaded term that represents multiple facets of the technological evolution we are witnessing. It stems from a need and desire to store more information as the Internet of Things (IoT) expands and technology becomes a larger part of our daily lives. First, computers, then cell phones, refrigerators, thermostats, scales, and so many more things have become connected. I will venture a guess that air fresheners will also be connected to the internet in the near future. As technology becomes more affordable, compact, and accessible, people will expect it to make their lives easier or more enjoyable. The growing network of connected things empowers technologists to consistently cultivate new information. This empowerment comes at a cost and presents several complex challenges. The ecosystem of solutions that solve this problem are what I think about when I hear the term “Big Data”.
 
- 
-
-
 ## The Analogy
 
 Data is the information that drives our software applications and serves as our digital filing cabinets. I am going to compare this to actual, physical filing cabinets. This example gives us a tangible situation facing the same challenges that we face in the digital world. As you would with computers, you must address capacity, cost, efficiency, and security concerns.
-
- 
-
 
 ## The “Three ‘V’s”
 
@@ -38,8 +29,6 @@ Most older technologies are built to scale up, or vertically, which simply requi
 Luckily, with technology, we are solving for these problems…mostly. We have access to databases that provide linear horizontal scalability, which means that the storage and throughput increases consistently when more nodes are added to a cluster. These databases are distributed in a way that each node is aware of the other nodes in the cluster, and act as coordinators to direct requests to the appropriate node(s). This technology also provides replication across distributed nodes, ensuring availability and durability of information.
 
 As with most situations, there is a trade-off. We are constrained by the CAP theorem in distributed environments. The CAP theorem states that we can achieve two out of three elements: Consistency, Availability, and Partition tolerance. Because of the nature of horizontally distributed data, achieving two of these in a large scale environment is an accomplishment. However, some emerging technologies, such as Cassandra, are introducing concepts such as “tunable consistency” which allow you to choose your side of the CAP theorem triangle per query.
-
- 
 
 #### Velocity
 
@@ -55,8 +44,6 @@ Many of the tools for Big Data provide batch analysis and streaming real-time an
 
 In addition to our application data needs, this creates a large demand for data scientists who are capable of dissecting a large pile of files and producing valuable insights from them. This opens the door to new potential revenue streams and business strategies. Pairing these piles of information with information outside our business can add tremendous value.
 
- 
-
 #### Variety
 
 *How do we organize files coming from various locations in different formats? What if business needs change, and we need to reorganize and redistribute all of the information in all of the filing cabinets? *
@@ -68,9 +55,6 @@ Big data technology typically supports the equivalent to throwing files into a p
 Now, we are faced with a new challenge. Our business requires us to respond to certain requests differently. We have organized our file cabinets in a way that allows us to respond to requests as efficiently as possible, but we are thrown a curveball. How do we store new files that belong in existing categories? Or, what if the business requires a new set of files to be retrieved for certain requests, which our current organization scheme does not support?
 
 As business needs change, we are prepared for it with Big Data. Most often, we do not have to reconsider our data model to adapt to changing business needs. This would still require application modifications, but the sparsely populated NoSQL data model supports diversity. At this point, the way in which we analyze the information would most likely change, but we do not need to restructure our entire dataset to adapt.
-
- 
-
 
 ## The Future
 

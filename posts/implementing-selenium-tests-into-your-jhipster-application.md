@@ -10,7 +10,7 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/0
 
 Implementing automated web browser tests can sound intimidating at first, but the ease with which Selenium WebDriver integration tests can be implemented and the overall benefit you will be receiving from having real web browser integration tests makes overcoming the initial setup worth the hassle. This post will serve the purpose of iterating how to set up Selenium tests in a project that was created using JHipster. For the sake of explanation, I am working with the JHipster sample project found [here](https://github.com/jhipster/jhipster-sample-app). If you are working with another project that was created using JHipster, or most Spring Boot projects, you should find that there aren't significant structural differences between your project and the project I describe here.
 
-Our first step is to add a Maven dependencies to our `pom.xml` file. In order to stay in line with best practices, you'll want to modify the version number so that it is parameter driven instead of hard coded in our `pom.xml` file as I am showing here:  
+Our first step is to add a Maven dependencies to our `pom.xml` file. In order to stay in line with best practices, you'll want to modify the version number so that it is parameter driven instead of hard coded in our `pom.xml` file as I am showing here:
 
 ```xml
 <dependency>
@@ -32,23 +32,23 @@ Once the dependencies are added, we are ready to start setting up our tests to r
 
 You can retrieve ChromeDriver [here](https://sites.google.com/a/chromium.org/chromedriver/).
 
-From here, we implement a basic set of Selenium tests that will run at the same time as our other integration tests. In our JHipster application, integration tests are triggered when our test files contain the text "IntTest" in their filenames. Our first Selenium test will run tests against our home page and our login page. These tests are build using the [page object design pattern](http://docs.seleniumhq.org/docs/06_test_design_considerations.jsp#page-object-design-pattern), which essentially means that instead of providing hard coded information about the web pages we are testing in our test classes, we are separating that information into page object classes for each web page. 
+From here, we implement a basic set of Selenium tests that will run at the same time as our other integration tests. In our JHipster application, integration tests are triggered when our test files contain the text "IntTest" in their filenames. Our first Selenium test will run tests against our home page and our login page. These tests are build using the [page object design pattern](http://docs.seleniumhq.org/docs/06_test_design_considerations.jsp#page-object-design-pattern), which essentially means that instead of providing hard coded information about the web pages we are testing in our test classes, we are separating that information into page object classes for each web page.
 
 My project directory structure for my Selenium tests is as follows:
 
 ```text
-  src  
-   └── test  
-       └── java  
-           └── com           
-                └── myapp  
-                    └── selenium  
-                        ├── base  
-                        │   └── TestBaseSetup.java  
-                        ├── pageObjects  
-                        │   ├── HomePageObject.java  
-                        │   └── LoginPageObject.java  
-                        └── tests  
+  src
+   └── test
+       └── java
+           └── com
+                └── myapp
+                    └── selenium
+                        ├── base
+                        │   └── TestBaseSetup.java
+                        ├── pageObjects
+                        │   ├── HomePageObject.java
+                        │   └── LoginPageObject.java
+                        └── tests
                             └── HomeIntTest.java
 ```
 
@@ -152,7 +152,7 @@ public class TestBaseSetup {
 }
 ```
 
-Next, we have our page object classes. The benefit of creating a page object class is that if there is a change to the views we are running our tests against, we can make corresponding changes to our page object classes and not have to manually fix each individual selenium test. Because one of our tests will involve navigating to the login page, I opted to created a page object class for both the home page as well as the login page. 
+Next, we have our page object classes. The benefit of creating a page object class is that if there is a change to the views we are running our tests against, we can make corresponding changes to our page object classes and not have to manually fix each individual selenium test. Because one of our tests will involve navigating to the login page, I opted to created a page object class for both the home page as well as the login page.
 
 ```java
 package com.myapp.selenium.pageObjects;
@@ -306,7 +306,7 @@ public class HomeIntTest extends TestBaseSetup {
 
 You will notice that we are finding our elements by "id" (`element = driver.findElement(By.id("loginTitle"))`). By default, our JHipster homepage does not have an element with an id of `loginTitle`. Another popular way to find elements on a web page that does not require us to modify any HTML code is by XPath, but this can be inconvenient because you cannot tell what element is being retrieved based on its XPath. It is especially inconvenient to use XPaths if you are regularly making updates to your HTML pages. So, to make this code work we must modify elements in our `main.html`, `login.html`, and `global.json` files.
 
-In `main.html`, we modify line 7 to read as follows:  
+In `main.html`, we modify line 7 to read as follows:
 
 <h1 translate="main.title" id="mainHeader">Welcome, Java Hipster!</h1>
 

@@ -105,7 +105,6 @@ public Authentication authenticate(Authentication authentication) throws Authent
         }
         GoogleAuthenticationToken res = new GoogleAuthenticationToken(userDetails, clientName, (Collection)authorities);
 
-
         logger.debug("Client name : {}", clientName); // -> Google2Client
         logger.debug("Client Credentials: {}", credentials); // -> OAuth Credentials
         logger.debug("Client Profile: {}", userProfile); // -> GoogleProfile, i.e. data from google

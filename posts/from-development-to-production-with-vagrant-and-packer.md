@@ -12,11 +12,10 @@ image:
 
 By Alexis Seigneurin – [@aseigneurin](https://twitter.com/aseigneurin).
 
-Have you heard of Vagrant? [Vagrant](http://www.vagrantup.com/) is a tool that allows to create virtual machines with a given configuration. It’s a great way to set up and deploy working environments in a reproducible manner. Vagrant therefore eliminates the ‘’works on my machine’’ syndrome.  
+Have you heard of Vagrant? [Vagrant](http://www.vagrantup.com/) is a tool that allows to create virtual machines with a given configuration. It’s a great way to set up and deploy working environments in a reproducible manner. Vagrant therefore eliminates the ‘’works on my machine’’ syndrome.
  Several useful cases are possible. The most common is to ramp up a new developer from scratch. Put a Vagrant file at their disposal, let them enter `vagrant up` and in a few seconds or minutes, they will have a development environment with all the tools that you defined: Maven, Elasticsearch, NodeJS, etc…
 
 Another use case is reproducing a complex production environment with, for instance, a load-balancer and multiple back-ends. This is what makes the [multi-machine](http://docs.vagrantup.com/v2/multi-machine/index.html) mode possible.
-
 
 ## Creating a Vagrant base box
 
@@ -24,13 +23,12 @@ In most cases, Vagrant is used from a base box such as those that can be found o
 
 It may be interesting to create your own base box, for instance:
 
-– if you want to control the content of your VM (it is sometimes a security measure, …);  
- – if there is no existing base box matching your needs;  
- – if the provisioning of your box is time-consuming (package compilation, large downloads, …)  
+– if you want to control the content of your VM (it is sometimes a security measure, …);
+ – if there is no existing base box matching your needs;
+ – if the provisioning of your box is time-consuming (package compilation, large downloads, …)
  – if you want to freeze an exact version of your environment (not to depend on an apt-get update, for example).
 
 Operations for creating a base box are documented: you must follow the [basic guide](http://docs.vagrantup.com/v2/boxes/base.html) and apply specific rules to the provider ([here](http://docs.vagrantup.com/v2/virtualbox/boxes.html) for Virtual Box). The procedure is not very complex, but it is tedious and error-prone. This is where Packer comes in…
-
 
 ## Creating a Vagrant base box with Packer
 
@@ -40,7 +38,7 @@ Note that for Vagrant, base boxes are usually created with [Veewee](https://gith
 
 A Packer setting is defined with a JSON file with “Builders” and “Provisioners”:
 
-– The builders are used to control the virtual machines. There are builders for Virtual Box, VMware, Amazon AWS, Google Cloud Platform, etc.  
+– The builders are used to control the virtual machines. There are builders for Virtual Box, VMware, Amazon AWS, Google Cloud Platform, etc.
  – The Provisioners are used to prepare the software settings from shell scripts or Chef, Puppet, etc.
 
 ### In practice
@@ -49,7 +47,7 @@ In this example, we will prepare the same setup (Ubuntu 13.04 with Node.JS 10.x)
 
 First note that the identification method will be different depending on the environment:
 
-– Locally (VirtualBox), we will use the traditional method of Vagrant, namely a vagrant user set up with a non-secure SSH key.  
+– Locally (VirtualBox), we will use the traditional method of Vagrant, namely a vagrant user set up with a non-secure SSH key.
  – On AWS, the mechanism of “key pairs” will be used; our key pair is already set up in the AWS management interface.
 
 ### Preparing the  VirtualBox box
@@ -58,7 +56,7 @@ The VirtualBox will be set up from an Ubuntu ISO that we specify by its URL on t
 
 The fastest way is to start from an existing Veewee configuration. Let’s download a Veewee template for Ubuntu from [https://github.com/jedi4ever/veewee/tree/master/templates/ubuntu-13.04-server-amd64](https://github.com/jedi4ever/veewee/tree/master/templates/ubuntu-13.04-server-amd64).
 
-This template consists of a definition (“definition.rb”), a preseed file (“preseed.cfg”) and shell scripts:  
+This template consists of a definition (“definition.rb”), a preseed file (“preseed.cfg”) and shell scripts:
 ```language-bash
 $ cd ubuntu-13.04-server-amd64
 >$ find ..
@@ -75,7 +73,7 @@ $ cd ubuntu-13.04-server-amd64
 ./vbox.sh
 ```
 
-Let’s launch the conversion from Veewee to Packer:  
+Let’s launch the conversion from Veewee to Packer:
 ```language-bash
 $ veewee-to-packer definition.rb
 Success! Your Veewee definition was converted to a Packer template!
@@ -85,7 +83,7 @@ Please be sure to run `packer validate` against the new template
 to verify settings are correct.
 ```
 
-We get a Packer definition file (“template.json”). The other files are preserved:  
+We get a Packer definition file (“template.json”). The other files are preserved:
 ```language-bash
 $ cd output
 $ find ..
@@ -158,9 +156,9 @@ Our builder will be configured as follows:
 
 We still have to modify the provisioners:
 
-– We can remove the installation of Ruby, Chef and Puppet which are of no use to us.  
- – The “Guest Additions” should only be installed for VirtualBox.  
- – The vagrant user should not be created for AWS.  
+– We can remove the installation of Ruby, Chef and Puppet which are of no use to us.
+ – The “Guest Additions” should only be installed for VirtualBox.
+ – The vagrant user should not be created for AWS.
  – We add a script to install Node.js.
 
 The Provisioner’s configuration becomes:
@@ -196,7 +194,7 @@ The Provisioner’s configuration becomes:
 ]
 ```
 
-And our nodejs.sh script is defined as follows:  
+And our nodejs.sh script is defined as follows:
 ```language-bash
 apt-get -y install software-properties-common
 add-apt-repository -y ppa:chris-lea/node.js
@@ -204,7 +202,7 @@ apt-get -y update
 apt-get -y install nodejs
 ```
 
-Finally, we add a post-processor that creates the Vagrant box from the AWS AMI and VirtualBox VM:  
+Finally, we add a post-processor that creates the Vagrant box from the AWS AMI and VirtualBox VM:
 ```language-json
 "post-processors": [
     {
@@ -278,8 +276,6 @@ Build 'virtualbox-iso' finished.
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/Unknown.png)
 
- 
-
 The “packer_virtualbox-iso_virtualbox.box” file was created. It is a TAR file. Let’s inspect it:
 
 ```language-bash
@@ -341,7 +337,7 @@ Build 'amazon-ebs' finished.
 eu-west-1: ami-9a07f0ed
 --> amazon-ebs: 'aws' provider box: packer_amazon-ebs_aws.box
 ```
-  
+
  Let’s inspect the “packer_amazon-ebs_aws.box” file:
 
 ```language-bash
@@ -383,7 +379,7 @@ ubuntu-13.04-amd64-nodejs (virtualbox)
 
 Note that several base boxes can have the same basic name if their providers are different. It is the case here.
 
-We can then create a Vagrant box based on our base box:  
+We can then create a Vagrant box based on our base box:
 ```language-bash
 $ vagrant init ubuntu-13.04-amd64-nodejs
 A `Vagrantfile` has been placed in this directory. You are now
@@ -416,8 +412,8 @@ AWS Provider:
 
 Several problems arise:
 
-– AWS access key is not configured, (actually reassuring). To remedy this, the AWS-Vagrant plugin automatically reads the environment and AWS_ACCESS_KEY AWS_SECRET_KEY variables. We can therefore run the following command:  
-`$ AWS_ACCESS_KEY=<...> AWS_SECRET_KEY=<...> vagrant up --provider=aws<br></br>`  
+– AWS access key is not configured, (actually reassuring). To remedy this, the AWS-Vagrant plugin automatically reads the environment and AWS_ACCESS_KEY AWS_SECRET_KEY variables. We can therefore run the following command:
+`$ AWS_ACCESS_KEY=<...> AWS_SECRET_KEY=<...> vagrant up --provider=aws<br></br>`
  – The ID of the AMI is missing. This is probably a bug in the plugin since Vagrant file in our base box did contain such information as well as the name of the region. It is possible to work around this problem by adding only the region to the local configuration:
 
 ```language-markup
@@ -425,7 +421,7 @@ config.vm.provider :aws do |aws, override|
 aws.region = "eu-west-1"
 end
 ```
-  
+
  – We must also specify the instance type, or the security groups, the key pair, as well as SSH access information:
 
 ```language-markup
@@ -436,7 +432,7 @@ override.ssh.username = "ubuntu"
 override.ssh.private_key_path = "..."
 ```
 
-Once these changes are done, we can re-execute the **vagrant up** command:  
+Once these changes are done, we can re-execute the **vagrant up** command:
 ```language-markup
 $ AWS_ACCESS_KEY=<...> AWS_SECRET_KEY=<...> vagrant up --provider=aws
 Bringing machine 'default' up with 'aws' provider...
@@ -459,7 +455,7 @@ vagrant@packer-virtualbox-iso:~$ node –v<br></br>
 v0.10.25
 ```
 
-And in AWS, only the prompt differs:  
+And in AWS, only the prompt differs:
 ```language-bash
 $ vagrant ssh
 Welcome to Ubuntu 13.04 (GNU/Linux 3.8.0-35-generic x86_64)...
@@ -467,19 +463,17 @@ ubuntu@ip-172-31-30-2:~$ node -v<br></br>
 v0.10.25
 ```
 
-
 ## Conclusion
 
 Vagrant is a handy tool to unify environments for development and production. Packer really makes this possible by allowing the assembly of identical base boxes in different environments.
 
 Then, of course, these tools are not perfect:
 
-– Our boxes are not perfectly identical; we used two similar sources (an ISO for VirtualBox, an AMI for AWS) that we provisioned the same way. The ideal would be to convert a box into another format, e.g. to convert a VirtualBox image into an AMI.  
- – Creating a box from an ISO is far from trivial: the boot sequence and preseed mechanism have little or no documentation. It is better in this case to start with an OVF image as those that can be found on [http://cloud-images.ubuntu.com/releases/raring/release/](http://cloud-images.ubuntu.com/releases/raring/release/) (the downloads are at the bottom of the page).  
+– Our boxes are not perfectly identical; we used two similar sources (an ISO for VirtualBox, an AMI for AWS) that we provisioned the same way. The ideal would be to convert a box into another format, e.g. to convert a VirtualBox image into an AMI.
+ – Creating a box from an ISO is far from trivial: the boot sequence and preseed mechanism have little or no documentation. It is better in this case to start with an OVF image as those that can be found on [http://cloud-images.ubuntu.com/releases/raring/release/](http://cloud-images.ubuntu.com/releases/raring/release/) (the downloads are at the bottom of the page).
  – The AWS plugin for Vagrant is still relatively young and not stable yet.
 
 In spite of this, we reached our goal and that’s the most important: developers can use Vagrant with VirtualBox while ops use a cloud provider.
-
 
 ## Resources
 

@@ -26,7 +26,7 @@ This is arguably the most crucial step to on-boarding onto a new project. After 
 
 1 Clone the project repository.
 2 Choose your IDE if applicable and import your project.
-3 Run the application and verify that your output is the same as the other team members.  
+3 Run the application and verify that your output is the same as the other team members.
 
 Steps 1–3 are oversimplified and often include many other steps in between. Depending on the application, you may not need or want to use an IDE. Additionally, if you’re developing and testing locally, you may need to install other tools. In my case, the project was heavily dependent on [ElasticSearch](https://www.elastic.co/products/elasticsearch). I also had the option of testing on an AWS cluster, or using [Docker](https://www.docker.com/) to test locally. There are often a few tricks to getting the environment setup that are project specific and may require some assistance from a developer that has been on the team longer.
 

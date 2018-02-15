@@ -16,7 +16,6 @@ This is part 3 of our 5-part series on improving the performance of the Spring-p
 
 Yesterday we managed to make the application handle 5000 users, with an average performance of 867 req/sec. Let’s see if we can improve this today.
 
-
 ## Removing the JVM locks
 
 Running the tests from part 2 showed us that some requests are taking a lot longer than the others, in fact our application does not answer requests fairly to all users.
@@ -30,7 +29,6 @@ This YourKit screenshot shows a profiling session, where each time a thread is l
 It seems we have a few locks! This explains why some requests are really slow, they are getting locked by the JVM.
 
 YourKit also shows us 3 main culprits for those locks, which we are going to remove one at a time.
-
 
 ## Removing Commons DBCP
 
@@ -48,7 +46,6 @@ We have limited the number of connections to 8, which is a very small number, fo
 On a real production system, it is very likely that a number between 30 and 100 would be a better configuration.
 
 Testing the application again, **we now achieve 910 req/sec**.
-
 
 ## Removing Webjars
 
@@ -76,7 +73,6 @@ For our next steps, we have now disabled the “JS” step in our JMeter test, a
 
 So let’s get down to the results: **we are now at 942 req/sec**.
 
-
 ## Removing the monitoring aspect
 
 This last issue was created on purpose: we have a small lock in the aspect which is provided to monitor the application with JMX.
@@ -86,7 +82,6 @@ It’s in fact a very good idea, but it has a negative impact on performance. Le
 [[Source code]](https://github.com/jdubois/spring-petclinic/commit/197888fef0ad5066006f817c801c99f57e44103d)
 
 **We now reach 959 req/sec**.
-
 
 ## Conclusion of part 3
 

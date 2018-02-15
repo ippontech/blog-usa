@@ -26,18 +26,18 @@ How you name a method, variable or a class should reveal why it exists and what 
 
 ==Original names ==
 ```language-java
-//Variables 
-String str;                
- int max;     
+//Variables
+String str;
+ int max;
 
 //Methods
 int convert(int i);
 char evolve (char izard);
-   
+
 // Classes
 class DocManager;
 ```
- 
+
 now refactored:
 
 ==Refactored names==
@@ -82,7 +82,6 @@ A project covered in its entirety by automated tests is the holy grail of devel
 **Interface segregation**: You should not create big interfaces that cover a wide range of functionality. Instead you should divide it up into multiple small and focused interfaces that will allow the user to decide which portion he needs in his code.
 
 **Dependency inversion**: In traditional OO design, we tend to make higher level modules depend on low level modules. This is bad design because if you need to change a low level module, then you need to introduce change in the high level modules as well. To solve this, we invert the dependency by ensuring that a high level module is not dependent on a low level module but instead both should depend on abstractions.
-
 
 ## Conclusion
 

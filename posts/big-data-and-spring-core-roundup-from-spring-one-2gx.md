@@ -16,7 +16,6 @@ By Dennis Sharpe and Romain Lheritier.
 
 Overall, the main buzzword was ‘[Cloud Native](http://pivotal.io/platform/migrating-to-cloud-native-application-architectures-ebook)’. It is the concept that you should design applications to run anywhere from the get-go. Going from the developer desktop to the cloud should be seamless. Many of the talks, whether about Digital or Big Data development, focused on distributed architectures that can scale flexibly across servers.
 
-
 # <span style="font-weight: 400;">Big Data</span>
 
 [<span style="font-weight: 400;">Spring XD</span>](http://projects.spring.io/spring-xd/)<span style="font-weight: 400;"> was the subject of many sessions in the Big Data track. Spring XD simplifies data ingestion, analytics and batch processing (workflows), and data export. Its power is in its connectors. It has numerous connectors for databases and external systems such as Hadoop, Spark, GemFire, etc. It is easy to configure orchestration and pipelines without any code. It allows the distribution of the workload among containers. Pivotal also just introduced [Spring Cloud Data Flow](http://blog.pivotal.io/pivotal-cloud-foundry/products/introducing-spring-cloud-data-flow), a ‘cloud native’ evolution of Spring XD.</span>
@@ -36,9 +35,6 @@ Overall, the main buzzword was ‘[Cloud Native](http://pivotal.io/platform/migr
 <span style="font-weight: 400;">Log & Event analysis was the subject of another notable talk, by Capital One engineers (Joseph Paulchell and Jason Baumgartner). </span><span style="font-weight: 400;">The business goal is to detect customer dissatisfiers and extract intelligence from online interactions. For instance, they managed to fix weird login issues based on patterns analyzed through their system. Their challenge was to provide data faster to their analysts and deal with the explosion of metrics and recordings. And they have numerous apps to consider. Some of them logged too much, some not enough. </span>
 
 <span style="font-weight: 400;">Their talk showed the evolution of their architecture. It went from saving audit events to a database through JDBC to using non-blocking JMS queues easily called from multiple apps through an @Audit annotation. The annotation solution did not scale up because SpEL expressions became complicated and the amount of data just became unmanageable (over 450GB a day). Replicating to Splunk helped some, but Splunk as a 90 day limit, so they had to dump the data somewhere else (Hadoop data lake). They looked for an open-source solution aligned to their internal skills (Java, Spring) and their constraints. They then decided to use Spring XD to manage data ingestion, transformation and workflow. </span>
-
- 
-
 
 # <span style="font-weight: 400;">Spring Core</span>
 

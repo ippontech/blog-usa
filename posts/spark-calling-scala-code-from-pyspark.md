@@ -10,7 +10,6 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/0
 
 In [a previous post](http://www.ippon.tech/blog/spark-kafka-achieving-zero-data-loss/), I demonstrated how to consume a Kafka topic using Spark in a resilient manner. The resiliency code was written in Scala. Now, I want to leverage that Scala code to connect Spark to Kafka in a PySpark application. We will see how we can call Scala code from Python code and what are the restrictions.
 
-
 ## Basic method call through Py4J
 
 PySpark relies on [Py4J](https://www.py4j.org/) to execute Python code that can call objects that reside in the JVM. To do that, Py4J uses a *gateway* between the JVM and the Python interpreter, and PySpark sets it up for you.
@@ -57,7 +56,6 @@ Notice that we can also assign an instance of a JVM object to a Python variable,
 hello
 ```
 
-
 ## Real-life method call
 
 Here is the method we want to call:
@@ -66,7 +64,7 @@ Here is the method we want to call:
 object KafkaSource extends LazyLogging {
 
   def kafkaStream[K: ClassTag, V: ClassTag, KD <: Decoder[K] : ClassTag, VD <: Decoder[V] : ClassTag]
-    (ssc: StreamingContext, brokers: String, offsetsStore: OffsetsStore, topic: String): InputDStream[(K, V)] 
+    (ssc: StreamingContext, brokers: String, offsetsStore: OffsetsStore, topic: String): InputDStream[(K, V)]
 {
     ...
 ```
@@ -168,7 +166,6 @@ Time: 2016-09-01 15:26:18
 -------------------------------------------
 (None, 'foo bar')
 ```
-
 
 ## Conclusion
 

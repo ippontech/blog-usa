@@ -9,7 +9,7 @@ title: "AngularJS to Angular2(V4): A basic example"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/07/AngularJS-to-Angular2-V4--Blog.png
 ---
 
->To avoid confusion, I will be referring to AngularJS as AngularJS and Angular as Angular2.  Angular is currently at what Google refers to as Angular4 while AngularJS is at v1.6.X.  
+>To avoid confusion, I will be referring to AngularJS as AngularJS and Angular as Angular2.  Angular is currently at what Google refers to as Angular4 while AngularJS is at v1.6.X.
 
 While Angular2 can be built with Javascript, it was developed with Typescript in mind; most documentation and information assumes you will be using Typescript. I’m going to take a few simple examples of AngularJS and rewrite them in Angular2.  I will be using the latest version of AngularJS. As of AngularJS v1.5, AngularJS introduced components to allow a better path to Angular2. If you are used to AngularJS pre v1.5, a component wraps the controller and template into one.
 
@@ -18,7 +18,7 @@ This example is the usual tutorial list, which includes two modules, list and it
 Angular2, in my example and most others, is developed in Typescript. This requires compiling, so while the AngularJS version is straight html and js, the Angular2 project requires the repo’s NPM packages to be installed. You will need to compile the typescript `npm run webpack` in the console to update the Javascript if you make changes to the Typescript.
 
 ## Starting from the top.
-Let's take a look at the index files.  
+Let's take a look at the index files.
 ### AngularJS
 ```html
 <!doctype html>
@@ -58,9 +58,9 @@ In AngularJS, we have `ng-app` attached to the html tag. It could be attached to
   <script type="text/javascript" src="./js/app.js"></script>
 </html>
 ```
-In Angular2, we have the tag `<JSv22></JSv22>` that tells Angular2 where to display the app.  For Angular2, we also have `<base href=“/“>` at top of the `<head>` tag.  This is necessary for routing. 
+In Angular2, we have the tag `<JSv22></JSv22>` that tells Angular2 where to display the app.  For Angular2, we also have `<base href=“/“>` at top of the `<head>` tag.  This is necessary for routing.
 
-In AngularJS, I am loading all JS files into index.html, while in Angular2 I’m just loading app.js. This is necessary, as Angular2 Typescript must be compiled to Javascript, so I went ahead and bundled them all together as well. You can bundle JS files into one for AngularJS. 
+In AngularJS, I am loading all JS files into index.html, while in Angular2 I’m just loading app.js. This is necessary, as Angular2 Typescript must be compiled to Javascript, so I went ahead and bundled them all together as well. You can bundle JS files into one for AngularJS.
 ## Drilling down into app.module.js and app.module.ts.
 ### AngularJS
 ```javascript
@@ -70,10 +70,10 @@ angular.module('JSv2js', [
   'ngRoute',
   'SharedServices',
   'genericList',
-  'genericDetail' 
+  'genericDetail'
 ]);
 ```
-In AngularJS, we create our module with `angular.module()`, named `JSv2js`, and list its decencies (ngRoute, SharedServices, genericList, and genericDetail). 
+In AngularJS, we create our module with `angular.module()`, named `JSv2js`, and list its decencies (ngRoute, SharedServices, genericList, and genericDetail).
 ### Angular2
 ```typescript
 // app.module.ts for Angular2
@@ -85,14 +85,14 @@ import {GenericListModule } from "./genericList/generic-list.module";
 import {GenericDetailModule} from "./genericDetail/generic-detail.module";
 import {GenericServiceModule} from "./sharedServices/generic-service.module";
 @NgModule({
-	imports: [ 
-		BrowserModule, 
+	imports: [
+		BrowserModule,
 		GenericServiceModule,
 		GenericListModule,
 		GenericDetailModule,
 		AppRoutingModule
 	],
-	declarations: [ 
+	declarations: [
 		AppComponent,
 	],
 	bootstrap: [ AppComponent ]
@@ -105,8 +105,8 @@ import { NgModule }      from '@angular/core';
 ```
 This is for Typescript, and should not be confused with the imports that are part of Angular2's modules.
 ```typescript
-imports: [ 
-        BrowserModule, 
+imports: [
+        BrowserModule,
     ],
 ```
 ## Routing
@@ -220,7 +220,7 @@ export class GenericService {
 ```
 In order for a service to be injected into a component or other service, it must be decorated with `@Injectable()`.  The code within the Angular2 service mirrors the AngularJS example, so it is omitted here.
 ## GenericList, the list of items.
-GenericList is a component that lists an array of items. Those items are provided by GenericService from SharedServicesModule.   
+GenericList is a component that lists an array of items. Those items are provided by GenericService from SharedServicesModule.
 ### GenericListModule
 #### AngularJS
 ```javascript
@@ -236,13 +236,13 @@ import { NgModule,  }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {GenericListComponent } from "./generic-list.component";
 @NgModule({
-	imports: [ 
+	imports: [
 		BrowserModule
 	],
-	declarations: [ 
+	declarations: [
 		GenericListComponent,
 	],
-	exports: [ 
+	exports: [
 		GenericListComponent
 	]
 })
@@ -302,11 +302,11 @@ export class GenericListComponent implements OnInit{
 
 In the Angular2 GenericListComponent component, we have a private variable, a constructor, and Angular2 function `ngOnInit`.  First, we declare a private `private listItems:Array<Object>` array.  Then the constructor sets up the service genericService. `ngOnInit` is one of Angular2’s component lifecycle listeners. It fires when the the component is initiated, and in this component it populates `listItems` from genericService’s `getAll()` method.
 
-The template is largely the same, the big difference being the syntax for iterating.  AngularJS’s 
+The template is largely the same, the big difference being the syntax for iterating.  AngularJS’s
 ```javascript
 <li ng-repeat="item in $ctrl.listItems”>
 ```
- is 
+ is
 ```typescript
 <li *ngFor="let item of listItems”>
 ```

@@ -10,7 +10,6 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/0
 
 <span style="font-weight: 400;">Strata+Hadoop World is probably the most important conference about Data Science and Data Engineering. The last edition took place in New York last week and gathered more than 2000 attendees. With 15 parallel tracks over 2 days of conference, that’s more than 160 sessions you could attend! Here is my take.</span>
 
-
 ## **Keynotes**
 
 <span style="font-weight: 400;">As an introduction to the technical talks, the keynote speakers did a great job showing how our industry takes place in our -real- life, how data can be efficiently used to contribute to better healthcare, better education, better lives…</span>
@@ -18,7 +17,6 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/0
 <span style="font-weight: 400;">To name only one, Mar Cabra, head of the Data and Research unit at the International Consortium of Investigative Journalists, explained what techniques they used to analyze the huge amount of data from the Panama Leaks.</span>
 
 <span style="font-weight: 400;">The least I can say is that these talks were inspiring.</span>
-
 
 ## **A few suggested talks**
 
@@ -32,9 +30,6 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/0
 
 *<span style="font-weight: 400;">Twitter’s real-time stack: Processing billions of events with Heron and DistributedLog</span>*<span style="font-weight: 400;"> – Karthik Ramasamy, tech lead for real-time analytics at Twitter, went through the challenges of setting up an analytics platform at the scale of Twitter. He described how they created a </span><span style="font-weight: 400;">high-performance replicated log service, </span>[<span style="font-weight: 400;">DistributedLog</span>](http://distributedlog.io/)<span style="font-weight: 400;">, and how they created </span>[<span style="font-weight: 400;">Heron</span>](http://heronstreaming.io/)<span style="font-weight: 400;">, a processing engine designed to be “a better Storm”. Heron has been in production at Twitter for 2+ years now and is 4-5 times faster than Storm.</span>
 
- 
-
-
 ## **A torrent of technologies**
 
 <span style="font-weight: 400;">Finally, if there is something to remember from this edition, it is that the industry is very active at creating new technologies. When you think you know the “Data ecosystem” quite well, Strata shows you you’re wrong! Here is a selection of the technologies that were mentioned, some I already knew about, some I found out about during the conference:</span>
@@ -43,7 +38,6 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/0
 - <span style="font-weight: 400;">Data stores: </span>[<span style="font-weight: 400;">Pinot</span>](https://github.com/linkedin/pinot)<span style="font-weight: 400;"> (OLAP), </span>[<span style="font-weight: 400;">Druid</span>](http://druid.io/)<span style="font-weight: 400;">, </span>[<span style="font-weight: 400;">Apache Kudu</span>](https://kudu.apache.org/)<span style="font-weight: 400;"> (analytics)</span>
 - <span style="font-weight: 400;">Pub-sub: </span>[<span style="font-weight: 400;">Kafka</span>](http://kafka.apache.org/)<span style="font-weight: 400;">, </span>[<span style="font-weight: 400;">Google Cloud Pub/Sub</span>](https://cloud.google.com/pubsub/)
 - <span style="font-weight: 400;">Threat detection: </span>[<span style="font-weight: 400;">Apache Spot</span>](http://spot.incubator.apache.org/)
-
 
 ## **How to see the presentations**
 

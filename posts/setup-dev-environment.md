@@ -73,7 +73,6 @@ Success!! Java is installed!
 
 Which means we can "git" on with it. Heh, that was a git joke. You git it, right?
 
-
 # Step 3 of 7: Install Git
 *[Git](https://git-scm.com/) is used for distributed version control. Version control is important because things will inevitably go wrong, or need to be changed, and when that happens it's very helpful to be able to go back to previous versions and go back to an uncorrupted version or the version before the one that blew up in your face. If you've been working in tech, you've probably been working in some flavor of version control already, like a content management system (CMS) or a something that has versions of its own, even if it's not Git.*
 
@@ -92,7 +91,6 @@ On to the next step!
 # Step 4 of 7: Install Node.js
 *[Node.js](https://nodejs.org/en/) is a javascript runtime, which is a way to execute javascript on the server. It took me a while to understand why this one is important, but essentially it makes it possible to use javascript outside of a web browser. For javascript (which used to run only in web browsers) this is huge.*
 
-
 I went to install [Node.js](https://nodejs.org/en/). As described in the JHipster instructions, I selected the LTS version - this was easy to do, as it was clearly labeled.
 ![Screenshot of LTS version for NodeJS to show that it is clearly labeled](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/10/Nodejs_LTS_screenshot.png)
 
@@ -105,7 +103,6 @@ In response, I got the following:
 This was great, as it confirmed that I did in fact have that version of node.js installed.
 
 (Had I not had node.js installed, I would instead have received a message of command not found.)
-
 
 # Step 5 of 7: Install Yarn
 *[Yarn](https://yarnpkg.com/en/) is a package manager for code, similar to products like Docker. Package managers are important because they handle code packages (like that JDK we just installed), ensuring that updates, restarts, etc. are being performed appropriately. This might not be AS big a deal if you're only running one or two packages but at an enterprise level where hundreds of packages might be installed, this becomes way more important and you might even have different package managers that are specializing in different things like front-end, etc.*
@@ -128,7 +125,6 @@ At this point, I was following the JHipster instructions pretty closely and the 
 So, I typed in the yarn command in Terminal.
 
 Success!
-
 
 # Step 7 of 7: Install JHipster
 OK, I've basically been installing all of these other things just so I could install [JHipster](http://www.jhipster.tech/). If you've followed along this far and read all the other explanations I think you're with me as far as the idea that we are in a world now that is super complex as far as what our development teams have to grapple with just to even do basic development tasks. JHipster offers a way to build a project using Yeoman, Gulp, and Maven using Java with Spring Boot and Angular and Bootstrap. By this point, I have a new appreciation for how convenient and efficient that really is.

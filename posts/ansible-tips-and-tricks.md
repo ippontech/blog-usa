@@ -11,17 +11,14 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/0
 <center>
 <div markdown="1">
 
-
 <i>In French, Ansible can be pronounced as "en cible," meaning "in target."</i>
 
 </div>
 </center>
 
-
 If you have been doing a bit of Ansible, there is probably some coding style that has emerged from your work, especially if you work in a team around the same code. During my time as an Ansible developer, I had the opportunity to collect some tips I use on a regular basis when writing scripts. These tips will probably help you save some time.
 
 I assume that you already know Ansible, Playbooks, YAML syntax, and the roles of Ansible Galaxy.
-
 
 ### 1 - Always name everything.
 
@@ -109,9 +106,8 @@ My suggestion is to use the YAML syntax every time, avoiding the `=` syntax. It 
 
 With some practice, it also becomes easier to write than the usual Ansible/YAML mix.
 
-
 **Always use the YAML syntax.**
- 
+
 ### 3 - Document your variables.
 
 Ansible supports variable overriding according to where it finds their declaration. In the official documentation, the [priority](http://docs.ansible.com/ansible/playbooks_variables.html) of these declarations is as follows:
@@ -169,7 +165,6 @@ remote:
 ```
 
 This way, when I come back to this code, or if anybody (such as you) reads it, it's easier to understand how it works rather than switching between roles and variables all the time.
-
 
 **Always document your variables.**
 
@@ -283,7 +278,6 @@ Moral of the story: be careful with the `set_fact` that can, like the proverbial
 
 **Limit the `set_fact` to where they are absolutely necessary.**
 
-
 ### 9 - Use tags in moderation.
 
 As soon as you write a role with several uses, it's very tempting to use tags to filter out some tasks at runtime. It works in most cases and allows you to run your deployments using the `-t` option (or `--skip-tags` to ignore them).
@@ -309,10 +303,7 @@ Thanks to a very simple overloading model, it's possible to give Ansible an `ans
 ```
 (source http://docs.ansible.com/ansible/intro_configuration.html)
 
-
-
 **Customize your Ansible experience.**
-
 
 ### Wrap-up
 

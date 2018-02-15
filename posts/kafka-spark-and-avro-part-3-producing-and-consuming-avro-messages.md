@@ -16,7 +16,6 @@ This post is the third and last post in a series in which we learn how to send m
 
 In this post, we will reuse the Java producer and the Spark consumer we created in the previous posts. Instead of dealing with plain-text messages, though, we will serialize our messages with Avro. That will allow us to send much more complex data structures over the wire.
 
-
 ## Avro
 
 [Avro](https://avro.apache.org/docs/current/) is a data serialization system and, as Spark and Kafka, it is an open source Apache project.
@@ -59,7 +58,6 @@ Schema.Parser parser = new Schema.Parser();
 Schema schema = parser.parse(USER_SCHEMA);
 ```
 Here, `USER_SCHEMA` is the JSON listed above as a Java String.
-
 
 ## Bijection, by Twitter
 
@@ -162,7 +160,6 @@ public class SimpleAvroProducer {
 ```
 (On a side node, I wish Java had multi-lines String literals…)
 
-
 ## The consumer
 
 In the same way we updated the producer to send binary messages, we can update the Spark consumer to receive these messages.
@@ -193,7 +190,6 @@ import java.util.Map;
 import java.util.Set;
 
 public class SparkAvroConsumer {
-
 
     public static void main(String[] args) {
 
@@ -288,7 +284,6 @@ directKafkaStream
         });
 ```
 This code is now more efficient as well as being more readable.
-
 
 ## Conclusion
 

@@ -65,7 +65,7 @@ object MostSpawnedPokemon {
 
 I go through each step of my code in the comments. This ended up being a simple yet solid example of using _Broadcast Variables_ in Spark. Broadcast variables allow the programmer to keep a read-only variable cached on each machine rather than shipping a copy of it with tasks. The output from this was the Pokemon's name and the number of spawn occurrences.
 
-Here is a snippet from the output showing the most uncommon Pokemon: 
+Here is a snippet from the output showing the most uncommon Pokemon:
 
 *  (machamp,8)
 * (kabutops,14)

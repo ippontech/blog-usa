@@ -14,13 +14,12 @@ Suppose we have a website with 50 views (pages). This means we probably have abo
 
 Suppose you wanted a menu bar on every view of your application, so that no matter the window that’s open, you can access that functionality. There are three ways to accomplish this goal— the good, the bad, and the ugly. Let’s start with the last and work our way back.
 
-
 ## The Ugly
 
 With a little copy paste, it wouldn’t be hard to put that button to each JFrame class in the application so it appears in the same location, with the same ActionListener behavior. Within my circle of friends, we have a saying– Copy Pasta makes Spaghetti Code. Should you want to change its behavior, fix a bug perhaps, or change the word “back” on it to the image of a backward pointing arrow, you would have 50 sections of code to change in this example– this is the ugliest way to maintain your code, and I guarantee you that you will fix those buttons for weeks as you discover that some were not properly updated when the bug reports come in.
 
-**Ugly Example:**  
- You would have this on every view of your application! Imagine adding a new menu option.  
+**Ugly Example:**
+ You would have this on every view of your application! Imagine adding a new menu option.
  For just saving and exiting, it would mean 21 lines of additional code per view, cluttering your overall space and making it difficult to maintain.
 
 ```language-java
@@ -86,7 +85,6 @@ this.add(menu);
 }
 ```
 
- 
 Then, on each view you would need to put these lines of code:
 ```language-java
 MyMenuBar menuBar = new MyMenuBar();
@@ -97,7 +95,7 @@ Which isn’t too cumbersome, but if you want to change the layout used, the loc
 
 ## The Good
 
-This leaves the “good” way of doing things. First, define a Layout class which extends JFrame. Divide it up into tiles like you would a web application, and define anything that stays on every view of the Swing application here. This means we would only have to add the MyMenuBar object here, once. If it needed to be moved, it would mean changing at most 2 lines of code (X and Y coordinates if you’re using a GridBagLayout, my personal favorite). If one page shouldn’t have it there, you can make it invisible while that view is open, since making components invisible in a local application is far safer than trusting an online user to not right-click and view the source.  
+This leaves the “good” way of doing things. First, define a Layout class which extends JFrame. Divide it up into tiles like you would a web application, and define anything that stays on every view of the Swing application here. This means we would only have to add the MyMenuBar object here, once. If it needed to be moved, it would mean changing at most 2 lines of code (X and Y coordinates if you’re using a GridBagLayout, my personal favorite). If one page shouldn’t have it there, you can make it invisible while that view is open, since making components invisible in a local application is far safer than trusting an online user to not right-click and view the source.
 
 Ultimately, the goals of this methodology is the same as many of the tenets of OOP and Java alike– reduce the amount of code, the difficulty of maintenance, and the complexity of the application. Simplicity is a noble goal, and I hope more people try to keep this in mind when making their applications.
 
@@ -154,11 +152,11 @@ InternalPanel.repaint();
 
 Now we’re all set up! Anytime you want to change your view, pass the new view to the setInternalPanel method, and it will update your application without reloading the menu bar (or any other components you have in the template, such as a footer or company logo). Since JPanels are components, you can actually pass it an entire panel with it’s own layout and subcomponents. In the screenshots below, I have added a “View” menu, which allows you to change between the pages without reloading the footnote or menu.Screenshots. If you’d prefer a more in depth example than the above code, the code that corresponds to the screenshots below can be found on [Github](https://github.com/JustinRisch/TemplateSwing).
 
-Using the menu to switch between views…  
+Using the menu to switch between views…
 ![Using the menu to switch between views](https://i.imgur.com/p8REQzK.png)
 
-Page 2 is complicated. It contains a BorderLayout panel, which has a JLabel in the north, a Table in the center, and another JPanel in the south. The Southern panel contains a JLabel in the west, and a text input in the east. Note: this could’ve been done more easily with a GridBagLayout, but I wanted to show to flexibility and functionality of nesting your panels. In this way, if I wanted to update only the bottom half of my window, I could simply update that panel with a validate() and repaint().  
+Page 2 is complicated. It contains a BorderLayout panel, which has a JLabel in the north, a Table in the center, and another JPanel in the south. The Southern panel contains a JLabel in the west, and a text input in the east. Note: this could’ve been done more easily with a GridBagLayout, but I wanted to show to flexibility and functionality of nesting your panels. In this way, if I wanted to update only the bottom half of my window, I could simply update that panel with a validate() and repaint().
 ![Page 2](https://i.imgur.com/7ZLkOJ0.png)
 
-This panel was accomplished through a single JPanel, which contained a loop to spin off these labels and text fields.  
+This panel was accomplished through a single JPanel, which contained a loop to spin off these labels and text fields.
 ![Third Page](https://i.imgur.com/Xv45JwD.png)

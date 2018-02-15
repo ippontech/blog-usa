@@ -18,7 +18,6 @@ When you choose to ignore these risks, your data can be deleted, corrupted or st
 
 What about your reputation then ? Remember the « [PSNgate](http://en.wikipedia.org/wiki/PlayStation_Network_outage "PSNgate") » two years ago…
 
-
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/800px-Owasp_logo.jpg)
 
 [OWASP](https://www.owasp.org/ "OWASP") provides an ordered list of the most important the risks according to their risk rating methodology and prevalence statistics provided by different organizations. While the methodology gives a theorical rating based on a few criteria like detectability, ease of exploit and technical impact, the prevalence statistics can change the order with concrete data from the real world.

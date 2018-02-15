@@ -14,7 +14,6 @@ This post is the first in a series of posts in which we will learn how to send m
 2. [Kafka + Spark: consuming plain-text messages from Kafka with Spark Streaming](http://www.ipponusa.com/blog/kafka-spark-avro-part-2-3-consuming-kafka-messages-spark/)
 3. [Kafka + Spark + Avro: same as 2. with Avro-encoded messages](http://www.ipponusa.com/blog/kafka-spark-and-avro-part-3-producing-and-consuming-avro-messages/)
 
-
 ## Kafka basics
 
 Let’s start this post with [Kafka](http://kafka.apache.org/). Kafka is a publish-subscribe messaging system originally written at LinkedIn. It is an Apache project – hence open-source. Kafka has gained a lot of traction for its simplicity and its ability to handle huge amounts of messages.
@@ -33,7 +32,6 @@ The key features of Kafka are:
 The picture below shows a topic with 2 partitions. The producer writes messages to both partitions (with some partitioning logic or by round-robin) and they are simply added to the end of each partition while being assigned an offset by Kafka. At the same time, a consumer reads messages from each partition.
 
 [![partitioned_log_0](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/03/partitioned_log_0-300x114.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/03/partitioned_log_0.png)
-
 
 ## Getting Kafka up and running
 
@@ -68,7 +66,6 @@ We can finally create a topic named “mytopic” with a single partition and no
 `> bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mytopic`
 
 You may find additional details in the [*Quick Start* of Kafka’s documentation](http://kafka.apache.org/documentation.html#quickstart).
-
 
 ## Simple producer
 
@@ -124,7 +121,6 @@ Let’s describe this code:
 - Then comes the time to send messages. Messages are of type `ProducerRecord` with generic parameters (type of the key and type of the value). We specify the name of the topic and the value, thus omitting the key. The message is then sent using the `send` method of the `KafkaProducer`.
 - Finally, we shut down the producer to release resources.
 
-
 ## Simple consumer
 
 Before launching the producer, let’s see the code of the consumer:
@@ -172,13 +168,12 @@ The structure is very similar to the producer’s code. Let’s see the differen
 - It is then required to subscribe to one or more topics by calling the `subscribe` method.
 - We can then query for messages using the `poll` method of the `KafkaConsumer` instance (parameter value 100 is a timeout in ms). This returns a `ConsumerRecords` object which is basically a list of `ConsumerRecord` objects. Each `ConsumerRecord` object is a message which key and value have been deserialized using the deserializer classes provided as properties.
 
-
 ## Running the code
 
 Time to run the code! Start by running the consumer. You should get a few line of logs and the process should then wait for messages:
 
 ```language-none
-2016-02-29 15:27:12,528 [main] INFO  org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
+2016-02-29 15:27:12,528 [main] INFO  org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values:
 ...
 2016-02-29 15:27:12,707 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version : 0.9.0.1
 2016-02-29 15:27:12,707 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId : 23c69d62a0cabf06
@@ -211,7 +206,6 @@ As we said earlier, the producer can decide to which partition it wants to write
 *If a valid partition number is specified that partition will be used when sending the record. If no partition is specified but a key is present a partition will be chosen using a hash of the key. If neither key nor partition is present a partition will be assigned in a round-robin fashion.*
 
 On the side of the consumer, all the consumers that have subscribed to the topic and that are within the same group will receive a subset of the messages. If we were to create 2 threads, each with a `KafkaConsumer`, each consumer would most likely receive the messages of one partition.
-
 
 ## Conclusion
 

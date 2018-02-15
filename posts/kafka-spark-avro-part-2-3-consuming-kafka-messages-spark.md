@@ -16,7 +16,6 @@ This post is the second post in a series in which we will learn how to send mess
 
 In this post, we will reuse the Java producer we created in the first post to send messages into Kafka. This time, however, we will consume the messages with Spark.
 
-
 ## Spark Streaming
 
 Kafka is a messaging system, meaning messages are supposed to be consumed as they arrive, i.e. with a streaming technology. That’s where [Spark Streaming](https://spark.apache.org/docs/latest/streaming-programming-guide.html) comes into play.
@@ -63,7 +62,6 @@ public class SparkStringConsumer {
 I usually prefer writing Scala code when it comes to using Spark, but this time I will write Java code to be consistent with the previous post.
 
 We have configured the period to 2 seconds (2000 ms). Notice that Spark Streaming is not designed for periods shorter than about half a second. If you need a shorter delay in your processing, try Flink or Storm instead.
-
 
 ## Spark Streaming with Kafka
 
@@ -149,7 +147,6 @@ Now, you may be wondering why there are 2 partitions in the RDD and why the mess
 Spark Streaming’s direct approach makes a **one-to-one mapping between partitions in a Kafka topic and partitions in a Spark RDD**. Because we left off the previous post with a Kafka topic with 2 partitions, we now have a Spark RDD with 2 partitions.
 
 The answer to the second question is related to the partitioning. When publishing to Kafka, our messages got dispatched to the 2 partitions in a round-robin fashion (partition 0 would hold messages 0, 1, 3… while partition 1 would hold messages 2, 4, 6…). Then, when they are being consumed by Spark, each RDD partition is processed in parallel by separate threads. This explains why the messages seem to be in a random order. In fact, the ordering within each Kafka partition is preserved.
-
 
 ## Conclusion
 

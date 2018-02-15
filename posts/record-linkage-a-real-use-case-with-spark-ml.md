@@ -10,7 +10,6 @@ image:
 
 I participated to a project for a leading insurance company where I implemented a Record Linkage engine using Spark and its Machine Learning library, Spark ML. In this post, I will explain how we tackled this Data Science problem from a Developer’s point of view.
 
-
 ## Use Case
 
 The insurer has a website in France where clients like you and me can purchase an insurance for their home or car. Clients may come to this website through a quote comparison website such as LesFurets.com or LeLynx.com. When this is the case, the comparison website should be retributed for bringing a new client.
@@ -38,7 +37,6 @@ As you can see, this dataset does not contain nominative data: the `veh` column 
 
 Here, highlighted in red are two records that look similar. Postal codes are identical, birth date (`dt_nais_cp` column) is very close and so is the bonus rate (`redmaj_cp`), but the types of contracts are different (`formule`).
 
-
 ## Prototype
 
 A Data Scientist had implemented a prototype. It consisted of 3 steps:
@@ -50,7 +48,6 @@ A Data Scientist had implemented a prototype. It consisted of 3 steps:
 The Data Processing step was implemented using Spark but with a lot of SQL (parsed at runtime so you get no help from the compiler), the source code wasn’t versioned and it had no unit tests. Also, the Machine Learning part was implemented using Scikit-Learn, meaning an extra step was required to export the data from Spark and load it back into Scikit-Learn.
 
 Obviously, my role was to industrialize the prototype and to allow it to run a larger datasets thanks to a full-Spark implementation.
-
 
 ## Preprocessing of the data
 
@@ -191,7 +188,6 @@ Notice that we create 2 vectors (`distances` and `other_features`), not just one
 +------+------+---------+----------+------+------+---------+----------+------------+--------------+
 ```
 
-
 ## Spark – From SQL to DataFrames
 
 The prototype implementation was generating a lot of SQL requests then interpreted by Spark. While plain SQL requests can be easy to read for humans, they become hard to understand and to maintain when they are generated, especially when User Defined Functions come into play. Here is an example of code that was written to generate a SQL request:
@@ -216,13 +212,12 @@ We rewrote that part to rely only on DataFrame primitives. That way, more work i
 val cleanedDF = tableSchema.filter(_.cleaning.isDefined).foldLeft(df) {
   case (df, field) =>
     val udf: UserDefinedFunction = ... // get the cleaning UDF
-    
+
     df.withColumn(field.name + "_cleaned", udf.apply(df(field.name)))
       .drop(field.name)
       .withColumnRenamed(field.name + "_cleaned", field.name)
 }
 ```
-
 
 ## Unit testing
 
@@ -267,7 +262,6 @@ Where the `rows` object is a DataFrame initialized with test data:
 
 As usual with unit tests, make sure you isolate each test so as to have a fine granularity of testing. In the example above, we separated the tests on text fields from the tests on date fields. This makes it easier to identify regressions as they arise (think of what you will see in Jenkins).
 
-
 ## DataFrames extension
 
 While industrializing the prototype, it quickly became clear that Spark DataFrames lack a mechanism to store fields’ metadata. As a workaround, the initial implementation was using a convention on the names of the fields to distinguish between 3 types of fields:
@@ -303,7 +297,6 @@ As can be seen on the sample code above, the DataFrameExt class holds a DataFram
 
 This extension has not been open-sourced but we could easily make it available. Let us know if you are interested.
 
-
 ## Labeling
 
 The data processing part has generated a lot of *potential* duplicates. Our goal is to train a Machine Learning algorithm to make a decision for each of these and say whether they are indeed duplicates or not. Before we do so, we need to generate training data, i.e. add labels to the data.
@@ -313,7 +306,6 @@ There is no other way to add labels than proceeding manually. That is, we take a
 The labeling takes the form of a console application that iteratively displays a potential duplicate and queries the human for a decision:
 
 [![Labelling](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/02/Labelling.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/02/Labelling.png)
-
 
 ## Predictions
 
@@ -333,7 +325,6 @@ Let’s have a quick look at the accuracy of the model. When training the model 
 True positives and true negatives are records for which we predicted the correct – true or false – answer. False positives and false negatives are errors.
 
 A good way to evaluate the relevance of the predictions is to calculate the [precision and recall](https://en.wikipedia.org/wiki/Precision_and_recall) scores. The precision determines how many selected items are relevant, while the recall indicates how many relevant items are selected. In our case, precision is 93% and recall is 91%. That’s not bad and, in fact, that’s much better than what was previously achieved with a naïve implementation (around 50%).
-
 
 ## Summary & Conclusion
 

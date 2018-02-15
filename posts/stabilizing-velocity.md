@@ -10,28 +10,21 @@ image:
 
 The velocity is the cumulative value, in story points, that a team has accomplished during a sprint. In an experienced team, this velocity will be stable and can easily be used to forecast a release. Take a look at this example chart:
 
- 
-
 <div class="wp-caption aligncenter" id="attachment_12902" style="width: 610px">![Stable velocity chart](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/04/good_velocity.png)Stable velocity chart
 
-</div> 
+</div>
 
 The velocity here is stable, and we can see the Done line growing steadily. We can assume that the first release will be done on the 8th sprint, and the final release most likely around the 16th sprint.
 
 Now let’s look at another example, this one where the velocity is not stable:
 
- 
-
 <div class="wp-caption aligncenter" id="attachment_12904" style="width: 610px">[![Unstable velocity chart](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/04/bad_velocity1.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/04/bad_velocity1.png)Unstable velocity chart
 
-</div> 
+</div>
 
 It’s now much harder to estimate correctly. Of course we can take the average velocity and still be able to forecast somewhat accurately, however a velocity that jumps around is an indicator of problems within the team or with the organization and it would be beneficial to root them out.
 
 When a team is at full capacity there isn’t much that we can do to increase the velocity, so we will assume that the major cause of an unstable velocity is drag. Something or several somethings are causing the team to slow down.
-
- 
-
 
 ## Velocity drags
 
@@ -48,9 +41,6 @@ Suppose you need to switch technologies to increase scalability. However, you qu
 ### Interruptions
 
 It isn’t unusual for a team to be required to shift focus mid sprint because a stakeholder with enough political pull has forced a bug fix into the sprint, or has taken one or more of your developers for a quick task. As these interruptions keep coming, the measured output of the team will slow down.
-
- 
-
 
 ## What to try
 
@@ -73,9 +63,6 @@ In some organization, it is impossible to have a sprint not be interrupted by em
 I first came across the batman idea via reading [The Art of Agile Development](http://www.jamesshore.com/Agile-Book/ "The Art of Agile Development")  by James Shore and Shane Warden.  The batman is a person that you remove from your sprint’s commitment work and is dedicated to only work on the emergency requests. While waiting for emergency work, the batman should not work on anything that he cannot put aside easily. He could do small refactoring projects, research, improving the build process, writing a few more tests.
 
 You should rotate the batman duties each sprint. You should also look into why your batman is necessary and strive to no longer need him. In order to achieve this, you will have to educate the stakeholders in how to interact with an Agile team, and improve code quality by rigorous adherence to agile development techniques to reduce bugs that slip into production.
-
- 
-
 
 ## Key things to remember
 

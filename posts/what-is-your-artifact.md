@@ -17,8 +17,6 @@ image:
 
 <span style="font-weight: 400">Regardless of the level of adoption of DevOps principles in your organization, there is a thin line drawn between Build and Deploy. Moving from build toward deploy, this line indicates when you have produced an “Artifact”, a pivot point in the process. This is the artifact that you will deploy to each environment in succession as it passes each testing phase. Once in production this is also the artifact that will be used to scale out your service. When moving to a DevOps model the type of Artifact that you want your deployment to operate from is an important consideration. </span>
 
- 
-
 **The Build Artifact Model**
 
 <span style="font-weight: 400">Being kind of the “classic” approach, the ins and outs of the Build Artifact Model are well understood, and the process usually looks like:</span>
@@ -41,8 +39,6 @@ image:
 
 <span style="font-weight: 400">There is a helpful piece of software built around the concept of an Infrastructure Artifact. With </span>[<span style="font-weight: 400">Packer</span>](https://www.packer.io/)<span style="font-weight: 400"> (or </span>[<span style="font-weight: 400">BoxFuse</span>](https://boxfuse.com/)<span style="font-weight: 400">) you can describe what kind of “output” you want by specifying “builders”. These builders produce “Images” (essentially Infrastructure Artifacts) that can then be put into service, as a container, or Amazon AMI.</span>
 
- 
-
 **Which model should I use?**
 
 <span style="font-weight: 400">It’s becoming more and more common that an application designed for the cloud be designed in accordance with the Infrastructure Artifact Model. As time goes on I see it as the natural progression that more and more deployments will rely on this route. However that does not alleviate us from the needs of migrating and supporting our legacy applications in the cloud anytime soon. In dealing with those legacy applications, using the standard Build Artifact Model is going to be the path of least resistance. </span>
@@ -52,8 +48,6 @@ image:
 [![What is Your Artifact (2)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/06/What-is-Your-Artifact-2.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/06/What-is-Your-Artifact-2.png)
 
 If legacy services do need to be autoscaled, or quickly provisioned, you can manage a hybrid situation, where you create a deployed image per environment (or per applicable situation), and manage those images. This will satisfy the requirements to provide an AMI for AWS Launch Configurations, but the downside becomes that you now have to manage many more artifacts than with the other models.
-
- 
 
 **Conclusions**
 

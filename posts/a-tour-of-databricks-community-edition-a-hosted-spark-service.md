@@ -32,9 +32,8 @@ Zeppelin is still an incubating project from the Apache Foundation but it has re
 
 To complete this introduction, let’s write an example of a Twitter stream processing and some visualizations.
 
-In this example, we’ll subscribe to the Twitter stream API which delivers roughly a 1% sample of all the tweets published in realtime. We’ll use Spark Streaming to process the stream and identify the language and country of each tweet.  
+In this example, we’ll subscribe to the Twitter stream API which delivers roughly a 1% sample of all the tweets published in realtime. We’ll use Spark Streaming to process the stream and identify the language and country of each tweet.
  We will store a sliding window of the results as a table and display the results as built-in visualizations in the notebook.
-
 
 ## Step 0: Community Edition access
 
@@ -42,10 +41,9 @@ You first need to [subscribe](http://go.databricks.com/databricks-community-edit
 
 Once you have the Databricks Cloud, [import my notebook](https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/7631468844903857/1641217975453210/8780643444584178/latest.html). This notebook is a partial reuse of the Databricks [Twitter hash count](https://docs.cloud.databricks.com/docs/latest/databricks_guide/index.html#08%20Spark%20Streaming/03%20Twitter%20Hashtag%20Count%20-%20Scala.html) example.
 
-
 ## Step 1: prerequisite libraries and imports
 
-The example uses the Apache Tika library for the language recognition of the tweets.  
+The example uses the Apache Tika library for the language recognition of the tweets.
  To attach the dependency to your Spark cluster, follow these steps:
 
 - In the workspace, in your user space, open the “Create” dialog box and choose “library”
@@ -57,7 +55,6 @@ The example uses the Apache Tika library for the language recognition of the twe
 
 [![Databricks cluster view](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/03/clusterView-1024x487.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/03/clusterView.png)
 
-
 ## Step 2: Twitter credentials
 
 Because this example requires a connection to the Twitter stream API, you should create a Twitter application and acquire an OAuth token.
@@ -67,7 +64,6 @@ Because this example requires a connection to the Twitter stream API, you should
 - These credentials will then be automatically picked by the Twitter4j library and the Spark Streaming wrapper to create a Twitter stream.
 
 [![twitterCredentials](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/03/twitterCredentials-1024x354.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/03/twitterCredentials.png)
-
 
 ## Step 3: Run the Twitter streaming job
 
@@ -103,14 +99,14 @@ def creatingFunc(): StreamingContext = {
   val slideInterval = Seconds(1)
   val ssc = new StreamingContext(sc, slideInterval)
   ssc.remember(Duration(100))
-  // Create a Twitter Stream for the input source. 
+  // Create a Twitter Stream for the input source.
   val auth = Some(new OAuthAuthorization(new ConfigurationBuilder().build()))
 
   val twitterStream = TwitterUtils.createStream(ssc, auth)
           .filter(t=> t.getPlace != null)
           .map(t => Tweet(t.getUser.getName, t.getText, iso2toIso3Map.getOrElse(t.getPlace.getCountryCode, ""), detectLanguage(t.getText)))
                 .window(windowDuration = Seconds(30), slideDuration = Seconds(10))
-            .foreachRDD { rdd => 
+            .foreachRDD { rdd =>
               val sqlContext = SQLContext.getOrCreate(SparkContext.getOrCreate())
                   // this is used to implicitly convert an RDD to a DataFrame.
                 import sqlContext.implicits._
@@ -136,7 +132,6 @@ Now, tweets are automatically stored and updated from the sliding window and we 
 We can run virtually any SQL query on the last 30 seconds of the 1% sample of tweets emitted from all-over the world!
 
 Even if the visualizations can be exported to a dashboard, they still need to be refreshed manually. This is because you cannot create Spark jobs in the community edition. However, the non-Community version allows [to turn this notebook into an actual Spark Streaming job](https://community.cloud.databricks.com/?o=7631468844903857#externalnotebook/https%3A%2F%2Fdocs.cloud.databricks.com%2Fdocs%2Flatest%2Fdatabricks_guide%2Findex.html%2302%2520Product%2520Overview%2F06%2520Jobs.html) running indefinitely while refreshing a dashboard of visualizations.
-
 
 ## Conclusion
 

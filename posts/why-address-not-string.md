@@ -56,7 +56,7 @@ Distance algorithm
 
 ```language-java
 private boolean isWithin(Coordinate a, Coordinate b, double radius) {
-     double dlat = Math.abs(a.lat - b.lat), 
+     double dlat = Math.abs(a.lat - b.lat),
           dlong = Math.abs(a.lng - b.lng);
      if (dlat > radius || dlong > radius)
           return false;
@@ -64,8 +64,8 @@ private boolean isWithin(Coordinate a, Coordinate b, double radius) {
 }
 ```
 
-<div class="code-embed-infos"><span class="code-embed-name">Closeness Algorithm</span></div></div>  
-![Representative of the Closeness Algorithm](https://i.imgur.com/0ZlN9vy.png)<span style="font-weight: 400">This method effectively draws a circle around our coordinate and asks, is it within that circle? We don’t care what the actual distance is, so long as they are “close enough”. dlat and dlong are the distance between the two points on each axis (Note that it’s still in units of Lat/Long: for example, if you want a match distance of 111.2 </span>**meters**<span style="font-weight: 400">, you would enter “0.001”). </span>  
+<div class="code-embed-infos"><span class="code-embed-name">Closeness Algorithm</span></div></div>
+![Representative of the Closeness Algorithm](https://i.imgur.com/0ZlN9vy.png)<span style="font-weight: 400">This method effectively draws a circle around our coordinate and asks, is it within that circle? We don’t care what the actual distance is, so long as they are “close enough”. dlat and dlong are the distance between the two points on each axis (Note that it’s still in units of Lat/Long: for example, if you want a match distance of 111.2 </span>**meters**<span style="font-weight: 400">, you would enter “0.001”). </span>
 <span style="font-weight: 400">There are several advantages to this approach. For example, we can then know that, if dx or dy is greater than our “match” distance, that it cannot be inside of our match; this short circuits the algorithm and stops us from having to do the more difficult half the math. As well, since we aren’t interested in distance, but in </span>**closeness**<span style="font-weight: 400">, we don’t have to bother with converting to meters. As well, we can avoid finding the root of both sides of the equation and save us some more CPU time. </span>
 
 ### <span style="font-weight: 400">In Summary: </span>

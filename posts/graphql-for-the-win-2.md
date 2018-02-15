@@ -8,7 +8,7 @@ title: "GraphQL for the Win"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/graphql-1.png
 ---
 
-[GraphQL](http://graphql.org) is a powerful query language for APIs that gives the clients the power to ask for exactly what they need and nothing more. GraphQL makes it easier to evolve APIs without the need for introducing new versions. 
+[GraphQL](http://graphql.org) is a powerful query language for APIs that gives the clients the power to ask for exactly what they need and nothing more. GraphQL makes it easier to evolve APIs without the need for introducing new versions.
 
 In GraphQL, every request is a POST request to a single endpoint: `/graphql`. The request consists of a mirror of the data object that contains the fields you want to see in the response.
 
@@ -52,7 +52,7 @@ Suppose we had an insurance policy entity that contained a lot of nested data. A
   ]
 }
 ```
-If you are only building a policy summary page, you don't need or want all of the claim reasons in the response. 
+If you are only building a policy summary page, you don't need or want all of the claim reasons in the response.
 
 One approach might be to build two endpoints:
 ```
@@ -81,7 +81,7 @@ Simply build the request and list the fields that you want back in the response:
 In this request, the client can choose whether or not they want claimReasons to be in the response.
 
 ### Versioning
-Versioning APIs is hard. It is so hard, that the best approach may be to **simply avoid it**. That's one advantage of using GraphQL. 
+Versioning APIs is hard. It is so hard, that the best approach may be to **simply avoid it**. That's one advantage of using GraphQL.
 
 When there is limited control on the data being returned from an API endpoint, any change can break existing clients. With GraphQL, logic about what data to retrieve lives in the client, so it is much easier to evolve APIs without introducing a new version.
 
@@ -126,7 +126,7 @@ query PolicyQuery($policyHolder: String) {
        title(title: "reason 1")
        description
     }
-  } 
+  }
 }
 
 {
@@ -155,7 +155,7 @@ query PolicyQuery($policyHolder: String, $withClaimReasons: Boolean!) {
 Again, this feature allows us to avoid doing manual string interpolation to build dynamic queries ourselves.
 
 ### Mutating Data
-To mutate data, use **mutation** methods. 
+To mutate data, use **mutation** methods.
 ```language-json
 mutation CreateInsurancePolicy($policy: Policy!) {
   createPolicy(policy: $policy) {
@@ -166,7 +166,6 @@ mutation CreateInsurancePolicy($policy: Policy!) {
 ```
 The `id` and `policyHolder` will return for the newly created policy. It is best practice to only manipulate data explicitly using a mutation method.
 
- 
 ### Summary
 In summary, GraphQL is great when building APIs because it helps:
 

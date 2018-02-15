@@ -21,19 +21,19 @@ In the previous article (Serverless architectures)[] a definition and the promis
 Previously we have seen what FaaS is all about. But let's dig a little deeper into this. To do it, I was inspired by Mike Roberts' blog article, which seems very clear to me and which correctly treats each of the layers of FaaS. But first let's go back to the official AWS definition of the AWS Lambda product and then let's look at each concept one by one.
 
 > AWS Lambda lets you run code without provisioning or managing servers **(1)**. You pay only for the compute time you consume - there is no charge when your code is not running. With Lambda, you can run code for virtually any type of application or backend service **(2)** - all with zero administration. Just upload your code and Lambda takes care of everything required to run **(3)** and scale **(4)** your code with high availability. You can set up your code to automatically trigger from other AWS services **(5)** or call it directly from any web or mobile app **(6)**.
-> 
+>
 
-1. Fundamentally, FaaS concerns the execution of back-end code without managing server systems or application servers. This second "application server" clause is the key difference when comparing this technology with other modern architectural trends such as PaaS or containers. 
+1. Fundamentally, FaaS concerns the execution of back-end code without managing server systems or application servers. This second "application server" clause is the key difference when comparing this technology with other modern architectural trends such as PaaS or containers.
 
 2. The FaaS offering does not require coding through a specific framework or library. The only environmental dependency that one can have is related to the possibilities offered by the service according to the provider. For example, today the AWS Lambda functions can be implemented in JavaScript, Python or any other language running on the JVM (Java, Clojure, Scala,...) whereas Google Cloud Platform offers only JavaScript (mainly due to the very high performance of its JavaScript engine). However, this execution environment is not fixed because of our ability to execute other processes. As a result, it is possible to use all the languages provided as long as they can be compiled by a Unix process (Golang). We can, however, find architectural restrictions mainly when we talk about state or runtime, but we will come back to these points later.
 
 3. Since we don't have application servers to host the code, the execution is very different from traditional systems. The update process begins with uploading the code to the service provider and then calling a provider API to notify the provider of the update.
 
-4. Horizontal scaling (increasing the number of instances) is fully automatic, elastic and managed by the service provider. If your system needs to respond to twice the  requests it was previously handling, the service provider will add instances to do so without any intervention or configuration from your side. 
+4. Horizontal scaling (increasing the number of instances) is fully automatic, elastic and managed by the service provider. If your system needs to respond to twice the  requests it was previously handling, the service provider will add instances to do so without any intervention or configuration from your side.
 
 5. FaaS is an event-driven service. This means that the functions are triggered by events. We may have different types of events such as those from the provider's services. Among these we have events when updating a file on a bucket, scheduled events (cron) or even receiving messages via a publisher / subscriber system. Your function might then have to provide an answer for the event’s emitter depending on your use case.
 
-You will also be able to trigger functions in response to incoming HTTP requests, usually through an API gateway (API Gateway, WebTask, Cloud endpoints). 
+You will also be able to trigger functions in response to incoming HTTP requests, usually through an API gateway (API Gateway, WebTask, Cloud endpoints).
 
 ## Lifecycle
 FaaS functions have significant restrictions on their lifecycles. The main one is their "Stateless" nature; no persistent state will be available on another invocation, this includes the data in memory or those that you could have written locally on the disk. This can have a huge impact on your application architecture, but it does align with "The twelve-factor App" (https://12factor.net/).
@@ -44,9 +44,9 @@ FaaS functions are limited in execution time. For example, AWS Lambdas are not a
 This emphasizes that FaaS functions are not suitable for all use cases or at least will have to be adapted to overcome these constraints. For example, in a traditional application you may have a single service that performs a long task, whereas in FaaS you will probably have to separate it into different functions that are independent of each other but may be sequenced.
 
 ## Cold start
-The response time of your FaaS function to a request depends on a large number of factors and can range from 10 ms to more. Let's be a little more precise, using an AWS Lambda as an example. 
+The response time of your FaaS function to a request depends on a large number of factors and can range from 10 ms to more. Let's be a little more precise, using an AWS Lambda as an example.
 
-You can split your execution process into 2 phases : 
+You can split your execution process into 2 phases :
 
 - **Cold start**: time spent by the provider to initialize your function.
 - **Execution time**: time spent executing your core function (Handler).
@@ -55,7 +55,7 @@ Basically, the execution time should remain stable for core execution. However, 
 If your function is implemented in JavaScript or Python, which are interpreted languages with simple content (less than a thousand lines of code), the cold start should be between 10 to 100 ms. More complex functions may occasionally see this time increase.
 If your Lambda function is executed in a JVM (Java, Scala, Kotlin,...), you can have a dramatically longer startup time (> 10 seconds) just to load the JVM. However, this only occurs in one of the following scenarios:
 
-- Your function rarely handles events (more than 10 minutes between invocations) 
+- Your function rarely handles events (more than 10 minutes between invocations)
 - You have very sudden peaks in traffic, for example: you process 10 queries per second, but this speeds up to 100 queries per second in less than 10 seconds.
 
 It is possible to avoid the first situation by keeping your function “alive” using some sort of a ping every N seconds or so.
@@ -64,7 +64,7 @@ Below is a graph of the different boot times according to the language used
 
 ![alt](https://cdn-images-1.medium.com/max/2000/1*tjP269cvrmidESbflLPqGA.png)
 
-Are these issues of concern? 
+Are these issues of concern?
 This depends on the style and form of your application's traffic and the maintenance of your features. That being said, if you were writing an application with low latency, you probably wouldn't want to use FaaS systems at that time, no matter what language you use for implementation.
 If you think your application may have problems like this one, you should test with a relevant production load to benchmark performance. If your use case doesn't work now, keep in mind that this is a major area of development for FaaS providers.
 
@@ -76,13 +76,13 @@ The combined use of the Gateway + FaaS APIs can lead to the creation of a server
 At the time of this writing, the API gateway tooling is immature and has many shortcomings when it comes to applying development processes (versioning, etc.).
 
 ## Development Tools
-This lack of maturity of the tools related to API Gateway services unfortunately also applies to FaaS services. However, there are exceptions: an example is Auth0 WebTask which gives significant priority to the development of user-oriented interfaces. 
+This lack of maturity of the tools related to API Gateway services unfortunately also applies to FaaS services. However, there are exceptions: an example is Auth0 WebTask which gives significant priority to the development of user-oriented interfaces.
 
 Among these shortcomings, we find a lack of debugging, versioning or logging features, even if these are beginning to be overcome little by little (e.g. X-Ray at AWS).
 
 # Doing Serverless
 After explaining why and when, let’s see How.
- 
+
 Today FaaS is difficult to adopt in companies and only some use cases are currently applicable. The main reason comes from the fact that it is still difficult to simulate internally all BaaS and FaaS parts and then certify that a solution will work exactly the same way once it goes into a production environment.
 
 However, many solutions are being developed by both the open source community and the Cloud Providers to give Serverless applications the level of services and maturity needed to increase public adoption.
@@ -175,8 +175,8 @@ Below is a summary of the primary 100% managed solutions available in the Cloud.
 ## What about FaaS now ?
 Integrating a function is relatively simple. It is generally a piece of code in a language compatible with the service provider (usually Javascript, Java, C#, Go and Python) that is compiled, zipped and deployed. The complex part resides in theconfiguration of the interaction between functions and other services (API Gateway, DB, Storage,...).
 
-That is why we now have two approaches that are emerging withinOpen Source frameworks. 
-The first one, mostly infrastructure oriented, will allow you to manage relatively easily the integration of your functions and all the resources related to them. These frameworks are usually based on APIs provided by Cloud Providers or DevOps services (e.g. CloudFormation for AWS). 
+That is why we now have two approaches that are emerging withinOpen Source frameworks.
+The first one, mostly infrastructure oriented, will allow you to manage relatively easily the integration of your functions and all the resources related to them. These frameworks are usually based on APIs provided by Cloud Providers or DevOps services (e.g. CloudFormation for AWS).
 The second way, is more API and Web-based resource oriented, it is the best match to the current vision of solution developers with a simple abstraction of the communication between an API Gateway and a function.
 
 ### Infrastructure Way
@@ -221,7 +221,7 @@ $ serverless remove
 ```
 
 ### API Way
-One example of how to implement this approach is the Chalice (https://github.com/aws/chalice) framework. For history's sake, this framework was initially developed by AWS in order to reconcile and simplify the implementation for developers. It is currently in version 1.0.4 and is evolving very quickly. 
+One example of how to implement this approach is the Chalice (https://github.com/aws/chalice) framework. For history's sake, this framework was initially developed by AWS in order to reconcile and simplify the implementation for developers. It is currently in version 1.0.4 and is evolving very quickly.
 
 It will allow you to develop your function more like a developer (as if you are developing using Spring framework) with no real need of knowledge about cloud services or infrastructure.
 

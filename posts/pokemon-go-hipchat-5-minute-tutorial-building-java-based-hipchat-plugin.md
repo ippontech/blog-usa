@@ -18,7 +18,6 @@ First up, let’s make a suitable Maven Project in Eclipse (or your favorite IDE
 
 Be sure to run Maven Install, then go ahead and make a main class that will act as our launcher– It will look something like this:
 
-
 ==Your launcher==
 ```language-java
 private static HipChat hc;
@@ -34,19 +33,19 @@ In the above, I’m using a simple POJO that contains my API Key, our Base URL, 
 
 Now to get these values, we sign into [Hipchat](www.hipchat.com).
 
-Click “Group Admin”  
+Click “Group Admin”
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/VbpCTnj.jpg)
-  
- Click “Integrations”  
+
+ Click “Integrations”
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/xVgknzE.jpg)
 
- Choose the room you want to install it on in the dropdown menu (mine is “PokePop”)  
+ Choose the room you want to install it on in the dropdown menu (mine is “PokePop”)
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/LYnFVIR.jpg)
 
- Choose “Build your own integration”, then give it a name and submit.  
+ Choose “Build your own integration”, then give it a name and submit.
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/GQ5tEVP.jpg)
 
-Look for this field on the next page. The URL (and the black parts) should be your “baseURL”, as referenced in my Main Method. This basically says where to send the request. At the end of this URL is the line auth_token=YOURAPIKEY. Copy the URL (without the API key) as your Base URL, and copy the API key into the appropriate spot in the main method.  
+Look for this field on the next page. The URL (and the black parts) should be your “baseURL”, as referenced in my Main Method. This basically says where to send the request. At the end of this URL is the line auth_token=YOURAPIKEY. Copy the URL (without the API key) as your Base URL, and copy the API key into the appropriate spot in the main method.
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/YEitFJ4.jpg)
 
 Congrats! Now you can send a message by simply using this method:
@@ -72,7 +71,6 @@ Then, head to google maps, and click on the map where you want the add-on to be 
 
 Once you have all this info, go ahead and implement this method and member:
 
-
 ```language-java
 static PokemonGo go;
 public static boolean login(PokeProp prop) {
@@ -90,7 +88,6 @@ public static boolean login(PokeProp prop) {
 
 All it will do is, given a username and password, attempt to log in, and return “true” iff successful. In your main method, be sure to set the latitude and longitude that you want to use like so:
 
-
 ```language-java
 go.setLatitude(prop.getLat());
 go.setLongitude(prop.getLng());
@@ -98,14 +95,13 @@ go.setLongitude(prop.getLng());
 
 Next: let’s build a Watcher class. All it will do is contain the behaviors related to finding nearby pokemon.
 
-
 ```language-java
 public class WatchForPokemon {
 static List reportedAlready = new ArrayList();
 
 private static void notifyHipchat(CatchablePokemon pokemon) {
-  try { 
-    String message = pokemon.getPokemonId().name() + " IS NEARBY!";   
+  try {
+    String message = pokemon.getPokemonId().name() + " IS NEARBY!";
     System.out.println(message);
     PokePop.sendMessageToHipchat(message);
     reportedAlready.add(pokemon);

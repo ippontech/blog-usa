@@ -31,13 +31,13 @@ The design is not only for aesthetic purposes; that is part of it.  It is the c
 
 A simple example that is recognized by developers to convince you is the “Design Patterns.”  You will find a simple, it’s pretty, you?  This says nothing.  It is a “pattern”  (design master), which responds to a given issue.
 
-In short, the issue that interests us is how to allow users to access the same content/features with different display constraints.  
+In short, the issue that interests us is how to allow users to access the same content/features with different display constraints.
  One of the key concepts of Responsive Web Design that responds to this issue, which you surely will know about, are the page layouts, which are structured differently, according to the different kinds of devices.  And here is a striking example:
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/Capture-d--cran-2013-08-01---11.59.16.png)
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/Capture-d--cran-2013-08-01---11.59.35.png)
-   
+
  Source: [Responsive layout](http://www.thismanslife.co.uk/projects/lab/responsivewireframes/)
 
 Given that you have defined the types of devices (and their specific points), you naturally want to create and redefine your page layouts to display according to the different types.
@@ -49,8 +49,6 @@ It is tempting but premature.  It is good to want to structure your display, bu
 **Inventory of the content**
 
 The first step consists of quantifying and making an inventory by type of the existing content in your panel. Contrary to the <span style="text-decoration: underline;">classical approach to content inventory, </span>which carries out a page-by-page scan, you should carry out a scan of available portlets.  This is content in the form of page fragments for Java EE standard portals.
-
- 
 
 The listing of portlets is made on the basis of recorded portlets.  For Liferay, this is the liferay-portlet (-ext).xml file.  For each of these, your delivery record (spreadsheet) will have a line with the following characteristics:
 
@@ -104,8 +102,6 @@ Whether it is by existing code for the layout or by typed content for the backgr
 - “You would need a more consistent heading.”
 - “I want a graphic which shows the results of the past two years”
 
- 
-
 This will have consequences today.  Let’s take the same examples while using a smart phone:
 
 - “It took 30 times for me to scroll on this page to get to the information that interests me.  Worse still, the rest is completely useless.”
@@ -119,8 +115,6 @@ This will have consequences today.  Let’s take the same examples while using 
 - Is it readable and intelligible if we reduce the size by four times?
 - Do you not need to display this data with another type of content?
 
- 
-
 **The Layouts**
 
 ** **Now that you know about content, what are your containers?  And what could they look like in the future?
@@ -133,15 +127,13 @@ The listing of layouts is carried out on the basis of declared layouts (for Life
 
 It’s not rocket science.  You will just have to look at the source code layouts.
 
-Let’s take as an example the layouts offered by default in the administration interface of Liferay: 
+Let’s take as an example the layouts offered by default in the administration interface of Liferay:
 
 ![liferay layout](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/Capture-d--cran-2013-07-31---11.15.37-1024x709.png)
- 
 
 In particular, the “2 columns 30/70” layout:
 
 ![2 column 30 70 layout](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/Capture-d--cran-2013-05-28---15.06.09-1024x553.png)
-  
 
 The good news is that this layout is flexible (like others, moreover).  The columns are expressed in % of width.  They have a column at 30% and another at 70%.  The width of these columns is going to be adjusted (retracted or stretched), depending on the available width (**and only if your content is flexible)** and also depending on the devices that will display the page.
 
@@ -167,10 +159,9 @@ As a new publication resource, inherited this concept from the printing press, e
 
 **Fluid**
 
-This takes on its full meaning with our previous example in columns of 30% and 70% on a 320 pixel.  We can then modify the markers for the grid for this display of the two columns in two lines at 100% of the width in order to have accurate readability for the items which are in the first column.  
+This takes on its full meaning with our previous example in columns of 30% and 70% on a 320 pixel.  We can then modify the markers for the grid for this display of the two columns in two lines at 100% of the width in order to have accurate readability for the items which are in the first column.
 
 ![fluid grid](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/grille-fluide.png)
-
 
 The combination of a fluid grid and breaking points is a key concept of Responsive Web Design.  It is main reason that we have defined our breaking points beforehand.
 
@@ -208,10 +199,10 @@ Here’s my advice:  don’t waste time modeling the future layouts on Visio, B
 **Have a good crayon sketching session with people that can bring a capital gain to this phase **(editiorial contributions, UX designer, “front-end” developer, marketing, etc.). Be productive.  The more you finish sketches, the more chances you will have to find the solution that meet the minimum requirements of the objectives of each dicipline.
 
 ![responsive sketch](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/sketchResponsive.jpg)
-  
-When you have this solution, go to the defined ring here below:  
 
-![responsive workflow](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/workflow.png)  
+When you have this solution, go to the defined ring here below:
+
+![responsive workflow](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/workflow.png)
 
 Source : [Responsive workflow](http://viljamis.com/blog/2012/responsive-workflow/ "Responsive workflow")
 

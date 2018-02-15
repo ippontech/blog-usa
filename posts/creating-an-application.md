@@ -44,7 +44,6 @@ Success! This was pretty cool, because I got the following returned in Terminal.
 * I opted to create Monolithic application because I wanted to just create something simple; also, it is the recommended default if you don’t have another preference (which, in this case, I do not).
 * What is the base name of your application? This one was a little confusing to me at first because it looked like this:
 
-
 ![base name of application question was confusing at first - picture of question](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/10/base_application_name_question.png)
 
 It turned out that this meant that the base name was defaulted to `myapplication`; I had the option to rename it if I wanted to, but I didn’t have to. Also, the application was going to run from my own server or computer so I could call it whatever I wanted to, at least for now. For right now, I opted to leave it called `myapplication`.
@@ -72,7 +71,6 @@ But just then...
 Wait for it...
 
 Success! I got a “Build successful” message from JHipster!
-
 
 ![toy car with fire breathing shoe wearing alligator painted on](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/10/toy-car-with-flames-painted-on.jpg)
 *I’m en fuego.*
@@ -116,7 +114,6 @@ My application is running locally. This is a great first step, and it’s great 
 * Open up Terminal and input the following command: `cd myapplication/`
 * Re-start JHipster by inputting the command `./mvnw`
 * Then I can see the same URL that I saw before, which will allow me to access this locally in a web browser. So easy! I can keep doing this all day long if I want (but it gets boring - trust me).
-
 
 # Possible Next Steps
 

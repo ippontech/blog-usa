@@ -14,7 +14,6 @@ At a high level, directives are markers on a DOM element (such as an attribute, 
 
 We will be using directives which use both methods mentioned (add behavior, and transform DOM elements).
 
-
 ## Creating basic directives for dragging and dropping
 
 The first step is to create something simple which will work properly, but will not be very useful, and then we will build on top of it to achieve our goal. We would like to have an attribute directives which allow us to make the element it is an attribute of draggable
@@ -86,7 +85,6 @@ angular.module('griddropApp')
 
 We stop the default behavior in many of the bound events. This gives us complete control of what will happen (so far, nothing fancy). Now, we can test out these directives and see what happens when they are added to an element. In order to do this, let’s create our square now, which will be named gridDropSquare.
 
-
 ## Creating Our Grid Drop Square
 
 This directive will be an element rather than an attribute, and it will use our drag and drop directives defined above.
@@ -126,11 +124,9 @@ The size scope variable is used to determine what proportion of the containing e
 
 </div>
 
-
 ```
 
 The CSS classes used allow us to create a responsive grid of squares with centered text, lots of detail about this CSS can be found in [this](http://stackoverflow.com/a/20457076/3239052) Stack Overflow answer. Now we will add a square to the main page and be able to see what has been done so far. If you have cloned the git repo you can access everything we have done so far by going to the branch ‘story-createGridOfDraggableSquares’. This project was generated with [JHipster](http://jhipster.github.io/) and can be run using only the command ‘mvn spring-boot:run’. Now that we can drag our squares, we would like to make something useful actually happen (like allowing us to drop a square on a new position).
-
 
 ## Communicating Between Directives
 
@@ -251,9 +247,6 @@ To generate the colors and numbers, we add a method to our main controller to ge
 
 The current progress is available on the branch story-addServiceToShareContent.
 
- 
-
-
 ## Adding Logic to Grid Drop
 
 This game is starting to match what was described at the beginning, we can drag and drop randomly generated squares, but we still need to add the main logic which allows us to play the game properly. Our main view should have two sections, a grid of squares, and a single square (which we will refer to as the palette) where we grab new squares from. We also initialize the palette to be a random color and score value. In order to randomly generate a new color and score for the palette, we need to differentiate between the palette and the grid, we do this by adding a new scope variable on our square directive, called isPalette. Finally, we add a check in our dragend event to see if we ended dragging the palette square, and if we did, we get a new random piece of content.
@@ -277,7 +270,6 @@ angular.module('griddropApp')
         }
     }]);
 ```
-
 
 Next we want to disable drag ability in the grid and only allow the user to drag from the palette to the grid. It would seem that removing the drag-target directive from the grid squares would work, however if we do, the default behavior is used, and if we select the text, it becomes draggable. So removing the drag-target directive does not make it undraggable. Instead, we pass in a boolean and use that to set the allowed drag effects:
 
@@ -348,8 +340,6 @@ angular.module('griddropApp')
         }
     });
 ```
-
-
 
 In order for changes to a square’s contents to be recognized in the main controller, we must modify our main view slightly:
 
@@ -433,17 +423,12 @@ angular.module('griddropApp')
         $scope.$on('grid-drop-change', function(event, position) {
             $scope.clearMatches($scope.contents, position.dropPositionX, position.dropPositionY);
         });
-            
+
         ...
     }]);
 ```
 
-
-
-
 ## Ending the Game
-
- 
 
 We finally want to be able to end the game after some condition is met; As mentioned earlier, the user will lose when he runs out of spaces to drag squares onto (that is, no grey squares exists). We do this by checking for at least one grey square after dropping a square on the grid. If no square has found, we disable drag functionality on the palette and enable a button which allows the user to restart the game.
 

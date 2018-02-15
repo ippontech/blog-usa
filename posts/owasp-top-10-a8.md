@@ -12,29 +12,26 @@ image:
 
 By Philippe Céry.
 
-
 ## Description
 
-An attacker sends a request to a website you are authenticated on to execute an operation without your formal approval.  
+An attacker sends a request to a website you are authenticated on to execute an operation without your formal approval.
  Attackers usually use [XSS](http://blog.ippon.fr/2013/10/28/owasp-top-10-a3/ "A3 Cross-Site Scripting (XSS)") to make you or your browser send this malicious request, but many other flaws exist to achieve the same goal.
-
 
 ## Examples
 
-Every month, to pay my rent, I authenticate on my bank’s website, then I use the following link saved in my favorites:  
+Every month, to pay my rent, I authenticate on my bank’s website, then I use the following link saved in my favorites:
 *`https://www.mybank.com/transfer.xhtml?toAccount=FR1234567890&amount=1000&currency=EUR`*
 
-One day, I find several transfers executed to an account in a foreign country.  
- An attacker made my browser silently execute these transfers. I was authenticated on my bank’s website while browsing on other sites. Several pages on the visited sites had the same malicious code:  
+One day, I find several transfers executed to an account in a foreign country.
+ An attacker made my browser silently execute these transfers. I was authenticated on my bank’s website while browsing on other sites. Several pages on the visited sites had the same malicious code:
 ```language-html
 <script>
 x=new Image();
 x.src='https://www.mybank.com/transfer.xhtml?toAccount=XY0000000000&amount=100&currency=EUR'
 </script>
 ```
-  
- Each time this code was interpreted by my browser, as long as I was authenticated on my bank’s website, I was giving 100 euros to someone I don’t even know!
 
+ Each time this code was interpreted by my browser, as long as I was authenticated on my bank’s website, I was giving 100 euros to someone I don’t even know!
 
 ## Mitigations
 
@@ -52,7 +49,7 @@ Obviously, the value of the generated token is not confidential so it must be un
 
 The simpliest method consits in generating a single token for each authenticated user (per-session protection). It is usually stored in user’s HTTP session. The same token is injected in all forms that must be protected until user’s session is invalidated. You can also generate a different token for each sensitive page (per-URI protection) or even a token for each sensitive request (per-request protection).
 
-JSF (version 2.1 and above) and frameworks like [CSRFGuard](https://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project "CSRFGuard") provide automatic protection against CSRF attacks.  
+JSF (version 2.1 and above) and frameworks like [CSRFGuard](https://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project "CSRFGuard") provide automatic protection against CSRF attacks.
  You can also implement your own protection depending on your needs.
 
 - Identify the actions (forms) to protect. You can protect all pages but you should focus on request that will modify the state of the application.
@@ -72,7 +69,7 @@ With an unpredictable token, using a link in your favorites is not possible anym
 
 Again, you have several differents methods. I will only focus on the two most used: CAPTCHA and re-authentication.
 
-[CAPTCHA](http://en.wikipedia.org/wiki/CAPTCHA "CAPTCHA (Wikipedia)") is used to avoid automatic request sent by robots to be executed. It is an acceptable solution for anonymous actions.  
+[CAPTCHA](http://en.wikipedia.org/wiki/CAPTCHA "CAPTCHA (Wikipedia)") is used to avoid automatic request sent by robots to be executed. It is an acceptable solution for anonymous actions.
  E.g. you can use this protection on your website to prevent account creation requested by robots.
 
 Re-authentication simply consists in asking the authenticated user to enter its credentials again before performing the requested action. Nowadays, all banks (except mybank.com) use this mechanism before a transfer. Of course, with this solution, the user could use a link in its favorites and would have to authenticate before the transfer can be done. Unless you also require a CSRF prevention token in the request (recommended).

@@ -17,7 +17,7 @@ While there are many ways to initialize and configure a Docker Swarm on AWS infr
 
 ## Architecture
 
-The architecture uses AWS DynamoDB for storing the swarm-related metadata. Docker Swarm is initialized on a leader node by running appropriate recipes. The leader node is responsible for storing the swarm metadata into DynamoDB. The metadata includes Docker Swarm join tokens for manager as well as worker nodes and the manager address. The manager node(s) retrieve the metadata from the DynamoDB and uses it to join the swarm; similarly, the worker node(s) retrieve the metadata from DB and uses the information to join the swarm. 
+The architecture uses AWS DynamoDB for storing the swarm-related metadata. Docker Swarm is initialized on a leader node by running appropriate recipes. The leader node is responsible for storing the swarm metadata into DynamoDB. The metadata includes Docker Swarm join tokens for manager as well as worker nodes and the manager address. The manager node(s) retrieve the metadata from the DynamoDB and uses it to join the swarm; similarly, the worker node(s) retrieve the metadata from DB and uses the information to join the swarm.
 
 The image below illustrates the architecture:
 
@@ -35,7 +35,6 @@ The image below illustrates the architecture:
 
 * **Berksfile**: The Berksfile, which is now part of ChefDK, is used to manage dependencies and also package the cookbooks.
 
-
 ## Recipes
 * **settings**: The settings recipe is used to initialize settings, such as providing a unique name to the swarm. The unique name is used to add the swarm settings into the DynamoDB such as *<uniquename>_worker_token* or *<uniauename>_manager_token*. The settings recipe is executed on all the swarm nodes. A settings.json can be passed to the chef which has the unique name information along with other information needed for the recipes. <br>
 
@@ -48,7 +47,6 @@ The image below illustrates the architecture:
 * **joinmanager**: The joinmanager recipe is executed on the manager nodes so that the node can be joined into the swarm as a manager node. The joinmanager retrieves the token and address information from the DynamoDB and executes the _docker swarm join_ command to  join the swarm. <br>
 
 * **joinworker**: The joinmanager recipe is executed on the worker nodes so that the node can be joined into the swarm as a worker node. The joinworker retrieves the token and address information from the DynamoDB and executes the _docker swarm join_ command to  join the swarm cluster.
-
 
 ##### Recipes to be executed
 
@@ -86,23 +84,23 @@ The run_list is provided when running chef-solo manually.
 	shell.run_command
 	token = shell.stdout
 	// read the token received from docker and store it for subsequent recipes
-	node.set['swarm']['managertoken'] = token 
+	node.set['swarm']['managertoken'] = token
 	Chef::Log.info("Obtained Swarm Manager Token : #{token}")
 
 <br>
-	
+
 ##### Add manager, worker tokens, and manager address to the DB
-    
+
     managerToken = node.set['swarm']['managertoken'] // determined by swarminit recipe
-    
+
     // json template based on the db structure
 	putItemTemplate =   "{\"TokenKey\": {\"S\": \"<key>\"},\"TokenCode\":{\"S\": \"<value>\"}}"
 	item_hash = JSON.parse(putItemTemplate)
-	
-	item_hash['TokenKey']['S'] = managerKey 
+
+	item_hash['TokenKey']['S'] = managerKey
 	item_hash['TokenCode']['S'] = managerToken
 	managertokenitem = item_hash.to_json
-	
+
 	command = "aws dynamodb put-item --table-name SwarmMetaTable --item '#{managertokenitem}'"
 	Chef::Log.info("Putting item")
 	shell = Mixlib::ShellOut.new("#{command}")
@@ -111,7 +109,7 @@ The run_list is provided when running chef-solo manually.
 <br>
 ##### Join nodes into the swarm
     // Obtain the token and manager address by getting the item from the dynamo db
-     
+
 	swarmJoinCommand = "docker swarm join --token #{token}  #{managerAddr}"
 	Chef::Log.info("Worker Joining Swarm with command #{swarmJoinCommand}")
 	shell = Mixlib::ShellOut.new("#{swarmJoinCommand}")

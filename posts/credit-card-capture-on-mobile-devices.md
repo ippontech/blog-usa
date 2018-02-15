@@ -12,7 +12,7 @@ This page is to explain the basics of adding the proper HTML5 tags and attribute
 
 What you need.
 
-Input tags should be wrapped in an HTML <form> element  
+Input tags should be wrapped in an HTML <form> element
  The proper input field type and attributes
 
 - <input type=”text” id=”ccName” name=”name” autocomplete=”cc-name” x-autocompletetype=”cc-full-name”>

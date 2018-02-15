@@ -13,7 +13,6 @@ image:
 
 This is the second part of a 3-part introductory series on using JHipster with Cassandra. You can read yesterday’s post here: [Using Cassandra with JHipster](http://www.ipponusa.com/using-cassandra-jhipster/).
 
-
 ## CQL vs Hector
 
 At Ippon Technologies we started using Cassandra many years before CQL existed. At that time, we were using [Hector](http://hector-client.github.io/hector/build/html/index.html) (or its Netflix version [Astyanax](https://github.com/Netflix/astyanax)), and we even know some people who directly used [Cassandra’s Storage Proxy](http://wiki.apache.org/cassandra/StorageProxy)!
@@ -23,7 +22,6 @@ Without a doubt, CQL is one of the strongest reasons why Cassandra has become so
 As a result, we use some diagrams to explain how Cassandra works internally, and how CQL fits its data into this internal storage. We have had several customers who told us we should share those diagrams, so here they are!
 
 We are going to study two of the most common use cases in Cassandra: a one-to-many relationship, and a value-less “wide row”. Once you have studied both of them, it is easy to follow the same methodology for other use cases.
-
 
 ## Modeling a one-to-many relationship
 
@@ -48,15 +46,12 @@ Here is how the same data is stored inside Cassandra:
 
 [![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/04/cassandra_one_to_many_physical_view.png.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/04/cassandra_one_to_many_physical_view.png.png)
 
- 
-
 This second view is harder to read at first, but it makes it a lot easier to understand how data is distributed across the cluster, as only rows are distributed.
 
 - The partition key is in fact the Cassandra row key.
 - Static columns are only stored once (when the CQL table shows them duplicated).
 - The clustering key is used in the column names, so all the clustered data is in fact on the same Cassandra row. It is perfectly normal, with Cassandra, to store data in the column name.
 - By default, Cassandra rows are ordered: in our example, this means that books are sorted by their book_id. This is an important feature, for example when you store time series.
-
 
 ## Modeling an index table
 
@@ -83,7 +78,6 @@ This table has some interesting properties:
 - As the firstname is used as a partition key, we can have an unbalanced cluster if we have one very common first name (for example, if a lot of people are named “john”). In a normal use case, this will of course works very well.
 - By default, columns are ordered by name: our authors will be returned sorted by their id, and that list will be easy to paginate.
 - It is a valueless table: its columns do not have any values! This is perfectly normal with Cassandra, as we can use the column names to store data, and that information is enough in this use case.
-
 
 ## Going further with Cassandra
 

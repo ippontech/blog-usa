@@ -21,7 +21,6 @@ As part of my journey to learn more about blockchain, I discovered I had a growi
 5. Start the Frontend
 6. Explore the Dashboard
 
-
 # Preface
 This post will go over 2 tools that work together to visualize various stats and information about the blockchain:
 
@@ -36,7 +35,6 @@ This is the frontend portion that provides a UI to visualize several technical c
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/10/real_ethereum-network.png)
 
 *Snapshot of the public Ethereum network stats.*
-
 
 # 1. The Setup
 Before we can begin to play with the monitoring, we must take some steps to set up a private network. Take this opportunity to create a private network containing 5 nodes. If you are unfamiliar with how to do this, please refer to my previous blog, [A Journey into Blockchain: Private Network with Ethereum](http://blog.ippon.tech/author/jhenningsgaard/) for a step-by-step guide. The folder structure looks like the following:
@@ -111,7 +109,6 @@ There are few configurations that need to be changed in this file:
 * `"WS_SERVER"`: The server address for the frontend UI (i.e. `eth-netstats`) running in background
 * `"WS_SECRET"`: The secret used to connect the frontend and backend tools (i.e. `eth-netstats` and `eth-net-intelligence-api`). You choose any value to put here.
 
-
 # 4. Start The Node App
 Now that the node app has been configured, it can be started. The backend tool `eth-net-intelligence-api` uses a node production process manager called [PM2](http://pm2.keymetrics.io). Most, if not all, of the commands used to interact with the backend node app will begin with `pm2`.
 
@@ -125,7 +122,6 @@ $ pm2 start app.json
 *Starting the node app, ‘app.json'.*
 
 The backend is now running. Commands `pm2 show <id>`, `pm2 logs`, and `pm2 list` are helpful commands for debugging and general monitoring of your node apps with pm2. For more details use `pm2 --help`.
-
 
 # 5. Start the Frontend
 Now that the backend node app is running, the frontend can be started. In a separate terminal window `cd` into the `eth-netstats` directory. Recall that the `WS_SERVER` and `WS_SECRET` configurations were set previously in the `app.json` file used to run the backend app. Therefore, the secret must be passed to the frontend as follows:
@@ -141,7 +137,6 @@ $ geth --identity "node01" --rpc --rpcport "8000" --rpccorsdomain "*" --datadir 
 ```
 
 After the `geth` instance has been started, refresh the Ethereum Network Status webpage. The node should now be listed on the dashboard.
-
 
 # 6. Explore the Dashboard
 Now that everything is setup and the monitoring is running, the fun begins. First let's ***add in the rest of the private network*** that was created in the beginning. If you recall, there are a total of 5 nodes. With `node01` still running, start `node02` and `node03`. Attach these 2 nodes to `node01` using the command `admin.addPeer(<node01 enode address>)`. Refresh the dashboard, you should see the 2 peers appear for `node01`.
@@ -178,7 +173,6 @@ After making these final node connections you'll notice that all the nodes will 
 
 You may notice that there are several different statistics, graphs, and other performance metrics captured in this dashboard. To discover what everything on the dashboard means, watch this video:
 <iframe width="560" height="315" src="https://www.youtube.com/embed/kRGR_De16GU" frameborder="0" allowfullscreen></iframe>
-
 
 # Conclusion
 After spending a fair amount of time experimenting with the blockchain I was compelled to find a way to better monitor the networks I was creating. [Ethereum Network Stats](https://github.com/cubedro/eth-netstats) provides a great way to gain a feel for how a Ethereum blockchain is operating.

@@ -10,7 +10,6 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/0
 
 Kafka Streams is a new component of the Kafka platform. It is a lightweight library designed to process data from and to Kafka. In this post, I’m not going to go through a full tutorial of Kafka Streams but, instead, see how it behaves as regards to scaling. By scaling, I mean the process of adding or removing nodes to increase or decrease the processing power.
 
-
 ## The theory
 
 Kafka Streams can work as a distributed processing engine and scale horizontally. However, as opposed to Spark or Flink, Kafka Streams does not require setting up a cluster to run the application. Instead, you just start as many instances of the application as you need, and Kafka Streams will rely on Kafka to distribute the load.
@@ -21,7 +20,6 @@ Scaling is then made very easy:
 
 - to scale up: start a new instance of the application and it will take over the responsibility of some partitions from other instances
 - to scale down: stop an instance and other instances will take care of the no-longer processed partitions.
-
 
 ## The application
 
@@ -80,7 +78,6 @@ As an addition, I have a Quartz job that prints every second the number of recor
 
 Running separately, a producer sends 2000 records every second (more precisely 20 records every 10 milliseconds) to the `AUTH_JSON` Kafka topic. Since the topic has 4 partitions, that’s 500 records per partition every second (5 records per partition every 10 milliseconds).
 
-
 ## Normal run
 
 When we start a first instance of the consumer:
@@ -108,7 +105,6 @@ Now, if we start the producer, the consumer starts consuming 2000 records per se
 11:00:54,706 com.seigneurin.Main - Records processed: 2000
 11:00:55,704 com.seigneurin.Main - Records processed: 2000
 ```
-
 
 ## Scaling up
 
@@ -148,7 +144,6 @@ If we look at the first instance, we can see:
 11:01:32,705 com.seigneurin.Main - Records processed: 1000
 11:01:33,702 com.seigneurin.Main - Records processed: 1000
 ```
-
 
 ## Scaling down
 
@@ -199,7 +194,6 @@ And the value of this setting was actually printed then the application started:
     session.timeout.ms = 30000
     ...
 ```
-
 
 ## Wrapping up
 

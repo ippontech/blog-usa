@@ -18,13 +18,13 @@ The replication of environments along with the need to maintain strict configura
 ## Runbooks
 Runbooks are script-like files that are based on Windows PowerShell.  Runbooks are used to deploy, provision, and manage the various resources available in Azure (e.g. create resource groups, provision HDInsight cluster, or provision a VM). They are created and managed within an Azure Automation account ([Creating a Runbook](https://docs.microsoft.com/en-us/azure/automation/automation-creating-importing-runbook)).  Runbooks can be run manually or automatically by attaching a schedule.
 
-There are two main components of Azure Automation runbooks that we found to be useful: 
+There are two main components of Azure Automation runbooks that we found to be useful:
 
 1. Deploying child runbooks from a master runbook
-2. Versioning the runbooks with Git 
+2. Versioning the runbooks with Git
 
 ## Structure the Runbooks for Multiple Environments
-As mentioned previously, the platform consisted of three identical environments: DEV, TEST, and PROD.  Therefore, we adopted some best practices. 
+As mentioned previously, the platform consisted of three identical environments: DEV, TEST, and PROD.  Therefore, we adopted some best practices.
 
 1. Group your resources in a resource group based on lifecycle.
 2. Create map variables for naming resources based on their environment.
@@ -75,7 +75,6 @@ b. Be prepared for a slow feedback loop.
 6. **Push** your changes to the remote repository.
 a. This will **automatically kick off the webhook** to publish those changes to the Azure Automation account.
 b. This can take a few minutes.
-
 
 I've put together some sample runbooks that demonstrate  the techniques described above.  Feel free to check them out [here](https://gist.github.com/jhennin/47d8e98e985137e36bbd94b8a8de4a4f).
 

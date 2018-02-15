@@ -10,11 +10,9 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/1
 
 <span style="font-weight: 400;">This year I had the pleasure of attending the 5th rvatech/women conference (previously called Women in Technology ETC) with a few coworkers. Each year it seems to get better; the speakers are always wonderful, the topics grow more impressive and the impression it leaves with the women, and men, in attendance is that much bigger than the year before.</span>
 
-
 ## **Courtney Ferrell**
 
 <span style="font-weight: 400;">Once again Courtney Ferrell was the MC for the conference; she started off with a bang! Her opening talk centered around forming a community.  One of the quotes that resonated with me was that “Richmond is on fire. It is a creative explosion.” Courtney said that we can find inspiration in the form of community and that the greatest form of inspiration is life itself. She told us that to be a part of a community you have got to feel it. Being a part of a community is deeply connecting with others. She encouraged us to truly connect and be a part of the day. She then introduced the first keynote speaker of the day, Yvonne Wassenaar.</span>
-
 
 ## **Yvonne Wassenaar**
 
@@ -27,7 +25,6 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/1
 <span style="font-weight: 400;">The last part of the talk was telling the incredibly personal story of her childhood and how that impacted her as a leader. She used it as an example that your childhood has a profound impact on the type of leader you become. She said that confidence is key and therefore, you need to acknowledge your fears, embrace success and lead with success. She also made sure to point out that the lack of women in c level positions is not a pipeline issue because there are many qualified women. We just need to stand up and say “Yes! I am qualified.”</span>
 
 <span style="font-weight: 400;">The lasting impression of this talk is to be confident and you will be successful. Yvonne said to acknowledge your fears, embrace success and lead with confidence. A great plan for the future!</span>
-
 
 ## **Laishy Williams-Carlson**
 
@@ -45,7 +42,6 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/1
 8. **Know your business.**
 9. **Don’t be a victim***<span style="font-weight: 400;">Make choices, then own them.</span>*
 10. **Joy and fulfillment at work.***<span style="font-weight: 400;">Know why you show up. Find meaning in your work. Do what you do best each and every day.</span>*
-
 
 ## **Jocelyn Mangan**
 
@@ -65,13 +61,11 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/1
 
 <span style="font-weight: 400;">“Be a woman.” She wanted everyone to be proud of being a woman and to help other women be empowered. She has started a ‘women at snag’ group at her company to meet and work through shared experiences. This is important because for every 100 women who are promoted 130 men are and this should change to be more equal.</span>
 
-
 ## **Lego Serious Play**
 
 <span style="font-weight: 400;">For one of the breakouts there was a demonstration of Lego Serious Play. First we were walked through the psychology of why this works. Individuals can only have a small part of their knowledge in the conscious part of their mind but our hands have access to all parts of our subconscious so working with legos we can come up with ideas we would not be able to otherwise.</span>
 
 <span style="font-weight: 400;">We walked through different exercises building lego models to build on an idea. The first question was to build a tower to demonstrate how each person has different ideas and built a completely different tower with the same instructions. Next we had to build a moose where different pieces represented the moose’s antlers and feet. This was to show us how the legos are not actual things but they can be representations of whatever we need them to be. We then were asked about what our biggest obstacle at work is. We walked the table through our metaphors. This led us to create metaphors for what we needed to overcome that barrier. The last exercise was to create one representation of everything that we as a table needed to have to get over our barriers at work. At the table the things people needed were time, confidence, to be able to step over the bridge, to choose the right path, get a vehicle for the resources needed to complete the job, and support from others to do their job. Overall this was a very productive but quick walk through of the power of lego serious play and how it can help teams solve problems by using the lego’s to create the solutions to the problems and then work through those solutions with the whole team to create the best solution. This was able to get everyone at our table engaged and talking where at many meetings only a few people are talking and coming up with ideas. This methodology encourages everyone to participate.</span>
-
 
 ## **Design Thinking**
 
@@ -86,7 +80,6 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/1
 <span style="font-weight: 400;">Lastly, my group started the prototyping phase. On the table were a wide arrangement of crafting things. We created both an apple watch application and a mobile application prototype. Each had several screens showing the customer how she could navigate through the application. During this phase we asked more question and even redid a few of the screens to better answer the problem set.</span>
 
 In the end we all had a great time collaborating and designing our faux application. It was interesting to go through those design process steps. I can see how something like this would be seeing excellent results in the technology world!
-
 
 ## JOEY ROSENBERG <span style="font-weight: 400;">Women Who Code</span>
 
@@ -105,9 +98,5 @@ In the end we all had a great time collaborating and designing our faux applicat
 5. **Leadership**<span style="font-weight: 400;">: influencing others, managing projects, or leading teams.  </span>
 
 <span style="font-weight: 400;">The grand finale of Joey’s talk was the announcement of a Richmond, </span>[<span style="font-weight: 400;">VA Women Who Code group</span>](https://www.womenwhocode.com/richmond)<span style="font-weight: 400;">. We are all very excited to join the Richmond WWCode group for their kickoff on October 27! </span>
-
- 
-
- 
 
 A common theme among all the speakers today was to build your confidence. Do what you love, do it well and with confidence and you will get any and every goal you make for yourself. No one goes out into the workforce, especially a woman in tech industry, imagining they will be a follower. Know what you want, make a plan for achieving those goals, then start your journey to greatness by being a leader!

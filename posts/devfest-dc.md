@@ -10,7 +10,6 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/1
 
 A team of five Ipponites hungry for knowledge descended upon a bustling Capital One for DevFest DC 2016 – A two day Google Developer Group Washington DC Event consisting of over 600 attendees. There were three educational tracks to talk Cloud, Mobile, Big Data, & Design featuring speakers from domestic and abroad as well as Ippon’s own USA Hipster – Dennis Sharpe. Here’s our take of what was hot at the biggest Developer Tech conference in the Washington Metro area!
 
-
 ## A Very Potter Door to the Future – Yufeng Guo – Google
 
 Yufeng started with the idea that, in Harry Potter, doors are paintings that can recognize people and ask for passwords. He wanted to reproduce the same principle with a Raspberry Pi and a few accessories, among which a webcam and a microphone. He showed us how he leveraged the Google Cloud APIs to perform speech and face recognition.
@@ -22,7 +21,6 @@ Yufeng first showed us how he integrated the [Google Speech API](https://cloud.g
 He then showed how powerful the [Google Vision API](https://cloud.google.com/vision/) is. It can detect objects, faces, text, and much more from an image.
 
 These APIs are powered by Machine Learning algorithms that are constantly improved by Google. Free tiers (60 minutes/month for the Speech API and 1000 images per month for the Vision API) make it easy to build a Proof of Concept application.
-
 
 ## TensorFlow at the Museum – Josh Gordon – Google
 
@@ -38,7 +36,6 @@ Josh finally gave many pointers to help people get started with TensorFlow. Here
 - [Machine Learning Recipes](https://www.youtube.com/playlist?list=PLOU2XLYxmsIIuiBfYad6rFYQU_jL2ryal), a series of introductory videos on YouTube
 - [Deep Learning by Google](https://www.udacity.com/course/deep-learning--ud730), a Udacity course
 
-
 ## Visualization Data in Elasticsearch – Dave Erickson – Elastic
 
 In this panel, Dave Erickson Director of Solutions Architecture, demonstrated many of the features available within Elastic’s big data search and analytic tools. In particular, he focused in on [Elasticsearch](https://www.elastic.co/products/elasticsearch) and [Kibana](https://www.elastic.co/products/kibana). The [Elastic Stack](https://www.elastic.co/products) consists of several tools that are designed to “help you take data from any source, any format, and search, analyze, and visualize it in real time.” Elastic Search is core to the Elastic Stack and is designed for high compatibility by utilizing a RESTful API.
@@ -50,7 +47,6 @@ After giving a brief history of Elastic and the various products available, Dave
 In his talk Dave provided a demo of Kibana using the DC cycle share data from the first year the program started. He zeroed in on July 4th. Kibana displayed a simple bar graph that showed a drastic decline in activity right around 9:00 pm and a sharp increase in activity shortly thereafter. Dave explained that this anomaly may very likely be something that machine learning couldn’t identify. However, having a visual representation of the data allowed us to determine that the dramatic change in bike share usage was due to fireworks celebrating Independance Day.  Dave went on to discuss how Kibana can add value to your big data projects and can be particularly attractive to clients or non-technical members of a team who may need to interact with data.
 
 [![visualizing-data-in-elasticsearch-devfest-dc-2016-23-1024](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/10/visualizing-data-in-elasticsearch-devfest-dc-2016-23-1024-300x169.jpg)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/10/visualizing-data-in-elasticsearch-devfest-dc-2016-23-1024.jpg)
-
 
 ## Implementing HTTP/2 Server with Node and Express – Azat Mardan – Capital One
 
@@ -73,7 +69,6 @@ After some additional setup, he concluded by pulling up the application on the l
 
 [![http2 developer tools](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/10/http2-developer-tools-300x185.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/10/http2-developer-tools.png)
 
-
 ## Keynote: Pivotal Time to be a Developer: A Global Perspective – Yuriko Horvath, 1776
 
 Yuriko gave a brief walk through tech history. One point she made was increasingly better developer working conditions over time. I personally see this as having been working for many years, the opportunity to have flexible working arrangements has only increased. I’ve found that many companies are starting to value productivity over facetime which is a win for everybody. Some more interesting points:
@@ -83,7 +78,6 @@ Yuriko gave a brief walk through tech history. One point she made was increasing
 - Teleworkers seem to be more productive
 - Businesses can save on real estate cost
 - Collaboration tools like Slack, HipChat, and Google Docs can help make things easier for distributed teams. Here, at Ippon, we use HipChat and it’s crucial for all of us to keep in touch with each other when we have many people working on different projects at different companies, thus making facetime difficult
-
 
 ## gRPC 101 – building small and efficient microservices – Ray Tsang – Google
 
@@ -100,7 +94,6 @@ The gRPC tech stack includes:
 [![ray](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/10/ray-300x206.jpg)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/10/ray.jpg)
 
 Ray then did a live coding demo where he progressively built a chat server and client from scratch. It was quite impressive due to the lack of ceremony involved in wrangling with the protocol as compared to how I’d envision doing it with something like REST. gRPC is absolutely in play for my next greenfield project. Check it out at: [http://www.grpc.io/](http://www.grpc.io/). The getting started guide is one of the better ones I’ve seen out there. Give it a shot!
-
 
 ## Say it With Video – Annyce Davis, Off Grid Electric
 

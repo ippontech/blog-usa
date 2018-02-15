@@ -137,7 +137,7 @@ The data will be stored in files titled part-0000x. HDFS also has a browse direc
 	<version>1.4.0</version>
 </dependency>
 ```
- 
+
  The jar that is run on Spark also needs to include these dependencies so an “uber jar” needs to run. An “uber jar” will package up the dependencies similar to how jars are packaged up in a war. The Maven Shade Plugin is for this exact purpose. By default the plugin will include all jars, if all the jars are not required the plugin allows for dependencies to either be excluded or included. I choose to include only the Spark Cassandra dependencies that are necessary so there are no conflicting dependencies between the application and Sparks internal dependencies.
 ```language-xml
 <plugin>
@@ -252,12 +252,11 @@ public class GameSchedule implements Serializable {
 }
 ```
 
-
 Now that the setup has been completed the main controller can be rewritten. The main method is much simpler for this particular example. The code boils down to just a read, filter and a write.
 
 ```language-java
 public class BaseballDataControllerCassandra {
-	
+
 	public static void main(String[] args) {
 		if (args.length < 2) {
 			System.err.println("Please provide an input output and team as arguments");
@@ -266,10 +265,9 @@ public class BaseballDataControllerCassandra {
 
 		SparkConf conf = new SparkConf().setAppName("Boston Red Sox Scheduled Day Games");
 		conf.set("spark.cassandra.connection.host", args[0]);
-		
-		
+
 		JavaSparkContext sc = new JavaSparkContext(conf);
-		
+
 		CassandraTableScanJavaRDD<GameSchedule> schedules = CassandraJavaUtil.javaFunctions(sc)
 				.cassandraTable("baseball_examples", "game_schedule", mapRowTo(GameSchedule.class));
 

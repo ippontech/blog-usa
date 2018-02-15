@@ -12,9 +12,9 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/0
 There is a massive shift in mentality surrounding deployment and system maintenance. With cloud services handling the bulk of our DevOps for a fraction of the cost, companies are moving whole environments into the Cloud. But just how far can we take this? In the Amazon Webservices EcoSystem, we have the opportunity to build everything we need on cheap infrastructure using EC2. However, we're still responsible for maintaining that EC2 instance. Can we do better?  Let's see how [JHipster](https://jhipster.github.io/) handles  serverless solutions and alternative deployment methods.
 
 ### Elastic Beanstalk
-Elastic Beanstalk is less of a replacement to managing the servers themselves and more of a resource deployment manager that is meant to handle the orchestration of your machines. 
+Elastic Beanstalk is less of a replacement to managing the servers themselves and more of a resource deployment manager that is meant to handle the orchestration of your machines.
 
-You can determine ahead of time the resources necessary for your environment and allow Amazon to orchestrate the deployment. Behind the Elastic Beanstalk configuration parameters and version numbers is a couple EC2 and RDS machines. You have the ability to go into each service and do whatever you want to each of them. Elastic Beanstalk just makes it easier to coordinate the deployment of each resource. 
+You can determine ahead of time the resources necessary for your environment and allow Amazon to orchestrate the deployment. Behind the Elastic Beanstalk configuration parameters and version numbers is a couple EC2 and RDS machines. You have the ability to go into each service and do whatever you want to each of them. Elastic Beanstalk just makes it easier to coordinate the deployment of each resource.
 
 Pushing JHipster up using Elastic Beanstalk was relatively simple. There were only two bits that got me.
 
@@ -60,7 +60,7 @@ The beautiful thing about Angular and other Model, View, Controller frameworks i
 ```
 This way, every 404 will reroute back to index.html at the root of the bucket and will be handled by Angular properly. While this works from a user perspective, Search Engines recognize the 404 and do not cache it. For an internal website, that may be acceptable, but larger public websites may want to be wary.
 
-I also needed to remove everywhere my JHipster application specified `{ useHash: true }`. By default, JHipster prepends a `#/` before every path and we need it to not do that, such that index.html can be found. 
+I also needed to remove everywhere my JHipster application specified `{ useHash: true }`. By default, JHipster prepends a `#/` before every path and we need it to not do that, such that index.html can be found.
 
 The code I used to remove the hash from all components was
 ```bash
@@ -89,7 +89,7 @@ With all of that work done, what have we accomplished?
 
 What have we sacrificed? The main issue I would caution against is Amazon's lack of transparency in their resources. Discovering what happened if S3, EC2, RDS, or whatever other service you are using goes down is quite difficult. If a deployment fails, you aren't given much information as to why (though a failed deployment is very rare). That's the nature of depending on the Cloud, however; you are entrusting the availability of your service to the availability of AWS. Easily avoidable with a better Support Package and a dedicated Cloud Specialist.
 
-For the future, I'd like to build my microservices in AWS Lambda pointing to a database with my front-end pointing to API Gateway. I believe that is the most Cloud-oriented solution available right now. 
+For the future, I'd like to build my microservices in AWS Lambda pointing to a database with my front-end pointing to API Gateway. I believe that is the most Cloud-oriented solution available right now.
 
 If you have any questions about Ippon or what you read in this article, we'd love to hear from you! Please send your comments and inquiries to [contact@ippon.tech](mailto:contact@ippon.tech).
 

@@ -14,8 +14,6 @@ If you ask someone what their goals for their life are, you’ll get a variety o
 
 <span style="font-weight: 400;">As the study of subjective well-being – a person’s evaluation of their happiness from their perspective – has shown, we are very capable of changing our happiness level. Here are just a few things you could start doing today that have been shown to improve your happiness. I provide a list of them, because it’s important to consider person-activity fit – what works for one person may not be feasible or enjoyable for someone else. Fortunately, there’s lots of different things to try until you find one or a couple that are right for you!</span>
 
- 
-
 **Pursuing the right kinds of goals, and aligning those goals with your values**
 
 <span style="font-weight: 400;">Before you begin, think about 2-3 goals that are most important to you right now, and maybe write them down on a piece of scratch paper. You will classify them based on three criteria: self-concordance, approach vs. avoidance, and intrinsic vs. extrinsic motivation.</span>
@@ -28,23 +26,17 @@ If you ask someone what their goals for their life are, you’ll get a variety o
 
 <span style="font-weight: 400;">Think about the goals you listed. Could you rephrase or reframe them to make them more self-concordant, approach-oriented, or intrinsically motivated? It could help you to achieve the goals which are important to you, and you’ll have a better time working towards them!</span>
 
- 
-
 **Active Commuting**
 
 <span style="font-weight: 400;">Commuting takes up more of all of our workdays than we’d like it to, and is often our least favorite part of the day. Other drivers, stoplights, traffic, sometimes it feels like the world is conspiring to make you start your day off on the wrong foot. Unfortunately, for many people driving to work is unavoidable, and you’ve really just got to make the best of it and listen to some nice music, or maybe a podcast or audiobook. Enjoy the time you can spend by yourself and try not to let it all get to you. </span>
 
 <span style="font-weight: 400;">However, for some people, other options, such as public transport, cycling, or even walking to work are available. Sometimes they may be less convenient, but studies have consistently shown that people who bike or walk to work, or even use public transit are higher in SWB than those who drive (a [link](http://www.sciencedirect.com/science/article/pii/S0091743514003144)</span><span style="font-weight: 400;"> to one such study). If it wouldn’t be too inconvenient, try it out for a few days or a week, weather permitting, of course! The extra exercise or social time could make your morning a little brighter.</span>
 
- 
-
 **Mindfulness**
 
 <span style="font-weight: 400;">Mindfulness is a skill you can develop that will enable you to view your own thoughts in an objective, nonjudgmental manner. Developing mindfulness can help you avert a bad mood the moment it starts coming on, react more constructively to a bad situation, or even just get in a better state of mind after a stressful day at work. </span>
 
 <span style="font-weight: 400;">Contrary to popular belief, this is something anyone can do, and it doesn’t even take more than 10-15 minutes a day. Just a part of the time you might spend sitting in front of the TV for a show you aren’t really interested in or browsing the internet aimlessly. There are many online resources, and different things might work better for different people, but a site that I discovered that I really enjoy is [Headspace](https://www.headspace.com/)</span><span style="font-weight: 400;">. They offer 10 free sessions aimed at practicing mindfulness for the first time, meant to be done over 10 days and each session is less than 15 minutes. I highly recommend just trying it for a day or two, you might see the positive effects that quickly.</span>
-
- 
 
 **Challenging Negativity**
 
@@ -54,15 +46,11 @@ If you ask someone what their goals for their life are, you’ll get a variety o
 
 <span style="font-weight: 400;">When someone close to you us going through a hard time, we all know how to comfort them, “There are plenty of other jobs,” “Everyone has off days.” But when bad things happen to you, it’s easy to mope or wallow in self-pity or get angry at yourself for every little thing that you did wrong. Actually, you can treat yourself with the same compassion as you would others, by practicing </span>**self-compassion**<span style="font-weight: 400;"> when not everything is going right in your life. Give yourself the benefit of the doubt. Think of ways to fix the problem rather than continuing to worry about things that have already happened and can’t be changed. Look on the bright side!</span>
 
- 
-
 **Prosocial Behavior**
 
 <span style="font-weight: 400;"> Prosocial behavior is any action intended to help others. It can increase your feelings of connectedness with others and meaning in your own life. You could spend extra time volunteering for a local cause you believe in, or send some of your extra money to help make a positive change in the world even if you don’t have any spare time. Giving to others has been shown to be the best way to spend money, in terms of increasing subjective well-being.</span>
 
 <span style="font-weight: 400;">But you can practice prosocial behavior on an even smaller scale, by focusing on performing a few more acts of kindness in a day or week, beyond what you’d normally do. This has been shown to make people feel much better, and of course the targets of kindness feel better too. Everyone wins! </span>
-
- 
 
 **Conclusion**
 

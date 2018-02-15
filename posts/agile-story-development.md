@@ -32,7 +32,6 @@ As a batch document requester I want the documents delivered to me on a SFTP dro
 * Identified the first type of document to support
 * Expected load, SLA
 
-
 **High-Level Design:**
 
 ![architecture](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/01/architecture.png)
@@ -47,7 +46,7 @@ For our first sprint we decided to mock out all of our dependencies (we had iden
 
 With those assumptions, we did build a system that could process the batch document and package files into a tar file to be delivered to an SFTP dropbox.
 
-**Value add:** 
+**Value add:**
 * We can share the tar file with our clients to get feedback on its format, and content
 * We received feedback that the archive was too big and would prefer to receive it in chunks.
 * We received feedback that they would like to have a manifest file with each archive.
@@ -64,7 +63,6 @@ We also did preliminary performance tests to track the performance of our differ
 * We can share the manifest with the clients to get feedback
 * We integrated with one of our dependencies
 * We understand the weak points for our performance
-
 
 ## Third sprint:
 
@@ -96,7 +94,7 @@ We did another beta run to validate our changes.
 * We made our system scalable to handle different loads.
 
 ## Sixth Sprint:
-    
+
   We released our first version to all clients, and started working on the refactoring needed to be able to support the next document type.
 
 # Summary

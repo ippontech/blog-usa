@@ -33,8 +33,6 @@ Vagrant was a project started by Mitchell Hashimoto in 2010, written in Ruby.  
 
 It is important to note before discussing any similarities between Vagrant and Docker, that they address similar problems but at a different level of abstraction.  And as we just noted, they can now even be used in tandem.  When first delving into both, I actually found a pretty cheeky Stack Overflow post with both product founders squaring off a bit!
 
- 
-
 [![Screen-Shot-2014-10-08-at-10.11.27-AM](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/Screen-Shot-2014-10-08-at-10.11.27-AM.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/Screen-Shot-2014-10-08-at-10.11.27-AM.png)
 
 Image credit:  http://stackoverflow.com/questions/16647069/should-i-use-vagrant-or-docker-io-for-creating-an-isolated-environment
@@ -49,8 +47,6 @@ Fundamentally both are virtualization consistency tools, both are open source pr
 4. Vagrant has a larger footprint on a machine
 5. Docker environments start in just seconds, Vagrant ~minute depending on what is being performed on “vagrant up”
 6. Docker environments are partially isolated, Vagrant is full isolation
-
- 
 
 [![vagrant-docker-weight](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/vagrant-docker-weight.jpg)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/vagrant-docker-weight.jpg)
 

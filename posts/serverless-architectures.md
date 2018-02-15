@@ -14,26 +14,26 @@ title: "Serverless Architectures"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/12/Serverless-Evolution-1.jpg
 ---
 
-As we know, the IT industry is constantly evolving: hardware evolutions, the advent of IoT, new services offered by Cloud Providers, etc. The software development industry is no exception to this trend. In addition to new Web frameworks coming out faster than our learning abilities, application architectures are also being rethought and redesigned. Until recently, we all thought that a good old monolith was _THE_ most simple, effective and cheap solution. 
+As we know, the IT industry is constantly evolving: hardware evolutions, the advent of IoT, new services offered by Cloud Providers, etc. The software development industry is no exception to this trend. In addition to new Web frameworks coming out faster than our learning abilities, application architectures are also being rethought and redesigned. Until recently, we all thought that a good old monolith was _THE_ most simple, effective and cheap solution.
 
 With the growth of containers and DevOps tools, a new panel of architectures emerged: Microservices architectures are one of them. Simple, scalable and quick to develop - when leveraging generators such as JHipster - they created a new way to develop Web applications. However, like any new architecture, this one comes with its own set of drawbacks. One of them is infrastructure management: even though DevOps and containers have contributed a lot to deal with this problem, they haven’t solved it.
 
 Today, a new way of designing architectures is born: **Serverless computing**.
 
 # What is Serverless computing?
-Serverless architectures refer to applications that depend on third party services (known as _Backend as a service_ or _BaaS_) or on custom code executed in fully managed, ephemeral containers (_Function as a Service_ or _FaaS_). The best-known FaaS service provider as of now is [AWS Lambda](https://aws.amazon.com/lambda/). 
+Serverless architectures refer to applications that depend on third party services (known as _Backend as a service_ or _BaaS_) or on custom code executed in fully managed, ephemeral containers (_Function as a Service_ or _FaaS_). The best-known FaaS service provider as of now is [AWS Lambda](https://aws.amazon.com/lambda/).
 
 Nowadays progress in FrontEnd technologies has allowed us to eliminate our "Always On" server needs. Depending on the circumstances, such systems can significantly reduce operational cost and complexity and can therefore be reduced to paying only usage fees (bandwidth, storage volume). A key feature of Serverless computing is that we only pay for what we use.
 
 Like many trends in software, there is no clear meaning of what “Serverless computing” is, and this has not been helped by the fact that there are really two different but overlapping domains:
 
-* “Serverless” was first used to describe applications that are significantly or totally dependent on third-party applications/services to manage their server logic and state. These are usually "client oriented" applications (think of single-page web applications or mobile applications) that use the vast ecosystem of databases accessible in the cloud (such as Parse, Firebase, AWS DynamoDB, etc ), authentication services (Auth0, AWS Cognito), etc. These types of services were previously described as Backend as a Service (BaaS). 
-* “Serverless” can also describe applications where a certain amount of backend logic is written by the developer, but unlike with traditional architectures (e.g., Monolithic), this logic gets executed in stateless containers, often triggered by events, or within an ephemeral (only an invocation) and fully managed service by a third party. This corresponds to the concept of Function as a Service or FaaS. AWS Lambda is one of the most popular FaaS implementations at the moment, but there are others competitors (Google Functions, Azure Functions, OpenWhisk). 
+* “Serverless” was first used to describe applications that are significantly or totally dependent on third-party applications/services to manage their server logic and state. These are usually "client oriented" applications (think of single-page web applications or mobile applications) that use the vast ecosystem of databases accessible in the cloud (such as Parse, Firebase, AWS DynamoDB, etc ), authentication services (Auth0, AWS Cognito), etc. These types of services were previously described as Backend as a Service (BaaS).
+* “Serverless” can also describe applications where a certain amount of backend logic is written by the developer, but unlike with traditional architectures (e.g., Monolithic), this logic gets executed in stateless containers, often triggered by events, or within an ephemeral (only an invocation) and fully managed service by a third party. This corresponds to the concept of Function as a Service or FaaS. AWS Lambda is one of the most popular FaaS implementations at the moment, but there are others competitors (Google Functions, Azure Functions, OpenWhisk).
 
 In this article, we are referring to the second definition because it is more recent and is most at odds with the vision of a traditional technical architecture (it is simply more hyped!).
 
 ## Serverless is made of servers!
-The term "Serverless" is confusing because regardless of the implementation, there is still inevitably a server involved. The main difference is that the company creating and supporting an application, running on  a Serverless platform, effectively outsources the server management aspects to a provider (AWS, Google, Azure,...), and so can focus only on the functional part of the application. 
+The term "Serverless" is confusing because regardless of the implementation, there is still inevitably a server involved. The main difference is that the company creating and supporting an application, running on  a Serverless platform, effectively outsources the server management aspects to a provider (AWS, Google, Azure,...), and so can focus only on the functional part of the application.
 
 ## Some use cases
 Let's now study concrete cases of using Serverless. You can find more details on these architectures and even real examples by visiting the awslabs github (https://github.com/awslabs).
@@ -74,8 +74,8 @@ We can indeed find similarities between some PaaS services, such as Heroku, whic
 
 ### Containers
 Containers are becoming increasingly popular these days, especially since Docker. We can indeed find some similarities between FaaS and containers. But remember, FaaS offers a layer of abstraction such that we no longer have the notion of a system process, as opposed to Docker which is based on the notion of an unique process.
- 
-Among these similarities, we find the argument of scaling up. This functionality is readily  available at the container level with systems such as Kubernetes, Rancher or Mesos. In this case we can ask ourselves the question of why use FaaS when we can use containers ? 
+
+Among these similarities, we find the argument of scaling up. This functionality is readily  available at the container level with systems such as Kubernetes, Rancher or Mesos. In this case we can ask ourselves the question of why use FaaS when we can use containers ?
 
 It is important to know that despite the buzz surrounding them, it is still immature and many companies are still struggling to shift their containers infrastructure into production. In addition, container-level scaling systems are still far from reaching the maturity of the FaaS, even if this gap tends to narrow itself with the introduction of new services such as Horizontal Pod Auto Scaling for Kubernetes or systems like AWS ECS (Elastic container service).
 
@@ -84,8 +84,6 @@ Finally, the choice of technology will depend on the use case.
 ### #NoOps
 Serverless should not be confused with NoOps. If we define the work Ops (Operations) this does not only mean system administration operations. It also means at least execution tracking, deployment, security, networking and also often a certain amount of production and system scale-up debugging. These problems still exist with Serverless applications, I should even say that they are more complicated given the youth of technology and the new features and parameters to be taken into account.
 
-
-
 # Serverless: Unicorn or fake
 Serverless technologies are often compared to the land of unicorns because the promise they offer makes you dream and believe that unicorns exist. Let's take a closer look at this and see the benefits and drawbacks of this technology.
 
@@ -93,12 +91,12 @@ Serverless technologies are often compared to the land of unicorns because the p
 
 ### Reduced operational cost
 Serverless is a simple outsourcing solution. It allows you to pay a provider to manage servers, databases and even application logic. Since your service is part of a set of similar services, the concept of economies of scale will apply - you pay less for your infrastructure costs because the same service is used by many others, which reduces costs.
-Reduced costs are the result of reducing: 
-* the cost of infrastructure 
-* the cost of employees (operations / development). 
+Reduced costs are the result of reducing:
+* the cost of infrastructure
+* the cost of employees (operations / development).
 
 While some shared infrastructure (hardware, network) can result in direct cost savings, the goal is to go further and also reduce operating staff expenses, thanks to managed technologies.
-This advantage, however, is not too different from what you will get by using technologies such as Infrastructure as a Service (IaaS) or Platform as a Service (PaaS). 
+This advantage, however, is not too different from what you will get by using technologies such as Infrastructure as a Service (IaaS) or Platform as a Service (PaaS).
 
 ### Reduced development cost
 To illustrate this point, let us take the case of authentication as an example. Many applications develop their own authentication and user management services, thereby implementing their own security levels. This functionality often includes::
@@ -115,7 +113,7 @@ For me, one of the most important advantages of Serverless is the automatic, ela
 One example of cost optimization is the occasional use of a function. For instance, let's say you run a server application that processes only 1 request every minute, takes 50 ms to process a request, and your average CPU usage for one hour is 0.1%. From a server workload perspective, this is extremely inefficient.
 FaaS technology captures this inefficiency and allows you to pay only for what you consume, i. e. 100ms (minimum value) per minute, less than 0.5% of the total time.
 
-### Be a better developer, think about optimization 
+### Be a better developer, think about optimization
 While this new architecture offers new features such as scalability, it still faces the constraints of application development. In this way, the function optimization phase takes on even more value as it not only improves the response time for users, but also saves money on the bill. For example, for an operation that initially takes 1 second and after optimization takes 200ms, we will have an immediate 80% invoice discount.
 
 ### Being and Thinking Green IT
@@ -143,7 +141,7 @@ I couldn't write an article about Serverless without mentioning the security of 
 * Because the services you use are shared, you inherit the security issues inherent in the multi-holder service. For example, access to other client data through process sharing.
 
 ### Implementation Drawbacks
-Let us now turn to the drawbacks inherent in the currently available solutions. Let’s keep in mind that this should evolve quickly given its rapid growth. 
+Let us now turn to the drawbacks inherent in the currently available solutions. Let’s keep in mind that this should evolve quickly given its rapid growth.
 
 #### Execution time
 A current limitation is maximum execution time for FaaS. Currently there is a 5 minute limit AWS Lambda, and a 9 minute limit for Google Cloud Functions. This constraint restricts the scope of Use Cases such as video processing or some batch work.

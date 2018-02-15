@@ -20,11 +20,11 @@ Generally people point to the flexibility of document-schemas, but RDBMS solutio
 
 Is there hope for a NoSQL solution then, if Master Data is such a relational concept? Pitney Bowes would have you think so. They offer a Graph-based NoSQL solution by the name of [Spectrum Master Data Management Hub](http://www.pitneybowes.com/pr/customer-information-management-software/master-data-management/spectrum-data-hub-module.html). This software is a bit reclusive, offering no trial on their site. In fact, most of the information I gathered from it is offered on a [pdf](http://www.pitneybowes.com/content/dam/pitneybowes/australia/en/legacy/docs/International/Australia/PDF/Software/data-management/SpectrumMDMHub_DS_CDLI_APAC_A4_1305_v1.pdf), which is at least a year old.
 
-Here’s the exciting part; if they are as advertised, they offer:  
- • Map-Reduce based implementation for large batch processing  
- • Horizontal and vertical scaling run-time instance configuration across functions  
- • Hot Back-Up support  
- • Full ACID-compliance  
+Here’s the exciting part; if they are as advertised, they offer:
+ • Map-Reduce based implementation for large batch processing
+ • Horizontal and vertical scaling run-time instance configuration across functions
+ • Hot Back-Up support
+ • Full ACID-compliance
  • In-memory caching of large reference datasets
 
 Or in short, they offer all the benefits of RDBMS and NoSQL combined. Of course this is to be taken with a grain of salt until the software can be properly vetted; Though if they are to accomplish the seemingly impossible, I would say they’re headed down the right track.

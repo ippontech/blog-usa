@@ -28,7 +28,6 @@ Intermediate operations (e.g. Stream.map or Stream.filter) are done lazily and r
 
 When a terminal operation is called (e.g. Stream.reduce or Stream.collect), all the streams created by intermediate operations are traversed, operations are applied to data, and the terminal operation is performed. Then every stream is consumed and destroyed, and cannot be used any longer.
 
-
 ==Example of Collection processing==
 ```language-java
 List<String> strings = Arrays.asList("giraffe", "cat", "camel", "fish", "whale");
@@ -45,7 +44,6 @@ strings.stream()
        .forEach( System.out::println );
 ```
 
-
 # Stream creation
 
 There are different ways to create a stream. The simplest way is to call the method stream() or parallelStream() on a collection. Another way is to call methods that were added to existing classes.
@@ -54,18 +52,15 @@ For instance, String’s method chars() returns an IntStream with the characters
 
 The API also includes static methods in the Stream class. For instance, the following code “Stream.iterate(1, x -> x*2)” returns an infinite stream of powers of 2. The first argument contains the initial value of the stream, and the second the function to go from the element n to the element n+1.
 
-
 # Parallelization
 
 One of the main advantages of the new API is the ability to easily parallelize processing. Indeed, any stream can be parallelized by calling its parallel() method inherited from the BaseStream interface. Any stream can become sequential with an invocation of the sequential() method. It is also possible to build a parallel stream directly on a collection by calling the collection’s parallelStream()’s method.
 
 These methods conveniently abstract the work distribution, but they should not be used lightly: in some cases, parallelization can decrease performance (as shown further down with stateful operations).
 
-
 # Intermediate operations
 
 Intermediate operations can be stateful or stateless. Stateless operations are applied to the elements of a stream independently – without taking into account other elements.
-
 
 ==Collects allows us to easily store the result in a list==
 ```language-java
@@ -86,7 +81,6 @@ List myClients = myOrders.stream()
                                  .collect( Collectors.toList() );
 ```
 
-
 # Terminal operations
 
 There are two types of reduction in the Stream API: simple reductions and mutable reductions.
@@ -102,13 +96,13 @@ BinaryOperator<U> combiner);
 The identity element is the initial element for the reduction (and the returned element if the stream is empty). The accumulator creates a new partial result from the partial result and a new element, and the combiner creates a new partial result from the two partial results. Note two things:
 
 - First, the identity needs to be an identity in the mathematical sense for the combiner function: combiner.apply (u, identity) must be equal to u for every u.
-- The combiner function must be associative. It is necessary to avoid getting random results when parallelizing the work.Thus, the sum() method can be rewritten using the reduce() method:  
+- The combiner function must be associative. It is necessary to avoid getting random results when parallelizing the work.Thus, the sum() method can be rewritten using the reduce() method:
 
 ==We can use the reduce() method to rewrite the sum() method==
 ```language-java
 List<Order> myOrders = …;
 int revenue = myOrders.stream()
-                      .reduce( 0, 
+                      .reduce( 0,
                                (result, order) -> result + order.getPrice(),
                                (resultA, resultB) -> resultA + resultB );
 ```
@@ -130,7 +124,6 @@ List<Order> myOrders = …;
 int revenue = myOrders.stream()
                       .collect( Collectors.summingInt( Order::getPrice ) );
 ```
-
 
 # Conclusion
 

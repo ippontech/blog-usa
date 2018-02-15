@@ -101,8 +101,8 @@ case class Season(homeRuns: Double, games: Int, wins: Int, winningPercentage: Do
 def consolidate(results: Iterator[Result]) = {
   val list = results.toList
   val games = list.size
-  val wins = list.map(_.win).sum 
-  val winningPercentage = wins.toDouble / games.toDouble 
+  val wins = list.map(_.win).sum
+  val winningPercentage = wins.toDouble / games.toDouble
   Season(
     list.map(_.homeruns).sum,
     games,
@@ -114,11 +114,11 @@ def consolidate(results: Iterator[Result]) = {
 ```language-scala
 // Group the data by each team per season
 val joined = mappedByTeam.groupBy(_.key)
-    
+
 // Finally, we collect all the data per team per season
 // into one object containing the information we need
 // We don't need the key listed below, but mapGroups takes a function of (key,group)=>T
-val mappedTo = joined.mapGroups((key, results) => consolidate(results)) 
+val mappedTo = joined.mapGroups((key, results) => consolidate(results))
 ```
 
 Datasets do not have a statistics library yet. Instead, we will turn our dataset into its underlying Dataframe and use the `sql.DataFrameStatFunctions` package to calculate the Pearson coefficient.
@@ -128,14 +128,13 @@ Datasets do not have a statistics library yet. Instead, we will turn our dataset
 // since Statistics.corr requires RDD[Double]
 val homeruns = mappedTo map(_.homeRuns) rdd
 val winningPercentage = mappedTo map(_.winningPercentage) rdd
-    
+
 // This function takes a dataframe and two rows to return the correlation as a double
 val correlation = mappedTo.toDF.stat.corr("homeRuns","winningPercentage","pearson")
 println("**************Pearson coefficient for homeruns to winning percentage " + correlation)
 ```
 
 Datasets can also be cast to an RDD if we had a hard requirement to use it as such for analysis.
-
 
 ## Conclusion
 

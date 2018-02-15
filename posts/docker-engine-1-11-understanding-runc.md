@@ -10,7 +10,7 @@ image:
 
 The release of Docker 1.11 is the first time that the Docker Engine is compliant with the OCI specification.
 
-What is OCI?  
+What is OCI?
  The [Open Container Initiative (OCI)](https://www.opencontainers.org/about) is an open governance project for the purpose of creating open industry standards around container formats and runtime. Container technologies have seen rapid growth over the last couple years and an open standard is needed to allow portability of containers across different vendors. Docker has been the de facto standard based on its overwhelming popularity, but there is a need for a more collaborative effort with the backing of a [representative group of industry leaders](https://www.opencontainers.org/about/members).
 
 The result of the OCI is the OCI specification, that defines standards around container formats and runtime. The first implementation of the specification is [runc](https://github.com/opencontainers/runc), which was contributed to open-source by Docker. Starting with Docker 1.11, the docker engine uses the runc format as the underlying technology for creating and running docker containers.
@@ -31,8 +31,8 @@ I used [these commands](https://gist.github.com/jzaccone/f1e292c42d9e1b89ae83c35
 
 The open container specification is defined by a [file system bundle](https://github.com/opencontainers/runtime-spec/blob/master/bundle.md) and a compliant runtime (like runC) that can consume the bundle. Now that we have runc installed, let’s create the bundle.
 
-The bundle consists of:  
- 1. a folder named “rootfs” that represents the root file system of the container.  
+The bundle consists of:
+ 1. a folder named “rootfs” that represents the root file system of the container.
  2. config.json that defines configuration
 
 To make things easy, let’s use docker to export a rootfs, then we can use the `runc spec` command to generate a config.json file.
@@ -89,13 +89,12 @@ Docker is built on top of runc, but there are actually a couple more components 
 
 [Containerd](https://github.com/docker/containerd) is a daemon to control runc, built for performance and density. You will find evidence of this if you run `ps -ef | grep docker` on your host machine.
 
-
-![Docker ContainerD PS ](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/06/Screen-Shot-2016-06-09-at-2.06.03-PM.png) 
+![Docker ContainerD PS ](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/06/Screen-Shot-2016-06-09-at-2.06.03-PM.png)
 
  The first two (Docker and docker-containerd) are daemons that run on the host. The docker-containerd-shim process is the result of starting my one docker container.
 
-Detailed information about the OCI specifications:  
- Image Specification: [https://github.com/opencontainers/image-spec](https://github.com/opencontainers/image-spec)  
+Detailed information about the OCI specifications:
+ Image Specification: [https://github.com/opencontainers/image-spec](https://github.com/opencontainers/image-spec)
  Runtime Specification: [https://github.com/opencontainers/runtime-spec](https://github.com/opencontainers/runtime-spec)
 
 I hope this was helpful in understanding how docker interacts with the OCI specification. Send me your thoughts on twitter [@JohnZaccone](https://twitter.com/JohnZaccone).

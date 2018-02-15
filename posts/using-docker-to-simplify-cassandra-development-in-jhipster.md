@@ -20,22 +20,16 @@ JHipster’s goal is to provide the most simple and productive development envir
 
 In this post, I’ll describe the design of the tool and the basic commands to use it.
 
-
 ## Design
 
-A Docker Compose(1) configuration is generated to start a Cassandra cluster locally with one command. A set of bash scripts automatically save the executed migrations in a dedicated table. This allows you to automatically(2) execute only the new migration scripts when deploying a new version of the application.  
+A Docker Compose(1) configuration is generated to start a Cassandra cluster locally with one command. A set of bash scripts automatically save the executed migrations in a dedicated table. This allows you to automatically(2) execute only the new migration scripts when deploying a new version of the application.
  The tool can be used both by the developers to synchronize their local cluster and in production to keep track of the schema migrations.
 
 The standardization of the migration scripts is also used by the integration tests to start an in-memory Cassandra cluster.
 
- 
-
 (1) JHipster uses the v2 of the Docker Compose file format and Docker 1.10+ and Compose 1.6+ are required.
 
 (2) Because the migration scripts are read from a Docker volume, the sources must be located in the use directory.
-
- 
-
 
 ## Basic commands to run the migration tool
 
@@ -67,8 +61,6 @@ docker-compose -f src/main/docker/app.yml scale yourapp-cassandra-node=2
  The new node automatically joins the Cassandra cluster using the first node as a contact point.The container executing the migrations reads a dedicated folder – *config/cql/changelogs/ *by convention – to find the migration scripts.
 
 Like Liquibase, the migration tool stores the metadata of the executed scripts in a table named schema_version to keep track of executed scripts.
-
- 
 
 ##### Modifying the schema with JHipster and using the migration tool:
 
@@ -117,13 +109,11 @@ CREATE TABLE IF NOT EXISTS book (
 );
 ```
 
- 
 Without stopping the cluster, you can execute the migration tool to run the CQL script:
 
-```language-bash 
+```language-bash
 docker-compose -f src/main/docker/app.yml up yourapp-cassandra-migration
 ```
-
 
  Package the application into a new image and relaunch only its container:
 ```language-bash
@@ -137,5 +127,5 @@ docker-compose -f src/main/docker/app.yml up -d --no-deps yourapp-app
 
 <span style="font-weight: 400;">By providing a simple tool to manage a Cassandra environment for development, tests and deployment JHipster is also providing best practices to start new applications based on Cassandra.</span>
 
-<span style="font-weight: 400;">You can find more on the [JHipster project website](http://jhipster.github.io).</span>  
+<span style="font-weight: 400;">You can find more on the [JHipster project website](http://jhipster.github.io).</span>
 <span style="font-weight: 400;">Ippon USA is hosting a master class on JHipster with material designed by the JHipster creator, </span>[<span style="font-weight: 400;">register here</span>](https://www.eventbrite.com/e/jhipster-master-class-ippon-usa-tickets-21358779685)<span style="font-weight: 400;"> !</span>

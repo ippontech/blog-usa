@@ -38,9 +38,9 @@ Before NiFi assumed its name at its birthplace, the NSA, it was known as Niagraf
 
 ## Use and Uniqueness
 
-NiFi is a pull-based data ingestion system with per-event data transformation, filtering, and routing. It has the ability to be modified at runtime and extended via custom processors. When a certain processor is down, data is not lost, but queued and waiting for the inherent processor to be active. When it becomes active, the queue will unload to the processor, and the data flow will be in sync, guaranteeing at least one delivery. 
+NiFi is a pull-based data ingestion system with per-event data transformation, filtering, and routing. It has the ability to be modified at runtime and extended via custom processors. When a certain processor is down, data is not lost, but queued and waiting for the inherent processor to be active. When it becomes active, the queue will unload to the processor, and the data flow will be in sync, guaranteeing at least one delivery.
 
-It has very low latency and high throughput. Naturally asynchronous and built-in buffering makes NiFi efficient and resilient. It also has the capability to do concurrent tasks and run processes event-based, timer driven, or at a specific time. If latency is needed, it can be set to run every specified amount of time instead of streaming data real time by using the Run Schedule on a Processor. 
+It has very low latency and high throughput. Naturally asynchronous and built-in buffering makes NiFi efficient and resilient. It also has the capability to do concurrent tasks and run processes event-based, timer driven, or at a specific time. If latency is needed, it can be set to run every specified amount of time instead of streaming data real time by using the Run Schedule on a Processor.
 
 NiFi has a language used to configure Processor properties. It enables developers to dynamically update, delete and modify files, alter FlowFile attributes, perform mathematical operations, perform string and date manipulations, and many more.
 
@@ -54,7 +54,7 @@ Here is an example of a NiFi DataFlow:
 
 ## NiFi Administration Tools
 
-NiFi has easy to use administration tools: 
+NiFi has easy to use administration tools:
 
 **Data Provenance** is used for tracking data in motion, enabling users to see how data in motion was processed and what processor processed it at a specific time.
 

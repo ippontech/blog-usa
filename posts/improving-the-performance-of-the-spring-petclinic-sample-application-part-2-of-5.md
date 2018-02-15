@@ -15,7 +15,6 @@ image:
 
 This is part 2 of our 5-part series on improving the performance of the Spring-petclinic application. You can find the first part [here](http://blog.ippon.fr/2013/03/11/improving-the-performance-of-the-spring-petclinic-sample-application-part-1-of-5/).
 
-
 ## Let’s profile our application
 
 The error from part 1 is quite clear: we fill up all the server memory until the application slows down and crashes.
@@ -34,7 +33,6 @@ Dandelion is a great project, but it is using too much memory on this version. A
 
 So **the next version of Dandelion doesn’t have this problem anymore**, and you can safely use it on high-volume applications.
 
-
 ## Solving the memory issue with Dandelion
 
 Of course we will upgrade to the next version of Dandelion, which will resolve this issue, but for the moment, as we need to move forward, we will replace it with a classic HTML table, which is then beautified using JavaScript. We have used [JQuery DataTables](http://www.datatables.net/), which provides a similar, but pure-JavaScript, solution:
@@ -48,7 +46,6 @@ This is already a big improvement, but it looks like we still have a memory prob
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/screenshot_2-1.png)
 
 The heap memory is mostly used by “*org.apache.catalina.session.StandardManager*”, which is Tomcat’s class that manages HTTP sessions. This means the HTTP sessions are using all the free heap space, until the JVM cannot handle connections anymore.
-
 
 ## Going stateless
 
@@ -66,7 +63,6 @@ The application can now handle our 500 threads doing 10 loops for the first time
 
 This result is a little bit slower than what we got during the previous step (we reached 560 req/sec before failing), as we now read more data from the database, instead of using the HTTP Session as a cache.
 
-
 ## Tuning Tomcat
 
 We have HTTP errors, which are distributed on all pages: this is a classical problem with Tomcat, which is using blocking IO by default. Let’s use the new Tomcat NIO connector:
@@ -76,7 +72,6 @@ We have HTTP errors, which are distributed on all pages: this is a classical pro
 (Many thanks to [Olivier Lamy](https://twitter.com/olamy/status/306140401901899778) for this configuration, which was not explained in the official documentation!).
 
 Now, **we have no HTTP error at all, and we are able to handle 867 req/sec**.
-
 
 ## Conclusion of part 2
 

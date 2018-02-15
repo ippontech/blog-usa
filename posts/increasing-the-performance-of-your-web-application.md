@@ -14,8 +14,6 @@ When you go to the Facebook login page, your browser makes about 34 GET request
 
 [![bandwidth](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/05/bandwidth.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/05/bandwidth.png)
 
- 
-
 Since we’re being hosted in France, it was alarming to see that we were making well over 50 GET requests– in fact, it was closer to 450. This was absolutely unacceptable, and so I spent some time boiling that number down to a mere 24– notably better than even Facebook, which I had been using as a milestone of what would be acceptable.
 
 But how did I do it? What was wrong?

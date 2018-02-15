@@ -17,7 +17,7 @@ Make sure you read the [first](/why-kafka-streams-didnt-work-for-us-part-1/) and
 In the second post, we saw that the primary concern with the Kafka Streams implementation was that, because we had to count the messages by their `valid` or `invalid` property, we were losing the partitioning of the messages, thus negatively affecting the performance. To solve this problem, we are going to get rid of the repartitioning operation and, instead, we are going to directly count the messages **per partition**. That is, if we re-use our initial example:
 
 ```text
-          t0          t1          t2   
+          t0          t1          t2
      ----------- ----------- -----------
 tx-0 |v|v|v|i|v| |v|i|       |i|v|v|
      ----------- ----------- -----------
@@ -49,9 +49,9 @@ Furthermore, our application will **not** perform the final aggregation. We will
 name: tx
 time                partition valid invalid
 ----                --------- ----- -------
-1501273548000000000 0         4     1      
-1501273548000000000 1         3     1      
-1501273549000000000 0         1     1      
+1501273548000000000 0         4     1
+1501273548000000000 1         3     1
+1501273549000000000 0         1     1
 ...
 ```
 
@@ -125,9 +125,9 @@ We have a `ChangelogWriter` class to write the content of the _state store_ usin
 
 ```scala
 class ChangelogWriter(config: Config) extends StrictLogging {
-  
-  private val producer: KafkaProducer[StateKey, StateValue] = 
-  
+
+  private val producer: KafkaProducer[StateKey, StateValue] =
+
   def write(key: StateKey, value: StateValue): Future[RecordMetadata] = ...
 ```
 

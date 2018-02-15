@@ -10,7 +10,6 @@ image:
 
 In the previous post, we used the Map operation which allows us to transform values with a transformation function. We will now explore the Reduce operation which produces aggregates. Thus, we will work in MapReduce just like we do with Hadoop.
 
-
 ## Theory
 
 With Spark, just like Hadoop, a Reduce operation is an operation that aggregates values two by two, by using as many steps as necessary to process all the elements of the collection. This is what allows the framework to perform aggregations in parallel, on multiple nodes when needed. The framework will choose two elements and pass them to a function we will define. The function must return the new element that will replace the two first. This means that the output type must be identical to the input type: values must be homogeneous, so that the operation can be repeated until all elements are processed. With Spark there are two reduction operations:
@@ -19,7 +18,6 @@ With Spark, just like Hadoop, a Reduce operation is an operation that aggregates
 - **reduceByKey()** works on values associated to the same key. This operation is only possible on RDDs of type JavaPairRDD (a list of key-value tuples), and it produces a result which is a JavaPairRDD too, but in which each key appears only once (equivalent to a key-value Map).
 
 We are going to study the reduce() operation in this blog post. The reduceByKey() operation will be addressed in an upcoming article.
-
 
 ## Value aggregation in MapReduce
 
@@ -30,7 +28,7 @@ long count = sc.textFile(“arbresalignementparis2010.csv”)
 .filter(line -> !line.startsWith(“geom”))
 .map(line -> line.split(“;”))
 .map(fields -> Float.parseFloat(fields[3]))
-.filter(height -> height > 0) .count(); 
+.filter(height -> height > 0) .count();
 ```
 
 Instead of just counting non-null heights, we can use the reduce() operation to calculate the total height of trees. To do that, we need a function that will takes two heights as input and returns their sum. This function has two parameters of type Float and returns a Float:
@@ -46,11 +44,10 @@ Thus, we can write:
 ```language-java
 float totalHeight = sc.textFile(“arbresalignementparis2010.csv”)
 …
-.reduce((x, y) -> x + y); 
+.reduce((x, y) -> x + y);
 ```
 
 The framework will call our reduce function until every value is processed.
-
 
 ## Counting in Map Reduce
 

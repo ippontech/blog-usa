@@ -10,26 +10,26 @@ title: "Infrastructure as Code with CloudFormation"
 image: https://s3.amazonaws.com/uploads.hipchat.com/113432/4463186/8OFPzOzq2TlVvxi/Infrastructure%20as%20Code%20Blog.png
 ---
 
-[CloudFormation](https://aws.amazon.com/cloudformation/) is an Amazon Web Service that allows users to manage and provision AWS resources with templates. This method of implementing resources is known as Infrastructure as Code (IaC). 
+[CloudFormation](https://aws.amazon.com/cloudformation/) is an Amazon Web Service that allows users to manage and provision AWS resources with templates. This method of implementing resources is known as Infrastructure as Code (IaC).
 
 ___
 
-# Infrastructure as Code 
+# Infrastructure as Code
 
 IaC, to put it simply, is a programmatic means of configuring and provisioning infrastructure. With cloud and DevOps efforts gaining importance in modern software development, IaC helps us make rapid and powerful changes to our processes. Solving many common problems such as:
 
-**Visibility** - If you’re working in large teams, it’s easy to lose track of what resources and configurations are sitting in your environment. With IaC, your infrastructure is checked into version control and (hopefully) filled with descriptive comments. 
+**Visibility** - If you’re working in large teams, it’s easy to lose track of what resources and configurations are sitting in your environment. With IaC, your infrastructure is checked into version control and (hopefully) filled with descriptive comments.
 
 **Consistency** - Developers are always chasing [idempotence](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning) in their software efforts. We expect certain operations to return the same result repeatedly when called. Likewise, we search for idempotence in our infrastructure. IaC can be relied on to return the same result, deploying the correct configurations and resources, every time.
 
-**Complexity** - Provisioning infrastructure shouldn’t require a sysadmin. Developers should be empowered to change the environment as new challenges are presented. Writing IaC is easy with descriptive and simple domain specific languages. 
+**Complexity** - Provisioning infrastructure shouldn’t require a sysadmin. Developers should be empowered to change the environment as new challenges are presented. Writing IaC is easy with descriptive and simple domain specific languages.
 ___
-# CloudFormation 
+# CloudFormation
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/02/cloudformlogo.png)
 
 IaC has been implemented by many companies and open-source projects like Chef, Puppet, and Ansible. CloudFormation, introduced in 2011, stands out in a big way. The major caveat being that you can only use CloudFormation with Amazon Web Services. With Amazon dominating the cloud market, that shouldn’t be a problem for developers seeking IaC in the cloud.
 
-CloudFormation definition files are templates (CFT) that model your resources, configurations, dependencies, and parameters. Templates are created with JSON or YAML files but can be generated with programming languages. 
+CloudFormation definition files are templates (CFT) that model your resources, configurations, dependencies, and parameters. Templates are created with JSON or YAML files but can be generated with programming languages.
 
 The basic template anatomy in JSON:
 

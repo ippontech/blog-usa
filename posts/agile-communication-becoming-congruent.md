@@ -10,27 +10,17 @@ image: http://blog.ippon.tech/content/images/2015/03/dessinEmpereur.png
 
 Original Author: [Florence Herrou](http://blog.ippon.fr/author/Florence_HERROU/ "Articles par Florence HERROU")
 
- 
-
 <div class="wp-caption alignleft" id="attachment_12819" style="width: 355px">[![Emperor Drawing](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/03/dessinEmpereur.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/03/dessinEmpereur.png)Emperor Drawing
 
 </div>** **
 
 **The last monthly meeting of [Agile Nantes ](http://www.agilenantes.org/) (presented by [Agile Garden](http://www.agilegarden.fr/)) was titled The  Emperor’s New Clothes . Behind this name  from a [tale by Andersen](http://fr.wikisource.org/wiki/Les_Habits_neufs_du_Grand-Duc) was hiding a  workshop on communication in times of  stress, from the site [www.agilefairytales.com](http://agilefairytales.wordpress.com/about/the-emperors-new-clothes/),  which contains other agile games based on  fairy tales.**
 
- 
-
- 
-
- 
-
- 
-
 ### What does congruence mean?
 
 According to the Oxford dictionary  :
 
-Agreement or harmony; compatibility.  
+Agreement or harmony; compatibility.
  “The results show quite good congruence with recent studies”
 
 Here is the definition given by Agile Garden which corresponds to the subject of the workshop: *Choose words and actions which we feel, adapted to the situation, and in harmony with others.*

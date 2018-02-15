@@ -16,29 +16,28 @@ image:
 
 - - - - - -
 
-
 ## Sessions Summary
 
-CON5107: Prepare for JDK 9  
-CONS5118: Intro to Modular Development  
-CON6821: Advanced Modular Development  
+CON5107: Prepare for JDK 9
+CONS5118: Intro to Modular Development
+CON6821: Advanced Modular Development
 CON6823: Project Jigsaw: Under the Hood
 
 ### Getting Ready for Java 9
 
-Java 9 will contain many disruptive changes.  Tooling will definitely need time to catch up and implement changes and many libraries and codebases may need changes as well to upgrade safety and successfully.  
+Java 9 will contain many disruptive changes.  Tooling will definitely need time to catch up and implement changes and many libraries and codebases may need changes as well to upgrade safety and successfully.
  It will be a long road to migrating the Java Ecosystem to modules. Potentially we could be looking at a 5-10 year timeframe. However, it is very important to the future of Java that we as a community implement these changes.
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">How important is the new module system in <a href="https://twitter.com/hashtag/JDK9?src=hash">#JDK9</a> <a href="https://twitter.com/hashtag/javaone?src=hash">#javaone</a> <a href="https://twitter.com/hashtag/JavaOne2015?src=hash">#JavaOne2015</a> <a href="https://t.co/HwVHU6UQjJ">pic.twitter.com/HwVHU6UQjJ</a></p>&mdash; Ippon USA (@IpponUSA) <a href="https://twitter.com/IpponUSA/status/659043428081111040">October 27, 2015</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-**Steps to take to Prepare for Migrating to JDK9**      
+**Steps to take to Prepare for Migrating to JDK9**
 
 - Check for JDK-internal APIs with jdeps
 - Check code that relies on version string structure
 - Check tools that rely on rt.jar, tools.jar or the old file layout
 
-**Check out the following:**      
+**Check out the following:**
 
 - [OpenJDK project Jigsaw Page](http://openjdk.java.net/projects/jigsaw)
 - [Early Access Builds](https://jdk9.java.net/jigsaw/)
@@ -52,9 +51,9 @@ Livestream of sessions [here](http://j.mp/1LScfnH).
 
 ### When is JDK9 Coming out?
 
-Short answer:  *Fall 2016*    
+Short answer:  *Fall 2016*
 
-**Full Release Schedule**      
+**Full Release Schedule**
 
 - 2015/12/10: Feature Complete
 - 2016/02/04: All Tests Run
@@ -66,14 +65,12 @@ Short answer:  *Fall 2016*    
 
 - - - - - -
 
- 
-
-### Why upgrade to JDK9 
+### Why upgrade to JDK9
 
 1. More flexible and scalable code
-2. Better security and maintainability  
-3. Easier to create, maintain and deploy  
-4. Improved performance  
+2. Better security and maintainability
+3. Easier to create, maintain and deploy
+4. Improved performance
 5. More efficient way of storing classes
 6. Simple and more intuitive layout
 
@@ -82,11 +79,9 @@ Short answer:  *Fall 2016*    
 
 - - - - - -
 
-### 
+###
 
 ### What is Changing in JDK9
-
- 
 
 **[JSR-376 – Java Platform Module System](https://www.jcp.org/en/jsr/detail?id=376)**
 
@@ -103,14 +98,10 @@ Short answer:  *Fall 2016*    
 - Functionality that is difficult/impossible to implement outside JDK
 - Examples:  Unsafe, Signal, Cleaner, Reflection::getCallerClass, ReflectionFactory
 
- 
-
 **[JEP 261: Module System](http://openjdk.java.net/jeps/261)**
 
-- Upgrade module mechanism 
+- Upgrade module mechanism
 - Application and extension class loaders will no longer URLClassLoader instance
-
- 
 
 **Binary Structure of JRE and JDK**
 
@@ -126,21 +117,15 @@ The following files will be removed:
 - rt.jar
 - tools.jar
 
- 
-
 **New version string format**
 
 *[JEP223 New version-string scheme](http://openjdk.java.net/jeps/223)*
 
 Example: *1.9.0_5-b20*
 
-
 - - - - - -
 
- 
 ## More about the Module System
-
- 
 
 ### What is a module?
 
@@ -150,8 +135,6 @@ Module Characteristics
 
 - Strong encapsulation
 - Reliable Dependencies
-
- 
 
 **Module Path:**  Module system version of classpath
 
@@ -176,7 +159,7 @@ A modular JAR file is like an ordinary JAR file in all possible ways, except tha
 app.jar
 
 - module-info.class
-- com/foo/app/Main.class 
+- com/foo/app/Main.class
 - … other classes
 
 *jar —create —file mlib/app.jar*
@@ -199,31 +182,21 @@ java.sql
 
 com.foo.app.Main
 
- 
-
 **Example Compilations**
 
 ![Module Example Compilations](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/10/module-example-compilations.png)
 
 **Module Graph Example**
 
- 
-
 Each module with a dependence that is fulfilled by some other module, contains a directed edge from the first module to the second.
 
 ![Module Graph Example](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/10/module-graph-example.png)
 
- 
-
 More info [here](http://openjdk.java.net/projects/jigsaw/spec/sotms/).
-
 
 - - - - - -
 
-
 ## Application Migration(Very simplified top-down version)
-
- 
 
 ### Basic Process
 
@@ -239,10 +212,7 @@ More info [here](http://openjdk.java.net/projects/jigsaw/spec/sotms/).
 - Your can modularize your application before its libraries are modularized
 - Library authors can modularize libraries independently
 
- 
-
 - - - - - -
-
 
 ## Under the Hood of Jigsaw:  Some additional Details
 
@@ -255,8 +225,6 @@ protected
 <package>
 
 private
-
- 
 
 ### How Accessibility will Work with JDK9 and Onward
 
@@ -312,12 +280,11 @@ Module System works with existing loaders
 **Other Things to Keep in Mind**
 
 - Modules do a better job of encapsulation than class loaders, but class loaders are still necessary
-- Layers control the relationship 
+- Layers control the relationship
 - Strong encapsulation of modules by the compiler uses VM Core reflection
 - Named and Automatic Modules help with migration
 
 - - - - - -
-
 
 ## Fun stuff at Parc 55
 
@@ -338,7 +305,6 @@ On the 4th floor of the Parc 55 hotel by the Java One store, there is a large gl
 ![Java 20 Year Exhibit](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/10/java-20-years-1024x338.jpg)
 
 - - - - - -
-
 
 ## Duke’s Cafe Afterparty
 

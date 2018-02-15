@@ -12,7 +12,6 @@ image:
  Spark has a lot of momentum (almost as much as Docker) and is replacing Hadoop at an unbelievable pace. Hadoop usage, when used strictly for Map Reduce use cases, is decreasing fast.
  This article is the first in a series designed to discover Spark, its programming model and its ecosystem. The code presented is written in Java.
 
-
 ## Background
 
 Spark was born in 2009 in the laboratory [AMPLab](https://amplab.cs.berkeley.edu/) the University of Berkeley on the assumption that:
@@ -32,7 +31,6 @@ Spark version 1.0.0 was released in [May 2014](http://spark.apache.org/news/spar
 
 Moreover, Spark integrates seamlessly with the Hadoop ecosystem (HDFS particular), and integrations with Cassandra and ElasticSearch are planned.
  Finally, the framework is written in Scala and offers a Java binding that is easy to use. Java 8 is recommended, in order to benefit from lambda expressions that make code easier to write and more legible.
-
 
 ## Fundamentals
 
@@ -59,7 +57,6 @@ These transformations are “lazy”: they will not run until a final operation 
 - etc.
 
 Finally, the API can temporarily store an intermediate result with the methods `cache()` (memory storage) or `persist()` (storage in memory or on disk, depending on a parameter).
-
 
 ## First Steps
 
@@ -155,7 +152,6 @@ Spark processed the file locally, within the JVM.
 The file was read in a single block. Indeed, the file size is 25 MB, and by default Spark cuts files into blocks of 32MB.
 
 The result (6131) is obtained in less than half a second. This execution time is not really impressive in this case, but we will see the power of the framework when we handle larger files.
-
 
 ## Conclusion
 

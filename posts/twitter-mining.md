@@ -15,7 +15,6 @@ Firstly, it needs to provide an actual service. For example, when you mine Bitco
 
 Secondly, it needs some way to return profit. When you mine Bitcoins, the profit you make is based on winning a sort of lottery, to over simplify. In essence, every time you validate a certain number of transactions, you have a small chance of receiving some bitcoins for the work you did. If you have enough miners going at once, you can actually run a whole business out of it. Therefore, my bot should be able to acquire something of value for its work, if not necessarily money.
 
-
 # How to Mine Twitter
 Back to the Twitter data, I had to ask myself: is it possible to consume a stream of tweets and receive a reward for validating and propagating the good tweets? Obviously propagating the information is easy, simply retweet the tweets; but how do we know which are worth retweeting?
 
@@ -46,7 +45,6 @@ public static void listenForTweets() {
     t.filter(fq);
 }
 ```
-
 
 Once turned on, the mining bot had an immediately obvious flaw in it. Let's look at the text of some of the original retweets and see if we can rediscover the flaw together:
 

@@ -19,7 +19,6 @@ But because of its distributed nature and the RDD abstraction on top of the data
 
 In this post, we’ll explore how to design your code for testing, how to setup a simple unit-test for your job logic and how the [spark-testing-base](https://github.com/holdenk/spark-testing-base) library can help.
 
-
 ## Design for testing
 
 We have already covered in a [previous post](http://www.ipponusa.com/blog/introduction-apache-spark/) what are Spark jobs, but from a higher point of view, any job can be described as an “immutable” transformation of distributed data.
@@ -96,8 +95,7 @@ object WordCounter {
   }
 }
 ```
-WordCounter.scala 
-
+WordCounter.scala
 
 ## Basic test
 
@@ -146,8 +144,7 @@ class WordCounterTest extends FlatSpec with Matchers with BeforeAndAfter {
   }
 }
 ```
-WordCounterTest.scala 
-
+WordCounterTest.scala
 
 ## Spark-testing-base library
 
@@ -247,7 +244,7 @@ The spark-testing-base library also provides methods for property-based testing 
 class WordCounterWithSparkTestingTest extends FlatSpec with Matchers with SharedSparkContext with Checkers {
 
   behavior of "Words counter"
-  
+
   it should "have stable count, with generated RDDs" in {
      val stableProperty =
        forAll(RDDGenerator.genRDD[String](sc)(Arbitrary.arbitrary[String])) {
@@ -267,14 +264,13 @@ We then test the property with the ScalaCheck method.
 
 While not very relevant for the wordcount example, it allows to test your job logic against randomly generated data as input and therefore test the reliability of your code.
 
-
 ## Conclusion
 
 In this article, we have seen how it is possible to refactor and test a Spark job. Testing your jobs will allow faster feedback when implementing them and you can even practice TDD.
 
 The next step would be to run the tests not only on a local cluster, but on a “production-like” cluster with more data on your continuous integration server. Simply override the `setMaster()` value when configuring the `SparkContext` to redirect to your test cluster.
 
-Finally, I definitely recommend you watch Holden Karau’s session on testing Spark recorded at the last Spark Summit ([video](https://www.youtube.com/watch?v=rOQEiTXNS0g), [slides](http://www.slideshare.net/SparkSummit/beyond-parallelize-and-collect-by-holden-karau)).  
+Finally, I definitely recommend you watch Holden Karau’s session on testing Spark recorded at the last Spark Summit ([video](https://www.youtube.com/watch?v=rOQEiTXNS0g), [slides](http://www.slideshare.net/SparkSummit/beyond-parallelize-and-collect-by-holden-karau)).
  You can find the code for these examples on [Github](https://github.com/raphaelbrugier/spark-testing-example).
 
 The second part of this series can be found [here](http://blog.ippon.tech/testing-strategy-for-spark-streaming/)

@@ -11,7 +11,6 @@ image:
 
 In a previous [blog](http://www.ipponusa.com/blog/how-to-get-started-with-spark-hdfs-and-cassandra/), examples were given about the basic API functions that the Apache Spark core JAR provides to users to be able to analyze large datasets. Apache Spark also provides more API functions in addition to reducing, mapping and other similar API functions in the machine learning library. This API provides some basic and advanced Statistical API calls to allow some more insights to be gained from the data. Information on the type of statistics that are provided in the MLlib library is located [here](http://spark.apache.org/docs/latest/mllib-guide.html). Note, there are now two libraries: one that is built on RDD and another built on DataFrames/DataSets which is a concept that was added in Spark 1.6. This blog is written using Spark 1.5 and RDD.
 
-
 ## Adding Spark MLlib Dependency
 
 In order to use the Spark MLlib API functions, the following dependency needs to be added to the project. Below is the example for the dependency to add to the Maven pom.xml.
@@ -38,8 +37,7 @@ Each game log row consists of the different game. The row consists of the date o
 "20100404","0","Sun","NYA","AL",1,"BOS","AL",1,7,9,51,"N","","","","BOS07",37440,226,"020300200","01001331x",37,12,2,0,2,6,0,0,0,6,0,2,2,0,2,0,9,5,8,8,1,0,24,9,1,1,1,0,34,12,3,1,1,8,0,1,0,4,0,5,0,0,0,0,6,6,7,7,1,0,27,15,0,0,2,0,"westj901","Joe West","herna901","Angel Hernandez","schrp901","Paul Schrieber","drakr901","Rob Drake","","(none)","","(none)","giraj001","Joe Girardi","frant001","Terry Francona","okajh001","Hideki Okajima","parkc002","Chan Ho Park","papej001","Jonathan Papelbon","","(none)","sabac001","CC Sabathia","beckj002","Josh Beckett","jeted001","Derek Jeter",6,"johnn001","Nick Johnson",10,"teixm001","Mark Teixeira",3,"rodra001","Alex Rodriguez",5,"canor001","Robinson Cano",4,"posaj001","Jorge Posada",2,"granc001","Curtis Granderson",8,"swisn001","Nick Swisher",9,"gardb001","Brett Gardner",7,"ellsj001","Jacoby Ellsbury",7,"pedrd001","Dustin Pedroia",4,"martv001","Victor Martinez",2,"youkk001","Kevin Youkilis",3,"ortid001","David Ortiz",10,"belta001","Adrian Beltre",5,"drewj001","J.D. Drew",9,"camem001","Mike Cameron",8,"scutm001","Marco Scutaro",6,"","Y"
 ```
 
-Game Log[The information used here was obtained free of charge from and is copyrighted by Retrosheet. Interested parties may contact Retrosheet at “[www.retrosheet.org](http://www.retrosheet.org)“.] 
-
+Game Log[The information used here was obtained free of charge from and is copyrighted by Retrosheet. Interested parties may contact Retrosheet at “[www.retrosheet.org](http://www.retrosheet.org)“.]
 
 ## Java Code
 
@@ -92,7 +90,6 @@ Mapping Data
 
 Method to Manipulate DateThis mapping allows the data to be grouped by season. Since each game log has the information for two teams, the home team and the visiting team, two group bys need to be performed. One to get all the home games played by a team and the second to get all the away games played by a team in a season. Since the first element in the String array to be the year so we group each game log by the year and either the home team and the visiting team.
 
-
 ==Spark group by==
 ```language-java
 // Group by the home team and year played in.
@@ -122,7 +119,6 @@ The data is now structured in a way that we can manipulate the data to get the t
 JavaRDD<Double[]> mappedTo = joined.map(HomerunWinStatisticsController::calculateByTeam);
 ```
 
-
 ==Map Function for Calculate by Team==
 ```language-java
 /**
@@ -149,7 +145,7 @@ JavaRDD<Double[]> mappedTo = joined.map(HomerunWinStatisticsController::calculat
 			teamHomeRuns += Integer.parseInt(visitingGames[25]);
 			gamesPlayed++;
 		}
-		
+
 		/**
 		 * Grab and loop through the games played at home. Parse out the
 		 * number of homeruns, and determine if the game was a win or loss.
@@ -180,7 +176,6 @@ JavaDoubleRDD homeruns = mappedTo.flatMapToDouble(HomerunWinStatisticsController
 JavaDoubleRDD winningPercentage = mappedTo.flatMapToDouble(HomerunWinStatisticsController::getWinningPercentage);
 ```
 
-
 ==Homerun Function==
 ```language-java
 /**
@@ -203,7 +198,7 @@ JavaDoubleRDD winningPercentage = mappedTo.flatMapToDouble(HomerunWinStatisticsC
 	}
 ```
 
-These two RDDs can then be passed to the correlation API function. For this example, I printed the result to the console. This is not a best practice to use System.out but this result could be passed on to other applications that can either use the value to make decisions or to visualize the result. For the game logs from 2010 to 2015, the correlation was 0.3948095282394066 which is a weak correlation which shows that a large amount of homeruns does not highly correlate to a high winning percentage. 
+These two RDDs can then be passed to the correlation API function. For this example, I printed the result to the console. This is not a best practice to use System.out but this result could be passed on to other applications that can either use the value to make decisions or to visualize the result. For the game logs from 2010 to 2015, the correlation was 0.3948095282394066 which is a weak correlation which shows that a large amount of homeruns does not highly correlate to a high winning percentage.
 
 ==Spark Correlation==
 ```language-java
@@ -214,7 +209,6 @@ System.out.println("**************Pearson coefficiant for homeruns to winning pe
 ```
 
 There are also other built in basic statistics that, once the data is manipulated, can be performed to get further insights into homeruns and winning percentage. StatCounter provides an API to get the mean, standard deviation and variance without having to calculate each individually.
-
 
 ==Spark StatCounter==
 ```language-java

@@ -32,7 +32,7 @@ This sounds simple but there is a lot of complexity to handle:
 Let's assume we're using a topic called `tx` with 2 partitions (`tx-0` and `tx-1`), with valid (`v`) and invalid (`i`) messages, and windows of 1 second (`t0` = from second 0 to 1, `t1` = from second 1 to 2, etc.).
 
 ```text
-          t0          t1          t2   
+          t0          t1          t2
      ----------- ----------- -----------
 tx-0 |v|v|v|i|v| |v|i|       |i|v|v|
      ----------- ----------- -----------
@@ -46,7 +46,7 @@ We would expect the following results:
 - At `t1`, 4 valid messages and 1 valid message
 - At `t2`, 4 valid messages and 3 valid messages
 
-This would materialize as follows in the `metrics` topic, assuming that `t0=1501273548000`: 
+This would materialize as follows in the `metrics` topic, assuming that `t0=1501273548000`:
 
 ```json
 $ kafka-console-consumer --topic metrics --property print.key=true ...
@@ -65,9 +65,9 @@ And, in InfluxDB, we would have a _measurement_ called `tx` with two fields, `va
 name: tx
 time                valid invalid
 ----                ----- -------
-1501273548000000000 7     2      
-1501273549000000000 4     1      
-1501273550000000000 4     3      
+1501273548000000000 7     2
+1501273549000000000 4     1
+1501273550000000000 4     3
 ```
 
 ## Example with late data
@@ -85,7 +85,7 @@ In InfluxDB, this would **update** the existing value of field `valid` for the g
 name: tx
 time                valid invalid
 ----                ----- -------
-1501273549000000000 5     1      
+1501273549000000000 5     1
 ```
 
 # To be followed...

@@ -29,7 +29,6 @@ With Spring Data JPA, every relationship between 2 domain objects owns one of th
 
 Here is a reminder of all possible relationships with their data loading default type:
 
-
 ### @OneToOne
 For every instance of entity A, one (and only one) instance of entity B is associated. B is also linked to only one instance of entity A.
 
@@ -44,7 +43,6 @@ public class Patient implements Serializable {
 ```
 
 For this relationship type, the default data loading method is *EAGER*: every time you ask for patient’s data, the folder’s data will also be retrieved.
-
 
 ### @ManyToOne
 For every instance of entity A, one (and only one) instance of entity B is associated. On the other hand, B may be linked to many instances of A.
@@ -61,7 +59,6 @@ public class Product implements Serializable {
 
 For this relationship type, the default data loading method is *EAGER*: every time you ask for product’s data, the category’s data will also be retrieved.
 
-
 ### @OneToMany
 For every instance of entity A, zero, one or many instances of entity B is associated. On the other hand, B is linked to only one instance of A.
 It is the opposite of the relationship `@ManyToOne`, so a typical example may be the product category with its associated list of products:
@@ -75,7 +72,6 @@ public class ProductCategory implements Serializable {
 ```
 
 For this relationship type, the default data loading method is *LAZY*: every time you ask for category’s data, the product list will *not* be retrieved.
-
 
 ### @ManyToMany
 For every instance of entity A, zero, one or many instances of entity B is associated. The opposite is also true, B is linked to zero, one, or many instances of A.
@@ -91,7 +87,6 @@ public class Article implements Serializable {
 ```
 
 For this relationship type, the default data loading method is *LAZY*: every time you ask for article’s data, the top list will *not* be retrieved.
-
 
 ## Minimize the use of EAGER relationships
 The goal is to load from the database only the needed data for what you are asking for. For instance, if you want to display the list of authors by name registered in the application, you don’t want to fetch all of the relationships’ data: the books they wrote, their address, etc.
@@ -110,9 +105,8 @@ public class Product implements Serializable {
 
 This requires additional work of adjustment for each entity and each relationship because it will be essential to create new methods that will allow us to load all the data necessary for an action in a minimum of queries. Indeed, if the need is to display all the data relative to an author (his bio, his book list, his addresses, etc.), it will be interesting to get the object and its relationships in one query, so using joins in a database.
 
-
 ## How to control which queries are executed
-Spring Data JPA provides access to data for us. However, you must be aware of how this will be implemented. To verify which queries are executed to retrieve data from the database, the Hibernate logs have to be activated. 
+Spring Data JPA provides access to data for us. However, you must be aware of how this will be implemented. To verify which queries are executed to retrieve data from the database, the Hibernate logs have to be activated.
 
 There are several options. First, an option can be activated in Spring configuration:
 
@@ -126,7 +120,6 @@ Or, it is possible to configure it in the logger’s configuration file:
 `<logger name="org.hibernate.SQL" level="DEBUG"/>`
 
 Note: *in these logs, all the arguments given to queries are not displayed (they are replaced by `"?"`), but it does not prevent us from seeing which queries are executed.*
-
 
 ## How to optimize the retrieval of *LAZY* objects
 Spring Data JPA provides the ability to specify which relationships will be loaded during a *select* query in the database. We will have a look at the same example with several methods: how to retrieve an article with its topics in a single query.
@@ -185,12 +178,10 @@ Moreover, it is possible to specify the loading type for the non-specified relat
 
 It is also possible to create subgraphs and thus work in a hierarchical way to be as thin as possible.
 
-
 #### Limitation on the use of `@EntityGraph`
 For these 2 methods related to entity graphs, one cannot, to my knowledge, retrieve a list containing all the entities with relationships. Indeed, for that, one would like to create a method which would be defined for instance as `findAllWithTopics()` with graph nodes `topics`. This is not possible; you must use a search restriction (synonymous with `where` in a `select` query in the database).
 
 To overcome this limitation, one solution is to create a method `findAllWithTopicsByIdNotNull()`: the id is never `null`, all the data will be retrieved. The alternative is to do this join query using the first method because the `@Query` annotation does not have this limitation.
-
 
 ### Adding non-optional information if needed
 When a `@OneToOne` or a `@ManyToOne` relationship is mandatory - that is, the entity must have its associated relationship - it is important to tell Spring Data JPA that this relationship is not optional.
@@ -208,7 +199,6 @@ public class Person implements Serializable {
 
 Adding `optional = false` information will allow Spring Data JPA to be more efficient in creating its select queries because it will know that it  necessarily has an address associated with a person. Therefore, it is good practice to always specify this attribute when defining mandatory relationships.
 
-
 ## Points of attention
 ### Beware of consequences
 Although changing the default loading of the relationships from *EAGER* to *LAZY* could be a good idea for performance, it can also have some unintended consequences and some regressions or bugs can appear.
@@ -222,7 +212,6 @@ For instance, when we modify the relationship between `Person` and `Address` fro
 This is a problem because the web service may no longer comply with its interface contract. It may, for example, affect the display on a web page: it is expected that the address is returned because it is needed to display it in the HTML view.
 
 In order to avoid this problem, it is interesting to use Data Transfer Objects (DTOs) rather than directly returning the entities to clients. Indeed, the mapper transforming the entity into DTO will load all the relationships it needs by retrieving in the database the relationships that have not been loaded during the initial query: this is the Lazy Loading. Therefore, even if we don’t refactor the recovery of entities, the web service will continue to return the same data.
-
 
 #### Potential transaction problem
 The second side effect can be the `LazyInitializationException`.
@@ -263,7 +252,6 @@ In this case, the number of queries to load the page will decrease from 21 to 2:
 
 Note: *if the page contains less than 20 elements (so less than *n*), the topics will still be correctly loaded.*
 
-
 # Going further
 Here are some other interesting points to dig in order to not see the performance of your application drop.
 
@@ -275,7 +263,6 @@ However, we must pay attention to a few points when using this one:
 * the second level cache is only useful when accessing entities by their id (and by the proper JPA methods);
 * in a distributed application, it is mandatory to also use a distributed cache, or to use it only on read-only objects that rarely change;
 * the implementation is more complicated when the database can be altered by other elements (that is to say when the application is not the central point of access to the data).
-
 
 ## Index creation
 Index creation is a necessary step to improve database access performance. This allows faster and cheaper selection searches. An application without index will be much less efficient.
@@ -293,7 +280,6 @@ Transaction management is also important in terms of optimization: it is necessa
 By default, Hibernate will wait for the Spring transaction to complete before updating all the data in the database (except in cases where it detects that an intermediate persistence flush is needed). Meanwhile, it will store the updates in memory. If a transaction involves a large amount of data, performance issues may occur. In this case, it is best to split the processing into multiple transactions.
 
 In addition, when the transaction is not writing, you could tell Spring that it is read-only to improve performance: `@Transactional(readOnly = true)`
-
 
 # Real life example
 I was recently asked to work on performance problems of a web application.
@@ -315,7 +301,6 @@ In order to check whether the load on the database (and data loading) was decrea
 * the number of select queries: number of occurrences of `SELECT ...`;
 * the number of loaded objects: number of occurrences of `SELECT ...` added to the number of occurrences of `... join fetch ...`.
 
-
 ## Results
 After a few days of work on this subject, and applying only these few steps, I managed to divide by about 5 the number of queries sent to the database and about 7 the total number of loaded objects. With the new version of the application in production, the load of the server has really reduced.
 
@@ -327,9 +312,7 @@ We notice an important and almost worrying use of all the resources of the serve
 
 ![after](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/11/after.png)
 
-
 The overall use of the server has been impressively reduced thanks to some small adjustments, simple to put in place. It is, therefore, necessary for me to keep in mind these issues when developing an application.
-
 
 # Conclusion
 After outlining the different types of entity relationships and their default loading method, we understood why it is important to maximize LAZY loading of entity relationships. We learned how to get as much data as possible in a minimum number of queries, which is even more important when using LAZY loadings, thanks to some tools provided by Spring Data JPA. With an example in the form of feedback, we saw how important it is to respect these few tips if we do not want to notice significant performance drops in our applications.
@@ -339,7 +322,6 @@ What is important to remember is that every request for data to the database mus
 This work is continuous, it must be done along the way during the implementation of the application. Otherwise, you will have to look at these issues when performance problems occur, at the risk of experiencing regressions during resolution attempts.
 
 Do not go into excess, some actions do not necessarily require a significant investment of time. This work is especially important when an action is performed very often, and when you retrieve large blocks of data.
-
 
 # Resources
 

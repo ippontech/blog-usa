@@ -144,7 +144,6 @@ In order to interact with the instance of Ethereum running (i.e. the node) you w
 
 The `HTTP ENDPOINT` and `IPC ENDPOINT` are provided after starting an instance. The console will enable you to use the [Javascript API](https://github.com/ethereum/wiki/wiki/JavaScript-API) to interact with the node you have attached to.
 
-
 # Step 6, Connecting the Nodes
 After starting each node, they can now be connected to the `admin` node. `node01` will serve as the `admin` node. Open up a console for that node using `geth attach` and enter `admin.nodeInfo`. This will output several characteristics about the node. Copy the `enode` address beginning with the open quote `"`.
 
@@ -162,7 +161,6 @@ Once you have added each remaining node, you can verify by entering the command 
 > net.peerCount
 2
 ```
-
 
 # Step 7, Exchange Some Ether
 Open up a `geth` console in `node02` and enter the command `eth.accounts`. You should see a list containing the 3 accounts you created in **Step 3**.
@@ -187,7 +185,6 @@ You should receive an error message indicating that you need to unlock your acco
 
 You will be prompted to enter the password you gave this account when it was first created. Now use the `eth.sendTransaction` previously attempted to transfer Ether. If you run the `eth.getBalance` command again, you will notice that no Ether has actually moved from one account to another. This is because no miner is running to verify the transactions on the block.
 
-
 # Step 8, Start a Miner
 First thing you must do is set the etherbase for the node that you are working in. The etherbase account is the account designated to receive the rewards earned from mining the blockchain. Open a `geth` console on `node02` and run the command `miner.setEtherbase(eth.accounts[0])`.
 
@@ -198,7 +195,6 @@ To ***start the miner*** on this node, simply run `miner.start()`. If your `geth
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/10/start_miner.gif)
 *Shown above is a depiction of starting the miner on the second node.*
-
 
 You can now check the accounts that your transferred Ether to/from and verify that funds have in fact moved between accounts. Likewise, you run `eth.getBalance` on the etherbase account for your miner node to verify that Ether mining rewards are deposited into the account.
 

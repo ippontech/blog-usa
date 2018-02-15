@@ -15,7 +15,6 @@ In [a previous post](http://blog.ippon.tech/testing-strategy-apache-spark-jobs/)
 
 In this post, we will look at applying the same pattern to another important part of the Spark engine: Spark Streaming.
 
-
 ## Spark Streaming example
 
 Spark Streaming is an extension of Spark to implement streaming processing on top of the batch engine. The base idea is to accumulate a flow of events in micro-batches and then process them separately. As for a signal, the stream is *discretized *and thus named *DStream* in the Spark API.
@@ -73,7 +72,6 @@ Here, we simulate a stream of characters by continuously adding them as RDDs of 
 We create a QueueStream to wrap the Queue as an InputDStream. Because the QueueInputDStream is mainly designed for testing, each RDD is consumed one by one by default. We have configured the StreamingContext to have batches of 1 second, hence each character will be consumed by the stream logic every 1 second.
 
 When you run this code, the Spark engine will print the last 3 capitalized letters every 2 seconds.
-
 
 ## Testing stream operations
 
@@ -245,7 +243,6 @@ Because the processing of the DStream occurs in a separated thread, when we chan
 
 We now have a fast and predictable test to ensure the streaming operations’ correctness!
 
-
 ## Spark-testing-base library
 
 The [Spark-testing-base](https://github.com/holdenk/spark-testing-base) library have some built-in trait and methods to help you test the streaming logic.
@@ -276,7 +273,6 @@ StreamingWithSparkTestingTest.scala
 The `StreamingSuiteBase` trait will take care of all the setup we had manually prepared in the previous test: starting and stopping the `StreamingContext`, replacing the `Clock` in the engine, and incrementing the time when each element is consumed.
 
 Unlike the `RDDComparisons.compare(...)` method shown in the previous article, where the comparison was distributed, the elements are collected locally from the OutputDStream. Be sure not to produce too much data in your tests or you can rapidly run out of memory.
-
 
 ## Conclusion
 

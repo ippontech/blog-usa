@@ -101,14 +101,14 @@ Amazon rarely announces their roadmap. They emphasize they are extremely custome
 ### Conclusion
 re:Invent is an unmissable conference for the cloud-minded engineer, and this year was certainly no exception. Amazon has an implementation or involvement in almost every aspect of modern computing. It’s quickly becoming a defining feature for businesses, if you aren’t on AWS then you are behind.
 
-Please check out the keynote speeches, and a number of the breakout sessions on the AWS YouTube Channel here: 
+Please check out the keynote speeches, and a number of the breakout sessions on the AWS YouTube Channel here:
 [https://www.youtube.com/channel/UCd6MoB9NC6uYN2grvUNT-Zg](https://www.youtube.com/channel/UCd6MoB9NC6uYN2grvUNT-Zg)
 
-A recap of the announcements and accompanying blog posts are here: 
+A recap of the announcements and accompanying blog posts are here:
 [https://aws.amazon.com/new/reinvent/](https://aws.amazon.com/new/reinvent/)
 
-Many of the breakout sessions also eventually make it over to SlideShare: 
+Many of the breakout sessions also eventually make it over to SlideShare:
 [http://www.slideshare.net/AmazonWebServices](http://www.slideshare.net/AmazonWebServices)
 
-Most recorded sessions are available here: 
+Most recorded sessions are available here:
 [https://gist.github.com/stevenringo/5f0f9cc7b329dbaa76f495a6af8241e9](https://gist.github.com/stevenringo/5f0f9cc7b329dbaa76f495a6af8241e9)

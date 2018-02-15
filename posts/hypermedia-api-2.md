@@ -28,14 +28,12 @@ In most of the tutorials, the proposed solution – in Java – to solve this pa
 
 Using this, it’s rather simple to handle HTTP requests to manage the entities. These requests could look like:
 
-
 - GET http://api.mydomain.org/orders
 - GET http://api.mydomain.org/orders/1
 - POST http://api.mydomain.org/orders
 - …
 
-
-The responses could be a single “order” resource representation or a collection of “order” objects.  
+The responses could be a single “order” resource representation or a collection of “order” objects.
  A collection could look like this:
 
 ```language-json
@@ -58,7 +56,6 @@ The responses could be a single “order” resource representation or a collect
 
 ```
 
-
 whereas a single order resource can be represented this way:
 
 ```language-json
@@ -71,32 +68,27 @@ whereas a single order resource can be represented this way:
  }
 ```
 
-
 NB: please note that the purpose of this article is NOT to provide a perfect model for an order 😉
 
 **Now, in real life**
 
-In real life situations, many problems can occur and will make the developer’s life harder.  
- Maybe the number of orders will become so huge pagination will be necessary…  
- An order will be created of course, but also modified, cancelled, paid, prepared, delivered… Its state will change, and the API should reflect/enable these possibilities.  
- And an order is linked to a client, a payment. It describes a set of food items, each being a resource, …  
+In real life situations, many problems can occur and will make the developer’s life harder.
+ Maybe the number of orders will become so huge pagination will be necessary…
+ An order will be created of course, but also modified, cancelled, paid, prepared, delivered… Its state will change, and the API should reflect/enable these possibilities.
+ And an order is linked to a client, a payment. It describes a set of food items, each being a resource, …
  In order to support all these real life features, the first idea is to bring a detailed documentation to explain how the API handles them, and how the developers should consume the API. Such a documentation could be something like:
 
-- <span style="text-decoration: underline">Orders list:</span>  
-*GET http://api.mydomain.org/orders*  
- Orders are paginated, 20 per page, sorted by creation date. To navigate among the pages, use the following URL, with a positive integer value for the ‘page’ attribute:  
+- <span style="text-decoration: underline">Orders list:</span>
+*GET http://api.mydomain.org/orders*
+ Orders are paginated, 20 per page, sorted by creation date. To navigate among the pages, use the following URL, with a positive integer value for the ‘page’ attribute:
 *GET http://api.mydomain.org/orders{?page}*
 
- 
-
-- <span style="text-decoration: underline">Get a specific order detail:</span>  
-*GET http://api.mydomain.org/orders/{uid}*  
+- <span style="text-decoration: underline">Get a specific order detail:</span>
+*GET http://api.mydomain.org/orders/{uid}*
  where ‘uid’ is the order’s unique ID, which is also named ‘uid’ in the order JSON representation.
 
- 
-
-- <span style="text-decoration: underline">Retrieve the client associated to an order:</span>  
-*GET http://api.mydomain.org/orders/{uid}/client*  
+- <span style="text-decoration: underline">Retrieve the client associated to an order:</span>
+*GET http://api.mydomain.org/orders/{uid}/client*
  where ‘uid’ is the order’s unique ID
 
 and so on.
@@ -142,7 +134,7 @@ Let’s imagine a new version of our example API. This version now returns this 
  }
  }
 ```
- 
+
 This representation has more information. Let’s have a look at the data under ‘metadata.links’. They are links to related resources, each qualified with the ‘rel’ attribute, which brings an information for the client to understand what’s the purpose of the link. Using a set of relations in conjunction with the HTTP methods, it’s rather easy to determine the actions that can be done. And if an action is not allowed (for instance, using DELETE on an order that is not in the appropriate state), the API will respond accordingly with an error message.
 
 The pros of such an API design are:
@@ -177,7 +169,7 @@ Whatever is the choice among these formats, picking one of them will allow:
 
 Always remember this: if you make it easy for your clients, you are increasing your API adoption chances.
 
-The other aspect is the name the relations will have (under a ‘*rel*’ attribute often). These names will be the keys for the client to identify what is the relation. Most of them can come from predefined lists, like the IANA (Internet Assigned Numbers Authority) relations names [7], microformats relations names [8], … The rule of thumb here is if the meaning of the relation is already present in such an official list, just don’t use something else.  
+The other aspect is the name the relations will have (under a ‘*rel*’ attribute often). These names will be the keys for the client to identify what is the relation. Most of them can come from predefined lists, like the IANA (Internet Assigned Numbers Authority) relations names [7], microformats relations names [8], … The rule of thumb here is if the meaning of the relation is already present in such an official list, just don’t use something else.
  Sometimes, the meaning is just specific and doesn’t exist in any standard lists. In such cases, the name can come from your imagination, if it is described in the documentation. A good practice is to use an URL as the relation name, which points to a description of its meaning. For instance:
 
 `<link rel="http://api.mondomaine.org/rels/client" href="http://api.mondomaine.org/orders/2/client" />`
@@ -192,13 +184,11 @@ Finally, this way to build API, based on the hypermedia possibilities to navigat
 
 Stay tuned for the next episode on… Ippon
 
- 
-
-[1] [http://docs.spring.io/spring-framework/docs/4.0.x/javadoc-api/org/springframework/web/bind/annotation/RestController.html](http://docs.spring.io/spring-framework/docs/4.0.x/javadoc-api/org/springframework/web/bind/annotation/RestController.html "Spring RestController")  
- [2] [http://tools.ietf.org/html/rfc6570](http://tools.ietf.org/html/rfc6570 "RFC 6570")  
- [3] [http://stateless.co/hal_specification.html](http://stateless.co/hal_specification.html "HAL Specification")  
- [4] [https://github.com/kevinswiber/siren](https://github.com/kevinswiber/siren "SIREN Specification")  
- [5] [http://amundsen.com/media-types/collection/format/](http://amundsen.com/media-types/collection/format/ "Collection+JSON Specification")  
- [6] [http://tools.ietf.org/html/rfc5023](http://tools.ietf.org/html/rfc5023 "RFC 5023")  
- [7] [https://www.iana.org/assignments/link-relations/link-relations.xhtml](https://www.iana.org/assignments/link-relations/link-relations.xhtml "IANA Link Relations")  
+[1] [http://docs.spring.io/spring-framework/docs/4.0.x/javadoc-api/org/springframework/web/bind/annotation/RestController.html](http://docs.spring.io/spring-framework/docs/4.0.x/javadoc-api/org/springframework/web/bind/annotation/RestController.html "Spring RestController")
+ [2] [http://tools.ietf.org/html/rfc6570](http://tools.ietf.org/html/rfc6570 "RFC 6570")
+ [3] [http://stateless.co/hal_specification.html](http://stateless.co/hal_specification.html "HAL Specification")
+ [4] [https://github.com/kevinswiber/siren](https://github.com/kevinswiber/siren "SIREN Specification")
+ [5] [http://amundsen.com/media-types/collection/format/](http://amundsen.com/media-types/collection/format/ "Collection+JSON Specification")
+ [6] [http://tools.ietf.org/html/rfc5023](http://tools.ietf.org/html/rfc5023 "RFC 5023")
+ [7] [https://www.iana.org/assignments/link-relations/link-relations.xhtml](https://www.iana.org/assignments/link-relations/link-relations.xhtml "IANA Link Relations")
  [8] [http://microformats.org/wiki/existing-rel-values](http://microformats.org/wiki/existing-rel-values "Microformat Relations")

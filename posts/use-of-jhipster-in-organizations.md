@@ -22,25 +22,25 @@ JHipster is an open development platform built on yeoman generator standards, wh
 For more information on Yeoman and generators please visit http://yeoman.io/.
 
 ### How is JHipster used in organizations?
- 
+
 JHipster is used by IT teams as a tool for _Rapid Application Development_ by generating application code, necessary artifacts to support automated testing, and continuous delivery of the application. The generated code is standardized across the organization.
 
 This approach has multiple benefits to the organization:
 <ul>
-     <li> 
+     <li>
       Ability to quickly implement various types of applications in a streamlined manner.
     </li>
-    <li> 
+    <li>
       Greatly improves quality of the code delivered.
     </li>
     <li>Teams get to spend more time on business requirements.
-   </li> 
+   </li>
    <li>Facilitates the sharing of resources across different projects with very little ramp up time. This can help organizations become more productive and cost-effective.
   </li>
 </ul>
 
 Since JHipster is an open source project,  organizations can either use it directly from the public NPM registry or get a particular version of a JHipster node module into their private registry to use.
- 
+
 A typical JHipster development workstation consists of Java, NodeJS, Yeoman, JHipster, and any of its submodules. JHipster is invoked by the `yo` command (`yo jhipster`).
 
 ![Developer's workstation](https://raw.githubusercontent.com/msambaraju/generator-yoconfig/master/DeveloperWorkstation.png)
@@ -49,7 +49,7 @@ A typical JHipster development workstation consists of Java, NodeJS, Yeoman, JHi
 
 While the JHipster generated code follows lots of industry standards and supports various tools, organizations still need the ability to customize JHipster in order to support their specific requirements.
 
-Some common requirements include: 
+Some common requirements include:
 
 <ul>
 <li>Specific security requirements. </li>
@@ -63,7 +63,7 @@ Some common requirements include:
 ### How can the customizations be done?
 Yeoman offers ways for generators to build on common ground, so generators can use the `composeWith` feature of Yeoman to invoke other generators as needed. JHipster, being a yeoman generator, can leverage this functionality to support customization.
 
-Organizations have multiple options at their disposal to enhance JHipster: 
+Organizations have multiple options at their disposal to enhance JHipster:
  <ul>
    <li> JHipster modules </li>
    <li> Independent generators </li>
@@ -71,7 +71,7 @@ Organizations have multiple options at their disposal to enhance JHipster:
 
 A JHipster module is a yeoman generator, which is composed with a specific JHipster subgenerator, which has access to the common functions and variables provided by JHipster and allows you to enhance the JHipster provided functionality.
 
-A JHipster module can be invoked using the `yo` command similar to JHipster. 
+A JHipster module can be invoked using the `yo` command similar to JHipster.
 
 For more information on the JHipster modules, visit <a href="https://jhipster.github.io/modules/creating-a-module/">How to use JHipster modules</a>.
 
@@ -79,7 +79,7 @@ The below architecture can be applied when implementing custom generators or mod
 
 ![JHipster customization architecture](https://raw.githubusercontent.com/msambaraju/generator-yoconfig/master/JHipster_Customization_Ver2.png)
 
-    Note: During the development phase, steps 1 and 5 are performed to do local testing before committing the code into the SCM. 
+    Note: During the development phase, steps 1 and 5 are performed to do local testing before committing the code into the SCM.
 
 ### Example
 
@@ -91,7 +91,6 @@ A JSON template, such as the one below, can be used and a generator can populate
 
 <b>yoconfig.json</b>
 
-    
     {
       "generator-jhipster": {
          "promptValues": {
@@ -164,7 +163,7 @@ module.exports = class extends Generator {
  }
 
   writing () {
-this.fs.copyTpl(this.templatePath('yoconfig.json'), this.destinationPath('.yo-rc.json'), 
+this.fs.copyTpl(this.templatePath('yoconfig.json'), this.destinationPath('.yo-rc.json'),
 this.props);
 
 // Run JHipster once the configuration file is //created.
@@ -174,7 +173,6 @@ this.props);
 ```
 
 A sample implementation of the project can be found <a href="https://github.com/msambaraju/generator-yoconfig" >here</a>.
-
 
 ### Conclusion
 When used appropriately, JHipster can be a powerful development tool for organizations to generate, develop, and deploy applications in a consistent and cost-efficient manner.

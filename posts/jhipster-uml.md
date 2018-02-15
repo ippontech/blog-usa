@@ -24,7 +24,6 @@ If repeating this process may seem easy for a few entities, doing it with more t
 
 Hence the idea of replacing this process by another that wouldn’t have these drawbacks was quite interesting to us. That’s why JHipster-UML was created.
 
-
 # What is JHipster-UML?
 
 JHipster-UML is a [NPM](https://www.npmjs.com/package/jhipster-uml) package that can be used alongside JHipster in order to create your entities and their associations between them from a class model. Our project is available on [GitHub](https://github.com/jhipster/jhipster-uml) too.
@@ -32,8 +31,6 @@ JHipster-UML is a [NPM](https://www.npmjs.com/package/jhipster-uml) package that
 #### ** How does it work?**
 
 [![JHipsterUML](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/07/JHipsterUML.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/07/JHipsterUML.png)
-
- 
 
 You just have to create a class diagram using one of the four currently supported UML editors (UML Designer, Modelio, GenMyModel, Visual Paradigm). Once created, export your diagram to the XMI format. Finally, go to the root of your JHipster application, and enter:
 
@@ -73,7 +70,6 @@ Due to this constraint we must add a parser by editor. Currently the following e
 - [Modelio](https://www.modelio.org/) ;
 - and[ Visual Paradigm](http://www.visual-paradigm.com/).
 
-
 # Architecture
 
 Our architecture is based on the division of the main tasks:
@@ -95,7 +91,6 @@ Finally, since we can not simply start the entity generation in an unplanned ord
 Here our program’s sequence diagram:
 
 [![seq_diag](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/07/seq_diag.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/07/seq_diag.png)
-
 
 # Perspectives
 

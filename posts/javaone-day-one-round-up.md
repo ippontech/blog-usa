@@ -10,14 +10,10 @@ image:
 
 ## Ippon USA at JavaOne/Oracle Open World Conference in San Francisco at the Moscone Center
 
- 
-
 Ippon USA is onsite attending the JavaOne Conference at Moscone Center all week.  Today’s highlights include the JavaOne and Oracle OpenWorld keynotes, several introductory sessions and the Oracle Welcome Reception.
 
 ![Ippon at JavaOne](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/ippon-at-javaone-1.jpg)
 Ippon at JavaOne and Oracle Open World
-
-
 
 ### Sessions
 
@@ -49,8 +45,6 @@ These companies are all pure software companies that dominate their various indu
 ![JavaOne Keynote](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/java-one-keynote-collage.jpg)
 
 JavaOne Keynote
-
-
 
 The JavaOne keynote consisted of many interesting presentations celebrating 20 years of innovation in the Java ecosystem. For a dedicated Java developer, the most interesting topics were related to Java 9 and an explanation of the new module system coming with project Jigsaw.
 

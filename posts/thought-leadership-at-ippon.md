@@ -26,11 +26,7 @@ Huddled around desks for the JHipster coding dojo.
 
 Though we do have the occasional culture article (AHEM), we actually fill our blog with lots of helpful technical tutorials. I personally found this one useful - a three part series on using [Apache Spark, Avro and Kafka](http://www.ipponusa.com/blog/kafka-spark-and-avro-part-1-kafka-101/). Or learn about the latest version of [JHipster which introduces microservices](http://www.ipponusa.com/blog/jhipster-3-0-introducing-microservices/).
 
- 
-
 Almost all of our employees contribute to the blog. And we actually have a little competition going on between teams to see who can write the blog post with the most views. After writing about a topic, our engineers include their publications on their resumes to highlight their expertise.
-
- 
 
 ### Meetup Presentations
 
@@ -40,13 +36,9 @@ Bringing it up a notch, Meetup presentations are a surefire way to ensure you kn
 
 Josh, one of Ippon’s best Senior Engineers, giving a presentation at the [Ippon Technologies Meetup](https://www.meetup.com/Ippon-Technologies-USA-Meetup/).
 
- 
-
 ### White Papers
 
 Expertise in the written form, our white papers aid readers by breaking down a complex problem or technology. Ippon provides engineers extra incentives as well as the time to complete these white papers and publish them free to download to the community. Check out our white papers [here](http://www.ipponusa.com/resources/).
-
- 
 
 ### Conference Talks
 

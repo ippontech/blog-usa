@@ -17,12 +17,10 @@ By using Apache Spark as a data processing platform on top of a MongoDB database
 
 In this article, I present the features of the connector and some use cases. An upcoming article will be a tutorial to demonstrate how to load data from MongoDB and run queries with Spark.
 
-
 ## “MongoDB connector for Spark” features
 The MongoDB connector for Spark is an open source project, written in Scala, to read and write data from MongoDB using Apache Spark.
 
 The latest version - 2.0 - supports MongoDB >=2.6 and Apache Spark >= 2.0. The previous version - 1.1 - supports MongoDB >= 2.6 and Apache Spark >= 1.6 this is the version used in [the MongoDB online course](https://university.mongodb.com/courses/M233/about).
-
 
 The connector offers various features, most importantly:
 
@@ -39,11 +37,9 @@ In reality, with most of the work to optimize the data load in the workers done 
 - Data locality:
  - If the Spark nodes are deployed on the same nodes as the MongoDB nodes, and correctly configured with a `MongoShardedPartitioner`, then the Spark nodes will load the data according to their locality in the cluster. This will avoid costly network transfers when first loading the data in the Spark nodes.
 
-
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/03/mongodbsparkconnector.png)
-  
-*Spark nodes deployed next to the MongoDB nodes*
 
+*Spark nodes deployed next to the MongoDB nodes*
 
 ## Use cases
 Different use cases can apply to run Spark on top of a MongoDB database, but they all take advantage of MongoDB’s built-in replication and sharding mechanisms to run Spark on the same large MongoDB cluster used by the business applications to store their data.
@@ -55,7 +51,7 @@ To provide analytics, Spark can be used to extract data from MongoDB, run comple
 If there is already a centralized storage - a Data Lake, for instance, built with HDFS - Spark can extract and transform data from MongoDB before writing it to HDFS. The advantage is to use Spark as a simple and effective ETL tool to move the data from MongoDB to the data lake.
 
 ## Conclusion
-In this article, I have listed the MongoDB connector features and use cases. 
+In this article, I have listed the MongoDB connector features and use cases.
 
 The connector is fully functional and provides a set of utility methods to simplify the interactions between Spark and MongoDB.
 

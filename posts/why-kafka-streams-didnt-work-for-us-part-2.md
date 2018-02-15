@@ -115,7 +115,7 @@ For instance, if we have 4 partitions in input with the following messages:
      -----------
 tx-0 |v|v|v|i|v|
      -----------
-tx-1 |v|i|v|v|  
+tx-1 |v|i|v|v|
      -----------
 tx-2 |v|v|v|
      -----------
@@ -127,13 +127,13 @@ The `repartition` topic will also have 4 partitions and it might end up looking 
 
 ```text
               -----------------------------
-repartition-0 
+repartition-0
               -----------------------------
 repartition-1 |v|v|v|v|v|v|v|v|v|v|v|v|v|v|
               -----------------------------
 repartition-2 |i|i|i|
               -----------------------------
-repartition-3 
+repartition-3
               -----------------------------
 ```
 
@@ -141,13 +141,13 @@ Or, even worse, if the hashing function puts the `valid` and `invalid` keys in t
 
 ```text
               -----------------------------------
-repartition-0 
+repartition-0
               -----------------------------------
 repartition-1 |v|v|v|i|v|v|v|i|v|v|v|i|v|v|v|v|v|
               -----------------------------------
-repartition-2 
+repartition-2
               -----------------------------------
-repartition-3 
+repartition-3
               -----------------------------------
 ```
 

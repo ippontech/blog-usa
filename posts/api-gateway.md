@@ -14,7 +14,7 @@ The primary purpose of a web API is to expose data to be consumed or changed. Fa
 
 When it comes to a single API, the most direct approach to treat these secondary but important needs is to directly add these responsibilities in the API itself. Many solutions exist for this. Security solutions can be more or less sophisticated: simple htaccess protecting access to resources, using a library such as Spring Security or Apache Shiro if developments are made in Java, Passport with NodeJS bookstore, etc. Once the caller’s identity is known, quota management is only a matter of reads & writes to a counter. Cache management can be done through dedicated libraries or by the same libraries used to build the API (Jersey, Restlet, etc.)
 
-Since creating a Web API is now rather simple, APIs tend to proliferate. When the number of APIs becomes quite important, these requirements obviously can be considered cross-cutting needs. And therefore it is not unreasonable to suggest that they can be treated outside the API.  
+Since creating a Web API is now rather simple, APIs tend to proliferate. When the number of APIs becomes quite important, these requirements obviously can be considered cross-cutting needs. And therefore it is not unreasonable to suggest that they can be treated outside the API.
  How to implement these cross-cutting needs? A reverse proxy is a possible approach. This component is commonly called an API Gateway.
 
 A typical API Gateway includes:
@@ -26,8 +26,6 @@ A typical API Gateway includes:
 - Routing (possibly processing) to an “internal” API
 - API health monitoring (performance monitoring, error …)
 - Versioning (with the possible negotiation of automatic version)
-
- 
 
 [![API-Gateway](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/API-Gateway.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/API-Gateway.png)
 
@@ -45,7 +43,7 @@ Drawbacks:
 
 Is it a great idea that nobody has thought of yet? No, far from it, since many publishers now have solutions of this kind, with variable amounts of features and different maturity levels. Commercial products are now numerous and started to get acquired by large publishers cycles (example: Intel acquired Mashery in 2013, Computer Associates acquired Layer 7 in 2013) or to enter partnerships (SAP and Apigee 2014). Not all are equal, some stand out and have already gained notoriety (Layer 7 for instance, with his API guru workforce).
 
-What about open-source?  
+What about open-source?
  There are some open source initiatives but strangely, this market is yet to be taken (anyone up for it?):
 
 - APIAxle ( [http://apiaxle.com/](http://apiaxle.com/%20) )

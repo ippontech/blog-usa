@@ -29,7 +29,7 @@ Using grunt and [grunt-template](https://www.npmjs.com/package/grunt-template),
         <div ui-view></div>
         <div ui-view="footer"></div>
         <%= jsTags %>
-    
+
 ```
 
 index.html.tpl

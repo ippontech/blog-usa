@@ -37,9 +37,9 @@ Some of our team members work under Linux and others under Windows. One of the f
 Although Vagrant is compatible with Windows, and worked immediately, it turned out that Ansible was going to be a hurdle:
 
 > ###### **“Reminder: You Must Have a Linux Control Machine**
-> 
+>
 > ###### Note running Ansible from a Windows control machine is NOT a goal of the project […].”
-> 
+>
 > ###### *Extract from *[http://docs.ansible.com/ansible/intro_windows.html#installing-on-the-control-machine](http://docs.ansible.com/ansible/intro_windows.html#installing-on-the-control-machine)
 
 #### **First attempt…**

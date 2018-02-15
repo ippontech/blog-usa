@@ -24,9 +24,6 @@ A common “back door” is sharing databases across multiple modules. At the da
 
 [![services_database_bad](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/04/services_database_bad1.jpg)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/04/services_database_bad1.jpg)
 
- 
-
-
 ## Introduce microservices architecture
 
 In microservices architecture, services (modules) are isolated from each other across the network, and service interfaces need to be “published” to allow communication between components. The result is firm boundaries between components that are well defined by high granularity interfaces. If implemented correctly, microservices make backdoors difficult because interactions with the underlying software implementation and the database are prohibited. All communication is done through the interface.

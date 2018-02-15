@@ -21,7 +21,7 @@ To demonstrate how to use Spark with MongoDB, I will use the zip codes from Mong
 - Install Maven
 - Download the project [from Github](https://github.com/raphaelbrugier/spark-mongo-example)
 
-From the project root, launch the MongoDB server with docker-compose: 
+From the project root, launch the MongoDB server with docker-compose:
 `docker-compose -f docker/docker-compose.yml up -d`
 
 Import the data in the MongoDB database running in the container:
@@ -215,7 +215,6 @@ The DataFrame API is pretty straight forward for this simple query.
 1. Use the import to have implicit conversions from `String` to `Column` with the `$`.
 2. Rename the result of the sum column for readability.
 
-
 ## Spark SQL
 Spark and the DataFrame abstraction also enables to write plain Spark SQL queries with a familiar SQL syntax.
 
@@ -239,7 +238,7 @@ For example, let’s rewrite the previous query with SQL:
 _“Predicates pushdown”_ is an optimization from the connector and the Catalyst optimizer to automatically “push down” predicates to the data nodes. The goal is to maximize the amount of data filtered out on the data storage side before loading it into Spark’s node memory.
 
 There are two kinds of predicates automatically pushed down by the connector to MongoDB:
- 
+
 - the `select` clause (projections) as a [`$project`](https://docs.mongodb.com/manual/reference/operator/aggregation/project/)
 - the `filter` clause content (`where`) as one or more [`$match`](https://docs.mongodb.com/manual/reference/operator/aggregation/match/)
 
@@ -328,8 +327,7 @@ The result is:
 	[...]
 }
 ```
-The result shows the `$project` and `$match` clauses executed by MongoDB and, as expected, they match the Spark’s physical plan.  
-
+The result shows the `$project` and `$match` clauses executed by MongoDB and, as expected, they match the Spark’s physical plan.
 
 ## Conclusion
 In this article, I have shown how to connect to a MongoDB database with Apache Spark to load and query the data. The connector provides a set of utility methods to easily load data from MongoDB to a DataFrame.

@@ -18,7 +18,6 @@ There are three time management APIs in Java 8:
 - [java.util.Calendar](http://download.java.net/jdk8/docs/api/java/util/Calendar.html) (since jdk 1.1)
 - [java.time](http://download.java.net/jdk8/docs/api/java/time/package-summary.html) (jdk 1.8)
 
-
 # Before Java 8
 
 This new API intends to resolve issues that plagued the two first ones:
@@ -32,7 +31,7 @@ This new API intends to resolve issues that plagued the two first ones:
 - Not thread-safe: cause of concurrency bugs
 - Incomplete concepts: no duration, period, interval hour (hours-minutes-seconds), date (year-month-day), etc.
 
-java.time was inspired by [Joda-Time](http://www.joda.org/joda-time/) and was mostly written by its author, [Stephen Colebourne](http://blog.joda.org/).  
+java.time was inspired by [Joda-Time](http://www.joda.org/joda-time/) and was mostly written by its author, [Stephen Colebourne](http://blog.joda.org/).
  The new API was built from scratch within Java 8 to avoid carrying over [Joda-time issues](http://blog.joda.org/2009/11/why-jsr-310-isn-joda-time_4941.html):
 
 - Poor internal presentation of dates as ‘instant’. A date&time can correspond to multiple instants during a daylight saving time change or it may not exist (when going from 3am to 2am or 2 to 3), which leads to complicated calculations
@@ -41,20 +40,17 @@ java.time was inspired by [Joda-Time](http://www.joda.org/joda-time/) and was 
 
 java.time aims to have a simpler and more robust design than Joda-Time. This API is also available in Java 7 through a [backport](https://github.com/ThreeTen/threetenbp) available at the [central maven](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.threeten%22%20AND%20a%3A%22threetenbp%22). The fluid API allows the manipulation of immutable and thread-safe objects in order to avoid errors. The time management classes are organized according to two views of time: machine time and human time. To make the transition less painful, it is easy to convert java.util.Date and java.util.GregorianCalendar objects to and from the new API.
 
-
 # Machine Time
-
 
 ## Instant
 
-A precise point in time.  
+A precise point in time.
  The Instant class represents the number of nanoseconds since Epoch (January 1st 1970). It is very similar to java.util.Date.
 
 ```language-java
 Instant.ofEpochSecond(1395100800);
 Instant.parse("2014-03-18T00:00:00.000Z");
 ```
-
 
 ## Duration
 
@@ -67,13 +63,11 @@ Duration.between(Instant.parse("2011-07-28T00:00:00.000Z"),
 Instant.parse("2014-03-18T00:00:00.000Z")).getSeconds();
 ```
 
-
 # Human Time
-
 
 ## Timezone
 
-Use Timezone to create ZonedDateTime and OffsetDateTime from an instant through the ZoneId and ZoneOffset classes.  
+Use Timezone to create ZonedDateTime and OffsetDateTime from an instant through the ZoneId and ZoneOffset classes.
  ZonedDateTime and OffsetDateTime are the equivalent of GregorianCalendar.
 
 ```language-java
@@ -81,7 +75,6 @@ ZonedDateTime.ofInstant(Instant.now(), ZoneId.of("Europe/Paris"));
 OffsetDateTime.ofInstant(Instant.now(), ZoneId.of("GMT+1"));
 OffsetDateTime.ofInstant(Instant.now(), ZoneOffset.of("+01:00"));
 ```
-
 
 ## LocalDateTime
 
@@ -100,7 +93,6 @@ date.with(TemporalAdjusters.firstDayOfNextMonth()); // the first day of the next
 date.with(Temporals.nextWorkingDay()); // TemporalAdjuster in threeten-extra (not included in the jdk)
 ```
 
-
 ## Partial dates and times
 
 An incomplete LocalDateTime: 03/18 (March 18th), 12:00 (noon).
@@ -115,7 +107,6 @@ YearMonth.of(2014, Month.MARCH);
 Year.of(2014);
 ```
 
-
 ## Period
 
 “Human” representation of a duration, for instance 1 month (whether it has 28 or 31 days).
@@ -125,7 +116,6 @@ Period.ofMonths(3);
 // period between Java 7 and Java 8
 Period.between(LocalDate.of(2011, Month.JULY, 28), LocalDate.of(2014, Month.MARCH, 18)); // 2 years, 7 months and 18 days
 ```
-
 
 ## java.time, Date, GregorianCalendar interoperability
 
@@ -142,9 +132,8 @@ GregorianCalendar.from(ZonedDateTime.ofInstant(Instant.now(), ZoneId.of("Europe/
 
 ```
 
-
 # Conclusion
 
-As the code samples demonstrate, this new API corrects issues with previous APIs. It is easy to use thanks to its fluid syntax and intuitive concepts.  
- Some of the Joda-time features that have not made it into java.time are now in the [threeten-extra project](http://www.threeten.org/threeten-extra/) (available at [maven central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22threeten-extra%22)), and can be included in your projects.  
+As the code samples demonstrate, this new API corrects issues with previous APIs. It is easy to use thanks to its fluid syntax and intuitive concepts.
+ Some of the Joda-time features that have not made it into java.time are now in the [threeten-extra project](http://www.threeten.org/threeten-extra/) (available at [maven central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22threeten-extra%22)), and can be included in your projects.
  One can hope this new API will be quickly integrated in the java frameworks developers use every day.

@@ -58,7 +58,7 @@ This gateway is a bit different from classical solutions, as we encounter many c
 
 This gateway is totally stateless, so it can scale easily if you need failover and load balancing at the gateway level (and in that case, you will need a hardware load-balancer in front of it).
 
-It also provides security to the whole architecture, based on JWT (JSON Web Tokens) and Spring Security. As Spring Security provides APIs for nearly every authentication and authorization system available today, it is quite easy to connect the gateway to your enterprise LDAP or OAuth2 server. If needed, JHipster also provides as a BETA option, a “JHipster UAA” server, which is an OAuth2 server based on [CloudFoundry UAA](https://github.com/cloudfoundry/uaa). 
+It also provides security to the whole architecture, based on JWT (JSON Web Tokens) and Spring Security. As Spring Security provides APIs for nearly every authentication and authorization system available today, it is quite easy to connect the gateway to your enterprise LDAP or OAuth2 server. If needed, JHipster also provides as a BETA option, a “JHipster UAA” server, which is an OAuth2 server based on [CloudFoundry UAA](https://github.com/cloudfoundry/uaa).
 
 For HTTP request throttling, JHipster will use a Cassandra database and use its distributed counter feature to provide throttling per user, IP address, and/or API. The provided code can of course be modified to suit your company’s specific needs. We have had the opportunity to audit several “enterprise grade” competitors, and each of them used the exact same approach (and usually have their Cassandra nodes wide open to the public, with either no password or a “cassandra/cassandra” combo, allowing us to do that audit!).
 
@@ -129,6 +129,6 @@ There are indeed several issues when using JHipster:
 
 We have seen that JHipster provides a widely-used, complete API management solution that can either be used just for development, or both for development and production.
 
-As an Open Source solution, it is fully configurable and can be customized to your exact needs. Of course, we are always open for improvement. With 300 contributors, we have always welcomed new people and new ideas, so if something doesn’t fit your needs or if there is something you would like to improve, don’t hesitate to participate in the project: https://github.com/jhipster/generator-jhipster. 
+As an Open Source solution, it is fully configurable and can be customized to your exact needs. Of course, we are always open for improvement. With 300 contributors, we have always welcomed new people and new ideas, so if something doesn’t fit your needs or if there is something you would like to improve, don’t hesitate to participate in the project: https://github.com/jhipster/generator-jhipster.
 
 And if you choose to use JHipster for building your next API platform, don’t forget to join the 140 companies which have registered at https://jhipster.github.io/companies-using-jhipster/ and send us a nice message! We’ll be happy to hear your story!

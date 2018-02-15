@@ -22,7 +22,6 @@ Increasingly, Jenkins has seen use as a Continuous Delivery platform as well. Co
 
 <span style="font-weight: 400;">Pipelines are defined with a Domain Specific Language, based on Groovy, that can be checked into version control with your source code. All build-steps can be modeled in the </span>[<span style="font-weight: 400;">Jenkinsfile</span>](https://jenkins.io/doc/pipeline/jenkinsfile/)<span style="font-weight: 400;"> and can be as complex or simple as you wish.</span>
 
-
 ==Pipeline Script==
 ```language-javascript
 node {
@@ -52,12 +51,9 @@ node {
 }
 ```
 
-
-
 <span style="font-weight: 400;">No longer do you need to edit your jobs in the Jenkins web interface. Teams can apply changes to the pipeline by editing the Jenkinsfile and pushing it up for delivery. Complex stages can even be copied and saved for use with other jobs. </span>
 
 <span style="font-weight: 400;">Pipeline scripts can be easily broken down into steps, stages, and nodes. </span>The stages will generate a UI segment in the pipeline and can be made up of multiple steps.
-
 
 ```language-javascript
 stage 'backend tests'  //stage - creates segment

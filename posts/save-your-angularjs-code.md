@@ -14,14 +14,12 @@ image:
 
 By [Marina Sinama-Pongolle](https://www.linkedin.com/in/marinasinamapongolle)
 
-At this year’s [Devoxx](http://cfp.devoxx.fr/devoxxfr2014), I loved the session titled “Help! My AngularJS code is horrible”!  
+At this year’s [Devoxx](http://cfp.devoxx.fr/devoxxfr2014), I loved the session titled “Help! My AngularJS code is horrible”!
  Thierry Chatel ([@ThierryChatel](https://twitter.com/ThierryChatel)) outlined the best practices needed to keep AngularJS code clean and maintainable.
-
 
 # General best practices
 
 The first best practice is to write simple and maintainable code. Thierry advises against premature optimization. For instance, don’t hesitate to execute a function multiple times. It won’t cost more resources. Then, to have a data model suitable to the application, it is best to work on an actual model instead of just using the JSON returned by backend services.
-
 
 # Application structure
 
@@ -40,22 +38,19 @@ Then, subfolders are organized by type (controllers, services, etc.) To simplify
 
 For instance:
 
-- front/ 
+- front/
  - front.js
- - profiles/ 
+ - profiles/
      - profiles.js
      - profiles-controller.js
      - profiles-service.js
      - profiles-directive.js
- - repositories/ 
+ - repositories/
      - repositories.js
-
-
 
 # Routes
 
 To better manage routes, Thierry advises to create one routes declaration file per module. To get a certain route, use: **$route.current**
-
 
 # Controllers
 
@@ -71,19 +66,16 @@ We can create controllers on repeated scopes:
 </ul><br></br>
 ```
 
-
 # Services
 
 - Services contain the business logic.
 - Functionality is encapsulated in a service. The entire functionality needs to reside in the service. That means: no business logic in templates and controllers.
 
-
-
 For instance:
 
-- Bad:  
+- Bad:
 `ng-class="{alert: quantity(row) >= 100}"`
-- OK:  
+- OK:
 `ng-class="{alert: orderSrv.isAlert(row)}"`
 
 - Services can save data and process it.
@@ -94,14 +86,10 @@ For instance:
 - A service for server logging
 - A notification service
 
-
-
-
 # Directives
 
-Use directives to create your own elements or to personalize HTML elements.  
+Use directives to create your own elements or to personalize HTML elements.
  Try to leverage HTML instead of replacing it (like in JSF). For instance, you can add a directive to an existing HTML element. It personalized the HTML element. Then, DOM manipulation is rather easy.
-
 
 # Conclusion
 

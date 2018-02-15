@@ -18,9 +18,7 @@ By Jeannine Tondreau and Leigha Wilson.
 
 <span style="font-weight: 400">We recently had the opportunity to attend WomenETC’s fourth annual conference. The focus of the conference this year, similar to the past few years, was to teach technology professionals to learn, network, and collaborate on issues facing women in technology. This year’s format and location of the conference has improved greatly. Instead of having the conference separated into three sections, Education, Career, and Technology, they kept all attendees in the same room. They allowed everyone to hear from the same speakers. Another positive change was the move from the Convention Center to the Science Museum of Virginia,  as it delivered the message that this conference is all about science!</span>
 
-
-## 
-
+##
 
 ## **SUMMARY**
 
@@ -30,12 +28,7 @@ By Jeannine Tondreau and Leigha Wilson.
 - [POORNIMA VIJAYASHANKER](#poornima)
 - [MEG WHITMAN](#meg)
 
- 
-
 - - - - - -
-
- 
-
 
 ## **COURTNEY FERRELL**
 
@@ -49,9 +42,6 @@ By Jeannine Tondreau and Leigha Wilson.
 
 <span style="font-weight: 400">She emphasized that “engaging the spirit of women” and “awakening their creative spirit” was what this conference, and she herself, wanted. She did just that every time she got on stage. </span>
 
- 
-
-
 ## **LENA TRUDEAU**
 
 <span style="font-weight: 400">The first speaker we got to hear from was Lena Trudeau, the Practice Manager for Global Expansion at Amazon, in the Worldwide Public Sector for Amazon Web Services. She had a lot of good advice for women who are in the technology space but also for women in general. She wanted to make sure that women  take risks and do things that are hard and stretch you in your career. Lena also explained that failure is also an important part of taking risks, and is important because through failure you can learn and grow; But avoid making the same mistake twice! She also encouraged the audience to do something meaningful that will make an impact. </span>
@@ -61,9 +51,6 @@ By Jeannine Tondreau and Leigha Wilson.
 <span style="font-weight: 400"> Despite not coming from a technical background, she held her own among experts in the field and spoke with ease on technical points. During the question and answer portion of her talk, she was asked how she was able to do this. Lena said that she was able to understand a lot about technology by always asking her engineers questions. She also read often about new technologies and got training when it was available to her. She made sure to talk to customers about their technologies and specifically how they are using it to better communicate with them.</span>
 
 <span style="font-weight: 400">After giving us plenty of sound advice, Lena went through some of the new things that Amazon Web Services are working on. Amazon Web Service Educate is a service that will solve the problem that there is not a lot of curriculum out there for colleges on cloud technology. AWS Educate seeks to have curriculum available, so that professors can use it to teach their students. Currently, they give free credits to professors and students. Amazon is also working to maintain real data sets for education and collaboration. Amazon now has a geneticist on staff and a large amount of genome data for them to work with, but genome data is incredibly personal, and this dataset is locked down to only a select few. However, there are other datasets available for general use which would allow individuals learning Big Data to work with real data versus using dummy data.</span>
-
- 
-
 
 ## **PHAEDRA BOINODIRIS**
 
@@ -86,9 +73,6 @@ By Jeannine Tondreau and Leigha Wilson.
 
 <span style="font-weight: 400">She referenced the game Fold-It. The company attempted to include logos on their site in order to get sponsors. With the addition of these logos, their users greatly declined. People were playing the game solely for the fun of helping cure diseases. Once companies were involved, they stopped playing.</span>
 
- 
-
-
 ## **POORNIMA VIJAYASHANKER**
 
 <span style="font-weight: 400">Having made the Mint.com app a big part of my financial stability, Poornima Vijayashanker was one of the speakers I was most excited to hear from, and she definitely did not disappoint. She gave excellent advice on a wide range of topics, walking us through a few steps for public speaking given in one of her soon-to-be-released books: Present! A Techie’s Guide to Engaging an Audience.</span>
@@ -102,9 +86,6 @@ By Jeannine Tondreau and Leigha Wilson.
 <span style="font-weight: 400">Poornima’s example in this case was HipCamp, a site created for travelers to use and easily find somewhere to camp. It started because some campers were frustrated with reservation sites for campgrounds. All that’s needed with an idea is some need for a group of people.</span>
 
 <span style="font-weight: 400">When developing something, gain some first hand experience. Poornima shared a story about her developers and how they build an app called BizeeBee. This is a member user management site. It was built for a Yoga studio originally. In order to have her developers better understand the needs for this app, she had her developers go to the gym and sit through some Yoga sessions. All they did was sit and watch and listen. Their eyes were opened! They came back (hours later) with ideas and stories from their time spent listening and watching, and the app is that much better for it.</span>
-
- 
-
 
 ## **MEG WHITMAN**
 

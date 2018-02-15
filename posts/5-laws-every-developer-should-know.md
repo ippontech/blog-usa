@@ -20,11 +20,11 @@ The idea captured in this law is to always create a defensive design for the cri
 This law is easily translated to the software engineering field.
 When you expose the software to the end-users, they will find creative ways to input something you had not planned and break the system. So you need to make your software is robust enough to detect and alert for unexpected behavior.
 
-When you run the software on a machine, anything can break - from the disks supporting the OS to the data center’s electrical supply. So you need to make sure you have designed for failures at all levels of your architecture. 
+When you run the software on a machine, anything can break - from the disks supporting the OS to the data center’s electrical supply. So you need to make sure you have designed for failures at all levels of your architecture.
 
 I have had the chance to meet Murphy’s law several times already.
 For example, I did not think using the default value “null” to represent null Strings in the batch framework I was using was harmful until someone actually named “Null” passed a trade order and broke our report chain for several hours…
-Or, on another project, everything seemed ready to deploy the production environment until Azure had an infrastructure incident which took down the server we used to run the automation scripts. 
+Or, on another project, everything seemed ready to deploy the production environment until Azure had an infrastructure incident which took down the server we used to run the automation scripts.
 These real-world lessons reminded me the hard way that if anything can go wrong, it will.
 
 So, always keep Murphy in mind and design robust software.
@@ -56,15 +56,12 @@ And, like with every other performance problem, you should always *measure first
 Ok, I admit this quote from one of Dan North’s talks - [Decisions, Decisions](https://www.youtube.com/watch?v=EauykEv_2iA) - is not (yet!) recognized as a law.
 But this quote has had such an impact on the way I approach all my decisions I thought I should include it here.
 
-
-In the day to day life of a developer, we make a ton of decisions - whether big or small - every day. From naming a variable to defining the architecture of a platform, through automating (or not) tasks. 
-
+In the day to day life of a developer, we make a ton of decisions - whether big or small - every day. From naming a variable to defining the architecture of a platform, through automating (or not) tasks.
 
 This quote emphasizes that whatever choice you are making, you are always giving up on something, one or more options.
 But that’s not the most important.
 The most important is to consciously make a decision and being aware of the other options and why you did not choose them. You should always thrive to make a decision by weighing the pros and cons based on what you know at that moment.
 But it should also be fine to discover later that a decision you took was wrong if you new information comes to you after. The critical thing is to remember why you took the decision, reevaluate the new options and make a new conscious choice.
-
 
 Again.
 > "Every decision is a trade off."
@@ -81,17 +78,14 @@ So make choices and raise your awareness of your options.
 In the 60s, an engineer named Melvin Conway noticed that how organizations are structured influences the design of the systems they produce.
 He described this idea in a paper and the name stuck as “[Conway’s law](https://en.wikipedia.org/wiki/Conway%27s_law)”.
 
-
 This law translates well into the software development world and is even reflected at the code level. The way teams are organized to deliver software components will directly influence the design of each component.
-For example, a collocated team of developers will produce a monolithic application with coupled components. On the other hand, multiple distributed teams will produce multiple separated (micro) services with a clearer separation of concern for each. 
+For example, a collocated team of developers will produce a monolithic application with coupled components. On the other hand, multiple distributed teams will produce multiple separated (micro) services with a clearer separation of concern for each.
 Neither design is good or bad, but they have both been influenced by the way the team(s) communicate.
 Open source projects, with multiple individuals around the globe, are often great examples of modularity and reusable libraries.
-
 
 Nowadays, the current trend is to break monolithic applications into micro-services. This is awesome and it will enable more velocity to deliver projects faster into production. But you should always keep in mind the Conway’s law and work as much on the organization of your company as on the technology choices.
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/08/PreferFunctionalStaffOrganization.png)
-
 
 # Law of triviality (Parkinson's law of triviality)
 > “Members of an organization give disproportionate weight to trivial issues.”
@@ -99,19 +93,16 @@ Nowadays, the current trend is to break monolithic applications into micro-servi
 The argument of [this law](https://en.wikipedia.org/wiki/Law_of_triviality) is that the time spent on any item of a meeting agenda is in inverse proportion to the sum of money involved.
 Indeed, people have a tendency to give more attention to a subject they fully understand and have an opinion about than a complex problem.
 
-
 Parkinson gives the example of a meeting during which a committee is reviewing two decisions: building a nuclear reactor for the company and building a bikeshed for the employees. Constructing a reactor is a vast and complicated task and people cannot grasp it entirely. Instead, they fully rely on their processes and system experts and quickly accept the project.
 On the other hand, building a bikeshed is something that an average person can do and everyone can have an opinion on the color. In fact, every committee member will make sure to voice his opinion and the bikeshed decision will proportionally take way more time than the reactor’s.
 
 This law has been popularized in the software world - and named after this story as the [bike-shed effect](https://en.wiktionary.org/wiki/bikeshedding).
-
 
 Developers, for example, can spend more time discussing the correct indentation or naming of a function than actually discussing the responsibility of a class or the architecture of an application. That’s because, again, everyone can picture the effect of a few characters changes but it takes a bigger cognitive load to project an architecture change.
 
 Another place where you will notice a lot of bikeshed effects are Scrum demos.
 Don’t get me wrong, I love demos and I think that’s a great opportunity to face the users and get feedback on an application.
 But often, the discussion during a Scrum demo will slip to cosmetic questions and specific behaviors instead of looking at the bigger picture. These discussions are also important but you have to be careful to balance these with the most important - and complicated - problems.
-
 
 Once you know the pattern, you will start noticing this behavior in a lot of meetings and people interactions.
 I am not telling you to cut every discussion about “small” problems, but raising your awareness will help you focus on the real problems and be better prepared for these meetings.
@@ -123,7 +114,6 @@ I am not telling you to cut every discussion about “small” problems, but rai
 These 5 laws are only a few examples of old lessons learned in our industry. There are many more to learn and discover when gaining more experience in the software development trenches.
 
 Even if some of them may be seen as common-sense now, I strongly believe that knowing these principles will help you recognize patterns and react to them.
-
 
 __Image sources:__
 

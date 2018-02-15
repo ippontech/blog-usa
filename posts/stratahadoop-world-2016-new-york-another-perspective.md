@@ -10,7 +10,6 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/1
 
 I was lucky enough to attend the Strata Hadoop World conference alongside Alexis Seigneurin, who wrote about his experiences [here](http://www.ippon.tech/blog/stratahadoop-world-2016-in-new-york/). This is my take on the conference.
 
-
 ## Keynotes
 
 Over the course of 2 days there were 20 different keynotes that touched upon a variety of topics. Each keynote talked about a technology or an impact data has on a field. There were fascinating keynotes from the use of data to improve Lasik eye care to determine the best candidates, to public policy that makes sure that the right data can get to the right people, and even venture capital data to examine the different trends that lead to the best investments. There also were keynotes on security and how we can use data to better keep our data secure.

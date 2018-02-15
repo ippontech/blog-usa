@@ -14,22 +14,18 @@ Now that we have been using Hadoop and Map-Reduce procedures for a few years, th
 
 The following matrix takes a side by side look at all three.  Please remember that this is a point-in-time reference from near the publication time of this post and might be slightly dated as you are reading.
 
-![spark storm springxd](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/spark-storm-springxd.png)[![spark storm springxd 2](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/spark-storm-springxd-2.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/spark-storm-springxd-2.png)  
+![spark storm springxd](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/spark-storm-springxd.png)[![spark storm springxd 2](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/spark-storm-springxd-2.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/spark-storm-springxd-2.png)
 *Matrix courtesy of Antoine Hars, Ippon.*
 
 That’s a lot to digest, so what stands out?  Apache Spark is the most active project in the open source community based on GitHub metrics with Storm second most active.  Spark Streaming and Storm is probably the closest comparison to actually make.  Spark Streaming is one component of the project focused on the real-time aspect.  Storm is strictly a real-time computational system and does not have a batch component (definition note:  a Big Data architecture that combines both batch and stream-processing components is known as a “lambda architecture”).  The difference here are that Spark Streaming is actually processing in short interval batches and Storm is computing in real time.  This yields at least two key points:  Spark Streaming will have a latency (reported to be a few seconds) while Storm can achieve a sub-second latency and then that Spark Streaming will guarantee that each event is processed once and only once where Storm’s fault tolerance model guarantees that events are processed at least once.  A nice inherent effect for Spark in this way is that code can theoretically be re-used for streaming and for batch.
 
 Here are two similar architecture diagrams that I came up with while doing some proof of concept work for each:
 
-[![spark-architecture](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/spark-architecture.jpg)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/spark-architecture.jpg)  
+[![spark-architecture](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/spark-architecture.jpg)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/spark-architecture.jpg)
 *Architecture diagram 1.  Apache Spark with Kafka, Cassandra and ElasticSearch.  Ippon USA.*
 
- 
-
-[![storm-architecture](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/storm-architecture.jpg)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/storm-architecture.jpg)  
+[![storm-architecture](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/storm-architecture.jpg)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2014/10/storm-architecture.jpg)
 *Architecture diagram 2.  Apache Storm with Kafka, Redis, NodeJS.  Ippon USA.*
-
- 
 
 One important note here is that the two diagrams could be made to look even more similar but we may do some proof of concept with the data connectors as well.  Apache Kafka is constant between the two because of the available data ingestion methods available, we like Kafka above others.
 

@@ -31,7 +31,7 @@ Typically, at the end of this process you end up with a build artifact, be it an
 This could be new front-end code or a new version of a microservice. You can use the features of your continuous integration tool to strategically deploy parts of your application so that it’s in front of people who are responsible for quality sooner.
 # Let’s do this!
 ## Install JHipster and create an application
-This is a multi-step process but once you’ve completed this initial installation only upgrades of the generator are needed (which the JHipster generator will inform you how to do). Follow the instructions at https://jhipster.github.io/installation. Because JHipster is an opinionated framework I will be opinionated and recommend you try the “Local installation with Yarn” instructions. 
+This is a multi-step process but once you’ve completed this initial installation only upgrades of the generator are needed (which the JHipster generator will inform you how to do). Follow the instructions at https://jhipster.github.io/installation. Because JHipster is an opinionated framework I will be opinionated and recommend you try the “Local installation with Yarn” instructions.
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/Screen-Shot-2017-04-03-at-2.02.17-PM.png)
 
 When you’re done with that, go ahead and create an application. That page lists the instructions at the top and lists the detailed questions the generator asks along with detailed instructions below it. Go ahead and create a monolithic app for the purposes of this tutorial.
@@ -41,7 +41,7 @@ You will have to create a Jenkinsfile as a part of this.  Have no fear; JHipster
 
 For detailed information about the questions asked and the responses please visit https://jhipster.github.io/setting-up-ci/.
 
-This creates an initial [Jenkinsfile](https://jenkins.io/doc/book/pipeline/jenkinsfile/) which describes your [Jenkins Pipeline](https://jenkins.io/doc/book/pipeline/).  This is what is known as “pipeline-as-code”. You get the benefits of using a version control system to track the steps that you use to describe your build. It makes the build process a repeatable part of your workflow as opposed to a specific script run in a black box in some other part of the company or within an opaque application. 
+This creates an initial [Jenkinsfile](https://jenkins.io/doc/book/pipeline/jenkinsfile/) which describes your [Jenkins Pipeline](https://jenkins.io/doc/book/pipeline/).  This is what is known as “pipeline-as-code”. You get the benefits of using a version control system to track the steps that you use to describe your build. It makes the build process a repeatable part of your workflow as opposed to a specific script run in a black box in some other part of the company or within an opaque application.
 
 ## Download and start SonarQube
 You can download one of the most popular code quality tools, SonarQube, from here: https://www.sonarqube.org/downloads/. Unzip the ZIP file to wherever you’d like and access the subdirectory under the “bin” folder that corresponds to your operating system. For Mac OS or Linux operating systems make sure the sonar.sh file is executable and go ahead and run it: `./sonar.sh start`. You can then go to http://localhost:9000 and log in with the default credentials.
@@ -51,7 +51,7 @@ You can find the latest version of Jenkins at http://mirrors.jenkins.io/war-stab
 You need to make sure Jenkins can use SonarQube.  To do this go to the top Jenkins menu ► Manage Jenkins ► Configure System.  Go to the section called "SonarQube servers" and click on the "Add SonarQube" button and fill out the information in the field as below. You only need to give it a name (this can be anything and we need to refer to it later in the Jenkinsfile) and the server address.  You can use http://localhost:9000 if you installed SonarQube locally.  For the version, select the appropriate version:
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/Screen-Shot-2017-04-03-at-4.37.52-PM.png)
 ## Create a Git repo and push to GitHub
-Assuming you’re using GitHub, GitLab, or Bitbucket, if you have your Jenkinsfile checked in at the root of your project, Jenkins will pull that down and use that to execute stages of the pipeline. 
+Assuming you’re using GitHub, GitLab, or Bitbucket, if you have your Jenkinsfile checked in at the root of your project, Jenkins will pull that down and use that to execute stages of the pipeline.
 
 If you created a JHipster project in the step above and used the CI sub-generator, you are ready to go. You still need to create a repository and push it to a remote repository. You can follow the instructions here to do that: https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/. This is largely the same for the other hosted Git providers.
 ## Create a new pipeline in Jenkins
@@ -118,10 +118,10 @@ That's a link to the SonarQube report.  Click on that and you can see the report
 ## Publishing to an artifact repository
 If you have a Nexus Repository at your organization, you can install the [Nexus Jenkins Plugin](https://support.sonatype.com/hc/en-us/articles/227256688). This enables you to create a pipeline stage to publish the artifact created in the packaging stage to your repository for use in deployment. Other tools in your continuous deployment toolchain can now pick up the WAR that was stored in Nexus and deploy it however you please.
 ## Multibranch pipeline
-This feature of Jenkins allows you to run a pipeline for each branch in your source code repository that has a Jenkinsfile in each branch. Check out this link for more information: https://jenkins.io/doc/book/pipeline/multibranch/. 
+This feature of Jenkins allows you to run a pipeline for each branch in your source code repository that has a Jenkinsfile in each branch. Check out this link for more information: https://jenkins.io/doc/book/pipeline/multibranch/.
 ## Quality gates
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/Screen-Shot-2017-04-03-at-1.56.46-PM.png)
-An important feature of SonarQube is the ability to fail a build if it doesn’t meet a given quality threshold. This is important if you have contractual obligations or if you just want to run a well-managed engineering organization. There are many checks you can use (e.g. unit test code coverage or classes covered by unit tests). See the following link on how to customize your quality profiles in SonarQube: https://docs.sonarqube.org/display/SONAR/Quality+Profiles. 
+An important feature of SonarQube is the ability to fail a build if it doesn’t meet a given quality threshold. This is important if you have contractual obligations or if you just want to run a well-managed engineering organization. There are many checks you can use (e.g. unit test code coverage or classes covered by unit tests). See the following link on how to customize your quality profiles in SonarQube: https://docs.sonarqube.org/display/SONAR/Quality+Profiles.
 ## Running everything in Docker
 I was experimenting with this and it works very well. I wanted to make sure that the reader of this blog is able to execute this tutorial with as little complexity as possible. Docker adds more complexity but the payoffs are numerous. If you would like to try to set this up on your own, check out the Docker Hub links to the tools mentioned above:
 

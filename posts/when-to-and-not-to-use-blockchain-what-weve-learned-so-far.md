@@ -68,7 +68,6 @@ Here are some examples of transactions.
 * With physical items, you might track transactions like item received, item shipped, item checked out, or item location
 * With some types of documents (such as estate plans or certain types of purchase agreements), you might write smart contracts into the blockchain to trigger payments or other to happen at certain points or under certain conditions.
 
-
 So, to summarize:
 
 <table style="border: 1px solid black">
@@ -96,7 +95,6 @@ So, to summarize:
 </table>
 
 Since we're finding it useful to think through when to use blockchain as well as when it might not be the best approach, we thought we'd offer this thinking up to the community and see if anyone else finds this useful as well. Please let us know your thoughts or reach out to us on LinkedIn to share thoughts, comments, or additions.
-
 
 # References & Sources
 

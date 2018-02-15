@@ -56,7 +56,6 @@ networks:
 
 This is the minimal configuration allowing you to set up a *Mysql* database with an ‘*owncloud*’ table and the *Owncloud* application.
 
-
 Currently, you can access the database with:
 ```
 $ mysql -h 127.0.0.1 -u ippon -p
@@ -128,7 +127,6 @@ You are now able to bootstrap a simple *Docker* architecture with *Docker Compos
 * https://hub.docker.com/r/jwilder/nginx-proxy/
 * https://hub.docker.com/_/mysql/
 * https://hub.docker.com/_/owncloud/
-
 
 <u>**Bonus**: HTTPS with *Let’s Encrypt*</u>
 

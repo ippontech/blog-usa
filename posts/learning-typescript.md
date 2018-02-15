@@ -36,11 +36,7 @@ Following the release of Angular 2 Beta, like many other front-end developers cu
 4. <span style="font-weight: 400;">It is Open Source and is supported by Microsoft. TypeScript has seen great activity.</span>
 5. <span style="font-weight: 400;">Angular 2</span><span style="font-weight: 400;">, as well as some other great projects such as </span>[<span style="font-weight: 400;">RxJs</span>](https://github.com/Reactive-Extensions/RxJS)<span style="font-weight: 400;">, is coded using TypeScript.</span>
 
- 
-
 <span style="font-weight: 400;">So using TypeScript is a good idea. I’ll have to dive more into </span><span style="font-weight: 400;">Angular 2</span><span style="font-weight: 400;"> to really understand all the questions I still have. I’ll plan to cover answers to those questions in **future posts**, <span style="text-decoration: underline;">coming soon</span>!</span>
-
- 
 
 *<span style="font-weight: 400;">TypeScript Resources:</span>*
 

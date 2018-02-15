@@ -12,9 +12,9 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/1
 
 ### A brief introduction
 
-[Angular CLI](https://cli.angular.io/) is a command line tool used to develop and deploy an Angular2 front-end. Recently, I've been using Angular CLI to develop an enterprise front-end, and I have to say that I am impressed.  It's a powerful tool, and due to it's opinionated approach, it's simple to use.  
+[Angular CLI](https://cli.angular.io/) is a command line tool used to develop and deploy an Angular2 front-end. Recently, I've been using Angular CLI to develop an enterprise front-end, and I have to say that I am impressed.  It's a powerful tool, and due to it's opinionated approach, it's simple to use.
 
-What makes the CLI a worthwhile tool is two things; first, it conveniently packs all the necessary commands for building, running, testing, and linting code into one place.  Second, the CLI generates a highly scalable front-end infrastructure by bringing together a synergistic suite of tech that includes:  
+What makes the CLI a worthwhile tool is two things; first, it conveniently packs all the necessary commands for building, running, testing, and linting code into one place.  Second, the CLI generates a highly scalable front-end infrastructure by bringing together a synergistic suite of tech that includes:
 
 * [Angular2](https://angular.io/) (the basis for life)
 * [Typescript](https://www.typescriptlang.org/) (because NG2)
@@ -23,9 +23,9 @@ What makes the CLI a worthwhile tool is two things; first, it conveniently packs
 * [Protractor](http://www.protractortest.org/) (even simpler e2e testing)
 * [Istanbul](https://istanbul.js.org/) (sharp code coverage reporting)
 * [TSLint](https://palantir.github.io/tslint/) (clean and consistent code)
-* And many other integrations... 
+* And many other integrations...
 
-For better or for worse, you won't find *Gulp* or *Bower* packed in by default, and I think it's a good thing.  The code feels more streamlined by cutting out Bower in lieu of NPM, and the CLI acts as a basic task runner so Gulp isn't necessary either.  
+For better or for worse, you won't find *Gulp* or *Bower* packed in by default, and I think it's a good thing.  The code feels more streamlined by cutting out Bower in lieu of NPM, and the CLI acts as a basic task runner so Gulp isn't necessary either.
 
 ### Installing the CLI
 
@@ -33,7 +33,7 @@ Angular CLI is primarily used as a local development tool.  To get started, open
 
 `npm install -g angular-cli`
 
-It might take a few minutes to install, so be patient.  Also, note that the `-g` flag is important as it signifies to install and make the CLI available globally.  After the install process, the CLI is made available via the `ng` command.  
+It might take a few minutes to install, so be patient.  Also, note that the `-g` flag is important as it signifies to install and make the CLI available globally.  After the install process, the CLI is made available via the `ng` command.
 
 ### Create an Angular2 project
 
@@ -55,7 +55,7 @@ You may have noticed that the `serve` command is still active in your terminal. 
 
 ### Build, package, and deploy
 
-Eventually, the front-end will need to be deployed to a remote web server, and to do so, the application needs built and packaged.  Fortunately, the CLI's **build** process is painless.  Simply run `ng build` and the CLI will utilize *Webpack* to output the generated front-end to the project's `dist` folder.  
+Eventually, the front-end will need to be deployed to a remote web server, and to do so, the application needs built and packaged.  Fortunately, the CLI's **build** process is painless.  Simply run `ng build` and the CLI will utilize *Webpack* to output the generated front-end to the project's `dist` folder.
 
 The next step is to **package** the newly generated resources inside the `dist` folder to a tarball archive:
 

@@ -15,11 +15,9 @@ SBT is easy to get started with, offers a wide range of features and is extremel
 
 In this post, we will introduce SBT and the key-value model behind it. We will also see how to use it for dependency management.
 
-
 ## Setup
 
 <span style="font-weight: 400;">To install SBT locally, just follow the instructions on </span>[<span style="font-weight: 400;">this page</span>](http://www.scala-sbt.org/release/tutorial/Setup.html)<span style="font-weight: 400;">.</span>
-
 
 ## Directory layout
 
@@ -54,8 +52,7 @@ Hello.
 
 <span style="font-weight: 400;">For the directory layout, SBT follows Maven’s [standard directory layout](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html):</span>
 
-<table style="width: 300px; border-collapse: collapse;border:1px solid #000000;"><tbody><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">src</td><td style="border:1px solid #000000;"></td></tr><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">&nbsp;&nbsp;main</td><td style="border:1px solid #000000;"></td></tr><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">&nbsp;&nbsp;java</td><td style="text-align: left;border:1px solid #000000;">Java sources</td></tr><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">&nbsp;&nbsp;resources</td><td style="text-align: left;border:1px solid #000000;">Application resources</td></tr><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">&nbsp;&nbsp;scala</td><td style="text-align: left;border:1px solid #000000;">Scala sources</td></tr><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">test</td><td style="border:1px solid #000000;"></td></tr><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">&nbsp;&nbsp;java</td><td style="text-align: left;border:1px solid #000000;">Java test sources</td></tr><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">&nbsp;&nbsp;resources</td><td style="text-align: left;border:1px solid #000000;">Test resources</td></tr><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">&nbsp;&nbsp;test</td><td style="text-align: left;border:1px solid #000000;">Scala test sources</td></tr></tbody></table> 
-
+<table style="width: 300px; border-collapse: collapse;border:1px solid #000000;"><tbody><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">src</td><td style="border:1px solid #000000;"></td></tr><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">&nbsp;&nbsp;main</td><td style="border:1px solid #000000;"></td></tr><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">&nbsp;&nbsp;java</td><td style="text-align: left;border:1px solid #000000;">Java sources</td></tr><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">&nbsp;&nbsp;resources</td><td style="text-align: left;border:1px solid #000000;">Application resources</td></tr><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">&nbsp;&nbsp;scala</td><td style="text-align: left;border:1px solid #000000;">Scala sources</td></tr><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">test</td><td style="border:1px solid #000000;"></td></tr><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">&nbsp;&nbsp;java</td><td style="text-align: left;border:1px solid #000000;">Java test sources</td></tr><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">&nbsp;&nbsp;resources</td><td style="text-align: left;border:1px solid #000000;">Test resources</td></tr><tr style="border:1px solid #000000;"><td style="text-align: left;border:1px solid #000000;">&nbsp;&nbsp;test</td><td style="text-align: left;border:1px solid #000000;">Scala test sources</td></tr></tbody></table>
 
 ## Usage
 
@@ -79,7 +76,6 @@ $ sbt clean compile "myTaksWithArguments arg1 arg2 arg3"
 ```language-bash
 $ sbt mySubProject/clean
 ```
-
 
 ### Interactive mode tour
 
@@ -124,9 +120,7 @@ History commands:
 >
 ```
 
-
 <span style="font-weight: 400;">Get a list of tasks available from you SBT configuration file:</span>
-
 
 ```language-bash
 
@@ -159,9 +153,6 @@ More tasks may be viewed by increasing verbosity.  See 'help tasks'.
 [success] Total time: 5 s, completed 28 oct. 2015 17:16:48
 1. Waiting for source changes... (press enter to interrupt)
 ```
-
-
-
 
 ## How does a SBT build work?
 
@@ -202,7 +193,6 @@ Map() -> Setting 1 -> Map("name" -> "Hello") -> Setting 2 -> Map("name" -> "Hell
 - **Configuration**<span style="font-weight: 400;">: The value is different depending on if you are using a </span>*<span style="font-weight: 400;">test</span>*<span style="font-weight: 400;"> or </span>*<span style="font-weight: 400;">compilation</span>*<span style="font-weight: 400;"> configuration.</span>
 - **Task**<span style="font-weight: 400;">: The value is different depending on the task where it is declared</span>
 
-
 ## How to describe a build?
 
 <span style="font-weight: 400;">There are 3 ways to describe a SBT build: </span>
@@ -223,21 +213,18 @@ name := "My first project"
 version := "1.0-SNAPSHOT"
 organization := "usa.ippon.blog"
 ```
-   
+
 ==MultipleProjects.sbt==
 ```
 lazy val root = (project in file(".")).
   settings(
     name := "My first project",
-    version := "1.0-SNAPSHOT", 
+    version := "1.0-SNAPSHOT",
     organization := "usa.ippon.blog"
   )
 ```
 
 <span style="font-weight: 400;">A SBT build definition is just a list of Setting definitions processed to transform the </span>`Map`<span style="font-weight: 400;">. When you work with a simple project, without extending any feature, Keys are `SettingKey[T]` by default.</span>
-
- 
-
 
 ## Dependency management
 
@@ -259,7 +246,7 @@ val derby: ModuleID = "org.apache.derby" % "derby" % "10.4.1.3" % "test"
 lazy val root = (project in file(".")).
   settings(
     name := "My first project",
-    version := "1.0-SNAPSHOT", 
+    version := "1.0-SNAPSHOT",
     organization := "usa.ippon.blog",
     libraryDependencies += derby,   // Add only one dependency
     libraryDependencies ++= Seq(scalaTest, hibernate)  // Add multiple dependencies
@@ -293,14 +280,13 @@ With a 2.11 Scala version declared, it will automatically translate like the fol
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 ```
 
-
 ## Scala / SBT options
 
 Compiling for multiple scala versions:
 
 ```
 scalaVersion := "2.11.4"  // Scala version for the project
-crossScalaVersions := Seq( "2.10.4", "2.11.0") 
+crossScalaVersions := Seq( "2.10.4", "2.11.0")
 // The project will be built for each declared version if you precede a task with “+”
 > + compile
 […]
@@ -309,12 +295,10 @@ crossScalaVersions := Seq( "2.10.4", "2.11.0")
 
 <span style="font-weight: 400;">Another very useful option to deal with different SBT versions installed in each developer local environment is the possibility to specify the SBT version to use. For this, you need to create a  build.properties file in the project directory:</span>
 
-
 ```
 // No matter the SBT version installed, 0.13.9 will be downloaded and used for the build
 sbt.version=0.13.9
 ```
-
 
 ## Conclusion
 
