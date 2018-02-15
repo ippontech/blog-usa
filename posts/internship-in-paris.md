@@ -11,7 +11,7 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/0
 
 I was absolutely elated when Ippon asked if I would like to do my summer internship at the Paris office.  I had spent a semester in the City of Lights while in college, and it held a special place in my heart.  I wasn’t sure what to expect working in Paris for the summer.  I knew it would be different than working at the Richmond office, but I wasn’t sure what was in store. 
 
-##A TYPICAL DAY
+## A TYPICAL DAY
 
 I wake up, get dressed and head to work around 8:45am.  It is about a 30 minute commute to work each day.  I usually stop by the local boulangerie and grab a pain au chocolat before I hop on the métro to work.
 
@@ -29,7 +29,7 @@ My apartment is located in the 11ème arrondissement of Paris.  It is in a reall
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/07/2017-06-17-14.42.46.jpg)
 
-##CHALLENGES
+## CHALLENGES
 
 Working in Paris is much more of a challenge than working in Richmond.  Everyone is super friendly, but the language skills required for working in an office environment are completely different than simply taking French classes.  The first few weeks were tough, when I was trying to remember French conjugations and how to ask for *“the check”* at a restaurant.
 
@@ -39,6 +39,6 @@ I am working with a team of about 8 developers to create a website for a large u
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/07/2017-07-22-15.26.11.jpg)
 
-##OVERVIEW
+## OVERVIEW
 
 Working in Paris has been a great experience.  This summer has been more than just a summer abroad; I was able to learn and experience a new part of French culture that you can only learn by working in a French office.  Customs and business etiquette vary from culture to culture, and it was very interesting to see the differences between working in the US and working in France.  I will be sad to leave, but very grateful for the experience to work in Paris for the summer and for everyone who has worked with me to make this experience possible.  This is just one of the perks of working for a global company such as Ippon!

@@ -35,7 +35,7 @@ Now, using the `docker system prune` command, you can delete all unused objects.
 
 And voilà, a clean machine!
 
-###Introduction of the “stacks” notion
+### Introduction of the “stacks” notion
 When you need to start multiple containers with a list of parameters often several miles long, you use Docker Compose. To launch containers on a cluster of machines, you use Docker Swarm, but the long list of parameters remained.
 
 With this latest version, you can now use your docker-compose.yml files to deploy your containers on a Swarm cluster. This is the new power of Stack!

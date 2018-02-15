@@ -80,12 +80,12 @@ Simply build the request and list the fields that you want back in the response:
 ```
 In this request, the client can choose whether or not they want claimReasons to be in the response.
 
-###Versioning
+### Versioning
 Versioning APIs is hard. It is so hard, that the best approach may be to **simply avoid it**. That's one advantage of using GraphQL. 
 
 When there is limited control on the data being returned from an API endpoint, any change can break existing clients. With GraphQL, logic about what data to retrieve lives in the client, so it is much easier to evolve APIs without introducing a new version.
 
-###Arguments and Other Features
+### Arguments and Other Features
 GraphQL is littered with a bunch of really helpful features that makes the query language even more powerful. Learn about all of them in the [docs](http://graphql.org/learn/).
 
 In REST, arguments can be sent through as query string parameters or as URL segments. Such as:
@@ -154,7 +154,7 @@ query PolicyQuery($policyHolder: String, $withClaimReasons: Boolean!) {
 ```
 Again, this feature allows us to avoid doing manual string interpolation to build dynamic queries ourselves.
 
-###Mutating Data
+### Mutating Data
 To mutate data, use **mutation** methods. 
 ```language-json
 mutation CreateInsurancePolicy($policy: Policy!) {
@@ -167,7 +167,7 @@ mutation CreateInsurancePolicy($policy: Policy!) {
 The `id` and `policyHolder` will return for the newly created policy. It is best practice to only manipulate data explicitly using a mutation method.
 
  
-###Summary
+### Summary
 In summary, GraphQL is great when building APIs because it helps:
 
 - Eliminate multiple URL requests

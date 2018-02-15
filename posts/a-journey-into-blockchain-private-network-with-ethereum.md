@@ -211,7 +211,7 @@ Explore some more…
 * Can you transfer ether from an account on one node to an account on another node?
 * What happens if you transfer ether and no `miner` is running?
 
-#####References
+##### References
 * [Frontier Guide](https://ethereum.gitbooks.io/frontier-guide/content/index.html)
 * https://souptacular.gitbooks.io/ethereum-tutorials-and-tips-by-hudson/content/private-chain.html
 * https://github.com/ethereum/go-ethereum/wiki/Setting-up-private-network-or-local-cluster

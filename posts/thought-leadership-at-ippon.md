@@ -12,7 +12,7 @@ One of the best parts about being an engineer at Ippon is the investment that Ip
 
 Ippon supports this “Thought Leadership” model by providing incentives and time for completing or participating in thought leadership activities. These activities include coding dojos, blog posts, meetup presentations, white papers and conference talks.
 
-###Coding Dojos
+### Coding Dojos
 
 A coding dojo is where all the engineers at Ippon get together for a very fun day of hacking with a new technology. The leader of the dojo is an expert of a topic who directs the events for the day, while everyone else gets their hands dirty trying to build something with their teammates. This is especially fun because it is a working day away from our clients. So get paid to learn something new with no client constraints? Sign me up!
 
@@ -22,7 +22,7 @@ Our last coding dojo we attempted to build a sharing list app using [JHipster](h
 
 Huddled around desks for the JHipster coding dojo.
 
-###Blog Posts
+### Blog Posts
 
 Though we do have the occasional culture article (AHEM), we actually fill our blog with lots of helpful technical tutorials. I personally found this one useful - a three part series on using [Apache Spark, Avro and Kafka](http://www.ipponusa.com/blog/kafka-spark-and-avro-part-1-kafka-101/). Or learn about the latest version of [JHipster which introduces microservices](http://www.ipponusa.com/blog/jhipster-3-0-introducing-microservices/).
 
@@ -32,7 +32,7 @@ Almost all of our employees contribute to the blog. And we actually have a littl
 
  
 
-###Meetup Presentations
+### Meetup Presentations
 
 Bringing it up a notch, Meetup presentations are a surefire way to ensure you know a topic backwards and forwards. Although getting up to speak in front of a crowd isn’t my favorite thing to do, I value the positive pressure to do one every once in awhile. Many of the engineers at Ippon are “swiss-army knives,” able to tackle any problem across many different technologies. However we still have our specialities. Topics of past presentations have included Spring Boot, JHipster, APIs, Cassandra, and other Big Data topics.
 
@@ -42,13 +42,13 @@ Josh, one of Ippon’s best Senior Engineers, giving a presentation at the [Ippo
 
  
 
-###White Papers
+### White Papers
 
 Expertise in the written form, our white papers aid readers by breaking down a complex problem or technology. Ippon provides engineers extra incentives as well as the time to complete these white papers and publish them free to download to the community. Check out our white papers [here](http://www.ipponusa.com/resources/).
 
  
 
-###Conference Talks
+### Conference Talks
 
 Want to go to a conference for free? Give a talk! At Ippon, we strive to extend our expertise internationally by speaking at conferences. Like most other thought leadership activities at Ippon, speaking at a conference is rewarded including the paid time to prepare for your killer performance. Additionally, Ippon sends their engineers to conferences each year which proves to be an awesome experience for learning and networking with smart people in our field.
 

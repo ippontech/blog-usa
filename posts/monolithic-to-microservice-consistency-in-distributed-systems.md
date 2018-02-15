@@ -19,7 +19,7 @@ If you have started to analyze turning a monolithic app into something scalable,
 
 It sounds good at first, but once the tradeoffs start to emerge between data consistency and system availability, even the most adventurous CTO can be found curled up into the proverbial fetal position. That’s too bad because, once a system starts to deadlock, more dramatic compromises have to be made. That compromise often comes down to rethinking the way we view consistency and availability with our data.
 
-##The Absolute Equivocal Importance of Data Consistency
+## The Absolute Equivocal Importance of Data Consistency
 
 Let’s use the example of an e-Commerce store to illustrate the point. We sell fuzzy sweaters online at a variety of store fronts. Since we don’t have a brick and mortar operation, we can technically sell anywhere: our own website, that online auction warehouse that allows POS, a former online-bookseller turned global domination behemoth, etc. However, we keep all 100 of our fuzzy sweaters in one warehouse and tell all our vendors that 100 is what we have available. Well that is great, except we sold 30 sweaters in store A, 30 sweaters in store B, and 35 sweaters in store C… meaning there are just 5 sweaters left. However, stores A and B think there are 70 sweaters in stock, store C thinks there are 65. We can send an inventory update to all three stores to let them know there are only 5 available, but how long will that take? 
 
@@ -27,7 +27,7 @@ If we have to scan the database for all orders and then scan our warehouse table
 
 By refactoring this application into a microservice architecture, we can divide the logic into separate systems, an orders microservice and an inventory microservice, with their own datastores. However, we now have to consider the latency in having the inventory service contact the orders service. Is the orders service sending us back the latest data? What if the orders service is not available when we need it or goes down completely?
 
-##Enter CAP Theory
+## Enter CAP Theory
 
 The problem I am describing here has been analyzed by Computer Scientist Eric Brewer, who developed the [CAP Theorem](https://en.wikipedia.org/wiki/CAP_theorem) to discuss the problem we are dealing with. CAP is designed to reflect the tradeoff between:
 
@@ -49,7 +49,7 @@ Forsaking partition tolerance, we are basically returning to our monolithic arch
 
 Since the point of this post is to talk about refactoring cloud-based monolithic systems into cloud-based microservices, sacrificing our ability to partition the system is not an option. That means that, were we to pick one other aspect to maintain according to our 2-out-of-3 CAP Theorem idea, we have to sacrifice data consistency or system availability. However, it’s kind of silly to say we should only have one or the other so, as is the case in any discipline of engineering, even computing, we have to consider the trade-offs (I should also mention that when working with a poorly designed system, we are not guaranteed to even have two-out-of-three available). So let’s consider how we can make a system that is highly available but lacking in data consistency or, rigidly has to enforce consistency at the expense of being able to provide this data to clients in real-time.
 
-##Balancing Consistency with Availability
+## Balancing Consistency with Availability
 
 Let’s return to our original example of the e-commerce store. Remember we refactored our monolithic application to have two microservices. One to manage orders from the stores we sell to, the other to manage the inventory of the products we sell. In the old system, our orders and inventory information existed in the same database, so theoretically our inventory module could make adjustments for orders as they were written in real-time. If we separate orders and inventory into their own microservice applications with their own databases, we enter into uncertain territory.
 
@@ -57,7 +57,7 @@ Our inventory needs to be able to get the current state of orders as they come i
 
 When you accept the limits of consistency in an environment you can start the fun part of software development: engineering! With our inventory system we want to protect against selling product that we no longer have so we can detect situations where stock levels are dropping low and only push the last known inventory to the most popular storefront, and 0 to the rest. If this solution is not robust enough, we can start tracking the velocity at which our inventory drops over time and use those numbers to project stock out situations and handle them accordingly. Different items in our warehouse may need to use specific strategies vs others. Implementing these solutions in a monolithic architecture means lots of code in a system that is hard to maintain but works much better in a well-organized microservice environment.
 
-##Balancing Availability with Consistency
+## Balancing Availability with Consistency
 
 From the perspective of our Orders microservice, we might face the opposite problem: Now that we have exclusive read/write access to our database our information is highly consistent, but due to a large volume of requests submitting new orders to our system and a large volume of requests wanting to read the information from these orders, availability of the system could be problematic. 
 
@@ -65,6 +65,6 @@ Let’s say we receive a request for all valid orders that arrived within the la
 
 To balance the needs for highly consistent data with consumers that want to know about it, we might consider a messaging queue service that publishes events every time a new order comes in and every time it is updated. Maybe we employ a restrictive throttling-policy on all read requests on our RESTful API using a leaky bucket algorithm and add a feed-based call to return large amounts of data at once.
 
-##Wrapping Up
+## Wrapping Up
 
 Simply using a microservices architecture will not magically make your application more scalable. In fact, if we don’t consider the tradeoffs and measure the balance between data consistency and service availability, it could be worse. Properly understanding the limitations of a given system and engineering around its bottlenecks is going to be key. Fortunately there are a lot of data structures, libraries, and technologies to assist in this endeavor.

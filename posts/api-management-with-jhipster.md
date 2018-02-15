@@ -9,7 +9,7 @@ title: "API management with JHipster"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/API-Management-with-JHipster-Blog--2-.png
 ---
 
-#Introduction
+# Introduction
 
 API management is a hot topic today with many company acquisitions, like Layer 7 (bought by CA), Apigee (bought by Google), Mashery (bought by Tibco), 3Scale (bought by Red Hat) or Vordel (bought by French company Axway). In the Open Source world, we also have several popular products like [Tyk](https://tyk.io/), [Kong]( https://getkong.org/) or [JHipster](https://jhipster.github.io/), all of which we encounter quite often at Ippon Technologies when working with our various clients.
 
@@ -22,7 +22,7 @@ Those products are particularly helpful when working with microservice architect
 
 As the lead developer of JHipster and the one who coded a big part of the API management solution in JHipster, I wanted to write this blog post to highlight what JHipster provides, as this is not clear to many people.
 
-#What is JHipster doing in the API management world?
+# What is JHipster doing in the API management world?
 
 As a complete development stack, we started developing some API management code in JHipster in 2015, as we needed this for several client projects.
 
@@ -35,7 +35,7 @@ In the end, there are two ways to use JHipster for API management:
 - Only for development, as it’s much easier (and cheaper!) to use than a full-blown, proprietary enterprise solution
 - For development and production, as it provides a powerful (and free!) alternative to enterprise solutions
 
-#Is JHipster a popular API management solution?
+# Is JHipster a popular API management solution?
 
 Indeed, JHipster is never listed as an API management solution, and that’s why this blog post needed to be written.
 
@@ -48,9 +48,9 @@ Those numbers, as well as contacts we have from companies using JHipster, show t
 
 And of course, JHipster will never be present in the Gartner magic quadrant, as we don’t pay to get listed somewhere. :-)
 
-#What does JHipster provide?
+# What does JHipster provide?
 
-##A gateway based on Netflix Zuul
+## A gateway based on Netflix Zuul
 
 The JHipster Gateway is based on [Netflix Zuul]( https://github.com/Netflix/zuul), which is highly performant and provides automatic load balancing, failover, and circuit breaking.
 
@@ -62,7 +62,7 @@ It also provides security to the whole architecture, based on JWT (JSON Web Toke
 
 For HTTP request throttling, JHipster will use a Cassandra database and use its distributed counter feature to provide throttling per user, IP address, and/or API. The provided code can of course be modified to suit your company’s specific needs. We have had the opportunity to audit several “enterprise grade” competitors, and each of them used the exact same approach (and usually have their Cassandra nodes wide open to the public, with either no password or a “cassandra/cassandra” combo, allowing us to do that audit!).
 
-##Full, executable documentation using Swagger
+## Full, executable documentation using Swagger
 
 Each JHipster application exposes its API using Swagger UI, and the JHipster gateway aggregates all those APIs.
 
@@ -70,11 +70,11 @@ It is thus very easy to select the service you want to use, browse its complete 
 
 This makes it much easier for front-end developers to use those APIs and is what we commonly use when we develop Angular 2 applications on top of a JHipster architecture.
 
-##Monitoring and reporting
+## Monitoring and reporting
 
 All JHipster applications have the option to send their data to a monitoring server, and it is fully documented at https://jhipster.github.io/monitoring/. Several options are available here, but the most common one is to use the JHipster Console, which is based on the ELK stack, and which provides full monitoring, reporting and alerting to a JHipster microservices architecture.
 
-##Automatic services publishing and rolling upgrades
+## Automatic services publishing and rolling upgrades
 
 Each service published in a JHipster microservices architecture is registered in the “JHipster Registry.” This registry allows gateways and microservices to scale horizontally, as they will automatically find newer instances of the same service.
 
@@ -82,7 +82,7 @@ All competing solutions we have seen ask to have a specific configuration or API
 
 Of course, if automatic publishing is not what you want, and if you need a more customized approach, this can be configured using Spring Boot application properties on your gateway. And as the JHipster Registry also serves as a Spring Boot configuration server, it can push that specific configuration automatically to the gateway, so this can still be done very easily.
 
-#Which technologies does the JHipster Gateway use?
+# Which technologies does the JHipster Gateway use?
 
 Like all good software, JHipster stands on the shoulder of giants.
 
@@ -100,7 +100,7 @@ Aside from this core technology stack, JHipster also:
 - creates its own Zuul filters for request throttling and QoS, and
 - secures everything with its own Spring Security JWT implementation.
 
-#Benefits of using JHipster as an API Gateway
+# Benefits of using JHipster as an API Gateway
 
 The biggest benefit of using JHipster is that it’s completely free and Open Source, even for advanced features like scaling or monitoring:
 
@@ -115,7 +115,7 @@ Apart from the technical arguments, of course the cost of JHipster is a huge dif
 
 This also means you will not have to pay in order to scale your gateway(s), and you won’t be locked in if your business grows suddenly.
 
-#Cons of using JHipster as an API Gateway
+# Cons of using JHipster as an API Gateway
 
 Last but not least, being Open Source means being transparent, and that has always been the spirit of JHipster.
 
@@ -125,7 +125,7 @@ There are indeed several issues when using JHipster:
 - JHipster is tied to Java. While you can use the gateway in front of a non-Java microservice, and there are also ways to use .NET and NodeJS applications with the JHipster Registry, you will lose a lot of JHipster’s benefits and end up with something similar to what competing solutions provide.
 - WebSockets support doesn’t work completely. While the gateway can provide WebSockets support, it cannot serve as a proxy to a microservice that uses WebSockets. This is a limitation of Zuul 1, which will be corrected in the future when Zuul 2 is released. Please also note that JHipster supports Kafka, and that we have many clients who use it to pass messages between the gateway and the microservices, and that this might be a technically superior solution.
 
-#Conclusion
+# Conclusion
 
 We have seen that JHipster provides a widely-used, complete API management solution that can either be used just for development, or both for development and production.
 

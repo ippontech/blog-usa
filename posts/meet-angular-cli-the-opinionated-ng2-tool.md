@@ -10,7 +10,7 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/1
 
 > Angular CLI is in beta at the date of this article's publication.  The author's opinions are still considered accurate but, as with any beta software, expect information to quickly become dated.
 
-###A brief introduction
+### A brief introduction
 
 [Angular CLI](https://cli.angular.io/) is a command line tool used to develop and deploy an Angular2 front-end. Recently, I've been using Angular CLI to develop an enterprise front-end, and I have to say that I am impressed.  It's a powerful tool, and due to it's opinionated approach, it's simple to use.  
 
@@ -27,7 +27,7 @@ What makes the CLI a worthwhile tool is two things; first, it conveniently packs
 
 For better or for worse, you won't find *Gulp* or *Bower* packed in by default, and I think it's a good thing.  The code feels more streamlined by cutting out Bower in lieu of NPM, and the CLI acts as a basic task runner so Gulp isn't necessary either.  
 
-###Installing the CLI
+### Installing the CLI
 
 Angular CLI is primarily used as a local development tool.  To get started, open up a terminal and run the following command:
 
@@ -35,7 +35,7 @@ Angular CLI is primarily used as a local development tool.  To get started, open
 
 It might take a few minutes to install, so be patient.  Also, note that the `-g` flag is important as it signifies to install and make the CLI available globally.  After the install process, the CLI is made available via the `ng` command.  
 
-###Create an Angular2 project
+### Create an Angular2 project
 
 With the CLI installed, creating a new project is straight forward.  Simply run the command: `ng new <projectname>`
 
@@ -53,7 +53,7 @@ That's it!  In one command, a runnable  Angular2 application can be generated, a
 
 You may have noticed that the `serve` command is still active in your terminal. The reason is that the CLI utilizes *browser reload* functionality by watching relevant project files for changes.  When a file changes, *Webpack* does its magic to redeploy the application and automatically refresh the browser.  This functionality has been around for a while via a variety of node packages, but it's still nice that the CLI packs it in by default.
 
-###Build, package, and deploy
+### Build, package, and deploy
 
 Eventually, the front-end will need to be deployed to a remote web server, and to do so, the application needs built and packaged.  Fortunately, the CLI's **build** process is painless.  Simply run `ng build` and the CLI will utilize *Webpack* to output the generated front-end to the project's `dist` folder.  
 

@@ -17,7 +17,7 @@ This example is the usual tutorial list, which includes two modules, list and it
 
 Angular2, in my example and most others, is developed in Typescript. This requires compiling, so while the AngularJS version is straight html and js, the Angular2 project requires the repo’s NPM packages to be installed. You will need to compile the typescript `npm run webpack` in the console to update the Javascript if you make changes to the Typescript.
 
-##Starting from the top.
+## Starting from the top.
 Let's take a look at the index files.  
 ### AngularJS
 ```html
@@ -43,7 +43,7 @@ Let's take a look at the index files.
 </html>
 ```
 In AngularJS, we have `ng-app` attached to the html tag. It could be attached to the body or another tag. `Ng-app` tells Angular what app to use, and `ng-view` is where the Angular app is to be displayed.
-###Angular2
+### Angular2
 ```html
 <html>
   <head>
@@ -61,8 +61,8 @@ In AngularJS, we have `ng-app` attached to the html tag. It could be attached to
 In Angular2, we have the tag `<JSv22></JSv22>` that tells Angular2 where to display the app.  For Angular2, we also have `<base href=“/“>` at top of the `<head>` tag.  This is necessary for routing. 
 
 In AngularJS, I am loading all JS files into index.html, while in Angular2 I’m just loading app.js. This is necessary, as Angular2 Typescript must be compiled to Javascript, so I went ahead and bundled them all together as well. You can bundle JS files into one for AngularJS. 
-##Drilling down into app.module.js and app.module.ts.
-###AngularJS
+## Drilling down into app.module.js and app.module.ts.
+### AngularJS
 ```javascript
 // app.module.js for AngularJS
 'use strict';
@@ -74,7 +74,7 @@ angular.module('JSv2js', [
 ]);
 ```
 In AngularJS, we create our module with `angular.module()`, named `JSv2js`, and list its decencies (ngRoute, SharedServices, genericList, and genericDetail). 
-###Angular2
+### Angular2
 ```typescript
 // app.module.ts for Angular2
 import { NgModule }      from '@angular/core';
@@ -109,9 +109,9 @@ imports: [
         BrowserModule, 
     ],
 ```
-##Routing
+## Routing
 AngularJS uses `app.config.js`, while Angular2 uses a routing module, `app-routing.module.ts`.
-###AngularJS
+### AngularJS
 ```javascript
 // app.config.js for AngularJS
 'use strict';
@@ -138,7 +138,7 @@ $routeProvider.
           template: '<generic-list></generic-list>'
         })
 ```
-###Angular2
+### Angular2
 ```typescript
 // app-routing.module.ts
 import { NgModule }             from '@angular/core';
@@ -163,9 +163,9 @@ const routes: Routes = [
   { path: 'list',  component: GenericListComponent },
 ```
 As mentioned earlier, we mostly import these components at the top of the Typescript module, even though in `app.module.ts` we import their modules. These components are also exported in their modules, and that will be covered lower.
-##Services and Providers
+## Services and Providers
 In both the AngularJS and Angular2 examples, a basic service is used. An array of objects is created and returned by `getAll()`, and an individual item is returned by `getById(id)`.
-###AngularJS
+### AngularJS
 ```javascript
 // genericService.service.js for AngularJS
 angular.
@@ -197,7 +197,7 @@ angular.
 });
 ```
 I am omitting the code for the `genericService.module.js`, as it just attaches the service GenericService to the SharedServices module. GenericService factory is created with the genericService service returned.
-###Angular2
+### Angular2
 ```typescript
 // generic-service.module.ts for Angular2
 import { NgModule,  }      from '@angular/core';
@@ -222,14 +222,14 @@ In order for a service to be injected into a component or other service, it must
 ## GenericList, the list of items.
 GenericList is a component that lists an array of items. Those items are provided by GenericService from SharedServicesModule.   
 ### GenericListModule
-####AngularJS
+#### AngularJS
 ```javascript
 //genericList.module.js for AngularJS
 'use strict';
 angular.module('genericList', ['SharedServices']);
 ```
 I'm adding the `genericList` module, with a dependency of `SharedServices` to the AngularJS app.
-####Angular2
+#### Angular2
 ```typescript
 //generic-list.module.ts for Angular2
 import { NgModule,  }      from '@angular/core';
@@ -249,8 +249,8 @@ import {GenericListComponent } from "./generic-list.component";
 export class GenericListModule { }
 ```
 A difference from AngularJS is that SharedServices is not being imported into the GenericListModule.  It was imported in `app.module.ts`. That instance of SharedServices is then made available to all modules that are imported by `app.module.ts`.  GenericListComponent is declared and exported.  The declaration adds the component to the module, while the export makes the component available to other modules that import GenericListModule. In this case, GenericListModule is imported by AppModule and GenericLisComponent is available to AppRoutingModule.
-###GenericListComponent
-####AngularJS
+### GenericListComponent
+#### AngularJS
 ```javascript
 //genericList component for AngularJS
 'use strict';
@@ -273,7 +273,7 @@ The component directive `genericList` is added to the module genericList with th
         </li>
 ```
 In genericList.template.html we have a list item that gets repeated by `ng-repeat`.  `$ctrl.listItems` is populated by the controller above.  This file in the repo has some additional static html that I have not included here.
-####Angular2
+#### Angular2
 ```typescript
 // generic-list.component.ts for Angular2
 import {Component, OnInit} from '@angular/core';
@@ -312,7 +312,7 @@ The template is largely the same, the big difference being the syntax for iterat
 ```
 in Angular2.
 
-##Conclusion
+## Conclusion
 Both AngularJS and Angular2 are rich in features, but hopefully these examples demonstrate some of the differences in the frameworks and provide a good first step in understanding what is involved in an upgrade from AngularJS to Angular2.
 
 If you have any questions about upgrading from AngularJS to Angular2, please send your comments and inquiries to [contact@ippon.tech](mailto:contact@ippon.tech).

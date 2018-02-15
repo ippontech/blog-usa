@@ -13,13 +13,13 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/0
 
 # Introduction
 This is an introduction for users unfamiliar with applied Continuous Integration (CI). You may have read articles like [Aaron’s article on Continuous Delivery](http://blog.ippon.tech/continuous-delivery-with-jenkins-pipeline/). If not, please take a look at it as there is some great information there. The purpose of this article is to give you an understanding of how Continuous Integration and Delivery works with JHipster.  With the right backing infrastructure, you can use this in your own development shop on a daily basis.
-#Why JHipster?
+# Why JHipster?
 JHipster is an enterprise developer’s best friend. It’s like pair programming with the industry’s experts on modern Java web applications.
 
 JHipster is a Yeoman application generator that walks you through adding features (such as search, testing frameworks, and internationalization) to a Spring Boot-based web application back-end with an Angular front-end. It has functionality called sub-generators that allow you to augment deeper functionality, such as adding entities and adding new features to your web application.
 
 By far one of the biggest benefits of using JHipster (even if you don’t use it in a production environment) is by generating a working application and seeing how the latest technologies work as a best practice. If nothing else, you can see the Spring Framework at it’s best, as well as how a well-written Angular application works.
-#Benefits of CI
+# Benefits of CI
 ## Integration
 Anybody who has deployed software to a production environment has run into the issue of surprises happening as soon as you go to deploy software, usually at 2 AM on a weekday night. Even if the deployment goes well, you may not run into application issues until users have a chance to break the system during peak loads later on in the day. Instead of doing a build only when moving to a new environment, the concept of continuous integration means you are continuously doing builds and running tests.
 ## Quality
@@ -43,7 +43,7 @@ For detailed information about the questions asked and the responses please visi
 
 This creates an initial [Jenkinsfile](https://jenkins.io/doc/book/pipeline/jenkinsfile/) which describes your [Jenkins Pipeline](https://jenkins.io/doc/book/pipeline/).  This is what is known as “pipeline-as-code”. You get the benefits of using a version control system to track the steps that you use to describe your build. It makes the build process a repeatable part of your workflow as opposed to a specific script run in a black box in some other part of the company or within an opaque application. 
 
-##Download and start SonarQube
+## Download and start SonarQube
 You can download one of the most popular code quality tools, SonarQube, from here: https://www.sonarqube.org/downloads/. Unzip the ZIP file to wherever you’d like and access the subdirectory under the “bin” folder that corresponds to your operating system. For Mac OS or Linux operating systems make sure the sonar.sh file is executable and go ahead and run it: `./sonar.sh start`. You can then go to http://localhost:9000 and log in with the default credentials.
 ## Download and install Jenkins
 You can find the latest version of Jenkins at http://mirrors.jenkins.io/war-stable/latest/jenkins.war. Download that and run Jenkins by running `java -jar jenkins.war`. Go to http://localhost:8080 and follow the steps to setup the application and install other files. Finally, log into the app using the default credentials.
@@ -114,7 +114,7 @@ Notice the blue icon in the left-hand side next to the build:
 That's a link to the SonarQube report.  Click on that and you can see the report for the build:
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/sonarqube_report.png)
 
-#Next steps
+# Next steps
 ## Publishing to an artifact repository
 If you have a Nexus Repository at your organization, you can install the [Nexus Jenkins Plugin](https://support.sonatype.com/hc/en-us/articles/227256688). This enables you to create a pipeline stage to publish the artifact created in the packaging stage to your repository for use in deployment. Other tools in your continuous deployment toolchain can now pick up the WAR that was stored in Nexus and deploy it however you please.
 ## Multibranch pipeline
@@ -135,7 +135,7 @@ I’ve probably done my fair share of annoying coworkers with this one. You can 
 * [Usage](https://jenkins.io/doc/pipeline/steps/slack/)
 ## Open Web Application Security Project (OWASP) integration
 This is something I came across recently. You can use the OWASP Dependency Check Jenkins plugin to scan your app for known vulnerabilities. Check here for more information: https://wiki.jenkins-ci.org/display/JENKINS/OWASP+Dependency-Check+Plugin.
-#What did you just learn?
+# What did you just learn?
 You just learned how to:
 
 * Install and setup JHipster

@@ -83,7 +83,7 @@ The below architecture can be applied when implementing custom generators or mod
 
 ### Example
 
-#####Limit the number of JHipster prompts
+##### Limit the number of JHipster prompts
 
 JHipster saves all the configuration information based on the user's input to the prompts in the .yo-rc.json file. This file can be pre-populated with all the needed information with a particular organization's defaults so that JHipster just uses this file and builds the application.
 

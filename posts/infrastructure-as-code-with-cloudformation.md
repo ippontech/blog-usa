@@ -14,7 +14,7 @@ image: https://s3.amazonaws.com/uploads.hipchat.com/113432/4463186/8OFPzOzq2TlVv
 
 ___
 
-#Infrastructure as Code 
+# Infrastructure as Code 
 
 IaC, to put it simply, is a programmatic means of configuring and provisioning infrastructure. With cloud and DevOps efforts gaining importance in modern software development, IaC helps us make rapid and powerful changes to our processes. Solving many common problems such as:
 
@@ -24,7 +24,7 @@ IaC, to put it simply, is a programmatic means of configuring and provisioning i
 
 **Complexity** - Provisioning infrastructure shouldn’t require a sysadmin. Developers should be empowered to change the environment as new challenges are presented. Writing IaC is easy with descriptive and simple domain specific languages. 
 ___
-#CloudFormation 
+# CloudFormation 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/02/cloudformlogo.png)
 
 IaC has been implemented by many companies and open-source projects like Chef, Puppet, and Ansible. CloudFormation, introduced in 2011, stands out in a big way. The major caveat being that you can only use CloudFormation with Amazon Web Services. With Amazon dominating the cloud market, that shouldn’t be a problem for developers seeking IaC in the cloud.
