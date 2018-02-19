@@ -27,7 +27,7 @@ git config user.email "your_email@ipponusa.com"
 ### Setting up your local `blog-usa` repository
 
 1. Login to your Github account and go to the [Ippon USA Blog](https://github.com/ippontech/blog-usa) Github repository page
-2. 
+2. {{< responsive-figure src="https://github.com/jhennin/blog-usa/blob/master/images/2018/02/fork_image.png" >}}
 2. Open a terminal on your computer (e.g. Terminal, iTerm)
 3. Change into the directory you would like to store the `blog-usa` repository: `cd ~/Development/Ippon`
 4. Clone the `blog-usa` repository: `git clone https://github.com/ippontech/blog-usa.git`
