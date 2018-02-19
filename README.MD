@@ -4,7 +4,7 @@ This repository will be used to manage all blog post published by Ippon USA. All
 
 ## Getting Started
 
-In order to contribute in any way to the Ippon USA blog whether you are drafting a post or reviewing you must follow these steps to clone the repository
+In order to contribute in any way to the Ippon USA blog whether you are drafting a post or reviewing a post, you must follow these steps to clone the repository
 
 ### Prerequisites
 
@@ -27,10 +27,10 @@ git config user.email "your_email@ipponusa.com"
 ### Setting up your local `blog-usa` repository
 
 1. Login to your Github account and go to the [Ippon USA Blog](https://github.com/ippontech/blog-usa) Github repository page
-2. {{< responsive-figure src="https://github.com/jhennin/blog-usa/blob/master/images/2018/02/fork_image.png" >}}
-2. Open a terminal on your computer (e.g. Terminal, iTerm)
-3. Change into the directory you would like to store the `blog-usa` repository: `cd ~/Development/Ippon`
-4. Clone the `blog-usa` repository: `git clone https://github.com/ippontech/blog-usa.git`
+2. Click on the ["Fork" icon](https://github.com/jhennin/blog-usa/blob/master/images/2018/02/fork_image.png) in the upper right hand corner. This will create a forked copy of the `blog-usa` repository in your Github remote account
+3. Open a terminal on your computer (e.g. Terminal, iTerm)
+4. Change into the directory you would like to store the `blog-usa` repository: `cd ~/Development/Ippon`
+5. Clone the `blog-usa` repository: `git clone https://github.com/ippontech/blog-usa.git`
 
 ## Writing a new post
 
