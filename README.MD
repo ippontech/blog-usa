@@ -63,6 +63,12 @@ Once your post is ready for peer review, be sure to commit any recent updates. T
 4. Commit your changes leaving detailed notes
 5. Push your changes to the forked remote repo: `git push`
 
+### Finalizing Your Post
+
+After the peer reviews have been completed, you can review the suggested changes and make any last minute edits.
+
+1. 
+
 ## Resources
 
 ### Previewing the Post
