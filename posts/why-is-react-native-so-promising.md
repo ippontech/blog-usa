@@ -51,7 +51,9 @@ A Higher Order Component is essentially composed of one React component and one 
 
 The most known Higher Order Function is the Redux `connect` function that allows you to bind the props of a "dumb" Component to the Redux Store. Here's a quick reminder of the function's profile:
 
-```connect(mapStateToProps, mapDispatchToProps)(Component)```
+```
+connect(mapStateToProps, mapDispatchToProps)(Component)
+```
 
 I've deliberately left out the two other arguments of connect because they're not used as often as mapStateToProps and mapDispatchToProps.
 * `mapStateToProps` is a function that returns the mapping between the Component props and the Redux's store.
