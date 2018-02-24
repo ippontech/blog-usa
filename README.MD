@@ -9,7 +9,7 @@ This `README.md` will provide instructions for both a technical audience and a n
 ## Getting Started (TECHNICAL)
 
 1. Create a fork of the [Ippon USA Blog Repo](https://github.com/ippontech/blog-usa)
-2. Clone the repo onto your local machine unless you wish to work directly in the Github UI.
+2. Clone the repo onto your local machine (unless you wish to work directly in the Github UI)
 
 ## Writing a new post
 
@@ -17,19 +17,23 @@ This `README.md` will provide instructions for both a technical audience and a n
   
 1. Create a new file with the `.md` extension in the `blog-usa/posts` directory
 2. Write the blog post. Be sure to commit often
-3. Submit a pull request from your forked remote repo to the main `blog-usa` repo. Be sure to provide a descriptive title, perferably one similar to your log post title
 
-### Adding Graphics
+#### Adding Graphics
 
 1. After choosing the graphic that you would like to use in your post, add it to the `blog-usa/images/<year>/<month>` directory
 2. Create link to your image using the format below:
 ```
 {{< responsive-figure src="link_to_your_graphic" >}}
 ```
+*** This image may not appear on the "Preview" in Github
 
 ### Submit Post for Peer Review
 
-Once your post is ready for peer review, be sure to commit any recent updates. Then push your changes to your forked remote repository. You are now ready to solicit peer review request for your blog. Provide a link to your pull request to anyone you would like to peer review your blog.
+Once your post is ready for peer review, be sure to commit any recent updates. 
+
+1. Push your changes to your forked remote repository
+2. Submit a pull request from your forked remote repo to the main `blog-usa` repo. Be sure to provide a descriptive title, perferably one similar to your log post title
+3. You are now ready to solicit peer review request for your blog. Provide a link to your pull request to anyone you would like to peer review your blog
 
 ### Peer Review A Post
 
@@ -37,8 +41,9 @@ Reviewing a blog post will all be done via commenting in the pull request. After
 
 ### Finalizing Your Post
 
-After the peer reviews have been completed, you can review the suggested changes in the comments of your pull request. Make any chages to your blog post directly in Github or locally (be sure to commit and push).
-
+1. Review suggested changes in the comment section of your pull request
+2. Make any changes to your blog post either locally (be sure to commit and push) or directly in Github
+3. Notify the blog administrator that the post is done and ready for publishing
 
 *******************************************************************************
 
@@ -64,7 +69,7 @@ Create a [Github account](https://github.com/join) if you don't have one already
 1. While in your forked repo, select the `post` directory  
 2. Select the "Create new file" button to create a new file with the `.md` extension (e.g. `your_blog.md`)
 3. Write the blog post. Use the "Preview" option to get an idea of what your blog will look like when published
-4. Select the choose the "Commit directly to `master` branch." option and select the "Commit new file" button
+4. Choose the "Commit directly to `master` branch." option and select the "Commit new file" button
 5. To make any further changes to your post, locate the the file in the `blog-usa/posts` directory. After clicking on your blog post there is a pencil icon on the right hand side. Select this icon to edit your blog. When you have completed your changes and you would like to save (aka commit) scroll to the bottom and "commit new file" directly to the `master` branch
 
 ### Adding Graphics
@@ -78,7 +83,11 @@ Create a [Github account](https://github.com/join) if you don't have one already
 
 ### Submit Post for Peer Review
 
-Once your post is ready for peer review, be sure to commit any recent updates. Then push your changes to your forked remote repository. You are now ready to solicit peer review request for your blog. Provide a link to your pull request to anyone you would like to peer review your blog.
+1. Navigate to the main page of your forked repository
+2. Select the "New Pull Request" button
+3. Be sure you are merging to the correct repo and branch. You should be merging your `master` branch in your forked repository to the `master` branch in the main Ippon `blog-usa` repo
+4. Select the "Create pull request" button and provide a descriptive title and any neccessay comments. Then select the "Create pull request" button again
+5. You are now ready to solicit peer reviews. Provide a link to you pull request to anyone you would like to peer review your blog post
 
 ### Peer Review A Post
 
@@ -86,7 +95,9 @@ Reviewing a blog post will all be done via commenting in the pull request. After
 
 ### Finalizing Your Post
 
-After the peer reviews have been completed, you can review the suggested changes in the comments of your pull request. Make any chages to your blog post directly in Github or locally (be sure to commit and push).
+1. Review suggested changes in the comment section of your pull request
+2. Make any changes to your blog post directly in Github (be sure to save aka commit)
+3. Notify the blog administrator that the post is done and ready for publishing
 
 *******************************************************************************
 
