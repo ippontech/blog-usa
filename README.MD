@@ -4,12 +4,14 @@ This repository will be used to manage all blog post published by Ippon USA. All
 
 This `README.md` will provide instructions for both a technical audience and a non-technical audience. If you have limited or no `git` experience it is recommended that you follow the "non-technical" section.
 
+*******************************************************************************
+
 ## Getting Started (TECHNICAL)
 
 1. Create a fork of the [Ippon USA Blog Repo](https://github.com/ippontech/blog-usa)
 2. Clone the repo onto your local machine unless you wish to work directly in the Github UI.
 
-## Writing a new post (TECHNICAL)
+## Writing a new post
 
 ### Drafting a Post
   
