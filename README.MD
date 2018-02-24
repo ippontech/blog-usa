@@ -38,14 +38,7 @@ Reviewing a blog post will all be done via commenting in the pull request. After
 After the peer reviews have been completed, you can review the suggested changes in the comments of your pull request. Make any chages to your blog post directly in Github or locally (be sure to commit and push).
 
 
-
-
-
-
-
-
-
-
+*******************************************************************************
 
 
 ## Getting Started (Non-Technical)
@@ -66,14 +59,11 @@ Create a [Github account](https://github.com/join) if you don't have one already
 
 ### Drafting
   
-1. Create a new file with the `.md` extension in the `blog-usa/posts` directory
-2. Commit this change
-```
-git add sample-post.md
-git commit
-```
-3. Write the blog post. Be sure to commit often. Committing == Saving
-4. Submit a pull request from your forked remote repo to the main `blog-usa` repo. Be sure to provide a descriptive title, perferably one similar to your log post title
+1. While in your forked repo, select the `post` directory  
+2. Select the "Create new file" button to create a new file with the `.md` extension (e.g. `your_blog.md`)
+3. Write the blog post. Use the "Preview" option to get an idea of what your blog will look like when published
+4. Select the choose the "Commit directly to `master` branch." option and select the "Commit new file" button
+5. To make any further changes to your post, locate the the file in the `blog-usa/posts` directory. After clicking on your blog post there is a pencil icon on the right hand side. Select this icon to edit your blog. When you have completed your changes and you would like to save (aka commit) scroll to the bottom and "commit new file" directly to the `master` branch
 
 ### Adding Graphics
 
@@ -82,6 +72,7 @@ git commit
 ```
 {{< responsive-figure src="link_to_your_graphic" >}}
 ```
+*** Note this image will not appear in you the Github preview
 
 ### Submit Post for Peer Review
 
@@ -94,6 +85,8 @@ Reviewing a blog post will all be done via commenting in the pull request. After
 ### Finalizing Your Post
 
 After the peer reviews have been completed, you can review the suggested changes in the comments of your pull request. Make any chages to your blog post directly in Github or locally (be sure to commit and push).
+
+*******************************************************************************
 
 ## Resources
 
