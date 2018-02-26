@@ -59,7 +59,7 @@ Create a [Github account](https://github.com/join) if you don't have one already
 ### Forking the `blog-usa` repository
 
 1. Login to your Github account and go to the [Ippon USA Blog](https://github.com/ippontech/blog-usa) Github repository page
-2. Click on the ["Fork" icon](https://github.com/jhennin/blog-usa/blob/master/images/2018/02/fork_image.png) in the upper right hand corner. This will create a forked copy of the `blog-usa` repository in your Github remote account
+2. Click on the ["Fork" icon](https://github.com/ippontech/blog-usa/raw/master/images/2018/02/fork_image.png) in the upper right hand corner. This will create a forked copy of the `blog-usa` repository in your Github remote account
 3. Be sure the title of the repository your currently in is your forked repo NOT the main Ippon USA Blog repo (e.g. `<username>/blog-usa`)
 
 ## Writing a new post
