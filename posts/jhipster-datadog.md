@@ -5,7 +5,7 @@ categories:
 - JHipster
 date: 2018-03-16T20:00:10.000Z
 title: "Monitoring a JHipster application with Datadog"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/02/JHipster-4-Blog--4-.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/03/hipdog.png
 ---
 
 When you ship an application to production, one of the key factors of quality is the monitoring capabilities of this application. In this post, we will see what options are available for your [JHipster](https://www.jhipster.tech/) applications, and we will dive down into using Datadog.
@@ -185,7 +185,7 @@ Datadog has a feature called [APM](https://docs.datadoghq.com/tracing/) to colle
 
 Traces would then be sent from the JVM agent to the Datadog agent, and then to Datadog, allowing you to analyze the traces online:
 
-![Datadog APM](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/datadog-trace.png)
+![Datadog APM](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/03/datadog-trace.png)
 
 Unfortunately, so far, I haven't been able to get this to work. I will update this post as soon as I have found the issue.
 
