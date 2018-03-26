@@ -16,7 +16,7 @@ Web applications are more vulnerable to attacks compared to standalone applicati
 
 When you choose to ignore these risks, your data can be deleted, corrupted or stolen. And maybe worst, your customers can become victims of attacks because of your service. Their session can be hijacked by an attacker that will be granted all permissions on their personal data.
 
-What about your reputation then ? Remember the « [PSNgate](http://en.wikipedia.org/wiki/PlayStation_Network_outage "PSNgate") » two years ago…
+What about your reputation then? Remember the « [PSNgate](http://en.wikipedia.org/wiki/PlayStation_Network_outage "PSNgate") » two years ago…
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/800px-Owasp_logo.jpg)
 

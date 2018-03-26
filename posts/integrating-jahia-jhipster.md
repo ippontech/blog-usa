@@ -15,21 +15,21 @@ The purpose of this article is to discuss and demonstrate one design pattern for
 
 ## Problem Statement
 
-The customer needs to be able to create content for their website but the website is currently a single page application.  The customer wants to be able to create and publish articles on the site but without any manual file publishing or HTML knowledge.  The customer may also want to use some of the workflow features (in the future) that a CMS provides.
+The customer needs to be able to create content for their website but the website is currently a single page application. The customer wants to be able to create and publish articles on the site but without any manual file publishing or HTML knowledge. The customer may also want to use some of the workflow features (in the future) that a CMS provides.
 
 ## Solution Summary
 
-Several CMS products (such as Jahia) provide their own environment for building an entire website using their tools and architecture.  However, instead of being dependent on the CMS tool’s design patterns, it is preferred to design the website independently of any product’s architecture.  That allows for rapid development tools (like JHipster) to be used to speed up application development but still take advantage of the CMS features.
+Several CMS products (such as Jahia) provide their own environment for building an entire website using their tools and architecture. However, instead of being dependent on the CMS tool’s design patterns, it is preferred to design the website independently of any product’s architecture. That allows for rapid development tools (like JHipster) to be used to speed up application development but still take advantage of the CMS features.
 
 ## High-Level Design
 
-The architecture for this design entails a web server running the JHipster application and a separate web server running Jahia.  The Jahia Digital Factory console is where all the articles are created/modified.  The JHipster application makes REST calls to the Jahia server to retrieve the articles.  This design has the AngularJS front-end code calling Jahia directly instead of calling a Spring service running in the JHipster application that then makes the calls to Jahia.  Depending on the specific requirements, calling a Spring service is a perfectly acceptable alternative.  For simplicity, security is turned off on all the content (for read-only) and that could be a reason to prefer funneling all the content through Spring.
+The architecture for this design entails a web server running the JHipster application and a separate web server running Jahia. The Jahia Digital Factory console is where all the articles are created/modified. The JHipster application makes REST calls to the Jahia server to retrieve the articles. This design has the AngularJS front-end code calling Jahia directly instead of calling a Spring service running in the JHipster application that then makes the calls to Jahia. Depending on the specific requirements, calling a Spring service is a perfectly acceptable alternative. For simplicity, security is turned off on all the content (for read-only) and that could be a reason to prefer funneling all the content through Spring.
 
 ## Implementation
 
 ##### Jahia
 
-For this example, a REST service is called to retrieve all content of the type “jnt:article”.  This means that articles can be entered on any page anywhere on the Jahia site and they will get picked up.  Jahia uses what is called a “Content:Structured” type “Article (title and introduction)” in the console to create the content.  Of course this could be made much more complex if desired.  The Jahia console provides a full rich text editing environment and also allows for images.  The images are imported into Jahia and then are referenced correctly with absolute URL links inside the content.
+For this example, a REST service is called to retrieve all content of the type “jnt:article”. This means that articles can be entered on any page anywhere on the Jahia site and they will get picked up. Jahia uses what is called a “Content:Structured” type “Article (title and introduction)” in the console to create the content. Of course this could be made much more complex if desired. The Jahia console provides a full rich text editing environment and also allows for images. The images are imported into Jahia and then are referenced correctly with absolute URL links inside the content.
 
 ![](http://i.imgur.com/yphr22I.png "source: imgur.com")![](http://i.imgur.com/B5T8WTl.png "source: imgur.com")
 
@@ -37,7 +37,7 @@ For this example, a REST service is called to retrieve all content of the type �
 
 ### JHipster
 
-All of the code required in JHipster lives in the AngularJS tier of the application.  The service, controller, and HTML contain the code of interest in this example.  The audit code included in JHipster provided a nice starting point to create the necessary modules.
+All of the code required in JHipster lives in the AngularJS tier of the application. The service, controller, and HTML contain the code of interest in this example. The audit code included in JHipster provided a nice starting point to create the necessary modules.
 
 #### Service
 
@@ -61,7 +61,7 @@ angular.module(‘jhipster21App’)
 	});
 ```
 
- This service provides “findAll” and “findById” by calling different REST services provided by Jahia.  There are many different options but these two work for the simple case.  The hostname and port would be configurable in a real world scenario.  The first URL returns all nodes of type “jnt:article”.  Since that mainly just returns the node ids, a query must be done on the id to get the article’s title and intro text.
+ This service provides “findAll” and “findById” by calling different REST services provided by Jahia. There are many different options but these two work for the simple case. The hostname and port would be configurable in a real world scenario. The first URL returns all nodes of type “jnt:article”. Since that mainly just returns the node ids, a query must be done on the id to get the article’s title and intro text.
 
 #### Controller
 
@@ -97,7 +97,7 @@ angular.module(‘jhipster21App’)
 	});
 ```
 
- This controller provides the “fullArticle” function which is called from the HTML.  It populates variables for displaying the full article title and text under a table containing just the titles.  The remainder of the controller calls the “findAll” service and then calls the “findById” service on every article to get the title and text.  This is a simplified approach that would have to be modified if there were a large number of articles.  An array of article objects is created and put into $scope for display on the HTML page.
+ This controller provides the “fullArticle” function which is called from the HTML. It populates variables for displaying the full article title and text under a table containing just the titles. The remainder of the controller calls the “findAll” service and then calls the “findById” service on every article to get the title and text. This is a simplified approach that would have to be modified if there were a large number of articles. An array of article objects is created and put into $scope for display on the HTML page.
 
 #### HTML
 
@@ -126,11 +126,11 @@ angular.module(‘jhipster21App’)
 </div>
 ```
 
- This HTML contains a table with all the article titles and links to display the full article below.  The index of the article array is passed to the “fullArticle” function to populate the “fullArticleText” and “fullArticleTitle” variables for display.![](http://i.imgur.com/W7eEGVn.png "source: imgur.com")
+ This HTML contains a table with all the article titles and links to display the full article below. The index of the article array is passed to the “fullArticle” function to populate the “fullArticleText” and “fullArticleTitle” variables for display.![](http://i.imgur.com/W7eEGVn.png "source: imgur.com")
 
 ## Conclusion
 
-The design pattern explained above solves the problem of integrating Jahia with JHipster in order to take advantage of many of the features of both.  This is intended to be a starting point that can be taken as far as needed to solve for complex problems.
+The design pattern explained above solves the problem of integrating Jahia with JHipster in order to take advantage of many of the features of both. This is intended to be a starting point that can be taken as far as needed to solve for complex problems.
 
 ## Full Code
 
