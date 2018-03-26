@@ -1,6 +1,6 @@
 ---
 authors:
-- Steve HOUËL
+- Steve Houël
 categories:
 - Devops
 - Cloud
@@ -9,7 +9,6 @@ categories:
 - Azure
 - Serverless
 - FaaS
-- Steve HOUËL
 date: 
 title: "How to do Serverless"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/12/te-le-chargement.png

@@ -9,8 +9,6 @@ title: "Integrating Jahia and JHipster 2"
 image: 
 ---
 
-By Dennis Sharpe.
-
 ## Introduction
 
 The purpose of this article is to discuss and demonstrate one design pattern for integrating [Jahia](https://www.jahia.com/home) (CMS) with a [JHipster](https://jhipster.github.io/) application.

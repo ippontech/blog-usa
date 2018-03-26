@@ -1,6 +1,6 @@
 ---
 authors:
-- Laurent Mathieu
+- Philippe Cery
 categories:
 - OWASP
 - Sécurité
@@ -9,8 +9,6 @@ date: 2014-01-28T09:00:35.000Z
 title: "OWASP Top 10 - A9 Using Components with Known Vulnerabilities"
 image: 
 ---
-
-By Philippe Céry.
 
 ## Description
 

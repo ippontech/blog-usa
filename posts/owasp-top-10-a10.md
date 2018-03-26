@@ -1,6 +1,6 @@
 ---
 authors:
-- Laurent Mathieu
+- Philippe Cery
 categories:
 - OWASP
 - Sécurité
@@ -9,8 +9,6 @@ date: 2014-01-29T09:00:30.000Z
 title: "OWASP Top 10 - A10 Unvalidated Redirects and Forwards"
 image: 
 ---
-
-By Philippe Céry.
 
 ## Description
 

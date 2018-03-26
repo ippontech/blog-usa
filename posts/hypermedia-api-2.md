@@ -10,8 +10,6 @@ title: "Hypermedia API"
 image: 
 ---
 
-By David Martin ([dmartin@ippon.fr](mailto:dmartin@ippon.fr)).
-
 Developing an API is something pretty usual today. There are many reasons behind this: the need to expose data for an internal use, the wish to build an ecosystem around the company’s data, the will to create new business opportunities using valuable data… In all the cases, the API is built to be used by many clients, especially if the company decides to monetize it.
 
 Adding a modification can become a tricky operation if many clients are already using the API, especially if the design choices made for the API don’t integrate this aspect. We will have a look at an approach that simplifies API modifications without breaking the clients and the existing ecosystem.

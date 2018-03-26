@@ -1,6 +1,6 @@
 ---
 authors:
-- Laurent Mathieu
+- Philippe Cery
 categories:
 - OWASP
 - Sécurité
@@ -9,8 +9,6 @@ date: 2013-12-09T08:45:08.000Z
 title: "OWASP Top 10 - A7 Missing Function Level Access Control"
 image: 
 ---
-
-By Philippe Céry.
 
 ## Description
 

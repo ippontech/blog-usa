@@ -1,6 +1,6 @@
 ---
 authors:
-- Laurent Mathieu
+- Alexis Seigneurin
 categories:
 - 
 date: 2014-04-14T19:32:48.000Z
@@ -9,8 +9,6 @@ image:
 ---
 
 # From development to production with Vagrant and Packer
-
-By Alexis Seigneurin – [@aseigneurin](https://twitter.com/aseigneurin).
 
 Have you heard of Vagrant? [Vagrant](http://www.vagrantup.com/) is a tool that allows to create virtual machines with a given configuration. It’s a great way to set up and deploy working environments in a reproducible manner. Vagrant therefore eliminates the ‘’works on my machine’’ syndrome.
  Several useful cases are possible. The most common is to ramp up a new developer from scratch. Put a Vagrant file at their disposal, let them enter `vagrant up` and in a few seconds or minutes, they will have a development environment with all the tools that you defined: Maven, Elasticsearch, NodeJS, etc…

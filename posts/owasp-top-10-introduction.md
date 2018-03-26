@@ -1,6 +1,6 @@
 ---
 authors:
-- Laurent Mathieu
+- Philippe Cery
 categories:
 - OWASP
 - Sécurité
