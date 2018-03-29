@@ -1,6 +1,6 @@
 # Ippon USA Blog
 
-This repository will be used to manage all blog post published by Ippon USA. All drafting, editing, and peer reviewing will be done through this repository following standard Git best practices.
+This repository will be used to manage all blog posts published by Ippon USA. All drafting, editing, and peer reviewing will be done through this repository following standard Git best practices.
 
 This `README.md` will provide instructions for both a technical audience and a non-technical audience. If you have limited or no `git` experience it is recommended that you follow the "non-technical" section.
 
