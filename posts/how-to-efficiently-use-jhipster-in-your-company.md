@@ -8,9 +8,7 @@ title: "How to efficiently use JHipster in your company"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/03/jhipster-module-header.png
 ---
 
-[JHipster](http://www.jhipster.tech/) is a fantastic development platform if you want to generate, develop and deploy Spring Boot + Angular Web applications. I personnally use it to generate from proof of concept work to multiple Spring microservices. The goal of this blog post is to show how you can easily customize JHipster so it will fit your company's requirements and infrastructure. A common use case after generating a microservice is to add common dependencies, extra configuration or change the Jenkinsfile/Dockerfile.
-
-I will explain how to avoid doing manual changes after every application generation and save time.
+[JHipster](http://www.jhipster.tech/) is a fantastic development platform if you want to generate, develop and deploy Spring Boot + Angular Web applications. I personnally use it to generate multiple Spring microservices that will be already configured to work in my company's infrastructure. The goal of this blog post is to show how you can easily customize JHipster so it will fit your company's requirements and infrastructure. A common use case after generating a microservice is to add common dependencies, extra configuration or change the Jenkinsfile/Dockerfile. The idea is to include all those changes in a JHipster module to avoid spending time repeating those extra steps. And to make things even more easier, I will detail a way to avoid having to answer the questions that JHipster ask during the generation.
 
 # Two ways to customize JHipster
 Since JHipster is 100% open-source, you can make all the changes you want and adapt it to your needs for free! There are two ways to do that and I will explain below the pros/cons.
