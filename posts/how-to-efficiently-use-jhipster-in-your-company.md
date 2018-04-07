@@ -13,28 +13,28 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/0
 I will explain how to avoid doing manual changes after every application generation and save time.
 
 # Two ways to customize JHipster
-Since JHipster is 100% open-source, you can make all the changes you want and adapt it to your needs for free ! There are two ways to do that and I will explain below the pros/cons.
+Since JHipster is 100% open-source, you can make all the changes you want and adapt it to your needs for free! There are two ways to do that and I will explain below the pros/cons.
 
 SPOILER ALERT: I will show and explain how I was able to customize JHipster using a module. The module will generate a microservice with a predefined configuration (database, cache, etc) and add dependencies/templates.
 
 ## Fork the main generator
-Here the [Github](https://github.com/jhipster/generator-jhipster) link, you can of course do a fork and do your custom changes directly in your new repo. That is actually the best way if you want to add new questions and customize JHipster's subgenerators. But keep in mind of something important, because JHipster is evolving every month, you will have to keep your fork up to date. That can be a lot of work especially if your changes are directly done on the original JHipster's files. Merging source and template files will take time depending on the custom changes complexity.
+[Github link](https://github.com/jhipster/generator-jhipster) of the repository, you can of course do a fork and do your custom changes directly in your new repo. That is actually the best way if you want to add new questions and customize JHipster's subgenerators. But keep in mind of something important, because JHipster is evolving every month, you will have to keep your fork up to date. That can be a lot of work especially if your changes are directly done on the original JHipster's files. Merging source and template files will take time depending on the custom changes complexity.
 
 A fork is the right way if you want to add new questions, change the generator's behavior and maintain your own JHipster.
 
 ## Create a JHipster module
-Here a detailed [explanation](https://www.jhipster.tech/modules/creating-a-module) on what's a JHipster module and how to create one.
+Here a detailed [explanation](https://www.jhipster.tech/modules/creating-a-module) on what a JHipster module is and how to create one.
 
 A JHipster module is the right choice if you want to maintain a smaller project and have no extra work with future JHipster releases. Be aware that the module will be executed after the app generation or using hooks.
 
-In my opinion, it's the easiest and fastest way to customize JHipster, especially if you don't want to change the generator's behavior.
+In my opinion, it is the easiest and fastest way to customize JHipster, especially if you don't want to change the generator's behavior.
 
 # Module explanation and creation
 
 ## What the module will do
 The module will do two things:
 * Generate a JHipster microservice by using a default `.yo-rc.json` file.
-* Copy custom templates and add maven dependencies.
+* Copy custom templates and add Maven dependencies.
 
 This way, the module will be very useful for generating a bunch of microservices without having to answer all questions over and over.
 Here the JHipster configuration that all microservices will use:
@@ -232,7 +232,7 @@ application:
 Both files must be created in `generators/app/templates/`
 
 ## Maven dependencies
-Adding a maven dependency is actually very simple and can be done by calling the `addMavenDependency` method. This part must be done in the `install()` phase because the `pom.xml` created in the `writing()` phase will be modified.
+Adding a Maven dependency is actually very simple and can be done by calling the `addMavenDependency` method. This part must be done in the `install()` phase because the `pom.xml` created in the `writing()` phase will be modified.
 ```javascript
 install() {
     // Add dependencies here
@@ -264,10 +264,10 @@ Verify that templates and dependencies were successfully added by the module.
 
 ![screenshot2](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/03/jhipster-module-2.png)
 
-And finally, start the microservice using maven `./mvnw` (an Eureka registry and PostgreSQL must be running).
+And finally, start the microservice using Maven `./mvnw` (an Eureka registry and PostgreSQL must be running).
 
 # Conclusion
 
-Creating a JHipster module is an easy way to simplify your microservice generation, especially if your microservice uses the same configuration. Since it's a module, it's very easy to add functionalities and meet your needs.
+Creating a JHipster module is an easy way to simplify your microservice generation, especially if your microservice uses the same configuration. Since it is a module, it's very easy to add functionalities and meet your needs.
 
-Here my [github repo](https://github.com/ippontech/generator-jhipster-company-api) with the module used in this blog. Feel free to fork it and make changes to match your company requirements!
+Here my [Github repository](https://github.com/ippontech/generator-jhipster-company-api) with the module used in this blog. Feel free to fork it and make changes to match your company requirements!
