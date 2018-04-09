@@ -16,7 +16,7 @@ Since JHipster is 100% open-source, you can make all the changes you want and ad
 SPOILER ALERT: I will show and explain how I was able to customize JHipster using a module. The module will generate a microservice with a predefined configuration (database, cache, etc) and add dependencies/templates.
 
 ## Fork the main generator
-[Github link](https://github.com/jhipster/generator-jhipster) of the repository, you can of course do a fork and do your custom changes directly in your new repo. That is actually the best way if you want to add new questions and customize JHipster subgenerators. But keep in mind of something important, because JHipster is evolving every month, you will have to keep your fork up to date. That can be a lot of work especially if your changes are directly done on the original JHipster files. Merging source and template files will take time depending on the custom changes complexity.
+Here is the [GitHub link](https://github.com/jhipster/generator-jhipster) of the repository, you can of course do a fork and do your custom changes directly in your new repo. That is actually the best way if you want to add new questions and customize JHipster subgenerators. But keep in mind of something important, because JHipster is evolving every month, you will have to keep your fork up to date. That can be a lot of work especially if your changes are directly done on the original JHipster files. Merging source and template files will take time depending on the custom changes complexity.
 
 A fork is the right way if you want to add new questions, change the generator's behavior and maintain your own JHipster.
 
@@ -268,4 +268,4 @@ And finally, start the microservice using Maven `./mvnw` (an Eureka registry and
 
 Creating a JHipster module is an easy way to simplify your microservice generation, especially if your microservice uses the same configuration. Since it is a module, it's very easy to add functionalities and meet your needs.
 
-Here is my [Github repository](https://github.com/ippontech/generator-jhipster-company-api) with the module used in this blog. Feel free to fork it and make changes to match your company requirements!
+Here is my [GitHub repository](https://github.com/ippontech/generator-jhipster-company-api) with the module used in this blog. Feel free to fork it and make changes to match your company requirements!
