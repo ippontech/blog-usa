@@ -268,4 +268,4 @@ And finally, start the microservice using Maven `./mvnw` (an Eureka registry and
 
 Creating a JHipster module is an easy way to simplify your microservice generation, especially if your microservice uses the same configuration. Since it is a module, it's very easy to add functionalities and meet your needs.
 
-Here is my [GitHub repository](https://github.com/ippontech/generator-jhipster-company-api) with the module used in this blog. Feel free to fork it and make changes to match your company requirements!
+Here is my [GitHub repository](https://github.com/Falydoor/generator-jhipster-company-api) with the module used in this blog. Feel free to fork it and make changes to match your company requirements!
