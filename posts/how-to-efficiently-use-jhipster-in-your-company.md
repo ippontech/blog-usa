@@ -3,7 +3,7 @@ authors:
 - Theo Lebrun
 categories:
 - JHipster
-date: 2018-03-23T16:12:10.000Z
+date: 2018-04-08T16:12:10.000Z
 title: "How to efficiently use JHipster in your company"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/03/jhipster-module-header.png
 ---
