@@ -1,3 +1,13 @@
+---
+authors:
+- Jeannine Stark
+categories:
+- 
+date: 2018-04-27T23:45:52.000Z
+title: "What is Big Data?"
+image: 
+---
+
 What is Machine Learning?
 
 Machine Learning is another aspect of the Big Data ecosystem as well as a type of Artificial Intelligence. More about what Big Data is can be found here (insert link once published). Artificial Intelligence is capabilities that are computers that act or perform human like tasks. One primitive version of Artificial Intelligence that has been around for decades are computer card games. In this case a computer is programmed to behave like a human and making decisions on the card to play based on the situation. As machines got more powerful Machine Learning became a subcategory of Artificial Intelligence. In the card game the program had explicit rules for what to do in a situation whereas Machine Learning is where the program determines what to do based on prior data. The program determines what to do based on its training to produce a model. The training aspect of the machine learning is giving the computer enough data to make determinations. There is no magic amount of data that will provide the correct answer. In the card example the training would be done off data about what moves prior player made. The output of the training is called the model. The model tells the computer what moves to make based on the situation in the game being played. There are two different ways to train a machine learning model, supervised and unsupervised learning.
