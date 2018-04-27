@@ -2,7 +2,8 @@
 authors:
 - Jeannine Stark
 categories:
-- 
+- Cloud
+- Language
 date: 2018-04-27T23:45:52.000Z
 title: "What is Machine Learning?"
 image: 
