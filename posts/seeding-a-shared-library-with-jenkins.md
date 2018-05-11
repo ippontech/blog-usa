@@ -1,4 +1,5 @@
 TODO: change image links
+TODO: clarify difference between seed Job in jenkins and the github seed.groovy
 
 ## Goals
 1. Create a shared library in github that uses a **seed** job. The **seed** job will be used to create jobs within jenkins. 
@@ -37,6 +38,8 @@ We will not set up the seedJob to point to your github repository to load up the
 ![jenkins configure job](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-04.PNG)
 
 #### Setup your jenkins shared library repository in github
+3. Now you nneed to set up your seedJob to link to github to load in the seed job. Navigate to the "Source Code Management" section and provide the github repository you plan to use as a shared library. For now, there is no need to provide Credentials (as long as your repository is public). Also, we will just work off of the "master" branch to get things started. 
+![seedJob Source Code Management](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-05.PNG)
 
 
  You can use [mine](https://github.com/kcrane3576/jenkins-shared-library) if you just want to follow along.
