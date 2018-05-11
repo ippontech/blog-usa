@@ -40,6 +40,8 @@ We will not set up the seedJob to point to your github repository to load up the
 #### Setup your jenkins shared library repository in github
 3. Now you nneed to set up your seedJob to link to github to load in the seed job. Navigate to the "Source Code Management" section and provide the github repository you plan to use as a shared library. For now, there is no need to provide Credentials (as long as your repository is public). Also, we will just work off of the "master" branch to get things started. 
 ![seedJob Source Code Management](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-05.PNG)
+4. Ok, now lets make our seedJob create another job when ran. For now we will just do a simple Freestyle job that print's "Hello from github seed.groovy". Inside of your seed job github repository, create a directory "dsl" and inside of that, create a seed.groovy file. Commit and push these changes to your shared library in github.
+![github seed job setup](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-06.PNG)
 
 
  You can use [mine](https://github.com/kcrane3576/jenkins-shared-library) if you just want to follow along.
