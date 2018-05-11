@@ -28,5 +28,15 @@ Navigate back to your browser at `http:localhost:8080` and login to Jenkins with
 4. Select "OK" at the bottom right corner
 ![jenkins freestyle project](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-02.PNG)
 
+### Configuring the Seed Job to use the seed job stored in github
+We will not set up the seedJob to point to your github repository to load up the seed job we will be using. We will need to add some additional configuration to this job to get this working.
+
+1. Select your job (seedJob) from under the "Name" column in the Home page of Jenkins
+![jenkins home page](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-03.PNG)
+2. Select "Configure" from the left hand side of the page
+![jenkins configure job](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-04.PNG)
+
+#### Setup your jenkins shared library repository in github
+
 
  You can use [mine](https://github.com/kcrane3576/jenkins-shared-library) if you just want to follow along.
