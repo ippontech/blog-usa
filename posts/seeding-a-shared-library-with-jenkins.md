@@ -36,8 +36,8 @@ Now that the prerequisites are out of the way, the first thing we are going to d
   2. Inside of `seed.groovy`, we are going to create a very simple Freestyle Job that just prints to the `Console` in Jenkins
     * Add, Commit and Push the below changes in `seed.groovy`
    ```groovy
-    job('generatedJobFromSeedJob') {
-        println("Hello from github seed.groovy")
+    job {
+      name("generatedJobFromSeedJob")
     }
    ```
 
@@ -88,7 +88,7 @@ Now that we have our `seedJob` setup to read in our `seed.groovy` script from ou
     * Navigate to `Jenkins Home` > `seedJob` > select `Build Now`
   3. After the `seedJob` runs, you should now see a blue circle at the top of `Build History`
      * Select the blue button and at the bottom of the `Console Output`, you should see `GeneratedJob{name='generatedJobFromSeedJob'}`
-     ![jenkins console success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.3.png)
+     ![jenkins console success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.4.png)
       * Jenkins has created a new job from your `seed.groovy` file called `generatedJobFromSeedJob`
   4. Navigate to `Jenkins Home` and confirm `generatedJobFromSeedJob` job was created
   5. Finally, we are going to run the new `generatedJobFromSeedJob` and confirm the output in `Console`
