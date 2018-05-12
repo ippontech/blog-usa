@@ -103,5 +103,5 @@ Now that we have approved our `seed.groovy` file, we are ready for our `seedJob`
   ![jenkins created job success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.5.png)
     
 ## Conclusion
-...
+In this first part of a two part series, we set up the minimum configuration to use seed jobs. The `seedJob` onboards a very simple Freestyle Job that doesn't do anything, but in Part 2 we will be swapping this out for onboarding a regular Pipeline job and a Multibranch Pipeline. Additionally, we will configure our seed job to onboard both the Pipeline jobs for multiple services.
       
