@@ -3,13 +3,13 @@
 * TODO: clarify difference between seed Job in jenkins and the github seed.groovy
 
 ## Introduction
-I have been on a client these past few months that had specific requirements to organize their pipeline in such a way that would be repeatable accross all of their services. During my journey, I stumbled accross Jenkins Shared libraries. The shared library can be used by all of their services to handle CI and CD. During the discovery process of working with shared libraries, I found that using a `seed` job or `job that creates jobs` to be a great tool to accomodate the client as requirements were amended. 
+I have been on a client these past few months that had specific requirements to organize their pipeline in such a way that would be repeatable accross all of their services. During my journey, I stumbled accross [Jenkins Shared libraries](https://jenkins.io/doc/book/pipeline/shared-libraries/). The shared library can be used by all of their services to handle CI and CD. During the discovery process of working with shared libraries, I found that using a `seed` job or `job that creates jobs` to be a great tool to accomodate the client as requirements were amended. 
 
 This is the first of a two part series where I hope to guide you through setting up a simple seed job (Part 1) and using it for real world applications (Part 2). In this series, I hope to target anyone new to Jenkins as well as those individuals looking to stream line some of the work they need to repeat accross services they maintain.
 
 ## Part 1 Goals
-1. Create a [Jenkins Shared Library](https://jenkins.io/doc/book/pipeline/shared-libraries/) repository in github.
-2. Setup Jenkins Freestyle Job `seedJob` to use the Jenkins Shared Library to create and configure other jobs based on the [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
+1. Setup Jenkins Freestyle Job `seedJob` to use the Jenkins Shared Library to create and configure other jobs based on the [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
+2. Create a Jenkins Shared Library repository in github.
 
 ## Prerequisites
 1. **Docker installed.** If you do not have docker installed yet, please proceed to Docker's [Getting Started](https://docs.docker.com/get-started/) guide first.
@@ -20,8 +20,7 @@ This is the first of a two part series where I hope to guide you through setting
       * Check out the [Jenkins Official Repository](https://hub.docker.com/_/jenkins/) for using the Docker Image 
     * Open a browser and navigate to `http:localhost:8080` and follow the instructions to complete the setup
       * The first time you set this up, you will need to provide a password that was given to you after running `docker run -p 8080:8080 -p 50000:50000 jenkins`. 
-      * **You will need this to finish the installation process.**
-      * **Reminder:** You can always find the generated admin password at `/var/jenkins_home/secrets/initialAdminPassword`
+        * **Tip:** The generated admin password is located in `/var/jenkins_home/secrets/initialAdminPassword`
 
 ## Goal 1
 Now that the setup is out of the way, the first thing we need to do is setup a **Freestyle Job** in Jenkins. This job is considered the **seed** Jenkins job. As we progress to where we are using our shared library to onboard new jobs in Jenkins, this **seed** job will be the way Jenkins reaches out to github to obtain the configuration of these jobs.
