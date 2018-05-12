@@ -13,15 +13,17 @@ This is the first of a two part series where I hope to guide you through setting
 2. Create a simple Jenkins Shared Library repository in github.
 
 ## Prerequisites
-1. **Docker installed.** If you do not have docker installed yet, please proceed to Docker's [Getting Started](https://docs.docker.com/get-started/) guide first.
+1. **Docker installed** 
+   * If you do not have docker installed yet, please proceed to Docker's [Getting Started](https://docs.docker.com/get-started/) guide first.
 2. **Jenkins Running in a Docker Container**
-   * Run the below Docker commands
-     * Download the Jenkins image: `docker pull jenkins/jenkins`
-     * Start the Jenkins container: `docker run -p 8080:8080 -p 50000:50000 jenkins`
-       * Check out the [Jenkins Official Repository](https://hub.docker.com/_/jenkins/) for using the Docker Image 
-     * Open a browser and navigate to `http:localhost:8080` and follow the instructions to complete the setup
-       * The first time you set this up, you will need to provide a password that was given to you after running `docker run -p 8080:8080 -p 50000:50000 jenkins`. 
+    * Download the Jenkins image: `docker pull jenkins/jenkins`
+    * Start the Jenkins container: `docker run -p 8080:8080 -p 50000:50000 jenkins`
+      * Check out the [Jenkins Official Repository](https://hub.docker.com/_/jenkins/) for using the Docker Image 
+    * Open a browser and navigate to `http:localhost:8080` and follow the instructions to complete the setup
+      * The first time you set this up, you will need to provide a password that was given to you after running `docker run -p 8080:8080 -p 50000:50000 jenkins`. 
          * **Tip:** The generated admin password is located in `/var/jenkins_home/secrets/initialAdminPassword`
+3. **Jenkins UI**
+    * **Tip:** If you are lost while following along, search for the word(s) in your browser window
 
 ## Goal 1
 Now that the setup is out of the way, the first thing we need to do is setup a **Freestyle Job** `seedJob` in Jenkins. This job is used to generate all other jobs you want to create within Jenkins. As we progress to where we are using our Shared Library to onboard new jobs in Jenkins, this `seedJob` will be used to generate a set of jobs we want associated with all services we onboard into Jenkins.
@@ -34,13 +36,12 @@ Navigate back to your browser at `http:localhost:8080` and login to Jenkins with
 2. In the text box for `Enter a item name`, enter `seedJob` > Select the `Freestyle Project` > Select `OK`
 ![jenkins freestyle project](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-02.PNG)
 
-### Configuring the Seed Job to use the seed job stored in github
-We will not set up the seedJob to point to your github repository to load up the seed job we will be using. We will need to add some additional configuration to this job to get this working.
+### Configuring the `seedJob` to use the `seed.groovy` file stored in github
+We will now set up the `seedJob` to point to your github repository and load up the seed.groovy file we will be using to onboard new jobs. We will need to add some additional configuration to this job to get this working.
 
-1. Select your job (seedJob) from under the "Name" column in the Home page of Jenkins
+1. From `Jenkins Home`, select `seedJob` from under the `Name` column
 ![jenkins home page](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-03.PNG)
-2. Select "Configure" from the left hand side of the page
-![jenkins configure job](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-04.PNG)
+2. On the left hand side of the page, select `Configure`
 3. Next, you will need to configure Jenkins to use the "Job DSL" plugin. This is necessary to tell jenkins where to find the seed.groovy file is located in order to exectute our seed job. 
   * Navigate to `Jenkins Home > Manage Jenkins > Manage Plugins > "Available" tab > Search for "Job DSL" and install`
   * Once you install the plugin, you will need to navigate to `Jenkins Home > seedJob > Configure` 
@@ -63,6 +64,3 @@ We will not set up the seedJob to point to your github repository to load up the
  * After the seedJob runs, you should now see a blue circle at the top of your "Build History" Tab
  * Select the blue button and at the bottom of the "Console Output", you should see `GeneratedJob{name='seed'}`
 
-
-
- You can use [mine](https://github.com/kcrane3576/jenkins-shared-library) if you just want to follow along.
