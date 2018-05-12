@@ -1,5 +1,10 @@
-TODO: change image links
-TODO: clarify difference between seed Job in jenkins and the github seed.groovy
+
+* TODO: change image links
+* TODO: clarify difference between seed Job in jenkins and the github seed.groovy
+
+I have been on a client these past few months that had specific requirements to organize their pipeline in such a way that would be repeatable accross all of their services. During my journey, I stumbled accross Jenkins shared libraries. The shared library can be used by all of their services to handle CI and CD. During the discovery process of working with shared libraries, I found that using a "seed" job or job that creates jobs to be a great tool to accomodate the client as requirements were amended. 
+
+This is the first of a two part series where I hope to guide you through setting up a simple seed job and using it for real world applications. In this series, I hope to target anyone new to Jenkins as well as those individuals looking to stream line some of the work they need to repeat accross services they maintain.
 
 ## Goals
 1. Create a shared library in github that uses a **seed** job. The **seed** job will be used to create jobs within jenkins. 
