@@ -2,6 +2,8 @@
 * TODO: change image links
 * TODO: clarify difference between seed Job in jenkins and the github seed.groovy
 * TODO: Highlight Part 1 and Part 2 with link to Part 2
+* TODO: Clearly explain what Jenkins Home means
+* TODO: Make the github setup first with in goals
 
 ## Introduction
 I have been on a client these past few months that had specific requirements to organize their pipeline in such a way that would be repeatable accross all of their services. During my journey, I stumbled accross [Jenkins Shared libraries](https://jenkins.io/doc/book/pipeline/shared-libraries/). The shared library can be used by all of their services to handle CI and CD. During the discovery process of working with shared libraries, I found that using a `seed` job or `job that creates jobs` to be a great tool to accomodate the client as requirements were amended. 
@@ -26,30 +28,35 @@ This is the first of a two part series where I hope to guide you through setting
     * **Tip:** If you are lost while following along, search for the word(s) in your browser window
 
 ## Goal 1
-Now that the setup is out of the way, the first thing we need to do is setup a **Freestyle Job** `seedJob` in Jenkins. This job is used to generate all other jobs you want to create within Jenkins. As we progress to where we are using our Shared Library to onboard new jobs in Jenkins, this `seedJob` will be used to generate a set of jobs we want associated with all services we onboard into Jenkins.
+* TODO: github setup
 
+Now that the are out of the way, the first thing we need to do is setup a **Freestyle Job** `seedJob` in Jenkins. This job is used to generate all other jobs you want to create within Jenkins. As we progress to where we are using our Shared Library to onboard new jobs in Jenkins, this `seedJob` will be used to generate a set of jobs we want associated with all services we onboard into Jenkins.
 
-### Setting up the Freestyle Project `seedJob`
+### Creating the Freestyle Project `seedJob`
 Navigate back to your browser at `http:localhost:8080` and login to Jenkins with the credials you set up or the default admin ones provided for you during the initial setup
 
 1. On the left hand side of the page, select `New Item`
 2. In the text box for `Enter a item name`, enter `seedJob` > Select the `Freestyle Project` > Select `OK`
 ![jenkins freestyle project](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-02.PNG)
 
-### Configuring the `seedJob` to use the `seed.groovy` file stored in github
+### Configuring the `seedJob` to use the `dsl/seed.groovy` stored in github
 We will now set up the `seedJob` to point to your github repository and load up the seed.groovy file we will be using to onboard new jobs. We will need to add some additional configuration to this job to get this working.
 
-1. From `Jenkins Home`, select `seedJob` from under the `Name` column
-![jenkins home page](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-03.PNG)
-2. On the left hand side of the page, select `Configure`
-3. Next, you will need to configure Jenkins to use the "Job DSL" plugin. This is necessary to tell jenkins where to find the seed.groovy file is located in order to exectute our seed job. 
-  * Navigate to `Jenkins Home > Manage Jenkins > Manage Plugins > "Available" tab > Search for "Job DSL" and install`
-  * Once you install the plugin, you will need to navigate to `Jenkins Home > seedJob > Configure` 
-   * Scroll to the `"Build" section > select "Add Build step" > Select "Process Job DSLs"`
-   * Provide the path from the root of the project to where we will store our seed.groovy file (dsl/seed.groovy) in "DSL Scripts" 
-   * Leave everything else as the defuault configuration
-3. Now you need to set up your seedJob to link to github to load in the seed job. Navigate to the "Source Code Management" section and provide the github repository you plan to use as a shared library. For now, there is no need to provide Credentials (as long as your repository is public). Also, we will just work off of the "master" branch to get things started. 
+1. Install the `Job DSL` plugin
+    * This is necessary to tell jenkins where to look for the `seed.groovy` file within our github Shared Library
+    * Navigate to `Jenkins Home` > `Manage Jenkins` > `Manage Plugins` > `Available` tab > Search for `Job DSL` and install
+
+2. Now that Jenkins knows that we want to use `Job DSL`, we can go in and configure our `seedJob` to look for our `seed.groovy` file to build additional jobs.
+    * Navigate to `Jenkins Home` > `seedJob` > `Configure` 
+     * Scroll to the `Build` section > select `Add Build step` > Select `Process Job DSLs`
+     * In the `DSL Scripts` input field, enter `dsl/seed.groovy`
+       * Leave everything else as the default configuration
+
+1. We need to set up the `seedJob` to link to the github repository and load up the `seed.groovy` file.
+  * Navigate to `Jenkins Home` > "Source Code Management" section and provide the github repository you plan to use as a shared library. For now, there is no need to provide Credentials (as long as your repository is public). Also, we will just work off of the "master" branch to get things started. 
 ![seedJob Source Code Management](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-05.PNG)
+
+2. On the left hand side of the page, select `Configure`
 4. Ok, now lets make our seedJob create another job when ran. For now we will just do a simple Freestyle job that print's "Hello from github seed.groovy". Inside of your seed job github repository, create a directory "dsl" and inside of that, create a seed.groovy file. Commit and push these changes to your shared library in github.
 ![github seed job setup](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-06.PNG)
 5. Ok, we are finally ready to run our Jenkins seed job.
