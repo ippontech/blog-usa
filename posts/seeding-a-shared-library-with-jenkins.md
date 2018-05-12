@@ -28,8 +28,23 @@ This is the first of a two part series where I hope to guide you through setting
     * **Tip:** If you are lost while following along, search for the word(s) in your browser window
 
 ## Goal 1
-* TODO: github setup
-Now that the are out of the way, the first thing we are going to do is create a new github repository for our Shared Library.
+Now that the prerequisites are out of the way, the first thing we are going to do is create a new github repository for our Shared Library.
+
+  1. Inside of the jenkins-shared-library github repository, create a directory `dsl` with `seed.groovy`. 
+      * Commit and push these changes to your shared library in github.
+5. Ok, we are finally ready to run our Jenkins seed job.
+ * `Navigate to seedJob > Select "Build Now"`
+ * Since our seedJob is pretty small, the job likely finished pretty quickly. On the left hand side of the page, under "Build History", you should see a red circle followed by #1 and a Date.
+ * Select the red circle
+ * This should take you to the "Console Output" of the job. The red circle is actually an indicator that the job failed (by default a blue circle is a success)
+ * We have 1 last hurdle to get through to get our job working. As of right now, due to [Script Security](https://github.com/jenkinsci/job-dsl-plugin/wiki/Script-Security), you will run into this issue every time you change seed.groovy unless you take alternative steps.
+ * Navivage to `Jenkins Home > Manage Jenkins > In-process Script Approval`
+ * Select "Approve" for your seed.groovy script
+ * Navigate to `Jenkins Home > seedJob > Select "Build Now"`
+ * After the seedJob runs, you should now see a blue circle at the top of your "Build History" Tab
+ * Select the blue button and at the bottom of the "Console Output", you should see `GeneratedJob{name='seed'}`
+
+
 
 ## Goal 2
 We need to do is setup a **Freestyle Job** `seedJob` in Jenkins. This job is used to generate all other jobs you want to create within Jenkins. As we progress to where we are using our Shared Library to onboard new jobs in Jenkins, this `seedJob` will be used to generate a set of jobs we want associated with all services we onboard into Jenkins.
@@ -63,18 +78,6 @@ Since we will be using a shared library, Jenkins needs to know some default conf
    2. Scroll to the `Build` section > select `Add Build step` > Select `Process Job DSLs`
    3. In the `DSL Scripts` input field, enter `dsl/seed.groovy`
        * Leave everything else as the default configuration
-
-4. Ok, now lets make our seedJob create another job when ran. For now we will just do a simple Freestyle job that print's "Hello from github seed.groovy". Inside of your seed job github repository, create a directory "dsl" and inside of that, create a seed.groovy file. Commit and push these changes to your shared library in github.
-![github seed job setup](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-06.PNG)
-5. Ok, we are finally ready to run our Jenkins seed job.
- * `Navigate to seedJob > Select "Build Now"`
- * Since our seedJob is pretty small, the job likely finished pretty quickly. On the left hand side of the page, under "Build History", you should see a red circle followed by #1 and a Date.
- * Select the red circle
- * This should take you to the "Console Output" of the job. The red circle is actually an indicator that the job failed (by default a blue circle is a success)
- * We have 1 last hurdle to get through to get our job working. As of right now, due to [Script Security](https://github.com/jenkinsci/job-dsl-plugin/wiki/Script-Security), you will run into this issue every time you change seed.groovy unless you take alternative steps.
- * Navivage to `Jenkins Home > Manage Jenkins > In-process Script Approval`
- * Select "Approve" for your seed.groovy script
- * Navigate to `Jenkins Home > seedJob > Select "Build Now"`
- * After the seedJob runs, you should now see a blue circle at the top of your "Build History" Tab
- * Select the blue button and at the bottom of the "Console Output", you should see `GeneratedJob{name='seed'}`
-
+       
+       
+Ok, now lets make our seedJob create another job when ran. For now we will just do a simple Freestyle job that print's "Hello from github seed.groovy". 
