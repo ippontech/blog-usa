@@ -36,8 +36,8 @@ Now that the prerequisites are out of the way, the first thing we are going to d
   2. Inside of `seed.groovy`, we are going to create a very simple Freestyle Job that just prints to the `Console` in Jenkins
     * Add, Commit and Push the below changes in `seed.groovy`
    ```groovy
-    job {
-      name("generatedJobFromSeedJob")
+    job('freestyle') {
+     description("A simple Freestyle Job created from seed.groovy")
     }
    ```
 
