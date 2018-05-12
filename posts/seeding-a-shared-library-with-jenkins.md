@@ -80,21 +80,27 @@ Now that we have our `seedJob` setup to read in our `seed.groovy` script from ou
      ![jenkins console error](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.2.png)
       
 ### Approving our `seed.groovy` script
-
   1. We need to tell Jenkins it is ok to use this script
     * Navivage to `Jenkins Home` > `Manage Jenkins` > `In-process Script Approval`
     * Select `Approve` for the `seed.groovy` script
-  2. Now we are actually ready for our `seedJob` to build another job
-    * Navigate to `Jenkins Home` > `seedJob` > select `Build Now`
-  3. After the `seedJob` runs, you should now see a blue circle at the top of `Build History`
-     * Select the blue button and at the bottom of the `Console Output`, you should see `GeneratedJob{name='generatedJobFromSeedJob'}`
-     ![jenkins console success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.4.png)
-      * Jenkins has created a new job from your `seed.groovy` file called `generatedJobFromSeedJob`
-  4. Navigate to `Jenkins Home` and confirm `generatedJobFromSeedJob` job was created
-  5. Finally, we are going to run the new `generatedJobFromSeedJob` and confirm the output in `Console`
-    * Select `generatedJobFromSeedJob`
-    * Select `Build Now`
-    * Once the job finished, select the blue circle and inside of the `Console`, confirm you see `Hello from github seed.groovy`
+    ![jenkins script approval](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.3.png)
+    
+### Rerunning the `seedJob`
+Now that we have approved our `seed.groovy` file, we are ready for our `seedJob` to run
+  1. Navigate to `Jenkins Home` > select `seedJob` > select `Build Now`
+  2. Under `Build History`, select the top blue circle
+  3. Inside of `Console Output`, you will see `GeneratedJob{name='freestyle'}`
+    * Jenkins has created a new job called `freestyle` from your `seed.groovy` file
+  ![jenkins console success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.4.png)
+
+### Verify creation of `freestyle` job
+  1. Navigate to `Jenkins Home` and confirm `freestyle` job was created
+  
+### Running `freestyle` job
+  1. Navigate to `Jenkins Home` > select `freestyle` > select `Build Now`
+  2. Under `Build History`, select the top blue circle
+  3. Inside of `Console Output`, you will see a successful exection of `freestyle`
+  ![jenkins created job success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.5.png)
     
 ## Conclusion
 ...
