@@ -1,11 +1,7 @@
 
-* TODO: change image links
-* TODO: clarify difference between seed Job in jenkins and the github seed.groovy
 * TODO: Highlight Part 1 and Part 2 with link to Part 2
 * TODO: Clearly explain what Jenkins Home means
-* TODO: Make the github setup first with in goals
-* TODO: only need to configure seedJob with repo for grabbing seed.groovy
-  * may need toe manage jenkins config for shared library
+* TODO: make code use have same naming convention and layout
 
 ## Introduction
 I have been on a client these past few months that had specific requirements to organize their pipeline in such a way that would be repeatable accross all of their services. During my journey, I stumbled accross [Jenkins Shared libraries](https://jenkins.io/doc/book/pipeline/shared-libraries/). The shared library can be used by all of their services to handle CI and CD. During the discovery process of working with shared libraries, I found that using a `seed` job or `job that creates jobs` to be a great tool to accomodate the client as requirements for all services were amended. 
@@ -66,7 +62,7 @@ Now that we have configured Jenkins to us the Jenkins Job DSL API, we can create
 
 Since we will be using our `jenkins-shared-library`, we will need to add some additional configuration to this job to get this working.
 
-   1. Navigate to `Jenkins Home` > `seedJob` > `Configure` 
+   1. Navigate to `Jenkins Home` > select `seedJob` > select `Configure` 
    2. Scroll to the `Build` section > select `Add Build step` > Select `Process Job DSLs`
    3. Select `Look on Filesystem`
    4. In the `DSL Scripts` input field, enter `dsl/seed.groovy`
@@ -75,23 +71,27 @@ Since we will be using our `jenkins-shared-library`, we will need to add some ad
 ##  Goal 3
 Now that we have our `seedJob` setup to read in our `seed.groovy` script from our github `jenkins-shared-library` repository, we are ready to trigger our `seedJob` to create another job.
 
-  1. Navigate to `seedJob` > Select `Build Now` 
-    * **WARNING** The job will fail, due to [Script Security](https://github.com/jenkinsci/job-dsl-plugin/wiki/Script-Security), you will run into this issue every time you change `seed.groovy` unless you take alternative steps.
-  2. On the left hand side of the page, under `Build History`, you should see a red circle followed by a number and a Date.
-    * Select the red circle 
-      * This will take you to the `Console Output` of the job where you will see your failure messaage
-      ![jenkins console error](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.2.png)
-  3. We need to tell Jenkins it is ok to use this script
+### Running the `seedJob`
+  1. Navigate to `Jenkins Home` > select `seedJob` > select `Build Now` 
+  2. Under `Build History`, select the top red circle
+  3. This will take you to the `Console Output`
+     * The job **failed**
+     * Due to [Script Security](https://github.com/jenkinsci/job-dsl-plugin/wiki/Script-Security), this will happen every time you change `seed.groovy`
+     ![jenkins console error](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.2.png)
+      
+### Approving our `seed.groovy` script
+
+  1. We need to tell Jenkins it is ok to use this script
     * Navivage to `Jenkins Home` > `Manage Jenkins` > `In-process Script Approval`
     * Select `Approve` for the `seed.groovy` script
-  4. Now we are actually ready for our `seedJob` to build another job
+  2. Now we are actually ready for our `seedJob` to build another job
     * Navigate to `Jenkins Home` > `seedJob` > select `Build Now`
-  5. After the `seedJob` runs, you should now see a blue circle at the top of `Build History`
+  3. After the `seedJob` runs, you should now see a blue circle at the top of `Build History`
      * Select the blue button and at the bottom of the `Console Output`, you should see `GeneratedJob{name='generatedJobFromSeedJob'}`
      ![jenkins console success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.3.png)
       * Jenkins has created a new job from your `seed.groovy` file called `generatedJobFromSeedJob`
-  6. Navigate to `Jenkins Home` and confirm `generatedJobFromSeedJob` job was created
-  7. Finally, we are going to run the new `generatedJobFromSeedJob` and confirm the output in `Console`
+  4. Navigate to `Jenkins Home` and confirm `generatedJobFromSeedJob` job was created
+  5. Finally, we are going to run the new `generatedJobFromSeedJob` and confirm the output in `Console`
     * Select `generatedJobFromSeedJob`
     * Select `Build Now`
     * Once the job finished, select the blue circle and inside of the `Console`, confirm you see `Hello from github seed.groovy`
