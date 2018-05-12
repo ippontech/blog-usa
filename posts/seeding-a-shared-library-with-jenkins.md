@@ -1,6 +1,7 @@
 
 * TODO: change image links
 * TODO: clarify difference between seed Job in jenkins and the github seed.groovy
+* TODO: Highlight Part 1 and Part 2 with link to Part 2
 
 ## Introduction
 I have been on a client these past few months that had specific requirements to organize their pipeline in such a way that would be repeatable accross all of their services. During my journey, I stumbled accross [Jenkins Shared libraries](https://jenkins.io/doc/book/pipeline/shared-libraries/). The shared library can be used by all of their services to handle CI and CD. During the discovery process of working with shared libraries, I found that using a `seed` job or `job that creates jobs` to be a great tool to accomodate the client as requirements were amended. 
@@ -8,31 +9,29 @@ I have been on a client these past few months that had specific requirements to 
 This is the first of a two part series where I hope to guide you through setting up a simple seed job (Part 1) and using it for real world applications (Part 2). In this series, I hope to target anyone new to Jenkins as well as those individuals looking to stream line some of the work they need to repeat accross services they maintain.
 
 ## Part 1 Goals
-1. Setup Jenkins Freestyle Job `seedJob` to use the Jenkins Shared Library to create and configure other jobs based on the [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
-2. Create a Jenkins Shared Library repository in github.
+1. Setup Jenkins Freestyle Job `seedJob` to use a Jenkins Shared Library stored in github to create and configure other jobs based on the [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
+2. Create a simple Jenkins Shared Library repository in github.
 
 ## Prerequisites
 1. **Docker installed.** If you do not have docker installed yet, please proceed to Docker's [Getting Started](https://docs.docker.com/get-started/) guide first.
 2. **Jenkins Running in a Docker Container**
-  * Run the below Docker commands
-    * Download the Jenkins image: `docker pull jenkins/jenkins`
-    * Start the Jenkins container: `docker run -p 8080:8080 -p 50000:50000 jenkins`
-      * Check out the [Jenkins Official Repository](https://hub.docker.com/_/jenkins/) for using the Docker Image 
-    * Open a browser and navigate to `http:localhost:8080` and follow the instructions to complete the setup
-      * The first time you set this up, you will need to provide a password that was given to you after running `docker run -p 8080:8080 -p 50000:50000 jenkins`. 
-        * **Tip:** The generated admin password is located in `/var/jenkins_home/secrets/initialAdminPassword`
+   * Run the below Docker commands
+     * Download the Jenkins image: `docker pull jenkins/jenkins`
+     * Start the Jenkins container: `docker run -p 8080:8080 -p 50000:50000 jenkins`
+       * Check out the [Jenkins Official Repository](https://hub.docker.com/_/jenkins/) for using the Docker Image 
+     * Open a browser and navigate to `http:localhost:8080` and follow the instructions to complete the setup
+       * The first time you set this up, you will need to provide a password that was given to you after running `docker run -p 8080:8080 -p 50000:50000 jenkins`. 
+         * **Tip:** The generated admin password is located in `/var/jenkins_home/secrets/initialAdminPassword`
 
 ## Goal 1
-Now that the setup is out of the way, the first thing we need to do is setup a **Freestyle Job** in Jenkins. This job is considered the **seed** Jenkins job. As we progress to where we are using our shared library to onboard new jobs in Jenkins, this **seed** job will be the way Jenkins reaches out to github to obtain the configuration of these jobs.
+Now that the setup is out of the way, the first thing we need to do is setup a **Freestyle Job** `seedJob` in Jenkins. This job is used to generate all other jobs you want to create within Jenkins. As we progress to where we are using our Shared Library to onboard new jobs in Jenkins, this `seedJob` will be used to generate a set of jobs we want associated with all services we onboard into Jenkins.
 
 
-### Setting up the Freestyle Project Seed Job
+### Setting up the Freestyle Project `seedJob`
 Navigate back to your browser at `http:localhost:8080` and login to Jenkins with the credials you set up or the default admin ones provided for you during the initial setup
 
 1. On the left hand side of the page, select `New Item`
-2. In the text box for `Enter a item name`, provide the name of your seed job (e.g. `seedJob`). 
-3. Select the `Freestyle Project`
-4. Select `OK` 
+2. In the text box for `Enter a item name`, enter `seedJob` > Select the `Freestyle Project` > Select `OK`
 ![jenkins freestyle project](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-02.PNG)
 
 ### Configuring the Seed Job to use the seed job stored in github
