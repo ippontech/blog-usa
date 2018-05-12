@@ -34,11 +34,16 @@ This is the first of a two part series where I hope to guide you through setting
 3. **Familiarity with Jenkins UI**
 
 ## Goal 1
-Now that the prerequisites are out of the way, the first thing we are going to do is create a new github repository for our Shared Library.
+Now that the prerequisites are out of the way, the first thing we are going to do is create a new github repository for our Shared Library. This repository will be used to store our `seed` code as well as our Shared Library code (Part 2).
 
-  1. Inside of the jenkins-shared-library github repository, create a directory `dsl` with `seed.groovy`. 
-      * Commit and push these changes to your shared library in github.
-5. Ok, we are finally ready to run our Jenkins seed job.
+  1. Inside of the `jenkins-shared-library` github repository, create a directory `dsl` with `seed.groovy`
+  2. Inside of `seed.groovy`, we are going to create a very simple Freestyle Job that just prints to the `Console` in Jenkins
+    * Add, Commit and Push the below changes in `seed.groovy`
+   ```groovy
+    job('generatedJobFromSeedJob') {
+        println("Hello from github seed.groovy")
+    }
+   ```
 
 ## Goal 2
 We need to do is setup a **Freestyle Job** `seedJob` in Jenkins. This job is used to generate all other jobs you want to create within Jenkins. As we progress to where we are using our Shared Library to onboard new jobs in Jenkins, this `seedJob` will be used to generate a set of jobs we want associated with all services we onboard into Jenkins.
