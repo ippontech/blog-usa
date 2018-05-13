@@ -1,6 +1,6 @@
-* TODO: create folders from seed job
 * TODO: update seed job to grab service 1 at a time
 * TODO: create packaging stage in deploy job
+* TODO: create testing of service in test job
 
 ## Introduction
 In this second part of a two part series, we will be setting up a [Jenkins Shared libraries](https://jenkins.io/doc/book/pipeline/shared-libraries/) to execute our Jenkins jobs. Additionally, we will redo the `seed.groovy` file we did in Part 1 to build a regular Pipeline and and Multibranch Pipeline for two services we plan to create jobs for in Jenkins. 
@@ -41,23 +41,12 @@ We are going to leave the `master` branch of the Shared Lbrary alone to ensure i
 #### Adding `pipeline-config.groovy` configuration file
 As a way to share configuraitons between jobs, we are going to store these configurations in `pipeline-config.groovy`
 1. Create `dsl/pipeline-config.groovy` in your Shared Library with the below code
-   * The code is very simple and sets up a `cron` that will be used in our `multibranchPipelineJob`
-   * There is also a `services` section that `seed.groovy` will use to determine what services will have jobs created
+   * The code is very simple and sets up a `cron` that will be used in `multibranchPipelineJob`
 ```groovy
 pipelineConfig {
     definition {
         scm {
             cron = "H/5 * * * *"
-        }
-    }
-    services {
-        pocMicro {
-            jobName = "poc-micro"
-            repository = "https://github.com/kcrane3576/${jobName}.git"
-        }
-        blgMicro {
-            jobName = "blg-micro"
-            repository = "https://github.com/kcrane3576/${jobName}.git"
         }
     }
 }
@@ -123,18 +112,27 @@ Finally we will tie it all together and build a `*_deploy` and `*_test` job for 
 1. Add a method that reads the `services` form `pipeline-config.groovy` and call the method
 ```groovy
 def buildPipelineJobs() {
-    pipelineConfig.services.each { service, data  ->
-        def deployName = data.jobName + "_deploy"
-        def testName = data.jobName + "_test"
-        def repoUrl = data.repository
-        createPipelineJob(deployName, repoUrl)
-        createMultibranchPipelineJob(testName, repoUrl)
-    }
+    def repo = "https://github.com/kcrane3576/"
+    def repoUrl = repo + jobName + ".git"
+    def deployName = jobName + "_deploy"
+    def testName = jobName + "_test"
+
+    createPipelineJob(deployName, repoUrl)
+    createMultibranchPipelineJob(testName, repoUrl)
 }
 
 def pipelineConfig = getPipelineConfig()
 buildPipelineJobs()
 ```
+#### Configure `jobName` Paramater in `seedJob`
+The `seedJob` will need a `jobName` `String Parameter` added to the configuration so our `seed.groovy` file will know what repository it needs to build
+
+1. Navitate to `Jenkins Home` > select `seedJob` > select `Configure` 
+2. Check `This job is parameterized` > select `Add Parameter` > select `String Parameter`
+3. Enter `jobName` in `Name` field
+4. Enter `The name of your repo (e.g. poc-micro)` in the `Description` field
+![jenkins successful seed job execution](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.2.png)
+
 
 ## Goal 3
 Now that Jenkins is ready to onboard jobs for our JHipster microservices, we are ready to set up the JHipster microservices to use the Shared Library. 
@@ -172,4 +170,4 @@ jenkinsJob.call()
    * A `*_deploy` and `*_test` job has been created for all services listed under `service` in `dsl/pipeline-config.groovy`
    * We set our `multibranchPipelineJob` `cron` to build every 5 minutes and will do a simple `checkout scm`. 
    * Building one of the `*_deploy` jobs will run `checkout scm` when triggered manually
-      ![jenkins successful seed job execution](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.2.png)
+      ![jenkins successful seed job execution](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.3.png)
