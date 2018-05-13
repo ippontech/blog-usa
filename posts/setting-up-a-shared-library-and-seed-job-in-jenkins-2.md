@@ -172,4 +172,4 @@ jenkinsJob.call()
    * A `*_deploy` and `*_test` job has been created for all services listed under `service` in `dsl/pipeline-config.groovy`
    * We set our `multibranchPipelineJob` `cron` to build every 5 minutes and will do a simple `checkout scm`. 
    * Building one of the `*_deploy` jobs will run `checkout scm` when triggered manually
-      ![jenkins successful seed job execution](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.12.png)
+      ![jenkins successful seed job execution](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.2.png)
