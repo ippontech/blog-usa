@@ -131,7 +131,7 @@ The `seedJob` will need a `jobName` `String Parameter` added to the configuratio
 2. Check `This job is parameterized` > select `Add Parameter` > select `String Parameter`
 3. Enter `jobName` in `Name` field
 4. Enter `The name of your repo (e.g. poc-micro)` in the `Description` field
-![jenkins successful seed job execution](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.2.png)
+
 
 
 ## Goal 3
