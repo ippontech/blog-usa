@@ -164,3 +164,12 @@ We weill configure a `Jenkinsfile` in our services to point to our Shared Librar
 // Entry point into jenkins-shared-library
 jenkinsJob.call()
 ```
+### Running our `seeJob`, `*_deploy` and `*_test` jobs
+1. Navigate to `Jenkins Home` > select `seedJob` -> select `Build Now`
+   * The job is going to fail again because we need to approve the changes to the `seed.groovy` file
+2. Navigate to `Jenkins Home` > select `Manage Jenkins` > select `In-process Script Approval` > select `Approve`
+3. Navigate to `Jenkins Home` > select `seedJob` -> select `Build Now`
+   * A `*_deploy` and `*_test` job has been created for all services listed under `service` in `dsl/pipeline-config.groovy`
+   * We set our `multibranchPipelineJob` `cron` to build every 5 minutes and will do a simple `checkout scm`. 
+   * Building one of the `*_deploy` jobs will run `checkout scm` when triggered manually
+      ![jenkins successful seed job execution](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.12.png)
