@@ -13,9 +13,9 @@ In this second part of a two part series, we will be setting up a [Jenkins Share
 
 ## Part 2 Goals
 1. Configure Jenkins to use our Shared Library for executing jobs. The `seedJob` has a stand alone configuration to use our Shared Library.
-2. Configure the 2 JHipster microservices to use the `jenkins-shared-library`
-3. Configure `seed.groovy` to create a Pipeline and Multibranch Pipeline Job per desired services outlined in `pipeline-config.groovy` 
-3. ...
+2. Configure `seed.groovy` to create a Pipeline and Multibranch Pipeline Job per desired services outlined in `pipeline-config.groovy` 
+3. Configure the 2 JHipster microservices to use the `jenkins-shared-library`
+4. adjusting functionality
 
 ## Goal 1
 ### Configure default Shared Library setup for Jenkins
@@ -62,6 +62,7 @@ pipelineConfig {
     }
 }
 ```
+
 #### Adding `pipelineJob` and `multibranchPipelineJob` to `seed.groovy`
 1. Remove the original code in `seed.groovy` and paste in the below code
    * For a better understanding of the `pipelineJob` and `multibranchPipelineJob`, make sure to go back and check the [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/#)
@@ -87,7 +88,7 @@ def createPipelineJob(jobName, repoUrl) {
     }
 }
 
-def createMultibranchPipeline(jobName, repoUrl) {
+def createMultibranchPipelineJob(jobName, repoUrl) {
     multibranchPipelineJob(jobName) {
         branchSources {
             git {
@@ -102,4 +103,35 @@ def createMultibranchPipeline(jobName, repoUrl) {
 }
 ```
 
-#### Rading in `pipeline-config.groovy` and building the `pipelineJob` and `multibranchPipelineJob`
+#### Reading in `pipeline-config.groovy` from the workspace
+The `pipelineJob` and `multibranchPipelineJob` don't actually do anything yet. We need to configure `seed.groovy` to load `pipeline-config.groovy` and build the `pipelineJob` and `multibranchPipelineJob` for each of our services.
+
+1. Add a method to read in our `pipeline-config.groovy` fom the workspace
+```groovy
+def getPipelineConfig() {
+    def slurper = new ConfigSlurper()
+    def workspacePath = "${new File(__FILE__).parent}"
+    def pipelineConfigPath = workspacePath + "/pipeline-config.groovy"
+    def config = slurper.parse(readFileFromWorkspace(pipelineConfigPath))
+
+    return config.pipelineConfig
+}
+```
+#### Execute the building of the `pipelineJob` and `multibranchPipelineJob` for each service
+Finally we will tie it all together and build a `*_deploy` and `*_test` job for both of our services. We are going to add `_deploy` to our services name when creating the `pipelineJob` and add `_test` to our service name when we create the `multibranchPipelineJob`
+
+1. Add a method that reads the `services` form `pipeline-config.groovy` and call the method
+```groovy
+def buildPipelineJobs() {
+    pipelineConfig.services.each { service, data  ->
+        def deployName = data.jobName + "_deploy"
+        def testName = data.jobName + "_test"
+        def repoUrl = data.repository
+        createPipelineJob(deployName, repoUrl)
+        createMultibranchPipelineJob(testName, repoUrl)
+    }
+}
+
+def pipelineConfig = getPipelineConfig()
+buildPipelineJobs()
+```
