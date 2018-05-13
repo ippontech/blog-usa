@@ -1,6 +1,6 @@
-TODO: create folders from seed job
-TODO: update seed job to grab service 1 at a time
-TODO: create packaging stage in deploy job
+* TODO: create folders from seed job
+* TODO: update seed job to grab service 1 at a time
+* TODO: create packaging stage in deploy job
 
 ## Introduction
 In this second part of a two part series, we will be setting up a [Jenkins Shared libraries](https://jenkins.io/doc/book/pipeline/shared-libraries/) to execute our Jenkins jobs. Additionally, we will redo the `seed.groovy` file we did in Part 1 to build a regular Pipeline and and Multibranch Pipeline for two services we plan to create jobs for in Jenkins. 
@@ -134,4 +134,33 @@ def buildPipelineJobs() {
 
 def pipelineConfig = getPipelineConfig()
 buildPipelineJobs()
+```
+
+## Goal 3
+Now that Jenkins is ready to onboard jobs for our JHipster microservices, we are ready to set up the JHipster microservices to use the Shared Library. 
+
+### Adding the `jenkinsJob.groovy` file
+We need to have an entry point for the `Jenkinsfile` in our JHipster microservices to access our shared library. 
+1. Create `vars/jenkinsJob.groovy` in your shared library and add the below code
+```groovy
+def call(){
+    node {
+        stage('Checkout') {
+            checkout scm
+        }
+    }
+}
+```
+### Adding a `Jenkinsfile` to our JHipster services
+We weill configure a `Jenkinsfile` in our services to point to our Shared Library. This is necessary to execute the stages for our `pipelineJob` and `multibranchPipelineJob`.
+
+1. At the root of your JHipster project, add a `Jenkinsfile` with the below code
+```groovy
+#!/usr/bin/env groovy
+
+// Configure using jenkins-shared-library and using "part2" branch
+@Library("jenkins-shared-library@part2") _
+
+// Entry point into jenkins-shared-library
+jenkinsJob.call()
 ```
