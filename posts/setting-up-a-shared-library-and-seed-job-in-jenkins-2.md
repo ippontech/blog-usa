@@ -10,7 +10,7 @@ In this second part of a two part series, we will be setting up a [Jenkins Share
 
 ## Part 2 Goals
 1. Configure Jenkins to use our Shared Library for executing jobs. The `seedJob` has a stand alone configuration to use our Shared Library.
-2. Configure `seed.groovy` to create a Pipeline and Multibranch Pipeline Job per desired services outlined in `pipeline-config.groovy` 
+2. Configure `seed.groovy` to create a Pipeline and Multibranch Pipeline Job per desired service
 3. Configure the 2 JHipster microservices to use the `jenkins-shared-library`
 4. Build a new Docker Container that runs the tests in the `*_test` jobs and packages in the `*_deploy` jobs
 
@@ -105,8 +105,6 @@ def getPipelineConfig() {
 ```
 #### Execute the building of the `pipelineJob` and `multibranchPipelineJob` for each service
 Finally we will tie it all together and build a `*_deploy` and `*_test` job for both of our services. We are going to add `_deploy` to our services name when creating the `pipelineJob` and add `_test` to our service name when we create the `multibranchPipelineJob`
-
-1. Add a method that reads the `services` form `pipeline-config.groovy` and call the method
 ```groovy
 def buildPipelineJobs() {
     def repo = "https://github.com/kcrane3576/"
@@ -132,7 +130,7 @@ The `seedJob` will need a `jobName` `String Parameter` added to the configuratio
 2. Check `This job is parameterized` > select `Add Parameter` > select `String Parameter`
 3. Enter `jobName` in `Name` field
 4. Enter `The name of your repo (e.g. poc-micro)` in the `Description` field
-
+![jenkins seed job configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.4.png)
 
 
 ## Goal 3
@@ -168,7 +166,8 @@ jenkinsJob.call()
    * The job is going to fail again because we need to approve the changes to the `seed.groovy` file
 2. Navigate to `Jenkins Home` > select `Manage Jenkins` > select `In-process Script Approval` > select `Approve`
 3. Navigate to `Jenkins Home` > select `seedJob` -> select `Build Now`
-   * A `*_deploy` and `*_test` job has been created for all services listed under `service` in `dsl/pipeline-config.groovy`
+   * A `*_deploy` and `*_test` job has been created for your service
+      * You will need to repeat this step for all services you plan to onboard
    * We set our `multibranchPipelineJob` `cron` to build every 5 minutes and will do a simple `checkout scm`. 
    * Building one of the `*_deploy` jobs will run `checkout scm` when triggered manually
       ![jenkins successful seed job execution](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.3.png)
@@ -178,7 +177,6 @@ Now that everything is configured and running as expected, we really want our St
 
 ### Build a new Docker Container
 1. Create a Dockerfile with the below contents
-   * If you need some help, checkout the Docker [build](https://docs.docker.com/engine/reference/commandline/build/) and [run](https://docs.docker.com/engine/reference/commandline/run/) documentation
 ```
 FROM jenkins/jenkins:lts  
 USER root
