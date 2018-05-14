@@ -65,7 +65,7 @@ def createPipelineJob(jobName, repoUrl) {
                         remote {
                             url(repoUrl)
                         }
-                        branches('develop')
+                        branches('master')
                         extensions {
                             cleanBeforeCheckout()
                         }
@@ -124,6 +124,10 @@ def buildPipelineJobs() {
 def pipelineConfig = getPipelineConfig()
 buildPipelineJobs()
 ```
+#### Update `seedJob` to use `part2` branch
+1. Navitate to `Jenkins Home` > select `seedJob` > select `Configure` 
+2. Under `Source Code Management`, change the `Branch Specifier` to `*/part2`
+
 #### Configure `jobName` Paramater in `seedJob`
 The `seedJob` will need a `jobName` `String Parameter` added to the configuration so our `seed.groovy` file will know what repository it needs to build
 
