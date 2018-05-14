@@ -1,6 +1,3 @@
-* TODO: update seed job to grab service 1 at a time
-* TODO: create packaging stage in deploy job
-* TODO: create testing of service in test job
 
 ## Introduction
 In this second part of a two part series, we will be setting up a [Jenkins Shared libraries](https://jenkins.io/doc/book/pipeline/shared-libraries/) to execute our Jenkins jobs. Additionally, we will redo the `seed.groovy` file we did in Part 1 to build a regular Pipeline and and Multibranch Pipeline for two services we plan to create jobs for in Jenkins. 
@@ -8,14 +5,14 @@ In this second part of a two part series, we will be setting up a [Jenkins Share
 ## Prerequisites
 1. Jenkins set up to use the [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
 2. A Shared Library set up for Jenkins to use when creating and running jobs
-3. A couple [JHipster](https://www.jhipster.tech/) Microservices set up with repository name `<systemLevel>-<serviceLevel>` (e.g. `poc-micro`) naming convention and stored in github
+3. A couple [JHipster](https://www.jhipster.tech/) Microservices set up
     * If you have never used JHipster or you need some help, checkout the [JHipster Quick Start](https://www.jhipster.tech/creating-an-app/) to spin up a microservice quickly.
 
 ## Part 2 Goals
 1. Configure Jenkins to use our Shared Library for executing jobs. The `seedJob` has a stand alone configuration to use our Shared Library.
 2. Configure `seed.groovy` to create a Pipeline and Multibranch Pipeline Job per desired services outlined in `pipeline-config.groovy` 
 3. Configure the 2 JHipster microservices to use the `jenkins-shared-library`
-4. adjusting functionality
+4. Build a new Docker Container that runs the tests in the `*_test` jobs and packages in the `*_deploy` jobs
 
 ## Goal 1
 ### Configure default Shared Library setup for Jenkins
@@ -175,3 +172,6 @@ jenkinsJob.call()
    * We set our `multibranchPipelineJob` `cron` to build every 5 minutes and will do a simple `checkout scm`. 
    * Building one of the `*_deploy` jobs will run `checkout scm` when triggered manually
       ![jenkins successful seed job execution](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.3.png)
+
+## Goal 4
+
