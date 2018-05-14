@@ -174,4 +174,59 @@ jenkinsJob.call()
       ![jenkins successful seed job execution](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.3.png)
 
 ## Goal 4
+Now that everything is configured and running as expected, we really want our Stages to do more than just checkout our repositories. We are going to create and use a new Jenkins Docker container that supports maven commands to run tests and package.
 
+### Build a new Docker Container
+1. Create a Dockerfile with the below contents
+   * If you need some help, checkout the Docker [build](https://docs.docker.com/engine/reference/commandline/build/) and [run](https://docs.docker.com/engine/reference/commandline/run/) documentation
+```
+FROM jenkins/jenkins:lts  
+USER root
+RUN apt-get update && apt-get install -y maven
+```
+2. Build the Docker file and run the container
+   * If you need some help, checkout the Docker [build](https://docs.docker.com/engine/reference/commandline/build/) and [run](https://docs.docker.com/engine/reference/commandline/run/) documentation
+   ```
+   docker build -t maven-jenkins .
+   ```
+   ```
+   docker run -p 8080:8080 -p 50000:50000 maven-jenkins
+   ```
+**Note:** You will need to set up all of the configuration for Shared Libraries and your `seedJob` again
+
+### Add maven commands to `jenkinsJob.groovy`
+We want our jobs to do more than check out our code. We are going to add `mvn test` to our `*_test` jobs and `mvn package` to our `*_deploy` jobs.
+1. Update `jenkinsJob.groovy` with the below code
+```groovy
+def call(){
+    node {
+        stage('Checkout') {
+            checkout scm
+        }
+
+        // Execute different stages depending on the job
+        if(env.JOB_NAME.contains("deploy")){
+            packageArtifact()
+        } else if(env.JOB_NAME.contains("test")) {
+            buildAndTest()
+        }
+    }
+}
+
+def packageArtifact(){
+    stage("Package artifact") {
+        sh "mvn package"
+    }
+}
+
+def buildAndTest(){
+    stage("Backend tests"){
+        sh "mvn test"
+    }
+}
+```
+
+## Conclusion
+During this series we set up a seed job that was used to create a `multibranchPipelineJob` and `pipelineJob` for each service we onboarded through our `seedJob`. Additionally, we set up our Shared Library to use a `jenkinsJob.groovy` file to determine which job was running and execute different stages depending on that job. 
+
+I hope you found this to be of some use when setting up your own Shared Library and seed jobs to help speed up some of the repeated tasks you encounter during the process of onboarding new services.
