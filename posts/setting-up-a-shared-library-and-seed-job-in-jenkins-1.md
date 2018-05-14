@@ -1,10 +1,3 @@
-
-* TODO: Highlight Part 1 and Part 2 with link to Part 2
-* TODO: Clearly explain what Jenkins Home means
-* TODO: make code use have same naming convention and layout
-* TODO: add Series Overview for Part 2
-* TODO: squash commits before making pr
-
 ## Introduction
 I have been on a client these past few months that had specific requirements to organize their pipeline in such a way that would be repeatable accross all of their services. During my journey, I stumbled accross [Jenkins Shared libraries](https://jenkins.io/doc/book/pipeline/shared-libraries/). The shared library can be used by all of their services to handle CI and CD. During the discovery process of working with shared libraries, I found that using a `seed` job or `job that creates jobs` to be a great tool to accomodate the client as requirements for all services were amended. 
 
@@ -12,7 +5,7 @@ This is the first of a two part series where I hope to guide you through setting
 
 ### Series Overview
 * **Part 1:** We will read in a `seed.groovy` file from a github repository. We do not need a Shared Library to do this, but we will store our `seedJob` code and Shared Library code in the same repository
-* **Part 2:** **TBD...**
+* **Part 2:** We will update our `seed.groovy` file to build a `multibranchPipelineJob` (test job) and `pipelineJob` (deploy job). Also, we will use a `jenkinsJob.groovy` file to handle executing certain stages in the pipeline depending on the type of job it was called by.
 
 ## Part 1 Goals
 1. Setup Jenkins Freestyle Job `seedJob` to use a Jenkins Shared Library stored in github to create and configure other jobs based on the [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
