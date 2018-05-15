@@ -1,20 +1,27 @@
 ## Introduction
-I have been working on a client the past few months that has adopted a desire for a consistent [JHipster](https://www.jhipster.tech/) microservice architecture. We have more than ten microservices that are supported by multiple teams. Developers supports multiple services and we needed a uniform approach to deploy quality code quicly to the cloud. We set up Jenkins to support building, testing and deploying any branch of all services while maintaing releases along side feature development. As Jenkins grew, we unanimously decided to support our [Jenkins Shared libraries](https://jenkins.io/doc/book/pipeline/shared-libraries/) through source control.  
+I have been working on a client the past few months that has adopted a desire for a consistent [JHipster](https://www.jhipster.tech/) microservice architecture. We have more than ten microservices that are supported by multiple teams. Developers supports multiple services and we needed a uniform approach to deploy quality code quicly to the cloud. We set up Jenkins to support building, testing and deploying any branch of all services while maintaing releases along side feature development. As Jenkins grew, we unanimously decided to maintain our Jenkins related code through source control. 
 
+In order for us to satisfy our requirements, we used a couple of the advanced Jenkins tools
+  * [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
+  * [Jenkins Shared libraries](https://jenkins.io/doc/book/pipeline/shared-libraries/)
+  
 This is the first of a two part series where the target audience is anyone new to Jenkins as well as those individuals looking to stream line some of the work they need to repeat accross services they maintain.
 
 ### Series Overview
-* **Part 1:** We will read in a `seed.groovy` file from a github repository. We do not need a Shared Library to do this, but we will store our `seedJob` code and Shared Library code in the same repository
-* **Part 2:** We will update our `seed.groovy` file to build a `multibranchPipelineJob` (test job) and `pipelineJob` (deploy job). Also, we will use a `jenkinsJob.groovy` file to handle executing certain stages in the pipeline depending on the type of job it was called by.
+#### Part 1 
+We will set up a Freestyle project (`seedJob`) that will be a `job that creates jobs`. We will use the Jenkins Job DSL API to set up the foundation for supporting onboarding any number and type of job we need for any service we onboard.
+
+#### Part 2
+We will extend the functionality of the `seedJob` to use a configuration file `pipeline-config.groovy`. This is done to allow for external configuration that may need to be shared accross jobs. We will introduce the use of Shared Libraries. One of the greatest features is allowing for isolation of pipeline code changes through use of the `@Library` annotation.
 
 ## Part 1 Goals
-1. Setup Jenkins Freestyle Job `seedJob` to use a Jenkins Shared Library stored in github to create and configure other jobs based on the [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
+1. Setup Jenkins Freestyle Job `seedJob` to use github to create and configure other jobs based on the Jenkins Job DSL API
 2. Create a simple Jenkins Shared Library repository in github.
 3. Run `seedJob` to create a Freestyle Job 
 
 ## Prerequisites
 1. **Docker installed** 
-   * If you do not have docker installed yet, please proceed to Docker's [Getting Started](https://docs.docker.com/get-started/) guide first.
+   * If you do not have docker installed yet, proceed to Docker's [Getting Started](https://docs.docker.com/get-started/) guide first.
 2. **Jenkins Running in a Docker Container**
     * Download the Jenkins image: `docker pull jenkins/jenkins`
     * Start the Jenkins container: `docker run -p 8080:8080 -p 50000:50000 jenkins`
