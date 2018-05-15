@@ -1,5 +1,5 @@
 ## Introduction
-I have been working on a client the past few months that has adopted a desire for a consistent [JHipster](https://www.jhipster.tech/) microservice architecture. We have more than ten microservices that are supported by multiple teams. Developers supports multiple services and we needed a uniform approach to deploy quality code quicly to the cloud. We set up Jenkins to support building, testing and deploying any branch of all services while maintaing releases along side feature development. As Jenkins grew, we unanimously decided to maintain our Jenkins related code through source control. 
+I have been working on a client the past few months that has adopted a desire for a consistent [JHipster](https://www.jhipster.tech/) microservice architecture. We have more than ten microservices that are supported by multiple teams. Developers support multiple services and we needed a uniform approach to deploy quality code quicly to the cloud. We set up Jenkins to support building, testing and deploying any branch of all services while maintaing releases along side feature development. As Jenkins grew, we unanimously decided to maintain our Jenkins related code through source control. 
 
 In order for us to satisfy our requirements, we used a couple of the advanced Jenkins tools
   * [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
