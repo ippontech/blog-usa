@@ -1,6 +1,6 @@
 
 ## Introduction
-In this second part of a two part series, we will be setting up a [Jenkins Shared libraries](https://jenkins.io/doc/book/pipeline/shared-libraries/) to execute our Jenkins jobs. Additionally, we will update `seed.groovy` from Part 1 to build a regular Pipeline and and Multibranch Pipeline for two [JHipster](https://www.jhipster.tech/) services. 
+In this second part of the series, we will be setting up a [Jenkins Shared libraries](https://jenkins.io/doc/book/pipeline/shared-libraries/) to execute our Jenkins jobs. Additionally, we will update `seed.groovy` from Part 1 to build a regular Pipeline and and Multibranch Pipeline for two [JHipster](https://www.jhipster.tech/) services. 
 
 ## Prerequisites
 1. Jenkins set up to use the [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
@@ -12,11 +12,11 @@ In this second part of a two part series, we will be setting up a [Jenkins Share
 1. Configure Jenkins to use our Shared Library for executing jobs. 
 2. Configure `seed.groovy` to create a Pipeline and Multibranch Pipeline Job per service
 3. Configure the 2 JHipster microservices to use the `jenkins-shared-library`
-4. Build a new Docker Container that runs the tests in the `*_test` jobs and packages in the `*_deploy` jobs
+4. Build a new Jenkins Docker Container that runs the tests in the `*_test` jobs and packages in the `*_deploy` jobs
 
 ## Goal 1
 ### Configure default Shared Library setup for Jenkins
-Since we will be using a Shared library, Jenkins needs to know some default configurations for this Shared Library. 
+Since we will be using a Shared library, Jenkins needs to know some default configuration in order to link to the repository. 
 
    1. Navigate to `Jenkins Home` > select `Manage Jenkins` > select `Configure System` > scroll down to `Global Pipeline Libraries` > select `Add`
    2. Enter `jenkins-shared-library` in the `Name` field
@@ -27,13 +27,12 @@ Since we will be using a Shared library, Jenkins needs to know some default conf
    ![jenkins shared library configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.1.png)
 
 ## Goal 2
-We are going to modify the `seed.groovy` file to build a Pipeline and Multibranch Pipeline for all of our services we plan to oboard. 
+We are going to modify `seed.groovy` to build a Pipeline and Multibranch Pipeline for all services we oboard. 
 
 ### Updating `jenkins-shared-library` to build our `pipelineJob` and `multibranchPipelineJob`
 We are going to leave the `master` branch of the Shared Lbrary alone to ensure it works with Part 1 of this series. We will introduce the changes to the `seed.groovy` job on branch `part2` of the Shared Library.
    **Reminder** Since we are changing the Shared Library, any changes to `seed.groovy` will require a script approval in Jenkins 
-1. Create a new branch `part2` for your Shared Library
-
+1. Create a new branch `part2` in your Shared Library
 
 #### Adding `pipeline-config.groovy` configuration file
 As a way to share configuraitons between jobs, we are going to store these configurations in `pipeline-config.groovy`
@@ -90,7 +89,7 @@ def createMultibranchPipelineJob(jobName, repoUrl) {
 ```
 
 #### Reading in `pipeline-config.groovy` from the workspace
-The `pipelineJob` and `multibranchPipelineJob` don't actually do anything yet. We need to configure `seed.groovy` to load `pipeline-config.groovy` and build the `pipelineJob` and `multibranchPipelineJob` for each of our services.
+We are going to configure `seed.groovy` to load `pipeline-config.groovy` so we can use the `cron` configuration within our `multibranchPipelineJob`
 
 1. Add a method to read in our `pipeline-config.groovy` fom the workspace
 ```groovy
@@ -104,7 +103,7 @@ def getPipelineConfig() {
 }
 ```
 #### Execute the building of the `pipelineJob` and `multibranchPipelineJob` for each service
-Finally we will tie it all together and build a `*_deploy` and `*_test` job for both of our services. We are going to add `_deploy` to our services name when creating the `pipelineJob` and add `_test` to our service name when we create the `multibranchPipelineJob`
+Finally we will tie it all together and add the call to build the `*_deploy` and `*_test` jobs. This method adds `_deploy` to our `jobName` when creating the `pipelineJob` and adds `_test` to our `jobName` when we create the `multibranchPipelineJob`. 
 ```groovy
 def buildPipelineJobs() {
     def repo = "https://github.com/kcrane3576/"
@@ -124,7 +123,7 @@ buildPipelineJobs()
 2. Under `Source Code Management`, change the `Branch Specifier` to `*/part2`
 
 #### Configure `jobName` Paramater in `seedJob`
-The `seedJob` will need a `jobName` `String Parameter` added to the configuration so our `seed.groovy` file will know what repository it needs to build
+The `seedJob` will need a `jobName` `String Parameter` added to the configuration so our `seed.groovy` file will know what repository it needs to build. 
 
 1. Navitate to `Jenkins Home` > select `seedJob` > select `Configure` 
 2. Check `This job is parameterized` > select `Add Parameter` > select `String Parameter`
@@ -134,10 +133,10 @@ The `seedJob` will need a `jobName` `String Parameter` added to the configuratio
 
 
 ## Goal 3
-Now that Jenkins is ready to onboard jobs for our JHipster microservices, we are ready to set up the JHipster microservices to use the Shared Library. 
+Now that Jenkins is ready to onboard our JHipster microservices, we will configure a Jenkinsfile that tells Jenkins to use the Shared Library. 
 
 ### Adding the `jenkinsJob.groovy` file
-We need to have an entry point for the `Jenkinsfile` in our JHipster microservices to access our shared library. 
+We need to have an entry point for the `Jenkinsfile` in our JHipster microservices to access our Shared Library. 
 1. Create `vars/jenkinsJob.groovy` in your shared library and add the below code
 ```groovy
 def call(){
@@ -150,6 +149,7 @@ def call(){
 ```
 ### Adding a `Jenkinsfile` to our JHipster services
 We weill configure a `Jenkinsfile` in our services to point to our Shared Library. This is necessary to execute the stages for our `pipelineJob` and `multibranchPipelineJob`.
+   * **Note** We are introducing one of the greatest features associated with the Shared Library here. The `@Library` annotation provides a lot of flexibility. Within the annotation, you will always need to provide the name of your Shared Library. However, if you add another `@` sign at the end of the name, you can tell your `Jenkinsfile` to read specific branches or tags from your Shared Library. In fact, as you observe the code, that is what we did with `@part2`.
 
 1. At the root of your JHipster project, add a `Jenkinsfile` with the below code
 ```groovy
@@ -173,7 +173,7 @@ jenkinsJob.call()
       ![jenkins successful seed job execution](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.3.png)
 
 ## Goal 4
-Now that everything is configured and running as expected, we really want our Stages to do more than just checkout our repositories. We are going to create and use a new Jenkins Docker container that supports maven commands to run tests and package.
+Now that everything is configured and running as expected, we really want our Stages to do more than just checkout our repositories. We are going to create and use a new Jenkins Docker container that supports maven commands to run `mvn test` and `mvn package`.
 
 ### Build a new Docker Container
 1. Create a Dockerfile with the below contents
@@ -191,8 +191,9 @@ RUN apt-get update && apt-get install -y maven
    docker run -p 8080:8080 -p 50000:50000 maven-jenkins
    ```
 **Note:** You will need to set up all of the configuration for Shared Libraries and your `seedJob` again
+   * This should not take long and it is good practice.
 
-### Add maven commands to `jenkinsJob.groovy`
+### Add packaging and testing to `jenkinsJob.groovy`
 We want our jobs to do more than check out our code. We are going to add `mvn test` to our `*_test` jobs and `mvn package` to our `*_deploy` jobs.
 1. Update `jenkinsJob.groovy` with the below code
 ```groovy
@@ -224,7 +225,24 @@ def buildAndTest(){
 }
 ```
 
+### Running `*_test` job
+Now you have a `*_test` job that will run every 5 minutes based on the `crom` we set up, but you can also trigger it manually.
+
+1. Navigate to `Jenkins Home` > select `*_test` > select `master` > select `Build Now`
+2. Under `Build History`, select the blinking blue circle (red if previous failure) > Observe the `mvn test` executing in `Console Output`
+
+### Running `*_deploy` job
+We can also observe the `*_deploy` job executing `mvn package`.
+
+1. Navigate to `Jenkins Home` > select `*_deploy` > select `Build Now`
+2. Under `Build History`, select the blinking blue circle (red if previous failure) > Observe the `mvn package` executing in `Console Output`
+
 ## Conclusion
 During this series we set up a seed job that was used to create a `multibranchPipelineJob` and `pipelineJob` for each service we onboarded through our `seedJob`. Additionally, we set up our Shared Library to use a `jenkinsJob.groovy` file to determine which job was running and execute different stages depending on that job. 
 
 I hope you found this to be of some use when setting up your own Shared Library and seed jobs to help speed up some of the repeated tasks you encounter during the process of onboarding new services.
+
+## Repo Links
+* [`jenkins-shared-library`](https://github.com/kcrane3576/jenkins-shared-library)
+* [`poc-micro`](https://github.com/kcrane3576/poc-micro)
+* [`blg-micro`](https://github.com/kcrane3576/blg-micro)
