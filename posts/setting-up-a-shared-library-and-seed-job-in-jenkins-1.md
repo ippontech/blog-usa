@@ -16,7 +16,7 @@ We will extend the functionality of the `seedJob` to use a configuration file `p
 
 ## Part 1 Goals
 1. Setup Jenkins Freestyle Job `seedJob` to use github to create and configure other jobs based on the Jenkins Job DSL API
-2. Create a simple Jenkins Shared Library repository in github.
+2. Store `seedJob` configuration in github.
 3. Run `seedJob` to create a Freestyle Job 
 
 ## Prerequisites
@@ -26,13 +26,13 @@ We will extend the functionality of the `seedJob` to use a configuration file `p
     * Download the Jenkins image: `docker pull jenkins/jenkins`
     * Start the Jenkins container: `docker run -p 8080:8080 -p 50000:50000 jenkins`
       * Check out the [Jenkins Official Repository](https://hub.docker.com/_/jenkins/) for using the Docker Image 
-    * Open a browser and navigate to `http:localhost:8080` and follow the instructions to complete the setup
+    * Open a browser and navigate to `http://localhost:8080/` and follow the instructions to complete the setup
       * The first time you set this up, you will need to provide a password that was given to you after running `docker run -p 8080:8080 -p 50000:50000 jenkins`. 
          * **Tip:** The generated admin password is located in `/var/jenkins_home/secrets/initialAdminPassword`
 3. **Familiarity with Jenkins UI**
 
 ## Goal 1
-Now that the prerequisites are out of the way, the first thing we are going to do is create a new github repository for our Shared Library. This repository will be used to store our `seed` code. In Part 2 we will include our Shared Library code.
+Now that the prerequisites are out of the way, the first thing we are going to do is create a new github repository. This repository will be used to store our `seed` code. In Part 2 we will include our Shared Library code.
 
   1. Inside of the `jenkins-shared-library` github repository, create a directory `dsl` with `seed.groovy`
   2. Inside of `seed.groovy`, we are going to create a very simple Freestyle Job 
@@ -47,10 +47,10 @@ Now that the prerequisites are out of the way, the first thing we are going to d
 Now, we will setup a **Freestyle Job** `seedJob` in Jenkins. This job will be used to generate all other jobs you want to create within Jenkins. 
 
 ### Creating the Freestyle Project `seedJob`
-Navigate back to your browser at `http:localhost:8080` and login to Jenkins with the credials you set up or the default admin ones provided for you during the initial setup
+Navigate back to your browser at `http://localhost:8080/` and login to Jenkins with the credials you set up or the default admin ones provided for you during the initial setup
 
   1. On the left hand side of the page, select `New Item`
-  2. In the text box for `Enter a item name`, enter `seedJob` > Select the `Freestyle Project` > Select `OK`
+  2. In the text box for `Enter a item name`, enter `seedJob` > select the `Freestyle Project` > select `OK`
   ![jenkins freestyle project](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.1.png)
 
 ### Install the `Job DSL` plugin
