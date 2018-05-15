@@ -5,17 +5,17 @@ In order for us to satisfy our requirements, we used a couple of the advanced Je
   * [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
   * [Jenkins Shared libraries](https://jenkins.io/doc/book/pipeline/shared-libraries/)
   
-This is the first of a two part series where the target audience is anyone new to Jenkins as well as those individuals looking to stream line some of the work they need to repeat accross services they maintain.
+This is the first of a two part series where the target audience is anyone new to Jenkins as well as those individuals looking to stream line some of the work they need to repeat across services they maintain.
 
 ### Series Overview
 #### Part 1 
-We will set up a Freestyle project (`seedJob`) that will be a `job that creates jobs`. We will use the Jenkins Job DSL API to set up the foundation for supporting onboarding any number and type of job we need for any service we onboard.
+We will set up a Freestyle project (`seedJob`) that will be a `job that creates jobs`. We will use the Jenkins Job DSL API to set up the foundation for supporting onboarding any number and type of job we need for all service we onboard.
 
 #### Part 2
-We will extend the functionality of the `seedJob` to use a configuration file `pipeline-config.groovy`. This is done to allow for external configuration that may need to be shared accross jobs. We will introduce the use of Shared Libraries. One of the greatest features is allowing for isolation of pipeline code changes through use of the `@Library` annotation.
+We will extend the functionality of the `seedJob` to use a configuration file `pipeline-config.groovy`. This is done to allow for external configuration that may need to be shared across jobs. We will introduce the use of Shared Libraries. In order to maintain support for both of these posts in the same repository, we will take advantage of the `@Library` annotation. This allows us to configure our JHipster microservices to build from specific branches (or tags) in our Shared Library.
 
 ## Part 1 Goals
-1. Setup Jenkins Freestyle Job `seedJob` to use github to create and configure other jobs based on the Jenkins Job DSL API
+1. Setup Jenkins Freestyle Job `seedJob` to create and configure other jobs based on the Jenkins Job DSL API
 2. Store `seedJob` configuration in github.
 3. Run `seedJob` to create a Freestyle Job 
 
@@ -44,22 +44,22 @@ Now that the prerequisites are out of the way, the first thing we are going to d
    ```
 
 ## Goal 2
-Now, we will setup a **Freestyle Job** `seedJob` in Jenkins. This job will be used to generate all other jobs you want to create within Jenkins. 
+Now, we will setup a **Freestyle project** `seedJob` in Jenkins. This job will be used to generate all other jobs you want to create within Jenkins. 
 
 ### Creating the Freestyle Project `seedJob`
-Navigate back to your browser at `http://localhost:8080/` and login to Jenkins with the credials you set up or the default admin ones provided for you during the initial setup
+Navigate back to your browser at `http://localhost:8080/` and login to Jenkins with the credials you set up or the default admin ones provided to you during the initial setup
 
   1. On the left hand side of the page, select `New Item`
-  2. In the text box for `Enter a item name`, enter `seedJob` > select the `Freestyle Project` > select `OK`
+  2. In the text box for `Enter a item name`, enter `seedJob` > select the `Freestyle project` > select `OK`
   ![jenkins freestyle project](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.1.png)
 
 ### Install the `Job DSL` plugin
-We need to configure Jenkins to use the Jenkins Job DSL API. This provides us the functionality to have a job that creates other jobs.
+We need to configure Jenkins to use the Jenkins Job DSL API. This provides us the functionality to configure how we want our new jobs built
 
   1. Navigate to `Jenkins Home` > `Manage Jenkins` > `Manage Plugins` > `Available` tab > Search for `Job DSL` and install
 
 ### Configuring the `seedJob` to use `dsl/seed.groovy` stored in github
-Now that we have configured Jenkins to us the Jenkins Job DSL API, we can create a Jenkins Job to create jobs. We are going to use our `jenkins-shared-library` repository to load in the groovy script(s) we want to use to create other jobs. 
+Now that we have configured Jenkins to us the Jenkins Job DSL API, we can configure `seedJob` to use groovy script(s) (`seed.groovy`) stored in our `jenkins-shared-library` to create new jobs. 
  * **Note:** This is not a requirement. Directly inside of the `seedJob`, you could add a groovy script to do the same thing we are doing in our `jenkins-shared-library`
 
 Since we will be using our `jenkins-shared-library`, we will need to add some additional configuration to this job to get this working.
@@ -88,22 +88,22 @@ Now that we have our `seedJob` setup to read in our `seed.groovy` script from ou
     ![jenkins script approval](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.3.png)
     
 ### Rerunning the `seedJob`
-Now that we have approved our `seed.groovy` file, we are ready for our `seedJob` to run
+Now that we have approved `seed.groovy`, we are ready for our `seedJob` to run (and succeed)
   1. Navigate to `Jenkins Home` > select `seedJob` > select `Build Now`
   2. Under `Build History`, select the top blue circle
   3. Inside of `Console Output`, you will see `GeneratedJob{name='freestyle'}`
-    * Jenkins has created a new job called `freestyle` from your `seed.groovy` file
+    * Jenkins has created a new job called `freestyle` from`seed.groovy`
   ![jenkins console success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.4.png)
 
-### Verify creation of `freestyle` job
+### Verify creation of and run`freestyle` job
   1. Navigate to `Jenkins Home` and confirm `freestyle` job was created
-  
-### Running `freestyle` job
-  1. Navigate to `Jenkins Home` > select `freestyle` > select `Build Now`
+  2. Select `freestyle` > select `Build Now`
   2. Under `Build History`, select the top blue circle
-  3. Inside of `Console Output`, you will see a successful exection of `freestyle`
+  3. Inside of `Console Output`, you will see a successful exection of the `freestyle` job
   ![jenkins created job success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.5.png)
     
 ## Conclusion
-In this first part of a two part series, we set up the minimum configuration to use seed jobs. The `seedJob` onboards a very simple Freestyle Job that doesn't do anything, but in Part 2 we will be swapping this out for onboarding a regular Pipeline job and a Multibranch Pipeline. Additionally, we will configure our seed job to onboard both the Pipeline jobs for multiple services.
+In this first part of a two part series, we set up the minimum configuration to use seed jobs. The `seedJob` onboards a very simple Freestyle Job that doesn't do anything, but in Part 2 we will be swapping this out for onboarding a regular Pipeline job and a Multibranch Pipeline job. The use of seed jobs makes onboarding/re-onboarding services quick and easy as requirements change.
+
+In our next post, we will configure `seedJob` to onboard any number of mvn projects and utilize Jenkins Shared Library to execute different stages depending on the type of job that is running.
       
