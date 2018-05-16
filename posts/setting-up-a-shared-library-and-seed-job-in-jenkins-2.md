@@ -157,7 +157,7 @@ We weill configure a `Jenkinsfile` in our microservices to point to our Shared L
 // Configure using jenkins-shared-library and using "part2" branch
 @Library("jenkins-shared-library@part2") _
 
-// Entry point into jenkins-shared-library
+// Entry point into microservice-pipelines
 jenkinsJob.call()
 ```
 ### Running the `seeJob`
