@@ -1,6 +1,4 @@
-* TODO: add explanation of why the job failed during first run of seedJob
 * TODO: reword part2 overview
-
 
 ## Introduction
 I have been working at a client the past few months that has adopted a desire for a consistent [JHipster](https://www.jhipster.tech/) microservice architecture. We have more than ten microservices that are supported by multiple teams. Developers support multiple services and we needed a uniform approach to deploy quality code quicly to the cloud. We set up Jenkins to support building, testing and deploying any branch of all services while maintaing releases along side feature development. As Jenkins grew, we decided to maintain our Jenkins related code through source control. 
@@ -86,7 +84,6 @@ We will give our job the name of the microservice we plan to build (`poc-micro`)
    4. Enter `The name of your repo (e.g. poc-micro)` in the `Description` field
    ![jenkins seed job configuration](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-2.4.png)
 
-
 ## Goal 2
 We are using the [`microservice-pipelines`](https://github.com/kcrane3576/microservice-pipelines) github repository. This repository will be used to store our `seed` code. In Part 2 of this series, we will include our Shared Library code in the repository.
 
@@ -94,11 +91,11 @@ We are using the [`microservice-pipelines`](https://github.com/kcrane3576/micros
       * [`microservice-pipelines/dsl/seed.groovy`](https://github.com/kcrane3576/microservice-pipelines/blob/master/dsl/seed.groovy)
   2. Below are the contents of `seed.groovy`. 
       * We create a simple Freestyle Job and use the `String Param` named `jobName` from `seedJob` to name our Freestyle job. 
-   ```groovy
+```groovy
 job(jobName) {
     description("A simple Freestyle Job created from seed.groovy")
 }
-   ```
+  ```
    
 ##  Goal 3
 Now that we have our `seedJob` setup to read in `seed.groovy` from our github `microservice-pipelines` repository, we are ready to trigger our `seedJob` to create a Freestyle job with `jobName`.
@@ -108,7 +105,7 @@ Now that we have our `seedJob` setup to read in `seed.groovy` from our github `m
   2. Under `Build History`, select the top red circle
   3. This will take you to the `Console Output`
      * The job **failed**
-     * Due to [Script Security](https://github.com/jenkinsci/job-dsl-plugin/wiki/Script-Security), this will happen every time you change `seed.groovy`.
+     * Due to [Script Security](https://github.com/jenkinsci/job-dsl-plugin/wiki/Script-Security), this will happen every time you change `seed.groovy`. The [Script Security Plugin](https://plugins.jenkins.io/script-security) is integrated with the `Job DSL` plugin and the Script Security Plugin is set up with a set of scripts that are pre approved for use. Since this is a new script, it will require an admin approval to use. 
      ![run failure](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-seed-run-failure.png)
       
 ### Approving our `seed.groovy` script
@@ -133,7 +130,7 @@ Now that we have approved `seed.groovy`, we are ready for our `seedJob` to run (
   ![jenkins created job success](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-seed-poc-micro.png)
     
 ## Conclusion
-In this first part of a two part series, we set up the minimum configuration requirements to use `seed` jobs. Our `seedJob` onboards a very simple Freestyle Job that doesn't do anything, but in Part 2 we will be swapping this out for onboarding a regular Pipeline job and a Multibranch Pipeline job. The use of seed jobs makes onboarding/re-onboarding services quick and easy as requirements change while maintaining job history.
+In this first part of a two part series, we set up the minimum configuration requirements to use `seed` jobs. Our `seedJob` onboards a very simple Freestyle Job from our `microservice-pipelines` repository that allows us to maintain all of our pipeline configurations in source control. The use of seed jobs makes onboarding/re-onboarding services quick and easy. At my current client this was extremely helpful because it allowed us to remain agile while the clients requirements change. 
 
-In our next post, we will configure the use of Jenkins Shared Library to execute different maven commands within stages depending on the type of job that is running.
+In our next post, we will be reconfigure `seed.groovy` to build a regular Pipeline job and a Multibranch Pipeline job. Additionally, we will configure the use of Jenkins Shared Library to execute different  stages depending on the type of the jenkins job running.
       
