@@ -62,7 +62,7 @@ Since we are using the `microservices-pipelines` repository to load up our `seed
 
    1. Navigate to `Jenkins Home` > select `seedJob` > select `Configure` 
    2. Scroll to the `Source Code Management` section > select `Git`
-   3. In the `Repository` field, enter the [`microservice-pipelines`](https://github.com/kcrane3576/microservice-pipelines) url
+   3. In the `Repository URL` field, enter the [`microservice-pipelines`](https://github.com/kcrane3576/microservice-pipelines) url
        * Leave everything else as the default configuration
      ![seed-config-repo](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-repo-config.png)
 
