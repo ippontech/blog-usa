@@ -170,18 +170,16 @@ jenkinsJob.call()
 ![jenkins shared library configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-final-poc-micro-2.png)
 
 ### Running `poc-micro_test` job
-Now you have a `*_test` job that will run every 5 minutes based on the `crom` we set up, but you can also trigger it manually.
+Now you have a `poc-micro_test` job that will run every 5 minutes based on the `cron` we set up, but you can also trigger it manually.
 
-1. Navigate to `Jenkins Home` > select `*_test` > select `master` > select `Build Now`
+1. Navigate to `Jenkins Home` > select `poc-micro_test` > select `master` > select `Build Now`
 2. Under `Build History`, select the blinking blue circle (red if previous failure) > Observe the `mvn test` executing in `Console Output`
 
 ### Running `poc-micro_deploy` job
-We can also observe the `*_deploy` job executing `mvn package`.
+We can also observe the `poc-micro_deploy` job executing `mvn package`.
 
-1. Navigate to `Jenkins Home` > select `*_deploy` > select `Build Now`
+1. Navigate to `Jenkins Home` > select `poc-micro_deploy` > select `Build Now`
 2. Under `Build History`, select the blinking blue circle (red if previous failure) > Observe the `mvn package` executing in `Console Output`
 
 ## Conclusion
-During this series we set up a seed job that was used to create a `multibranchPipelineJob` and `pipelineJob` for each service we onboarded through our `seedJob`. In order to be able to share configuration accross jobs, we set up `pipeline-config.groovy`(as of right now only the MultibranchPipelineJob is taking advantage). Additionally, we set up our Shared Library to use `jenkinsJob.groovy` to handle the logic that determines which stages are executed depending on that running job. 
-
-My personal goal for this post is to assist you in setting up your own Shared Library and seed jobs to help speed up some of the repeated tasks you encounter during the process of onboarding new services.
+During this series we set up a seed job that was used to create a `multibranchPipelineJob` and `pipelineJob` when onboarding our `poc-micro` service with our `seedJob`. Additionally, we set up our Shared Library to use `jenkinsJob.groovy` to handle the logic that determines which stages are executed depending on the currently running job. 
