@@ -1,5 +1,3 @@
-* TODO: reword part2 overview
-
 ## Introduction
 I have been working at a client the past few months that has adopted a desire for a consistent [JHipster](https://www.jhipster.tech/) microservice architecture. We have more than ten microservices that are supported by multiple teams. Developers support multiple services and we needed a uniform approach to deploy quality code quicly to the cloud. We set up Jenkins to support building, testing and deploying any branch of all services while maintaing releases along side feature development. As Jenkins grew, we decided to maintain our Jenkins related code through source control. 
 
@@ -18,7 +16,7 @@ The source code is available below
 We will set up a Freestyle project (`seedJob`) that will be a `job that creates jobs`. We will use the Jenkins Job DSL API to set up the foundation for supporting onboarding any number and type of job we need for all services we onboard.
 
 #### Part 2
-We will extend the functionality of the `seedJob` to use a configuration file `pipeline-config.groovy`. This is done to allow for external configuration that may need to be shared across jobs. We will introduce the use of Shared Libraries. In order to maintain support for both of these posts in the same repository, we will take advantage of the `@Library` annotation. This allows us to configure our JHipster microservices to build from specific branches (or tags) in our Shared Library.
+We will introduce the use of Shared Libraries. In order to maintain support for both of these posts in the same repository, we will take advantage of the `@Library` annotation. This allows us to configure our JHipster microservices to build from specific branches (or tags) in our Shared Library. Finally, we will update our `seedJob` to build a `pipelineJob` and `multibranchPipelineJob` when onboarding the `poc-micro` service.
 
 ## Part 1 Goals
 1. Set up Jenkins Freestyle Job `seedJob` to create and configure other jobs based on the Jenkins Job DSL API.
