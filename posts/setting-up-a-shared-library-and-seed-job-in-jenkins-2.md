@@ -106,11 +106,16 @@ buildPipelineJobs()
 ```
 
 ## Goal 3
-In order for our microservices to execute in Jenkins, we need a Jenkinsfile. Since we will be setitng up all of our stages in a Shared Library, we need to set up groovy script our microservices need to point to when Jenkins loads up the service. 
+In order for our microservices to execute in Jenkins, we need a Jenkinsfile. Since we will be setitng up all of our stages in a Shared Library, we need to set up a groovy script (`jenkinsJob.groovy`) our microservices need to point to when Jenkins loads up the service. 
 
 ### Adding the `jenkinsJob.groovy` file
-We need to have an entry point for the `Jenkinsfile` in our JHipster microservices to access our Shared Library. 
-1. Create `vars/jenkinsJob.groovy` in your shared library and add the below code
+We are going to set up our `jenkinsJob.groovy` to checkout our microservice code from source control and execute specific maven commands depending on the job that is running.
+  1. Check out our microservice repository.
+     * Check out the [workflow scm steps](https://jenkins.io/doc/pipeline/steps/workflow-scm-step/) for more information.
+  2. Read from the [`environment variables`](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project#Buildingasoftwareproject-JenkinsSetEnvironmentVariables) in order to obtain the Jenkins job name (`deployName` or `testName`).
+     * Check out `Jenkins Set Environment Variables` section at the [`Building a software project`](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project#Buildingasoftwareproject-JenkinsSetEnvironmentVariables) Jenkins wiki.
+
+Create and add the below code to `vars/jenkinsJob.groovy` `part2` branch of `microservice-pipelines`.
 ```groovy
 def call(){
     node {
@@ -141,7 +146,7 @@ def buildAndTest(){
 ```
 
 ## Goal 4
-
+We need to have an entry point for the `Jenkinsfile` in our JHipster microservices to access our Shared Library. 
 ### Adding a `Jenkinsfile` to our JHipster services
 We weill configure a `Jenkinsfile` in our microservices to point to our Shared Library. 
    * **Note** We are introducing a great feature associated with the Shared Library here. The `@Library` annotation provides a lot of flexibility. Within the annotation, you will always need to provide the name of your Shared Library (e.g. `jenkins-shared-library`). However, if you add another `@` sign at the end of the Shared Library name, you can tell your `Jenkinsfile` to read specific branches or tags from your Shared Library. In fact, in the code below, that is what we did with `@part2`.
@@ -183,8 +188,3 @@ We can also observe the `*_deploy` job executing `mvn package`.
 During this series we set up a seed job that was used to create a `multibranchPipelineJob` and `pipelineJob` for each service we onboarded through our `seedJob`. In order to be able to share configuration accross jobs, we set up `pipeline-config.groovy`(as of right now only the MultibranchPipelineJob is taking advantage). Additionally, we set up our Shared Library to use `jenkinsJob.groovy` to handle the logic that determines which stages are executed depending on that running job. 
 
 My personal goal for this post is to assist you in setting up your own Shared Library and seed jobs to help speed up some of the repeated tasks you encounter during the process of onboarding new services.
-
-## Repo Links
-* [`jenkins-shared-library`](https://github.com/kcrane3576/jenkins-shared-library)
-* [`poc-micro`](https://github.com/kcrane3576/poc-micro)
-* [`blg-micro`](https://github.com/kcrane3576/blg-micro)
