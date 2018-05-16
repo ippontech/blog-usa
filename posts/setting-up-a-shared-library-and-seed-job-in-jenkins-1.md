@@ -1,9 +1,10 @@
 * TODO: assume public repo in github will be used by readers
   * provide repo information earlier
+* TODO: add better use of punctuation
 
 
 ## Introduction
-I have been working on a client the past few months that has adopted a desire for a consistent [JHipster](https://www.jhipster.tech/) microservice architecture. We have more than ten microservices that are supported by multiple teams. Developers support multiple services and we needed a uniform approach to deploy quality code quicly to the cloud. We set up Jenkins to support building, testing and deploying any branch of all services while maintaing releases along side feature development. As Jenkins grew, we unanimously decided to maintain our Jenkins related code through source control. 
+I have been working on a client the past few months that has adopted a desire for a consistent [JHipster](https://www.jhipster.tech/) microservice architecture. We have more than ten microservices that are supported by multiple teams. Developers support multiple services and we needed a uniform approach to deploy quality code quicly to the cloud. We set up Jenkins to support building, testing and deploying any branch of all services while maintaing releases along side feature development. As Jenkins grew, we decided to maintain our Jenkins related code through source control. 
 
 In order for us to satisfy our requirements, we used a couple of the advanced Jenkins tools
   * [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
@@ -38,25 +39,25 @@ We will extend the functionality of the `seedJob` to use a configuration file `p
 3. **Familiarity with [Jenkins Pipeline](https://blog.ippon.tech/continuous-delivery-with-jenkins-pipeline/)**
 
 ## Goal 1
-Now, we will setup a **Freestyle project** `seedJob` in Jenkins. This job will be used to generate all other jobs you want to create within Jenkins. 
+Now that the prerequisites are out of the way, the first thing we are going to do is set up a **Freestyle project** `seedJob` in Jenkins. This job will be used to generate all other jobs you want to create within Jenkins. 
 
 ### Install the `Job DSL` plugin
-We need to configure Jenkins to use the Jenkins Job DSL API. This provides us the functionality to configure how we want our new jobs built
+Navigate back to your browser at `http://localhost:8080/` and login to Jenkins with the credials you set up or the default admin ones provided to you during the initial setup. We need to configure Jenkins to use the Jenkins Job DSL API. This provides us the functionality to configure how we want our new jobs built
 
   1. Navigate to `Jenkins Home` > `Manage Jenkins` > `Manage Plugins` > `Available` tab > Search for `Job DSL` and install
 
 ### Creating the Freestyle Project `seedJob`
-Navigate back to your browser at `http://localhost:8080/` and login to Jenkins with the credials you set up or the default admin ones provided to you during the initial setup
+We will set up our `seedJob` or `job that creates jobs`. This creation is done the same way any other job is created.
 
   1. On the left hand side of the page, select `New Item`
-  2. In the text box for `Enter a item name`, enter `seedJob` > select the `Freestyle project` > select `OK`
+  2. In the text box for `Enter an item name`, enter `seedJob` > select the `Freestyle project` > select `OK`
   ![jenkins freestyle project](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.1.png)
 
-### Configuring the `seedJob` to use `dsl/seed.groovy` stored in github
-Now that we have configured Jenkins to us the Jenkins Job DSL API, we can configure `seedJob` to use groovy script(s) (`seed.groovy`) that we will store in our `microservice-pipelines` repository to create new jobs. 
+### Configuring the `seedJob` to use `dsl/seed.groovy` we will store in github
+Now that we have configured Jenkins to us the Jenkins Job DSL API, we can configure `seedJob` to use groovy script (`seed.groovy`) that we will store in our `microservice-pipelines` repository. 
  * **Note:** This is not a requirement. Directly inside of the `seedJob`, you could add a groovy script to do the same thing we are doing in our `microservice-pipelines`
 
-Since we will be using our `microservice-pipelines`, we will need to add some additional configuration to this job to get this working.
+Since we will be using our `microservice-pipelines` repository, we will need to add some additional configuration to the `seedJob` to get this working.
 
    1. Navigate to `Jenkins Home` > select `seedJob` > select `Configure` 
    2. Scroll to the `Build` section > select `Add Build step` > Select `Process Job DSLs`
@@ -65,15 +66,15 @@ Since we will be using our `microservice-pipelines`, we will need to add some ad
        * Leave everything else as the default configuration
        
 ### Configure the name of your job
-We will give our job the name of the microservice we plan to build. In order to do this we will need to add a `String parameter` the `seedJob` will use when calling `seed.groovy` 
-1. Navigate to `Jenkins Home` > select `seedJob` > select `Configure` 
-2. Select `This project is parameterized` > select `Add Parameter` > select `String Parameter`
-3. Enter `jobName` in `Name` field
-4. Enter `The name of your repo (e.g. poc-micro)` in the `Description` field
-![jenkins seed job configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.4.png)
+We will give our job the name of the microservice we plan to build (`poc-micro`). In order to do this we will need to add a `String parameter` to the `seedJob` that will be used inside of `seed.groovy` 
+   1. Navigate to `Jenkins Home` > select `seedJob` > select `Configure` 
+   2. Select `This project is parameterized` > select `Add Parameter` > select `String Parameter`
+   3. Enter `jobName` in `Name` field
+   4. Enter `The name of your repo (e.g. poc-micro)` in the `Description` field
+   ![jenkins seed job configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.4.png)
 
 ## Goal 2
-Now that the prerequisites are out of the way, the first thing we are going to do is create a new github repository. This repository will be used to store our `seed` code. In Part 2 we will include our Shared Library code.
+Now we are going to do is create a new github repository. This repository will be used to store our `seed` code. In Part 2 we will include our Shared Library code.
 
   1. Inside of the `microservice-pipelines` github repository, create a directory `dsl` with `seed.groovy`
   2. Inside of `seed.groovy`, we are going to create a very simple Freestyle Job 
