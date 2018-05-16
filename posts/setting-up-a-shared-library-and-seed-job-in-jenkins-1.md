@@ -74,7 +74,7 @@ We will give our job the name of the microservice we plan to build (`poc-micro`)
    ![jenkins seed job configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.4.png)
 
 ## Goal 2
-Now we are going to do is create a new github repository. This repository will be used to store our `seed` code. In Part 2 we will include our Shared Library code.
+Now we are going to create a new github repository. This repository will be used to store our `seed` code. In Part 2 we will include our Shared Library code.
 
   1. Inside of the `microservice-pipelines` github repository, create a directory `dsl` with `seed.groovy`
   2. Inside of `seed.groovy`, we are going to create a very simple Freestyle Job 
