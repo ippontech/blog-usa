@@ -35,13 +35,17 @@ Since we will be using a Shared library, Jenkins needs to know some default conf
 ## Goal 2
 We are going to modify `seed.groovy` to build a Pipeline and Multibranch Pipeline for all services we oboard. 
 
+#### Update `seedJob` to use a `part2` branch we will create in `microservice-pipelines`
+1. Navitate to `Jenkins Home` > select `seedJob` > select `Configure` 
+2. Under `Source Code Management`, change the `Branch Specifier` to `*/part2`
+
 ### Updating `microservice-pipelines` to build our `pipelineJob` and `multibranchPipelineJob`
 We are going to leave the `master` branch of `microservice-pipelines` alone to ensure it works with Part 1 of this series. In order for us to do this, we will introduce the changes to the `seed.groovy` job on branch `part2` of the Shared Library.
    * **Reminder** Since we are changing the Shared Library, any changes to `seed.groovy` will require an admin script approval in Jenkins 
-1. Create a new branch `part2` in `microservice-pipelines`
 
 #### Adding `pipelineJob` and `multibranchPipelineJob` to `seed.groovy`
-1. In the `part2` branch, remove the original code in `seed.groovy` and paste in the below code
+1. Create a new branch `part2` in `microservice-pipelines`
+2. In the `part2` branch, remove the original code in `seed.groovy` and paste in the below code
    * For a better understanding of the `pipelineJob` and `multibranchPipelineJob`, make sure to go back and check the [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/#)
 ```groovy
 def createPipelineJob(jobName, repoUrl) {
@@ -80,7 +84,7 @@ def createMultibranchPipelineJob(jobName, repoUrl) {
 }
 ```
 
-#### Execute the building of the `pipelineJob` and `multibranchPipelineJob` for each service
+#### Add method to execute the building of the `pipelineJob` and `multibranchPipelineJob` for each service
 Finally we will tie it all together and add the call to build a `_deploy` and `_test` job for the service(`jobName`) we are onboarding. 
    * Set the `repo` (`https://github.com/kcrane3576/`) we will be building from.
    * Set up the `_deploy` job (`deployName`) by using the `repo` and `jobName` when creating the `pipelineJob`.
@@ -100,9 +104,6 @@ def buildPipelineJobs() {
 def pipelineConfig = getPipelineConfig()
 buildPipelineJobs()
 ```
-#### Update `seedJob` to use `part2` branch
-1. Navitate to `Jenkins Home` > select `seedJob` > select `Configure` 
-2. Under `Source Code Management`, change the `Branch Specifier` to `*/part2`
 
 ## Goal 3
 In order for our microservices to execute in Jenkins, we need a Jenkinsfile. Since we will be setitng up all of our stages in a Shared Library, we need to set up groovy script our microservices need to point to when Jenkins loads up the service. 
