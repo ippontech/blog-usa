@@ -122,12 +122,12 @@ Now that we have approved `seed.groovy`, we are ready for our `seedJob` to run (
     * Jenkins has created a new job called `freestyle` from`seed.groovy`
   ![run success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-run-success.png)
 
-### Verify creation of and run`freestyle` job
+### Verify creation of and run`poc-micro` job
   1. Navigate to `Jenkins Home` and confirm `freestyle` job was created
   2. Select `freestyle` > select `Build Now`
   2. Under `Build History`, select the top blue circle
   3. Inside of `Console Output`, you will see a successful exection of the `freestyle` job
-  ![jenkins created job success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.5.png)
+  ![jenkins created job success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-poc-micro.png)
     
 ## Conclusion
 In this first part of a two part series, we set up the minimum configuration to use seed jobs. The `seedJob` onboards a very simple Freestyle Job that doesn't do anything, but in Part 2 we will be swapping this out for onboarding a regular Pipeline job and a Multibranch Pipeline job. The use of seed jobs makes onboarding/re-onboarding services quick and easy as requirements change.
