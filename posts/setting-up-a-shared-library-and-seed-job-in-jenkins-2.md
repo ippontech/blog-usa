@@ -32,7 +32,7 @@ Since we will be using a Shared library, Jenkins needs to know some default conf
    ![jenkins shared library configuration](hhttps://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-config-2.png)
 
 ## Goal 2
-We are going to modify `seed.groovy` to build a Pipeline and Multibranch Pipeline for all services we oboard. 
+We are going to modify `seed.groovy` to build a Pipeline job and Multibranch Pipeline job for all services we oboard. 
 
 #### Update `seedJob` to use a `part2` branch we will create in `microservice-pipelines`
 1. Navitate to `Jenkins Home` > select `seedJob` > select `Configure`.
