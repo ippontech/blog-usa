@@ -10,8 +10,8 @@ The source code is available below
   * [`poc-micro`](https://github.com/kcrane3576/poc-micro) [JHipster](https://www.jhipster.tech/) microservice
 
 ## Prerequisites
-1. Jenkins set up to use the [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/).
-2. A [Jenkins Shared Library](https://jenkins.io/doc/book/pipeline/shared-libraries/) set up to use when creating and running jobs.
+1. Jenkins running in Docker with docker image `kcrane121/maven-jenkins:blog`.
+2. Our `seedJob` from Part 1.
 
 ## Part 2 Goals
 1. Configure Jenkins to use our Shared Library for executing jobs. 
@@ -153,11 +153,12 @@ We weill configure a `Jenkinsfile` in our microservices to point to our Shared L
 ```groovy
 #!/usr/bin/env groovy
 
-// Configure using jenkins-shared-library and using "part2" branch
-@Library("microservice-pipelinesy@part2") _
+// Configure using microservice-pipelines and using "part2" branch
+@Library("microservice-pipelines@part2") _
 
 // Entry point into microservice-pipelines
 jenkinsJob.call()
+
 ```
 ### Running the `seeJob`
 1. Navigate to `Jenkins Home` > select `seedJob` -> select `Build with Parameters` > enter `poc-micro` in `jobName` > select `Build`.
