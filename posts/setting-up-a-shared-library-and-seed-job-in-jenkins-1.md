@@ -112,7 +112,7 @@ Now that we have our `seedJob` setup to read in our `seed.groovy` script from ou
   1. We need to tell Jenkins it is ok to use this script
     * Navivage to `Jenkins Home` > `Manage Jenkins` > `In-process Script Approval`
     * Select `Approve` for the `seed.groovy` script
-    ![jenkins script approval](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.3.png)
+     ![script approval](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-script-approval.png)
     
 ### Rerunning the `seedJob`
 Now that we have approved `seed.groovy`, we are ready for our `seedJob` to run (and succeed)
