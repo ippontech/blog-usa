@@ -154,7 +154,7 @@ We weill configure a `Jenkinsfile` in our microservices to point to our Shared L
 #!/usr/bin/env groovy
 
 // Configure using jenkins-shared-library and using "part2" branch
-@Library("jenkins-shared-library@part2") _
+@Library("microservice-pipelinesy@part2") _
 
 // Entry point into microservice-pipelines
 jenkinsJob.call()
