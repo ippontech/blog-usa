@@ -61,6 +61,7 @@ Since we are using `microservices-pipelines` repository to load up our `seed.gro
    2. Scroll to the `Source Code Management` section > select `Git`
    3. In the `Repository` field, enter `https://github.com/kcrane3576/microservice-pipelines`
        * Leave everything else as the default configuration
+     ![seed-config-repo](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-config-repo.png)
 
 ### Configuring the `seedJob` to use `dsl/seed.groovy` we will store in github
 Now that we have configured Jenkins to us the Jenkins Job DSL API, we can configure `seedJob` to use groovy script (`seed.groovy`) that we will store in our `microservice-pipelines` repository. 
@@ -73,6 +74,7 @@ Since we will be using our `microservice-pipelines` repository, we will need to 
    3. Select `Look on Filesystem`
    4. In the `DSL Scripts` input field, enter `dsl/seed.groovy`
        * Leave everything else as the default configuration
+   ![seed-config-script](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-config-repo.png)
 
 ### Configure `seedJob` to use your microservice name
 We will give our job the name of the microservice we plan to build (`poc-micro`). In order to do this we will need to add a `String parameter` to the `seedJob` that will be used inside of `seed.groovy` 
