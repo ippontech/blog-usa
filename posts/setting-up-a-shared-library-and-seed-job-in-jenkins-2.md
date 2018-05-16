@@ -28,29 +28,15 @@ Since we will be using a Shared library, Jenkins needs to know some default conf
       * This tells jenkins which branch of our shared library we plan to use by default
    3. Under `Source Code Management`, select `Git` 
        * Enter `https://github.com/kcrane3576/microservice-pipelines` in `Project Repository` field and select `Save`
-   ![jenkins shared library configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-library-config-2.png)
+   ![jenkins shared library configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-config-2.png)
 
 ## Goal 2
 We are going to modify `seed.groovy` to build a Pipeline and Multibranch Pipeline for all services we oboard. 
 
-### Updating `jenkins-shared-library` to build our `pipelineJob` and `multibranchPipelineJob`
-We are going to leave the `master` branch of the Shared Lbrary alone to ensure it works with Part 1 of this series. We will introduce the changes to the `seed.groovy` job on branch `part2` of the Shared Library.
+### Updating `microservice-pipelines` to build our `pipelineJob` and `multibranchPipelineJob`
+We are going to leave the `master` branch of `microservice-pipelines` alone to ensure it works with Part 1 of this series. In order for us to du this, we will introduce the changes to the `seed.groovy` job on branch `part2` of the Shared Library.
    * **Reminder** Since we are changing the Shared Library, any changes to `seed.groovy` will require a script approval in Jenkins 
 1. Create a new branch `part2` in your Shared Library
-
-#### Adding `pipeline-config.groovy` configuration file
-As a way to share configuraitons between jobs, we are going to store these configurations in `pipeline-config.groovy`
-1. Create `dsl/pipeline-config.groovy` in your Shared Library with the below code
-   * The code is very simple and sets up a `cron` that will be used in `multibranchPipelineJob`
-```groovy
-pipelineConfig {
-    definition {
-        scm {
-            cron = "H/5 * * * *"
-        }
-    }
-}
-```
 
 #### Adding `pipelineJob` and `multibranchPipelineJob` to `seed.groovy`
 1. Remove the original code in `seed.groovy` and paste in the below code
@@ -86,7 +72,7 @@ def createMultibranchPipelineJob(jobName, repoUrl) {
             }
         }
         triggers {
-            cron(pipelineConfig.definition.scm.cron)
+            cron("H/5 * * * *")
         }
     }
 }
