@@ -34,12 +34,12 @@ Since we will be using a Shared library, Jenkins needs to know some default conf
 We are going to modify `seed.groovy` to build a Pipeline and Multibranch Pipeline for all services we oboard. 
 
 ### Updating `microservice-pipelines` to build our `pipelineJob` and `multibranchPipelineJob`
-We are going to leave the `master` branch of `microservice-pipelines` alone to ensure it works with Part 1 of this series. In order for us to du this, we will introduce the changes to the `seed.groovy` job on branch `part2` of the Shared Library.
-   * **Reminder** Since we are changing the Shared Library, any changes to `seed.groovy` will require a script approval in Jenkins 
-1. Create a new branch `part2` in your Shared Library
+We are going to leave the `master` branch of `microservice-pipelines` alone to ensure it works with Part 1 of this series. In order for us to do this, we will introduce the changes to the `seed.groovy` job on branch `part2` of the Shared Library.
+   * **Reminder** Since we are changing the Shared Library, any changes to `seed.groovy` will require an admin script approval in Jenkins 
+1. Create a new branch `part2` in `microservice-pipelines`
 
 #### Adding `pipelineJob` and `multibranchPipelineJob` to `seed.groovy`
-1. Remove the original code in `seed.groovy` and paste in the below code
+1. In the `part2` branch, remove the original code in `seed.groovy` and paste in the below code
    * For a better understanding of the `pipelineJob` and `multibranchPipelineJob`, make sure to go back and check the [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/#)
 ```groovy
 def createPipelineJob(jobName, repoUrl) {
@@ -78,20 +78,6 @@ def createMultibranchPipelineJob(jobName, repoUrl) {
 }
 ```
 
-#### Reading in `pipeline-config.groovy` from the workspace
-We are going to configure `seed.groovy` to load `pipeline-config.groovy` so we can use the `cron` configuration within our `multibranchPipelineJob`
-
-1. Add a method to read in our `pipeline-config.groovy` fom the workspace
-```groovy
-def getPipelineConfig() {
-    def slurper = new ConfigSlurper()
-    def workspacePath = "${new File(__FILE__).parent}"
-    def pipelineConfigPath = workspacePath + "/pipeline-config.groovy"
-    def config = slurper.parse(readFileFromWorkspace(pipelineConfigPath))
-
-    return config.pipelineConfig
-}
-```
 #### Execute the building of the `pipelineJob` and `multibranchPipelineJob` for each service
 Finally we will tie it all together and add the call to build the `*_deploy` and `*_test` jobs. This method adds `_deploy` to our `jobName` when creating the `pipelineJob` and adds `_test` to our `jobName` when we create the `multibranchPipelineJob`. 
    * You can see the full conents of `seed.groovy` on [github](https://github.com/kcrane3576/jenkins-shared-library/tree/part2)
