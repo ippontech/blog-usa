@@ -106,7 +106,7 @@ Now that we have our `seedJob` setup to read in our `seed.groovy` script from ou
   3. This will take you to the `Console Output`
      * The job **failed**
      * Due to [Script Security](https://github.com/jenkinsci/job-dsl-plugin/wiki/Script-Security), this will happen every time you change `seed.groovy`
-     ![jenkins console error](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.2.png)
+     ![run failure](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-run-failure.png)
       
 ### Approving our `seed.groovy` script
   1. We need to tell Jenkins it is ok to use this script
@@ -120,7 +120,7 @@ Now that we have approved `seed.groovy`, we are ready for our `seedJob` to run (
   2. Under `Build History`, select the top blue circle
   3. Inside of `Console Output`, you will see `GeneratedJob{name='freestyle'}`
     * Jenkins has created a new job called `freestyle` from`seed.groovy`
-  ![jenkins console success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.4.png)
+  ![run success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-run-success.png)
 
 ### Verify creation of and run`freestyle` job
   1. Navigate to `Jenkins Home` and confirm `freestyle` job was created
