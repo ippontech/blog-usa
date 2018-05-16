@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-Under the hood, JHipster uses a custom [Yeoman](http://yeoman.io/) generator to scaffold a Spring Boot application with choices of frontend framework, database, build tool, authentication type, testing framework and more. There are also several community-created modules that can be included during initial setup or imported later.
+First, we need to generate an application before we can get our hands dirty creating entities and exploring what more JHipster has to offer. Under the hood, JHipster uses a custom [Yeoman](http://yeoman.io/) generator to scaffold a Spring Boot application with choices of frontend framework, database, build tool, authentication type, testing framework and more. There are also several community-created modules that can be included during initial setup or imported later.
 
 > ["Why should organizations use JHipster?" by Mallik Sambaraju ](https://blog.ippon.tech/use-of-jhipster-in-organizations/)
 
