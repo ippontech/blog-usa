@@ -23,12 +23,12 @@ The source code is available below
 Since we will be using a Shared library, Jenkins needs to know some default configuration in order to link to the repository. 
 
    1. Navigate to `Jenkins Home` > select `Manage Jenkins` > select `Configure System` > scroll down to `Global Pipeline Libraries` > select `Add`
-   2. Enter `jenkins-shared-library` in the `Name` field
+   2. Enter `microservice-pipelines` in the `Name` field
    3. Ented `master` in `Default Version`
       * This tells jenkins which branch of our shared library we plan to use by default
    3. Under `Source Code Management`, select `Git` 
-       * Enter your Shared Library url in the `Project Repository` field and select `Save`
-   ![jenkins shared library configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-library-config.png)
+       * Enter `https://github.com/kcrane3576/microservice-pipelines` in `Project Repository` field and select `Save`
+   ![jenkins shared library configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-library-config-2.png)
 
 ## Goal 2
 We are going to modify `seed.groovy` to build a Pipeline and Multibranch Pipeline for all services we oboard. 
