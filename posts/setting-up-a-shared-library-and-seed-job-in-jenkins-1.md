@@ -22,14 +22,16 @@ We will extend the functionality of the `seedJob` to use a configuration file `p
 ## Prerequisites
 1. **Docker installed** 
    * If you do not have docker installed yet, proceed to Docker's [Getting Started](https://docs.docker.com/get-started/) guide first.
-2. **Jenkins Running in a Docker Container**
-    * Download the Jenkins image: `docker pull jenkins/jenkins`
-    * Start the Jenkins container: `docker run -p 8080:8080 -p 50000:50000 jenkins`
-      * Check out the [Jenkins Official Repository](https://hub.docker.com/_/jenkins/) for using the Docker Image 
+2. **Maven ready Jenkins running in a Docker container**
+    * Pull the Jenkins image: `docker pull kcrane121/maven-jenkins:blog`
+        * This image is based on the [Jenkins Official Repository](https://hub.docker.com/_/jenkins/)
+    * Start the Jenkins container: `docker run -p 8080:8080 -p 50000:50000 kcrane121/maven-jenkins:blog`
     * Open a browser and navigate to `http://localhost:8080/` and follow the instructions to complete the setup
-      * The first time you set this up, you will need to provide a password that was given to you after running `docker run -p 8080:8080 -p 50000:50000 jenkins`. 
-         * **Tip:** The generated admin password is located in `/var/jenkins_home/secrets/initialAdminPassword`
-3. **Familiarity with Jenkins UI**
+      **Setup Tips:**
+      a. The first time you set this up, you will need to provide a password that was given to you after running `docker run -p 8080:8080 -p 50000:50000 kcrane121/maven-jenkins:blog`.  
+      b. The generated admin password is located in `/var/jenkins_home/secrets/initialAdminPassword`
+      c. Select `Install Suggested Plugins` during the setup process 
+3. **Familiarity with [Jenkins Pipeline](https://blog.ippon.tech/continuous-delivery-with-jenkins-pipeline/)**
 
 ## Goal 1
 Now that the prerequisites are out of the way, the first thing we are going to do is create a new github repository. This repository will be used to store our `seed` code. In Part 2 we will include our Shared Library code.
