@@ -13,6 +13,10 @@ In order for us to satisfy our requirements, we used a couple of the advanced Je
   
 This is the first of a two part series where the target audience is anyone new to Jenkins as well as those individuals looking to stream line some of the work they need to repeat across services they maintain.
 
+### Source Code
+The source code is available below if you just want to follow along
+  * Jenkins Shared Library ([`microservice-pipelines`](https://github.com/kcrane3576/microservice-pipelines))
+
 ### Series Overview
 #### Part 1 
 We will set up a Freestyle project (`seedJob`) that will be a `job that creates jobs`. We will use the Jenkins Job DSL API to set up the foundation for supporting onboarding any number and type of job we need for all service we onboard.
