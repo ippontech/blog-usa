@@ -91,9 +91,9 @@ We will give our job the name of the microservice we plan to build (`poc-micro`)
 We are using the [`microservice-pipelines`](https://github.com/kcrane3576/microservice-pipelines) github repository. This repository will be used to store our `seed` code. In Part 2 of this series, we will include our Shared Library code in the repository.
 
   1. Inside of the `microservice-pipelines` repository, we have created a directory `dsl` with `seed.groovy` inside.
-  2. Below are the contents of `seed.groovy`. 
-      * We create a simple Freestyle Job and use the `String Param` named `jobName` from `seedJob` to name our Freestyle job 
       * [`microservice-pipelines/dsl/seed.groovy`](https://github.com/kcrane3576/microservice-pipelines/blob/master/dsl/seed.groovy)
+  2. Below are the contents of `seed.groovy`. 
+      * We create a simple Freestyle Job and use the `String Param` named `jobName` from `seedJob` to name our Freestyle job. 
    ```groovy
 job(jobName) {
     description("A simple Freestyle Job created from seed.groovy")
