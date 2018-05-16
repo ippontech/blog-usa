@@ -1,4 +1,3 @@
-* TODO: add better use of punctuation
 * TODO: add explanation of why the job failed during first run of seedJob
 * TODO: reword part2 overview
 
@@ -63,7 +62,7 @@ Since we are using the `microservices-pipelines` repository to load up our `seed
    1. Navigate to `Jenkins Home` > select `seedJob` > select `Configure` 
    2. Scroll to the `Source Code Management` section > select `Git`
    3. In the `Repository URL` field, enter the [`microservice-pipelines`](https://github.com/kcrane3576/microservice-pipelines) url
-       * Leave everything else as the default configuration
+       * Leave everything else as the default configuration.
      ![seed-config-repo](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-repo-config.png)
 
 ### Configuring the `seedJob` to use `dsl/seed.groovy` we will store in github
@@ -76,11 +75,11 @@ Since we will be using our `microservice-pipelines` repository, we will need to 
    2. Scroll to the `Build` section > select `Add Build step` > Select `Process Job DSLs`
    3. Select `Look on Filesystem`
    4. In the `DSL Scripts` input field, enter `dsl/seed.groovy`
-       * Leave everything else as the default configuration
+       * Leave everything else as the default configuration.
    ![seed-config-script](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-script-config-2.png)
 
 ### Configure `seedJob` to use your microservice name
-We will give our job the name of the microservice we plan to build (`poc-micro`). In order to do this we will need to add a `String parameter` to the `seedJob` that will be used inside of `seed.groovy` 
+We will give our job the name of the microservice we plan to build (`poc-micro`). In order to do this we will need to add a `String parameter` to the `seedJob` that will be used inside of `seed.groovy`.
    1. Navigate to `Jenkins Home` > select `seedJob` > select `Configure` 
    2. Select `This project is parameterized` > select `Add Parameter` > select `String Parameter`
    3. Enter `jobName` in `Name` field
@@ -89,9 +88,9 @@ We will give our job the name of the microservice we plan to build (`poc-micro`)
 
 
 ## Goal 2
-Now we are going to create a new github repository. This repository will be used to store our `seed` code. In Part 2 we will include our Shared Library code.
+We are using the [`microservice-pipelines`](https://github.com/kcrane3576/microservice-pipelines) github repository. This repository will be used to store our `seed` code. In Part 2 we will include our Shared Library code.
 
-  1. Inside of the `microservice-pipelines` github repository, create a directory `dsl` with `seed.groovy`
+  1. Inside of the `microservice-pipelines` repository, we have created a directory `dsl` with `seed.groovy`.
   2. Inside of `seed.groovy`, we are going to create a very simple Freestyle Job 
       * Add, Commit and Push the below changes in `seed.groovy`
    ```groovy
@@ -101,14 +100,14 @@ job(jobName) {
    ```
    
 ##  Goal 3
-Now that we have our `seedJob` setup to read in our `seed.groovy` script from our github `microservice-pipelines` repository, we are ready to trigger our `seedJob` to create another job.
+Now that we have our `seedJob` setup to read in `seed.groovy` from our github `microservice-pipelines` repository, we are ready to trigger our `seedJob` to create another job.
 
 ### Running the `seedJob`
   1. Navigate to `Jenkins Home` > select `seedJob` > select `Build Now` 
   2. Under `Build History`, select the top red circle
   3. This will take you to the `Console Output`
      * The job **failed**
-     * Due to [Script Security](https://github.com/jenkinsci/job-dsl-plugin/wiki/Script-Security), this will happen every time you change `seed.groovy`
+     * Due to [Script Security](https://github.com/jenkinsci/job-dsl-plugin/wiki/Script-Security), this will happen every time you change `seed.groovy`.
      ![run failure](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-run-failure.png)
       
 ### Approving our `seed.groovy` script
@@ -118,22 +117,22 @@ Now that we have our `seedJob` setup to read in our `seed.groovy` script from ou
      ![script approval](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-script-approval.png)
     
 ### Rerunning the `seedJob`
-Now that we have approved `seed.groovy`, we are ready for our `seedJob` to run (and succeed)
+Now that we have approved `seed.groovy`, we are ready for our `seedJob` to run (and succeed).
   1. Navigate to `Jenkins Home` > select `seedJob` > select `Build Now`
   2. Under `Build History`, select the top blue circle
   3. Inside of `Console Output`, you will see `GeneratedJob{name='freestyle'}`
-    * Jenkins has created a new job called `freestyle` from`seed.groovy`
+    * Jenkins has created a new job called `poc-micro` from`seed.groovy`
   ![run success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-run-success.png)
 
 ### Verify creation of and run`poc-micro` job
-  1. Navigate to `Jenkins Home` and confirm `freestyle` job was created
-  2. Select `freestyle` > select `Build Now`
+  1. Navigate to `Jenkins Home` and confirm `poc-micro` job was created
+  2. Select `poc-micro` > select `Build Now`
   2. Under `Build History`, select the top blue circle
-  3. Inside of `Console Output`, you will see a successful exection of the `freestyle` job
+  3. Inside of `Console Output`, you will see a successful exection of the `poc-micro` job
   ![jenkins created job success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-poc-micro.png)
     
 ## Conclusion
-In this first part of a two part series, we set up the minimum configuration to use seed jobs. The `seedJob` onboards a very simple Freestyle Job that doesn't do anything, but in Part 2 we will be swapping this out for onboarding a regular Pipeline job and a Multibranch Pipeline job. The use of seed jobs makes onboarding/re-onboarding services quick and easy as requirements change.
+In this first part of a two part series, we set up the minimum configuration requirements to use `seed` jobs. Our `seedJob` onboards a very simple Freestyle Job that doesn't do anything, but in Part 2 we will be swapping this out for onboarding a regular Pipeline job and a Multibranch Pipeline job. The use of seed jobs makes onboarding/re-onboarding services quick and easy as requirements change while maintaining job history.
 
-In our next post, we will configure `seedJob` to onboard any number of mvn projects and utilize Jenkins Shared Library to execute different stages depending on the type of job that is running.
+In our next post, we will configure the use of Jenkins Shared Library to execute different maven commands within stages depending on the type of job that is running.
       
