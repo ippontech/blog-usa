@@ -106,7 +106,7 @@ buildPipelineJobs()
 ```
 
 ## Goal 3
-In order for our microservices to execute in Jenkins, we need a Jenkinsfile. Since we will be setitng up all of our stages in a Shared Library, we need to set up a groovy script (`jenkinsJob.groovy`) our microservices need to point to when Jenkins loads up the service. 
+Since we will be setitng up all of our stages in a Shared Library, we need to set up a groovy script (`jenkinsJob.groovy`) our microservices need to point to when Jenkins loads up the service. 
 
 ### Adding the `jenkinsJob.groovy` file
 We are going to set up our `jenkinsJob.groovy` to checkout our microservice code from source control and execute specific maven commands depending on the job that is running.
@@ -146,12 +146,13 @@ def buildAndTest(){
 ```
 
 ## Goal 4
-We need to have an entry point for the `Jenkinsfile` in our JHipster microservices to access our Shared Library. 
-### Adding a `Jenkinsfile` to our JHipster services
+In order for our microservices to execute in Jenkins, we need a Jenkinsfile. 
+. 
+### Setting up our `Jenkinsfile` in our microservices
 We weill configure a `Jenkinsfile` in our microservices to point to our Shared Library. 
-   * **Note** We are introducing a great feature associated with the Shared Library here. The `@Library` annotation provides a lot of flexibility. Within the annotation, you will always need to provide the name of your Shared Library (e.g. `jenkins-shared-library`). However, if you add another `@` sign at the end of the Shared Library name, you can tell your `Jenkinsfile` to read specific branches or tags from your Shared Library. In fact, in the code below, that is what we did with `@part2`.
+   * **Note** We are introducing a great feature associated with the Shared Library here. The `@Library` annotation provides a lot of flexibility. Within the annotation, you will always need to provide the name of your Shared Library (e.g. `microservice-pipelines`). However, if you add another `@` sign at the end of the Shared Library name, you can tell your `Jenkinsfile` to read specific branches or tags from your Shared Library. In fact, in the code below, that is what we did. We are signaling our `Jenkinsfile` to use the `part2` branch of our Shared Library with `@part2`.
 
-1. At the root of your JHipster project, add a `Jenkinsfile` with the below code
+1. At the root of your project, update the `Jenkinsfile` with the below code.
 ```groovy
 #!/usr/bin/env groovy
 
@@ -161,24 +162,22 @@ We weill configure a `Jenkinsfile` in our microservices to point to our Shared L
 // Entry point into jenkins-shared-library
 jenkinsJob.call()
 ```
-### Running our `seeJob`, `*_deploy` and `*_test` jobs
-1. Navigate to `Jenkins Home` > select `seedJob` -> select `Build Now`
+### Running the `seeJob`
+1. Navigate to `Jenkins Home` > select `seedJob` -> select `Build with Parameters` > enter `poc-micro` in `jobName`.
    * The job is going to fail again because we need to approve the changes to the `seed.groovy` file
 2. Navigate to `Jenkins Home` > select `Manage Jenkins` > select `In-process Script Approval` > select `Approve`
-3. Navigate to `Jenkins Home` > select `seedJob` -> select `Build Now`
-   * A `*_deploy` and `*_test` job has been created for your service
-      * You will need to repeat this step for all services you plan to onboard
-   * We set our `multibranchPipelineJob` `cron` to build every 5 minutes and will do a simple `checkout scm`. 
-   * Building one of the `*_deploy` jobs will run `checkout scm` when triggered manually
-      ![jenkins successful seed job execution](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.3.png)
+3. Navigate to `Jenkins Home` > select `seedJob` -> select `Build with Parameters` > enter `poc-micro` in `jobName`.`
+4. Navigate to `Jenkins Home` > verify `poc-micro_test` and `poc-micro_deploy` jobs were created.
+   * You will need to repeat this step for all services you plan to onboard.
+   ![jenkins shared library configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-final-poc-micro.png)
 
-### Running `*_test` job
+### Running `poc-micro_test` job
 Now you have a `*_test` job that will run every 5 minutes based on the `crom` we set up, but you can also trigger it manually.
 
 1. Navigate to `Jenkins Home` > select `*_test` > select `master` > select `Build Now`
 2. Under `Build History`, select the blinking blue circle (red if previous failure) > Observe the `mvn test` executing in `Console Output`
 
-### Running `*_deploy` job
+### Running `poc-micro_deploy` job
 We can also observe the `*_deploy` job executing `mvn package`.
 
 1. Navigate to `Jenkins Home` > select `*_deploy` > select `Build Now`
