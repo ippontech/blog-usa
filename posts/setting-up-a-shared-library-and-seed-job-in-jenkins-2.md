@@ -17,6 +17,8 @@ The source code is available below
 ## Part 2 Goals
 1. Configure Jenkins to use our Shared Library for executing jobs. 
 2. Configure `seed.groovy` to create a Pipeline and Multibranch Pipeline Job per service
+3. Create `jenkinsJob.groovy` to be used by our services as the entry point into our Shared Library.
+4. Set up a [`Jenkinsfile`](https://jenkins.io/doc/book/pipeline/jenkinsfile/) to link to our Shared Library
 
 ## Goal 1
 ### Configure default Shared Library setup for Jenkins
@@ -114,9 +116,31 @@ def call(){
         stage('Checkout') {
             checkout scm
         }
+
+        // Execute different stages depending on the job
+        if(env.JOB_NAME.contains("deploy")){
+            packageArtifact()
+        } else if(env.JOB_NAME.contains("test")) {
+            buildAndTest()
+        }
+    }
+}
+
+def packageArtifact(){
+    stage("Package artifact") {
+        sh "mvn package"
+    }
+}
+
+def buildAndTest(){
+    stage("Backend tests"){
+        sh "mvn test"
     }
 }
 ```
+
+## Goal 4
+
 ### Adding a `Jenkinsfile` to our JHipster services
 We weill configure a `Jenkinsfile` in our microservices to point to our Shared Library. 
    * **Note** We are introducing a great feature associated with the Shared Library here. The `@Library` annotation provides a lot of flexibility. Within the annotation, you will always need to provide the name of your Shared Library (e.g. `jenkins-shared-library`). However, if you add another `@` sign at the end of the Shared Library name, you can tell your `Jenkinsfile` to read specific branches or tags from your Shared Library. In fact, in the code below, that is what we did with `@part2`.
@@ -141,59 +165,6 @@ jenkinsJob.call()
    * We set our `multibranchPipelineJob` `cron` to build every 5 minutes and will do a simple `checkout scm`. 
    * Building one of the `*_deploy` jobs will run `checkout scm` when triggered manually
       ![jenkins successful seed job execution](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.3.png)
-
-## Goal 4
-Now that everything is configured and running as expected, we really want our Stages to do more than just checkout our repositories. We are going to create and use a new Jenkins Docker container that supports maven commands to run `mvn test` and `mvn package`.
-
-### Build a new Docker Container
-1. Create a Dockerfile with the below contents
-```
-FROM jenkins/jenkins:lts  
-USER root
-RUN apt-get update && apt-get install -y maven
-```
-2. Build the Docker file and run the container
-   * If you need some help, checkout the Docker [build](https://docs.docker.com/engine/reference/commandline/build/) and [run](https://docs.docker.com/engine/reference/commandline/run/) documentation
-   ```
-   docker build -t maven-jenkins .
-   ```
-   ```
-   docker run -p 8080:8080 -p 50000:50000 maven-jenkins
-   ```
-**Note:** You will need to set up all of the configuration for Shared Libraries and your `seedJob` again
-   * This should not take long and it is good practice.
-
-### Add packaging and testing to `jenkinsJob.groovy`
-We want our jobs to do more than check out our code. We are going to add `mvn test` to our `*_test` jobs and `mvn package` to our `*_deploy` jobs.
-1. Update `jenkinsJob.groovy` with the below code
-```groovy
-def call(){
-    node {
-        stage('Checkout') {
-            checkout scm
-        }
-
-        // Execute different stages depending on the job
-        if(env.JOB_NAME.contains("deploy")){
-            packageArtifact()
-        } else if(env.JOB_NAME.contains("test")) {
-            buildAndTest()
-        }
-    }
-}
-
-def packageArtifact(){
-    stage("Package artifact") {
-        sh "mvn package"
-    }
-}
-
-def buildAndTest(){
-    stage("Backend tests"){
-        sh "mvn test"
-    }
-}
-```
 
 ### Running `*_test` job
 Now you have a `*_test` job that will run every 5 minutes based on the `crom` we set up, but you can also trigger it manually.
