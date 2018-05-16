@@ -1,24 +1,3 @@
-# Title(s)
-- Deep Dive into creating JHipster applications
-- Comprehensive Look Into Creating Various JHipster Applications
-- JHipster Deep Dive (made the tutorial ocean themed?)
-- ~~A JHipster Tutorial Series, Part 1~~
-- ~~Deep Dive Into JDL Studio/Generating Entities~~
-- ~~Generating Entities in JHipster~~
-
-**Motivation: Dive into the many types of JHipster applications and configurations**
-
-**another scrapped paragraph:** In this tutorial series we will explore the many options for generating high-quality Java Spring Boot applications with JHipster, creating entities with the entity generator and [JDL Studio](https://start.jhipster.tech/jdl-studio/), generating Angular components, and deploying these applications to the cloud with Amazon Web Services. This series will serve as a comprehensive compliment to the [official JHipster documentation](https://www.jhipster.tech/) for developing both monolithic and microservice JHipster applications, starting first with monolithic architecture and later recreating an application with microservices.
-
-**initial opening paragraph** Getting started with JHipster can feel daunting. There are many options to choose from and decisions to be made, from generating the project itself with selection of database, frontend framework, testing framework and more, to generating entities, developing within the project, and deploying it somewhere with some configuration. There are several beginner tutorials, and detailed documentation on the official site, but there are few examples highlighting the differences between generator options, entity models with various relationships, and deployment configurations.
-
-**this is cute, but maybe not needed:** It is assumed the reader is familiar with Java, Spring, and Angular (the newer Typescript version, not to be confused with the old AngularJS). Prior experience with Amazon Web Services is also recommended, but not required, for part three of this blog: Deploying JHipster applications to AWS.
-
-**where do I put this? at the very end, or beginning, or right here?** At the time of this writing, the current version of JHipster is v4.14.3 and the next major version, v5.0, is in beta. Version 5 will bring official support for another frontend framework [React](https://reactjs.org/) among many improvements. We will use Angular for these tutorials. A follow-up post will be written for JHipster 5's release and its improved support for Angular, but we will not dive into React. This series is written using a MacBook Pro running High Sierra macOS. Some steps will be different for other operating systems. \nLet's begin!
-
-**Extracted this beginner-friendly stuff into its own blog: a "Learning Enterprise Software Development - with JHipster!"**
-I aim to dispel new developers' anxiety when working with large and complex applications, as I too used to be intimidated by the dozens of folders and files, unsure of how everything fits together. The reader should understand software architecture at a high-level (a general understanding, not low-level specifics), knowing that there is a **database** that stores data, a **backend** that interacts with the database to retrieve, store, update and delete data in addition to sending and receiving information to and from a **frontend** that displays information and processes user input. It is assumed the reader has experience with Java ~~and is at least familiar with Spring, Angular, Docker, and Amazon Web Services~~.
-
 # JHipster Deep Dive, Part One
 *maybe change title from "Deep Dive"?*
 
@@ -82,47 +61,3 @@ Once you've finished picking your options, either in the command line interface 
 > [Learn how to configure your IDE for JHipster here.](https://www.jhipster.tech/configuring-ide/)
 
 In the next post we will dive deep into JHipster's default tools and generating several entities with relationships of various complexities.
-
----
-
-# Blog #2 - JHipster Entity Generator Deep Dive
-- Entity generation, using both JDL Studio and CLI.
-- Spring MVC REST Controller generation `spring-controller`, much simpler than `entity sub-generator` that creates full CRUD entities. https://www.jhipster.tech/creating-a-spring-controller/
-- Spring Service bean generator `spring-service`. https://www.jhipster.tech/creating-a-spring-service/ mention each of the tips on this page, and maybe find new tips?
-- Managing relationships https://www.jhipster.tech/managing-relationships/
-- Angular generation! https://www.jhipster.tech/using-angular/
-
-## Using SwaggerAPI/other default tooling
-*maybe move this to part 2*
-- navigate to swagger page, explore where this information comes from
-
-Login and navigate to /swagger/api to [view asdjklaskljdaklsdaslkjdaslkjd]. The [asdasda is generated from the Spring controllers].
-
-- Another article to mention - API Management with JHipster https://blog.ippon.tech/api-management-with-jhipster/
-
-## Entities
-We will explore many types of entities and their relationships.
-
-This set of entities is designed for a website with a store for sell merchandise:
-*example here, with customer, order, item_order, item, etc.*
-
-*add to part 3 deployment and monitoring* [Monitoring application with third-party tool DataDog by Alexis Seigneurin](https://blog.ippon.tech/monitoring-a-jhipster-app-with-datadog/)
-
-
-- Monolithic vs microservice (app + gateway)
-- Microservice high level: https://blog.ippon.tech/jhipster-3-0-introducing-microservices/
-- adding SSL? (later)
-
----
-
-# ~~Blog #3 - Development~~
-*Probably scrap and create a separate blog post for integrating w/ 3rd party library*
-- New pages (w/ & w/o ng-generate?)
-- Integrate third-party library such as a CMS
-
----
-
-# Blog #4 - Deployment
-- Deploying to AWS w/ various configurations (solo EC2 instance (frowned upon), w/ multi-EC2, mirrored databases, etc.)
-- Deploying monolithic. Deploying microservices later.
-- Use CI! Check out this article by our own Richard Yhip: https://blog.ippon.tech/continuous-integration-with-jhipster/
