@@ -28,9 +28,9 @@ We will extend the functionality of the `seedJob` to use a configuration file `p
     * Start the Jenkins container: `docker run -p 8080:8080 -p 50000:50000 kcrane121/maven-jenkins:blog`
     * Open a browser and navigate to `http://localhost:8080/` and follow the instructions to complete the setup
       **Setup Tips:**
-      a. The first time you set this up, you will need to provide a password that was given to you after running `docker run -p 8080:8080 -p 50000:50000 kcrane121/maven-jenkins:blog`.  
-      b. The generated admin password is located in `/var/jenkins_home/secrets/initialAdminPassword`
-      c. Select `Install Suggested Plugins` during the setup process 
+      1. The first time you set this up, you will need to provide a password that was given to you after running `docker run -p 8080:8080 -p 50000:50000 kcrane121/maven-jenkins:blog`.  
+      2. The generated admin password is located in `/var/jenkins_home/secrets/initialAdminPassword`
+      3. Select `Install Suggested Plugins` during the setup process 
 3. **Familiarity with [Jenkins Pipeline](https://blog.ippon.tech/continuous-delivery-with-jenkins-pipeline/)**
 
 ## Goal 1
