@@ -101,7 +101,6 @@ def buildPipelineJobs() {
     createMultibranchPipelineJob(testName, repoUrl)
 }
 
-def pipelineConfig = getPipelineConfig()
 buildPipelineJobs()
 ```
 
@@ -169,7 +168,7 @@ jenkinsJob.call()
 3. Navigate to `Jenkins Home` > select `seedJob` -> select `Build with Parameters` > enter `poc-micro` in `jobName`.`
 4. Navigate to `Jenkins Home` > verify `poc-micro_test` and `poc-micro_deploy` jobs were created.
    * You will need to repeat this step for all services you plan to onboard.
-   ![jenkins shared library configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-final-poc-micro.png)
+![jenkins shared library configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-final-poc-micro.png)
 
 ### Running `poc-micro_test` job
 Now you have a `*_test` job that will run every 5 minutes based on the `crom` we set up, but you can also trigger it manually.
