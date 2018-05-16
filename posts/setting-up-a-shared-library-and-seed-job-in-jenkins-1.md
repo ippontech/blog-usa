@@ -1,6 +1,7 @@
 * TODO: assume public repo in github will be used by readers
   * provide repo information earlier
 * TODO: add better use of punctuation
+* TODO: add explanation of why the job failed during first run of seedJob
 
 
 ## Introduction
@@ -64,14 +65,24 @@ Since we will be using our `microservice-pipelines` repository, we will need to 
    3. Select `Look on Filesystem`
    4. In the `DSL Scripts` input field, enter `dsl/seed.groovy`
        * Leave everything else as the default configuration
-       
-### Configure the name of your job
+
+### Configure use of `microservices-pipelines`
+Since we are using `microservices-pipelines` repository to load up our `seed.groovy` file, we need to configure `seedJob` to use this repository.
+
+   1. Navigate to `Jenkins Home` > select `seedJob` > select `Configure` 
+   2. Scroll to the `Source Code Management` section > select `Git`
+   3. In the `Repository` field, enter `https://github.com/kcrane3576/microservice-pipelines`
+       * Leave everything else as the default configuration
+
+
+### Configure `seedJob` to use your microservice name
 We will give our job the name of the microservice we plan to build (`poc-micro`). In order to do this we will need to add a `String parameter` to the `seedJob` that will be used inside of `seed.groovy` 
    1. Navigate to `Jenkins Home` > select `seedJob` > select `Configure` 
    2. Select `This project is parameterized` > select `Add Parameter` > select `String Parameter`
    3. Enter `jobName` in `Name` field
    4. Enter `The name of your repo (e.g. poc-micro)` in the `Description` field
    ![jenkins seed job configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.4.png)
+
 
 ## Goal 2
 Now we are going to create a new github repository. This repository will be used to store our `seed` code. In Part 2 we will include our Shared Library code.
@@ -86,7 +97,7 @@ job(jobName) {
    ```
    
 ##  Goal 3
-Now that we have our `seedJob` setup to read in our `seed.groovy` script from our github `jenkins-shared-library` repository, we are ready to trigger our `seedJob` to create another job.
+Now that we have our `seedJob` setup to read in our `seed.groovy` script from our github `microservice-pipelines` repository, we are ready to trigger our `seedJob` to create another job.
 
 ### Running the `seedJob`
   1. Navigate to `Jenkins Home` > select `seedJob` > select `Build Now` 
