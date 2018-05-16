@@ -83,7 +83,7 @@ Finally we will tie it all together and add the call to build a `_deploy` and `_
    * Set the `repo` (`https://github.com/kcrane3576/`) we will be building from.
    * Set up the `_deploy` job (`deployName`) by using the `repo` and `jobName` when creating the `pipelineJob`.
    * Set up the `_test` job (`testName`) by using the `repo` and `jobName` when creating the `multibranchPipelineJob`.
-   * You can see the full contents of `seed.groovy` on [github](https://github.com/kcrane3576/microservice-jenkins/tree/part2)
+   * You can see the full contents of `seed.groovy` in the `part2` branch of [`microservice-pipelines`](https://github.com/kcrane3576/microservice-pipelines/tree/part2)
 ```groovy
 def buildPipelineJobs() {
     def repo = "https://github.com/kcrane3576/"
@@ -101,16 +101,6 @@ buildPipelineJobs()
 #### Update `seedJob` to use `part2` branch
 1. Navitate to `Jenkins Home` > select `seedJob` > select `Configure` 
 2. Under `Source Code Management`, change the `Branch Specifier` to `*/part2`
-
-#### Configure `jobName` Paramater in `seedJob`
-The `seedJob` will need a `jobName` `String Parameter` added to the configuration so our `seed.groovy` file will know what repository it needs to build. 
-
-1. Navitate to `Jenkins Home` > select `seedJob` > select `Configure` 
-2. Check `This job is parameterized` > select `Add Parameter` > select `String Parameter`
-3. Enter `jobName` in `Name` field
-4. Enter `The name of your repo (e.g. poc-micro)` in the `Description` field
-![jenkins seed job configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.4.png)
-
 
 ## Goal 3
 In order for our microservices to execute in Jenkins, we need a Jenkinsfile. Since we will be setitng up all of our stages in a Shared Library, we need to set up groovy script our microservices need to point to when Jenkins loads up the service. 
