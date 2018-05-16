@@ -8,7 +8,6 @@ In order to get a practical application of our `seedJob`, we will also be includ
 The source code is available below
   * Jenkins Shared Library ([`microservice-pipelines`](https://github.com/kcrane3576/microservice-pipelines))
   * [`poc-micro`](https://github.com/kcrane3576/poc-micro) [JHipster](https://www.jhipster.tech/) microservice
-  * [`blg-micro`](https://github.com/kcrane3576/poc-micro) [JHipster](https://www.jhipster.tech/) microservice
 
 ## Prerequisites
 1. Jenkins set up to use the [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
@@ -168,7 +167,7 @@ jenkinsJob.call()
 3. Navigate to `Jenkins Home` > select `seedJob` -> select `Build with Parameters` > enter `poc-micro` in `jobName`.`
 4. Navigate to `Jenkins Home` > verify `poc-micro_test` and `poc-micro_deploy` jobs were created.
    * You will need to repeat this step for all services you plan to onboard.
-![jenkins shared library configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-final-poc-micro.png)
+![jenkins shared library configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-final-poc-micro-2.png)
 
 ### Running `poc-micro_test` job
 Now you have a `*_test` job that will run every 5 minutes based on the `crom` we set up, but you can also trigger it manually.
