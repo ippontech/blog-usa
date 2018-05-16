@@ -37,8 +37,6 @@ Other technologies such as social login (with Google, Facebook, Twitter), Elasti
 
 Find out more about each generator option [here](https://www.jhipster.tech/creating-an-app/#2).
 
-**TODO: pull down the beta for version 5 to check for additions or deletions, or simply revisit once released**
-
 #### Databases for local development
 The database option with the least hassle for local development would be H2 when using SQL for production. If MongoDB is chosen for production, H2 is not an option and a local Mongo database must be running. Docker makes this easy; simply run `docker-compose -f src/main/docker/mongodb.yml up -d` in the project's root directory. Without Docker you must install Mongo and start an instance with the `mongod` command. [Find instructions for installing Mongo here](https://docs.mongodb.com/manual/installation/#tutorial-installation). Type `mongo` to verify you can connect to the instance (`ctrl+c` to exit mongo interface).
 
@@ -48,11 +46,10 @@ A SQL database can be chosen for local development as well, instead of using H2.
 
 #### Testing Frameworks
 *Forgot about this section! Write a little blurb about each one here*
-- junit
+- junit & karma (not choices)
 - gatling
 - cucumber
 - protractor
-- karma
 
 #### Modules
 
