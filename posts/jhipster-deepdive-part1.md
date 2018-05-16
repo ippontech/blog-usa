@@ -33,6 +33,8 @@ There are several choices to make when generating a new application. Using the W
 - i18n: yes/no
 - Testing frameworks: Gatling, Cucumber, Protractor
 
+Other technologies such as social login (with Google, Facebook, Twitter), Elasticsearch, Spring Websocket, Swagger-codegen, and Apache Kafka are also listed for integration.
+
 Find out more about each generator option [here](https://www.jhipster.tech/creating-an-app/#2).
 
 **TODO: pull down the beta for version 5 to check for additions or deletions, or simply revisit once released**
@@ -45,19 +47,22 @@ The database option with the least hassle for local development would be H2 when
 A SQL database can be chosen for local development as well, instead of using H2. The command to start a Docker container for a SQL server is similar to that of Mongo: `docker-compose -f src/main/docker/mysql.yml up -d`. Without Docker you must install MySQL (or your chosen SQL database) on your machine and set up proper configurations to connect with the JHipster application.
 
 #### Testing Frameworks
-*Write a little blurb about each one here*
+*Forgot about this section! Write a little blurb about each one here*
 - junit
-- karma
 - gatling
+- cucumber
 - protractor
+- karma
 
 #### Modules
 
-*Forgot about modules! write this section and add this somewhere* [Creating a JHipster module by Theo Lebrun](https://blog.ippon.tech/how-to-efficiently-use-jhipster-in-your-company-2/)
+Modules are other generators and plugins made by the community that offer integrations with third-party services or provide some other functionality to JHipster applications. A few of the popular modules include adding the [Ionic framework](https://ionicframework.com/), [PrimeNG user interface](https://www.primefaces.org/primeng/#/), and [React](https://reactjs.org/), which will be officially supported in the main JHipster generator in version 5.
+
+For a complete list of modules visit [the marketplace](https://www.jhipster.tech/modules/marketplace/#/list). You can also create and contribute your own module! Find the instructions for [creating a module here](https://www.jhipster.tech/modules/creating-a-module/) and check out [this article by Théo Lebrun](https://blog.ippon.tech/how-to-efficiently-use-jhipster-in-your-company-2/) where he explains how to create a module to customize JHipster to fit your needs.
 
 ## Finishing Up
 Once you've finished picking your options, either in the command line interface or Web form, the scaffolded application will be generated. If the online Web form was used, simply extract the zip file to your chosen directory or pull the code from the linked GitHub repository. Run `yarn install` (or `npm install` if npm was chosen) to install dependencies; once completed, execute `./mvnw` to build and run the backend project with Maven, and in another terminal window in the same folder execute `yarn start` (or `npm start`) to run the frontend with auto-reload.
 
-> [Learn how to configure your IDE for JHipster here.](https://www.jhipster.tech/configuring-ide/)
+> [Learn how to configure your IDE for JHipster here!](https://www.jhipster.tech/configuring-ide/)
 
 In the next post we will dive deep into JHipster's default tools and generating several entities with relationships of various complexities.
