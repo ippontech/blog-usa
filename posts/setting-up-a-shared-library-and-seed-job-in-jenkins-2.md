@@ -4,17 +4,19 @@ In this second part of the series, we will be setting up a [Jenkins Shared libra
 
 In order to get a practical application of our `seedJob`, we will also be including a regular Pipeline job and and Multibranch Pipeline job in `seed.groovy`. By the end of this series, you will have a foundation setup to onboard projects consistently as well as handle job specific stages during the running of your Jenkins jobs. 
 
+### Source Code
+The source code is available below
+  * Jenkins Shared Library ([`microservice-pipelines`](https://github.com/kcrane3576/microservice-pipelines))
+  * [`poc-micro`](https://github.com/kcrane3576/poc-micro) [JHipster](https://www.jhipster.tech/) microservice
+  * [`blg-micro`](https://github.com/kcrane3576/poc-micro) [JHipster](https://www.jhipster.tech/) microservice
+
 ## Prerequisites
 1. Jenkins set up to use the [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
-2. A Shared Library set up for Jenkins to use when creating and running jobs
-3. A couple [JHipster](https://www.jhipster.tech/) microservices set up
-    * If you have never used JHipster or you need some help, checkout the [JHipster Quick Start](https://www.jhipster.tech/creating-an-app/) to spin up a microservice quickly.
+2. A [Jenkins Shared Library](https://jenkins.io/doc/book/pipeline/shared-libraries/) set up to use when creating and running jobs
 
 ## Part 2 Goals
 1. Configure Jenkins to use our Shared Library for executing jobs. 
 2. Configure `seed.groovy` to create a Pipeline and Multibranch Pipeline Job per service
-3. Configure the 2 JHipster microservices to use the `jenkins-shared-library`
-4. Build a new Jenkins Docker Container that runs the tests in the `*_test` jobs and packages in the `*_deploy` jobs
 
 ## Goal 1
 ### Configure default Shared Library setup for Jenkins
@@ -26,7 +28,7 @@ Since we will be using a Shared library, Jenkins needs to know some default conf
       * This tells jenkins which branch of our shared library we plan to use by default
    3. Under `Source Code Management`, select `Git` 
        * Enter your Shared Library url in the `Project Repository` field and select `Save`
-   ![jenkins shared library configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.1.png)
+   ![jenkins shared library configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-library-config.png)
 
 ## Goal 2
 We are going to modify `seed.groovy` to build a Pipeline and Multibranch Pipeline for all services we oboard. 
