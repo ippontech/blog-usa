@@ -54,7 +54,7 @@ We will set up our `seedJob` or `job that creates jobs`. This creation is done t
 
   1. On the left hand side of the page, select `New Item`
   2. In the text box for `Enter an item name`, enter `seedJob` > select the `Freestyle project` > select `OK`
-  ![jenkins freestyle project](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.1.png)
+  ![jenkins freestyle project](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-1.1.png)
 
 ### Configure `seedJob` to use `microservice-pipelines` repository
 Since we are using the `microservice-pipelines` repository to load `seed.groovy`, we need to configure `seedJob` to use this repository.
@@ -63,7 +63,7 @@ Since we are using the `microservice-pipelines` repository to load `seed.groovy`
    2. Scroll to the `Source Code Management` section > select `Git`
    3. In the `Repository URL` field, enter the [`microservice-pipelines`](https://github.com/kcrane3576/microservice-pipelines) url
        * Leave everything else as the default configuration.
-     ![seed-config-repo](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-repo-config.png)
+     ![seed-config-repo](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-seed-repo-config.png)
 
 ### Configure `seedJob` to use `dsl/seed.groovy` we will store in github
 Now that we have configured Jenkins to use our `microservice-pipelines` repository, we need to tell `seedJob` to load (`seed.groovy`) from our `microservice-pipelines` repository. This is necessary for us to start using the Jenkins Job DSL API functionality.
@@ -76,7 +76,7 @@ Since we will be using our `microservice-pipelines` repository, we will need to 
    3. Select `Look on Filesystem`
    4. In the `DSL Scripts` input field, enter `dsl/seed.groovy`
        * Leave everything else as the default configuration.
-   ![seed-config-script](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-script-config-2.png)
+   ![seed-config-script](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-seed-script-config-2.png)
 
 ### Configure `seedJob` to use microservice name as the job name
 We will give our job the name of the microservice we plan to build (`poc-micro`). In order to do this we will need to add a `String parameter` to the `seedJob` that will be used inside of `seed.groovy`.
@@ -84,7 +84,7 @@ We will give our job the name of the microservice we plan to build (`poc-micro`)
    2. Select `This project is parameterized` > select `Add Parameter` > select `String Parameter`
    3. Enter `jobName` in `Name` field
    4. Enter `The name of your repo (e.g. poc-micro)` in the `Description` field
-   ![jenkins seed job configuration](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-2.4.png)
+   ![jenkins seed job configuration](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-2.4.png)
 
 
 ## Goal 2
@@ -109,13 +109,13 @@ Now that we have our `seedJob` setup to read in `seed.groovy` from our github `m
   3. This will take you to the `Console Output`
      * The job **failed**
      * Due to [Script Security](https://github.com/jenkinsci/job-dsl-plugin/wiki/Script-Security), this will happen every time you change `seed.groovy`.
-     ![run failure](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-run-failure.png)
+     ![run failure](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-seed-run-failure.png)
       
 ### Approving our `seed.groovy` script
   1. We need to tell Jenkins it is ok to use this script
     * Navivage to `Jenkins Home` > `Manage Jenkins` > `In-process Script Approval`
     * Select `Approve` for the `seed.groovy` script
-     ![script approval](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-script-approval.png)
+     ![script approval](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-seed-script-approval.png)
     
 ### Rerunning the `seedJob`
 Now that we have approved `seed.groovy`, we are ready for our `seedJob` to run (and succeed).
@@ -123,14 +123,14 @@ Now that we have approved `seed.groovy`, we are ready for our `seedJob` to run (
   2. Under `Build History`, select the top blue circle
   3. Inside of `Console Output`, you will see `GeneratedJob{name='freestyle'}`
     * Jenkins has created a new job called `poc-micro` from`seed.groovy`
-  ![run success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-run-success.png)
+  ![run success](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-seed-run-success.png)
 
 ### Verify creation of and run`poc-micro` job
   1. Navigate to `Jenkins Home` and confirm `poc-micro` job was created
   2. Select `poc-micro` > select `Build Now`
   2. Under `Build History`, select the top blue circle
   3. Inside of `Console Output`, you will see a successful exection of the `poc-micro` job
-  ![jenkins created job success](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-seed-poc-micro.png)
+  ![jenkins created job success](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-seed-poc-micro.png)
     
 ## Conclusion
 In this first part of a two part series, we set up the minimum configuration requirements to use `seed` jobs. Our `seedJob` onboards a very simple Freestyle Job that doesn't do anything, but in Part 2 we will be swapping this out for onboarding a regular Pipeline job and a Multibranch Pipeline job. The use of seed jobs makes onboarding/re-onboarding services quick and easy as requirements change while maintaining job history.
