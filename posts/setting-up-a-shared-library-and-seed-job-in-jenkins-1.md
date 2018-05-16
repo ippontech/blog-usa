@@ -80,7 +80,7 @@ We will give our job the name of the microservice we plan to build (`poc-micro`)
    2. Select `This project is parameterized` > select `Add Parameter` > select `String Parameter`.
    3. Enter `jobName` in `Name` field.
    4. Enter `The name of your repo (e.g. poc-micro)` in the `Description` field.
-   ![jenkins seed job configuration](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-2.4.png)
+   ![jenkins seed job configuration](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-seed-add-jobName.png)
 
 ## Goal 2
 We are using the [`microservice-pipelines`](https://github.com/kcrane3576/microservice-pipelines) github repository. This repository will be used to store our `seed` code. In Part 2 of this series, we will include our Shared Library code in this repository.
