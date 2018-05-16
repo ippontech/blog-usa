@@ -79,8 +79,11 @@ def createMultibranchPipelineJob(jobName, repoUrl) {
 ```
 
 #### Execute the building of the `pipelineJob` and `multibranchPipelineJob` for each service
-Finally we will tie it all together and add the call to build the `*_deploy` and `*_test` jobs. This method adds `_deploy` to our `jobName` when creating the `pipelineJob` and adds `_test` to our `jobName` when we create the `multibranchPipelineJob`. 
-   * You can see the full conents of `seed.groovy` on [github](https://github.com/kcrane3576/jenkins-shared-library/tree/part2)
+Finally we will tie it all together and add the call to build a `_deploy` and `_test` job for the service(`jobName`) we are onboarding. 
+   * Set the `repo` (`https://github.com/kcrane3576/`) we will be building from.
+   * Set up the `_deploy` job (`deployName`) by using the `repo` and `jobName` when creating the `pipelineJob`.
+   * Set up the `_test` job (`testName`) by using the `repo` and `jobName` when creating the `multibranchPipelineJob`.
+   * You can see the full contents of `seed.groovy` on [github](https://github.com/kcrane3576/microservice-jenkins/tree/part2)
 ```groovy
 def buildPipelineJobs() {
     def repo = "https://github.com/kcrane3576/"
