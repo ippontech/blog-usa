@@ -54,6 +54,14 @@ We will set up our `seedJob` or `job that creates jobs`. This creation is done t
   2. In the text box for `Enter an item name`, enter `seedJob` > select the `Freestyle project` > select `OK`
   ![jenkins freestyle project](https://raw.githubusercontent.com/kcrane3576/blog-usa/master/images/2018/05/jenkins-shared-library-1.1.png)
 
+### Configure `seedJob` to use `microservices-pipelines`
+Since we are using `microservices-pipelines` repository to load up our `seed.groovy` file, we need to configure `seedJob` to use this repository.
+
+   1. Navigate to `Jenkins Home` > select `seedJob` > select `Configure` 
+   2. Scroll to the `Source Code Management` section > select `Git`
+   3. In the `Repository` field, enter `https://github.com/kcrane3576/microservice-pipelines`
+       * Leave everything else as the default configuration
+
 ### Configuring the `seedJob` to use `dsl/seed.groovy` we will store in github
 Now that we have configured Jenkins to us the Jenkins Job DSL API, we can configure `seedJob` to use groovy script (`seed.groovy`) that we will store in our `microservice-pipelines` repository. 
  * **Note:** This is not a requirement. Directly inside of the `seedJob`, you could add a groovy script to do the same thing we are doing in our `microservice-pipelines`
@@ -65,15 +73,6 @@ Since we will be using our `microservice-pipelines` repository, we will need to 
    3. Select `Look on Filesystem`
    4. In the `DSL Scripts` input field, enter `dsl/seed.groovy`
        * Leave everything else as the default configuration
-
-### Configure use of `microservices-pipelines`
-Since we are using `microservices-pipelines` repository to load up our `seed.groovy` file, we need to configure `seedJob` to use this repository.
-
-   1. Navigate to `Jenkins Home` > select `seedJob` > select `Configure` 
-   2. Scroll to the `Source Code Management` section > select `Git`
-   3. In the `Repository` field, enter `https://github.com/kcrane3576/microservice-pipelines`
-       * Leave everything else as the default configuration
-
 
 ### Configure `seedJob` to use your microservice name
 We will give our job the name of the microservice we plan to build (`poc-micro`). In order to do this we will need to add a `String parameter` to the `seedJob` that will be used inside of `seed.groovy` 
