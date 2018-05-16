@@ -36,13 +36,13 @@ We will extend the functionality of the `seedJob` to use a configuration file `p
 ## Goal 1
 Now that the prerequisites are out of the way, the first thing we are going to do is create a new github repository. This repository will be used to store our `seed` code. In Part 2 we will include our Shared Library code.
 
-  1. Inside of the `jenkins-shared-library` github repository, create a directory `dsl` with `seed.groovy`
+  1. Inside of the `microservice-pipelines` github repository, create a directory `dsl` with `seed.groovy`
   2. Inside of `seed.groovy`, we are going to create a very simple Freestyle Job 
       * Add, Commit and Push the below changes in `seed.groovy`
    ```groovy
-    job('freestyle') {
-     description("A simple Freestyle Job created from seed.groovy")
-    }
+job(jobName) {
+    description("A simple Freestyle Job created from seed.groovy")
+}
    ```
 
 ## Goal 2
