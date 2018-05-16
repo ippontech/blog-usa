@@ -130,7 +130,7 @@ Now that we have approved `seed.groovy`, we are ready for our `seedJob` to run (
   ![jenkins created job success](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-seed-poc-micro.png)
     
 ## Conclusion
-In this first part of a two part series, we set up the minimum configuration requirements to use `seed` jobs. Our `seedJob` onboards a very simple Freestyle Job from our `microservice-pipelines` repository that allows us to maintain all of our pipeline configurations in source control. The use of seed jobs makes onboarding/re-onboarding services quick and easy. At my current client this was extremely helpful because it allowed us to remain agile while the clients requirements change. 
+In this first part of a two part series, we set up the minimum configuration requirements to use seed jobs. Our `seedJob` onboards a very simple Freestyle Job from our `microservice-pipelines` repository that allows us to maintain all of our pipeline configurations in source control. The use of seed jobs makes onboarding/re-onboarding services quick and easy. At my current client this was extremely helpful because it allowed us to remain agile while the clients requirements changed. 
 
-In our next post, we will be reconfigure `seed.groovy` to build a regular Pipeline job and a Multibranch Pipeline job. Additionally, we will configure the use of Jenkins Shared Library to execute different  stages depending on the type of the jenkins job running.
+In our next post, we will reconfigure `seed.groovy` to build a regular Pipeline job and a Multibranch Pipeline job. Additionally, we will configure the use of [Jenkins Shared Library](https://jenkins.io/doc/book/pipeline/shared-libraries/) to execute different stages depending on the type of the jenkins job running.
       
