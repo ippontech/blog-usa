@@ -23,7 +23,7 @@ The source code is available below
 ### Configure default Shared Library setup for Jenkins
 Since we will be using a Shared library, Jenkins needs to know some default configuration in order to link to the repository. 
 
-   1. Navigate to `Jenkins Home` > select `Manage Jenkins` > select `Configure System` > scroll down to `Global Pipeline Libraries` > select `Add`
+   1. Navigate to `Dashboard` > select `Manage Jenkins` > select `Configure System` > scroll down to `Global Pipeline Libraries` > select `Add`
    2. Enter `microservice-pipelines` in the `Name` field
    3. Ented `master` in `Default Version`
       * This tells jenkins which branch of our Shared Library we plan to use by default.
@@ -35,7 +35,7 @@ Since we will be using a Shared library, Jenkins needs to know some default conf
 We are going to modify `seed.groovy` to build a Pipeline job and Multibranch Pipeline job for all services we oboard. 
 
 #### Update `seedJob` to use a `part2` branch we will create in `microservice-pipelines`
-1. Navitate to `Jenkins Home` > select `seedJob` > select `Configure`.
+1. Navitate to `Dashboard` > select `seedJob` > select `Configure`.
 2. Under `Source Code Management`, change the `Branch Specifier` to `*/part2`.
 
 ### Updating `microservice-pipelines` to build our `pipelineJob` and `multibranchPipelineJob`
@@ -161,24 +161,24 @@ jenkinsJob.call()
 
 ```
 ### Running the `seeJob`
-1. Navigate to `Jenkins Home` > select `seedJob` -> select `Build with Parameters` > enter `poc-micro` in `jobName` > select `Build`.
+1. Navigate to `Dashboard` > select `seedJob` -> select `Build with Parameters` > enter `poc-micro` in `jobName` > select `Build`.
    * **Reminder** Since we changed `seed.groovy`, this script will require an admin approval in Jenkins.
-2. Navigate to `Jenkins Home` > select `Manage Jenkins` > select `In-process Script Approval` > select `Approve`.
-3. Navigate to `Jenkins Home` > select `seedJob` -> select `Build with Parameters` > enter `poc-micro` in `jobName` > select `Build`.
-4. Navigate to `Jenkins Home` > verify `poc-micro_test` and `poc-micro_deploy` jobs were created.
+2. Navigate to `Dashboard` > select `Manage Jenkins` > select `In-process Script Approval` > select `Approve`.
+3. Navigate to `Dashboard` > select `seedJob` -> select `Build with Parameters` > enter `poc-micro` in `jobName` > select `Build`.
+4. Navigate to `Dashboard` > verify `poc-micro_test` and `poc-micro_deploy` jobs were created.
    * You will need to repeat this step for all services you plan to onboard.
 ![jenkins shared library configuration](hhttps://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-final-poc-micro-2.png)
 
 ### Running `poc-micro_test` job
 Now you have a `poc-micro_test` job that will run every 5 minutes based on the `cron` we set up, but you can also trigger it manually.
 
-1. Navigate to `Jenkins Home` > select `poc-micro_test` > select `master` > select `Build Now`
+1. Navigate to `Dashboard` > select `poc-micro_test` > select `master` > select `Build Now`
 2. Under `Build History`, select the blinking blue circle (red if previous failure) > Observe `mvn test` executing in `Console Output`.
 
 ### Running `poc-micro_deploy` job
 We can also observe the `poc-micro_deploy` job executing `mvn package`.
 
-1. Navigate to `Jenkins Home` > select `poc-micro_deploy` > select `Build Now`
+1. Navigate to `Dashboard` > select `poc-micro_deploy` > select `Build Now`
 2. Under `Build History`, select the blinking blue circle (red if previous failure) > Observe `mvn package` executing in `Console Output`.
 
 ## Conclusion
