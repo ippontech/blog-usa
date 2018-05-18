@@ -15,7 +15,7 @@ There are a few ways to create a JHipster application: with an online tool, with
 Next we will look at the various options in JHipster's application generator. Note that unless development is done inside a Docker or Vagrant container (not highly recommended), you will need to have installed [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html), [Git](https://git-scm.com/downloads), [Node.js](https://nodejs.org/en/download/), [Yarn](https://yarnpkg.com/en/) (or [NPM](https://www.npmjs.com/get-npm)) and [Yeoman](http://yeoman.io/) installed, in addition to the database you will choose. Optionally, install [Docker](https://docs.docker.com/install/) for running the database inside of a container instead of on your operating system (I personally prefer managing my databases inside containers).
 
 ## Generator Options
-There are several choices to make when generating a new application. Using the Web form or typing the command `yo jhipster` or now simply `jhipster`, we are presented with a series of options. Some options when selected will prompt you for additional choices, such as specifying which languages to support for internalization. Here are the list of options presented for generating a monolithic application:
+There are several choices to make when generating a new application. Using the Web form or typing the command `yo jhipster` or now simply `jhipster`, we are presented with a series of options. Some options when selected will prompt you for additional choices, such as specifying which languages to support for internalization. Here are the list of options presented for generating a monolithic application, with most answers omitted for clarity:
 
 ![generatoroptions](/images/2018/05/JHipsterOptions.jpg)
 
