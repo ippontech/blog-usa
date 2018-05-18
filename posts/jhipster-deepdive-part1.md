@@ -48,4 +48,4 @@ In the next post we will dive deep into JHipster's default tools and generating 
 
 ---
 
-*At the time of this writing, the current version of JHipster is v4.14.4 and the next major version, v5.0, is in beta. Version 5 will bring official support for another frontend framework [React](https://reactjs.org/) among many improvements. A follow-up post will be written for JHipster 5's release. This series is written using a MacBook Pro running High Sierra macOS. Some steps will be different for other operating systems.*
+*At the time of this writing, the current version of JHipster is v4.14.4 and the next major version, v5.0, is in beta. Version 5 will bring official support for another frontend framework [React](https://reactjs.org/) among many improvements. A follow-up post will be written for JHipster 5's release. This series is written using a MacBook Pro running High Sierra. Some steps will be different for other operating systems.*
