@@ -15,22 +15,11 @@ There are a few ways to create a JHipster application: with an online tool, with
 Next we will look at the various options in JHipster's application generator. Note that unless development is done inside a Docker or Vagrant container (not highly recommended), you will need to have installed [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html), [Git](https://git-scm.com/downloads), [Node.js](https://nodejs.org/en/download/), [Yarn](https://yarnpkg.com/en/) (or [NPM](https://www.npmjs.com/get-npm)) and [Yeoman](http://yeoman.io/) installed, in addition to the database you will choose. Optionally, install [Docker](https://docs.docker.com/install/) for running the database inside of a container instead of on your operating system (I personally prefer managing my databases inside containers).
 
 ## Generator Options
-There are several choices to make when generating a new application. Using the Web form or typing the command `yo jhipster` or now simply `jhipster`, we are presented with many options, from type of application, name, type of database for production and local development, build tools, frontend frameworks, testing frameworks, and more! Let's look into each option:
+There are several choices to make when generating a new application. Using the Web form or typing the command `yo jhipster` or now simply `jhipster`, we are presented with many options, from type of application, name, type of database for production and local development, build tools, frontend frameworks, testing frameworks, and more. Some options when selected will prompt you for additional choices, such as specifying which languages to support for internalization. Here are the list of options presented for generating a monolothic application:
 
-**drawing a (better!) flow chart for these options and replacing this bulleted list**
-- Registry: yes/no
-    - If No, type of authentication: JWT, OAuth 2.0/OIDC w/ Keycloak + Okta, HTTP Session Authentication
-- Production database: SQL (H2, MySQL, MariaDB, PostgreSQL, Oracle, MSSQL), MongoDB, Cassandra, [BETA] Couchbase
-    - If SQL, development database: H2 w/ disk-based, H2 w/ in-memory, MySQL
-- Spring cache abstraction: Yes w/ Ehcache (local cache single node), Yes w/ Hazelcast (distributed cache multiple nodes), [BETA] Yes, with the Infinispan (hybrid cache, for multiple nodes), No (disables Hibernate L2 cache if using SQL)
-    - Hibernate 2nd level cache: yes/no
-- Building backend: Maven, Gradle
-- Framework: Angular 5
-- LibSass: yes/no
-- i18n: yes/no
-- Testing frameworks: Gatling, Cucumber, Protractor
+![generatoroptions](/images/2018/05/JhipsterGeneratorOptionsMonolithic.jpg)
 
-Other technologies such as social login (with Google, Facebook, Twitter), Elasticsearch, Spring Websocket, Swagger-codegen, and Apache Kafka are also listed for integration. There are also several command-line options when running `jhipster` to generate your application;  executing `jhipster --skip-server` will generate just the front-end code and skip the server-side part of the application, `jhipster --jhi-prefix abc` will change the prefix on generated services and components from the default `jhi` to `abc`, and many more. Learn more about each generator option [here](https://www.jhipster.tech/creating-an-app/).
+There are also several command-line options when running `jhipster` to generate your application;  executing `jhipster --skip-server` will generate just the front-end code and skip the server-side part of the application, `jhipster --jhi-prefix abc` will change the prefix on generated services and components from the default `jhi` to `abc`, and many more. Learn more about each generator option [here](https://www.jhipster.tech/creating-an-app/).
 
 ### Databases
 Most applications need to store data somewhere. JHipster provides several options for both production and development databases, usually the same but not always. The database option with the least hassle for local development would be H2 when using SQL for production. If MongoDB is chosen for production, H2 is not an option and a local Mongo database must be running. Docker makes this easy; simply run `docker-compose -f src/main/docker/mongodb.yml up -d` in the project's root directory. Without Docker you must install Mongo and start an instance with the `mongod` command. Find instructions for installing Mongo [here](https://docs.mongodb.com/manual/installation/#tutorial-installation). ~~Type `mongo` to verify you can connect to the instance (`ctrl+c` to exit mongo interface).~~
