@@ -17,7 +17,7 @@ Next we will look at the various options in JHipster's application generator. No
 ## Generator Options
 There are several choices to make when generating a new application. Using the Web form or typing the command `yo jhipster` or now simply `jhipster`, we are presented with many options, from type of application, name, type of database for production and local development, build tools, frontend frameworks, testing frameworks, and more. Some options when selected will prompt you for additional choices, such as specifying which languages to support for internalization. Here are the list of options presented for generating a monolothic application:
 
-![generatoroptions](/images/2018/05/JhipsterGeneratorOptionsMonolithic.jpg)
+![generatoroptions](/images/2018/05/JHipsterOptions.jpg)
 
 There are also several command-line options when running `jhipster` to generate your application;  executing `jhipster --skip-server` will generate just the front-end code and skip the server-side part of the application, `jhipster --jhi-prefix abc` will change the prefix on generated services and components from the default `jhi` to `abc`, and many more. Learn more about each generator option [here](https://www.jhipster.tech/creating-an-app/).
 
