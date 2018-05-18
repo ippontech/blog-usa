@@ -1,6 +1,6 @@
 # JHipster Deep Dive, Part One
 
-[JHipster](https://www.jhipster.tech/) is a wonderful and ever-growing Open Source development platform for creating high-quality Java Spring Boot + Angular/React applications, but unfortunately some developers tend to only use the initial project generation feature and neglect entity generation and other tools available for continued development, deployment and maintenance. In this tutorial series we will explore those tools, starting with generating applications with various configurations, to creating complex entities with [JDL Studio](https://start.jhipster.tech/jdl-studio/), generating frontend components, monitoring our applications, and finally deploying both monolithic and microservice applications to the cloud with Amazon Web Services. This series will serve as a compliment to the [official JHipster documentation](https://www.jhipster.tech/).
+[JHipster](https://www.jhipster.tech/) is a wonderful and ever-growing Open Source development platform for creating high-quality Java Spring Boot + Angular/React applications, but unfortunately some developers tend to only use the initial project generation feature and neglect entity generation and other tools available for continued development, deployment and maintenance. In this tutorial series we will explore those tools, starting with generating applications with various configurations to creating complex entities, generating frontend components, monitoring our applications, and finally deploying both monolithic and microservice applications to the cloud with Amazon Web Services.
 
 ## Getting Started
 
@@ -30,7 +30,7 @@ There are several choices to make when generating a new application. Using the W
 - i18n: yes/no
 - Testing frameworks: Gatling, Cucumber, Protractor
 
-Other technologies such as social login (with Google, Facebook, Twitter), Elasticsearch, Spring Websocket, Swagger-codegen, and Apache Kafka are also listed for integration. Find out more about each generator option [here](https://www.jhipster.tech/creating-an-app/#2).
+Other technologies such as social login (with Google, Facebook, Twitter), Elasticsearch, Spring Websocket, Swagger-codegen, and Apache Kafka are also listed for integration. There are also several command-line options when running `jhipster` to generate your application;  executing `jhipster --skip-server` will generate just the front-end code and skip the server-side part of the application, `jhipster --jhi-prefix abc` will change the prefix on generated services and components from the default `jhi` to `abc`, and many more. Learn more about each generator option [here](https://www.jhipster.tech/creating-an-app/).
 
 ### Databases
 Most applications need to store data somewhere. JHipster provides several options for both production and development databases, usually the same but not always. The database option with the least hassle for local development would be H2 when using SQL for production. If MongoDB is chosen for production, H2 is not an option and a local Mongo database must be running. Docker makes this easy; simply run `docker-compose -f src/main/docker/mongodb.yml up -d` in the project's root directory. Without Docker you must install Mongo and start an instance with the `mongod` command. Find instructions for installing Mongo [here](https://docs.mongodb.com/manual/installation/#tutorial-installation). ~~Type `mongo` to verify you can connect to the instance (`ctrl+c` to exit mongo interface).~~
@@ -40,10 +40,9 @@ Most applications need to store data somewhere. JHipster provides several option
 A SQL database can be chosen for local development as well, instead of using H2. The command to start a Docker container for a SQL server is similar to that of Mongo: `docker-compose -f src/main/docker/mysql.yml up -d`. Without Docker you must install MySQL (or your chosen SQL database) on your machine and set up proper configurations to connect with the JHipster application.
 
 ### Testing Frameworks
-By default JHipster applications come bundled with the JUnit and Karma testing frameworks, and more options are available during initial project generation. The ...
-- gatling
-- cucumber
-- protractor
+By default, JHipster applications come bundled with two testing frameworks, JUnit and Karma.js, for Java integration tests and Javascript unit tests, respectively. Three other options are available to add for testing other aspects of your application; Gatling for performance tests, Cucumber for behavior-driven tests, and Protractor for Angular/React integration tests which simulate using the application like a real user.
+
+Once the application is generated, test files are placed in the `src/test` directory and are ran by executing `./mvnw clean test` or `./gradlew test`.
 
 ### Modules
 
