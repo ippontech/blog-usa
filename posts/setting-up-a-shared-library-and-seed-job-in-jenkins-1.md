@@ -1,5 +1,5 @@
 ## Introduction
-I have been working at a client the past few months that has adopted a desire for a consistent [JHipster](https://www.jhipster.tech/) microservice architecture. We have more than ten microservices that are supported by multiple teams. Developers support multiple services and we needed a uniform approach to deploy quality code quickly to the cloud. We set up Jenkins to support building and testing any branch of all services while maintaing the ability to deploy releases along side feature development. As Jenkins grew, we decided to maintain our Jenkins related code through source control. 
+I have been working at a client the past few months that has adopted a desire for a consistent [JHipster](https://www.jhipster.tech/) microservice architecture. We have more than ten microservices that are supported by multiple teams. Developers support multiple services and we needed a uniform approach to deploy quality code quickly to the cloud. We set up Jenkins to support building and testing any branch of all services while maintaining the ability to deploy releases alongside feature development. As Jenkins grew, we decided to maintain our Jenkins related code through source control. 
 
 In order for us to satisfy our requirements, we used a couple of the advanced Jenkins tools.
   * [Jenkins Job DSL API](https://jenkinsci.github.io/job-dsl-plugin/)
@@ -33,7 +33,7 @@ We will introduce the use of Shared Libraries. In order to maintain support for 
     * Open a browser and navigate to `http://localhost:8080/` and follow the instructions to complete the set up.
       **Set up Tips:**
       1. The first time you set this up, you will need to provide a password that was given to you after running `docker run -p 8080:8080 -p 50000:50000 kcrane121/maven-jenkins:blog`.  
-         * The generated admin password can also be foun at `/var/jenkins_home/secrets/initialAdminPassword` in the docker container.
+         * The generated admin password can also be found at `/var/jenkins_home/secrets/initialAdminPassword` in the docker container.
       3. Select `Install Suggested Plugins` during the setup process .
 3. **Familiarity with [Jenkins Pipeline](https://blog.ippon.tech/continuous-delivery-with-jenkins-pipeline/)**.
 
@@ -124,7 +124,7 @@ Now that we have approved `seed.groovy`, we are ready for our `seedJob` to run (
   1. Navigate to `Dashboard` and confirm `poc-micro` job was created.
   2. Select `poc-micro` > select `Build Now`.
   2. Under `Build History`, select the top blue circle.
-  3. Inside of `Console Output`, you will see a successful exection of the `poc-micro` job.
+  3. Inside of `Console Output`, you will see a successful execution of the `poc-micro` job.
   ![jenkins created job success](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-seed-poc-micro.png)
     
 ## Conclusion
