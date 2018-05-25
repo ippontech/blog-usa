@@ -27,7 +27,7 @@ Since we will be using a Shared library, Jenkins needs to be set up to use our S
 
    1. Navigate to `Dashboard` > select `Manage Jenkins` > select `Configure System` > scroll down to `Global Pipeline Libraries` > select `Add`
    2. Enter `microservice-pipelines` in the `Name` field
-   3. Ented `master` in `Default Version`
+   3. Enter `master` in `Default Version`
       * This tells jenkins which branch of our Shared Library we plan to use by default.
    4. Under `Source Code Management`, select `Git` 
    5. In the `Project Repository` field, enter `https://github.com/kcrane3576/microservice-pipelines` > select `Save`.
