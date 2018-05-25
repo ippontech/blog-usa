@@ -31,7 +31,7 @@ Since we will be using a Shared library, Jenkins needs to be set up to use our S
       * This tells jenkins which branch of our Shared Library we plan to use by default.
    4. Under `Source Code Management`, select `Git` 
    5. In the `Project Repository` field, enter `https://github.com/kcrane3576/microservice-pipelines` > select `Save`.
-   ![jenkins shared library configuration](hhttps://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-config-2.png)
+   ![jenkins shared library configuration](/images/2018/05/jenkins-shared-library-config-2.png)
 
 ## Goal 2
 We are going to modify `seed.groovy` to build a Pipeline job and Multibranch Pipeline job for all services we onboard. 
@@ -172,7 +172,7 @@ All of our configuration is set up and our repositories are ready to use. We wil
 3. Navigate to `Dashboard` > select `seedJob` -> select `Build with Parameters` > enter `poc-micro` in `jobName` > select `Build`.
 4. Navigate to `Dashboard` > verify `poc-micro_test` and `poc-micro_deploy` jobs were created.
    * You will need to repeat this step for all services you plan to onboard.
-![jenkins shared library configuration](hhttps://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins-shared-library-final-poc-micro-2.png)
+![jenkins shared library configuration](/images/2018/05/jenkins-shared-library-final-poc-micro-2.png)
 
 ### Running `poc-micro_test` job
 Now you have a `poc-micro_test` job that will run every 5 minutes based on the `cron` we set up, but you can also trigger it manually.
