@@ -2,7 +2,7 @@
 # Introduction
 In this second part of the series, we will be setting up a [Jenkins Shared library](https://jenkins.io/doc/book/pipeline/shared-libraries/) to execute our Jenkins jobs. As the complexity and number of jobs you maintain grow, the use of Shared Libraries provides the ability to share and reuse code across jobs for CI and CD processes. 
 
-In order to set up a practical application with our `seedJob`, we will modify `seed.groovy` to build a Pipeline job and a Multibranch Pipeline job. By the end of this series, you will have a foundation set up to onboard projects consistently as well as handle job specific stages during the running of your Jenkins jobs. 
+In order to set up a practical application with our `seedJob`, we will modify `seed.groovy` to build a Pipeline job (deployment job) and a Multibranch Pipeline job (test job). By the end of this series, you will have a foundation set up to onboard micro services consistently as well as execute certain stages specific to the Jenkins jobs you are running. 
 
 ## Source Code
 The source code is available below
@@ -10,19 +10,19 @@ The source code is available below
   * [`poc-micro`](https://github.com/kcrane3576/poc-micro) [JHipster](https://www.jhipster.tech/) microservice
 
 # Prerequisites
-1. Jenkins running in Docker a docker container built from `kcrane121/maven-jenkins:blog`.
+1. Jenkins running in a Docker container built from `kcrane121/maven-jenkins:blog`.
 2. `seedJob` set up from Part 1.
 
 # Part 2 Goals
 1. Configure Jenkins to use [`microservice-pipelines`](https://github.com/kcrane3576/microservice-pipelines)
 as our Shared Library for executing jobs. 
-   * As the number of jobs you use in Jenkins grows, the amount of duplicate code between jobs can become overwhelming to maintain as new requirements are introduced. The Shared Library functionality within Jenkins allows you to consolidate the code you use within one repository to be shared across your jobs. 
-2. Configure `seed.groovy` to create a Pipeline Job and Multibranch Pipeline Job per service.
-3. Create `jenkinsJob.groovy` to be used by our services as the entry point into our Shared Library.
+   * As the number of jobs you use in Jenkins grows, the amount of duplicate code between jobs can become overwhelming to maintain while new requirements for all of your jobs are introduced. The Shared Library functionality within Jenkins allows you to consolidate the code you use within one repository to be shared across your jobs. 
+2. Configure `seed.groovy` to create a Pipeline Job (deployment job) and Multibranch Pipeline Job (test job) per service.
+3. Create `jenkinsJob.groovy` to be used by our micro services as the entry point into our Shared Library.
 4. Set up a [`Jenkinsfile`](https://jenkins.io/doc/book/pipeline/jenkinsfile/) in `poc-micro` to use `microservice-pipelines` Shared Library.
 
 # Goal 1
-## Configure default Shared Library setup for Jenkins
+## Configure default Shared Library set up for Jenkins
 Since we will be using a Shared library, Jenkins needs to be set up to use our Shared Library.
 
    1. Navigate to `Dashboard` > select `Manage Jenkins` > select `Configure System` > scroll down to `Global Pipeline Libraries` > select `Add`
@@ -40,7 +40,7 @@ We are going to modify `seed.groovy` to build a Pipeline job and Multibranch Pip
 1. Navigate to `Dashboard` > select `seedJob` > select `Configure`.
 2. Under `Source Code Management`, change the `Branch Specifier` to `*/part2`.
 
-## Updating `microservice-pipelines` to build our `pipelineJob` and `multibranchPipelineJob`
+## Updating `microservice-pipelines` to build our deployment and test jobs
 We are going to leave the `master` branch of `microservice-pipelines` alone to ensure it works with Part 1 of this series. In order for us to do this, we will introduce the changes to the `seed.groovy` job on branch `part2` of [`microservice-pipelines`](https://github.com/kcrane3576/microservice-pipelines).
 
 ### Adding `pipelineJob` and `multibranchPipelineJob` to `seed.groovy`
@@ -85,7 +85,7 @@ def createTestJob(jobName, repoUrl) {
 ```
 
 ### Add method to execute the building of the `pipelineJob` and `multibranchPipelineJob`
-Finally we will need to trigger the building of the `poc-micro_deploy` and `poc-micro_test` jobs we are onboarding. 
+Finally we will need to trigger the building of the specific `poc-micro_deploy` and `poc-micro_test` jobs we are onboarding. 
    * Hard code the  `repo` variable with `https://github.com/kcrane3576/`.
    * Set up the `deployName` variable by using the `repo` variable and the `jobName` (`poc-micro`) when creating the `pipelineJob`.
    * Set up the `testName` variable by using the `repo` variable and the `jobName` (`poc-micro`) when creating the `multibranchPipelineJob`.
@@ -108,7 +108,7 @@ buildPipelineJobs()
 Since we will be setting up all of our stages in a Shared Library, we need to set up a groovy script (`jenkinsJob.groovy`) that the `poc-micro` service points to from its Jenkinsfile. 
 
 ## Adding `jenkinsJob.groovy` to `microservice-pipelines`
-We are going to set up our `jenkinsJob.groovy` to checkout our microservice code from source control and execute specific maven commands depending on the job that is running.
+We are going to set up our `jenkinsJob.groovy` file to checkout our micro service code from source control and execute specific maven commands depending on the job that is running.
   1. Check out our microservice repository.
      * Check out the [workflow scm steps](https://jenkins.io/doc/pipeline/steps/workflow-scm-step/) for more information.
   2. Read from the [`environment variables`](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project#Buildingasoftwareproject-JenkinsSetEnvironmentVariables) (`env.JOB_NAME`) in order to obtain the Jenkins job name.
@@ -147,7 +147,7 @@ def buildAndTest(){
 ```
 
 # Goal 4
-In order for our microservices to execute in Jenkins, we need a `Jenkinsfile` in `poc-micro`. 
+In order for our micro services to execute in Jenkins, we need a `Jenkinsfile` in `poc-micro`. 
  
 ## Setting up our `Jenkinsfile` in our microservice
 We will configure a `Jenkinsfile` in our microservices to point to our `microservice-pipelines` Shared Library. 
@@ -171,7 +171,7 @@ All of our configuration is set up and our repositories are ready to use. We wil
 2. Navigate to `Dashboard` > select `Manage Jenkins` > select `In-process Script Approval` > select `Approve`.
 3. Navigate to `Dashboard` > select `seedJob` -> select `Build with Parameters` > enter `poc-micro` in `jobName` > select `Build`.
 4. Navigate to `Dashboard` > verify `poc-micro_test` and `poc-micro_deploy` jobs were created.
-   * You will need to repeat this step for all services you plan to onboard.
+   * You will need to repeat this step for all micro services you plan to onboard.
 ![jenkins shared library configuration](/images/2018/05/jenkins-shared-library-final-poc-micro-2.png)
 
 ## Running `poc-micro_test` job
@@ -187,4 +187,4 @@ We can also observe the `poc-micro_deploy` job executing `mvn package`.
 2. Under `Build History`, select the blinking blue circle (red if previous failure) > Observe `mvn package` executing in `Console Output`.
 
 # Conclusion
-During this series we set up a seed job that was used to create a `multibranchPipelineJob` and `pipelineJob` when onboarding our `poc-micro` service with our `seedJob`. Additionally, we set up our Shared Library to use `jenkinsJob.groovy` to handle the logic that determines which stages are executed depending on the currently running job (`env.JOB_NAME`). By using a combination of a `seed` job and Shared Libraries, you now have a foundation set up to onboard any number of services the same way while maintaining job specific stage execution. This provides you the ability to streamline your CI and CD requirements for microservices.
+During this series we set up a seed job that was used to create a `pipelineJob` (deploy job) and `multibranchPipelineJob` (test job) when onboarding our `poc-micro` micro service with our `seedJob`. Additionally, we set up our Shared Library to use `jenkinsJob.groovy` to handle the logic that determines which stages are executed depending on the currently running job (`env.JOB_NAME`). By using a combination of a "seed" job and Shared Libraries, you now have a foundation set up to onboard any number of services the same way while maintaining job specific stage execution. This provides you the ability to streamline your CI and CD requirements for microservices.
