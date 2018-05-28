@@ -4,8 +4,8 @@ authors:
 categories:
 - Jenkins
 date: 2018-05-289T12:21:50.000Z
-title: "10 Tips and tricks for Cassandra"
-image: 
+title: "Setting up a shared library and seed job in Jenkins - Part 2"
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins.png
 ---
 
 # Introduction
