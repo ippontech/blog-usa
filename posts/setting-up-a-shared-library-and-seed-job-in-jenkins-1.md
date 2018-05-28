@@ -1,3 +1,13 @@
+---
+authors:
+- Kyle Crane
+categories:
+- Jenkins
+date: 2018-05-289T12:21:50.000Z
+title: "Setting up a shared library and seed job in Jenkins - Part 1"
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins.png
+---
+
 # Introduction
 I have been working at a client the past few months that has adopted a desire for a consistent [JHipster](https://www.jhipster.tech/) microservice architecture. We have more than ten microservices that are supported by multiple teams. Developers support multiple services and we needed a uniform approach to deploy quality code quickly to the cloud. We set up Jenkins to support building and testing any branch of all services while maintaining the ability to deploy releases alongside feature development. As Jenkins grew, we decided to maintain our Jenkins related code through source control. 
 
