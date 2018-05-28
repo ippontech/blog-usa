@@ -4,7 +4,7 @@ authors:
 categories:
 - Cassandra
 - JHipster
-date: 2015-04-23T12:21:50.000Z
+date: 2015-04-23T20:46:00.000Z
 title: "10 Tips and tricks for Cassandra"
 image: 
 ---
