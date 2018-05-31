@@ -28,7 +28,8 @@ EBX provides multiple ways of creating these functions through both the graphica
 Once we delved into a light understanding of what the features of EBX were used for and how they worked, and then further explained a lot of the functionality of the API our trainees were more than ready for their first test in understanding EBX.
 We gave them the task of setting up a simple workflow that would be run whenever a user tried to either enter or edit an entry in the Master Data. This workflow would first have another user validate the entry in a child data space created for the sole purpose of housing the change (to ensure data integrity on the Master data space), and then would merge that child back into the Master to complete the alteration of the data.
 
-{{< responsive-figure src="Ebxpress-bowling-trip.png" >}}
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/Ebxpress-bowling-trip.png)
+
 # After a hard days work
 
 The bootcamp ran for two days with the first day consisting mostly of training and theory with short examples and the second consisting of the workflow tutorial set to assess the trainee’s understanding. That said, it wouldn’t be an Ippon bootcamp if it only consisted of work. So after a long day of studying, Ippon and the EBX team headed to a local bowling alley for some fun and friendly competition. Ending a great day of training with a few drinks and some good times.
