@@ -1,0 +1,72 @@
+---
+authors:
+- Randeep Walia
+categories:
+- Scala, Functional programming, algebraic design, domain design
+date: 2018-06-01T06:25:27.000Z
+title: "Scala For the Arrogant"
+---
+# What does it take to learn to Scala
+
+To put it another way, what does it take to learn a language? For a Spanish speaker
+learning Portuguese the process can be fairly straightforward: we need to
+understand the differences in pronunciation, understand the critical
+differences in vocabulary, and begin
+the more difficult process of understanding the differences in grammar. But what
+does the process look like for a French speaker trying to understand Sanskrit? Or
+learning Assembly?
+
+OK- so the last one is not a traditional linguistic language but I mention to
+emphasize the idea that sometimes learning a new language is not just a matter
+of picking up a new grammar with a new vocabulary. Sometimes we are approaching
+the issue of communication from a completely different perspective.
+
+For the arrogant Java developer, looking to learn Scala, it's easy to imagine
+that the language can be learned by understanding the syntactical differences
+between the two languages. If our understanding of Scala is that it is a simple
+evolution of the Java language where we can avoid verbosity when declaring
+variables and utilize some syntactic-sugar to make our code more compact, then
+we might find ourselves quickly overwhelmed trying to learn the comprehensive
+features of Scala. If we simply scan through a summary blog post (wait, is that
+what this is?) with code examples, we might feel underwhelmed that the efforts
+in learning Scala won't yield any meaningful results. The arrogant Developer has
+years of experience and wants to learn the language **now!**. Why does it have
+to be so difficult?
+
+The answer lies in the intention of the Scala language. As its creator, Martin
+Odersky [put it in an interview], "Scala was designed to show that a fusion of
+functional and object-oriented programming is possible and practical." If we
+understand this to be the motivation we can set the proper intention for our
+study of Scala: when a developer learns Scala they are not just learning a new
+language, but an approach to developing algorithms, data modeling, and design
+with the most concise and efficient object-oriented and Functional design.
+
+The arrogant developer might have years of OO design under their belt, they may
+have memorized books of Design Patterns and might even know how to write some
+functional expressions with Java 8's new Lambda and Streams features. But Scala
+takes that to the next level with language features that support Algebraic Data
+Types, implicit parameters, monads, and more. As someone who is going down the
+beautiful rabbit hole of learning a new way of marrying functional with object-oriented
+programming, I wanted to put together a syllabus for experienced developers who
+want to learn a new language. This blog post is not a tutorial, but rather a
+list of concepts to study to understand not just how to program in scala, but *why* to
+do so in a specific manner. When approached this way you will learn many new concepts
+and different ways of writing code, managing side effects and more. The arrogant
+developer will probably find themselves being quickly humbled at the breadth of it all,
+a testament to the language and its community of developers.
+
+Let's get started!
+
+# The path to learning Scala
+1. Adopt the right mindset
+2. (Re)learn functional programming
+3. Apply these differences to your object-oriented principles
+## 
+## Functional programming
+### Algebraic Data Types
+#### Monads
+### Managing side effects
+
+## Object oriented
+### Collections
+### Operators
