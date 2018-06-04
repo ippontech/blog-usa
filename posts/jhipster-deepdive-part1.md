@@ -1,4 +1,12 @@
-# JHipster Deep Dive, Part One
+---
+authors:
+- Bruce Robinson
+categories:
+- JHipster
+date: 2018-06-04T12:00:00.000Z
+title: "JHipster Deep Dive, Part One"
+image:
+---
 
 [JHipster](https://www.jhipster.tech/) is a wonderful trending Open Source development platform for creating high-quality Java Spring Boot + Angular/React applications, but unfortunately some developers tend to only use the initial project generation feature and neglect entity generation and other tooling available for continued development, deployment and maintenance. In this tutorial series we will explore those tools, starting with generating applications with various configurations to creating complex entities, generating frontend components, monitoring our applications, and finally deploying both monolithic and microservice applications to the cloud with Amazon Web Services.
 
@@ -6,7 +14,7 @@
 
 First, we need to generate an application before we can get our hands dirty creating entities and exploring what more JHipster has to offer. Under the hood, JHipster uses a custom [Yeoman](http://yeoman.io/) generator to scaffold a Spring Boot application with choices of frontend framework, database, build tool, authentication type, testing framework and more. There are also several community-created modules that can be included during initial setup or imported later.
 
-> ["Why should organizations use JHipster?" by Mallik Sambaraju ](https://blog.ippon.tech/use-of-jhipster-in-organizations/)
+> ["Why should organizations use JHipster?" by Mallik Sambaraju](https://blog.ippon.tech/use-of-jhipster-in-organizations/)
 
 There are a few ways to create a JHipster application: with an online tool, with a locally-installed command line interface (CLI), with the CLI inside a [Docker](https://www.docker.com/) container, and inside a [Vagrant](https://www.vagrantup.com/) virtual development environment. The most popular option is local installation with Yarn.
 
