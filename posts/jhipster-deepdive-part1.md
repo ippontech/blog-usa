@@ -25,9 +25,19 @@ Next we will look at the various options in JHipster's application generator. No
 ## Generator Options
 There are several choices to make when generating a new application. Using the Web form or typing the command `yo jhipster` or now simply `jhipster`, we are presented with a series of options. Some options when selected will prompt you for additional choices, such as specifying which languages to support for internationalization. Here are the list of options presented for generating a monolithic application, with most answers omitted for clarity:
 
-![generatoroptions](/images/2018/05/JHipsterOptions.jpg)
+![generator options](/images/2018/06/JHipsterOptions.jpg)
 
 There are also several command-line options when running `jhipster` to generate your application;  executing `jhipster --skip-server` will generate just the front-end code and skip the server-side part of the application, `jhipster --jhi-prefix abc` will change the prefix on generated services and components from the default `jhi` to `abc`, and many more. Learn more about each generator option [here](https://www.jhipster.tech/creating-an-app/).
+
+### JHipster Registry
+Included in all microservice applications and optionally included in monolithic applications is the JHipster Registry, a tool that provides several runtime monitoring dashboards for the application(s) and with which all microservices registers and get their configurations from.
+
+As an administration server, it serves dashboards for logs, configuration, health checks (with Spring Boot Actuator), and performance metrics (for the JVM, HTTP requests, database connection pool, and Spring Beans methods with the `@Timed` annotation).
+
+![metrics dashboard](/images/2018/06/JHipsterMetricsDashboard.jpg)
+*Metrics Dashboard*
+
+For microservice applications, the JHipster Registry is a [Netflix Eureka](https://github.com/Netflix/eureka) service discovery server to handle routing, load balancing and scalability. It is also a Spring Cloud Config server that provides runtime configuration to all applications once they are launched. Note that the JHipster Registry only works for applications using JWT authentication. For more information on the JHipster registry, [see the official documentation](https://www.jhipster.tech/jhipster-registry/).
 
 ### Databases
 Most applications need to store data somewhere. JHipster provides several options for both production and development databases. The most popular choice is SQL for production and [H2](http://www.h2database.com) for local development (an in-memory or on-disk SQL database written in Java). MongoDB is a very popular NoSQL database that is chosen for specific non-relational reasons. Unlike H2, other databases need to run in a container or terminal window. Docker makes this easy: simply run `docker-compose -f src/main/docker/mongodb.yml up -d` in the project's root directory. Without Docker you must install Mongo and start an instance with the `mongod` command. Find instructions for installing Mongo [here](https://docs.mongodb.com/manual/installation/#tutorial-installation).
