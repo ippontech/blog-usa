@@ -32,12 +32,17 @@ There are also several command-line options when running `jhipster` to generate 
 ### JHipster Registry
 Included in all microservice applications and optionally included in monolithic applications is the JHipster Registry, a tool that provides several runtime monitoring dashboards for the application(s) and with which all microservices registers and get their configurations from.
 
-As an administration server, it serves dashboards for logs, configuration, health checks (with Spring Boot Actuator), and performance metrics (for the JVM, HTTP requests, database connection pool, and Spring Beans methods with the `@Timed` annotation).
+As an administration server, it serves dashboards for **logs**, **configuration**, **health checks** (with Spring Boot Actuator), and **performance metrics** (for the JVM, HTTP requests, database connection pool, and Spring Beans methods with the `@Timed` annotation).
 
 ![metrics dashboard](/images/2018/06/JHipsterMetricsDashboard.jpg)
 *Metrics Dashboard*
 
 For microservice applications, the JHipster Registry is a [Netflix Eureka](https://github.com/Netflix/eureka) service discovery server to handle routing, load balancing and scalability. It is also a Spring Cloud Config server that provides runtime configuration to all applications once they are launched. Note that the JHipster Registry only works for applications using JWT authentication. For more information on the JHipster registry, [see the official documentation](https://www.jhipster.tech/jhipster-registry/).
+
+### Authentication
+Another awesome feature of JHipster is that it provides account management out-of-the-box. Default users are created with separate roles, such as admin and user, that restrict access to pages and features on your application. New users can be created, deleted, and modified (password and other account information), and login, logout and error views are also provided for you. However, there are multiple authentication technologies to choose from: **JWT authentication** (stateless, with a token), **OAuth 2.0 / OIDC Authentication** (stateful, works with Keycloak and Okta), and **HTTP Session Authentication** (stateful, default Spring Security mechanism).
+
+Each option has its strengths and weaknesses concerning how tokens and sessions are managed, and more. For example, plain JWT authentication uses *sessionstorage*, which has a side-effect of its tokens not persisting across tabs or windows, but OAuth2's *localstorage* method does maintain login states across tabs. There is also **JHipster User Account and Authentication (UAA)**, which is a complex service for microservice OAuth2 authentication. Read more about each authentication method technology [here](https://www.jhipster.tech/security/).
 
 ### Databases
 Most applications need to store data somewhere. JHipster provides several options for both production and development databases. The most popular choice is SQL for production and [H2](http://www.h2database.com) for local development (an in-memory or on-disk SQL database written in Java). MongoDB is a very popular NoSQL database that is chosen for specific non-relational reasons. Unlike H2, other databases need to run in a container or terminal window. Docker makes this easy: simply run `docker-compose -f src/main/docker/mongodb.yml up -d` in the project's root directory. Without Docker you must install Mongo and start an instance with the `mongod` command. Find instructions for installing Mongo [here](https://docs.mongodb.com/manual/installation/#tutorial-installation).
@@ -47,7 +52,7 @@ Most applications need to store data somewhere. JHipster provides several option
 Another SQL database can be chosen for local development as well instead of using H2. The command to start a Docker container for MySQL is similar to that of Mongo: `docker-compose -f src/main/docker/mysql.yml up -d`. Without Docker you must install MySQL (or your chosen SQL database) on your machine and set up proper configurations to connect with the JHipster application.
 
 ### Testing Frameworks
-By default, JHipster applications come bundled with two testing frameworks, JUnit and Karma.js, for Java unit tests and Javascript unit tests, respectively. Three other options are available to add for testing other aspects of your application; Gatling for performance tests, Cucumber for behavior-driven tests, and Protractor for Angular/React integration tests which simulate using the application like a real user.
+By default, JHipster applications come bundled with two testing frameworks, **JUnit** and **Karma.js**, for Java unit tests and Javascript unit tests, respectively. Three other options are available to add for testing other aspects of your application; **Gatling** for performance tests, **Cucumber** for behavior-driven tests, and **Protractor** for Angular/React integration tests which simulate using the application like a real user.
 
 Once the application is generated, test files are placed in the `src/test` directory and are ran by executing `./mvnw clean test` (or `./gradlew test` for Gradle projects).
 
