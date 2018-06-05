@@ -3,7 +3,7 @@ authors:
 - Bruce Robinson
 categories:
 - JHipster
-date: 2018-06-04T12:00:00.000Z
+date: 2018-06-06T12:00:00.000Z
 title: "JHipster Deep Dive, Part One"
 image:
 ---
@@ -71,4 +71,4 @@ Thanks for reading, I hope you found this information useful. If you have any qu
 
 ---
 
-*At the time of this writing, the current version of JHipster is v4.14.4 and the next major version, v5.0, is in beta. Version 5 will bring official support for another frontend framework [React](https://reactjs.org/) among many improvements. A follow-up post will be written for JHipster 5's release. This series is written using a MacBook Pro running High Sierra. Some steps will be different for other operating systems.*
+*At the time of this writing, the current version of JHipster is v4.14.4 and the next major version, v5.0, is in beta. Version 5 will bring official support for another frontend framework [React](https://reactjs.org/) among many improvements. A follow-up post will be written for JHipster 5's release. This series is written using a MacBook Pro running High Sierra; some steps will be different for other operating systems.*
