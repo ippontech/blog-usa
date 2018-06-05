@@ -14,12 +14,15 @@ understand the differences in pronunciation, understand the critical
 differences in vocabulary, and begin
 the more difficult process of understanding the differences in grammar. But what
 does the process look like for a French speaker trying to understand Sanskrit? Or
-learning Assembly?
+cooking Biryani?
 
 OK- so the last one is not a traditional linguistic language but I mention to
 emphasize the idea that sometimes learning a new language is not just a matter
 of picking up a new grammar with a new vocabulary. Sometimes we are approaching
-the issue of communication from a completely different perspective.
+the issue of communication from a completely different perspective. I've seen
+many restaurant kitchens in my travels where the owner and the staff do not speak the same
+languages and yet they are able to convey recipes and tasks to another through the
+universal principles that we all can understand.
 
 For the arrogant Java developer, looking to learn Scala, it's easy to imagine
 that the language can be learned by understanding the syntactical differences
@@ -34,7 +37,9 @@ years of experience and wants to learn the language **now!**. Why does it have
 to be so difficult?
 
 The answer lies in the intention of the Scala language. As its creator, Martin
-Odersky [put it in an interview], "Scala was designed to show that a fusion of
+Odersky [put it in an interview]
+(https://www.signifytechnology.com/blog/2016/10/interview-with-scala-creator-martin-odersky),
+"Scala was designed to show that a fusion of
 functional and object-oriented programming is possible and practical." If we
 understand this to be the motivation we can set the proper intention for our
 study of Scala: when a developer learns Scala they are not just learning a new
@@ -48,7 +53,8 @@ takes that to the next level with language features that support Algebraic Data
 Types, implicit parameters, monads, and more. As someone who is going down the
 beautiful rabbit hole of learning a new way of marrying functional with object-oriented
 programming, I wanted to put together a syllabus for experienced developers who
-want to learn a new language. This blog post is not a tutorial, but rather a
+want to learn a new language. *This blog post is not a tutorial on how to learn
+Scala*, that is a big task, but rather a
 list of concepts to study to understand not just how to program in scala, but *why* to
 do so in a specific manner. When approached this way you will learn many new concepts
 and different ways of writing code, managing side effects and more. The arrogant
@@ -61,12 +67,60 @@ Let's get started!
 1. Adopt the right mindset
 2. (Re)learn functional programming
 3. Apply these differences to your object-oriented principles
-## 
+
+## Mindset
+Humility, creativity, and discipline. Check your ego at the door and prepare to
+realize that many of the concepts that make for a good scala developer could be
+unfamiliar to you.
+
+There have been many developments over the years in the world of functional programming
+and if you have not been keeping up then many of this will be new ground.
+
 ## Functional programming
+Functional programming has been described many different ways. I have always
+considered it to be the creation and composition of **rules** to describe a
+system.  In this context, rules are functions: `f(x) = y` for example, tells us
+that when we supply input x into the function we get y every time. From a mathematics
+perspective that is great. But the astute computer scientist and the practical computer
+engineer will observe that things are seldom so simple. If our function has to fetch
+data from a database, how do we react to deadlocks? Can these rules work in a
+multi-threaded environment with mutable objects?
+
+### Pure Functions
+Once you understand the concept of pure functions and what they are, you will
+know a great deal of how Scala manages its functional state. At then end of it, you
+should know:
+- What pure functions are and how to create them.
+- What mutation/mutability is, what problems they can cause, and how pure functions avoid
+these problems
+- What are **side-effects** in a function?
+
+#### Tips for the Arrogant developer
+*A side effect of worrying about side-effects can be sweaty palms and headaches. Scala tries
+to mitigate these symptoms with built-in operators that help manage state when things go wrong
+so don't get discouraged and start looking at how you can streamline your own functions and methods
+to bring them closer to purity.*
+
 ### Algebraic Data Types
+How smart will you appear at your next job interview if your start talking about
+algebraic data types and no one else knows what you are talking about? Purity of
+functions is great, but now let's talk about purity of our data types. When
+you learn about ADT you should know:
+- The two types of ADT: sum and product, and how each one is instantiated
+- How Scala's **traits** and **case classes** relate to sums and products.
+- Why immutability is important with ADTs and how Scala's ADT design favors
+immutability.
+
+#### Extra Credit
+*What other languages on the JVM provide first-class support for ADT?*
+
 #### Monads
 ### Managing side effects
 
 ## Object oriented
+Good functional programming skills can have a profound influence in your OO development.
+Managing side effects makes your code cleaner, more concise, and easier to test.
+
+
 ### Collections
 ### Operators
