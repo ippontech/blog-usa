@@ -39,7 +39,7 @@ to be so difficult?
 The answer lies in the intention of the Scala language. As its creator, Martin
 Odersky [put it in an interview]
 (https://www.signifytechnology.com/blog/2016/10/interview-with-scala-creator-martin-odersky),
-"Scala was designed to show that a fusion of
+> Scala was designed to show that a fusion of
 functional and object-oriented programming is possible and practical." If we
 understand this to be the motivation we can set the proper intention for our
 study of Scala: when a developer learns Scala they are not just learning a new
@@ -53,7 +53,9 @@ takes that to the next level with language features that support Algebraic Data
 Types, implicit parameters, monads, and more. As someone who is going down the
 beautiful rabbit hole of learning a new way of marrying functional with object-oriented
 programming, I wanted to put together a syllabus for experienced developers who
-want to learn a new language. *This blog post is not a tutorial on how to learn
+want to learn a new language.
+
+*This blog post is not a tutorial on how to learn
 Scala*, that is a big task, but rather a
 list of concepts to study to understand not just how to program in scala, but *why* to
 do so in a specific manner. When approached this way you will learn many new concepts
@@ -114,8 +116,40 @@ immutability.
 #### Extra Credit
 *What other languages on the JVM provide first-class support for ADT?*
 
-#### Monads
 ### Managing side effects
+Rare is the driver that will go through life without a speeding ticket. Similarly,
+no Java developer will go through life without running into a few checked exceptions here and
+there. Both are equally annoying and exhausting. In addition to wearing out keyboards,
+the verbosity in writing out `try/catch/finally` logic does not play well with the
+functional programming paradigms you were learning about in the previous sections.
+
+Scala provides native types to facilitate things here that act as wrappers around
+data similar to the way [Java's Optional]
+(http://www.oracle.com/technetwork/articles/java/java8-optional-2175753.html) works.
+
+- **Try** and how it can be used in situations where exceptions can occur.
+- **Optional** and how it's implemented similarly as in Java (but integrated more
+  tightly into the Scala API).
+- **Future** and how it can be used with potentially higher-latency
+  operations we want to manage asynchronously.
+- **Either**, the red-headed step-child of Try and the problems that can occur in
+trying to get this to compose (but why you still may need to use it).
+
+### Monads
+Everything you learned studying pure functions and ADTs leads directly into the
+concept of monads. You will know you have a proper understanding of monads when
+you are familiar with:
+- The three components of a monad:
+  1. How it's defined using a **trait** or **case class**.
+  2. How it's functionality is coded in its constructor for parameter `x` and it
+  returns its *possibility* of `y`.
+  3. The relevance of `flatMap` for accessing `y` and utilizing this monad as part
+  of an aggregate.
+
+#### Side reading
+*[What the heck is a monad?](http://khanlou.com/2015/09/what-the-heck-is-a-monad/),
+because Monads aren't too difficult to understand, but can be kind of a nightmare to explain!*
+
 
 ## Object oriented
 Good functional programming skills can have a profound influence in your OO development.
