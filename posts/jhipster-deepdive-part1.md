@@ -62,7 +62,7 @@ Once you've finished picking your options, either in the command line interface 
 
 > [Learn how to configure your IDE for JHipster here!](https://www.jhipster.tech/configuring-ide/)
 
-In the next post we will dive deep into JHipster's default tools and generating several entities with relationships of various complexities.
+Thanks for reading, I hope you found this information useful. If you have any questions about the generator options or anything related to JHipster, check out the [documentation](https://www.jhipster.tech/creating-an-app/) and ask the community a question on [Stack Overflow](https://stackoverflow.com/questions/tagged/jhipster) with the tag `jhipster`. In the next post we will dive deep into JHipster's default tools and generating several entities with relationships of various complexities.
 
 ---
 
