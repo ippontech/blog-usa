@@ -5,7 +5,7 @@ categories:
 - JHipster
 date: 2018-06-06T12:00:00.000Z
 title: "JHipster Deep Dive, Part One"
-image:
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/jhipster.png
 ---
 
 [JHipster](https://www.jhipster.tech/) is a wonderful trending Open Source development platform for creating high-quality Java Spring Boot + Angular/React applications, but unfortunately some developers tend to only use the initial project generation feature and neglect entity generation and other tooling available for continued development, deployment and maintenance. In this tutorial series we will explore those tools, starting with generating applications with various configurations to creating complex entities, generating frontend components, monitoring our applications, and finally deploying both monolithic and microservice applications to the cloud with Amazon Web Services.
@@ -25,7 +25,7 @@ Next we will look at the various options in JHipster's application generator. No
 # Generator Options
 There are several choices to make when generating a new application. Using the Web form or typing the command `yo jhipster` or now simply `jhipster`, we are presented with a series of options. Some options when selected will prompt you for additional choices, such as specifying which languages to support for internationalization. Here are the list of options presented for generating a monolithic application, with most answers omitted for clarity:
 
-![generator options](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/JHipsterMetricsDashboard.jpg)
+![generator options](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/JHipsterOptions.jpg)
 
 There are also several command-line options when running `jhipster` to generate your application;  executing `jhipster --skip-server` will generate just the front-end code and skip the server-side part of the application, `jhipster --jhi-prefix abc` will change the prefix on generated services and components from the default `jhi` to `abc`, and many more. Learn more about each generator option [here](https://www.jhipster.tech/creating-an-app/).
 
