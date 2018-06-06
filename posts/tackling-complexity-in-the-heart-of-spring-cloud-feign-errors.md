@@ -2,10 +2,10 @@
 authors:
 - Colin Damon
 categories:
-- 
-date: 
+-
+date:
 title: "Tackling complexity in the heart of Spring Cloud Feign errors"
-image: 
+image:
 ---
 
 Feign, Hystrix, Ribbon, Eureka, such great tools, all nicely packed in Spring Cloud, allowing us to achieve great resilience in our massively distributed applications, with such great ease!!! This is true, at least till the easy part... To be honest, it's easier to get all the great resilience patterns working together with those tools than without, but making everything work as intended needs some studying, time and testing.
@@ -63,7 +63,7 @@ I wrote this article using the following versions:
 <parent>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-parent</artifactId>
-  <version>1.5.8.RELEASE</version>
+  <version>1.5.13.RELEASE</version>
 </parent>
 
 <dependencyManagement>
@@ -71,7 +71,7 @@ I wrote this article using the following versions:
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-dependencies</artifactId>
-      <version>Dalston.SR4</version>
+      <version>Edgware.SR3</version>
       <type>pom</type>
       <scope>import</scope>
     </dependency>
