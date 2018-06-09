@@ -36,7 +36,7 @@ in learning Scala won't yield any meaningful results. The arrogant Developer has
 years of experience and wants to learn the language **now!**. Why does it have
 to be so difficult?
 
-The answer lies in the intention of the Scala language. As its creator, Martin Odersky, [put it in an interview] (https://www.signifytechnology.com/blog/2016/10/interview-with-scala-creator-martin-odersky):
+The answer lies in the intention of the Scala language. As its creator, Martin Odersky, [put it in an interview](https://www.signifytechnology.com/blog/2016/10/interview-with-scala-creator-martin-odersky):
 > Scala was designed to show that a fusion of
 functional and object-oriented programming is possible and practical." If we
 understand this to be the motivation we can set the proper intention for our
@@ -60,9 +60,9 @@ do so in a specific manner. When approached this way you will learn many new con
 and different ways of writing code, managing side effects and more. The arrogant
 developer will probably find themselves being quickly humbled at the breadth of it all,
 a testament to the language and its community of developers.
- 
+
 Let's get started!
- 
+
 # The path to learning Scala
 1. Adopt the right mindset
 
@@ -78,9 +78,9 @@ unfamiliar to you.
 There have been many developments over the years in the world of functional programming
 and if you have not been keeping up then many of this will be new ground.
 
-1. **Scala is not "better Java"**: This is not [Kotlin] (https://kotlinlang.org/docs/reference/comparison-to-java.html) which attempts to erase some of the verbosity of the Java language and provide language features that facilitate better programming... although that is part of it. The primary goal of Scala is to facilitate Functional and Object-Oriented principles in a JVM based language.
+1. **Scala is not "better Java"**: This is not [Kotlin](https://kotlinlang.org/docs/reference/comparison-to-java.html) which attempts to erase some of the verbosity of the Java language and provide language features that facilitate better programming... although that is part of it. The primary goal of Scala is to facilitate Functional and Object-Oriented principles in a JVM based language.
 
-2. **The Functional Programming Landscape is Complex**: There are many concepts that will most likely be unfamiliar to you. If you find yourself gravitating towards a resource like [*Scala for the Impatient*] (http://fileadmin.cs.lth.se/scala/scala-impatient.pdf) you might be skipping out on learning some of the functional paradigms that will help you on the larger journey of becoming a better programmer and taking full advantage of everything Scala has to offer.
+2. **The Functional Programming Landscape is Complex**: There are many concepts that will most likely be unfamiliar to you. If you find yourself gravitating towards a resource like [*Scala for the Impatient*](http://fileadmin.cs.lth.se/scala/scala-impatient.pdf) you might be skipping out on learning some of the functional paradigms that will help you on the larger journey of becoming a better programmer and taking full advantage of everything Scala has to offer.
 
 ## Functional programming
 Functional programming has been described many different ways. I have always
@@ -91,7 +91,7 @@ for example, tells us that when we supply input x into the function we get y eve
 perspective that is great. But the astute computer scientist and the practical computer
 engineer will observe that things are seldom so simple. If our function has to fetch
 data from a database, how do we react to deadlocks? Can these rules work in a
-multi-threaded environment with mutable objects? Deciding how to manage the theory of fucntional programming with practical realities is not easy and Scala takes specific steps to address that. 
+multi-threaded environment with mutable objects? Deciding how to manage the theory of functional programming with practical realities is not easy and Scala takes specific steps to address that. 
 
 Good functional programming skills can have a profound influence on your OO development while the converse is not necessarily true.
  
@@ -119,7 +119,7 @@ so don't get discouraged and start looking at how you can streamline your own fu
 to bring them closer to purity.*
  
 ### Algebraic Data Types
-How smart will you appear at your next job interview if your start talking about
+How smart will you appear at your next job interview if you start talking about
 algebraic data types and no one else knows what you are talking about? I mean, the word "algebra" is in there. Algebra! Purity of
 functions is great, but now we move into purity of our data types. When
 you learn about ADT you should know:
@@ -146,8 +146,7 @@ the verbosity in writing out `try/catch/finally` logic does not play well with
 functional programming paradigms you were learning about in the previous sections.
 
 Scala provides native types to facilitate things here that act as wrappers around
-data similar to the way [Java's Optional]
-(http://www.oracle.com/technetwork/articles/java/java8-optional-2175753.html) works. After studying Scala's wrapper types you should be familiar with:
+data similar to the way [Java's Optional](http://www.oracle.com/technetwork/articles/java/java8-optional-2175753.html) works. After studying Scala's wrapper types you should be familiar with:
 
 - **Try** and how it can be used in situations where exceptions can occur.
 
@@ -195,6 +194,7 @@ A very simple concept that has a very commonplace implementation. You should kno
 
 ### Mutable variables vs the Copy method
 While Scala tends to encourage immutability with some of its constructs and conventions, developers that are not yet ready to give up the ole setter method can still follow a traditional approach, while the native `copy` method provides a simple construct for creating cloned modified instances of existing objects.
+
 - How **case classes** come with built-in support for `copy` and how updates can be communicated via copy.
 
 - How `copy` works for complex objects with deep nesting. Also, how [lenses can be used](http://koff.io/posts/292173-lens-in-scala/) for trickier updates.
@@ -228,4 +228,4 @@ This online PDF provides an excellent overview of the Scala language and its fea
 I highly recommend this book. It's a Scala book disguised as a bible on Functional programming and domain modeling. The result is you can learn a lot of best practices in these fields while learning how Scala correlates to them.
 
 ## Programming in Scala
-Written by the creator of Scala, Martin Odersky, this text is a comprehensive guide to Scala. I don't think it is organized as effectively for Java developers fro the old and new schools, but you would not be amiss to have it on your shelf.
+Written by the creator of Scala, Martin Odersky, this text is a comprehensive guide to Scala. I don't think it is organized as effectively for Java developers from the old and new schools, but you would not be amiss to have it on your shelf.
