@@ -2,7 +2,8 @@
 authors:
 - Randeep Walia
 categories:
-- Scala, Functional programming, algebraic design, domain design
+- Scala
+- Functional programming
 date: 2018-06-01T06:25:27.000Z
 title: "Scala For the Arrogant"
 ---
