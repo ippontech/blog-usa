@@ -64,7 +64,7 @@ Enter password: ippon
 and to access *Owncloud*: http://localhost:8080
 
 For this example, we would like to use the ‘*cloud.ippon.local*’ subdomain.
-We’ll register it in ‘*/etc/hosts*’ file but in a real case, you would have to register it in the DNS zone of your favorite domain manager.
+We’ll register it in your ‘*/etc/hosts*’ file but in a real case, you would have to register it in the DNS zone of your favorite domain manager.
 
 In */etc/hosts*:
 ```
@@ -76,7 +76,7 @@ Configuration example of the DNS zone in *Online.net*’s console:
 >TODO: insert image
 
 Let's move to the heart of the solution: *nginx-proxy*.
-*Nginx-proxy* is a *Docker* image based on the famous web server *Nginx* and *docker-gen*, a tool using the container's environment variables to generate virtual hosts configurations and automatically apply them to *Nginx*.
+*Nginx-proxy* is a *Docker* image based on the famous web server *Nginx* and *docker-gen*, a tool using the container's environment variables to generate virtual host configurations and automatically apply them to *Nginx*.
 
 First of all, add to our ‘*docker-compose.yml*’ the *nginx-proxy* service:
 ```
@@ -91,7 +91,7 @@ nginx-proxy:
       - ippon
 ```
 
-So that *docker-gen* receives the *Docker* daemon’s events, we have to add a volume for the socket. The second volume, allows you to add your own configurations to the generated virtual hosts.
+So that *docker-gen* receives the *Docker* daemon’s events, we have to add a volume for the socket. The second volume allows you to add your own configurations to the generated virtual hosts.
 
 The last step is to add some environment variables to our *Owncloud* container.
 With them, *docker-gen* knows it has to generate a virtual host linked to our subdomain:
@@ -107,7 +107,7 @@ owncloud:
       VIRTUAL_HOST: cloud.ippon.local
       VIRTUAL_PORT: 8080
 ```
-The two environment variables used here are ‘*VIRTUAL_HOST*’ setting the desired subdomain and ‘*VIRTUAL_PORT*’ setting which port to use.
+The two environment variables used here are ‘*VIRTUAL_HOST*’ which sets the desired subdomain and ‘*VIRTUAL_PORT*’ which sets which port to use.
 When only one port is exposed, like in our case, *docker-gen* does not need this last variable but when multiple ports are exposed and ‘*VIRTUAL_PORT*’ is not set, port 80 is used by default.
 
 I will let you start the stack and appreciate the result:
@@ -119,7 +119,7 @@ $ docker-compose up
 To finish *Owncloud*’s configuration, you can use the *Mysql* service’s hostname which will be automatically resolved by *Docker*’s DNS:
 >TODO: insert image
 
-As we saw, *Nginx-proxy* with *Docker-gen* is a nice solution as a reverse proxy for your containers. Its strength comes from its simplicity combined with *Nginx*’s robustness.
+As we saw, *Nginx-proxy* with *Docker-gen* is a nice solution for a reverse proxy for your containers. Its strength comes from its simplicity combined with *Nginx*’s robustness.
 You are now able to bootstrap a simple *Docker* architecture with *Docker Compose* and use it with your own domain. If you plan to use this solution, keep in mind that you can customize generated *Nginx* configurations, and if you prefer to have a UI, you might be interested in [*Træfik*](https://traefik.io/).
 
 <u>Sources</u>:
@@ -130,7 +130,7 @@ You are now able to bootstrap a simple *Docker* architecture with *Docker Compos
 
 <u>**Bonus**: HTTPS with *Let’s Encrypt*</u>
 
-A really useful thing with *nginx-proxy*, is that it supports automatic HTTPS configuration with *Let’s Encrypt*. With the help of *letsencrypt-nginx-proxy-companion* image, your certificates will be automatically created and renewed. *Nginx-proxy* will use the certificates and its configuration will be updated to also serve HTTPS.
+A really useful thing with *nginx-proxy*, is that it supports automatic HTTPS configuration with *Let’s Encrypt*. With the help of the *letsencrypt-nginx-proxy-companion* image, your certificates will be automatically created and renewed. *Nginx-proxy* will use the certificates and its configuration will be updated to also serve HTTPS.
 
 <u>Important details:</u>
 To work, *Let’s Encrypt* needs to have access to your domain (*http://[domain]/.well-known/acme-challenge*). You’ll not be able to continue to test with a domain registered in */etc/hosts* but you’ll need to use a real domain.
@@ -165,7 +165,7 @@ letsencrypt:
       - /apps/docker-articles/nginx/certs:/etc/nginx/certs:rw
       - /apps/docker-articles/nginx/html:/usr/share/nginx/html
 ```
-We are here using the same volumes defined in *nginx-proxy* service but we are allowing *letsencrypt-nginx-proxy-companion* to write certificates.
+We are here using the same volumes defined in the *nginx-proxy* service but we are allowing *letsencrypt-nginx-proxy-companion* to write certificates.
 
 The last step is to add some environment variables to our *Owncloud* container so that *letsencrypt-nginx-proxy-companion* will generate the certificates and the HTTPS configuration for us:
 ```
