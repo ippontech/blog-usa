@@ -7,7 +7,7 @@ date: 2018-06-01T06:25:27.000Z
 title: "Scala For the Arrogant"
 ---
 # What does it take to learn to Scala?
- 
+
 To put it another way, what does it take to learn a language? For a Spanish speaker
 learning Portuguese the process can be fairly straightforward: we need to
 understand the differences in pronunciation, understand the critical
@@ -23,7 +23,7 @@ the issue of communication from a completely different perspective. I've seen
 many restaurant kitchens in my travels where the owner and the staff do not speak the same
 languages and yet they are able to convey recipes and tasks to another through the
 universal principles that we all can understand.
- 
+
 For the arrogant Java developer, looking to learn Scala, it's easy to imagine
 that the language can be learned by understanding the syntactical differences
 between the two languages. If our understanding of Scala is that it is a simple
@@ -93,10 +93,10 @@ for example, tells us that when we supply input x into the function we get y eve
 perspective that is great. But the astute computer scientist and the practical computer
 engineer will observe that things are seldom so simple. If our function has to fetch
 data from a database, how do we react to deadlocks? Can these rules work in a
-multi-threaded environment with mutable objects? Deciding how to manage the theory of functional programming with practical realities is not easy and Scala takes specific steps to address that. 
+multi-threaded environment with mutable objects? Deciding how to manage the theory of functional programming with practical realities is not easy and Scala takes specific steps to address that.
 
 Good functional programming skills can have a profound influence on your OO development while the converse is not necessarily true.
- 
+
 ### Pure Functions
 Once you understand the concept of pure functions and what they are, you will
 know a great deal of how Scala manages its functional state. At then end of it, you
@@ -119,7 +119,7 @@ these problems
 to mitigate these symptoms with built-in operators that help manage state when things go wrong
 so don't get discouraged and start looking at how you can streamline your own functions and methods
 to bring them closer to purity.*
- 
+
 ### Algebraic Data Types
 How smart will you appear at your next job interview if you start talking about
 algebraic data types and no one else knows what you are talking about? I mean, the word "algebra" is in there. Algebra! Purity of
@@ -139,7 +139,7 @@ immutability.
 
 #### Extra Credit
 *What other languages on the JVM provide first-class support for ADTs?*
- 
+
 ### Managing side effects
 Rare is the driver that will go through life without a speeding ticket. Similarly,
 no Java developer will go through life without running into a few checked exceptions here and
@@ -183,15 +183,15 @@ of an aggregate.
 #### Side bar
 Try reading *[What the heck is a monad?](http://khanlou.com/2015/09/what-the-heck-is-a-monad/),
 because Monads aren't too difficult to understand, but can be kind of a nightmare to explain! Scala's implementation of monads can differ slightly from other implementations (Haskell, for example) adding to the confusion.*
- 
+
 ## Object Oriented Programming
-For most Java developers, making your way through learning about the Scala approach to Functional programming will be the toughest part of the curriculum. At that point you can focus on some of the OO features Scala offers which feel like welcome extensions to the language. 
+For most Java developers, making your way through learning about the Scala approach to Functional programming will be the toughest part of the curriculum. At that point you can focus on some of the OO features Scala offers which feel like welcome extensions to the language.
 Managing side effects makes your code cleaner, more concise, and easier to test. In addition, Scala offers several language features that make implementing certain patterns easier and more readable than Java. A Kotlin developer will probably recognize some of those concepts and Java itself is also trying to incorporate some of these (albeit slowly).
 
 ### Apply Method
 A very simple concept that has a very commonplace implementation. You should know how it works and how it relates to the [Factory pattern](https://www.journaldev.com/1392/factory-design-pattern-in-java) in Java.
 
-#### See also: 
+#### See also:
 *the `unapply` method for deriving an object from a parameter.*
 
 ### Mutable variables vs the Copy method
@@ -202,7 +202,7 @@ While Scala tends to encourage immutability with some of its constructs and conv
 - How `copy` works for complex objects with deep nesting. Also, how [lenses can be used](http://koff.io/posts/292173-lens-in-scala/) for trickier updates.
 
 - How to use `var` to permit mutability of a field, and what are some of the valid use cases to consider this?
- 
+
 ### Fine-grained access modifiers and sealed keyword Mixins
 Java 9's modules are the most notable feature of this release and can find some symmetry in how scala allows for fine-grained control over access to a class' data.
 
@@ -225,7 +225,7 @@ I feel that strongly understanding these Object Oriented features can be derived
 ## Coding Practice
 It's always important to work those keyboards and put the principles you are learning into practice. Configure your IDE to use Scala and get started! One of the great things about Scala is that it has **worksheets** which act as a command shell for instant evaluation. This allows you to test out new concepts quickly.
 
-- [99 Scala Problems](http://aperiodic.net/phil/scala/s-99/) is a great collection of problems that will test your understanding of Scala's syntax against some challenging algorithmic exercises. 
+- [99 Scala Problems](http://aperiodic.net/phil/scala/s-99/) is a great collection of problems that will test your understanding of Scala's syntax against some challenging algorithmic exercises.
 
 - I found that *Essential Scala* had the most natural flow of exercises for learning, although they could get tedious at times.
 
