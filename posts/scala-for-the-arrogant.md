@@ -6,6 +6,7 @@ categories:
 - Functional programming
 date: 2018-06-01T06:25:27.000Z
 title: "Scala For the Arrogant"
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/scala-logo.png
 ---
 
 # What does it take to learn to Scala?
