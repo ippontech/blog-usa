@@ -47,9 +47,9 @@ services:
 networks:
   ippon:
 ```
-That way, the database is accessible from the host as if it was installed on it.
+This way, the database is accessible from the host as if it was installed on it.
 But, do we really need that ?
-Let’s remove port 3306 exposure, that way, with *Mysql-client* on host, you will not be able to connect to it through:
+Let’s remove port 3306 exposure, this way, with *Mysql-client* on host, you will not be able to connect to it through:
 ```
 $ mysql -h 127.0.0.1 -u ippon -p
 Enter password: ippon
@@ -59,8 +59,8 @@ But through:
 $mysql -h [mysql-container-ip] -u ippon -p
 Enter password: ippon
 ```
-Being in the same network, *Owncloud* will continue to access the *Mysql* container’s ports (as did the link function) and so, will not have any problem to connect to it.
-Now, let’s say *Mysql-client* is not installed on host or your user is not allowed to use it. So, you will have limited the database access to containers on the same network ! Security improved !
+Being in the same network, *Owncloud* will continue to access the *Mysql* container’s ports (as did the link function) and so, will not have any problem connecting to it.
+Now, let’s say *Mysql-client* is not installed on your host or your user is not allowed to use it. So, you will have limited the database access to containers on the same network ! Security improved !
 
 <u>**Reminder n°2:** *Docker* DNS is not activated by default!</u>
 Yes, none of the active containers in the default bridge network (*docker0*) will be able to communicate through their hostnames. They will be able to communicate using their IP address, but in order to use their hostname (which you can set beforehand) you will need to create and use your own network. Even if containers cannot find each other using their hostname, hosts can.
@@ -78,7 +78,7 @@ CONTAINER ID        IMAGE                                         COMMAND       
 185859d2f7c6        portainer/portainer                           "/portainer"             2 months ago        Up 5 hours          0.0.0.0:9000->9000/tcp                     portainer
 ```
 
-First of all, not all of the information is useful to me, and even worse, the column display should bring visibility but is totally broken due to the many informations to be displayed per line.
+First of all, not all of the information is useful to me, and even worse, the column display should bring visibility but is totally broken due to so much information being displayed per line.
 Personally, the useful information is: *ID*, *Image*, *Status*, *Ports* and *Name*.
 *Docker* allows us to specify a response format with desired columns.
 Here is an example:
@@ -91,8 +91,8 @@ CONTAINER ID        IMAGE                                         NAMES         
 1c2c18ca14b3        jwilder/nginx-proxy                           reverseproxy_nginx-proxy_1   0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp   Up 7 minutes
 185859d2f7c6        portainer/portainer                           portainer                    0.0.0.0:9000->9000/tcp                     Up 5 hours
 ```
-Now, all the information fits in lines in a beautiful table.
-Well, for me, there’s missing information: *IP addresses*.
+Now, all the information fits into lines in a beautiful table.
+Well, for me, there is still missing information: *IP addresses*.
 I have chosen an [*ajohnstone*’s proposition](https://github.com/moby/moby/issues/8786#issuecomment-70937823) which I find efficient but can still be improved:
 ```
 $function docker-ips() {
@@ -218,18 +218,18 @@ function dps() {
 ```
 
 <u>**Tip n°3:** *Portainer* (FTW)</u>
-This is a tool that I like so much that I start it at my laptop’s startup. *Portainer* is a local *Docker* daemon and *Swarm* cluster manager. This is a web application which allows you to (among others things):
+This is a tool that I like so much that I start it at my laptop’s startup. *Portainer* is a local *Docker* daemon and *Swarm* cluster manager. This is a web application which allows you to (among other things):
 
 * List containers, images, networks
 * Start, stop, delete containers
-* See container’s logs
+* See container logs
 * Start a console inside a container
-* See container’s statistics
+* See container statistics
 
 *Disclaimer* : Once tried always used !:
 ```
 $docker run -d -p 9000:9000 -v /apps/portainer:/data -v /var/run/docker.sock:/var/run/docker.sock --restart always --name portainer portainer/portainer
 ```
-With these few tips and reminders on *Docker*’s usage, I hope you will take as much pleasure as me using it!
+With these few tips and reminders on *Docker*’s usage, I hope you will enjoy this as much as I have!
 
 > This article marks the end of this series about *Docker*, we talked about very different subjects which feel like useful concepts for *Docker*’s understanding and usage.
