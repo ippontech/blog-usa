@@ -70,6 +70,8 @@ Let's get started!
 
 3. Apply these differences to your object-oriented principles
 
+4. Alway Be Coding
+
 ## Mindset
 Humility, creativity, and discipline. Check your ego at the door and prepare to
 realize that many of the concepts that make for a good scala developer could be
@@ -219,13 +221,23 @@ How we manage Lists, Maps, Sets, and other data structures is always a huge part
 
 ### Required Reading
 I feel that strongly understanding these Object Oriented features can be derived from going through Essential Scala and working the examples therein.
- 
+
+## Coding Practice
+It's always important to work those keyboards and put the principles you are learning into practice. Configure your IDE to use Scala and get started! One of the great things about Scala is that it has **worksheets** which act as a command shell for instant evaluation. This allows you to test out new concepts quickly.
+
+- [99 Scala Problems](http://aperiodic.net/phil/scala/s-99/) is a great collection of problems that will test your understanding of Scala's syntax against some challenging algorithmic exercises. 
+
+- I found that *Essential Scala* had the most natural flow of exercises for learning, although they could get tedious at times.
+
 # Course Materials
 ## Essential Scala
 This online PDF provides an excellent overview of the Scala language and its features. It does not necessarily emphasize the functional model of doing things but gives you all the tools you need to be a great Scala developer in all disciplines.
 
 ## Functional and Reactive Domain Modeling
-I highly recommend this book. It's a Scala book disguised as a bible on Functional programming and domain modeling. The result is you can learn a lot of best practices in these fields while learning how Scala correlates to them.
+If this book was referenced ubiquitously throughout this post, it is because it is a great resource for all developers. It's a Scala book disguised as a bible on Functional programming and domain modeling. The result is you can learn a lot of best practices in these fields while learning how Scala correlates to them.
 
 ## Programming in Scala
 Written by the creator of Scala, Martin Odersky, this text is a comprehensive guide to Scala. I don't think it is organized as effectively for Java developers from the old and new schools, but you would not be amiss to have it on your shelf.
+
+## [Functional Programming in Scala Specialization](https://www.coursera.org/specializations/scala)
+Taught by the creator of the language and his team, this Coursera class is a detailed deep-dive into the language and is not for beginners. In addition to Functional Programming concepts, it touches on using Scala for parallelism and big data analysis.
