@@ -25,8 +25,7 @@ For any non-trivial implementation, you'll probably want to use [Amazon Cognito]
 
 # Hacking Around
 ![AWS AppSync Console Screenshot](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/appSyncConsole.png)
-
-The GraphQL schema is the beating heart of AppSync. GraphQL is very powerful (particularly for developing complex cross-queries), but it takes a while to get your head around it. I've put together a super-simple example based on a rudimentary vote client to demonstrate the primary concepts.
+The GraphQL schema is the beating heart of AppSync. GraphQL is very powerful (particularly for developing complex cross-queries), but it takes a while to get your head around it. I've put together a super-simple schema example based on a rudimentary vote client to demonstrate the primary concepts. The sample schema allows you to vote for your favourite Pony emoji, and I've developed an app for it which we'll discuss [later on](#-developing-an-application-ponyvote).
 
 ```graph
 type Candidate {
@@ -56,7 +55,7 @@ schema {
 
 The most confusing part of the schema definition is the `schema` special type, which must have a `query` type attribute, and may have a `mutation` type. In additional, AppSync uses a `subscription` type to indicate which data will need to be pushed back to subscribed clients. Once the schema has been successfully loaded (it has inbuild validation), the next step is to "Create Resources". This allows you to automagically create DynamoDB tables based on the schema. It will also extend your GraphQL schema to add common mutations and queries to your schema.
 
-Once a Data Source has been added, you can then attaching custom Resolvers through the schema page. This entire setup reminds me of the old Lambda mapping behaviour, but I'm sure it'll improve over time. The resolver is a [Velocity Template](http://velocity.apache.org/engine/1.7/user-guide.html), which you use to generate a JSON request to the backend service, in this instance, DynamoDB. I can see people just ignoring them and going straight to Lambda as a proxy. To demonstrate the complexity within the template, following request-mapper is used to increment the vote counter for the `vote` mutation.
+Once a Data Source has been added, you can then attach custom Resolvers through the schema page. This entire setup reminds me of the old Lambda mapping behaviour, but I'm sure it'll improve over time. The resolver is a [Velocity Template](http://velocity.apache.org/engine/1.7/user-guide.html), which you use to generate a JSON request to the backend service, in this instance, DynamoDB. To demonstrate the complexity within the template, following request-mapper is used to increment the vote counter for the `vote` mutation.
 
 ```graph
 #set($allowedCandidated = ['carnival','racing','close','unicorn'] )
@@ -77,7 +76,7 @@ $util.validate(${isAllowedCandidate}, "Candidated iD is not allowed")
     }
 }
 ```
-This request-mapper does a rudimentary check to ensure that only allowed `candidateIds` are submitted. If it's an appropriate candidate, it will then increment the votes field. When you get into more complex queries, or when you need to do any kind of access-control enforcement, that needs to be coded into the template, which is going to get messy. You'll want to ensure you have comprehensive API tests to ensure you don't accidentally remove your security controls.
+This request-mapper does a rudimentary check to ensure that only allowed `candidateIds` are submitted. If it's an appropriate candidate, it will then increment the votes field. When you get into more complex queries, or when you need to do any kind of access-control enforcement, that needs to be coded into the template, which is going to get messy. You'll want to ensure you have comprehensive API tests to ensure you don't accidentally remove your security controls. The request-mapper reminds me of the mapper functionality within the AWS API Gateway, which people generally ignore in favour of the Lambda proxy option.
 
 Once you're happy with your resolver (as happy as you can be), the Queries tab on the left-hand side gives you the ability to "write, validate and test GraphQL queries". It's a great way of validating your understanding of GraphQL, and also to debug your resolvers.
 
