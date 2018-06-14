@@ -10,6 +10,9 @@ title: "Ippon jumps aboard the EBXpress"
 
 # What is EBX?
 
+
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/EBX_offerings.png)
+
 EBX is a master data management tool used by companies with a need to manage and share vast numbers of data assets. 
 It’s a flexible and agile tool setting it apart from most older data management tools. 
 One of the key features of EBX is that data stewardship, workflow utilities, data quality, and data integration are built right in allowing companies to spend less time creating management solutions and more time using them.
@@ -28,7 +31,7 @@ EBX provides multiple ways of creating these functions through both the graphica
 Once we delved into a light understanding of what the features of EBX were used for and how they worked, and then further explained a lot of the functionality of the API our trainees were more than ready for their first test in understanding EBX.
 We gave them the task of setting up a simple workflow that would be run whenever a user tried to either enter or edit an entry in the Master Data. This workflow would first have another user validate the entry in a child data space created for the sole purpose of housing the change (to ensure data integrity on the Master data space), and then would merge that child back into the Master to complete the alteration of the data.
 
-![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/Ebxpress-bowling-trip.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/EBXpress-bowling-trip.png)
 
 # After a hard days work
 
