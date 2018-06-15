@@ -5,7 +5,7 @@ categories:
 - AWS
 - GraphQL
 - JavaScript
-date: 2018-06-13T12:00:00.000Z
+date: 2018-06-15T12:00:00.000Z
 title: "AWS AppSync is coming for your API"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/appsync_hero.png
 ---
