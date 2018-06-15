@@ -6,6 +6,17 @@ This `README.md` will provide instructions for both a technical audience and a n
 
 *******************************************************************************
 
+## Basic rules when writing a post
+
+- Use GitHub's standard Markdown.
+- Start numbering your titles at level 1 (not level 2 like we used to do).
+- A paragraph should be a single line of text (no manual wrapping).
+- Paragraphs need to be separated by a blank line.
+- Avoid abbreviations (e.g. "I've" -> "I have").
+- Put your links _on_ the text itself, not after the text it refers to.
+
+*******************************************************************************
+
 ## Getting Started (TECHNICAL)
 
 1. Create a fork of the [Ippon USA Blog Repo](https://github.com/ippontech/blog-usa)
