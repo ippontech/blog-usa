@@ -2,23 +2,24 @@
 authors:
 - Alexandre Pocheau
 categories:
-- 
-date: 
+- Docker
+date: 2018-06-15T12:00:00.000Z
 title: "Tips and reminders for using Docker daily"
-image: 
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/02/docker_logo.png
 ---
 
-> This article is part of a series of three articles about *Docker*:
+This article is part of a series of three articles about Docker:
 
->1. *Docker* and permissions management
+1. [Docker and permissions management](https://blog.ippon.tech/docker-and-permission-management/)
 1. Set up a reverse proxy *Nginx* and *Docker-gen* (Bonus: *Let’s Encrypt*)
-1. **Tips and reminders for using *Docker* daily**
+1. **Tips and reminders for using Docker daily**
 
-For this last article about *Docker*, I wanted to share with you what makes my daily usage of *Docker* pleasant. Besides all of this, I feel it is interesting to provide some reminders on *Docker* usage.
+For this last article about Docker, I wanted to share with you what makes my daily usage of Docker pleasant. Besides all of this, I feel it is interesting to provide some reminders on Docker usage.
 
-<u>**Reminder n°1:** Exposing a port is not always necessary, and can even be a security hole</u>
+# Reminder #1: Exposing a port is not always necessary, and can even be a security hole
 Getting back to our first *Owncloud* example where we’ve launched a *Mysql* and an *Owncloud* container:
-```
+
+```yaml
 version: "3"
 
 services:
@@ -47,28 +48,40 @@ services:
 networks:
   ippon:
 ```
+
 This way, the database is accessible from the host as if it was installed on it.
+
 But, do we really need that ?
+
 Let’s remove port 3306 exposure, this way, with *Mysql-client* on host, you will not be able to connect to it through:
-```
+
+```sh
 $ mysql -h 127.0.0.1 -u ippon -p
 Enter password: ippon
 ```
+
 But through:
-```
+
+```sh
 $mysql -h [mysql-container-ip] -u ippon -p
 Enter password: ippon
 ```
+
 Being in the same network, *Owncloud* will continue to access the *Mysql* container’s ports (as did the link function) and so, will not have any problem connecting to it.
+
 Now, let’s say *Mysql-client* is not installed on your host or your user is not allowed to use it. So, you will have limited the database access to containers on the same network ! Security improved !
 
-<u>**Reminder n°2:** *Docker* DNS is not activated by default!</u>
+# Reminder #2: Docker DNS is not activated by default!
+
 Yes, none of the active containers in the default bridge network (*docker0*) will be able to communicate through their hostnames. They will be able to communicate using their IP address, but in order to use their hostname (which you can set beforehand) you will need to create and use your own network. Even if containers cannot find each other using their hostname, hosts can.
 
-<u>**Tip n°1:** Customize ‘*docker ps*’</u>
+# Tip #1: Customize `docker ps`
+
 This command is definitely one of the most used, so, why not customize it ?
-Here is what the ‘*docker ps*’ response looks like by default:
-```
+
+Here is what the `docker ps` response looks like by default:
+
+```sh
 $docker ps
 CONTAINER ID        IMAGE                                         COMMAND                  CREATED             STATUS              PORTS                                      NAMES
 9a039e8c80d1        mysql:8.0.3                                   "docker-entrypoint..."   18 seconds ago      Up 15 seconds       3306/tcp                                   reverseproxy_mysql_1
@@ -79,10 +92,14 @@ CONTAINER ID        IMAGE                                         COMMAND       
 ```
 
 First of all, not all of the information is useful to me, and even worse, the column display should bring visibility but is totally broken due to so much information being displayed per line.
+
 Personally, the useful information is: *ID*, *Image*, *Status*, *Ports* and *Name*.
-*Docker* allows us to specify a response format with desired columns.
+
+Docker allows us to specify a response format with desired columns.
+
 Here is an example:
-```
+
+```sj
 $docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Ports}}\t{{.Status}}"
 CONTAINER ID        IMAGE                                         NAMES                        PORTS                                      STATUS
 9a039e8c80d1        mysql:8.0.3                                   reverseproxy_mysql_1         3306/tcp                                   Up 7 minutes
@@ -91,10 +108,14 @@ CONTAINER ID        IMAGE                                         NAMES         
 1c2c18ca14b3        jwilder/nginx-proxy                           reverseproxy_nginx-proxy_1   0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp   Up 7 minutes
 185859d2f7c6        portainer/portainer                           portainer                    0.0.0.0:9000->9000/tcp                     Up 5 hours
 ```
+
 Now, all the information fits into lines in a beautiful table.
+
 Well, for me, there is still missing information: *IP addresses*.
+
 I have chosen an [*ajohnstone*’s proposition](https://github.com/moby/moby/issues/8786#issuecomment-70937823) which I find efficient but can still be improved:
-```
+
+```sh
 $function docker-ips() {
     docker ps | while read line; do
         if `echo $line | grep -q 'CONTAINER ID'`; then
@@ -117,16 +138,22 @@ IP ADDRESS	CONTAINER ID        IMAGE                                         COM
 ```
 
 It displays the containers’ addresses in the first column but only for the ones on the default bridge network… we can do better.
+
 The problem is at the command level...:
-```
+
+```sh
 $docker inspect -f "{{ .NetworkSettings.IPAddress }}" $CID
 ```
-...which uses the old *Docker* API. Let’s fix this with the new one:
-```
+
+...which uses the old Docker API. Let’s fix this with the new one:
+
+```sh
 $docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}' $CID
 ```
+
 Which gives us:
-```
+
+```sh
 $docker-ips
 IP ADDRESS	CONTAINER ID        IMAGE                                         COMMAND                  CREATED             STATUS              PORTS                                      NAMES
 172.23.0.2 	9a039e8c80d1        mysql:8.0.3                                   "docker-entrypoint..."   26 minutes ago      Up 26 minutes       3306/tcp                                   reverseproxy_mysql_1
@@ -135,8 +162,10 @@ IP ADDRESS	CONTAINER ID        IMAGE                                         COM
 172.21.0.2 	1c2c18ca14b3        jwilder/nginx-proxy                           "/app/docker-entry..."   7 days ago          Up 26 minutes       0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp   reverseproxy_nginx-proxy_1
 172.17.0.2 	185859d2f7c6        portainer/portainer                           "/portainer"             2 months ago        Up 6 hours          0.0.0.0:9000->9000/tcp                     portainer
 ```
+
 Way better ! Well, not quite, because the display is broken again due to the IP’s length which is not always the same. Let’s delete the columns *Command* and *Created* and put *IP ADDRESS* in the last position:
-```
+
+```sh
 $function docker-ips() {
     docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Ports}}\t{{.Status}}" | while read line; do
         if `echo $line | grep -q 'CONTAINER ID'`; then
@@ -157,9 +186,12 @@ CONTAINER ID        IMAGE                                         NAMES         
 1c2c18ca14b3        jwilder/nginx-proxy                           reverseproxy_nginx-proxy_1   0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp   Up 30 minutes	172.21.0.2
 185859d2f7c6        portainer/portainer                           portainer                    0.0.0.0:9000->9000/tcp                     Up 6 hours	172.17.0.2
 ```
+
 Beautiful ! But still not perfect…
+
 The ‘*docker ps*’ command can take several parameters like filters for example:
-```
+
+```sh
 $docker ps -
 --all       -a  -- Show all containers
 --before        -- Show only container created before...
@@ -173,8 +205,10 @@ $docker ps -
 --since         -- Show only containers created since...
 --size      -s  -- Display total file sizes
 ```
+
 To enable the user to use those parameters, I made a last modification to the ‘*docker ps*’ call to forward command line parameters:
-```
+
+```sh
 $function docker-ips() {
     docker ps $@ --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Ports}}\t{{.Status}}" | while read line; do
         if `echo $line | grep -q 'CONTAINER ID'`; then
@@ -191,19 +225,23 @@ $docker-ips --filter ancestor=owncloud:10.0.3
 CONTAINER ID        IMAGE               NAMES                     PORTS                  STATUS	IP ADDRESS
 592d5cb33180        owncloud:10.0.3     reverseproxy_owncloud_1   0.0.0.0:8080->80/tcp   Up 37 minutes	172.21.0.3 172.23.0.3
 ```
+
 There, it's perfect!
 
-<u>**Tip n°2:** Some aliases</u>
+# Tip #2: Some aliases
 Here are some aliases that I frequently use:
-```
+
+```sh
 alias d='docker'
 alias dc='docker-compose'
 alias dx='d exec -it '
 ```
+
 Because, yes, I am a pretty lazy kind of guy!
 
 One more, which is not an alias but a function. You already know this one:
-```
+
+```sh
 function dps() {
     docker ps $@ --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Ports}}\t{{.Status}}" | while read line; do
         if `echo $line | grep -q 'CONTAINER ID'`; then
@@ -217,8 +255,8 @@ function dps() {
 }
 ```
 
-<u>**Tip n°3:** *Portainer* (FTW)</u>
-This is a tool that I like so much that I start it at my laptop’s startup. *Portainer* is a local *Docker* daemon and *Swarm* cluster manager. This is a web application which allows you to (among other things):
+# Tip #3: Portainer (FTW)
+This is a tool that I like so much that I start it at my laptop’s startup. Portainer is a local Docker daemon and Swarm cluster manager. This is a web application which allows you to (among other things):
 
 * List containers, images, networks
 * Start, stop, delete containers
@@ -226,10 +264,10 @@ This is a tool that I like so much that I start it at my laptop’s startup. *Po
 * Start a console inside a container
 * See container statistics
 
-*Disclaimer* : Once tried always used !:
-```
+```sh
 $docker run -d -p 9000:9000 -v /apps/portainer:/data -v /var/run/docker.sock:/var/run/docker.sock --restart always --name portainer portainer/portainer
 ```
-With these few tips and reminders on *Docker*’s usage, I hope you will enjoy this as much as I have!
 
-> This article marks the end of this series about *Docker*, we talked about very different subjects which feel like useful concepts for *Docker*’s understanding and usage.
+With these few tips and reminders on Docker’s usage, I hope you will enjoy this as much as I have!
+
+**This article marks the end of this series about Docker, we talked about very different subjects which feel like useful concepts for Docker’s understanding and usage.**
