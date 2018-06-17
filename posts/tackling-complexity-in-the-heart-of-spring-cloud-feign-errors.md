@@ -10,7 +10,7 @@ image:
 
 Feign, Hystrix, Ribbon, Eureka, are such great tools, all nicely packed in Spring Cloud, allowing us to achieve great resilience in our massively distributed applications, with such great ease!!! This is true, at least till the easy part... To be honest, it's easier to get all the great resilience patterns working together with those tools than without, but making everything work as intended needs some studying, time and testing.
 
-Unfortunately (or not) I'm not going to explain how to set all this up here, I'll just point out some tricks with  error management with those tools. I chose this topic because I’ve struggled a lot with this (really)!!!
+Unfortunately (or not) I'm not going to explain how to set all this up here, I'll just point out some tricks with error management with those tools. I chose this topic because I’ve struggled a lot with this (really)!!!
 
 If you are looking for a getting started tutorial on those tools I recommend the following articles:
 
@@ -19,7 +19,8 @@ If you are looking for a getting started tutorial on those tools I recommend the
 - [The source code](https://github.com/spring-cloud/spring-cloud-netflix) because we always end up there...
 
 *There will be code in this article, but not that much, you can find the missing parts [in this repository](https://gitlab.ippon.fr/cdamon/feign-configuration)*
-## Dependencies
+
+# Dependencies
 
 Let's say, after some trouble, you ended up with a dependency set looking like this one:
 
@@ -78,7 +79,8 @@ This article uses the following version of Spring Cloud:
   </dependencies>
 </dependencyManagement>
 ```
-## Configuration
+
+# Configuration
 
 These tools need configuration, let's assume you have configured up something similar in your `application.yml`:
 
@@ -123,13 +125,13 @@ This configuration will work if your application can register to Eureka using it
 
 Also this configuration isn't authenticated, it can be a good idea to add authentication to `Eureka`, depending on your network.
 
-From the Ribbon configuration, I see you have confidence in your Web Services, 400ms for a ReadTimeout is quite short, the shorter the better! I also notice that all your services are idempotent because you accept 4 calls instead of 1 if your network / servers starts to get messy (yes, this `Ribbon` configuration will make 4 calls if the response takes too long because it is doing ( 1 + MaxAutoRetries ) x ( 1 + MaxAutoRetriesNextServer), so if you set 2 and 3 you’ll have up to 12 calls only from `Ribbon`).
+From the Ribbon configuration I see you have confidence in your Web Services, 400ms for a ReadTimeout is quite short, the shorter the better! I also notice that all your services are idempotent because you accept 4 calls instead of 1 if your network / servers starts to get messy (yes, this `Ribbon` configuration will make 4 calls if the response takes too long because it is doing ( 1 + MaxAutoRetries ) x ( 1 + MaxAutoRetriesNextServer), so if you set 2 and 3 you’ll have up to 12 calls only from `Ribbon`).
 
 We can also notice that all your services are idempotent because you accept to have 4 calls instead of 1 if your network / servers starts to get messy (yes, this `Ribbon` configuration will make 4 requests if the response times out because it is   actually doing: ( 1 + MaxAutoRetries ) x ( 1 + MaxAutoRetriesNextServer) = 4. So if you set 2 and 3 respectively, you will have up to 12 requests only from `Ribbon`).
 
 This gets us to the 2 000ms Hystrix timeout, a shorter value will result in requests being done without the application waiting for the result so this seems legit (due to ribbon configuration : (400 + 100) * 4).
 
-## Customization
+# Customization
 
 Everything goes well, you quickly understand that, for all `FeignClient`s without fallback you only get `HystrixRuntimeException` for any error. This exception is mainly saying that something went bad and you don't have a fallback but the cause can tell you a little bit more. You quickly build an `ExceptionHandler` to display neater messages to users (because you don't want to put fallbacks on all `FeignClient`).
 
@@ -253,11 +255,11 @@ public class FeignConfiguration {
 }
 ```
 
-Of course, it's up to you to fit it to your exact needs, but this way you'll be able to get proper responses.
+Of course it's up to you to fit it to your exact needs, but this way you'll be able to get proper responses.
 
 # Integration testing
 
-All this really cool stuff can change from one Spring Cloud minor version to another (eg: [Hystrix enabled by default to Hystrix disabled by default](https://github.com/spring-cloud/spring-cloud-netflix/commit/54c052c5eb9e1ec87428e267ecaac9fdbb5a9388#diff-177f70f71e8d0a77b90c2b31b4255ec4)) so unless you are not missing any update (I don't think it's possible) I strongly recommend adding good integration tests for this stack usage (because unit tests will not be of any help here).
+All this really cool stuff can change from Spring Cloud one minor version to another (eg : [Hystrix enabled by default to Hystrix disabled by default](https://github.com/spring-cloud/spring-cloud-netflix/commit/54c052c5eb9e1ec87428e267ecaac9fdbb5a9388#diff-177f70f71e8d0a77b90c2b31b4255ec4)) so unless you aren't missing any update (I don't think it's possible) I strongly recommend adding good integration tests for this stack usage (because unit tests will not be of any help here).
 
 But having integration testing for this stack can be quite complicated. If we want to be as close as possible to reality we need:
 
@@ -285,6 +287,8 @@ At the time of this writing, the project takes ~45sec to build, which is pretty 
 *If you don’t need it remove the part testing circuit breaking on all HTTP error codes since those tests are very slow due to the sleeping phase…*
 
 **Once again, really take the time to make strong integration tests on your usage of this stack to avoid really bad surprises after some months!!!**
+
+
 # Going further
 
 Depending on what you want to build, what we have here can be more than enough on the application side but if you are planning to use this in the real world, you really need some good metrics and alerts (at least to keep an eye on your fallbacks and circuit breaker openings).
@@ -293,7 +297,7 @@ For this you can check [Hystrix dashboard](https://github.com/Netflix/Hystrix/wi
 
 ![Turbine dashboard](https://github.com/Netflix/Hystrix/wiki/images/dashboard-annoted-circuit-640.png)
 
-You'll then need to bind it to your alerting system, this will need some work and you are going to need to handle LOTS of data since those tools are really verbose (if you want to persist that data pay attention to your eviction strategy and choose a solid enough time series infrastructure). Depending on your needs and organization tools a simple [metrics Counter](http://metrics.dropwizard.io/3.2.3/getting-started.html) on your fallbacks can do a good job. Once set up in your applications this will only need an `@Counted(...)` on your fallbacks methods.
+You'll then need to bind it to your alerting system, this will need some work and you are going to need to handle LOTS of data since those tools are really verbose (if you want to persist that data pay attention to your eviction strategy and choose a solid enough timeseries infrastructure). Depending on your needs and organization tools a simple [metrics Counter](http://metrics.dropwizard.io/3.2.3/getting-started.html) on your fallbacks can do a good job. Once set up in your applications this will only need an `@Counted(...)` on your fallbacks methods.
 
 It is also possible that the few tools discussed here are not antifragile enough for your needs, in that case, you can start by checking:
 
