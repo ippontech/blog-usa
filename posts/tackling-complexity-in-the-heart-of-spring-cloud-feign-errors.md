@@ -19,7 +19,8 @@ If you are looking for a getting started tutorial on those tools I recommend the
 - [The source code](https://github.com/spring-cloud/spring-cloud-netflix) because we always end up here...
 
 *There will be code in this article, but not that much, you can find the missing parts [in this repository](https://gitlab.ippon.fr/cdamon/feign-configuration)*
-## Dependencies
+
+# Dependencies
 
 Let's say, after some trouble, you ended up with a dependency set looking like this one:
 
@@ -78,7 +79,8 @@ I wrote this article using the following versions:
   </dependencies>
 </dependencyManagement>
 ```
-## Configuration
+
+# Configuration
 
 Ok, those tools need configuration, let's say you ended up with something like this in your `application.yml`:
 
@@ -127,7 +129,7 @@ Then I see you have confidence in your Web Services, 400ms for a ReadTimeout is 
 
 This gets us to the 2 000ms hystrix timeout, a shorter value will result in calls being done without the application waiting for the result so this seems legit (due to ribbon configuration : (400 + 100) * 4).
 
-## Customization
+# Customization
 
 Everything goes well, you quickly understand that, for all `FeignClient`s without fallback you only get `HystrixRuntimeException` for any error. This exception is mainly saying that something went bad and you don't have a fallback but the cause can tell you a little bit more. You quickly build an `ExceptionHandler` to display neater messages to users (because you don't want to put fallbacks on all `FeignClient`).
 
@@ -252,6 +254,7 @@ public class FeignConfiguration {
 ```
 
 Of course it's up to you to fit it to your exact needs, but this way you'll be able to get proper responses.
+
 # Integration testing
 
 All this really cool stuff can change from one minor version to another (ex : [Hystrix enabled by default to Hystrix disabled by default](https://github.com/spring-cloud/spring-cloud-netflix/commit/54c052c5eb9e1ec87428e267ecaac9fdbb5a9388#diff-177f70f71e8d0a77b90c2b31b4255ec4)) so unless you aren't missing any update (I don't think it's possible) I strongly recommend adding good integration tests for this stack usage (because unit tests will not be of any help here).
@@ -282,6 +285,7 @@ At the time of this writing, the project takes ~45sec to build, which is pretty 
 *If you don’t need it remove the part testing circuit breaking on all http error codes since those tests are very slow due to the sleeping phase…*
 
 **Once again, really take the time to make strong integration tests on your usage of this stack to avoid really bad surprises after some months!!!**
+
 # Going further
 
 Depending on what you want to build, what we have here can be more than enough on the application side but if you are planning to use this in the real world, you really need some good metrics and alerts (at least to keep an eye on your fallbacks and circuit breaker openings).
