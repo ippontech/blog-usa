@@ -21,7 +21,7 @@ Under the hood, AppSync leverages the aforementioned AWS services, but hides the
 
 At a high level, AppSync exposes a [GraphQL-based](https://graphql.org/) API, which then allows you to resolve your  GraphQL fields to various backend services, which currently includes DynamoDB, Lambda and ElasticSearch. The other magic sauce is the real-time websockets integration (presumably using [Amazon IoT](https://github.com/aws/aws-iot-device-sdk-js/blob/master/README.md#browser) under the hood), which pushes changes to fields back to your clients (if they have subscribed to changes).
 
-For any non-trivial implementation, you will probably want to use [Amazon Cognito](https://aws.amazon.com/cognito/) to handle the authentication aspects of your application. Authorisation is enforced by AppSync, and can use either API key, AWS IAM, or a Congito User pool for authentication.
+For any non-trivial implementation, you will probably want to use [Amazon Cognito](https://aws.amazon.com/cognito/) to handle the authentication aspects of your application. Authorisation is enforced by AppSync, and can use either API key, AWS IAM, or a Cognito User pool for authentication.
 
 # Hacking Around
 ![AWS AppSync Console Screenshot](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/appSyncConsole.png)
