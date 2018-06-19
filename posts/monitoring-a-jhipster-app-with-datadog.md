@@ -3,7 +3,7 @@ authors:
 - Alexis Seigneurin
 categories:
 - JHipster
-date: 2018-03-16T20:00:10.000Z
+date: 2018-03-16T20:10:21.000Z
 title: "Monitoring a JHipster application with Datadog"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/03/hipdog.png
 ---

@@ -3,9 +3,9 @@ authors:
 - Bruce Robinson
 categories:
 - JHipster
-date: 2018-06-06T12:00:00.000Z
+date: 2018-06-06T14:21:02.000Z
 title: "JHipster Deep Dive, Part One"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/jhipster.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/jhipster--1-.png
 ---
 
 [JHipster](https://www.jhipster.tech/) is a wonderful trending Open Source development platform for creating high-quality Java Spring Boot + Angular/React applications, but unfortunately some developers tend to only use the initial project generation feature and neglect entity generation and other tooling available for continued development, deployment and maintenance. In this tutorial series we will explore those tools, starting with generating applications with various configurations to creating complex entities, generating frontend components, monitoring our applications, and finally deploying both monolithic and microservice applications to the cloud with Amazon Web Services.

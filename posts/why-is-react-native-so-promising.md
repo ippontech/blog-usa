@@ -2,14 +2,17 @@
 authors:
 - Valentin Carmignac
 categories:
-- Javascript
+- JavaScript
+- React
 - React Native
-date: 2018-02-22T13:47:51.000Z
-title: "Why's React Native so promising?"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/02/react-native-02-2018-thumbnail.png
+- Mobile App
+- Front-End
+date: 2018-02-27T20:16:13.000Z
+title: "Why is React Native so promising?"
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/02/excited.png
 ---
 
-This year with Ippon in Melbourne, Australia we've had the chance to build an iPad application. Being the designated front-end developer in the agency, I got to choose the stack for this project. I'm not very big on native technologies but I do enjoy a fair bit of React; that's why I was excited to try out [React Native](http://facebook.github.io/react-native/). 
+This year with Ippon in Melbourne, Australia we've had the chance to build an iPad application. Being the designated front-end developer in the agency, I got to choose the stack for this project. I'm not very big on native technologies but I do enjoy a fair bit of React; that's why I was excited to try out [React Native](http://facebook.github.io/react-native/).
 
 Now this article is not an introduction to React. This is merely a gathering of the thoughts I had and discoveries I made during this project. React Native is very good and hopefully this article will bring more people to use it and help bring the framework to maturation.
 
@@ -34,7 +37,7 @@ There is however one thing to consider when developing a React Native applicatio
 
 As mentioned previously, in terms of "developer look and feel" React Native and React are very similar. You use classes, ES6, states and the like, with a few notable differences:
 
-* The atomic JSX elements won't be the same: No HTML tags here, you'll have to use placeholders. `<View>` is the new `<div>`, `<Text>` is the new `<p>`, `<Image>` is the new `<img>`... and then you have other specific components to create buttons, lists, etc. 
+* The atomic JSX elements won't be the same: No HTML tags here, you'll have to use placeholders. `<View>` is the new `<div>`, `<Text>` is the new `<p>`, `<Image>` is the new `<img>`... and then you have other specific components to create buttons, lists, etc.
 * Because it's a native application you have to manage the navigation. Basic links won't do. The [documentation](https://facebook.github.io/react-native/docs/navigation.html) explains it very well.
 
 ## Redux works with React Native
@@ -75,9 +78,9 @@ We now have a whole new component with the rendering capability of MyComponent w
 
 On top of that, the HOC's philosophy is to use stateless components instead of the standard React Component class. A stateless component is a function that only returns JSX and takes some props as arguments. ES6 classes being only syntactic sugar for a language that doesn't have any object-oriented inheritance model, using them in React or React Native can lead to a heavier DOM generation (a div for the class that will wrap the render content).
 
-And, guess what, the best way to manage state in a stateless world is to use a Higher Order Component! Using the excellent [recompose](https://github.com/acdlite/recompose) library that provides a lot of React specific Higher Order Components, you can easily create reusable snippets for a lot of use cases. 
+And, guess what, the best way to manage state in a stateless world is to use a Higher Order Component! Using the excellent [recompose](https://github.com/acdlite/recompose) library that provides a lot of React specific Higher Order Components, you can easily create reusable snippets for a lot of use cases.
 
-Here's an example of a small Menu component: 
+Here's an example of a small Menu component:
 <script src="https://gist.github.com/carvallegro/6167b34b0cdf9b6b19cb4358320d5856.js"></script>
 
 ### Further reading
@@ -121,19 +124,19 @@ const styles = StyleSheet.create({
 });
 ```
 
-A big advantage of defining your style in JavaScript is dynamic styling: you don't have to have a style defined only during code time or compile time. With React Native you can compose your styles and properties, combine them and then have them applied onto your component. 
+A big advantage of defining your style in JavaScript is dynamic styling: you don't have to have a style defined only during code time or compile time. With React Native you can compose your styles and properties, combine them and then have them applied onto your component.
 
 This dynamic styling is basically how the animations are made. React Native provides two APIs: Animated and LayoutAnimation; the first one is used to make specific interactions whereas the latter, as its name suggest, is more layout oriented. It will offer less control than Animated but won't require as much calculation to render the animation. Note that this is an experimental feature on Android.
 
 # Or you can use styled-components 💅
 
-Along with the HOC and the stateless components, [styled-components](https://github.com/styled-components/styled-components) are my 2nd revelation of the year. This growing React library allows you to create atomic CSS styled components by mixing HTML components and CSS style. 
+Along with the HOC and the stateless components, [styled-components](https://github.com/styled-components/styled-components) are my 2nd revelation of the year. This growing React library allows you to create atomic CSS styled components by mixing HTML components and CSS style.
 
 First of all, no, it is not a CSS in JS kind of library. It spits out CSS classes (with obfuscated class names). The main feature of this library is that it uses the power of ES6's string templates; you can use the component's props and state directly in its style and let style-component do its magic.
 
 Because the style-components dev team is awesome,~~they made it compatible with React Native with only one simple change~~ because they're **really awesome** they improved the use for React Native in their 3rd major release by making it seamless. A single import will be compatible with React and React Native.
 
-**Pro tips:** The [react-primitives](https://github.com/lelandrichardson/react-primitives) project (still in beta) is aiming to provide a common interface between React Native and React. This means that you'll be able to have one single codebase for your mobile app and your web app. 
+**Pro tips:** The [react-primitives](https://github.com/lelandrichardson/react-primitives) project (still in beta) is aiming to provide a common interface between React Native and React. This means that you'll be able to have one single codebase for your mobile app and your web app.
 
 # Testing is to be perfected.
 
@@ -160,6 +163,5 @@ One thing to keep in mind for everyone willing to give React Native a go is that
 # Who uses/contributes to React Native?
 
 As of today, [heaps of companies](http://facebook.github.io/react-native/showcase.html) are using React Native in production. Amongst them you can find Tesla, Instagram, Facebook, AirBNB, Skype, Wix...
-
 
 While still being young, React Native is for me a great framework with promising support. Based on the very popular React, it will be very easily adopted and will facilitate migrations between webapps and native applications. If you're excited to see what's next for RN, you can stay up to date with their blog, their Twitter account or the releases notes.

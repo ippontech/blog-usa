@@ -4,7 +4,7 @@ authors:
 categories:
 - Scala
 - Functional programming
-date: 2018-06-01T06:25:27.000Z
+date: 2018-06-11T14:43:47.000Z
 title: "Scala For the Arrogant"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/scala-logo.png
 ---

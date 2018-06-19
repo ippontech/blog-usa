@@ -5,10 +5,11 @@ categories:
 - AWS
 - GraphQL
 - JavaScript
-date: 2018-06-15T12:00:00.000Z
+date: 2018-06-15T11:41:57.000Z
 title: "AWS AppSync is coming for your API"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/appsync_hero.png
 ---
+
 According to the [introductory post](https://aws.amazon.com/blogs/aws/introducing-amazon-appsync/), AWS AppSync is a "serverless GraphQL service for real-time data queries, synchronization, communications and offline programming features.". I know that statement doesn't feature every 2018 buzz word, but it is getting pretty close. But what does it actually do?
 
 # Context

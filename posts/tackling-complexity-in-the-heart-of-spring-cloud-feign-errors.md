@@ -4,8 +4,8 @@ authors:
 categories:
 - Microservices
 - Architectures
-- Spring Cloud
-date: 2018-06-17T12:00:00.000Z
+- Spring-Cloud
+date: 2018-06-17T15:16:15.000Z
 title: "Tackling complexity in the heart of Spring Cloud Feign errors"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/spring-logo.png
 ---
@@ -289,7 +289,6 @@ At the time of this writing, the project takes ~45sec to build, which is very sl
 *If you don’t need it remove the part testing circuit breaking on all HTTP error codes since those tests are very slow due to the sleeping phase…*
 
 **Once again, really take the time to make strong integration tests on your usage of this stack to avoid really bad surprises after some months!!!**
-
 
 # Going further
 

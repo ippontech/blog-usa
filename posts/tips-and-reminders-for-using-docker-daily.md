@@ -3,9 +3,9 @@ authors:
 - Alexandre Pocheau
 categories:
 - Docker
-date: 2018-06-15T12:00:00.000Z
+date: 2018-06-15T17:31:31.000Z
 title: "Tips and reminders for using Docker daily"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/02/docker_logo.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/docker_logo.png
 ---
 
 This article is part of a series of three articles about Docker:

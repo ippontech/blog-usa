@@ -15,7 +15,6 @@ In a previous [blog](http://blog.ippon.tech/how-to-get-started-with-spark-hdfs-
 
 In order to use the Spark MLlib API functions, the following dependency needs to be added to the project. Below is the example for the dependency to add to the Maven pom.xml.
 
-
 ```xml
 <dependency>
      <groupId>org.apache.spark</groupId>
