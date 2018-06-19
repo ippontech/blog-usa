@@ -12,6 +12,7 @@ categories:
 - Spring
 date: 2016-01-13T16:05:00.000Z
 title: "JHipster: Streamlining the Hackathon Experience"
+id: 5a267e57dd54250018d6b62c
 image: 
 ---
 

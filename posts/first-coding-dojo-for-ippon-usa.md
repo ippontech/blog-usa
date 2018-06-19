@@ -5,6 +5,7 @@ categories:
 - 
 date: 2015-03-26T13:46:58.000Z
 title: "First Coding Dojo for Ippon USA"
+id: 5a267e57dd54250018d6b5df
 image: 
 ---
 

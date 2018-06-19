@@ -6,6 +6,7 @@ categories:
 - LifeAtIppon
 date: 2017-07-24T16:44:48.000Z
 title: "Internship in Paris"
+id: 5a267e58dd54250018d6b656
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/07/Internship-in-Paris-Blog.png
 ---
 

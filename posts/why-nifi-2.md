@@ -9,6 +9,7 @@ categories:
 - Dataflow
 date: 2017-01-26T16:49:59.000Z
 title: "Why NiFi?"
+id: 5a267e57dd54250018d6b633
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/01/nifi.png
 ---
 

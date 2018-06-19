@@ -5,6 +5,7 @@ categories:
 - Agile
 date: 2015-09-22T11:46:30.000Z
 title: "Starting an Agile project"
+id: 5a267e57dd54250018d6b5f2
 image: 
 ---
 

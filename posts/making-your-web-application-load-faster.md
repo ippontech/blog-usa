@@ -5,6 +5,7 @@ categories:
 - 
 date: 2015-05-12T15:36:00.000Z
 title: "Making your web application load faster"
+id: 5a267e57dd54250018d6b5e8
 image: 
 ---
 

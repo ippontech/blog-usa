@@ -5,6 +5,7 @@ categories:
 - api
 date: 2017-01-03T20:51:00.000Z
 title: "GraphQL for the Win"
+id: 5a267e57dd54250018d6b62e
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/graphql-1.png
 ---
 

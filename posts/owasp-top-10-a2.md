@@ -7,6 +7,7 @@ categories:
 - Web
 date: 2013-10-21T08:56:26.000Z
 title: "OWASP Top 10 - A2 Broken Authentication and Session Management"
+id: 5a267e57dd54250018d6b5bd
 image: 
 ---
 

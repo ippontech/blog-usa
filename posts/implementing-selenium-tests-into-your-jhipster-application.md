@@ -5,6 +5,7 @@ categories:
 - JHipster
 date: 2017-09-22T14:51:17.000Z
 title: "Implementing Selenium Tests Into Your JHipster Application"
+id: 5a267e57dd54250018d6b603
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/09/selenium.png
 ---
 

@@ -6,6 +6,7 @@ categories:
 - JHipster
 date: 2015-04-21T15:03:28.000Z
 title: "Using Cassandra with JHipster"
+id: 5a267e57dd54250018d6b5e5
 image: 
 ---
 

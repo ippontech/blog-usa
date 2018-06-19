@@ -5,6 +5,7 @@ categories:
 - 
 date: 2015-07-06T12:54:21.000Z
 title: "JHipster-UML"
+id: 5a267e57dd54250018d6b5ee
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/jroux.png
 ---
 

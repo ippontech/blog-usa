@@ -6,6 +6,7 @@ categories:
 - JHipster
 date: 2015-02-09T09:02:16.000Z
 title: "Integrating Jahia and JHipster 2"
+id: 5a267e57dd54250018d6b5dc
 image: 
 ---
 

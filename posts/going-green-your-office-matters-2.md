@@ -6,6 +6,7 @@ categories:
 - LifeAtIppon
 date: 2017-05-26T19:57:40.000Z
 title: "Going Green -- Your Office Matters"
+id: 5a267e57dd54250018d6b635
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/Going-Green----Your-Office-Matters.png
 ---
 

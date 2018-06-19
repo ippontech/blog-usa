@@ -5,6 +5,7 @@ categories:
 - 
 date: 2014-10-13T04:33:28.000Z
 title: "Manage your Web API with an API Gateway"
+id: 5a267e57dd54250018d6b5d3
 image: 
 ---
 

@@ -5,6 +5,7 @@ categories:
 - Culture
 date: 2016-10-04T17:28:49.000Z
 title: "DevFest DC Washington DC"
+id: 5a267e57dd54250018d6b618
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/A-Very-Potter-Door-to-the-Future-Yufeng-Guo-Google-1024x730-1-3.jpg
 ---
 

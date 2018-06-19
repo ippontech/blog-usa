@@ -8,6 +8,7 @@ categories:
 - Career Development
 date: 2017-10-19T17:54:01.000Z
 title: "AgileDC 2017 - Agile Rises Above the Scrum"
+id: 5a267e58dd54250018d6b660
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/10/pond-scum-with-frog.jpg
 ---
 

@@ -5,6 +5,7 @@ categories:
 - LifeAtIppon
 date: 2017-04-18T13:17:42.000Z
 title: "Taking Flight with DiSC: Ippon Technologies invests in people, culture, and  clients"
+id: 5a267e58dd54250018d6b648
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/Taking-Flight-with-DiSC-Blog--2-.png
 ---
 

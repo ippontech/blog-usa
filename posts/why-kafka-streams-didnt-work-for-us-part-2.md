@@ -5,6 +5,7 @@ categories:
 - Apache Kafka
 date: 2017-08-23T19:03:41.000Z
 title: "Why Kafka Streams didn't work for us? - Part 2"
+id: 5a267e58dd54250018d6b658
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/08/apache-kafka-2.png
 ---
 

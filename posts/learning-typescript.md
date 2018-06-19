@@ -7,6 +7,7 @@ categories:
 - Front-End
 date: 2016-04-14T15:16:24.000Z
 title: "Learning TypeScript"
+id: 5a267e57dd54250018d6b608
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/Never-Stop-Learning.jpg
 ---
 

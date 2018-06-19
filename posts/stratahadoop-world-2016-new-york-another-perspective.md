@@ -5,6 +5,7 @@ categories:
 - Culture
 date: 2016-10-19T10:53:35.000Z
 title: "Strata+Hadoop World 2016 in New York - Another Perspective"
+id: 5a267e57dd54250018d6b61d
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/strata-hadoop-2-1-1.jpg
 ---
 

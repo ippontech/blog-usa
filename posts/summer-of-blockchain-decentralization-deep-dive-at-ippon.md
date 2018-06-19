@@ -6,6 +6,7 @@ categories:
 - JHipster
 date: 2017-10-17T13:05:53.000Z
 title: "Summer of Blockchain: Decentralization Deep Dive at Ippon"
+id: 5a267e58dd54250018d6b65d
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/10/blockchain-decentralize.jpg
 ---
 

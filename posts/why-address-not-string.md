@@ -10,6 +10,7 @@ categories:
 - Back-End
 date: 2016-03-10T14:00:19.000Z
 title: "Why is an Address NOT a String?"
+id: 5a267e57dd54250018d6b5fe
 image: 
 ---
 

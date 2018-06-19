@@ -10,6 +10,7 @@ categories:
 - GCP
 date: 2018-02-15T17:27:07.000Z
 title: "Serverless Architectures"
+id: 5a267e58dd54250018d6b66e
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/12/Serverless-Evolution-1.jpg
 ---
 

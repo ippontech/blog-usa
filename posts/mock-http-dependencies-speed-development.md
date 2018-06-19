@@ -5,6 +5,7 @@ categories:
 - 
 date: 2014-11-14T17:05:55.000Z
 title: "Mocking Dependencies on REST APIs to Speed Up Development"
+id: 5a267e57dd54250018d6b5d7
 image: 
 ---
 

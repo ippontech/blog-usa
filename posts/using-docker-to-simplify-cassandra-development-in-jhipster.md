@@ -5,6 +5,7 @@ categories:
 - Docker
 date: 2016-06-27T15:15:20.000Z
 title: "Using Docker to simplify Cassandra development in JHipster"
+id: 5a267e57dd54250018d6b611
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/using-docker-1-2.jpg
 ---
 

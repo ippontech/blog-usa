@@ -5,6 +5,7 @@ categories:
 - 
 date: 2015-05-21T14:30:25.000Z
 title: "Java's First Vicennial Anniversary!"
+id: 5a267e57dd54250018d6b5e9
 image: 
 ---
 

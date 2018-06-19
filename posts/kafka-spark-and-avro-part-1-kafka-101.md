@@ -5,6 +5,7 @@ categories:
 - Big Data
 date: 2016-03-15T09:41:46.000Z
 title: "Kafka, Spark and Avro - Part 1 of 3, Kafka 101"
+id: 5a267e57dd54250018d6b600
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/01/kafka-3.png
 ---
 

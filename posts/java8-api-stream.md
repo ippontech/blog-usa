@@ -7,6 +7,7 @@ categories:
 - MapReduce
 date: 2014-04-24T13:30:56.000Z
 title: "Java 8's Stream API: a new way to manage collections"
+id: 5a267e57dd54250018d6b5c9
 image: 
 ---
 

@@ -5,6 +5,7 @@ categories:
 - JHipster
 date: 2016-09-06T12:37:00.000Z
 title: "Java Hipster ☆ Gets Dirty: Julien Dubois, one night from Paris - Oct 11th in DC"
+id: 5a267e57dd54250018d6b615
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/javahipster-1-1.jpg
 ---
 

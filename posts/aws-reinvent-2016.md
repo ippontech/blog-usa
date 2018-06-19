@@ -7,6 +7,7 @@ categories:
 - Devops
 date: 2016-12-16T16:47:39.000Z
 title: "AWS re:Invent 2016"
+id: 5a267e57dd54250018d6b623
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/aws1.png
 ---
 

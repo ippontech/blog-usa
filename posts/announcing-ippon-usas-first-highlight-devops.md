@@ -6,6 +6,7 @@ categories:
 - Cloud
 date: 2017-03-14T13:47:51.000Z
 title: "Announcing Ippon USA's first highlight: DevOps!"
+id: 5a267e58dd54250018d6b642
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/03/DevOps-Highlight-Blog--1-.png
 ---
 

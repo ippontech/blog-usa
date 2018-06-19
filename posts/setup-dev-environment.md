@@ -6,6 +6,7 @@ categories:
 - JHipster
 date: 2017-11-10T14:44:04.000Z
 title: "Tinkering for Non-Developers Part 1: Set Up Development Environment"
+id: 5a267e58dd54250018d6b65f
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/10/RG-Part-1.png
 ---
 

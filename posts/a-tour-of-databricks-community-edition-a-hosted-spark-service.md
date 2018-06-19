@@ -8,6 +8,7 @@ categories:
 - Big Data
 date: 2016-04-13T10:32:21.000Z
 title: "A tour of Databricks Community Edition: a hosted Spark service"
+id: 5a267e57dd54250018d6b607
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/01/databricks_logoTM_rgb_TM.svg
 ---
 

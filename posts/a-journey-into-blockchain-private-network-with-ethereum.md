@@ -9,6 +9,7 @@ categories:
 - ether
 date: 2017-10-09T14:57:45.000Z
 title: "A Journey into Blockchain: Private Network with Ethereum"
+id: 5a267e58dd54250018d6b65c
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/10/blog_thumbnail.jpeg
 ---
 

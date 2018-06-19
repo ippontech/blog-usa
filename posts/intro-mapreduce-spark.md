@@ -5,6 +5,7 @@ categories:
 - 
 date: 2014-11-22T13:57:20.000Z
 title: "Intro to MapReduce operations with Spark"
+id: 5a267e57dd54250018d6b5d8
 image: 
 ---
 

@@ -6,6 +6,7 @@ categories:
 - Language
 date: 2018-02-13T01:42:15.000Z
 title: "My journey with Kotlin - Part 1: How I came to dislike Java"
+id: 5a78841b369b1f00224be143
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/02/kotlin-2.svg
 ---
 

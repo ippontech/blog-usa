@@ -6,6 +6,7 @@ categories:
 - Devops
 date: 2017-03-03T15:15:04.000Z
 title: "Hosting a Workshop at DevNexus 2017"
+id: 5a267e58dd54250018d6b63f
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/03/DevNexus-Blog.png
 ---
 

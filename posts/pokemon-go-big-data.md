@@ -6,6 +6,7 @@ categories:
 - Pokemon GO
 date: 2017-02-16T21:40:46.000Z
 title: "Pokemon GO: A Big Data Learning Opportunity"
+id: 5a267e57dd54250018d6b638
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/02/Pokemon-GO-Blog.png
 ---
 

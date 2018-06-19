@@ -5,6 +5,7 @@ categories:
 - Big Data
 date: 2015-06-04T10:38:37.000Z
 title: "An analogous look at Big Data"
+id: 5a267e57dd54250018d6b5ec
 image: 
 ---
 

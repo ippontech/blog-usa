@@ -5,6 +5,7 @@ categories:
 - Front-End
 date: 2016-12-16T21:17:04.000Z
 title: "Angular 2, system.js and webpack"
+id: 5a267e57dd54250018d6b622
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/angular.jpg
 ---
 

@@ -6,6 +6,7 @@ categories:
 - Scala
 date: 2016-06-01T11:02:54.000Z
 title: "SBT - simple build tool for Scala projects"
+id: 5a267e57dd54250018d6b60d
 image: 
 ---
 

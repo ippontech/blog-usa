@@ -8,6 +8,7 @@ categories:
 - CI/CD
 date: 2017-04-24T17:10:09.000Z
 title: "Let me introduce you to someone...JHipster!"
+id: 5a267e58dd54250018d6b649
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/JHipster-Highlight-Blog.png
 ---
 

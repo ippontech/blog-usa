@@ -8,6 +8,7 @@ categories:
 - test
 date: 2016-03-11T09:28:21.000Z
 title: "Testing strategy for Apache Spark jobs - Part 1 of 2"
+id: 5a267e57dd54250018d6b5ff
 image: 
 ---
 

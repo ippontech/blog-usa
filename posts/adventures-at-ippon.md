@@ -10,6 +10,7 @@ categories:
 - LifeAtIppon
 date: 2016-12-22T18:51:57.000Z
 title: "Adventures at Ippon"
+id: 5a267e57dd54250018d6b631
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/IMG_6365.JPG
 ---
 

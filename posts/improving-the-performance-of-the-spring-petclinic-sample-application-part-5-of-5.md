@@ -8,6 +8,7 @@ categories:
 - Spring-Petclinic
 date: 2013-03-15T11:00:40.000Z
 title: "Improving the performance of the Spring-Petclinic sample application (part 5 of 5)"
+id: 5a267e57dd54250018d6b5ba
 image: 
 ---
 

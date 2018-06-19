@@ -8,6 +8,7 @@ categories:
 - Big Data
 date: 2016-03-30T11:53:21.000Z
 title: "Testing strategy for Spark Streaming - Part 2 of 2"
+id: 5a267e57dd54250018d6b604
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/01/spark-logo.png
 ---
 

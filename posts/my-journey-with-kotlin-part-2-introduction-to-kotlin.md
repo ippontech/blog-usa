@@ -6,6 +6,7 @@ categories:
 - Language
 date: 2018-02-13T01:42:58.000Z
 title: "My journey with Kotlin - Part 2: Introduction to Kotlin"
+id: 5a788484369b1f00224be146
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/02/kotlin-2-1.svg
 ---
 

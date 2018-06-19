@@ -5,6 +5,7 @@ categories:
 - Culture
 date: 2018-02-12T19:33:52.000Z
 title: "\"I want to hire a rock star!\" Ok...wait, what?"
+id: 5a81e8067c932200226d9cf0
 image: 
 ---
 

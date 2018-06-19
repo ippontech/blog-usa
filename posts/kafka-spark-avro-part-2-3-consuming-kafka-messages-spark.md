@@ -5,6 +5,7 @@ categories:
 - Big Data
 date: 2016-03-23T00:23:03.000Z
 title: "Kafka, Spark and Avro - Part 2 of 3, Consuming Kafka messages with Spark"
+id: 5a267e57dd54250018d6b602
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/01/kafka-4.png
 ---
 

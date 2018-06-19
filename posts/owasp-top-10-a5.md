@@ -7,6 +7,7 @@ categories:
 - Web
 date: 2013-11-14T08:50:44.000Z
 title: "OWASP Top 10 - A5 Security Misconfiguration"
+id: 5a267e57dd54250018d6b5c0
 image: 
 ---
 

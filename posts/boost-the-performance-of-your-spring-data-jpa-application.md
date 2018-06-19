@@ -8,6 +8,7 @@ categories:
 - spring data
 date: 2018-02-05T16:09:09.000Z
 title: "Boost the performance of your Spring Data JPA application"
+id: 5a267e58dd54250018d6b669
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/11/boot-data.png
 ---
 

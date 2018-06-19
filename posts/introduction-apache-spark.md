@@ -5,6 +5,7 @@ categories:
 - 
 date: 2014-11-11T09:34:15.000Z
 title: "Introduction to Apache Spark"
+id: 5a267e57dd54250018d6b5d5
 image: 
 ---
 

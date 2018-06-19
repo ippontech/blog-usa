@@ -5,6 +5,7 @@ categories:
 - 
 date: 2014-07-08T17:02:39.000Z
 title: "Ippon Technologies USA Selected by Allianz Global Assistance USA to build the next generation of AllianzTravelInsurance.com"
+id: 5a267e57dd54250018d6b5ce
 image: 
 ---
 
