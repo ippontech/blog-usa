@@ -8,7 +8,7 @@ title: "Increasing the performance of your Web Application!"
 image: 
 ---
 
-Recently, [Tatami received a massive overhaul](http://www.ipponusa.com/vcu-ippon-angularjs-tatami/) thanks to our partnership with VCU and their team of senior computer science students. Though the app worked beautifully, there were inefficiencies that needed to be addressed. Being halfway through transitioning from Backbone to Angular JS meant that there was more bloat than acceptable– this can happen anytime an app is overhauled and is to be expected occassionally.
+Recently, [Tatami received a massive overhaul](https://blog.ippon.tech/vcu-ippon-angularjs-tatami/) thanks to our partnership with VCU and their team of senior computer science students. Though the app worked beautifully, there were inefficiencies that needed to be addressed. Being halfway through transitioning from Backbone to Angular JS meant that there was more bloat than acceptable– this can happen anytime an app is overhauled and is to be expected occassionally.
 
 When you go to the Facebook login page, your browser makes about 34 GET requests. This is normal. Generally, any number below 50 is acceptable– beyond that, you should consider what you can do to reduce that number. Most web applications are fairly small in size– with Tatami itself being smaller than a single music file (1.4 MB, currently), but GET requests to a server that’s over seas can really stall your application. If I remember my networking class correctly, the total delay would be similar to:
 

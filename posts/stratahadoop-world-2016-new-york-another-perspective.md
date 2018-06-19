@@ -8,7 +8,7 @@ title: "Strata+Hadoop World 2016 in New York - Another Perspective"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/strata-hadoop-2-1-1.jpg
 ---
 
-I was lucky enough to attend the Strata Hadoop World conference alongside Alexis Seigneurin, who wrote about his experiences [here](http://www.ippon.tech/blog/stratahadoop-world-2016-in-new-york/). This is my take on the conference.
+I was lucky enough to attend the Strata Hadoop World conference alongside Alexis Seigneurin, who wrote about his experiences [here](https://blog.ippon.tech/stratahadoop-world-2016-in-new-york/). This is my take on the conference.
 
 ## Keynotes
 

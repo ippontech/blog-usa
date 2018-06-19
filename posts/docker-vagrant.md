@@ -62,7 +62,7 @@ Now these scenarios also are not hard lines in the sand.  Docker could also be 
 
 **How can I get started?**
 
-Check out this great post [From Development To Production With Vagrant & Packer](http://www.ipponusa.com/from-development-to-production-with-vagrant-and-packer/).
+Check out this great post [From Development To Production With Vagrant & Packer](https://blog.ippon.tech/from-development-to-production-with-vagrant-and-packer/).
 
 The bar of entry for both technologies is very low.  You can have something working in a matter of minutes with each.
 

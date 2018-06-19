@@ -21,7 +21,7 @@ In this post, we’ll explore how to design your code for testing, how to setup 
 
 ## Design for testing
 
-We have already covered in a [previous post](http://www.ipponusa.com/blog/introduction-apache-spark/) what are Spark jobs, but from a higher point of view, any job can be described as an “immutable” transformation of distributed data.
+We have already covered in a [previous post](https://blog.ippon.tech/blog/introduction-apache-spark/) what are Spark jobs, but from a higher point of view, any job can be described as an “immutable” transformation of distributed data.
 
 In particular, any Spark job can be refactored to a composition of functions taking data as input, the so-called RDD, and returning data, hence a RDD again.
 

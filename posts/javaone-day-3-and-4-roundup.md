@@ -36,7 +36,7 @@ We got a nice name drop for jHipster from Josh Long during the presentation. jHi
 
 - Learn more here about jHipster here: [jHipster Github Project](https://jhipster.github.io/)
 - Follow jHipster on Twitter[ java_hipster](https://twitter.com/java_hipster).
-- We also offer jHipster [training](http://www.ipponusa.com/training/jhipster-master/)!
+- We also offer jHipster [training](https://blog.ippon.tech/training/jhipster-master/)!
 
 **Matt Raible’s Devoxx 2015 Presentation**
 

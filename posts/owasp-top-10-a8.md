@@ -72,6 +72,6 @@ Again, you have several differents methods. I will only focus on the two most us
 
 Re-authentication simply consists in asking the authenticated user to enter its credentials again before performing the requested action. Nowadays, all banks (except mybank.com) use this mechanism before a transfer. Of course, with this solution, the user could use a link in its favorites and would have to authenticate before the transfer can be done. Unless you also require a CSRF prevention token in the request (recommended).
 
-Note: As I explained in the [introduction](http://www.ipponusa.com/owasp-top-10-introduction/ "OWASP Top 10 - Introduction"), in the past, CSRF was one of the highest risks identified by OWASP team (rank 5). Then, application and framework developers improved the security on their products. Now, CSRF attacks are rare, so the risk was recently moved to the end of the list (rank 8). But stay alert and apply the recommended mitigation… CSRF is still in OWASP’s list of risks!
+Note: As I explained in the [introduction](https://blog.ippon.tech/owasp-top-10-introduction/ "OWASP Top 10 - Introduction"), in the past, CSRF was one of the highest risks identified by OWASP team (rank 5). Then, application and framework developers improved the security on their products. Now, CSRF attacks are rare, so the risk was recently moved to the end of the list (rank 8). But stay alert and apply the recommended mitigation… CSRF is still in OWASP’s list of risks!
 
-To see all articles related to OWASP Top 10, follow the tag [#owasp](http://www.ipponusa.com/tag/owasp/ "OWASP Top 10")
+To see all articles related to OWASP Top 10, follow the tag [#owasp](https://blog.ippon.tech/tag/owasp/ "OWASP Top 10")

@@ -93,4 +93,4 @@ Last but not least: log in a secure place all sensitive actions done on your web
 
 An even better option would be to be alerted when a suspicious action is requested. For example, if an authenticated simple user tries to access a management function, of course, the access will be rejected but it may be interesting to know that there was a potential attack attempt.
 
-To see all articles related to OWASP Top 10, follow the tag [#owasp](http://www.ipponusa.com/tag/owasp/ "OWASP Top 10")
+To see all articles related to OWASP Top 10, follow the tag [#owasp](https://blog.ippon.tech/tag/owasp/ "OWASP Top 10")

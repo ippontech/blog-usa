@@ -8,7 +8,7 @@ title: "The Challenges of Integrating NoSQL with MDM."
 image: 
 ---
 
-Previously, we discussed [how a business could benefit from implementing MDM](http://www.ipponusa.com/doyouneedmdm/). It remains true that there is a huge advantage to keeping a master set of data and allowing each part of your enterprise to access only the [relevant bits.](https://www.xkcd.com/1289/) It limits the amount of redundant information, and reduces the odds of getting out of sync with your partner applications.
+Previously, we discussed [how a business could benefit from implementing MDM](https://blog.ippon.tech/doyouneedmdm/). It remains true that there is a huge advantage to keeping a master set of data and allowing each part of your enterprise to access only the [relevant bits.](https://www.xkcd.com/1289/) It limits the amount of redundant information, and reduces the odds of getting out of sync with your partner applications.
 
 But suppose your database is currently backed by a NoSQL solution, and making a normalized relational database out of it is not an option. Perhaps you need the high write speed, or the horizontal scalability of NoSQL. Unfortunately, NoSQL and MDM do not go well together conceptually– Master Databases are [relational by definition](https://en.wikipedia.org/wiki/Master_data#Types_of_master_data). So how, then, do we get the two to play nicely without feeling like we’re shoehorning concepts together? And what benefit can we gain from this?
 

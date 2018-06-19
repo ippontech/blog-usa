@@ -8,7 +8,7 @@ title: "Apache Spark: MapReduce and RDD manipulations with keys"
 image: 
 ---
 
-In a [previous article](http://www.ipponusa.com/intro-mapreduce-spark/ "Intro to MapReduce operations with Spark"), we saw that Apache Spark allows us to perform aggregations on every value of an RDD. We will now perform aggregations and other manipulations with keys.
+In a [previous article](https://blog.ippon.tech/intro-mapreduce-spark/ "Intro to MapReduce operations with Spark"), we saw that Apache Spark allows us to perform aggregations on every value of an RDD. We will now perform aggregations and other manipulations with keys.
 
 ### **Approach**
 

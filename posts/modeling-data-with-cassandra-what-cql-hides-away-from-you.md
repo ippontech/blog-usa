@@ -11,7 +11,7 @@ image:
 
 ## Introduction
 
-This is the second part of a 3-part introductory series on using JHipster with Cassandra. You can read yesterday’s post here: [Using Cassandra with JHipster](http://www.ipponusa.com/using-cassandra-jhipster/).
+This is the second part of a 3-part introductory series on using JHipster with Cassandra. You can read yesterday’s post here: [Using Cassandra with JHipster](https://blog.ippon.tech/using-cassandra-jhipster/).
 
 ## CQL vs Hector
 
@@ -81,4 +81,4 @@ This table has some interesting properties:
 
 ## Going further with Cassandra
 
-Following this 2nd post on this series, we will post tomorrow another article giving [10 tips and tricks on using Cassandra](http://www.ipponusa.com/10-tips-and-tricks-for-cassandra/).
+Following this 2nd post on this series, we will post tomorrow another article giving [10 tips and tricks on using Cassandra](https://blog.ippon.tech/10-tips-and-tricks-for-cassandra/).

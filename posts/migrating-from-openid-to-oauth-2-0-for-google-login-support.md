@@ -8,7 +8,7 @@ title: "Migrating from OpenID to OAuth 2.0 for Google Login Support"
 image: 
 ---
 
-One exciting feature of Tatami is being able to log in through a google account (since users don’t have to remember yet another password). While in the process of migrating from Backbone.js to AngularJS, it was discovered that OpenID 2.0 was to be deprecated on April 20, 2015. The [release of Tatami 4.0](http://www.ipponusa.com/vcu-ippon-angularjs-tatami/) included an update which handles this migration, allowing our users to continue logging in through their google accounts.
+One exciting feature of Tatami is being able to log in through a google account (since users don’t have to remember yet another password). While in the process of migrating from Backbone.js to AngularJS, it was discovered that OpenID 2.0 was to be deprecated on April 20, 2015. The [release of Tatami 4.0](https://blog.ippon.tech/vcu-ippon-angularjs-tatami/) included an update which handles this migration, allowing our users to continue logging in through their google accounts.
 
 #### **What Should Happen When a User Logs in Through Google**
 

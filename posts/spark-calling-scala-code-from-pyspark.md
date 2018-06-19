@@ -8,7 +8,7 @@ title: "Spark - Calling Scala code from PySpark"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/01/spark-logo-1.png
 ---
 
-In [a previous post](http://www.ippon.tech/blog/spark-kafka-achieving-zero-data-loss/), I demonstrated how to consume a Kafka topic using Spark in a resilient manner. The resiliency code was written in Scala. Now, I want to leverage that Scala code to connect Spark to Kafka in a PySpark application. We will see how we can call Scala code from Python code and what are the restrictions.
+In [a previous post](https://blog.ippon.tech/spark-kafka-achieving-zero-data-loss/), I demonstrated how to consume a Kafka topic using Spark in a resilient manner. The resiliency code was written in Scala. Now, I want to leverage that Scala code to connect Spark to Kafka in a PySpark application. We will see how we can call Scala code from Python code and what are the restrictions.
 
 ## Basic method call through Py4J
 

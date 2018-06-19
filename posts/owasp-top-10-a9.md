@@ -21,7 +21,7 @@ Somehow, an attacker found out my bank’s website uses Apache web server versio
 
 ## Mitigations
 
-The first protection is of course to obfuscate information related to the components (servers, frameworks, operating systems…) you use to run your application. Refer to the previous article related to [Security Misconfiguration](http://www.ipponusa.com/owasp-top-10-a5/ "OWASP Top 10 – A5 Security Misconfiguration") for details.
+The first protection is of course to obfuscate information related to the components (servers, frameworks, operating systems…) you use to run your application. Refer to the previous article related to [Security Misconfiguration](https://blog.ippon.tech/owasp-top-10-a5/ "OWASP Top 10 – A5 Security Misconfiguration") for details.
 
 ### Know your application
 
@@ -33,7 +33,7 @@ If you use Maven to build your application, you should add [Versions Maven plugi
 
 ### Know your vulnerabilities
 
-As I explained in [a previous post](http://www.ipponusa.com/owasp-top-10-a5/ "OWASP Top 10 – A5 Security Misconfiguration"), security patches should be installed as soon as possible. But you also need to know these patches exist and what they fix to know whether your application is at risk or not.
+As I explained in [a previous post](https://blog.ippon.tech/owasp-top-10-a5/ "OWASP Top 10 – A5 Security Misconfiguration"), security patches should be installed as soon as possible. But you also need to know these patches exist and what they fix to know whether your application is at risk or not.
  OWASP proposes a very interesting free/open-source tool named [Dependency Check](https://github.com/jeremylong/DependencyCheck "OWASP Dependency Check") and focused on known vulnerabilities. It is available as a simple java command line, but also as plugins for Ant, Maven or Jenkins.
  This tool shall scan your application to identify third-party libraries (with versions). Then for each library, the tool will check if the identified version has Common Vulnerabilities and Exposures (CVE) referenced in the [National Vulnerability Database](https://nvd.nist.gov/ "National Vulnerability Database (NVD)"). With this tool, you will have a clear view of the known vulnerabilities in your application
 
@@ -54,4 +54,4 @@ Developer should not add a new dependency in the application without a strict va
 My last recommendation about this topic would be to enable and properly configure the Security Manager according to your needs. It will be your last line of defense to protect your system against some vulnerability exploits on Java libraries.
  Of course, it is only for Java applications. It won’t protect your web server or your database…
 
-To see all articles related to OWASP Top 10, follow the tag [#owasp](http://www.ipponusa.com/tag/owasp/ "OWASP Top 10")
+To see all articles related to OWASP Top 10, follow the tag [#owasp](https://blog.ippon.tech/tag/owasp/ "OWASP Top 10")

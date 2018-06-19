@@ -22,6 +22,6 @@ image:
  Heck yeah! Everyone who participated learned something new. Granted one day only lets you get your feet wet but it was a good introduction and it helped being able to apply what we learned to a project that same day. And, best of all, it got the engineers excited about the new technology and interested in pursuing it post-dojo.
 
 *Are we going to do it again?*
- Yes, of course. The cultural benefits are enough but we also get to build something that may become valuable. [Does this sound like something you want to do?](http://www.ipponusa.com/careers/)
+ Yes, of course. The cultural benefits are enough but we also get to build something that may become valuable. [Does this sound like something you want to do?](https://blog.ippon.tech/careers/)
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2015/03/dojo.jpg)

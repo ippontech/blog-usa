@@ -79,7 +79,7 @@ Javaone Oracle Welcome Reception
 
 ### Day 2 of JavaOne 2015
 
-See part 2 of Ippon’s JavaOne coverage here:[Java 9 and Project Jigsaw: JavaOne Day 2](http://www.ipponusa.com/blog/java-9-and-project-jigsaw-javaone-day-2/)
+See part 2 of Ippon’s JavaOne coverage here:[Java 9 and Project Jigsaw: JavaOne Day 2](https://blog.ippon.tech/blog/java-9-and-project-jigsaw-javaone-day-2/)
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/JavaOne?src=hash">#JavaOne</a> Day 2 roundup:  Focus on <a href="https://twitter.com/hashtag/JDK9?src=hash">#JDK9</a> and project <a href="https://twitter.com/hashtag/jigsaw?src=hash">#jigsaw</a> - <a href="https://t.co/ljYuDMEA49">https://t.co/ljYuDMEA49</a> <a href="https://twitter.com/hashtag/JavaOne2015?src=hash">#JavaOne2015</a> <a href="https://twitter.com/hashtag/java9?src=hash">#java9</a> <a href="https://t.co/ZiyfV3eBq7">pic.twitter.com/ZiyfV3eBq7</a></p>&mdash; Ippon USA (@IpponUSA) <a href="https://twitter.com/IpponUSA/status/659436476367634432">October 28, 2015</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>

@@ -24,7 +24,7 @@ Huddled around desks for the JHipster coding dojo.
 
 ### Blog Posts
 
-Though we do have the occasional culture article (AHEM), we actually fill our blog with lots of helpful technical tutorials. I personally found this one useful - a three part series on using [Apache Spark, Avro and Kafka](http://www.ipponusa.com/blog/kafka-spark-and-avro-part-1-kafka-101/). Or learn about the latest version of [JHipster which introduces microservices](http://www.ipponusa.com/blog/jhipster-3-0-introducing-microservices/).
+Though we do have the occasional culture article (AHEM), we actually fill our blog with lots of helpful technical tutorials. I personally found this one useful - a three part series on using [Apache Spark, Avro and Kafka](https://blog.ippon.tech/blog/kafka-spark-and-avro-part-1-kafka-101/). Or learn about the latest version of [JHipster which introduces microservices](https://blog.ippon.tech/blog/jhipster-3-0-introducing-microservices/).
 
 Almost all of our employees contribute to the blog. And we actually have a little competition going on between teams to see who can write the blog post with the most views. After writing about a topic, our engineers include their publications on their resumes to highlight their expertise.
 
@@ -38,7 +38,7 @@ Josh, one of Ippon’s best Senior Engineers, giving a presentation at the [Ippo
 
 ### White Papers
 
-Expertise in the written form, our white papers aid readers by breaking down a complex problem or technology. Ippon provides engineers extra incentives as well as the time to complete these white papers and publish them free to download to the community. Check out our white papers [here](http://www.ipponusa.com/resources/).
+Expertise in the written form, our white papers aid readers by breaking down a complex problem or technology. Ippon provides engineers extra incentives as well as the time to complete these white papers and publish them free to download to the community. Check out our white papers [here](https://blog.ippon.tech/resources/).
 
 ### Conference Talks
 
@@ -50,4 +50,4 @@ Some photos from Chris Anatalio’s visit to JavaOne in San Francisco.
 
 These opportunities come hand-in-hand with a positive encouragement to participate. At other companies, they might provide “$300 dollars of training per year,” or “1 conference per year,” but it is up to the motivation of the engineer to capitalize on that. The culture at Ippon puts people in the spotlight, pushing personal boundaries to influence people to do things they wouldn’t normally do, like give a big presentation at a meetup group. It may be scary when it happens the first time, but we are better off in the end, and we appreciate the pressure afterwards.
 
-If you are a smart engineer and you would appreciate having these opportunities, check out our [open positions](http://www.ipponusa.com/careers/)! We would love to talk to you.
+If you are a smart engineer and you would appreciate having these opportunities, check out our [open positions](https://blog.ippon.tech/careers/)! We would love to talk to you.

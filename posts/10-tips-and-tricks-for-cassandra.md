@@ -9,7 +9,7 @@ title: "10 Tips and tricks for Cassandra"
 image: 
 ---
 
-This is the 3rd article on this series on using Cassandra with JHipster, you can find [the first article here](http://www.ipponusa.com/using-cassandra-jhipster/), and [the second article here](http://www.ipponusa.com/modeling-data-with-cassandra-what-cql-hides-away-from-you/). Today, we are studying 10 tips and tricks we have found useful when creating new entities with JHipster!
+This is the 3rd article on this series on using Cassandra with JHipster, you can find [the first article here](https://blog.ippon.tech/using-cassandra-jhipster/), and [the second article here](https://blog.ippon.tech/modeling-data-with-cassandra-what-cql-hides-away-from-you/). Today, we are studying 10 tips and tricks we have found useful when creating new entities with JHipster!
 
 ## Use short column names
 
