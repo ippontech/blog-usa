@@ -2,7 +2,6 @@
 authors:
 - Justin Risch
 categories:
-- 
 date: 2015-02-16T11:37:18.000Z
 title: "Ippon Loves Richmond!"
 id: 5a267e57dd54250018d6b5dd

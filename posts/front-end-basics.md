@@ -2,7 +2,6 @@
 authors:
 - Leigha Wilson
 categories:
-- 
 date: 2015-06-08T13:53:15.000Z
 title: "Life on the Frontline: Front-end DevOps"
 id: 5a267e57dd54250018d6b5ed

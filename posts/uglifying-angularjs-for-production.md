@@ -2,7 +2,6 @@
 authors:
 - Kenneth Hegeland
 categories:
-- 
 date: 2015-09-15T10:57:21.000Z
 title: "Uglifying AngularJS for Production"
 id: 5a267e57dd54250018d6b5f1

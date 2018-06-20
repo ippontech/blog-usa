@@ -2,7 +2,6 @@
 authors:
 - John Zaccone
 categories:
-- 
 date: 2015-04-21T12:57:50.000Z
 title: "Microservices and Modularity"
 id: 5a267e57dd54250018d6b5e4

@@ -2,7 +2,6 @@
 authors:
 - Ahmed MSOUBER
 categories:
-- 
 date: 2015-05-29T15:17:00.000Z
 title: "Watch Google IO 2015 LIVE!!!"
 id: 5a267e57dd54250018d6b627

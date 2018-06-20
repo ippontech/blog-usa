@@ -2,7 +2,6 @@
 authors:
 - Kenneth Hegeland
 categories:
-- 
 date: 2015-08-27T10:35:38.000Z
 title: "Migrating from OpenID to OAuth 2.0 for Google Login Support"
 id: 5a267e57dd54250018d6b5ef

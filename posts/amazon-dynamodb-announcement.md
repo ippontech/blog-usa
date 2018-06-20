@@ -2,7 +2,6 @@
 authors:
 - Laurent Mathieu
 categories:
-- 
 date: 2014-10-10T04:15:23.000Z
 title: "Amazon Makes A Power Play For Expanding DynamoDB Adoption"
 id: 5a267e57dd54250018d6b5d2

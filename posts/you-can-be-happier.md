@@ -2,7 +2,6 @@
 authors:
 - Ford Hatfield
 categories:
-- 
 date: 2016-07-25T14:00:24.000Z
 title: "You can be happier!"
 id: 5a267e57dd54250018d6b612

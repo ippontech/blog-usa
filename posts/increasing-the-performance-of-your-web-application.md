@@ -2,7 +2,6 @@
 authors:
 - Justin Risch
 categories:
-- 
 date: 2015-05-25T12:53:58.000Z
 title: "Increasing the performance of your Web Application!"
 id: 5a267e57dd54250018d6b5ea

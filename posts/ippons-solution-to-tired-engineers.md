@@ -2,7 +2,6 @@
 authors:
 - Chris Anatalio
 categories:
-- 
 date: 2015-04-01T11:15:00.000Z
 title: "Ippon's Solution to Tired Engineers"
 id: 5a267e57dd54250018d6b626

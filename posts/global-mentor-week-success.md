@@ -2,7 +2,6 @@
 authors:
 - John Zaccone
 categories:
-- 
 date: 2016-11-21T20:22:00.000Z
 title: "Global Mentor Week Success"
 id: 5a267e57dd54250018d6b621

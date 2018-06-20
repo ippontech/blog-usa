@@ -2,7 +2,7 @@
 authors:
 - Laurent Mathieu
 categories:
-- 
+- JHipster
 date: 2015-07-06T12:54:21.000Z
 title: "JHipster-UML"
 id: 5a267e57dd54250018d6b5ee

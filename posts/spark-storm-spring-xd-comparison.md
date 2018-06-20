@@ -2,7 +2,6 @@
 authors:
 - Laurent Mathieu
 categories:
-- 
 date: 2014-10-27T16:10:12.000Z
 title: "Spark, Storm and Spring XD - A Comparison"
 id: 5a267e57dd54250018d6b5d4

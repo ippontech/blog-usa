@@ -2,7 +2,6 @@
 authors:
 - Alexandre Pocheau
 categories:
-- 
 date: 
 title: "Set up a reverse proxy Nginx and Docker-gen (Bonus: Let’s Encrypt)"
 id: 5a267e58dd54250018d6b66b

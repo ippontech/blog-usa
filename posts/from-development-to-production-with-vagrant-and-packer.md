@@ -2,7 +2,6 @@
 authors:
 - Alexis Seigneurin
 categories:
-- 
 date: 2014-04-14T19:32:48.000Z
 title: "From development to production with Vagrant and Packer"
 id: 5a267e57dd54250018d6b5c7

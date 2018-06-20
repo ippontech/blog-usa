@@ -2,7 +2,6 @@
 authors:
 - Chris Anatalio
 categories:
-- 
 date: 2015-12-07T17:25:00.000Z
 title: "JavaOne Day 3 and 4 Roundup"
 id: 5a267e57dd54250018d6b62b

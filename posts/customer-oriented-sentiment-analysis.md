@@ -2,7 +2,6 @@
 authors:
 - Doug Mengistu
 categories:
-- 
 date: 
 title: "Customer Oriented Sentiment Analysis"
 id: 5a267e58dd54250018d6b65a

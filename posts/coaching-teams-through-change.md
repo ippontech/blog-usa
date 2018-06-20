@@ -2,7 +2,6 @@
 authors:
 - Romain Lheritier
 categories:
-- 
 date: 2014-04-29T08:55:08.000Z
 title: "Coaching Teams Through Change"
 id: 5a267e57dd54250018d6b5ca

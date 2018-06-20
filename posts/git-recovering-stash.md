@@ -2,7 +2,6 @@
 authors:
 - Benjamin Scott
 categories:
-- 
 date: 2015-06-03T11:00:13.000Z
 title: "Git: Recovering a lost stash"
 id: 5a267e57dd54250018d6b5eb

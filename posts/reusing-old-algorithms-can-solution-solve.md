@@ -2,7 +2,6 @@
 authors:
 - Justin Risch
 categories:
-- 
 date: 2016-04-19T08:50:45.000Z
 title: "Reusing old Algorithms: Can your solution solve more?"
 id: 5a267e57dd54250018d6b609
