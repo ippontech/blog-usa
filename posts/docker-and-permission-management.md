@@ -8,11 +8,11 @@ title: "Docker and permission management"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/02/docker_logo.png
 ---
 
-This article is part of a series of three posts about *Docker*:
+This article is part of a series of three articles about Docker:
 
-1. ***Docker* and permission management**
-1. Set up a reverse proxy with *Nginx* and *Docker-gen* (Bonus: *Let's Encrypt*)
-1. Tips and reminders for using *Docker* daily
+1. **Docker and permissions management**
+1. [Set up a reverse proxy with *Nginx* and *Docker-gen* (Bonus: *Let's Encrypt*)](https://blog.ippon.tech/set-up-a-reverse-proxy-nginx-and-docker-gen-bonus-lets-encrypt/)
+1. [Tips and reminders for using *Docker* daily](https://blog.ippon.tech/tips-and-reminders-for-using-docker-daily/)
 
 In this first post, I will show how you can deal with file permissions when a container is using `root` and you want to keep access to the files as an unprivileged host user.
 

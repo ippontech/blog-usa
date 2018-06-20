@@ -11,7 +11,7 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/0
 This article is part of a series of three articles about Docker:
 
 1. [Docker and permissions management](https://blog.ippon.tech/docker-and-permission-management/)
-1. Set up a reverse proxy *Nginx* and *Docker-gen* (Bonus: *Let’s Encrypt*)
+1. [Set up a reverse proxy with *Nginx* and *Docker-gen* (Bonus: *Let's Encrypt*)](https://blog.ippon.tech/set-up-a-reverse-proxy-nginx-and-docker-gen-bonus-lets-encrypt/)
 1. **Tips and reminders for using Docker daily**
 
 For this last article about Docker, I wanted to share with you what makes my daily usage of Docker pleasant. Besides all of this, I feel it is interesting to provide some reminders on Docker usage.
