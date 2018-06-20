@@ -10,7 +10,7 @@ tags:
 - Serverless
 - FaaS
 date: 
-title: "How to do Serverless"
+title: "Going Serverless"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/12/te-le-chargement.png
 ---
 
