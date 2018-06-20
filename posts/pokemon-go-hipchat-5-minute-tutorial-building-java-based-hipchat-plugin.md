@@ -1,11 +1,10 @@
 ---
 authors:
 - Justin Risch
-categories:
+tags:
 - Culture
 date: 2016-06-28T16:26:00.000Z
 title: "Pokemon Go and Hipchat: A 5 minute tutorial on building a Java -based Hipchat plugin."
-id: 5a267e57dd54250018d6b613
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/pokemon-go--1-1.jpg
 ---
 

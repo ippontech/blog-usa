@@ -1,11 +1,10 @@
 ---
 authors:
 - Alexandre Pocheau
-categories:
+tags:
 - Docker
 date: 2018-02-02T19:01:36.000Z
 title: "Docker and permission management"
-id: 5a267e58dd54250018d6b66a
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/02/docker_logo.png
 ---
 

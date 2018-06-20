@@ -1,10 +1,9 @@
 ---
 authors:
 - Alexis Seigneurin
-categories:
+tags:
 date: 2016-02-22T15:25:45.000Z
 title: "Record Linkage, a real use case with Spark ML"
-id: 5a267e57dd54250018d6b5fb
 image: 
 ---
 

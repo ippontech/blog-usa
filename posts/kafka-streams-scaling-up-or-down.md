@@ -1,11 +1,10 @@
 ---
 authors:
 - Alexis Seigneurin
-categories:
+tags:
 - Big Data
 date: 2016-10-07T00:00:00.000Z
 title: "Kafka Streams - Scaling up or down"
-id: 5a267e57dd54250018d6b61b
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/01/kafka-1.png
 ---
 

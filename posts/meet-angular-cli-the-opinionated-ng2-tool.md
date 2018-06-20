@@ -1,10 +1,9 @@
 ---
 authors:
 - John Strickler
-categories:
+tags:
 date: 2017-01-23T15:00:00.000Z
 title: "Meet Angular CLI, the opinionated NG2 tool"
-id: 5a267e57dd54250018d6b625
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/angular-cli.jpg
 ---
 

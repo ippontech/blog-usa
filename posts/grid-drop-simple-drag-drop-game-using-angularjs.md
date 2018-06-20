@@ -1,10 +1,9 @@
 ---
 authors:
 - Kenneth Hegeland
-categories:
+tags:
 date: 2016-02-17T11:22:03.000Z
 title: "Grid Drop -- A Simple Drag and Drop Game Using AngularJS"
-id: 5a267e57dd54250018d6b5f8
 image: 
 ---
 

@@ -1,11 +1,10 @@
 ---
 authors:
 - Alexis Seigneurin
-categories:
+tags:
 - Apache Kafka
 date: 2017-08-24T13:57:14.000Z
 title: "Why Kafka Streams didn't work for us? - Part 3"
-id: 5a267e58dd54250018d6b659
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/08/apache-kafka-3.png
 ---
 

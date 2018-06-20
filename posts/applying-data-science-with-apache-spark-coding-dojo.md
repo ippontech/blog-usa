@@ -1,12 +1,11 @@
 ---
 authors:
 - Kile Niklawski
-categories:
+tags:
 - Apache Spark
 - Data Science
 date: 2015-08-28T16:15:40.000Z
 title: "Applying Data Science with Apache Spark Coding Dojo"
-id: 5a267e57dd54250018d6b5f0
 image: 
 ---
 

@@ -1,7 +1,7 @@
 ---
 authors:
 - Valentin Carmignac
-categories:
+tags:
 - JavaScript
 - React
 - React Native
@@ -9,7 +9,6 @@ categories:
 - Front-End
 date: 2018-02-27T20:16:13.000Z
 title: "Why is React Native so promising?"
-id: 5a8a04dbf7f5580022184b14
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/02/excited.png
 ---
 

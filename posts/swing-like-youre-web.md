@@ -1,10 +1,9 @@
 ---
 authors:
 - Justin Risch
-categories:
+tags:
 date: 2015-01-09T13:50:11.000Z
 title: "Swing like you're on the Web."
-id: 5a267e57dd54250018d6b5da
 image: 
 ---
 

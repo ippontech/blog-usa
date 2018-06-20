@@ -1,11 +1,10 @@
 ---
 authors:
 - Kenneth Hegeland
-categories:
+tags:
 - JHipster
 date: 2017-02-07T15:43:55.000Z
 title: "JHipster 4"
-id: 5a267e57dd54250018d6b637
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/02/JHipster-4-Blog--4-.png
 ---
 

@@ -1,10 +1,9 @@
 ---
 authors:
 - Justin Risch
-categories:
+tags:
 date: 2015-04-16T16:24:09.000Z
 title: "VCU and Ippon released Tatami 4.0 (AngularJS conversion)"
-id: 5a267e57dd54250018d6b5e3
 image: 
 ---
 

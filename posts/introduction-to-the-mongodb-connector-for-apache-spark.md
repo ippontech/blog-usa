@@ -1,12 +1,11 @@
 ---
 authors:
 - Raphael Brugier
-categories:
+tags:
 - Apache Spark
 - Mongo DB
 date: 2017-03-31T20:31:38.000Z
 title: "Introduction to the MongoDB connector for Apache Spark"
-id: 5a267e58dd54250018d6b644
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/MongoDB-and-Apache-Spark-Blog--2-.png
 ---
 

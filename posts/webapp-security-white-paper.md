@@ -1,14 +1,13 @@
 ---
 authors:
 - Victoria De Belilovsky
-categories:
+tags:
 - OWASP
 - ressources
 - Security
 - white-paper
 date: 2014-07-17T04:25:48.000Z
 title: "Security White Paper: OWASP - Building Secure Web Applications"
-id: 5a267e57dd54250018d6b5d0
 image: 
 ---
 

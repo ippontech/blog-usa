@@ -1,13 +1,12 @@
 ---
 authors:
 - Philippe Cery
-categories:
+tags:
 - OWASP
 - Sécurité
 - Web
 date: 2013-11-04T08:45:32.000Z
 title: "OWASP Top 10 - A4 Insecure Direct Object References"
-id: 5a267e57dd54250018d6b5bf
 image: 
 ---
 

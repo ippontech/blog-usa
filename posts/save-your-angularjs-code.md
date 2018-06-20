@@ -1,7 +1,7 @@
 ---
 authors:
 - Romain Lheritier
-categories:
+tags:
 - angular.js
 - angular.js training
 - AngularJS
@@ -9,7 +9,6 @@ categories:
 - JavaScript
 date: 2014-05-06T09:42:07.000Z
 title: "Save your AngularJS code!"
-id: 5a267e57dd54250018d6b5cb
 image: 
 ---
 

@@ -1,13 +1,12 @@
 ---
 authors:
 - Philippe Cery
-categories:
+tags:
 - OWASP
 - Sécurité
 - Web
 date: 2013-10-10T08:30:10.000Z
 title: "OWASP Top 10 - Introduction"
-id: 5a267e57dd54250018d6b5bb
 image: 
 ---
 

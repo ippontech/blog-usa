@@ -1,14 +1,13 @@
 ---
 authors:
 - Richard Yhip
-categories:
+tags:
 - Agile
 - Back-End
 - Devops
 - JHipster
 date: 2017-05-05T13:35:00.000Z
 title: "Introduction to Continuous Integration with JHipster"
-id: 5a267e58dd54250018d6b646
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/05/Introduction-to-Continuous-Integration-with-JHipster-Blog.png
 ---
 

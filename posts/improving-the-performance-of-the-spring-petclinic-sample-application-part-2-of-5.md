@@ -1,7 +1,7 @@
 ---
 authors:
 - Julien Dubois
-categories:
+tags:
 - Dandelion
 - Performance
 - Spring
@@ -10,7 +10,6 @@ categories:
 - Yourkit
 date: 2013-03-12T11:00:11.000Z
 title: "Improving the performance of the Spring-Petclinic sample application (part 2 of 5)"
-id: 5a267e57dd54250018d6b5b7
 image: 
 ---
 

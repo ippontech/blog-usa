@@ -1,12 +1,11 @@
 ---
 authors:
 - Rachel Gaddis
-categories:
+tags:
 - blockchain
 - use cases
 date: 2017-11-06T18:36:33.000Z
 title: "When to Use Blockchain and When Not to - What We've Learned So Far"
-id: 5a267e58dd54250018d6b663
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/10/Blockchain-Use-Cases-blog-header.png
 ---
 

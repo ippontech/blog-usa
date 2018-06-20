@@ -1,7 +1,7 @@
 ---
 authors:
 - Julien Dubois
-categories:
+tags:
 - Performance
 - Spring
 - Spring-Petclinic
@@ -9,7 +9,6 @@ categories:
 - Yourkit
 date: 2013-03-13T11:00:09.000Z
 title: "Improving the performance of the Spring-Petclinic sample application (part 3 of 5)"
-id: 5a267e57dd54250018d6b5b8
 image: 
 ---
 

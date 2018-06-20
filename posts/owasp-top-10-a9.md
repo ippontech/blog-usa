@@ -1,13 +1,12 @@
 ---
 authors:
 - Philippe Cery
-categories:
+tags:
 - OWASP
 - Sécurité
 - Web
 date: 2014-01-28T09:00:35.000Z
 title: "OWASP Top 10 - A9 Using Components with Known Vulnerabilities"
-id: 5a267e57dd54250018d6b5c4
 image: 
 ---
 

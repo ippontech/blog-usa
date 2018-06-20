@@ -1,7 +1,7 @@
 ---
 authors:
 - Malcolm Thirus
-categories:
+tags:
 - Big Data
 - Apache Nifi
 - Data Streaming
@@ -9,7 +9,6 @@ categories:
 - Dataflow
 date: 2017-04-25T19:06:03.000Z
 title: "Basics of Apache Nifi: 1"
-id: 5a267e58dd54250018d6b64a
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/Nifi-Vlog-Slides-from-Olivia--4-.jpg
 ---
 

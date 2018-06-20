@@ -1,13 +1,12 @@
 ---
 authors:
 - Raphael Brugier
-categories:
+tags:
 - Big Data
 - Apache Spark
 - MongoDB
 date: 2017-05-03T10:20:00.000Z
 title: "MongoDB and Apache Spark - Getting started tutorial"
-id: 5a267e58dd54250018d6b645
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/MongoDB-and-Apache-Spark-Blog-2.png
 ---
 

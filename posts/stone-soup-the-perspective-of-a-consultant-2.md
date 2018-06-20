@@ -1,12 +1,11 @@
 ---
 authors:
 - Kenneth Hegeland
-categories:
+tags:
 - Culture
 - Consulting
 date: 2017-01-09T15:00:00.000Z
 title: "Stone Soup - The Perspective of a Consultant"
-id: 5a267e57dd54250018d6b632
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/stone_soup.png
 ---
 

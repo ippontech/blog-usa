@@ -1,7 +1,7 @@
 ---
 authors:
 - Steve Houël
-categories:
+tags:
 - Devops
 - Cloud
 - AWS
@@ -11,7 +11,6 @@ categories:
 - FaaS
 date: 
 title: "How to do Serverless"
-id: 5a267e58dd54250018d6b66f
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/12/te-le-chargement.png
 ---
 

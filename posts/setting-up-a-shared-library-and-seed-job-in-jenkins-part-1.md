@@ -1,11 +1,10 @@
 ---
 authors:
-- Kyle Crane
-categories:
+- null
+tags:
 - Jenkins
 date: 2018-05-28T20:37:08.000Z
 title: "Setting up a shared library and seed job in Jenkins - Part 1"
-id: 5b0c678b30671b00bfc58dd6
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/05/jenkins.png
 ---
 

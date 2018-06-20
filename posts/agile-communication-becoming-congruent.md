@@ -1,11 +1,10 @@
 ---
 authors:
 - Benjamin Scott
-categories:
+tags:
 - Agile
 date: 2015-04-09T06:25:27.000Z
 title: "Agile communication: becoming congruent"
-id: 5a267e57dd54250018d6b5e1
 image: http://blog.ippon.tech/content/images/2015/03/dessinEmpereur.png
 ---
 

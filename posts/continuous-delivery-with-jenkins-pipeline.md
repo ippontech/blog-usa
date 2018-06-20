@@ -1,11 +1,10 @@
 ---
 authors:
 - Aaron Throckmorton
-categories:
+tags:
 - Agile
 date: 2016-10-14T04:45:33.000Z
 title: "Continuous Delivery with Jenkins Pipeline"
-id: 5a267e57dd54250018d6b61c
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/jenkins-pipeline-1-1-1.png
 ---
 

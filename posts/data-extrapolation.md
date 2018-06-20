@@ -1,13 +1,12 @@
 ---
 authors:
 - Justin Risch
-categories:
+tags:
 - Big Data
 - Data Science
 - Fuzzy Logic
 date: 2017-06-08T19:56:37.000Z
 title: "Data Extrapolation: Learning From Your Big Data"
-id: 5a267e57dd54250018d6b63b
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/06/Data-Extrapolation-Blog.png
 ---
 

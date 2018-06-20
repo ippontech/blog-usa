@@ -1,11 +1,10 @@
 ---
 authors:
 - John Strickler
-categories:
+tags:
 - AngularJS
 date: 2017-07-12T15:28:30.000Z
 title: "Reactive Data Using Angular and RxJS"
-id: 5a267e58dd54250018d6b650
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/07/Reactive-Data-Using-Angular---RxJS-Blog--2-.png
 ---
 

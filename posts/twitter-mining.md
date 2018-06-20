@@ -1,10 +1,9 @@
 ---
 authors:
 - Justin Risch
-categories:
+tags:
 date: 2017-12-21T01:45:27.000Z
 title: "Twitter Mining: Winning By Design"
-id: 5a267e58dd54250018d6b666
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/11/twittermining.png
 ---
 

@@ -1,11 +1,9 @@
 ---
 authors:
 - Dennis Sharpe
-categories:
-- JHipster
+tags:
 date: 2015-03-06T15:33:09.000Z
 title: "JHipster Demo"
-id: 5a267e57dd54250018d6b5de
 image: 
 ---
 

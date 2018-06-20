@@ -1,10 +1,9 @@
 ---
 authors:
 - Justin Risch
-categories:
+tags:
 date: 2015-03-30T10:01:43.000Z
 title: "The Challenges of Integrating NoSQL with MDM."
-id: 5a267e57dd54250018d6b5e0
 image: 
 ---
 

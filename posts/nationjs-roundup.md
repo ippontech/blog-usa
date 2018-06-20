@@ -1,14 +1,13 @@
 ---
 authors:
 - Leigha Wilson
-categories:
+tags:
 - Conference
 - JavaScript
 - JHipster
 - Language
 date: 2015-11-24T17:08:15.000Z
 title: "NationJS Roundup"
-id: 5a267e57dd54250018d6b5f6
 image: 
 ---
 

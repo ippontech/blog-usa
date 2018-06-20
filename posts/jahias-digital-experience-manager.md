@@ -1,13 +1,12 @@
 ---
 authors:
 - Ford Hatfield
-categories:
+tags:
 - jahia
 - CMS
 - Digital
 date: 2017-03-20T21:16:00.000Z
 title: "Jahia's Digital Experience Manager"
-id: 5a267e57dd54250018d6b61a
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/Jahia-DXM-Blog--1-.png
 ---
 

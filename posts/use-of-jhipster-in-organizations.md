@@ -1,11 +1,10 @@
 ---
 authors:
 - Mallik Sambaraju
-categories:
+tags:
 - JHipster
 date: 2017-07-17T15:20:02.000Z
 title: "Use of JHipster in Organizations"
-id: 5a267e58dd54250018d6b652
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/07/Use-of-JHipster-in-Organizations-Blog.png
 ---
 

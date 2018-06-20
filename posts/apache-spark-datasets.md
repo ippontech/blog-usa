@@ -1,11 +1,10 @@
 ---
 authors:
 - Malcolm Thirus
-categories:
+tags:
 - Big Data
 date: 2016-06-15T11:19:40.000Z
 title: "Apache Spark Datasets"
-id: 5a267e57dd54250018d6b60e
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/BlogIMAGES-SparkAPIs-1.jpg
 ---
 

@@ -1,13 +1,12 @@
 ---
 authors:
 - Philippe Cery
-categories:
+tags:
 - OWASP
 - Sécurité
 - Web
 date: 2014-01-29T09:00:30.000Z
 title: "OWASP Top 10 - A10 Unvalidated Redirects and Forwards"
-id: 5a267e57dd54250018d6b5c5
 image: 
 ---
 

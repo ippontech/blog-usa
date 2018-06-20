@@ -1,12 +1,11 @@
 ---
 authors:
 - Laurent Mathieu
-categories:
+tags:
 - Docker
 - vagrant
 date: 2014-10-08T04:12:27.000Z
 title: "Docker & Vagrant Introductions"
-id: 5a267e57dd54250018d6b5d1
 image: 
 ---
 

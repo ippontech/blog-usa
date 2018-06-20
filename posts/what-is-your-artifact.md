@@ -1,12 +1,11 @@
 ---
 authors:
 - Josh Shipp
-categories:
+tags:
 - Agile
 - Cloud
 date: 2016-06-20T13:20:49.000Z
 title: "What is your artifact?"
-id: 5a267e57dd54250018d6b610
 image: 
 ---
 

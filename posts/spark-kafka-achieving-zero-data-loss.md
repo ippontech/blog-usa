@@ -1,11 +1,10 @@
 ---
 authors:
 - Alexis Seigneurin
-categories:
+tags:
 - Big Data
 date: 2016-05-12T11:04:24.000Z
 title: "Spark & Kafka - Achieving zero data-loss"
-id: 5a267e57dd54250018d6b60b
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/01/kafka.png
 ---
 

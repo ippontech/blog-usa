@@ -1,10 +1,9 @@
 ---
 authors:
 - Ahmed MSOUBER
-categories:
+tags:
 date: 2016-03-08T16:31:00.000Z
 title: "Data Meaningfulness and Usability: Does your data mean what it says?"
-id: 5a267e57dd54250018d6b62d
 image: 
 ---
 

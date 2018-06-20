@@ -1,11 +1,10 @@
 ---
 authors:
 - Alexis Seigneurin
-categories:
+tags:
 - Big Data
 date: 2016-04-06T11:53:40.000Z
 title: "Kafka, Spark and Avro - Part 3 of 3, Producing and consuming Avro messages"
-id: 5a267e57dd54250018d6b605
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/01/kafka-2.png
 ---
 

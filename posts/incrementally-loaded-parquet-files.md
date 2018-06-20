@@ -1,12 +1,11 @@
 ---
 authors:
 - Alexis Seigneurin
-categories:
+tags:
 - Apache Spark
 - Apache Parquet
 date: 2017-05-17T13:48:11.000Z
 title: "Incrementally loaded Parquet files"
-id: 5a267e58dd54250018d6b643
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/Incrementally-loaded-Parquet-files-Blog.png
 ---
 

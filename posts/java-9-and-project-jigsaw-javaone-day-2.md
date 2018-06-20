@@ -1,10 +1,9 @@
 ---
 authors:
 - Chris Anatalio
-categories:
+tags:
 date: 2015-10-27T20:33:00.000Z
 title: "Java 9 and Project Jigsaw - JavaOne Day 2"
-id: 5a267e57dd54250018d6b629
 image: 
 ---
 

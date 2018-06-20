@@ -1,12 +1,11 @@
 ---
 authors:
 - Julien Dubois
-categories:
+tags:
 - JHipster
 - api
 date: 2017-02-27T19:29:00.000Z
 title: "API management with JHipster"
-id: 5a267e58dd54250018d6b63e
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/API-Management-with-JHipster-Blog--2-.png
 ---
 

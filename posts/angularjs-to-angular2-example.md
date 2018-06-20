@@ -1,12 +1,11 @@
 ---
 authors:
 - Matt Ritter
-categories:
+tags:
 - AngularJS
 - Front-End
 date: 2017-07-20T16:29:00.000Z
 title: "AngularJS to Angular2(V4): A basic example"
-id: 5a267e58dd54250018d6b64c
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/07/AngularJS-to-Angular2-V4--Blog.png
 ---
 

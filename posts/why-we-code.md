@@ -1,11 +1,10 @@
 ---
 authors:
 - Justin Risch
-categories:
+tags:
 - Culture
 date: 2017-04-17T14:09:48.000Z
 title: "Why We Code"
-id: 5a267e57dd54250018d6b634
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/Why-We-Code-Blog--1-.png
 ---
 

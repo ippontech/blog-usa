@@ -1,10 +1,9 @@
 ---
 authors:
 - Romain Lheritier
-categories:
+tags:
 date: 2014-11-12T07:54:19.000Z
 title: "Creating a vibrant workspace with VCU Arts"
-id: 5a267e57dd54250018d6b5d6
 image: 
 ---
 

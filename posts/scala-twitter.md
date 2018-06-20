@@ -1,13 +1,12 @@
 ---
 authors:
 - Justin Risch
-categories:
+tags:
 - LifeAtIppon
 - Big Data
 - Scala
 date: 2017-03-08T20:06:55.000Z
 title: "Streaming With Scala: The Nuance of Real-Time Twitter Data"
-id: 5a267e58dd54250018d6b640
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/03/skynetbanner-1.png
 ---
 

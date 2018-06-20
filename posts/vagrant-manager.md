@@ -1,11 +1,10 @@
 ---
 authors:
 - Valentin Carmignac
-categories:
+tags:
 - vagrant
 date: 2016-02-08T10:48:59.000Z
 title: "Vagrant Manager"
-id: 5a267e57dd54250018d6b5f7
 image: 
 ---
 

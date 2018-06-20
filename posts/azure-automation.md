@@ -1,14 +1,13 @@
 ---
 authors:
 - Jake Henningsgaard
-categories:
+tags:
 - Azure
 - Azure Automation
 - Runbook
 - VSTS
 date: 2017-08-07T15:13:39.000Z
 title: "Azure Automation: Leveraging Runbooks"
-id: 5a267e58dd54250018d6b653
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/08/Azure-Automation--Leveraging-Runbooks-Blog--1-.png
 ---
 

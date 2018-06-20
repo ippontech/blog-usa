@@ -1,10 +1,9 @@
 ---
 authors:
 - Ford Hatfield
-categories:
+tags:
 date: 2016-09-30T17:20:18.000Z
 title: "Ippon: The Dark Horse at the Corporate Games"
-id: 5a267e57dd54250018d6b617
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/IMG_6104-1.jpg
 ---
 

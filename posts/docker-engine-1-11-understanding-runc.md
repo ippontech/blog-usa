@@ -1,11 +1,10 @@
 ---
 authors:
 - John Zaccone
-categories:
+tags:
 - Docker
 date: 2016-06-16T12:48:33.000Z
 title: "Docker Engine 1.11: Understanding Runc"
-id: 5a267e57dd54250018d6b60f
 image: 
 ---
 

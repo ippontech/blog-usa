@@ -1,12 +1,11 @@
 ---
 authors:
 - Jeannine Stark
-categories:
+tags:
 - Cloud
 - Language
 date: 2016-02-17T12:13:45.000Z
 title: "Using Apache Spark to do Basic Statistics"
-id: 5a267e57dd54250018d6b5f9
 image: 
 ---
 

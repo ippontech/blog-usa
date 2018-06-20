@@ -1,11 +1,10 @@
 ---
 authors:
 - Kile Niklawski
-categories:
+tags:
 - Digital
 date: 2017-06-01T20:14:49.000Z
 title: "Insure Your Digital Strategy with 2020 Vision"
-id: 5a267e58dd54250018d6b64d
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/06/Digital-Insurance-Sponsored-Content-Option-2.png
 ---
 

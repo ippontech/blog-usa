@@ -1,11 +1,10 @@
 ---
 authors:
 - Romain Lheritier
-categories:
+tags:
 - Big Data
 date: 2015-09-24T09:20:22.000Z
 title: "Big Data and Spring Core roundup from Spring One 2GX"
-id: 5a267e57dd54250018d6b5f3
 image: 
 ---
 

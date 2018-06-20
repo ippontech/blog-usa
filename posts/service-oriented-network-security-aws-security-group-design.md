@@ -1,7 +1,7 @@
 ---
 authors:
 - Josh Shipp
-categories:
+tags:
 - AWS
 - Network
 - Security
@@ -10,7 +10,6 @@ categories:
 - Cloud
 date: 2016-08-23T16:07:00.000Z
 title: "Service Oriented Network Security - AWS Security Group Design"
-id: 5a267e57dd54250018d6b614
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/Network-Security-1-1.jpg
 ---
 

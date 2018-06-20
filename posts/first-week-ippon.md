@@ -1,10 +1,9 @@
 ---
 authors:
 - Derek Zuk
-categories:
+tags:
 date: 2016-02-18T14:58:30.000Z
 title: "My First Week at Ippon"
-id: 5a267e57dd54250018d6b5fa
 image: 
 ---
 

@@ -1,11 +1,10 @@
 ---
 authors:
 - John Zaccone
-categories:
+tags:
 - Culture
 date: 2017-02-01T11:27:00.000Z
 title: "Thought Leadership at Ippon"
-id: 5a267e57dd54250018d6b60c
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/02/ThoughtLeadership.jpg
 ---
 

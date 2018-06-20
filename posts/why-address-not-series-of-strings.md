@@ -1,12 +1,11 @@
 ---
 authors:
 - Justin Risch
-categories:
+tags:
 - Data
 - Meaningfulness
 date: 2017-04-11T14:42:35.000Z
 title: "Why is an Address NOT a (series of) Strings?"
-id: 5a267e58dd54250018d6b641
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/Why-is-an-address-not-a--series-of--strings--Blog.png
 ---
 

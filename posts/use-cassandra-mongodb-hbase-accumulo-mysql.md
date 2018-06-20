@@ -1,11 +1,10 @@
 ---
 authors:
 - Jeannine Stark
-categories:
+tags:
 - Back-End
 date: 2016-03-08T12:06:42.000Z
 title: "When to use Cassandra, MongoDB, HBase, Accumulo and MySQL"
-id: 5a267e57dd54250018d6b5fd
 image: 
 ---
 

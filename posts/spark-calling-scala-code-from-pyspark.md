@@ -1,11 +1,10 @@
 ---
 authors:
 - Alexis Seigneurin
-categories:
+tags:
 - Big Data
 date: 2016-09-12T08:54:54.000Z
 title: "Spark - Calling Scala code from PySpark"
-id: 5a267e57dd54250018d6b616
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/01/spark-logo-1.png
 ---
 

@@ -1,11 +1,10 @@
 ---
 authors:
 - Benjamin Scott
-categories:
+tags:
 - Agile
 date: 2015-04-15T12:07:27.000Z
 title: "Stabilizing your velocity"
-id: 5a267e57dd54250018d6b5e2
 image: 
 ---
 

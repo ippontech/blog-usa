@@ -1,14 +1,13 @@
 ---
 authors:
 - Jake Henningsgaard
-categories:
+tags:
 - Agile
 - Culture
 - Git
 - Workflows
 date: 2016-12-16T16:59:00.000Z
 title: "On-boarding… a developer’s tale"
-id: 5a267e57dd54250018d6b624
 image: 
 ---
 

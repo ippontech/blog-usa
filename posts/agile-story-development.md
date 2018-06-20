@@ -1,12 +1,11 @@
 ---
 authors:
 - Benjamin Scott
-categories:
+tags:
 - Agile
 - software craftsmanship
 date: 2018-01-23T01:29:24.000Z
 title: "Agile Project Development"
-id: 5a267e58dd54250018d6b661
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/01/MVP-1.png
 ---
 

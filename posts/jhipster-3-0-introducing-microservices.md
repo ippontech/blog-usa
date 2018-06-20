@@ -1,13 +1,12 @@
 ---
 authors:
 - Kenneth Hegeland
-categories:
+tags:
 - Front-End
 - Back-End
 - JHipster
 date: 2016-03-17T17:18:51.000Z
 title: "JHipster 3.0: Introducing Microservices"
-id: 5a267e57dd54250018d6b601
 image: 
 ---
 

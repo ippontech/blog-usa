@@ -1,10 +1,9 @@
 ---
 authors:
 - Romain Lheritier
-categories:
+tags:
 date: 2014-05-07T12:27:23.000Z
 title: "Ippon Technologies is setting up shop in a 3,500-square-foot office in Shockoe Bottom"
-id: 5a267e57dd54250018d6b5cc
 image: 
 ---
 

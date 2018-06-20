@@ -1,12 +1,11 @@
 ---
 authors:
 - Randeep Walia
-categories:
+tags:
 - Scala
 - Functional programming
 date: 2018-06-11T14:43:47.000Z
 title: "Scala For the Arrogant"
-id: 5b1e85c86c084b00bf4420bd
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/scala-logo.png
 ---
 

@@ -1,13 +1,12 @@
 ---
 authors:
 - David Martin
-categories:
+tags:
 - hateoas
 - REST
 - web api
 date: 2014-05-19T10:48:48.000Z
 title: "Hypermedia API"
-id: 5a267e57dd54250018d6b5cd
 image: 
 ---
 

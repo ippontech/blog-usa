@@ -1,10 +1,9 @@
 ---
 authors:
 - Justin Risch
-categories:
+tags:
 date: 2016-03-03T10:39:52.000Z
 title: "The Ippon Formula: A Recipe for Innovation"
-id: 5a267e57dd54250018d6b5fc
 image: 
 ---
 

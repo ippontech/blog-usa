@@ -1,10 +1,9 @@
 ---
 authors:
 - Jeannine Stark
-categories:
+tags:
 date: 2017-10-27T23:45:52.000Z
 title: "What is Big Data?"
-id: 5a267e58dd54250018d6b65e
 image: 
 ---
 

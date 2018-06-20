@@ -1,13 +1,12 @@
 ---
 authors:
 - Colin Damon
-categories:
+tags:
 - Microservices
 - Architectures
 - Spring-Cloud
 date: 2018-06-17T15:16:15.000Z
 title: "Tackling complexity in the heart of Spring Cloud Feign errors"
-id: 5a267e58dd54250018d6b66d
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/spring-logo.png
 ---
 

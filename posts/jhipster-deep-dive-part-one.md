@@ -1,11 +1,10 @@
 ---
 authors:
 - Bruce Robinson
-categories:
+tags:
 - JHipster
 date: 2018-06-06T14:21:02.000Z
 title: "JHipster Deep Dive, Part One"
-id: 5b17e99179ec1900bfdb2b64
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/jhipster--1-.png
 ---
 

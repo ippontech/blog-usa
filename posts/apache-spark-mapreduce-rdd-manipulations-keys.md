@@ -1,10 +1,9 @@
 ---
 authors:
 - Alexis Seigneurin
-categories:
+tags:
 date: 2014-12-30T15:26:45.000Z
 title: "Apache Spark: MapReduce and RDD manipulations with keys"
-id: 5a267e57dd54250018d6b5d9
 image: 
 ---
 

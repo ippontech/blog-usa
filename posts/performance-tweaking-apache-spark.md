@@ -1,12 +1,11 @@
 ---
 authors:
 - Jeannine Stark
-categories:
+tags:
 - Data Streaming
 - Apache Spark
 date: 2017-06-26T15:38:07.000Z
 title: "Performance Tweaking Apache Spark"
-id: 5a267e58dd54250018d6b64e
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/06/Performance-Tweaking-Apache-Spark-Blog--1-.png
 ---
 

@@ -1,10 +1,9 @@
 ---
 authors:
 - Ford Hatfield
-categories:
+tags:
 date: 2016-07-25T14:00:24.000Z
 title: "You can be happier!"
-id: 5a267e57dd54250018d6b612
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/positivity-1-1-1.jpg
 ---
 

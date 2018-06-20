@@ -1,10 +1,9 @@
 ---
 authors:
 - Justin Risch
-categories:
+tags:
 date: 2015-01-14T13:15:53.000Z
 title: "Do you need Master Data Management?"
-id: 5a267e57dd54250018d6b5db
 image: 
 ---
 

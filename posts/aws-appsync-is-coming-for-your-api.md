@@ -1,13 +1,12 @@
 ---
 authors:
 - Gerard Gigliotti
-categories:
+tags:
 - AWS
 - GraphQL
 - JavaScript
 date: 2018-06-15T11:41:57.000Z
 title: "AWS AppSync is coming for your API"
-id: 5b23a0c917b6ea00bf75797a
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/appsync_hero.png
 ---
 

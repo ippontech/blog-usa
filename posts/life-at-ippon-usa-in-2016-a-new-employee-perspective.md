@@ -1,12 +1,11 @@
 ---
 authors:
 - Nicholas Peterson
-categories:
+tags:
 - Culture
 - LifeAtIppon
 date: 2017-01-04T21:12:00.000Z
 title: "Life at Ippon USA in 2016: A New Employee Perspective"
-id: 5a267e57dd54250018d6b630
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/01/FullSizeRender.jpg
 ---
 

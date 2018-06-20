@@ -1,13 +1,12 @@
 ---
 authors:
 - Aaron Throckmorton
-categories:
+tags:
 - Cloud
 - Devops
 - AWS
 date: 2017-03-22T09:19:00.000Z
 title: "Infrastructure as Code with CloudFormation"
-id: 5a267e57dd54250018d6b639
 image: https://s3.amazonaws.com/uploads.hipchat.com/113432/4463186/8OFPzOzq2TlVvxi/Infrastructure%20as%20Code%20Blog.png
 ---
 

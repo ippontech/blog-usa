@@ -1,11 +1,10 @@
 ---
 authors:
 - Laurent Mathieu
-categories:
+tags:
 - Java 8
 date: 2014-04-22T09:00:44.000Z
 title: "Java 8 - Time Management"
-id: 5a267e57dd54250018d6b5c8
 image: 
 ---
 

@@ -1,12 +1,11 @@
 ---
 authors:
 - Julien Dubois
-categories:
+tags:
 - Cassandra
 - JHipster
 date: 2015-04-22T11:00:11.000Z
 title: "Modeling data with Cassandra: what CQL hides away from you"
-id: 5a267e57dd54250018d6b5e6
 image: 
 ---
 

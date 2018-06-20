@@ -1,13 +1,12 @@
 ---
 authors:
 - Philippe Cery
-categories:
+tags:
 - OWASP
 - Sécurité
 - Web
 date: 2013-12-09T08:45:08.000Z
 title: "OWASP Top 10 - A7 Missing Function Level Access Control"
-id: 5a267e57dd54250018d6b5c2
 image: 
 ---
 

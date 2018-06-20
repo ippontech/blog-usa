@@ -1,10 +1,9 @@
 ---
 authors:
 - Kenneth Hegeland
-categories:
+tags:
 date: 2015-11-10T11:10:00.000Z
 title: "Vagrant and Ansible for new developer on-boarding"
-id: 5a267e57dd54250018d6b62a
 image: 
 ---
 

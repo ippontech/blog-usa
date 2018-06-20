@@ -1,12 +1,11 @@
 ---
 authors:
 - Malcolm Thirus
-categories:
+tags:
 - JHipster
 - Cloud
 date: 2017-07-06T18:04:33.000Z
 title: "Get Your Head in the Clouds"
-id: 5a267e58dd54250018d6b64b
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/06/Get-Your-Head-in-the-Clouds-Blog--1-.png
 ---
 

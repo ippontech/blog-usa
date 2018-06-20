@@ -1,12 +1,11 @@
 ---
 authors:
 - Alexis Seigneurin
-categories:
+tags:
 - Apache Spark
 - Apache Kafka
 date: 2017-02-21T17:05:53.000Z
 title: "Spark Summit East 2017 - A summary"
-id: 5a267e58dd54250018d6b63c
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/02/Screen-Shot-2017-02-16-at-8.13.49-PM.png
 ---
 
