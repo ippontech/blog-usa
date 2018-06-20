@@ -14,7 +14,7 @@ title: "How to do Serverless"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/12/te-le-chargement.png
 ---
 
-The previous article (Serverless architectures)[] contained a definition and the promise that Serverless architectures could offer. In this article we will see concretely what technologies are available today to develop the serverless architecture of tomorrow.
+The previous article (Serverless architectures)[https://blog.ippon.tech/serverless-architectures/] contained a definition and the promise that Serverless architectures could offer. In this article we will see concretely what technologies are available today to develop the serverless architecture of tomorrow.
 
 # FaaS, What else !
 Previously we have seen what FaaS is all about. But let's dig a little deeper into this. I was inspired by Mike Roberts' blog article, which seems very clear to me and which correctly treats each of the layers of FaaS. But first let's go back to the official AWS definition of the AWS Lambda product and then let's look at each concept one by one.
