@@ -14,24 +14,24 @@ This post is a summary of that event, and will be updated as we gather more cont
 
 <iframe width="854" height="480" src="https://www.youtube.com/embed/eizpfXDJJf8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-## Speakers slides
+# Speakers slides
 
-- [JHipster Conf Keynote](https://www.slideshare.net/julien.dubois/jhipster-conf-2018-keynote) by [Julien Dubois](https://twitter.com/juliendubois) and [Deepu K Sasidharan](https://twitter.com/deepu105)
+- [JHipster Conf Keynote](https://www.slideshare.net/julien.dubois/jhipster-conf-2018-keynote) by [Julien Dubois](https://twitter.com/juliendubois) and [Deepu K Sasidharan](https://twitter.com/deepu105).
 - [Why Heroku loves JHipster](https://www.slideshare.net/jkutner/why-heroku-loves-jhipster) by [Joe Kutner](https://twitter.com/codefinger).
-- [Add SSO to Your JHipster Apps with OIDC](https://www.slideshare.net/mraible/add-sso-to-your-jhipster-apps-with-oidc-jhipsterconf-2018) by [Matt Raible](https://twitter.com/mraible)
-- [Custom and Generated Code Side by Side with JHipster](https://www.slideshare.net/agoncal/custom-and-generated-code-side-by-side-with-jhipster) by [Antonio Goncalves](https://twitter.com/agoncal)
+- [Add SSO to Your JHipster Apps with OIDC](https://www.slideshare.net/mraible/add-sso-to-your-jhipster-apps-with-oidc-jhipsterconf-2018) by [Matt Raible](https://twitter.com/mraible).
+- [Custom and Generated Code Side by Side with JHipster](https://www.slideshare.net/agoncal/custom-and-generated-code-side-by-side-with-jhipster) by [Antonio Goncalves](https://twitter.com/agoncal).
 
-## Quiz
+# Quiz
 
-Between each session we had a quiz with speakers, here are all the questions! Answers are on the last page.
+Between each session, we had a quiz with speakers. Here are all the questions! Answers are on the last page.
 
 [JHipster Conf 2018 Quiz](https://www.slideshare.net/julien.dubois/jhipster-conf-2018-quiz) by [Julien Dubois](https://twitter.com/juliendubois).
 
-## Photos
+# Photos
 
-[Here is the photo album of the conference](https://www.dropbox.com/sh/0iid26wjgldg2bw/AAB-yenMW-TnFiIyadJDP-8la?dl=0)
+[Here is the photo album of the conference](https://www.dropbox.com/sh/0iid26wjgldg2bw/AAB-yenMW-TnFiIyadJDP-8la?dl=0).
 
-## Thanks to our sponsors
+# Thanks to our sponsors
 
 All this wouldn't have been possible without our awesome sponsors: [Ippon Technologies](https://en.ippon.tech/), [XebiaLabs](https://xebialabs.com/), [JFrog](https://jfrog.com/), [Heroku](https://www.heroku.com/home) and [LinkedIn](https://www.linkedin.com/).
 
