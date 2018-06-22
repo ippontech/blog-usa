@@ -9,7 +9,7 @@ tags:
 - Azure
 - Serverless
 - FaaS
-date: 
+date: 2018-06-20T20:00:06.000Z
 title: "Going Serverless"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/12/te-le-chargement.png
 ---

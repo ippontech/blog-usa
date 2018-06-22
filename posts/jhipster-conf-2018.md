@@ -3,9 +3,9 @@ authors:
 - Julien Dubois
 tags:
 - JHipster
-date: 2018-06-22T00:00:00.000Z
+date: 2018-06-22T18:56:37.000Z
 title: "JHipster Conf 2018 summary"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/jhispter-conf-2018.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/jhispter-conf-2018-1.png
 ---
 
 On June, 21st 2018 took place the first ever [JHipster Conf](https://jhipster-conf.github.io/)! With 200 attendees, international speakers, and nearly the whole [JHipster core dev team](https://www.jhipster.tech/team/) united for the first time ever, that was an impressive and very enjoyable event.
