@@ -193,4 +193,4 @@ To celebrate this new release, the first [JHipster conference](https://blog.ippo
 
 If you are new to JHipster, now is a perfect time to start using it. Join the community, help contribute by following [the guide](https://github.com/jhipster/generator-jhipster/blob/master/CONTRIBUTING.md), 
 
-Ippon is proud to use and support JHipster to offer quick, quality solutions to our clients. If you need help getting started with JHipster or migrate to the new latest version, please [reach out to us](https://en.ippon.tech/contact/)!
+Ippon is proud to use and support JHipster to offer quick, quality solutions to our clients. If you need help getting started with JHipster or migrate to the new latest version, please [reach out to us](https://blog.ippon.tech/contact/)!
