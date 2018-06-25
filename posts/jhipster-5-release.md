@@ -15,7 +15,7 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/0
 
 JHipster 5 has just been released, and we thought it would be nice to write a post compiling all the new features. Throughout this post, we will be linking to the official docs, which provide some more detailed explanations of how to use these new features.
 
-If you area veteran JHipster developer, then you will benefit greatly in two possible ways. As always with JHipster, if you know the technology stack, then you are able to very quickly set up a project and begin delivering business value. It is not surprising this also occurs when generating a React application. Second is another great JHipster benefit, you can quickly learn things that JHipster provides, that may be new to you. If you are new to JHipster, then you will get to see an _opinionated_ approach to React.
+If you are a veteran JHipster developer, then you will benefit greatly in two possible ways. As always with JHipster, if you know the technology stack, then you are able to very quickly set up a project and begin delivering business value. It is not surprising this also occurs when generating a React application. Second is another great JHipster benefit, you can quickly learn things that JHipster provides, that may be new to you. If you are new to JHipster, then you will get to see an _opinionated_ approach to React.
 
 If you are entirely unfamiliar with JHipster, we still have good news! Learning JHipster + the various technologies is a great way to quickly become a strong developer. As this post is meant to be about the latest and greatest in JHipster, we will not dive into basic JHipster use, instead, we will point you towards a post by Bruce: [JHipster Deep Dive](https://blog.ippon.tech/jhipster-deep-dive-part-one/).
 
@@ -79,7 +79,7 @@ Among the new cool features, we can list:
 
 With the upgrade to Spring boot 2, JHipster also brings the latest Spring Cloud release train support: Finchley
 
-The Spring Cloud projects are the cornerstone of the JHipster microservices architecture. The Finchley release upgrades all the Spring- Cloud projects to the latest and introduces new components. The JHipster team has migrated all the dependencies following this new release train and has fixed the regressions for you.
+The Spring Cloud projects are the cornerstone of the JHipster microservices architecture. The Finchley release upgrades all the Spring Cloud projects to the latest and introduces new components. The JHipster team has migrated all the dependencies following this new release train and has fixed the regressions for you.
 
 ### Kotlin support
 
@@ -97,10 +97,10 @@ One of the biggest change introduced by Spring 5 and Spring Boot 2 is the reacti
 
 
 ### Micrometer 
-Micrometer is the new metrics library provided by Spring-cloud. It aims to be a facade for all the metrics backend and to replaces the dropwizwards-metrics library. Because Dropwizard is already deeply integrated with JHipster, the team has decided to exclude micrometer from this version until they can provide a better support. You can follow the [issue on GitHub](https://github.com/jhipster/generator-jhipster/issues/7100).
+Micrometer is the new metrics library provided by Spring Cloud. It aims to be a facade for all the metrics backend and to replaces the dropwizwards-metrics library. Because Dropwizard is already deeply integrated with JHipster, the team has decided to exclude micrometer from this version until they can provide a better support. You can follow the [issue on GitHub](https://github.com/jhipster/generator-jhipster/issues/7100).
 
 ### Spring Cloud Components
-Not all the new components from Spring Cloud have been integrated (Spring-cloud-vault, Sleuth) and the team is still debating to use or not the newest Spring Cloud Gateway as the new foundation for the JHipster gateway.
+Not all the new components from Spring Cloud have been integrated (Spring Cloud Vault, Sleuth) and the team is still debating to use or not the newest Spring Cloud Gateway as the new foundation for the JHipster gateway.
 
 # Miscellaneous changes
 
@@ -116,8 +116,8 @@ JHipster already had several cloud deployment options, but for this version, the
 
 There are now 2 options to deploy on AWS:
 
-- `aws` for Beanstalk- JHipster creates a new Beanstalk environment and generates all the deployment configuration
-- `aws-containers` for Fargate - JHipster creates a new Fargate cluster for you on AWS and publishes a docker image to the registry. With this generator, it’s easy to get started on deploying an application on docker cluster.
+- `aws` for Beanstalk - JHipster creates a new Beanstalk environment and generates all the deployment configuration
+- `aws-containers` for Fargate - JHipster creates a new Fargate cluster for you on AWS and publishes a Docker image to the registry. With this generator, it’s easy to get started on deploying an application on Docker cluster.
 
 In order to configure AWS, JHipster needs to have the AWS credentials configured (but you don’t necessarily need the AWS CLI installed). This is described in the official [JHipster AWS](https://www.jhipster.tech/aws/) documentation.
 
@@ -180,7 +180,7 @@ entity F
 microservice E with mySecondApp
 ```
 
-After running `import-jdl` on this file, you will be informed to manually run JHipster on the corresponding folders it creates. Navigate to each directory, and run the `jhpster`. This will create the application as specified in the JDL file, and once completed, commit with git.
+After running `import-jdl` on this file, you will be informed to manually run JHipster on the corresponding folders it creates. Navigate to each directory, and run the `jhipster` command. This will create the application as specified in the JDL file, and once completed, commit with git.
 
 See [the JDL documentation](https://www.jhipster.tech/jdl/) for more about JDL.
 
@@ -193,4 +193,4 @@ To celebrate this new release, the first [JHipster conference](https://blog.ippo
 
 If you are new to JHipster, now is a perfect time to start using it. Join the community, help contribute by following [the guide](https://github.com/jhipster/generator-jhipster/blob/master/CONTRIBUTING.md), 
 
-Ippon is proud to use and support JHipster to offer quick, quality solutions to our clients. If you need help getting started with JHipster or migrate to the new latest version, please [reach out to us](https://blog.ippon.tech/contact/)!
+Ippon is proud to use and support JHipster to offer quick, quality solutions to his clients. If you need help getting started with JHipster or migrate to the new latest version, please [reach out to us](https://blog.ippon.tech/contact/)!
