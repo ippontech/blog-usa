@@ -16,7 +16,7 @@ This post is a summary of that event, and will be updated as we gather more cont
 
 # Speakers slides
 
-- [JHipster Conf Keynote](https://www.slideshare.net/julien.dubois/jhipster-conf-2018-keynote) by [Julien Dubois](https://twitter.com/juliendubois) and [Deepu K Sasidharan](https://twitter.com/deepu105)
+- [JHipster Conf Keynote](https://www.slideshare.net/julien.dubois/jhipster-conf-2018-keynote) by [Julien Dubois](https://twitter.com/juliendubois) and [Deepu K Sasidharan](https://twitter.com/deepu105).
 - [Why Heroku loves JHipster](https://www.slideshare.net/jkutner/why-heroku-loves-jhipster) by [Joe Kutner](https://twitter.com/codefinger).
 - [Add SSO to Your JHipster Apps with OIDC](https://www.slideshare.net/mraible/add-sso-to-your-jhipster-apps-with-oidc-jhipsterconf-2018) by [Matt Raible](https://twitter.com/mraible).
 - [Monitoring JHipster applications with the JHipster Console](https://pierrebesson.github.io/jhipsterconf-2018-monitoring-slides/#/) by [Pierre Besson](https://twitter.com/pibesson).
