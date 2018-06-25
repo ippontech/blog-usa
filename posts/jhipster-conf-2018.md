@@ -19,7 +19,11 @@ This post is a summary of that event, and will be updated as we gather more cont
 - [JHipster Conf Keynote](https://www.slideshare.net/julien.dubois/jhipster-conf-2018-keynote) by [Julien Dubois](https://twitter.com/juliendubois) and [Deepu K Sasidharan](https://twitter.com/deepu105)
 - [Why Heroku loves JHipster](https://www.slideshare.net/jkutner/why-heroku-loves-jhipster) by [Joe Kutner](https://twitter.com/codefinger).
 - [Add SSO to Your JHipster Apps with OIDC](https://www.slideshare.net/mraible/add-sso-to-your-jhipster-apps-with-oidc-jhipsterconf-2018) by [Matt Raible](https://twitter.com/mraible)
+- [Monitoring JHipster applications with the JHipster Console](https://pierrebesson.github.io/jhipsterconf-2018-monitoring-slides/#/) by [Pierre Besson](https://twitter.com/pibesson)
 - [Custom and Generated Code Side by Side with JHipster](https://www.slideshare.net/agoncal/custom-and-generated-code-side-by-side-with-jhipster) by [Antonio Goncalves](https://twitter.com/agoncal)
+- [Improving JHipster + Angular with Lazy Loading and Webpack](https://www.slideshare.net/WilliamMarq/angular-jhipster-jhipster-conf) by [William Marques](https://twitter.com/wylmarq)
+- [Creating and managing your application with the JDL](https://github.com/MathieuAA/jhconf/blob/master/JDL.pdf) by Mathieu Abou-Aichi
+- [DevOps with JHipster: Continuous Integration and Delivery](https://pascalgrimaud.github.io/jhipster-conf-2018/#/) by [Pascal Grimaud](https://twitter.com/pascalgrimaud)
 
 ## Quiz
 
