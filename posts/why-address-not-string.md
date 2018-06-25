@@ -14,7 +14,7 @@ image:
 ---
 
 <h3> Applying the concepts of Data Meaningfulness and Usefulness.</h3>
-One example given in the article [Data Usability by Susannah Darling](https://blog.ippon.tech/blog/data-meaningfulness-and-usability-does-your-data-mean-what-it-says/) was that addresses should be stored as two Doubles representing a physical location (coordinates) rather than a String; let’s explore that further together.
+One example given in the article [Data Usability by Susannah Darling](https://blog.ippon.tech/data-meaningfulness-and-usability-does-your-data-mean-what-it-says/) was that addresses should be stored as two Doubles representing a physical location (coordinates) rather than a String; let’s explore that further together.
 
 ### <span style="font-weight: 400">Comparing Strings: </span>**Why not to do this.**
 

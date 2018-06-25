@@ -8,7 +8,7 @@ title: "Vagrant Manager"
 image: 
 ---
 
-Following [Kate’s article](https://blog.ippon.tech/blog/vagrant-and-ansible-for-new-developer-on-boarding/) about Vagrant, I would like to introduce a new piece of software that has proven useful: [Vagrant Manager](http://vagrantmanager.com/)!
+Following [Kate’s article](https://blog.ippon.tech/vagrant-and-ansible-for-new-developer-on-boarding/) about Vagrant, I would like to introduce a new piece of software that has proven useful: [Vagrant Manager](http://vagrantmanager.com/)!
 
 Developed by Lanayo Technologies, this tool provides a well-thought-out user interface for Windows and MacOS to manage all the vagrant machines on your computer (hopefully a Linux version will be developed too). A menu which you can open via your OS toolbar allows you to:
 

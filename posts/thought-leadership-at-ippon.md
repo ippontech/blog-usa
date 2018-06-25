@@ -24,7 +24,7 @@ Huddled around desks for the JHipster coding dojo.
 
 ### Blog Posts
 
-Though we do have the occasional culture article (AHEM), we actually fill our blog with lots of helpful technical tutorials. I personally found this one useful - a three part series on using [Apache Spark, Avro and Kafka](https://blog.ippon.tech/blog/kafka-spark-and-avro-part-1-kafka-101/). Or learn about the latest version of [JHipster which introduces microservices](https://blog.ippon.tech/blog/jhipster-3-0-introducing-microservices/).
+Though we do have the occasional culture article (AHEM), we actually fill our blog with lots of helpful technical tutorials. I personally found this one useful - a three part series on using [Apache Spark, Avro and Kafka](https://blog.ippon.tech/kafka-spark-and-avro-part-1-kafka-101/). Or learn about the latest version of [JHipster which introduces microservices](https://blog.ippon.tech/jhipster-3-0-introducing-microservices/).
 
 Almost all of our employees contribute to the blog. And we actually have a little competition going on between teams to see who can write the blog post with the most views. After writing about a topic, our engineers include their publications on their resumes to highlight their expertise.
 

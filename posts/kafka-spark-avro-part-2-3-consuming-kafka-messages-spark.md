@@ -10,9 +10,9 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/0
 
 This post is the second post in a series in which we will learn how to send messages in the Avro format into Kafka so that they can be consumed by Spark Streaming. As a reminder there will be 3 posts:
 
-- [Kafka 101: producing and consuming plain-text messages with standard Java code](https://blog.ippon.tech/blog/kafka-spark-and-avro-part-1-kafka-101/)
-- [Kafka + Spark: consuming plain-text messages from Kafka with Spark Streaming](https://blog.ippon.tech/blog/kafka-spark-avro-part-2-3-consuming-kafka-messages-spark/)
-- [Kafka + Spark + Avro: same as 2. with Avro-encoded messages](https://blog.ippon.tech/blog/kafka-spark-and-avro-part-3-producing-and-consuming-avro-messages/)
+- [Kafka 101: producing and consuming plain-text messages with standard Java code](https://blog.ippon.tech/kafka-spark-and-avro-part-1-kafka-101/)
+- [Kafka + Spark: consuming plain-text messages from Kafka with Spark Streaming](https://blog.ippon.tech/kafka-spark-avro-part-2-3-consuming-kafka-messages-spark/)
+- [Kafka + Spark + Avro: same as 2. with Avro-encoded messages](https://blog.ippon.tech/kafka-spark-and-avro-part-3-producing-and-consuming-avro-messages/)
 
 In this post, we will reuse the Java producer we created in the first post to send messages into Kafka. This time, however, we will consume the messages with Spark.
 
