@@ -3,7 +3,7 @@ authors:
 - Olivia Deputy
 tags:
 - JHipster
-- api
+- API
 - Microservices
 - CI/CD
 date: 2017-04-24T17:10:09.000Z

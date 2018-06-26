@@ -11,7 +11,7 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/0
 
 On January 19th, version 1.13 of Docker was released! As with every minor version (for Docker because it is not so minimal), it brings a lot of fixes and improvements but also some nice new features. Let’s take a look.
 
-### Unification and improvement of the CLI
+# Unification and improvement of the CLI
 Previously to display the containers list, you had to type `docker ps`, `docker images` for the images, or `docker volume is` for the volumes.
 
 It was time to harmonize all that!
@@ -35,7 +35,7 @@ Now, using the `docker system prune` command, you can delete all unused objects.
 
 And voilà, a clean machine!
 
-### Introduction of the “stacks” notion
+# Introduction of the “stacks” notion
 When you need to start multiple containers with a list of parameters often several miles long, you use Docker Compose. To launch containers on a cluster of machines, you use Docker Swarm, but the long list of parameters remained.
 
 With this latest version, you can now use your docker-compose.yml files to deploy your containers on a Swarm cluster. This is the new power of Stack!
@@ -47,7 +47,7 @@ For those who had tested the stacks in an "experimental" version, it was necessa
 
 Note that the syntax of the file is equivalent. When you switch to version 3, it allows you to use new functionalities. You can specify, as in the previous case, instructions for deploying with Swarm, the number of replicas and policy updates, or rules on the machines used to deploy our instances. You can then deploy your stack on the Swarm cluster using the `docker stack deploy -compose-file stack.ym` command. Easy!
 
-### The newcomers
+# The newcomers
 This version of Docker further improves the support of Docker on Windows. Swarm in particular is completely supported.
 
 But that's not all! "Docker for AWS" and "Docker for Azure" are no longer in beta!

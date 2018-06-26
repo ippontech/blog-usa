@@ -2,7 +2,7 @@
 authors:
 - John Zaccone
 tags:
-- api
+- API
 date: 2017-01-03T20:51:00.000Z
 title: "GraphQL for the Win"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/graphql-1.png

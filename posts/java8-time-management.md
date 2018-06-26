@@ -2,7 +2,7 @@
 authors:
 - Laurent Mathieu
 tags:
-- Java 8
+- Java
 date: 2014-04-22T09:00:44.000Z
 title: "Java 8 - Time Management"
 image: 

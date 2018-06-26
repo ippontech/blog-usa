@@ -3,7 +3,7 @@ authors:
 - Julien Dubois
 tags:
 - JHipster
-- api
+- API
 date: 2017-02-27T19:29:00.000Z
 title: "API management with JHipster"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/API-Management-with-JHipster-Blog--2-.png

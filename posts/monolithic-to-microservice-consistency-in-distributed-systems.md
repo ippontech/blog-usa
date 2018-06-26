@@ -3,9 +3,6 @@ authors:
 - Randeep Walia
 tags:
 - Microservices
-- monolithic
-- eventual consistency
-- cap theory
 date: 2017-08-11T14:48:51.000Z
 title: "Monolithic to Microservice: Consistency in Distributed Systems"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/07/Monolithic-to-Microservice-Blog.png

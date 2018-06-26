@@ -4,7 +4,7 @@ authors:
 tags:
 - hateoas
 - REST
-- web api
+- API
 date: 2014-05-19T10:48:48.000Z
 title: "Hypermedia API"
 image: 
