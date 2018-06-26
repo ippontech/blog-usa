@@ -1,13 +1,13 @@
 ---
 authors:
-    - Kenneth Hegeland
-    - Theo Lebrun
-    - Raphael Brugier
+- Kenneth Hegeland
+- Theo Lebrun
+- Raphael Brugier
 tags:
-    - JHipster
-    - Spring-Boot
-    - React
-    - Angular 
+- JHipster
+- Spring
+- React
+- Angular
 date: 2018-06-23T15:43:55.000Z
 title: "Brace yourself, JHipster 5 is out!"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/JHipster-5-banner.png
@@ -25,7 +25,7 @@ With this new release, we think that beginners and experts alike will be excited
 
 ## React support
 
-Frontend technologies move fast, and it’s at times difficult to keep up with what is currently the most popular framework. Largely, in the past, Angular has dominated as one of the most popular front-end frameworks, but recently, popularity has been shifting towards React. As of this writing, React has 97,250 stars on GitHub, and Angular has 36,800 stars - while this isn’t proof, it does show that popularity is changing a bit, so it may become important as a developer to learn both technologies. Personally, I find that JHipster is an amazing learning tool, as well as speeding professional development speed, so whether you are new to React, or a veteran, you will find this feature useful. 
+Frontend technologies move fast, and it’s at times difficult to keep up with what is currently the most popular framework. Largely, in the past, Angular has dominated as one of the most popular front-end frameworks, but recently, popularity has been shifting towards React. As of this writing, React has 97,250 stars on GitHub, and Angular has 36,800 stars - while this isn’t proof, it does show that popularity is changing a bit, so it may become important as a developer to learn both technologies. Personally, I find that JHipster is an amazing learning tool, as well as speeding professional development speed, so whether you are new to React, or a veteran, you will find this feature useful.
 
 If you fall into the former camp (new to React), well then familiarity with JHipster will greatly decrease the time it takes to learn React. JHipster for Angular already taught us how to structure the application, how API calls are made, authentication is handled, etc. So now with a JHipster React app, we have a perfect guideline for learning. We can now quickly catch up on React, based on our existing knowledge of JHipster and Angular.
 
@@ -46,7 +46,7 @@ Here is a detailed list of all the changes related to Angular:
 - The folder structure of entities has been improved, especially for microservices as now they are grouped by services. You can use a new flag `--skip-ui-grouping` to retain the old behavior
 - The entity screen is not using popups anymore for creation/edition
 
-[![jhipster5-entity-screen](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/jhipster5-entity-screen.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/jhipster5-entity-screen.png)
+![jhipster5-entity-screen](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/jhipster5-entity-screen.png)
 
 
 ## Misc:
@@ -101,7 +101,7 @@ JHipster being opinionated about the Microservice architecture and the best prac
 One of the biggest change introduced by Spring 5 and Spring Boot 2 is the reactive programming support with spring-webflux. Unfortunately, the JHispter team found it to be difficult to integrate with the frontend for limited benefits. They have decided to not use Spring Web Flux for now. Ippon and the JHipster team has run an extensive benchmark of Spring Web Flux and you can read all the details in [this article](https://blog.ippon.tech/spring-5-webflux-performance-tests/).
 
 
-### Micrometer 
+### Micrometer
 Micrometer is the new metrics library provided by Spring Cloud. It aims to be a facade for all the metrics backend and to replaces the dropwizwards-metrics library. Because Dropwizard is already deeply integrated with JHipster, the team has decided to exclude micrometer from this version until they can provide a better support. You can follow the [issue on GitHub](https://github.com/jhipster/generator-jhipster/issues/7100).
 
 ### Spring Cloud Components
@@ -130,7 +130,7 @@ In order to configure AWS, JHipster needs to have the AWS credentials configured
 
 To use the `aws` generator, run the command `jhipster aws` and you will be prompted with the following questions:
 
-[![jhipster5-entity-screen](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/jhipster-5-console-aws.png)](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/jhipster-5-console-aws.png)
+![jhipster5-entity-screen](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/jhipster-5-console-aws.png)
 
 
 Please note that this generator is still very new and only limited to monolithic applications at the moment.
@@ -209,6 +209,6 @@ With this new version, the JHipster team proves again they follow the cutting ed
 
 To celebrate this new release, the first [JHipster conference](https://blog.ippon.tech/jhipster-conf-2018) was held in Paris last week and the videos will be published soon.
 
-If you are new to JHipster, now is a perfect time to start using it. Join the community, help contribute by following [the guide](https://github.com/jhipster/generator-jhipster/blob/master/CONTRIBUTING.md), 
+If you are new to JHipster, now is a perfect time to start using it. Join the community, help contribute by following [the guide](https://github.com/jhipster/generator-jhipster/blob/master/CONTRIBUTING.md),
 
 Ippon is proud to use and support JHipster to offer quick, quality solutions to his clients. If you need help getting started with JHipster or migrate to the new latest version, please [reach out to us](https://blog.ippon.tech/contact/)!
