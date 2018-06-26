@@ -3,11 +3,7 @@ authors:
 - Justin Risch
 tags:
 - Data
-- java
-- Meaningfulness
-- Performance
-- Usefulness
-- Back-End
+- Java
 date: 2016-03-10T14:00:19.000Z
 title: "Why is an Address NOT a String?"
 image: 

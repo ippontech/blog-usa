@@ -3,7 +3,7 @@ authors:
 - Philippe Cery
 tags:
 - OWASP
-- Sécurité
+- Security
 - Web
 date: 2013-10-28T08:57:07.000Z
 title: "OWASP Top 10 - A3 Cross Site Scripting (XSS)"

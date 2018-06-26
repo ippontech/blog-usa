@@ -3,7 +3,7 @@ authors:
 - Rachel Gaddis
 tags:
 - JHipster
-- java
+- Java
 - application
 date: 2017-11-22T11:46:00.000Z
 title: "Tinkering for Non-Developers Part 2: Creating an Application"

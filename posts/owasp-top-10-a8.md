@@ -3,7 +3,7 @@ authors:
 - Philippe Cery
 tags:
 - OWASP
-- Sécurité
+- Security
 - Web
 date: 2014-01-14T09:00:55.000Z
 title: "OWASP Top 10 - A8 Cross-Site Request Forgery (CSRF)"

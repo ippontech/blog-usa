@@ -3,7 +3,7 @@ authors:
 - Philippe Cery
 tags:
 - OWASP
-- Sécurité
+- Security
 - Web
 date: 2013-10-21T08:56:26.000Z
 title: "OWASP Top 10 - A2 Broken Authentication and Session Management"

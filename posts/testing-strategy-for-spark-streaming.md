@@ -2,7 +2,7 @@
 authors:
 - Raphael Brugier
 tags:
-- spark
+- Apache Spark
 - streaming
 - test
 - Big Data

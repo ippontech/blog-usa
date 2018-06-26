@@ -3,7 +3,7 @@ authors:
 - Philippe Cery
 tags:
 - OWASP
-- Sécurité
+- Security
 - Web
 date: 2013-11-14T08:50:44.000Z
 title: "OWASP Top 10 - A5 Security Misconfiguration"

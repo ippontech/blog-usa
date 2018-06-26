@@ -3,7 +3,7 @@ authors:
 - Philippe Cery
 tags:
 - OWASP
-- Sécurité
+- Security
 - Web
 date: 2013-11-18T08:50:12.000Z
 title: "OWASP Top 10 - A6 Sensitive Data Exposure"

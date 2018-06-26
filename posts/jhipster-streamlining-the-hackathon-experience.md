@@ -3,10 +3,8 @@ authors:
 - Ahmed MSOUBER
 tags:
 - Angular
-- angular.js
 - hackathon
-- hackathons
-- java
+- Java
 - JHipster
 - Security
 - Spring
