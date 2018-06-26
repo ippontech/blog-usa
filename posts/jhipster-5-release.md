@@ -53,7 +53,9 @@ Here is a detailed list of all the changes related to Angular:
 
 Here the miscellaneous changes:
 - Both Angular and React now uses Prettier to format code
-- Migration from PhantomJS to Jest as PhantomJS is not developed anymore. The frontend tests are now using the Headless Chromium browser provided by Puppeteer
+- Migrated from PhantomJS to Jest, as PhantomJS is not developed anymore. Jest uses a virtual DOM and completely replaces the headless browser provided by PhanthomJS (and more recently Puppeteer).
+- Moment.js, the awesome dates and times library for Javascript is now the default to manipulates the dates in the frontend
+- Migration to Font Awesome V5. This font is still awesome, but the migration to the newest major version was as [a lot](https://fontawesome.com/how-to-use/on-the-web/setup/upgrading-from-version-4).
 
 
 # Backend changes
@@ -67,12 +69,15 @@ The JHipster team has put a lot of effort to upgrade the generated java classes 
 
 Among the new cool features, we can list:
 
-- Java 8 is the baseline and Java 9 is supported
-- Spring web MVC is now an optional dependency
+- Java 8 is officially supported and Java 9 should work seamlessly
+- Spring-boot-starter-webflux is optional
 - Gradle plugin has been rewritten
-- HTTP/2 for Tomcat, Undertow and Jetty
+- HTTP/2 for Undertow
 - Security is auto-configured by Spring-Boot auto-configure (unless JHipster overrides it)
 - new Actuators endpoints
+-- The /info endpoint now displays the git commit from which the application was built
+- OAuth2 support has been improved a lot
+- Memcached support
 
 
 ### Spring Cloud
@@ -83,7 +88,7 @@ The Spring Cloud projects are the cornerstone of the JHipster microservices arch
 
 ### Kotlin support
 
-This is still in early stage, but the team always follows the latest trends and has announced a Kotlin support for the backend!
+This is still in early stage, but the team always follows the latest trends and has announced a Kotlin support for the backend! This new option uses the new blueprints templating system to completely replace the Java code with Kotlin code.
 
 Use `jhipster --blueprint generator-jhipster-kotlin` to get started with KHipster, the new evolution of JHipster.
 
@@ -100,7 +105,7 @@ One of the biggest change introduced by Spring 5 and Spring Boot 2 is the reacti
 Micrometer is the new metrics library provided by Spring Cloud. It aims to be a facade for all the metrics backend and to replaces the dropwizwards-metrics library. Because Dropwizard is already deeply integrated with JHipster, the team has decided to exclude micrometer from this version until they can provide a better support. You can follow the [issue on GitHub](https://github.com/jhipster/generator-jhipster/issues/7100).
 
 ### Spring Cloud Components
-Not all the new components from Spring Cloud have been integrated (Spring Cloud Vault, Sleuth) and the team is still debating to use or not the newest Spring Cloud Gateway as the new foundation for the JHipster gateway.
+Not all the new components from Spring Cloud have been integrated (Spring Cloud Vault) and the team is still debating to use or not the newest Spring Cloud Gateway as the new foundation for the JHipster gateway.
 
 # Miscellaneous changes
 
@@ -108,12 +113,14 @@ Not all the new components from Spring Cloud have been integrated (Spring Cloud 
 
 Blueprints will help you customizing JHipster by providing your own templates, that way you don’t have to fork the main generator and maintain your own version. That can be very useful if you want to use a different language for the backend (Kotlin is the best example) or simply provide your own HTML files.
 
-You can take a look at [jhipster-kotlin](https://github.com/jhipster/jhipster-kotlin) blueprint for the best example.
+You can take a look at the [generator-jhipster-blueprint](https://github.com/jhipster/generator-jhipster-blueprint) generator to get started quickly with blueprints.
 
 
-## AWS support
-JHipster already had several cloud deployment options, but for this version, the focus was on AWS.
+## Cloud supports
+JHipster already had several cloud deployment options and this version has improved the support for AWS and has added Google Cloud Support.
 
+
+### AWS
 There are now 2 options to deploy on AWS:
 
 - `aws` for Beanstalk - JHipster creates a new Beanstalk environment and generates all the deployment configuration
@@ -130,12 +137,19 @@ Please note that this generator is still very new and only limited to monolithic
 
 For more details on the 2 AWS generators see [the official docs](https://www.jhipster.tech/aws/).
 
+### Google Cloud Platform (GCP)
+
+For Google Cloud, `Google App Engine` is now supported. This new sub-generator will create a new application on GCP and will configure your source code to be ready to be deployed.
+Use the new command: `jhipster gae`
+
+Istio support has also been added to the Kubernetes generator. See the [official documentation](https://www.jhipster.tech/kubernetes/#istio).
+
 
 ## JDL V2
 
 One of the coolest features and something that may be initially overlooked is the JHipster Domain Language (JDL). In the past, this allowed you to write code describing the entities in your application, then you can generate all the Spring, Liquibase, UI code needed to perform basic CRUD operations on these entities. This is clearly a huge time saver and allows you to spend more time working on business logic.
 
-In JHipster 5, the team has taken this even further, and you can now fully describe your application options and generate it based on the JDL. To celebrate this new version, JHipster has open-sourced an online editor to write your JDL document and view UML like graphs of the entities called the [JDL Studio](https://start.jhipster.tech/jdl-studio/)!
+In JHipster 5, the team has taken this even further, and you can now fully describe your application options and generate it based on the JDL. You canwrite your JDL document and view UML like graphs of the entities using the [JDL Studio](https://start.jhipster.tech/jdl-studio/)!
 
 In order to generate the application via the import-jdl sub-generator, we simply create out JDL files with extra flags dictating the answers to questions as seen in use by JHipster in the past. Here is a simple sample of a JDL file to create three applications, and some entities for them. To run it, save the jdl file, and run `jhipster import-jdl <jdl-file>`
 
@@ -184,6 +198,10 @@ After running `import-jdl` on this file, you will be informed to manually run JH
 
 See [the JDL documentation](https://www.jhipster.tech/jdl/) for more about JDL.
 
+## JHipster Online
+
+[Hipster online](https://start.jhipster.tech/#/) is the ultimate tool to generate your JHipster applications without installing any tool.
+To celebrate this new version, JHipster has open-sourced [the online editor](https://github.com/jhipster/jhipster-online)! You can now install and host JHipster Online for your company and configure it for your own needs and standardize the configuration for multiple teams.
 
 # Conclusion
 
