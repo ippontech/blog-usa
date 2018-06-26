@@ -2,7 +2,7 @@
 authors:
 - Matt Ritter
 tags:
-- AngularJS
+- Angular
 - Front-End
 date: 2017-07-20T16:29:00.000Z
 title: "AngularJS to Angular2(V4): A basic example"

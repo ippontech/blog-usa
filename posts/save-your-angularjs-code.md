@@ -4,7 +4,7 @@ authors:
 tags:
 - angular.js
 - angular.js training
-- AngularJS
+- Angular
 - framework
 - JavaScript
 date: 2014-05-06T09:42:07.000Z

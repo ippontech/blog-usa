@@ -4,7 +4,7 @@ authors:
 tags:
 - Culture
 - JHipster
-- AngularJS
+- Angular
 - Cassandra
 - Spring
 - LifeAtIppon

@@ -2,7 +2,7 @@
 authors:
 - Ahmed MSOUBER
 tags:
-- AngularJS
+- Angular
 - angular.js
 - hackathon
 - hackathons

@@ -2,7 +2,7 @@
 authors:
 - Leigha Wilson
 tags:
-- AngularJS
+- Angular
 - JavaScript
 - Front-End
 date: 2016-04-14T15:16:24.000Z
