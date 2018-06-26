@@ -8,9 +8,9 @@ tags:
 - Spring
 - React
 - Angular
-date: 2018-06-23T15:43:55.000Z
+date: 2018-06-26T14:18:16.000Z
 title: "Brace yourself, JHipster 5 is out!"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/JHipster-5-banner.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/JHipster-5-banner-1.png
 ---
 
 JHipster 5 has just been released, and we thought it would be nice to write a post compiling all the new features. Throughout this post, we will be linking to the official docs, which provide some more detailed explanations of how to use these new features.
@@ -33,7 +33,6 @@ That’s it for React, as you can see, the details of the technology are not nee
 
 You can see [the GitHub](https://github.com/jhipster/generator-jhipster/issues/6044) for more details.
 
-
 ## Angular support
 
 The whole support for Angular has been improved in JHipster 5 with multiple optimizations and rework. The main changes are the focus on Angular 6 and the deletion of popup dialogs for the entity screens.
@@ -48,7 +47,6 @@ Here is a detailed list of all the changes related to Angular:
 
 ![jhipster5-entity-screen](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/jhipster5-entity-screen.png)
 
-
 ## Misc:
 
 Here the miscellaneous changes:
@@ -57,7 +55,6 @@ Here the miscellaneous changes:
 - Moment.js, the awesome dates and times library for Javascript is now the default to manipulates the dates in the frontend
 - Migration to Font Awesome V5. This font is still awesome, but the migration to the newest major version was as [a lot](https://fontawesome.com/how-to-use/on-the-web/setup/upgrading-from-version-4).
 
-
 # Backend changes
 
 ## Spring Boot 2
@@ -65,7 +62,6 @@ Here the miscellaneous changes:
 On the backend side, the biggest change is the upgrade of Spring Boot to the latest major version. Spring Boot 2 was released on March 1st and upgrades all the major Spring dependencies, the main one being the newest Spring Framework 5.
 
 The JHipster team has put a lot of effort to upgrade the generated java classes to Spring Boot and the updated dependencies.
-
 
 Among the new cool features, we can list:
 
@@ -79,7 +75,6 @@ Among the new cool features, we can list:
 - OAuth2 support has been improved a lot
 - Memcached support
 
-
 ### Spring Cloud
 
 With the upgrade to Spring boot 2, JHipster also brings the latest Spring Cloud release train support: Finchley
@@ -92,14 +87,12 @@ This is still in early stage, but the team always follows the latest trends and 
 
 Use `jhipster --blueprint generator-jhipster-kotlin` to get started with KHipster, the new evolution of JHipster.
 
-
 ### What's missing
 
 JHipster being opinionated about the Microservice architecture and the best practices in general, the team has decided - with the feedback of the community - to not include some features.
 
 #### Reactive programming with Spring Web Flux
 One of the biggest change introduced by Spring 5 and Spring Boot 2 is the reactive programming support with spring-webflux. Unfortunately, the JHispter team found it to be difficult to integrate with the frontend for limited benefits. They have decided to not use Spring Web Flux for now. Ippon and the JHipster team has run an extensive benchmark of Spring Web Flux and you can read all the details in [this article](https://blog.ippon.tech/spring-5-webflux-performance-tests/).
-
 
 ### Micrometer
 Micrometer is the new metrics library provided by Spring Cloud. It aims to be a facade for all the metrics backend and to replaces the dropwizwards-metrics library. Because Dropwizard is already deeply integrated with JHipster, the team has decided to exclude micrometer from this version until they can provide a better support. You can follow the [issue on GitHub](https://github.com/jhipster/generator-jhipster/issues/7100).
@@ -115,10 +108,8 @@ Blueprints will help you customizing JHipster by providing your own templates, t
 
 You can take a look at the [generator-jhipster-blueprint](https://github.com/jhipster/generator-jhipster-blueprint) generator to get started quickly with blueprints.
 
-
 ## Cloud supports
 JHipster already had several cloud deployment options and this version has improved the support for AWS and has added Google Cloud Support.
-
 
 ### AWS
 There are now 2 options to deploy on AWS:
@@ -132,7 +123,6 @@ To use the `aws` generator, run the command `jhipster aws` and you will be promp
 
 ![jhipster5-entity-screen](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/jhipster-5-console-aws.png)
 
-
 Please note that this generator is still very new and only limited to monolithic applications at the moment.
 
 For more details on the 2 AWS generators see [the official docs](https://www.jhipster.tech/aws/).
@@ -143,7 +133,6 @@ For Google Cloud, `Google App Engine` is now supported. This new sub-generator w
 Use the new command: `jhipster gae`
 
 Istio support has also been added to the Kubernetes generator. See the [official documentation](https://www.jhipster.tech/kubernetes/#istio).
-
 
 ## JDL V2
 
