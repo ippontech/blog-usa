@@ -189,7 +189,7 @@ See [the JDL documentation](https://www.jhipster.tech/jdl/) for more about JDL.
 
 ## JHipster Online
 
-[Hipster online](https://start.jhipster.tech/#/) is the ultimate tool to generate your JHipster applications without installing any tool.
+[JHipster online](https://start.jhipster.tech/#/) is the ultimate tool to generate your JHipster applications without installing any tool.
 To celebrate this new version, JHipster has open-sourced [the online editor](https://github.com/jhipster/jhipster-online)! You can now install and host JHipster Online for your company and configure it for your own needs and standardize the configuration for multiple teams.
 
 # Conclusion
