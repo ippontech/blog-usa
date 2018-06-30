@@ -24,6 +24,7 @@ This post is a summary of that event, and will be updated as we gather more cont
 - [Improving JHipster + Angular with Lazy Loading and Webpack](https://www.slideshare.net/WilliamMarq/angular-jhipster-jhipster-conf) by [William Marques](https://twitter.com/wylmarq).
 - [Creating and managing your application with the JDL](https://github.com/MathieuAA/jhconf/blob/master/JDL.pdf) by Mathieu Abou-Aichi.
 - [DevOps with JHipster: Continuous Integration and Delivery](https://pascalgrimaud.github.io/jhipster-conf-2018/#/) by [Pascal Grimaud](https://twitter.com/pascalgrimaud).
+- [Connect your JHipster apps to the world of APIs with OpenAPI and gRPC](https://slideshare.net/chbornet/jhipster-conf-2018-connect-your-jhipster-apps-to-the-world-of-apis-with-openapi-and-grpc) by [Christophe Bornet](https://twitter.com/cbornet_).
 
 # Quiz
 
