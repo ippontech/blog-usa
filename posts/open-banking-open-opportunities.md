@@ -9,7 +9,7 @@ tags:
 - banking
 - api
 - fintech
-date: 2018-07-12T15:16:15.000Z
+date: 2018-07-18T15:16:15.000Z
 title: "Open Banking, Open Opportunities"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/open-banking-1036857.jpeg
 ---
