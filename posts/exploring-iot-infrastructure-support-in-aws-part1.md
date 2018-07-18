@@ -132,6 +132,7 @@ Azure | IoT Hub | AMQP, Data simulation docs, Standard MQTT protocol with extens
 # Combatting the challenges of IoT
 
 AWS has a number of features that address certain aspects of the above IoT challenges
+
 Challenge | Enablers 
 ------- | -------
 Security and Privacy | TLS mutual authentication, custom authorizers
