@@ -9,7 +9,7 @@ tags:
 - Greengrass
 date: 2018-06-15T11:41:57.000Z
 title: "Exploring AWS IoT Core and Greengrass Offerings"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/06/iot_devices.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/esp_device.jpeg
 ---
 
 According to [IEEE](https://iot.ieee.org/newsletter/march-2017/three-major-challenges-facing-iot.html) The biggest challenges and issues facing IoT networks are security, privacy, connectivity, compatibility, standardisation and intelligent actions. This is what is holding us back from large scale developments in IoT. A large number of academic research [papers](https://ieeexplore.ieee.org/abstract/document/7823334/) have discussed the security and privacy aspects aspects of IoT deployments. 
@@ -34,7 +34,7 @@ These lower powered devices usually have a CPU < 1Ghz and interface directly wit
 
 Protocols supported are MQTT  and HTTP with Websocket support. Both Greengrass cores, groups and IoT things are managed through the same UI and appear to be very similar with the exception of additional interfaces for adding “Cores” and specific groups for [Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/what-is-gg.html#gg-platforms).
 
-![Overview of the planned IoT POC infrastructure](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/iot_devices.png)
+![Overview of the planned IoT POC infrastructure](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/esp_device.jpeg)
 
 
 Product | Summary | SDKs/HW | Verdict
