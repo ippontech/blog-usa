@@ -13,7 +13,7 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/0
 ---
 
 According to [IEEE](https://iot.ieee.org/newsletter/march-2017/three-major-challenges-facing-iot.html).
- > The biggest challenges and issues facing IoT networks are security, privacy, connectivity, compatibility,  standardisation and intelligent actions/analysis. 
+The biggest challenges and issues facing IoT networks are security, privacy, connectivity, compatibility,  standardisation and intelligent actions/analysis. 
  
  This is what is holding us back from large scale developments in IoT. A large number of academic research [papers](https://ieeexplore.ieee.org/abstract/document/7823334/) have discussed the security and privacy aspects aspects of IoT deployments. 
 
@@ -46,7 +46,56 @@ These lower powered devices usually have a CPU less than 1Ghz, an interface with
 
 Protocols support communication over MQTT and HTTP with additional Websocket support. Both Greengrass cores, groups and IoT things are managed through the same UI and appear to be very similar with the exception of additional interfaces for adding “Cores” and specific groups for [Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/what-is-gg.html#gg-platforms).
 
-**Data structures:**
+## Product Overview:
+
+Product | Summary | SDKs/HW | Verdict
+------- | ------- | ------- | ------
+IoT Core | AWS management interface, IoT device SDK, Device Gateway, Message brokering, Authorization, Device Registry, Rule engine and Device shadows | Python, Java, Android, C, C++, Javascript| The crux of the AWS IoT offerings; management interface
+Greengrass | Works as an extension of IoT core and runs on the devices providing local compute, message, sync and ML inference. For the x86/Arm >1GHz (either ARM or X86), 128MB+ of RAM | Raspberry Pi, EC2, Texas Instruments | A controller and SDK provided with more compute power tacked on as a local compute, OTA and management device can be anything really. Ubuntu, Raspberry Pi, EC2. Flexible Lambda functionality and ML inference.
+FreeRTOS | Extension of the standard FreeRTOS. This is the local OS for nodes in our IoT network for devices with low compute power < 128MB of RAM | Espressif, Microchip, NXP, STM and Texas instruments | FreeRTOS with additional libs attached for AWS service calls. A low level OS.
+IoT 1-Click |  Simple service invokes Lambda functions with out of the box device support | The AT&T LTE-M button | Button invokes Lambda function. Not very powerful or useful compared to other services (Only US)
+IoT Analytics |  Managed service to collect and query data from IoT devices with Jupyter notebook and Amazon quicksight integration | - | Haven’t explored so much (not available in Sydney)
+IoT Device Management |  Part of the AWS IoT Core feature for onboarding IoT devices, fleet management, serial number management and security policies| - | Basically IoT core. More commercial management of devices in a production environment Larger deployments
+
+# Current development options (Software, SDKs)
+Before deploying we need to understand the AWS infrastructure and deployment options. As a new user in AWS IoT deployment you might find options somewhat confusing and spread across many documents. There are many example for setting up each part of the IoT network but little information on actual implementation and integration of features.
+
+## For general devices and clients interacting with IoT devices,infrastructure includes the following:
+
+- Standard AWS IoT SDKs on devices
+  - This includes Java, Python, NodeJs SDKs that can access most AWS services including the IoT services
+- Greengrass Software
+  - Standard Greengrass Software (only supported on some devices)
+  - Will need to use other AWS SDKs if devices are not supported
+
+## For IoT devices at the edge interfacing with sensors and lower level hardware. These require upload and download of sensor data and config including OTA, Sync, etc
+
+- [AWS FreeRTOS](https://github.com/aws/amazon-freertos) operating system
+    - Access to a lower level control on our IoT devices
+    - Low level requires knowledge of IoT hardware,  FreeRTOS and C
+    - Manual setup
+- [MongooseOS](https://mongoose-os.com)  (official partner and backed by AWS)
+    - Integrated browser IDE, build tools and config setup
+    - Javascript primariily (C for flexibility of additional libraries if needed)
+    - Automated setup
+- Other options:
+    - [Platform.IO](https://platformio.org/)
+    - [MicroPython](https://micropython.org/)
+
+
+# The Plan: Low-level meets High-level
+
+I started off my experiment with a number of devices: This included the [Espressif](https://espressif.com/) ESP32, ESP16, ESP8266 and more powerful [Raspberry Pi Zero](https://www.raspberrypi.org/products/raspberry-pi-zero/). These are well known boards with great flexibility, portability and ease of development at little cost. 
+
+These devices can run a number of operating systems and need to be securely and reliably connected to a network service for data storage and updates. Development with these devices you usually require programming low-level device sensor integration, network management, synchronisation and memory management. All in the space of a tiny device with limited compute power, memory and storage. Abstracting away the low level internals with a higher level language potentially speeds up development of POCs and test infrastructure. Hence the reason I have decided to explore a number of higher level libraries and IoT based IDEs and tools such as [MongooseOS](https://mongoose-os.com) and [MicroPython](https://micropython.org/)
+
+[Code snippet](https://github.com/mongoose-os-apps/example-dht-js/blob/master/fs/init.js) for reading from the DHT11 humidty and temperature sensor used in our POC. You can see the flexibility and power provided by MongooseOS! 
+
+## Idealised POC Intfrastructure:
+
+![Overview of the idealised IoT POC infrastructure](https://raw.githubusercontent.com/benedridge/blog-usa/master/images/2018/07/idealised_struct.png)
+
+**Data structures relating to device state:**
 ```Javascript
 //Message sent to AWS IoT Core from sensor device
 {
@@ -67,32 +116,13 @@ Protocols support communication over MQTT and HTTP with additional Websocket sup
      }
 }
 ```
-Planned IoT POC Infrastructure
 
-![Overview of the idealised IoT POC infrastructure](https://raw.githubusercontent.com/benedridge/blog-usa/master/images/2018/07/idealised_struct.png)
+`sendData` and `ledOn` are used to managed individual device settings. If `sendData` is false the sensor data will not be sent to AWS.
 
+## MongooseOS device code:
 
-Product | Summary | SDKs/HW | Verdict
-------- | ------- | ------- | ------
-IoT Core | AWS management interface, IoT device SDK, Device Gateway, Message brokering, Authorization, Device Registry, Rule engine and Device shadows | Python, Java, Android, C, C++, Javascript| The crux of the AWS IoT offerings; management interface
-Greengrass | Works as an extension of IoT core and runs on the devices providing local compute, message, sync and ML inference. For the x86/Arm >1GHz (either ARM or X86), 128MB+ of RAM | Raspberry Pi, EC2, Texas Instruments | A controller and SDK provided with more compute power tacked on as a local compute, OTA and management device can be anything really. Ubuntu, Raspberry Pi, EC2. Flexible Lambda functionality and ML inference.
-FreeRTOS | Extension of the standard FreeRTOS. This is the local OS for nodes in our IoT network for devices with low compute power < 128MB of RAM | Espressif, Microchip, NXP, STM and Texas instruments | FreeRTOS with additional libs attached for AWS service calls. A low level OS.
-IoT 1-Click |  Simple service invokes Lambda functions with out of the box device support | The AT&T LTE-M button | Button invokes Lambda function. Not very powerful or useful compared to other services (Only US)
-IoT Analytics |  Managed service to collect and query data from IoT devices with Jupyter notebook and Amazon quicksight integration | - | Haven’t explored so much (not available in Sydney)
-IoT Device Management |  Part of the AWS IoT Core feature for onboarding IoT devices, fleet management, serial number management and security policies| - | Basically IoT core. More commercial management of devices in a production environment Larger deployments
+Note: MongooseOS uses an embedded subset of JavaScript created by MongooseOs called [mjs](https://github.com/cesanta/mjs)
 
-# $$$
-Pricing is quite standard across all of the top 3 services we will be using. As at June 2018 AWS IoT it is included in the AWS free tier offer. You can run 1000’s devices very cheaply. AWS RTOS is free of charge to download and use. AWS Greengrass has a slightly different pricing model and is based on the connectivity of each “Core” this is quite likely the most expensive part of the setup as each core will have standard monthly cost associated with it but you won’t have an issue unless you are running 1000’s of Greengrass device connections with large data flows. Overall AWS IoT Core is very cheap unless you are connecting a huge number of devices for commercial operation.
-
-# Low-level meets High-level
-
-I started off my experiment with a number of devices: This included the Espressif](https://espressif.com/) ESP32, ESP16, ESP8266 and more powerful [Raspberry Pi Zero](https://www.raspberrypi.org/products/raspberry-pi-zero/). These are well known boards with great flexibility, portability and ease of development at little cost. 
-
-These devices can run a number of operating systems and need to be securely and reliably connected to a network service for data storage and updates. Development with these devices you usually require programming low-level device sensor integration, network management, synchronisation and memory management. All in the space of a tiny device with limited compute power, memory and storage. Abstracting away the low level internals with a higher level language potentially speeds up development of POCs and test infrastructure. Hence the reason I have decided to explore a number of higher level libraries and IoT based IDEs and tools such as [MongooseOS](https://mongoose-os.com) and [MicroPython](https://micropython.org/)
-
-[Code snippet](https://github.com/mongoose-os-apps/example-dht-js/blob/master/fs/init.js) for reading from the DHT11 humidty and temperature sensor used in our POC. You can see the flexibility and power provided by MongooseOS. 
-
-Note: MongooseOS uses a subset of JavaScript called mJS
 ```javascript
 // Load Mongoose OS API
 load('api_timer.js');
@@ -119,39 +149,6 @@ Timer.set(2000, Timer.REPEAT, function() {
 }, null);
 ```
 
-# Current developerment options (Software, SDKs)
-Before deploying we need to understand the AWS infrastructure and deployment options. As a new user in AWS IoT deployment you might find options somewhat confusing and spread across many documents. There are many example for setting up each part of the IoT network but little information on actual implementation and integration of features.
-
-## For general devices and clients interacting with IoT devices,infrastructure includes the following:
-
-- Standard AWS IoT SDKs on devices
-  - This includes Java, Python, NodeJs SDKs that can access most AWS services including the IoT services
-- Greengrass Software
-  - Standard Greengrass Software (only supported on some devices)
-  - Will need to use other AWS SDKs if devices are not supported
-
-## For IoT devices at the edge interfacing with sensors and lower level hardware. These require upload and download of sensor data and config including OTA, Sync, etc
-
-- [AWS FreeRTOS](https://github.com/aws/amazon-freertos) operating system
-    - Access to a lower level control on our IoT devices
-    - Low level requires knowledge of IoT hardware,  FreeRTOS and C
-    - Manual setup
-- MongooseOS (official partner and backed by AWS)
-    - Integrated browser IDE, build tools and config setup
-    - Javascript primariily (C for flexibility of additional libraries if needed)
-    - Automated setup
-- Other options:
-    - [Platform.IO](https://platformio.org/)
-    - [MicroPython](https://micropython.org/)
-
-
-# How do other cloud providers compare?
- Provider  | Features | + | - | Support 
------ | ------- | --- | --- | ------
-AWS | Iot, Greengrass | RTOS and SDK support for varying devices Custom authorisers Professional support | Little documentation on RTOS or Greengrass, fragmented documentation | AWS RTOS: 6 boards plus simulator Greengrass
-GCP | Iot Core | JWT auth (Interesting) Limited docs | No CA checking by [default](https://cloud.google.com/iot/docs/how-tos/credentials/verifying-credentials) Seems to be very limited so far. | Very little information on device support. Where is it?
-Azure | IoT Hub | AMQP, Data simulation docs, Standard MQTT protocol with extensions Clear less ambiguous docs compared to AWS | Limited SDK support, seems more hobbyist, No CA checking by default, C and Arduino docs. No higher level docs. | 7 devices non-commercial more hobbyist devices like adafruit MXChip IoT devkit with Visual Studio code extension integrations
-
 # Initial Impressions
 - Heavily slanted towards MQTT and the Raspberry Pi. No other devices or messaging protocols are mentioned in such a way.
 - Lambda is very powerful on Greengrass devices. This this allows the portability of Lambda code on Greengrass devices, EC2 instances and any supporting Greengrass devices. Also reduces developement time.
@@ -173,6 +170,16 @@ Connectivity | Greengrass for connectivity management, OTA Updates
 Compatibility | Generalised JSON storage structures, SQL query of data structures, Custom Lambda access to Volumes/Devices
 Standardisation | MQTT, WebSockets/HTTPS
 Intelligent Actions and Analysis | Actions, Jobs, Lambda function flexibility
+
+# How do other cloud providers compare?
+ Provider  | Features | + | - | Support 
+----- | ------- | --- | --- | ------
+AWS | Iot, Greengrass | RTOS and SDK support for varying devices Custom authorisers Professional support | Little documentation on RTOS or Greengrass, fragmented documentation | AWS RTOS: 6 boards plus simulator Greengrass
+GCP | Iot Core | JWT auth (Interesting) Limited docs | No CA checking by [default](https://cloud.google.com/iot/docs/how-tos/credentials/verifying-credentials) Seems to be very limited so far. | Very little information on device support. Where is it?
+Azure | IoT Hub | AMQP, Data simulation docs, Standard MQTT protocol with extensions Clear less ambiguous docs compared to AWS | Limited SDK support, seems more hobbyist, No CA checking by default, C and Arduino docs. No higher level docs. | 7 devices non-commercial more hobbyist devices like adafruit MXChip IoT devkit with Visual Studio code extension integrations
+
+# $$$
+Pricing is quite standard across all of the top 3 services we will be using. As at June 2018 AWS IoT it is included in the AWS free tier offer. You can run 1000’s devices very cheaply. AWS RTOS is free of charge to download and use. AWS Greengrass has a slightly different pricing model and is based on the connectivity of each “Core” this is quite likely the most expensive part of the setup as each core will have standard monthly cost associated with it but you won’t have an issue unless you are running 1000’s of Greengrass device connections with large data flows. Overall AWS IoT Core is very cheap unless you are connecting a huge number of devices for commercial operation.
 
 # Only limited to IoT devices?
 Not necessarily, AWS IoT can be a generalised platform for device state management and messaging across MQTT or Websockets. There are a number of SDKs provided including Android, Java and Python. As long as the device and language has support by AWS IoT there are a number of potential use cases. Currently the costs are very low and quite likely lower compared to other services. The flexibility of Lambda with Greengrass and Actions on response to MQTT messages means there is a great deal of adaptability for other mobile devices or applicates requiring a managed state, messaging and entity management.
