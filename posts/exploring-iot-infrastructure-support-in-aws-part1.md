@@ -12,17 +12,15 @@ title: "Exploring AWS IoT Core and Greengrass Offerings"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/esp_device.jpeg
 ---
 
-According to [IEEE](https://iot.ieee.org/newsletter/march-2017/three-major-challenges-facing-iot.html). The biggest challenges and issues facing IoT networks is security, privacy, connectivity, compatibility, standardisation and intelligent actions/analysis. 
- 
-This is what is holding us back from large scale developments in IoT. A large number of academic research [papers](https://ieeexplore.ieee.org/abstract/document/7823334/) have discussed the security and privacy aspects of IoT deployments. 
+According to [IEEE](https://iot.ieee.org/newsletter/march-2017/three-major-challenges-facing-iot.html). The biggest challenges and issues facing Internet of Things (IoT) are security, privacy, connectivity, compatibility, standardisation and intelligent actions/analysis. This is what is holding us back from large scale developments in IoT. A large number of academic research [papers](https://ieeexplore.ieee.org/abstract/document/7823334/) have discussed the security and privacy aspects of IoT deployments. 
 
 The closer and more inter-connected a network is the more strain it puts on developers to perform due diligence and lock down the network infrastructure and maintain ethical privacy practices. AWS provides a number of IoT related services since the release of [AWS IoT Core](https://aws.amazon.com/iot-core/) at the end of 2015. These services are quite complex and try to address a number of these concerns. Ideally developers want to spend most of their time on the development of the IoT application and not the infrastructure.
 
-In this two-part series I will look at the different IoT services provided by AWS, setup and configuration with various devices and the issues encountered during developing a proof of concept. Dmitri Zimine wrote an interesting post on [A Cloud Guru](https://read.acloud.guru/aws-greengrass-the-missing-manual-2ac8df2fbdf4) earlier in 2018 describing AWS IoT core and [Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/what-is-gg.html#gg-platforms) as being a bit of mess. There are a number requirements to setup Greengrass and the  complexity of AWS calls behind the scenes is no easy task to understand.
+In this two-part series I will look at AWS services for IoT, their setup, configuration and the issues encountered during development. Dmitri Zimine wrote an interesting post on [A Cloud Guru](https://read.acloud.guru/aws-greengrass-the-missing-manual-2ac8df2fbdf4) earlier in 2018 describing AWS IoT core and [Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/what-is-gg.html#gg-platforms) as being a bit of mess. There are a number requirements to setup Greengrass and the complexity of AWS calls behind the scenes is no easy task to understand.
 
-Current AWS offerings for IoT are somewhat fragmented with lacking documentation in some areas but great documentation in others areas. The AWS dashboard has 6 services but the key product offered by AWS appears to be AWS IoT Core which is for directly managing device infrastructure, device shadows and data flow within the network. It also includes Greengrass management interface in the UI which is actually a seperate product in itself. 
+Current AWS offerings for IoT are somewhat fragmented with lacking documentation in some areas but great documentation in others. The AWS dashboard has 6 services but the key product offered by AWS appears to be AWS IoT Core which is for directly managing device infrastructure, device shadows and data flow within the network. It also includes Greengrass management interface in the UI which is actually a seperate product in itself. 
 
-I aim to dissect the structure of AWS IoT and the components with a broad focus on full end-to-end usage. I will compare offerings by other cloud providers and note some of the difficulties I’ve had through the development of the proof of concept. 
+I aim to dissect the structure of AWS IoT Core and Greengrass with a broad focus on full end-to-end usage. I will compare offerings by other cloud providers and note some of the difficulties I’ve had through the development of the proof of concept. 
 
 The source code will available in part 2 and can be deployed on your AWS account provided you have access to the resources and understand you will be charged a small sum for resource usage. Even though AWS IoT is not a recent offering there is still limited information and documentation related to it. The StackOverflow family has limited answers when something breaks and “Googling” doesn’t always get you where you want to be!
 
@@ -38,14 +36,15 @@ The source code will available in part 2 and can be deployed on your AWS account
 # IoT Configuration
 AWS provides a hub like [infrastructure](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) which incorporates IoT devices as "[Things](https://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-management.html)" in the network. This network is based heavily on "[Device Shadows](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)" which store device state and the MQTT network protocol for sending and receiving messages. A shadow is simply a JSON document containing specified, expected and delta of device state. These devices are categorised into either control/management devices called a “Greengrass Core” or lower powered device called a “Thing” which interacts with “Cores” within a Greengrass group using the AWS SDK. The terminology is somewhat confusing with “Greengrass cores”, “Greengrass groups”, “IoT core”, “Things” etc. A Greengrass core is not needed to setup IoT devices but gives additional benefits.
 
-The questions you might have; Are "Greengrass Cores" "Things"? Can a Greengrass core also be a thing? The diagram below will hopefully explain the structure.
+The questions you might have; Are "Greengrass Cores" "Things"? Can a Greengrass core also be a thing? The diagram below will hopefully explain the structure of AWS IoT offerings.
 
 These lower powered devices usually have a CPU less than 1Ghz, an interface with sensors and run in an environment with limited connectivity.  The “Greengrass Core” has a custom “Greengrass” daemon and a number of software builds depending on the platform. There is support for Raspberry Pi, EC2, x86 and Arm. The lower powered “Thing” devices can use [AWS RTOS](https://aws.amazon.com/freertos/), AWS SDKs or the REST API to interact with IoT services. 
 
 Communication is supported over MQTT and HTTP protocols with additional Websocket support. Both Greengrass Cores, groups and IoT things are managed through the same UI and appear to be very similar with the exception of additional interfaces for Greengrass Lambda functions and setting up groups in Greengrass.
 
-## Product Overview:
+## AWS IoT Product Overview:
 
+The following table gives my opinions on the AWS IoT services, SDK and a summary of the intended uses.
 Product | Summary | SDK/HW | Verdict
 ------- | ------- | ------- | ------
 [IoT Core](https://aws.amazon.com/documentation/iot/) | AWS management interface, IoT device SDK, Device Gateway, Message Broker, Authorisation, Device Registry, Rule engine and Device Shadows. | Python, Java, Android, C/C++, Javascript. | The crux of the AWS IoT offerings; management interface.
@@ -58,7 +57,7 @@ Product | Summary | SDK/HW | Verdict
 # Current development options (Software, SDKs)
 Before deploying we need to understand the AWS infrastructure and potential options. As a new user in of AWS IoT you might find options confusing and documentation split across many areas. There are many examples for setting up each part of the IoT offerings but little information on actual implementation and integration of features.
 
-## For general devices and clients interacting with IoT devices, infrastructure includes the following:
+## General devices and clients interacting with IoT devices:
 
 - [AWS IoT SDK](https://aws.amazon.com/iot/sdk/) on devices
   - This includes the standard Java, Python, NodeJs SDKs that can access most AWS services including IoT Core and Greengrass
@@ -66,7 +65,8 @@ Before deploying we need to understand the AWS infrastructure and potential opti
   - Standard Greengrass Software (only supported on some devices) runs the greengrass daemon
   - Will need to use other AWS SDKs if devices are not supported
 
-## For IoT devices at the edge interfacing with sensors and lower level hardware. These require upload and download of sensor data and config including OTA, Sync, etc
+## IoT devices at the edge (sensors and lower level hardware) 
+**These require upload and download of sensor data and config including OTA, Sync, etc**
 
 - [AWS FreeRTOS](https://github.com/aws/amazon-freertos) operating system.
     - Access to a lower level control on our IoT devices.
@@ -161,14 +161,26 @@ Timer.set(2000, Timer.REPEAT, function() {
 - It’s quite a lot more complicated than originally put forward by AWS and my preconceptions about the services.
 
 # How AWS deals with the challenges of IoT?
-
-Challenge | Solutions by AWS 
-------- | -------
-Security and Privacy | TLS mutual auth, custom authorisers, IAM roles, cert management
-Connectivity | Greengrass for connectivity management, OTA Updates
-Compatibility | Generalised JSON storage structures, SQL query of data structures, Custom Lambda access to Volumes/Devices
-Standardisation | MQTT, WebSockets/HTTPS
-Intelligent Actions and Analysis | Actions, Jobs, Lambda function flexibility
+ 
+- Security and Privacy
+    - TLS mutual auth
+    - Custom authorisers
+    - IAM roles
+    - Cert management
+- Connectivity 
+    - Greengrass for management of offline devices
+    - OTA Updates
+- Compatibility
+    - Generalised JSON storage structures
+    - SQL query of MQTT
+    - Custom Lambda access to Volumes/Devices
+- Standardisation
+    - MQTT
+    - WebSockets/HTTPS
+- Intelligent Actions and Analysis
+    - Actions
+    - Jobs
+    - Lambda function flexibility
 
 # How do other cloud providers compare?
  Provider  | Features | + | - | Support 
