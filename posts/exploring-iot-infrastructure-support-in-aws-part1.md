@@ -33,14 +33,14 @@ The source code will available in part 2 and can be deployed on your AWS account
 4. Final thoughts and ideas.
 5. Some links, resources and source code.
 
-![ESP8266](https://raw.githubusercontent.com/benedridge/blog-usa/master/images/2018/07/esp_device.jpeg)
+![ESP8266](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/esp_device.jpeg)
 
 # IoT Configuration
-AWS provides a hub like [infrastructure](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) which incorporates IoT devices as “Things” in the network. This network is based heavily on "Device Shadows" which store device state and the MQTT network protocol for sending and receiving messages. A shadow is simply a JSON document containing specified, expected and delta of device state. These devices are categorised into either control/management devices called a “Greengrass Core” or lower powered device called a “Thing” which interacts with “Cores” within a Greengrass group using the AWS SDK. The terminology is somewhat confusing with “Greengrass cores”, “Greengrass groups”, “IoT core”, “Things” etc. A Greengrass is not needed to setup IoT devices but gives additional benefits.
+AWS provides a hub like [infrastructure](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) which incorporates IoT devices as "[Things](https://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-management.html)" in the network. This network is based heavily on "[Device Shadows](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)" which store device state and the MQTT network protocol for sending and receiving messages. A shadow is simply a JSON document containing specified, expected and delta of device state. These devices are categorised into either control/management devices called a “Greengrass Core” or lower powered device called a “Thing” which interacts with “Cores” within a Greengrass group using the AWS SDK. The terminology is somewhat confusing with “Greengrass cores”, “Greengrass groups”, “IoT core”, “Things” etc. A Greengrass core is not needed to setup IoT devices but gives additional benefits.
 
 The questions you might have; Are "Greengrass Cores" "Things"? Can a Greengrass core also be a thing? The diagram below will hopefully explain the structure.
 
-These lower powered devices usually have a CPU less than 1Ghz, an interface with sensors and run in an environment with limited connectivity.  The “Greengrass Core” has a custom “Greengrass” daemon and a number of software builds depending on the platform. There is support for Raspberry Pi, EC2, x86 and Arm. The lower powered “Thing” devices can use AWS RTOS, AWS SDKs or the REST API to interact with IoT services. 
+These lower powered devices usually have a CPU less than 1Ghz, an interface with sensors and run in an environment with limited connectivity.  The “Greengrass Core” has a custom “Greengrass” daemon and a number of software builds depending on the platform. There is support for Raspberry Pi, EC2, x86 and Arm. The lower powered “Thing” devices can use [AWS RTOS](https://aws.amazon.com/freertos/), AWS SDKs or the REST API to interact with IoT services. 
 
 Communication is supported over MQTT and HTTP protocols with additional Websocket support. Both Greengrass Cores, groups and IoT things are managed through the same UI and appear to be very similar with the exception of additional interfaces for Greengrass Lambda functions and setting up groups in Greengrass.
 
@@ -60,10 +60,10 @@ Before deploying we need to understand the AWS infrastructure and potential opti
 
 ## For general devices and clients interacting with IoT devices, infrastructure includes the following:
 
-- Standard AWS IoT SDK on devices
-  - This includes Java, Python, NodeJs SDKs that can access most AWS services including the IoT services
-- Greengrass Software
-  - Standard Greengrass Software (only supported on some devices)
+- [AWS IoT SDK](https://aws.amazon.com/iot/sdk/) on devices
+  - This includes the standard Java, Python, NodeJs SDKs that can access most AWS services including IoT Core and Greengrass
+- [Greengrass Software](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-config.html)
+  - Standard Greengrass Software (only supported on some devices) runs the greengrass daemon
   - Will need to use other AWS SDKs if devices are not supported
 
 ## For IoT devices at the edge interfacing with sensors and lower level hardware. These require upload and download of sensor data and config including OTA, Sync, etc
@@ -88,13 +88,11 @@ I started off my experiment with a number of devices: This included the [Espress
 
 These devices can run a number of operating systems and need to be securely and reliably connected to a the network for data storage and updates. When developing with these devices you are usually required program low-level device sensor integrations, network management, synchronisation and memory management. All in the space of a tiny device with limited compute power, memory and storage. Abstracting away the low level internals with a higher level language potentially speeds up development of POCs and test infrastructure. This is the reason I have decided to explore a number of higher level libraries and IoT based IDEs/tools such as [MongooseOS](https://mongoose-os.com) and [MicroPython](https://micropython.org/).
 
-[Code snippet](https://github.com/mongoose-os-apps/example-dht-js/blob/master/fs/init.js) for reading from the DHT11 humidity and temperature sensor used in our POC. You can see the flexibility and power provided by MongooseOS! 
-
 ## Idealised POC Infrastructure:
 
-![Overview of the idealised IoT POC infrastructure](https://raw.githubusercontent.com/benedridge/blog-usa/master/images/2018/07/idealised_struct.png)
+![Overview of the idealised IoT POC infrastructure](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/idealised_struct.png)
 
-**Data structures relating to device state:**
+**Example data structure relating to device state:**
 ```Javascript
 //Message sent to AWS IoT Core from sensor device
 {
@@ -120,7 +118,9 @@ These devices can run a number of operating systems and need to be securely and 
 
 ## MongooseOS device code:
 
-Note: MongooseOS uses an embedded C++ powered subset of Javascript created by MongooseOs called [mjs](https://github.com/cesanta/mjs)
+[Code snippet](https://github.com/mongoose-os-apps/example-dht-js/blob/master/fs/init.js) for reading from the DHT11 humidity and temperature sensor used in our POC. You can see the flexibility and power provided by MongooseOS! 
+
+_Note: MongooseOS uses an embedded C++ powered subset of Javascript created by MongooseOs called [mjs](https://github.com/cesanta/mjs)_
 
 ```javascript
 // Load Mongoose OS API
@@ -181,7 +181,7 @@ Azure | IoT Hub | AMQP, Data simulation docs, Standard MQTT protocol with extens
 Pricing is quite standard across all of the top 3 services we will be using. As at June 2018 AWS IoT it is included in the AWS free tier offer. You can run 1000’s devices very cheaply. AWS RTOS is free of charge to download and use. AWS Greengrass has a slightly different pricing model and is based on the connectivity of each “Core” this is quite likely the most expensive part of the setup as each core will have standard monthly cost associated with it but you won’t have an issue unless you are running 1000’s of Greengrass device connections with large data flows. Overall AWS IoT Core is very cheap unless you are connecting a huge number of devices for commercial operation.
 
 # Only limited to IoT devices?
-Not necessarily, AWS IoT can be a generalised platform for device state management and messaging across MQTT or WebSockets. There are a number of SDKs provided including Android, Java and Python. As long as the device and language has support by AWS IoT there are a number of potential use cases. Currently the costs are very low and quite likely lower compared to other services. The flexibility of Lambda with Greengrass and Actions on response to MQTT messages means there is a great deal of adaptability for other mobile devices or applicates requiring a managed state, messaging and entity management.
+AWS IoT offerings are not necessarily just for IoT but can be a generalised platform for device state management and messaging across MQTT or WebSockets. There are a number of SDKs provided including Android, Java and Python. As long as the device and language is supported by AWS IoT there are a number of potential use cases. Currently the costs are very low and quite likely lower compared to other services. The flexibility of Lambda with Greengrass and Actions on response to MQTT messages means there is a great deal of adaptability for other mobile devices or applications requiring a managed state, messaging and entity management.
 
 ## Part 2:
 Thanks for reading! Keep a look out for part two including a small proof of concept and discussions around developement.
