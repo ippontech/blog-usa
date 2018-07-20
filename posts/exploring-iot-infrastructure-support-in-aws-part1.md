@@ -9,7 +9,7 @@ tags:
 - Greengrass
 date: 2018-07-19T11:41:57.000Z
 title: "Exploring AWS IoT Core and Greengrass Offerings"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/esp_device.jpeg
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_esp_device.jpeg
 ---
 
 According to [IEEE](https://iot.ieee.org/newsletter/march-2017/three-major-challenges-facing-iot.html) the biggest challenges and issues facing Internet of Things (IoT) are security, privacy, connectivity, compatibility, standardisation and intelligent actions/analysis. This is what is holding us back from large scale developments in IoT. A large number of academic research [papers](https://ieeexplore.ieee.org/abstract/document/7823334/) have discussed the security and privacy aspects of IoT deployments. 
@@ -31,14 +31,14 @@ The source code will available in part 2 and can be deployed on your AWS account
 4. Final thoughts and ideas.
 5. Some links, resources and source code.
 
-![ESP8266](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/esp_device.jpeg)
+![ESP8266](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_esp_device.jpeg)
 
 # IoT Configuration
-AWS provides a hub like [infrastructure](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) which incorporates IoT devices as "[Things](https://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-management.html)" in the network. This network is based heavily on "[Device Shadows](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)" which store device state and the MQTT network protocol for sending and receiving messages. A shadow is simply a JSON document containing specified, expected and delta of device state. These devices are categorised into either control/management devices called a “Greengrass Core” or lower powered device called a “Thing” which interacts with “Cores” within a Greengrass group using the AWS SDK. The terminology is somewhat confusing with “Greengrass cores”, “Greengrass groups”, “IoT core”, “Things” etc. A Greengrass core is not needed to setup IoT devices but gives additional benefits.
+AWS provides a hub like [infrastructure](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) which incorporates IoT devices as "[Things](https://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-management.html)" in the network. This network is based heavily on "[Device Shadows](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)" which store device state and the MQTT network protocol for sending and receiving messages. A shadow is simply a JSON document containing specified, expected and delta of device state. These devices are categorised into either control/management devices called a “Greengrass Core” or lower powered device called a “Thing” which interacts with “Cores” within a Greengrass group using the AWS SDK. The terminology is somewhat confusing with “Greengrass cores”, “Greengrass groups”, “IoT core”, “Things” etc. A Greengrass core is not needed to setup IoT devices but gives additional benefits. The diagram below will hopefully explain the structure of AWS IoT offerings. Things are split across both Greengrass groups and normal IoT groups. To setup a Greengrass group you must select a "Thing" to act as the core. This thing should be setup to run the Greengrass core software.
 
-The questions you might have; Are "Greengrass Cores" "Things"? Can a Greengrass core also be a thing? The diagram below will hopefully explain the structure of AWS IoT offerings.
+![Core AWS IoT infrastructure](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_overview.png)
 
-These lower powered devices usually have a CPU less than 1Ghz, an interface with sensors and run in an environment with limited connectivity.  The “Greengrass Core” has a custom “Greengrass” daemon and a number of software builds depending on the platform. There is support for Raspberry Pi, EC2, x86 and Arm. The lower powered “Thing” devices can use [AWS RTOS](https://aws.amazon.com/freertos/), AWS SDKs or the REST API to interact with IoT services. 
+The lower powered devices acting at the edge usually have a CPU less than 1Ghz, an interface with sensors and run in an environment with limited connectivity.  The “Greengrass Core” has a custom “Greengrass” daemon and a number of software builds depending on the platform. There is support for Raspberry Pi, EC2, x86 and Arm. The lower powered “Thing” devices can use [AWS RTOS](https://aws.amazon.com/freertos/), AWS SDKs or the REST API to interact with IoT services. 
 
 Communication is supported over MQTT and HTTP protocols with additional Websocket support. Both Greengrass Cores, groups and IoT things are managed through the same UI and appear to be very similar with the exception of additional interfaces for Greengrass Lambda functions and setting up groups in Greengrass.
 
@@ -90,7 +90,7 @@ These devices can run a number of operating systems and need to be securely and 
 
 ## Idealised POC Infrastructure:
 
-![Overview of the idealised IoT POC infrastructure](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/idealised_struct.png)
+![Overview of the idealised IoT POC infrastructure](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_idealised_poc.png)
 
 **Example data structure relating to device state:**
 ```Javascript
