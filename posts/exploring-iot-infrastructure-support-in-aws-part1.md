@@ -12,24 +12,28 @@ title: "Exploring AWS IoT Core and Greengrass Offerings"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_esp_device.jpeg
 ---
 
-According to [IEEE](https://iot.ieee.org/newsletter/march-2017/three-major-challenges-facing-iot.html) the biggest challenges and issues facing Internet of Things (IoT) are security, privacy, connectivity, compatibility, standardisation and intelligent actions/analysis. This is what is holding us back from large scale developments in IoT. A large number of academic research [papers](https://ieeexplore.ieee.org/abstract/document/7823334/) have discussed the security and privacy aspects of IoT deployments. 
+According to [IEEE](https://iot.ieee.org/newsletter/march-2017/three-major-challenges-facing-iot.html) the biggest challenges and issues facing Internet of Things (IoT) are security, privacy, connectivity, compatibility, standardisation and intelligent actions/analysis. These are the issues holding us back from large scale world-wide developments in IoT. A large number of academic research [papers](https://ieeexplore.ieee.org/abstract/document/7823334/) have discussed the security and privacy aspects of IoT deployments. 
 
-The closer and more inter-connected a network is the more strain it puts on developers to perform due diligence and lock down the network infrastructure and maintain ethical privacy practices. AWS provides a number of IoT related services since the release of [AWS IoT Core](https://aws.amazon.com/iot-core/) at the end of 2015. These services are quite complex and try to address a number of these concerns. Ideally developers want to spend most of their time on the development of the IoT application and not the infrastructure.
+The closer and more inter-connected a network is the more strain it puts on developers to perform due diligence and lock down the network infrastructure and maintain ethical privacy practices. AWS provides a number of IoT related services since the release of [AWS IoT Core](https://aws.amazon.com/iot-core/) at the end of 2015. These services are quite complex and try to address a number of these aformentioned challenges. Ideally developers want to spend most of their time on the development of the IoT application and not the supporting infrastructure.
 
-In this two-part series I will look at AWS services for IoT, their setup, configuration and the issues encountered during development. Dmitri Zimine wrote an interesting post on [A Cloud Guru](https://read.acloud.guru/aws-greengrass-the-missing-manual-2ac8df2fbdf4) earlier in 2018 describing AWS IoT core and [Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/what-is-gg.html#gg-platforms) as being a bit of mess. There are a number requirements to setup Greengrass and the complexity of AWS calls behind the scenes is no easy task to understand.
+In this two-part series I will look at AWS services provided for IoT and the configuration required. I aim to dissect the structure of AWS IoT Core and Greengrass with a broad focus on full end-to-end usage. I will compare offerings by other cloud providers and note some of the difficulties I’ve had throughout the development process of a proof of concept.
 
-Current AWS offerings for IoT are somewhat fragmented with lacking documentation in some areas but great documentation in others. The AWS dashboard has 6 services but the key product offered by AWS appears to be AWS IoT Core which is for directly managing device infrastructure, device shadows and data flow within the network. It also includes Greengrass management interface in the UI which is actually a seperate product in itself. 
+Dmitri Zimine wrote an interesting post on [A Cloud Guru](https://read.acloud.guru/aws-greengrass-the-missing-manual-2ac8df2fbdf4) earlier in 2018 describing AWS IoT core and [Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/what-is-gg.html#gg-platforms) as being a bit of mess. There are a number requirements to setup Greengrass and the complexity of AWS calls behind the scenes is no easy task to understand. Current AWS offerings for IoT are somewhat fragmented. The AWS dashboard has 6 services but the key product offered by AWS appears to be AWS IoT Core which is for direct management of device infrastructure, device shadows and data flow within the network. It also includes the Greengrass management interface in the UI which is actually a seperate product in itself. 
 
-I aim to dissect the structure of AWS IoT Core and Greengrass with a broad focus on full end-to-end usage. I will compare offerings by other cloud providers and note some of the difficulties I’ve had through the development of the proof of concept. 
+The source code will available in the part 2 blog post and can be deployed on your AWS account provided you understand that you will be charged a small amount for resource usage. 
 
-The source code will available in part 2 and can be deployed on your AWS account provided you have access to the resources and understand you will be charged a small sum for resource usage. Even though AWS IoT is not a recent offering there is still limited information and documentation related to it. The StackOverflow family has limited answers when something breaks and “Googling” doesn’t always get you where you want to be!
+# What will I be covering in part 1?
+1. AWS IoT services: The theory, the practicality and how it fits together
+2. Development options (SDKs, Software, Hardware, 3rd party)
+3. An intro to proof of concept ideas and snippets of code
+4. Inital impressions and comparisons with other cloud providers
 
-# What will I be covering?
-1. AWS IoT services and how they relate to current infrastructure, the theory, the practicality and how it works together.
-2. Working with a small POC utilising a number of AWS IoT services.
-3. Reviewing what has been built, the concerns, ambiguities and what went wrong.
-4. Final thoughts and ideas.
-5. Some links, resources and source code.
+# What will I be covering in part 2?
+1. Introduction to a the POC
+2. Further expansion on chosen SDKs, software and hardware
+3. What I liked, what I did not like
+4. Evaluation of AWS services and POC
+5. Resources
 
 ![ESP8266](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_esp_device.jpeg)
 
@@ -82,19 +86,23 @@ Before deploying we need to understand the AWS infrastructure and potential opti
 
 
 # The Plan: Low-level meets High-level
-## See part 2 for POC
 
-I started off my experiment with a number of devices: This included the [Espressif](https://espressif.com/) ESP32, ESP16, ESP8266 and the more powerful [Raspberry Pi Zero](https://www.raspberrypi.org/products/raspberry-pi-zero/). These are well known boards with great flexibility, portability and ease of development at low costs.
+I started off my experiment with a number of devices. This included a few variations of boards using the [Espressif](https://espressif.com/) ESP32, ESP16, ESP8266 chips and the more powerful [Raspberry Pi Zero](https://www.raspberrypi.org/products/raspberry-pi-zero/) board. These are well known devices with great flexibility, portability and ease of development at low costs.
 
-These devices can run a number of operating systems and need to be securely and reliably connected to a the network for data storage and updates. When developing with these devices you are usually required program low-level device sensor integrations, network management, synchronisation and memory management. All in the space of a tiny device with limited compute power, memory and storage. Abstracting away the low level internals with a higher level language potentially speeds up development of POCs and test infrastructure. This is the reason I have decided to explore a number of higher level libraries and IoT based IDEs/tools such as [MongooseOS](https://mongoose-os.com) and [MicroPython](https://micropython.org/).
+These devices can run a number of operating systems and need to be securely and reliably connected to a the network for data storage and updates. When developing with these devices you are quite often required program low-level device sensor integrations, network management, synchronisation and memory management. All in the space of a tiny device with limited compute power, memory and storage. Abstracting away the low level internals with a higher level language can potentially speed up development of POCs and test infrastructure. This is the reason I have decided to explore a number of higher level libraries and IoT based IDEs/tools such as [MongooseOS](https://mongoose-os.com) and [MicroPython](https://micropython.org/).
 
 ## Idealised POC Infrastructure:
 
 ![Overview of the idealised IoT POC infrastructure](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_idealised_poc.png)
 
-**Example data structure relating to device state:**
+## Device Shadows and State Management
+
+A Device Shadow can also include the additional `desired` and `metadata` attributes which gives us more flexibility in managing state. A delta will be calculated based on the `desired` and `reported` state. `metadata` also allows us to keep track of the timestamp of previous changes to values in contained in the `desired` or `reported` state.
+
+`sendData` and `ledOn` are will be used to managed individual device settings. If `sendData` is false the sensor data will not be sent to AWS. 
+
 ```Javascript
-//Message sent to AWS IoT Core from sensor device
+// MQTT Message sent to AWS IoT Core from the sensor device
 {
     "message": {
         "device": "123456abcde",
@@ -103,60 +111,63 @@ These devices can run a number of operating systems and need to be securely and 
     }
 }
 
-//Device Shadow State
+// Simplified Device Shadow State maintained in IoT core
 {
     "state" : {
-        "desired" : {
-            "sendData" : "true",
-            "ledOn" : "false"
-         }
-     }
+        "reported" : {
+          "sendData" : "true",
+          "ledOn" : "false"
+        }
+    }
 }
 ```
 
-`sendData` and `ledOn` are used to managed individual device settings. If `sendData` is false the sensor data will not be sent to AWS.
-
 ## MongooseOS device code:
 
-[Code snippet](https://github.com/mongoose-os-apps/example-dht-js/blob/master/fs/init.js) for reading from the DHT11 humidity and temperature sensor used in our POC. You can see the flexibility and power provided by MongooseOS! 
+A small [code snippet](https://github.com/mongoose-os-apps/example-dht-js/blob/master/fs/init.js) for reading the DHT11 humidity and temperature sensor used in our POC. You can see the flexibility and power provided by MongooseOS utilising the specalised `load` and `Timer` functions specific to `mjs`.
 
-_Note: MongooseOS uses an embedded C++ powered subset of Javascript created by MongooseOs called [mjs](https://github.com/cesanta/mjs)_
+_Note: MongooseOS uses an embedded C++ powered subset of Javascript created by MongooseOS called [mjs](https://github.com/cesanta/mjs)_
+
+
 
 ```javascript
 // Load Mongoose OS API
 load('api_timer.js');
 load('api_dht.js');
+load('api_mqtt.js');
 
 // GPIO pin which has a DHT sensor data wire connected
 let pin = 16;
 
 // Initialize DHT library
-let dht = DHT.create(pin, DHT.DHT22);
+let dht = DHT.create(pin, DHT.DHT11);
+
+// Sensor data topic for MQTT
+let sensorTopic = 'devices/data';
 
 // This function reads data from the DHT sensor every 2 seconds
 Timer.set(2000, Timer.REPEAT, function() {
   let t = dht.getTemp();
   let h = dht.getHumidity();
+  
+  let message = JSON.stringify({
+    device: '123456abcde',
+    temp: t,
+    humidity: h
+  });
 
-  if (isNaN(h) || isNaN(t)) {
-    print('Failed to read data from sensor');
-    return;
-  }
+  // Publishes the message to a MQTT topic on AWS IoT Core  
+  MQTT.pub(sensorTopic, message, 1, false);
 
-  print('Temperature:', t, '*C');
-  print('Humidity:', h, '%');
 }, null);
 ```
 
 # Initial Impressions
-- Heavily slanted towards MQTT and the Raspberry Pi. No other devices or messaging protocols are mentioned in such a way.
-- Lambda is very powerful on Greengrass devices. This this allows the portability of Lambda code on Greengrass devices, EC2 instances and any supporting Greengrass devices. Also reduces development time.
-- Very little is talked about MongooseOS or other providers. However, MongooseOS is very polished and provides an easy deployment environment and automatic setup.
-- Greengrass OTA updates is an important and much needed feature for IoT devices to counter the concerns of security and update regularity in devices (eg. Lacking Android and Router updates).
-- I enjoyed the automatic deployment and cert setup but didn’t enjoy the typing for RTOS setup (Surely this could be automatically set up?) and pulled down from AWS according to the device used.
-- Only a Windows simulator for RTOS (no Linux support yet).
-- WebSockets, HTTPs and MQTT only.
 - Lack of integration documentation. Most documentation focuses on different IoT offerings but fails to talk about general setup and wiring of components together.
+- Heavily slanted towards MQTT and the Raspberry Pi. No other devices or messaging protocols are mentioned in such a way.
+- Lambda is very powerful on Greengrass devices. This this allows the portability of Lambda code to Greengrass devices, EC2 instances and any other supporting Greengrass devices. Also reducing development time.
+- Little mention of MongooseOS or other dev environments. MongooseOS however, is very polished and provides an easy deployment environment and automatic setup.
+- Greengrass OTA updates is much needed feature for IoT devices enabling update regularity. To hopefully reduce problems that Android and Router updates currently have.
 - Terminology is slightly confusing around the direct splitting of groups, cores and IoT cores. Is a Greengrass core a "thing" as well as a Greengrass Core??
 - It’s quite a lot more complicated than originally put forward by AWS and my preconceptions about the services.
 
