@@ -12,7 +12,7 @@ title: "Exploring AWS IoT Core and Greengrass Offerings"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/esp_device.jpeg
 ---
 
-According to [IEEE](https://iot.ieee.org/newsletter/march-2017/three-major-challenges-facing-iot.html). The biggest challenges and issues facing Internet of Things (IoT) are security, privacy, connectivity, compatibility, standardisation and intelligent actions/analysis. This is what is holding us back from large scale developments in IoT. A large number of academic research [papers](https://ieeexplore.ieee.org/abstract/document/7823334/) have discussed the security and privacy aspects of IoT deployments. 
+According to [IEEE](https://iot.ieee.org/newsletter/march-2017/three-major-challenges-facing-iot.html) the biggest challenges and issues facing Internet of Things (IoT) are security, privacy, connectivity, compatibility, standardisation and intelligent actions/analysis. This is what is holding us back from large scale developments in IoT. A large number of academic research [papers](https://ieeexplore.ieee.org/abstract/document/7823334/) have discussed the security and privacy aspects of IoT deployments. 
 
 The closer and more inter-connected a network is the more strain it puts on developers to perform due diligence and lock down the network infrastructure and maintain ethical privacy practices. AWS provides a number of IoT related services since the release of [AWS IoT Core](https://aws.amazon.com/iot-core/) at the end of 2015. These services are quite complex and try to address a number of these concerns. Ideally developers want to spend most of their time on the development of the IoT application and not the infrastructure.
 
