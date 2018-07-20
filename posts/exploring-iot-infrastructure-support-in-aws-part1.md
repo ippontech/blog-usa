@@ -25,15 +25,15 @@ The source code will available in the part 2 blog post and can be deployed on yo
 # What will I be covering in part 1?
 1. AWS IoT services: The theory, the practicality and how it fits together
 2. Development options (SDKs, Software, Hardware, 3rd party)
-3. An intro to proof of concept ideas and snippets of code
+3. An brief introduction to a proof concept and snippets of code
 4. Inital impressions and comparisons with other cloud providers
 
 # What will I be covering in part 2?
-1. Introduction to a the POC
+1. Introduction to a the POC and full discussion
 2. Further expansion on chosen SDKs, software and hardware
-3. What I liked, what I did not like
-4. Evaluation of AWS services and POC
-5. Resources
+3. What I liked, what I did not like during developement
+4. Evaluation of AWS services and the POC
+5. Links and Resources
 
 ![ESP8266](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_esp_device.jpeg)
 
@@ -128,7 +128,7 @@ A small [code snippet](https://github.com/mongoose-os-apps/example-dht-js/blob/m
 
 _Note: MongooseOS uses an embedded C++ powered subset of Javascript created by MongooseOS called [mjs](https://github.com/cesanta/mjs)_
 
-
+The `Timer.set` function call runs every 2 seconds getting the current temperature from the DHT11 sensor and packaging up a JSON message to publish to the topic `devices/data`. If the AWS config is setup correctly in the MongooseOS IDE you will be able to login to the AWS console and subscribe to the topic to receive messages as in the above code block.
 
 ```javascript
 // Load Mongoose OS API
