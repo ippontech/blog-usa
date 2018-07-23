@@ -3,26 +3,23 @@ authors:
 - Duncan Banks
 - Gerard Gigliotti
 tags:
-- openbanking
-- australia
-- melbourne
-- banking
-- api
-- fintech
-date: 2018-07-18T15:16:15.000Z
+- API
+- Fintech
+date: 2018-07-23T14:01:02.000Z
 title: "Open Banking, Open Opportunities"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/open-banking-1036857.jpeg
 ---
-Open banking represents a real paradigm shift in the ownership and use of customer data. It not only provides significant opportunities for consumers, fintechs and the banks but also represents a precursor to broader data ownership changes beyond just the realm of financial services.
 
-Scott Farrell defines open banking as giving " customers a right to direct that the information they already share with their bank be safely shared with others they trust." Traditionally viewed as an asset of the organisation, empowering consumers to be able to easily, and safely, share their data sounds like a really great idea. However what are the likely consumer implications?
+Open Banking represents a real paradigm shift in the ownership and use of customer data. It not only provides significant opportunities for consumers, fintechs and the banks but also represents a precursor to broader data ownership changes beyond just the realm of financial services.
+
+Scott Farrell defines open banking as giving "customers a right to direct that the information they already share with their bank be safely shared with others they trust." Traditionally viewed as an asset of the organisation, empowering consumers to be able to easily, and safely, share their data sounds like a really great idea. However what are the likely consumer implications?
 
 If significant, democratising changes of the past are anything to go by then consumer uptake will be slow. Indeed, just take a look at the "choice of fund" legislation in superannuation which is almost 15 years old and still sees relatively few workers chose anything but their employers default fund. Another recent example would be the latest advancement in the Australian banking landscape, the NPP, allowing almost real time payments is almost unheard of by consumers. Some of Australia’s largest banks haven’t been able to integrate it into their offerings as yet.
 
-As such, short term adoption of Open Banking is likely to be limited but it does put in place a foundation with the potential to deliver significant consumer value well into the future. To appreciate the value of the proposition it’s worth considering the examples of outcomes it could enable for customers. 
+As such, short term adoption of Open Banking is likely to be limited but it does put in place a foundation with the potential to deliver significant consumer value well into the future. To appreciate the value of the proposition it’s worth considering the examples of outcomes it could enable for customers.
 
 # Customer Value Add Services
-One of the more interesting points in the [Open Banking report](https://treasury.gov.au/consultation/c2018-t247313/) was Recommendation 3.3, which states that "... data that results from material enhancement by the application of insights, analysis or transformation by the data holder should not be included in the scope of Open Banking". What that means is any value add or proprietary processing you add as a bank to a customer’s transaction data does not need to be shared. The opportunity present, therefore, is being able to provide additional services on top of the underlying data in unique and compelling ways. 
+One of the more interesting points in the [Open Banking report](https://treasury.gov.au/consultation/c2018-t247313/) was *Recommendation 3.3*, which states that "... data that results from material enhancement by the application of insights, analysis or transformation by the data holder should not be included in the scope of Open Banking". What that means is any value add or proprietary processing you add as a bank to a customer’s transaction data does not need to be shared. The opportunity present, therefore, is being able to provide additional services on top of the underlying data in unique and compelling ways.
 
 For example, imagine as a bank being able to provide proper categorisation of transactions to help drive financial outcomes for a customer. You could tell a customer they spent $24 on coffee this week, which was $4 over their budget. Or you could provide a kind of financial health check service to ensure they’re using the most optimal product for their situation. Providing value add services increases customer loyalty, and discourages Fintechs from plugging obvious gaps in your offering.
 
@@ -41,6 +38,6 @@ The premise of Open Banking is consumer empowerment, industry invigoration and d
 
 There is no doubt that they will be burdened with the cost of implementing approaches that facilitate the operation of Open Banking but, in the process, will also empower themselves to take advantage of this in ways that were not historically leveraged. This is a massive opportunity to drive significant engagement with their existing client base and thus reduce churn.
 
-Further, should some innovative fintech startups create value in ways unforeseen by the Australian big four, their sheer market power and financial strength means that they could most probably play the fast follower by replicating the proposition or just acquire the company. Again, let’s consider the example of peer to peer lending, another approach to "opening up" the banking sector, where those platforms that were successful got bought, or invested in, by the big banks. 
+Further, should some innovative fintech startups create value in ways unforeseen by the Australian big four, their sheer market power and financial strength means that they could most probably play the fast follower by replicating the proposition or just acquire the company. Again, let’s consider the example of peer to peer lending, another approach to "opening up" the banking sector, where those platforms that were successful got bought, or invested in, by the big banks.
 
 As an initiative Open Banking should absolutely be applauded. It creates a foundation that should drive positive changes in banking over the short, medium and long term. The ultimate success of the initiative should be measured by consumer adoption and the flow on benefits that ensue in opening up consumer data in markets beyond just banking.
