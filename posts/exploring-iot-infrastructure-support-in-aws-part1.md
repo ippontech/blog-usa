@@ -28,11 +28,11 @@ The ESP device will be connected to a DHT11 temperature and humidity sensor send
 
 _The source code will be available in the part 2 blog post. Note: Resource usage on AWS will charge your account._
 
-# The Plan: Low-level meets High-level
+# The Experiment
 
-I started my experiment with a number of devices. This included a few variations of boards using the [Espressif](https://espressif.com/) ESP32, ESP16, ESP8266 chips and the more powerful [Raspberry Pi Zero](https://www.raspberrypi.org/products/raspberry-pi-zero/) board. These are well-known devices with great flexibility, portability and ease of development at low costs.
+I started my experiment with a few variations of boards using the [Espressif](https://espressif.com/) ESP32, ESP16, ESP8266 chips and the more powerful full board [Raspberry Pi Zero](https://www.raspberrypi.org/products/raspberry-pi-zero/). These are well-known devices with great flexibility, portability and ease of development at low costs.
 
-These devices need to be securely and reliably connected to a the network for data storage and updates. In IoT there are often requirements to work with low-level device sensor integrations, network management, synchronisation logic and memory management. All of this in the space of a tiny device with limited power, memory and storage! Abstracting away the low-level internals with a higher level language can potentially speed up development and experimentation. This is the reason I have decided to explore a number of higher level libraries and IoT based IDEs/tools such as [MongooseOS](https://mongoose-os.com) and [MicroPython](https://micropython.org/).
+To enable data storage and updates we need to be securely and reliably connected to a the network. In IoT there are often requirements to work with low-level device sensor integrations, network management, synchronisation logic and memory management. All of this in the space of a tiny device with limited power, memory and storage! Abstracting away the low-level internals with a higher level language can potentially speed up development. This is the reason I have decided to explore a number of higher level libraries and IoT based IDEs/tools such as [MongooseOS](https://mongoose-os.com) and [MicroPython](https://micropython.org/).
 
 # IoT Configuration
 
@@ -69,7 +69,7 @@ Before deploying we need to understand the AWS infrastructure and potential opti
   - Standard Greengrass Software (only supported on some devices) runs the Greengrass daemon
   - Will need to use other AWS SDKs if devices are not supported
 
-## IoT Devices at the edge (sensors and lower level hardware) 
+## IoT Devices at the edge (sensors and lower level hardware): 
 
 _Carries out upload and download of sensor data and config including OTA, Network, etc._
 
@@ -115,7 +115,7 @@ During our experiment `sendData` and `ledOn` will be used to managed individual 
 
 ## MongooseOS Device Code:
 
-A small [code snippet](https://github.com/mongoose-os-apps/example-dht-js/blob/master/fs/init.js) for reading the DHT11 humidity and temperature sensor. You can see the flexibility and power provided by MongooseOS utilising the specalised `load` and `Timer` functions specific to `mjs`.
+A small [code snippet](https://github.com/mongoose-os-apps/example-dht-js/blob/master/fs/init.js) for reading the DHT11 humidity and temperature sensor. You can see the flexibility and power provided by MongooseOS utilising the specialised `load` and `Timer` functions specific to `mjs`.
 
 _Note: MongooseOS uses an embedded C/C++ powered subset of JavaScript created by MongooseOS called [mjs](https://github.com/cesanta/mjs)_
 
@@ -151,30 +151,7 @@ Timer.set(2000, Timer.REPEAT, function() {
   MQTT.pub(sensorTopic, message, 1, false);
 
 }, null);
-```
-
-# How AWS Deals with the Challenges of IoT?
- 
-- Security and Privacy
-    - TLS mutual authentication
-    - Custom authorisers implemented in Lambda
-    - IAM roles per device and policy
-    - Certificate management across devices, revocation and expiry support
-- Connectivity 
-    - Greengrass for management of offline devices
-    - OTA Updates
-- Compatibility
-    - Generalised JSON storage structures
-    - SQL queries of messages
-    - Custom Lambda access to Volumes/Devices
-- Standardisation
-    - MQTT
-    - HTTP/WebSocket support
-- Intelligent Actions and Analysis
-    - Actions that interact with other AWS services eg. Lambda, S3, RDS
-    - Jobs creation
-    - Lambda function flexibility
-  
+```  
 # Initial Impressions
 
 - Lack of integration documentation
@@ -196,7 +173,9 @@ Timer.set(2000, Timer.REPEAT, function() {
 - It’s quite a lot more complicated than originally put forward by AWS and my preconceptions about the services.
     - I have yet to explore Cloudformation and Terraform deeply but I could imagine there might be some inefficiencies in stack deployment.
 
-# How Do Other Cloud Providers Compare?
+![Solving the challenges of IoT with AWS](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/solving_aws_challenges.png)
+
+# How do other Cloud providers compare?
 
  Provider  | Features | + | - | Support 
 ----- | ------- | --- | --- | ------
