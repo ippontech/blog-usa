@@ -24,6 +24,8 @@ In this two-part series I will look at the AWS services provided for IoT and the
 
 The ESP device will be connected to a DHT11 temperature and humidity sensor sending data to AWS over the MQTT protocol to "IoT Core". This will update the "Device Shadows" within "IoT Core". "Rules" will also be created to select information from the JSON structure of MQTT messages received and carry out "Actions". The action performed will be saving the data to S3. Once an ESP device is connected and data is being output the Android application can connect to IoT Core to access Shadow states containing device metadata and current sensor data.
 
+In part two I will be discussing the proof of concept with further examples based on the chosen SDKs, software and hardware. I will be evaluating the development process, options for Terraform/Cloudformation and discussing what I liked and didn't like about the current state of AWS IoT. Finally I'll be finishing off with useful resourcesI found for further experimentation and learning.
+
 ![Overview of the idealised IoT POC infrastructure](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_idealised_poc.png)
 
 _The source code will be available in the part 2 blog post. Note: Resource usage on AWS will charge your account._
@@ -191,12 +193,5 @@ Pricing is quite standard across the top 3 services we will be using. As at June
 
 AWS IoT offerings are not necessarily just for IoT but can be a generalised platform for device state management and messaging across MQTT or WebSockets. There are a number of SDKs provided including Android, Java and Python. As long as the device and language is supported by AWS IoT there are a number of potential use cases. Currently the costs are very low and quite likely lower compared to other services. Greengrass provides great flexibility with it's local Lambdas. Actions on response to MQTT messages also means there is a great deal of adaptability for other mobile devices or applications requiring a managed state, messaging and entity management. These devices have the potential to modify device state, set actions and store or send data to other AWS services.
 
-## Part 2:
 
-1. Full discussion of POC implementation
-2. Further examples based on chosen SDKs, software and hardware
-3. What was good? what was bad?
-4. Evaluation of the current AWS services
-5. Links and Resources
-
-Thanks for reading! Check out the part two here
+### Thanks for reading! Check out the part two here
