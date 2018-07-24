@@ -69,7 +69,7 @@ Before deploying we need to understand the AWS infrastructure and potential opti
   - Standard Greengrass Software (only supported on some devices) runs the Greengrass daemon
   - Will need to use other AWS SDKs if devices are not supported
 
-## IoT evices at the edge (sensors and lower level hardware) 
+## IoT Devices at the edge (sensors and lower level hardware) 
 
 _Carries out upload and download of sensor data and config including OTA, Network, etc._
 
