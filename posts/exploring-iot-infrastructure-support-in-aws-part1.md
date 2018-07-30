@@ -3,16 +3,12 @@ authors:
 - Ben Edridge
 tags:
 - AWS
-- IoT
-- Melbourne
-- Australia
-- Greengrass
-date: 2018-07-19T11:41:57.000Z
+date: 2018-07-25T14:37:14.000Z
 title: "Exploring AWS IoT Core and Greengrass Offerings"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_esp_device.jpeg
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_esp_device-1.jpeg
 ---
 
-According to [IEEE](https://iot.ieee.org/newsletter/march-2017/three-major-challenges-facing-iot.html) the biggest challenges and issues facing Internet of Things (IoT) are security, privacy, connectivity, compatibility, standardisation and intelligent actions/analysis. This is what is holding us back from world-wide developments in IoT. A number of recent academic research [papers](https://ieeexplore.ieee.org/abstract/document/7823334/) have discussed the security and privacy aspects of IoT deployments. 
+According to [IEEE](https://iot.ieee.org/newsletter/march-2017/three-major-challenges-facing-iot.html) the biggest challenges and issues facing Internet of Things (IoT) are security, privacy, connectivity, compatibility, standardisation and intelligent actions/analysis. This is what is holding us back from world-wide developments in IoT. A number of recent academic research [papers](https://ieeexplore.ieee.org/abstract/document/7823334/) have discussed the security and privacy aspects of IoT deployments.
 
 The closer and more inter-connected a network is the more strain it puts on developers to lock down the network and maintain ethical privacy practices. AWS provides a number of IoT related services since the release of [AWS IoT Core](https://aws.amazon.com/iot-core/) at the end of 2015. These services are quite complex and try to address a number of these aforementioned challenges. Ideally developers want to spend most of their time developing the business logic of IoT application and not the supporting infrastructure.
 
@@ -42,7 +38,7 @@ AWS provides a hub like [infrastructure](https://docs.aws.amazon.com/iot/latest/
 
 ![Core AWS IoT infrastructure](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_overview.png)
 
-The lower powered devices acting at the edge usually have a CPU less than 1Ghz, interact with sensors and run in a limited environment. The “Greengrass Core” has a custom “Greengrass” daemon and a number of versions depending on the platform. There is support for Raspberry Pi, EC2, x86 and Arm. The lower powered “Thing” devices can also use [AWS RTOS](https://aws.amazon.com/freertos/), AWS SDKs or the REST API to interact with IoT services. 
+The lower powered devices acting at the edge usually have a CPU less than 1Ghz, interact with sensors and run in a limited environment. The “Greengrass Core” has a custom “Greengrass” daemon and a number of versions depending on the platform. There is support for Raspberry Pi, EC2, x86 and Arm. The lower powered “Thing” devices can also use [AWS RTOS](https://aws.amazon.com/freertos/), AWS SDKs or the REST API to interact with IoT services.
 
 MQTT and HTTP protocols are used to communicate between devices and back to AWS. Both Greengrass Cores, groups and IoT things are managed through the same UI and appear to be very similar. Greengrass management is actually a subsection of the IoT Core UI. Within the Greengrass UI Lambda functions, Greengrass groups and Resources can be configured.
 
@@ -71,7 +67,7 @@ Before deploying we need to understand the AWS infrastructure and potential opti
   - Standard Greengrass Software (only supported on some devices) runs the Greengrass daemon
   - Will need to use other AWS SDKs if devices are not supported
 
-## IoT Devices at the edge (sensors and lower level hardware): 
+## IoT Devices at the edge (sensors and lower level hardware):
 
 _Carries out upload and download of sensor data and config including OTA, Network, etc._
 
@@ -142,18 +138,18 @@ let sensorTopic = 'devices/data';
 Timer.set(2000, Timer.REPEAT, function() {
   let t = dht.getTemp();
   let h = dht.getHumidity();
-  
+
   let message = JSON.stringify({
     device: '123456abcde',
     temp: t,
     humidity: h
   });
 
-  // Publishes the message to a MQTT topic on AWS IoT Core  
+  // Publishes the message to a MQTT topic on AWS IoT Core
   MQTT.pub(sensorTopic, message, 1, false);
 
 }, null);
-```  
+```
 # Initial Impressions
 
 - Lack of integration documentation
@@ -164,13 +160,13 @@ Timer.set(2000, Timer.REPEAT, function() {
     - Lambda code can be ported to Greengrass devices, EC2 instances and any other supporting Greengrass devices.
     - Reduces development time.
     - Additional features such as Binary input to Lambdas, `/dev/` access and ML inference
-- Little or no mention of MongooseOS and other dev environments: 
+- Little or no mention of MongooseOS and other dev environments:
     - MongooseOS however, is very polished and provides an easy deployment environment with automatic setup.
-- Greengrass OTA updates: 
+- Greengrass OTA updates:
     - This all comes down to device support and requires a complicated setup
     - Hopefully will reduce problems like that of updates to Android and household Routers
 - Terminology
-    - Slightly confusing terms used for management of Groups, Cores and IoT cores. 
+    - Slightly confusing terms used for management of Groups, Cores and IoT cores.
     - Is a Greengrass core a "Thing" as well as a Greengrass Core?
 - It’s quite a lot more complicated than originally put forward by AWS and my preconceptions about the services.
     - I have yet to explore Cloudformation and Terraform deeply but I could imagine there might be some inefficiencies in stack deployment.
@@ -179,7 +175,7 @@ Timer.set(2000, Timer.REPEAT, function() {
 
 # How do other Cloud providers compare?
 
- Provider  | Features | + | - | Support 
+ Provider  | Features | + | - | Support
 ----- | ------- | --- | --- | ------
 AWS | IoT, Greengrass | RTOS and SDK support for varying devices Custom authorisers Professional support. | Little documentation on RTOS or Greengrass, fragmented documentation. | AWS RTOS: 6 boards plus simulator Greengrass.
 GCP | IoT Core | JWT auth (Interesting) Limited documentation. | No CA checking by [default](https://cloud.google.com/iot/docs/how-tos/credentials/verifying-credentials). Seems to be very limited so far. | Large selection of starter kits supported: 13 kits with individual docs .
