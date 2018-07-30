@@ -4,7 +4,7 @@ authors:
 tags:
 - AWS
 date: 2018-07-25T14:37:14.000Z
-title: "Exploring AWS IoT Core and Greengrass Offerings"
+title: "Exploring AWS IoT Core and Greengrass Offerings (Part 1)"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_esp_device-1.jpeg
 ---
 
@@ -168,7 +168,7 @@ Timer.set(2000, Timer.REPEAT, function() {
 - Terminology
     - Slightly confusing terms used for management of Groups, Cores and IoT cores.
     - Is a Greengrass core a "Thing" as well as a Greengrass Core?
-- It’s quite a lot more complicated than originally put forward by AWS and my preconceptions about the services.
+- It is quite a lot more complicated than originally put forward by AWS and my preconceptions about the services.
     - I have yet to explore Cloudformation and Terraform deeply but I could imagine there might be some inefficiencies in stack deployment.
 
 ![Solving the challenges of IoT with AWS](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/solving_aws_challenges.png)
@@ -179,7 +179,7 @@ Timer.set(2000, Timer.REPEAT, function() {
 ----- | ------- | --- | --- | ------
 AWS | IoT, Greengrass | RTOS and SDK support for varying devices Custom authorisers Professional support. | Little documentation on RTOS or Greengrass, fragmented documentation. | AWS RTOS: 6 boards plus simulator Greengrass.
 GCP | IoT Core | JWT auth (Interesting) Limited documentation. | No CA checking by [default](https://cloud.google.com/iot/docs/how-tos/credentials/verifying-credentials). Seems to be very limited so far. | Large selection of starter kits supported: 13 kits with individual docs .
-Azure | IoT Hub | AMQP, Data simulation docs, Standard MQTT protocol with extensions Clear less ambiguous docs compared to AWS. | Limited SDK support, seems more hobbyist, No CA checking by default, C and Arduino docs. No higher level docs. | 7 non-commercial devices: Hobbyist devices like the adafruit MXChip IoT devkit and VScode extension integrations.
+Azure | IoT Hub | AMQP, Data simulation docs, Standard MQTT protocol with extensions Clear less ambiguous docs compared to AWS. | Limited SDK support, seems more hobbyist, No CA checking by default, C and Arduino docs. No higher level docs. | 7 non-commercial devices: Hobbyist devices like the adafruit MXChip IoT devkit and VS Code extension integrations.
 
 # $$$
 
@@ -189,4 +189,4 @@ Pricing is quite standard across the top 3 services we will be using. As at June
 
 AWS IoT offerings are not necessarily just for IoT but can be a generalised platform for device state management and messaging across MQTT or WebSockets. There are a number of SDKs provided including Android, Java and Python. As long as the device and language is supported by AWS IoT there are a number of potential use cases. Currently the costs are very low and quite likely lower compared to other services. Greengrass provides great flexibility with local Lambdas and "Actions" on response to MQTT messages. This gives a great deal of adaptability for other mobile devices or applications requiring a managed state, messaging and entity management. These devices have the potential to modify device state, set actions and store or send data to other AWS services if required.
 
-### Thanks for reading! Check out the part two here
+### Thanks for reading! Check out the part two [here](http://)
