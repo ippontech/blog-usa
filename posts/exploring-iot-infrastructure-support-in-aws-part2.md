@@ -11,51 +11,50 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/0
 
 This a second post following from the [part one](https://blog.ippon.tech/exploring-iot-infrastructure-support-in-aws-part1) of "Exploring AWS IoT Core and Greengrass Offerings". In part one I discussed the background and theoretical aspects of the AWS IoT offerings including [AWS IoT Core](https://aws.amazon.com/iot-core/), [Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/what-is-gg.html#gg-platforms) and [Amazon FreeRTOS](https://aws.amazon.com/freertos/). I also introduced a proof of concept which will be further discussed in this blog post. More example code will be provided and the deployment options will be evaluated.
 
-# The Journey:
+# The Journey
 
-It's always been a hobby of mine to explore low-powered/mobile computing devices and hack around. Whether it was revitalising old routers, increasing page limits for printers or customising the Android OS. The basic goal for me was I wanted to have some fun whilst learning about the software and supporting OS. The questions I always had were:
+It's always been a hobby of mine to explore low-powered/mobile computing devices and hack around. Whether it was revitalising old routers, increasing page limits for printers or customising the Android OS. The basic goal for me was I wanted to have some fun whilst learning about the software and the supporting OS. The questions I always had were:
 
 > Can we get a shell? maybe we can install a custom Linux?
 > We have Linux... Are there ways in which we can give the device more capability?
 
 Surprisingly a huge number of devices run embedded Linux/Unix. I'm not talking about the standard devices I mentioned before. But devices you would never expect like music players, fridges, cars, coffee machines and drones. Many of these make use of open source software/drivers with additional proprietary components.
 
-Over the last few months I purchased a selection of Espressif based IoT devices from the Amazon of China: Taobao.com for experimentation, research and potential use in coding Dojos or teaching. Below is an example of one of the [ESP32 devices](http://www.nodemcu.com/index_en.html). Google translate might help a bit to purchase these but if you wish you can also purchase these off a the well known Aliexpress.com but the selection is more limited and not up to date.
+Over the last few months I purchased a selection of Espressif based IoT devices from the Amazon of China: Taobao.com for experimentation, research and potential use in coding Dojos or teaching. Below is an example of one of the [ESP32 devices](http://www.nodemcu.com/index_en.html). Google translate might help a bit to purchase these but if you wish you can also purchase these off the well known Aliexpress.com but the selection is more limited and not up to date.
 
 ![Example Taoabao device](https://raw.githubusercontent.com/BenEdridge/blog-usa/master/images/2018/07/taobao_esp8266.png)
 
-Yes you read that right. **15.40 Chinese Yuan!**  At the current exchange rate that is about 2 USD. The following table shows the basic specifications for the ESP32 and ESP8266 chips. A fully fledged ESP32 board with OLED and onboard USB TTL is only 8 USD and has a thriving community behind it. There is no lack of software, blog posts or research. The perfect experimentation platform for IoT, so lets dig right in!
+Yes you read that right. **16 Chinese Yuan!**  That is about 2 USD! A more powerful ESP32 board with OLED and onboard USB TTL ends up being about 8 USD. Espressif has huge support and there is no lack of software, blog posts or research. The perfect experimentation platform for IoT, so lets dig right in!
 
-### Base Specifications for ESP32 and ESP8266:
+# Generic IoT setup
 
-Product | CPU | RAM | I/O | Features |
-------- | ------- | ------- | ------ | ----
-[ESP8266](https://en.wikipedia.org/wiki/ESP8266) |  160 Mhz |  32 KiB instructions, 80 KiB user data | 16 GPIO | WiFi
-[ESP32](https://en.wikipedia.org/wiki/ESP32) | Dual core 240Mhz |  520 KiB SRAM | 40 GPIO | WiFi, BlueTooth (BLE)
+Firstly, I needed to have some means of connecting to the device to upload firmware. This requires the usual download of drivers, unload/load of kernel modules, permissions and debugging of USB/serial access. This is not the focus of this blog post but I have a few resources in the final section for device setup.
 
-Before I started developing the proof of concept outlined below. I wanted to be sure I understood the prerequisites, setup and alternative firmware.
+From my experimentation I've compiled a generalised setup that may differ slightly depending on the actual device used but this is typically what you will be following with any of the sample projects provided by AWS, MongooseOS or MicroPython.
+
+## Steps:
+
+1. Download software (RTOS, Greengrass, MongooseOS, MicroPython)
+2. Configure Toolchain/IDE to work with the device
+3. Configure project/code with AWS settings and WiFi settings for connectivity
+4. Configure IoT credentials/IAM (keys for TLS mutual authentication) on both the device and AWS
+5. Install the firmware on the device
+
+## As in the part one blog post our final goal will be something that looks like diagram below:
 
 ![Overview of the idealised IoT POC infrastructure](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_idealised_poc.png)
 
-Firstly, I needed to have some means of connection to upload firmware. This required the usual download of drivers, unload/load kernel modules, permissions and debugging of USB/serial access. This is not the focus of this blog post but I have a few resources in the final section for device setup. Some common issues faced usually relate to user and file permissions, drivers or serial port setup.
-
-# Generic Thing setup for both IoT core and Greengrass
-
-From my experimentation I've compiled a generalised setup that may differ slightly depending on actual device used but this is typically what you will be following with any of the sample projects.
-
-1. Download software (MongooseOS, MicroPython, RTOS, Greengrass)
-2. Configure Toolchain/IDE to work with the device
-3. Configure project/code with AWS settings and WiFi settings for connectivity
-4. Configure IoT credentials (keys for TLS mutual authentication) on both the device and AWS
-5. Install or flash the firmware files to the device
-
-# Something Easy First - Greengrass
+# Something Easy - Greengrass Installation
 
 Initially, I had decided to setup the Greengrass software on the Raspberry Pi, this would act as the controller and allow me to have the Greengrass core acting as the Raspberry Pi. The following links are available on AWS providing the [Greengrass docs](https://docs.aws.amazon.com/greengrass/latest/developerguide/module1.html) for the setup on the RPI 3, EC2, Nvidia Jetson and general Unix setup.
 
-> **Rookie mistake number 1**: I did not realise the Raspberry Pi Zero was ARMv6 not ARMv7 (Required by Raspberry Pi Greengrass software) so I spent a few hours trying to debug the issues running the Greengrass daemon the setup. I assume it wasn't working because of this but it was hard to tell since the dependency checker passed and all steps work as they should except for the final execution of the daemon.
+## Rookie mistake
 
-If you have a Raspberry Pi 2 B you can work through the above steps to get `greengrassd` daemon up and running. I will not go through the whole setup but will note some interesting points and issues I had before before I realised I was using the wrong Raspberry Pi:
+I did not realise the Raspberry Pi Zero was ARMv6 not ARMv7 (Required by Raspberry Pi Greengrass software) so I spent a bit of time trying to debug the issues with Greengrass. I assume it wasn't working because of the suggested processor but it was hard to tell since the dependency checker passed and all steps worked as they should except for the final execution of the daemon. This is another exploration for another day!
+
+If you have a Raspberry Pi 2 B you can work through the above steps to get the `greengrassd` daemon up and running. I will not go through the whole setup but will note some interesting points and issues I had.
+
+## Notes about Greengrass setup on RPI
 
 - Requires the specific `2017-03-02-raspbian-jessie.zip` image
 - Kernel update suggested (This might have something to do Greengrass Lambda and OTA features)
@@ -67,24 +66,19 @@ If you have a Raspberry Pi 2 B you can work through the above steps to get `gree
 
 There is a repository for generalised GG setup, AWS just tells us to type a bunch of commands without any real explanation of what these do!
 
-Even though I failed to run the `greengrassd` on the RPI I decided setup the daemon on EC2 had still managed to issue the certificates, download and setup the whole configuration so the Raspberry Pi was now acting as a "Thing" in Iot Core, it was just failing to run `greengrassd`. Next step was to abandon the Raspberry Pi greengrass setup and use an EC2 instance instance.
+Even though I failed to run the `greengrassd` on the RPI I decided setup the daemon on EC2 and had still managed to issue the certificates, download and setup the whole configuration so the Raspberry Pi was now acting as a "Thing" in Iot Core, it was just failing to run `greengrassd`. Next step was to abandon the Raspberry Pi greengrass setup and use an EC2 instance instance.
 
 Once this is done, we should be able to run the `greengrassd` daemon on the local device. After we can starting experimenting with device [discovery](https://your-aws-endpoint/greengrass/discover/thing/thing-name) giving information on groups to which a device belongs, the GG core in group and certificates.
 
-# Discussion
+# Getting Low - AWS FreeRTOS Device Setup
 
-The setup for Greengrass is quite long and I would have expected an easier setup overall. Ideally AWS should provide some kind of package or even a custom RPI image to be downloaded and flashed based on the setup. Or even a S3 bucket generated with a temporary link to software and certificates. For example: The public key, is not required to to be secure and neither is the `config.json` or software. 
+Now we have a Greengrass core device up and running for control and being the hub for our lower powered devices. 
 
-# Getting low - AWS FreeRTOS
+There wasn't actually much information provided on AWS FreeRTOS but I wanted to figure out and understand what I could do with RTOS. Starting from FreeRTOS [prerequisites](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-prereqs.html) I started working through the example with the ESP32 device.
 
-Now we have a Greengrass core device for controlling and being the hub for our lower powered devices. 
-There wasn't actually much information provided on AWS FreeRTOS but I wanted to figure out and understand what I could do with RTOS since this one of the services by AWS I should be trying it out.
+Just as we setup Greengrass before with EC2, RTOS also follows a very similar setup like the generalised setup I outlined at the start of the post. The device representation on AWS is not so different from a Greengrass device. The ESP32-devkit has a more streamlined setup compared to other devices but does not support OTA, lightweight IP, SMP and BLE.
 
-Starting from FreeRTOS [prerequisites](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-prereqs.html) I started working through the examples. 
-
-Just as we setup Greengrass before with EC2, RTOS also follows a very similar setup. The device representation on AWS is not to different from a Greengrass device. The ESP32-devkit has a more streamlined setup compared to other devices but does not support OTA, lightweight IP, SMP  and BLE.
-
-We also need to flash the RTOS to the device. Once flashed we should get output similar to the following if we run the MQTT echo example.
+Once flashed and installed we should get output similar to the following if we run the MQTT echo example.
 
 ```
 354 8667 [MQTT] Received message 0 from queue.
@@ -92,75 +86,70 @@ We also need to flash the RTOS to the device. Once flashed we should get output 
 356 8668 [MQTTEcho] MQTT echo demo finished.
 ```
 
-Interesting points to note with setup:
+## Interesting points to note with setup:
 - Amazon RTOS needs to be downloaded from AWS  you have a choice of integrated dev environments or standalone software.
 - `<BASE_FOLDER>/demos/common/tools/aws_config_quick_start/configure.json` requires setup with Wifi and IoT endpoint.
 - Constants must be setup to match configuration in the AWS Console
-- Just as the cert and private key were given to `greengrass` we must also give them to the RTOS setup and update the file in `<BASE_FOLDER>\demos\common\include\aws_clientcredential_keys.h`
+- Just as the cert and private key were given to Greengrass we must also provide them to the RTOS setup and update the file in `<BASE_FOLDER>\demos\common\include\aws_clientcredential_keys.h`
   
 [ESP32 devkit]() ESP32-DevKitC i
-
 [Windows RTOS Simulator](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_windows.html)
-
 [RTOS](https://github.com/aws/amazon-freertos/tree/master/demos/common) demos
 
-# Discussion
+AWS RTOS documentation is certainly limited and does not provide many answers on actual examples. It is provided as a software download. It is very low level and requires vast knowledge of RTOS programming and low level driver setup for these devices. AWS FreeRTOS requires local building and will differ depending on local environments. So I wanted to explore different options before I stuck with something.
 
-AWS RTOS documentation is certainly limited and doesn't provide many answers on actual examples or dealing with sensors like some of the other examples provided with Greengrass. It's provided as a software download. It is very low level and requires vast knowledge of peripheals and driver setup for these devices. For example you can see the difference in code below for the ESP32 AWS FreeRTOS MQTT example:
+Sounds like fun! I could do something with RTOS but I'd be spending most of my time making sure my C/C++ code is correct rather than exploring the rapid development opportunities with MicroPython and other frameworks.
 
-AWS FreeRTOS requires local building and will differ depending on local environments. Come on AWS maybe you should purchase MongooseOS!
+# SnakeOil - MicroPython REPL on your device
 
-# SnakeOil - MicroPython
+The MicroPython [setup](https://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html) for the ESP8266 consisted of downloading the MicroPython [software](https://micropython.org/download), erasing the flash and uploading the new firmware using [`esptool`](https://github.com/espressif/esptool). Lucky enough the ESP8266 and ESP32 boards I was using had USB-serial converters built in so all I was required to do was run `screen /dev/ttyUSB -baud 115200` to connect to the through the USB-serial converter. Wow very cool!
 
-MicroPython [setup](https://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html) for the ESP8266 consisted of downloading the MicroPython [software](https://micropython.org/download), erasing the flash and uploading the new firmware using [`esptool`](https://github.com/espressif/esptool). Lucky enough the ESP8266 and ESP32 boards I was using had USB-serial converters built in so all I was required to do was hook up the REPL at: `/dev/USB`. 
-
-If your board doesn't have a convertor or you don't like serial. MicroPython has also been automatically configured to set up a WiFi AP at `MicroPython-xxxx` with the password `micropythoN`. Once connected all you need to do is run `screen /dev/ttyUSB -baud 115200` to connect to the through the USB-serial converter. Wow very cool!
-
-For WiFi just check out the IP of the station and login. Boom! REPL at your fingertips:
+If your board doesn't have a converter or you don't like serial. MicroPython has also been automatically configured to set up a WiFi AP at `MicroPython-xxxx` with the password `micropythoN`. This will give you access to Web REPL.
 
 ```
 >>> print('hello esp8266!')
 hello esp8266!
 ```
 
-Now that is cool, I was very impressed by this considering it worked out of the box and the first try! Unlike most of my IoT experimentations.
+Now that is cool, I was impressed by this considering it worked out of the box with very little configuration unlike most of the other IoT experimentations.
 
-## I have a REPL but how do I connect MicroPython to AWS?
+## How do I use this with AWS?
 
-> Hmmmm... Starts Googling MicroPython AWS libraries.
-
-The first post brings up an interesting post by Tom Manning. It looks like we need to freeze the AWS packages in and reflash the device according to the hackster [post](https://www.hackster.io/user3282664/micropython-to-aws-iot-cc1c20).
+The first search in Google for `MicroPython AWS Libraries` brings up an interesting [hackster post](https://www.hackster.io/user3282664/micropython-to-aws-iot-cc1c20) by Tom Manning. It looks like we need to freeze the AWS packages in and re-flash the device.
 
 > Due to ESP8266 RAM limitations, the python modules for this project need to be included in the flashed firmware in frozen bytecode
 
-Sounds like fun! I could do something with RTOS but I'd be spending most of my time making sure my C/C++ code is correct rather than exploring the rapid development opportunities with MicroPython and other frameworks.
-
-So this lead me down the path of trying to figure out if it was possible to use the AWS Python SDK on MicroPython. I had a feeling that MicroPython was somewhat limited when it came to larger libraries and wouldn't have enough storage. Boto3 is quite large and would likely suffocate the memory on the device.
+So this lead me down the path of trying to figure out if it was possible to use the AWS Python SDK on MicroPython. I had a feeling that MicroPython was somewhat limited when it came to larger libraries and wouldn't have enough storage. `boto3` is quite large and would likely suffocate the memory on the device.
 
 There also appears to be issues with the mutual [TLS authentication](https://github.com/micropython/micropython/issues/2781). It looks like MicroPython is very useful it's probably not so suitable for AWS integration right now. It has it's benefits but maybe there is something better for integrating with AWS. Not necessarily snake oil but not what I am looking for right now.
 
-# The King - MongooseOS
+# The Decision - MongooseOS
 
-After abandoning MicroPython, I happened to come across MongooseOS mentioned in some of the AWS Blog [posts](https://aws.amazon.com/blogs/apn/aws-iot-on-mongoose-os-part-1/), some these posts provide useful information that the documentation does not necessarily mention. So I thought I'd explore more.
+After leaving MicroPython, I happened to come across `MongooseOS` mentioned in some of the AWS Blog [posts](https://aws.amazon.com/blogs/apn/aws-iot-on-mongoose-os-part-1/). These posts provided useful information that the AWS documentation does not necessarily mention. So I thought I'd explore it more.
 
-It appears MongooseOS and the ESP devices work very nicely. Mongoose provides a nice IDE with updates, real time code saving. No repackaging, modification of source for TLS1.2 or injection of libraries into bytecode. MongooseOS also provides a abstract implementation of IoT working with AWS, Azure and GCP. Sounds fantastic!
+It appears MongooseOS and the ESP devices work very nicely together. Mongoose provides a nice IDE with updates, real time code saving. There is no need for repackaging, modification of source for TLS1.2. MongooseOS also provides a abstract implementation of IoT working with AWS, Azure and GCP. Sounds fantastic!
 
-So I decided to [download](https://mongoose-os.com/software.html) the `mos` tool and setup the IDE to see if this was really the case!
+So I decided to [download](https://mongoose-os.com/software.html) the MongooseOS tool called `mos` and setup the IDE to see if this was really the case!
 
-Once MongooseOS was installed all I needed to do was start the `mos` IDE and then download the sample project through the web interface then flash it to the device.
+Once MongooseOS was installed all I needed to do was start the `mos` browser IDE and then download the sample project through the web interface then flash it to the device.
 
 ![MOS tool setup](https://raw.githubusercontent.com/BenEdridge/blog-usa/master/images/2018/07/mos_initial_setup_screenshot.png)
 
-Once I had done the device rebooted and console output was routed to the Web IDE!
+Once I had done this the device rebooted and console output was routed to the Web IDE!
 
 MongooseOS provides an unified Cloud library and specialised AWS libraries to interact with the AWS shadows. We can subscribe to messages and shadow updates.
 
-To communicate with our IoT devices we will be using MQTT, this allows us to access the default MQTT topics for shadow updates and any custom topics created. We will create 1 extra topic for publishing sensor data to AWS as follows: `devices/deviceId/data` (for sensor data) To update device shadows, sensor
-https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-mqtt.html
+To communicate with our IoT devices we will be using MQTT, this allows us to access the default MQTT topics for shadow updates and any custom topics created. We will create 1 extra topic for publishing sensor data to AWS as follows: `devices/deviceId/data`.
 
-Logging Humidity and Temperature every 5 minutes to MQTT. Set up action to save this to public S3 bucket publicly accessible bucket. Lambda functions can use parse this into data that can be read by the android application, Not sure on what to do with the data, maybe csv or database. Can also set a temperature alert and humidity alert.
+We will be logging humidity and temperature every 5 minutes to MQTT. Then Setting up actions on AWS to save this to public S3 bucket. Lambda functions can used to parse this data and it can also be read by other services.
 
-# Device State and Settings:
+## IAM and permissions setup:
+
+#
+
+## MongooseOS was programmed with the following code in our `init.js` file:
+
+## Device State and Settings:
 
 ```Javascript
 let dht = DHT.create(dhtPin, DHT.DHT11);
@@ -181,7 +170,7 @@ let state = {
 };
 ```
 
-# Subscription handler
+## Subscription handler:
 ```Javascript
 MQTT.sub(settingsUpdateTopic, function(conn, settingsUpdateTopic, msg) {
   print('Topic: ', settingsUpdateTopic, 'message:', msg);
@@ -193,7 +182,7 @@ MQTT.sub(settingsUpdateTopic, function(conn, settingsUpdateTopic, msg) {
 }, null);
 ```
 
-# AWS shadow state handling
+## AWS shadow state handling:
 ```Javascript
 AWS.Shadow.setStateHandler(function(ud, ev, reported, desired) {
   print('Event:', ev, '('+AWS.Shadow.eventName(ev)+')');
@@ -212,15 +201,22 @@ AWS.Shadow.setStateHandler(function(ud, ev, reported, desired) {
 }, null);
 ```
 
-AWS Access requires the mos tool setup for permissions and certificatse uploaded to the ESP8266 device. The IoT setup can be found in the mos IDE or setup using the commandline `mos` tool: Then use "provision with AWS IoT"
+AWS Access requires the mos tool setup for permissions and certificates uploaded to the ESP8266 device. The IoT setup can be found in the mos IDE or setup using the commandline `mos` tool: Then click "Provision with AWS IoT". This will run AWS cli in the background and setup the required certs, output them and upload them into the device.
 
 ![MOS tool AWS Setup](https://raw.githubusercontent.com/BenEdridge/blog-usa/master/images/2018/07/mos_iot_setup_screenshot.png)
 
+Once the AWS provisioning is completed and the correct permissions are setup in AWS for IoT core we should be seeing some nice output in console telling us that data is being sent to AWS for storage.
+
+```
+Logging output
+```
+#
+
 # MongooseOS needs a friend
 
-The devices are now setup and I have decided to go with MongooseOS for this experiment. But what use are IoT devices if your data cannot visualised, seen or controlled in some manner? Currently the data will be output to S3 by default but there are many other options available including Kinesis, DynamoDB and Lambda function. The IoT rules can be modified to do this if needed.
+The devices are now setup and I have decided to go with MongooseOS for this experiment. But what use are these IoT devices if the data cannot visualised, seen or controlled in some manner? Currently the data will be output to S3 by default but there are many other options available including Kinesis, DynamoDB and Lambda function. The IoT rules can be modified to do this if needed.
 
-I wanted to create an application to use this data generated. I had two choices; a web application or a mobile application. I decided Android would be ideal due to ability to emulate this device using Android studio and the solid Android SDK provided by AWS.
+I wanted to create an application to use this data. I had two choices; a web application or a mobile application. Android would be ideal due to ability to emulate this device using Android studio and the solid Android SDK provided by AWS.
 
 So I decided to make a simple companion/controller application that utilises AWS Cognito to connect to AWS IoT core infrastructure and read device shadow information and list current devices. Ideally this application if fully implemented would allow both read and write access to Iot settings. 
 
@@ -229,6 +225,8 @@ What is really cool is I can set my own options for the mobile application, eg. 
 This data will be stored in our Shadow document for each device in Aws IoT core and we have two options for this: Local shadow and Shadow syncing to cloud. We will be using the Shadow sync as we need to aware of the changes made to shadows.
 
 The Android code below pulls down our Thing list using the `iotClient` and returns a list of Things that can be used in the UI. This will display the list of things from AWS IoT core.
+
+Getting a list of all IoT core devices in AWS IoT
 
 ```Java
 @Override
@@ -271,11 +269,11 @@ protected void onPostExecute(AsyncTaskResult<String> result) {
     ((ThingDetailsActivity) context).updateJson(parsedToString);
 }
 ```
-## Here is a screenshot of the output we get in our Android activity from the above code:
+## Screenshot of the output we get in our Android activity from the above code:
 
 ![Android Screenshot](https://raw.githubusercontent.com/BenEdridge/blog-usa/master/images/2018/07/aws_iot_app_screenshot_shadow.png)
 
-You can can see we are getting the the attributes associated with the device including the id, mac, temperature and humidity. This is retrieved from the device shadow state. 
+You can can see we are getting the the attributes associated with the device including the id, mac, temperature and humidity. This is retrieved from the device shadow state. The Android application requires Cognito to be setup and the correct IAM roles in place for S3 and IoT services.
 
 # Deployment
 
@@ -315,7 +313,7 @@ resource "aws_iam_role_policy_attachment" "s3_policy_attachment" {
 }
 ```
 
-## Setting up our identity pool giving unauthenticated or authenticated access to S3 and IoT
+## Setting up our identity pool giving access to S3 and AWS IoT
 
 ```json
 resource "aws_cognito_identity_pool" "cognito_pool" {
@@ -350,7 +348,7 @@ EOF
 }
 ```
 
-## Setting up topic rules for our S3 bucket output
+## Setting up a S3 bucket and topic rules for our data:
 
 ```json
 resource "aws_iot_topic_rule" "topic_rule_write_to_s3" {
@@ -384,17 +382,15 @@ Or we can deploy our full infrastructure then simply us the magic `mos` tool to 
 - [MongooseOS Project on ESP](https://github.com/BenEdridge/Ippon_IoT_ESP) with the required Terraform files and docs.
 - [Android application](https://github.com/BenEdridge/Ippon_IoT_Android) for interacting with our AWS IoT devices once the initial ESP project is setup.
 
-# Potential extensions or modifications of the App
-
-1. Custom push alerts to the mobile when changes are made in the device shadow or MQTT messages eg. If temp is over 30 send email or text message
-2. Set up more devices, group them allow management of groups through app
-3. Show large scale deployment information
-4. Use greengrass for local ML or Lambda functions
-5. Use the device like a local greengrass device
-
 # The struggle is real
 
-AWS IoT provides a solid deployment offering for IoT devices in particular the actions provided and shadow documents decouple state management of IoT device state the reaction to changes. Data comes into AWS IoT through connected devices and cores. This data comes in as messages in MQTT or devices shadows (Implemented as MQTT). Actions can then be setup based on the IoT inputs queried using SQL. These actions invoke certain AWS services such as SQS, S3, Kinesis, CloudWatch and many more.
+## The Grass isn't always Greener:
+
+The setup for Greengrass is quite long and I would have expected an easier setup overall. Ideally AWS should provide some kind of package or even a custom RPI image to be downloaded and flashed based on the setup. Or even a S3 bucket generated with a temporary link to software and certificates. For example: The public key, is not required to to be secure and neither is the `config.json` or software.
+
+## MongooseOS crowned the King!
+
+AWS IoT provides a solid deployment offering for IoT devices in particular the actions provided and shadow documents decoupled state management of IoT device state the reaction to changes. Data comes into AWS IoT through connected devices and cores. This data comes in as messages in MQTT or devices shadows (Implemented as MQTT). Actions can then be setup based on the IoT inputs queried using SQL. These actions invoke certain AWS services such as SQS, S3, Kinesis, CloudWatch and many more.
 
 ### The Good
 
@@ -405,12 +401,6 @@ AWS IoT provides a solid deployment offering for IoT devices in particular the a
 - Custom authentication if needed
 - Some great little examples provides for MongooseOS and SDKs
 - Setup custom OPC-UA protocols using [Lambda](https://docs.aws.amazon.com/greengrass/latest/developerguide/opcua.html)
-- Came across a number of awesome IDEs/dev environments for IoT devices specifically the ESP including the most promising:
-    - MongooseOS
-    - Micropython
-    - Platform.IO
-    - Zerynth
-    - Espruino
 
 ### The Bad
 
@@ -427,22 +417,27 @@ AWS IoT provides a solid deployment offering for IoT devices in particular the a
 
 # What next?
 
-If you are familiar with AWS IoT you may have noticed there are still a few components I did not cover:
+## Potential extensions or modifications of the Applications:
 
-- IoT Core
-    - Jobs
-    - Custom Authenticators
-    - RTOS programming (I have had little experimentation with RTOS)
-- Greengrass
-    - OTA updates
-    - Machine Learning inference
-    - Local volume/dev access
-    - More complicated group management, sync and larger scale setup
-- Inner workings of message brokering systems and MQTT
+1. Custom push alerts to the mobile when changes are made in the device shadow or MQTT messages eg. If temp is over 30 send email or text message
+2. Set up more devices, group them allow management of groups through app
+3. Show large scale deployment information
+4. Use greengrass for local ML or Lambda functions
+5. Use the device like a local greengrass device
+
+## If you are familiar with AWS IoT you may have noticed there are still a few components I did not cover:
+
+- Jobs
+- Custom Authenticators
+- RTOS programming (I have had little experimentation with RTOS)
+- OTA updates
+- Machine Learning inference
+- Local volume/dev access
+- More complicated group management, sync and larger scale setup
 - Large scale commercial deployments
-  - IoT management, grouping
+- IoT management, grouping
 
-Hopefully in the future we see more support by AWS Cloudformation and Terraform deployments.
+Hopefully in the future we see more support by AWS Cloudformation and Terraform deployments in the future. AWS IoT has some solid implementation but also lacks in certain areas around initial setup and device documentation. There is complexity in setup especially with Greengrass and RTOS. Hopefully in the future, AWS offerings will address the issues with Cloudformation
 
 # Stand on the shoulders of giants
 
