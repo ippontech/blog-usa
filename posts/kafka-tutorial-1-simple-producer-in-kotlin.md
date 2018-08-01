@@ -74,8 +74,8 @@ Let's start by creating a `KafkaProducer` that we will use to send messages to K
 private fun createProducer(brokers: String): Producer<String, String> {
     val props = Properties()
     props["bootstrap.servers"] = brokers
-    props["key.serializer"] = StringSerializer::class.java.canonicalName
-    props["value.serializer"] = StringSerializer::class.java.canonicalName
+    props["key.serializer"] = StringSerializer::class.java
+    props["value.serializer"] = StringSerializer::class.java
     return KafkaProducer<String, String>(props)
 }
 ```
