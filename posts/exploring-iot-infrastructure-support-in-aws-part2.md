@@ -4,9 +4,9 @@ authors:
 tags:
 - AWS
 - IoT
-date: 2018-07-19T11:41:57.000Z
+date: 2018-08-01T11:41:57.000Z
 title: "Exploring AWS IoT Core and Greengrass Offerings (Part 2)"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_esp_device.jpeg
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_esp_device2.jpeg
 ---
 
 This a second post following from the [part one](https://blog.ippon.tech/exploring-iot-infrastructure-support-in-aws-part1) of "Exploring AWS IoT Core and Greengrass Offerings". In part one I discussed the background and theoretical aspects of the AWS IoT offerings including [AWS IoT Core](https://aws.amazon.com/iot-core/), [Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/what-is-gg.html#gg-platforms) and [Amazon FreeRTOS](https://aws.amazon.com/freertos/). I also introduced a proof of concept which will be further discussed in this blog post. More example code will be provided and the deployment options will be evaluated.
@@ -22,7 +22,7 @@ Surprisingly a huge number of devices run embedded Linux/Unix. I'm not talking a
 
 Over the last few months I purchased a selection of Espressif based IoT devices from the Amazon of China: [Taobao.com](taobao.com) for experimentation, research and potential use in coding Dojos or teaching. Below is an example of one of the [ESP32 devices](http://www.nodemcu.com/index_en.html). Google translate might help a bit to purchase these but if you wish you can also purchase these off the well known [Aliexpress.com](aliexpress.com) but the selection is more limited and not up to date.
 
-![Example Taobao device](https://raw.githubusercontent.com/BenEdridge/blog-usa/master/images/2018/07/taobao_esp8266.png)
+![Example Taobao device](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/taobao_esp8266.png)
 
 Yes you read that right. **16 Chinese Yuan!**  That is about 2 USD. A more powerful ESP32 board with OLED and onboard USB TTL ends up being about 8 USD. Espressif has huge support and there is no lack of software, blog posts and research. The perfect experimentation platform for IoT, so lets dig right in!
 
@@ -70,7 +70,7 @@ Initially, I decided to install the Greengrass software on the Raspberry Pi Zero
 
 Download and store the security resources as below:
 
-![Greengrass Group Creation](https://raw.githubusercontent.com/BenEdridge/blog-usa/master/images/2018/07/aws_iot_group_creation.png)
+![Greengrass Group Creation](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_group_creation.png)
 
 Even though I failed to run the `greengrassd` daemon on the RPI I decided I would setup Greengrass on EC2 instead. Once this was complete, I should be able to run the `greengrassd` daemon and start experimenting with the array of Greenrass features including device [discovery](https://your-aws-endpoint/greengrass/discover/thing/thing-name) and Lambda functions.
 
@@ -139,7 +139,7 @@ I thought I would give it go so I [downloaded](https://mongoose-os.com/software.
 
 Once MongooseOS was installed all I needed to do was start the `mos` browser IDE, download the sample project through the web interface then flash it to the device. Once flashed, I had the option of setting up WiFi access by loading the credentials onto the device filesystem.
 
-![MOS tool setup](https://raw.githubusercontent.com/BenEdridge/blog-usa/master/images/2018/07/mos_initial_setup_screenshot.png)
+![MOS tool setup](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/mos_initial_setup_screenshot.png)
 
 Once the initial setup is finished the device rebooted and console output was routed directly to the Web logging output. MongooseOS provides an unified cloud library and specialised [AWS libraries](https://mongoose-os.com/docs/cloud/aws.md) to interact with the AWS device shadows. We can subscribe to messages and shadow updates if needed.
 
@@ -230,7 +230,7 @@ AWS.Shadow.setStateHandler(function(ud, ev, reported, desired) {
 
 The IoT setup can be found in the mos IDE or setup using the `mos` cli tool with the command: `mos aws-iot-setup --aws-region YOUR_AWS_REGION`. This will run AWS cli in the background and setup the required certs, output them and transfer them into the device. The resulting certs are also bound to the device on AWS IoT Core.
 
-![MOS tool AWS Setup](https://raw.githubusercontent.com/BenEdridge/blog-usa/master/images/2018/07/mos_iot_setup_screenshot.png)
+![MOS tool AWS Setup](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/mos_iot_setup_screenshot.png)
 
 Once the AWS provisioning is complete and the correct permissions are setup in AWS for IoT core we should start to see some nice output in the console telling us that data is being sent to AWS.
 
@@ -353,7 +353,7 @@ Or we can deploy our full infrastructure using `terraform` then simply us the ma
 
 Once this is has been setup and we have run `terraform apply` we should be able to browse our S3 buckets and see the following output to S3 in json format:
 
-![S3 Output Example](https://raw.githubusercontent.com/BenEdridge/blog-usa/master/images/2018/07/aws_s3_output_example.png)
+![S3 Output Example](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_s3_output_example.png)
 
 # MongooseOS needs an Android friend
 
@@ -410,7 +410,7 @@ protected void onPostExecute(AsyncTaskResult<String> result) {
 ```
 ## Android activity displaying Shadow state for an IoT device
 
-![Android Screenshot](https://raw.githubusercontent.com/BenEdridge/blog-usa/master/images/2018/07/aws_iot_app_screenshot_shadow.png)
+![Android Screenshot](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_app_screenshot_shadow.png)
 
 You can can see we are getting the the attributes associated with the device including the id, mac, temperature and humidity. This is retrieved from the device shadow state.
 
@@ -419,19 +419,19 @@ You can can see we are getting the the attributes associated with the device inc
 - [MongooseOS Project on ESP](https://github.com/BenEdridge/Ippon_IoT_ESP) with the required Terraform files and docs.
 - [Android application](https://github.com/BenEdridge/Ippon_IoT_Android) for interacting with our AWS IoT devices once the initial ESP project is setup.
 
-## Potential extensions or modifications of the Applications:
+# What next?
+
+ AWS has some solid IoT infrastructure but also lacks in certain areas around initial setup and device documentation. There is complexity in setup especially with Greengrass and AWS FreeRTOS. Ideally this will be streamlined in the future creating an easier setup with new ways to set up TLS mutual authentication and perhaps some other authentication methods if needed.
+ 
+ There is also massive hole in CloudFormation and deployment options for Greengrass. AWS IoT Core isn't so bad but still lacks a huge amount of features. Hopefully in the future we see more support by AWS CloudFormation and Terraform. Right now any complex setup relies on the CLI, AWS Console or one of the supported SDK libraries. This means you need to setup your own way of managing stack state and deployment.
+
+ ## Potential extensions or modifications of the applications:
 
 - Custom alerts when changes are occur Eg. If temperature > 30 send email/SMS
 - Toggle device settings from the mobile app
 - Set up more devices grouping them and allowing management of groups through the app
 - Setup a Greengrass core and use this manage the devices instead
 - Experiment with ML inference using results or pass them into Lambda function
-
-# What next?
-
- AWS has some solid IoT infrastructure but also lacks in certain areas around initial setup and device documentation. There is complexity in setup especially with Greengrass and AWS FreeRTOS. Ideally this will be streamlined in the future creating an easier setup with new ways to set up TLS mutual authentication and perhaps some other authentication methods if needed.
- 
- There is also massive hole in CloudFormation and deployment options for Greengrass. AWS IoT Core isn't so bad but still lacks a huge amount of features. Hopefully in the future we see more support by AWS CloudFormation and Terraform. Right now any complex setup relies on the CLI, AWS Console or one of the supported SDK libraries. This means you need to setup your own way of managing stack state and deployment.
 
 # Stand on the shoulders of giants
 
@@ -442,7 +442,7 @@ You can can see we are getting the the attributes associated with the device inc
 [Large AWS Connected vehicle solution](https://aws.amazon.com/answers/iot/connected-vehicle-solution)  
 [AWS IoT Troubleshooting](https://docs.aws.amazon.com/iot/latest/developerguide/iot_troubleshooting.html) 
 [Greengrass Troubleshooting](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-troubleshooting.html)  
-[AWS FreeRTOS Demos](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-next-steps.html)   
+[AWS FreeRTOS Demos](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-next-steps.html)  
 [Apple USB Driver Setup](https://kig.re/2014/12/31/how-to-use-arduino-nano-mini-pro-with-CH340G-on-mac-osx-yosemite.html)  
 
 
