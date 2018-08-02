@@ -5,11 +5,11 @@ tags:
 - Apache Kafka
 - Kotlin
 date: 2018-08-01T00:00:00.000Z
-title: "Kafka tutorial #2 - JSON SerDes"
+title: "Kafka tutorial #3 - JSON SerDes"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/kafka-logo.png
 ---
 
-This is the third post in this series where we go through the basics of using Kafka. We saw in the previous posts - [part 1](/kafka-tutorial-1-simple-producer-in-kotlin/), [part 2](/kafka-tutorial-2-simple-consumer-in-kotlin) - how to produce and consume JSON messages using the plain Java client and Jackson. We will see here how to create our own serializers and deserializers.
+This is the third post in this series where we go through the basics of using Kafka. We saw in the [previous posts](https://blog.ippon.tech/tag/apache-kafka/) how to produce and consume JSON messages using the plain Java client and Jackson. We will see here how to create our own serializers and deserializers.
 
 # What we are going to build in this tutorial
 
