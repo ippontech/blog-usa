@@ -24,7 +24,7 @@ Over the last few months I purchased a selection of Espressif based IoT devices 
 
 ![Example Taobao device](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/taobao_esp8266.png)
 
-Yes you read that right. **16 Chinese Yuan!**  That is about 2 USD. A more powerful ESP32 board with OLED and onboard USB TTL ends up being about 8 USD. Espressif has huge support and there is no lack of software, blog posts and research. The perfect experimentation platform for IoT, so lets dig right in!
+Yes you read that right. **16 Chinese Yuan!**  That is about $2 USD. A more powerful ESP32 board with OLED and onboard USB TTL ends up being about 8 USD. Espressif has huge support and there is no lack of software, blog posts and research. The perfect experimentation platform for IoT, so lets dig right in!
 
 # Generic IoT setup
 
@@ -74,7 +74,7 @@ Download and store the security resources as below:
 
 Even though I failed to run the `greengrassd` daemon on the RPI I decided I would setup Greengrass on EC2 instead. Once this was complete, I should be able to run the `greengrassd` daemon and start experimenting with the array of Greenrass features including device [discovery](https://your-aws-endpoint/greengrass/discover/thing/thing-name) and Lambda functions.
 
-## The Grass isn't always Greener
+## The grass is not always green
 
 The setup for Greengrass is quite long winded and I would have expected a slightly easier setup overall. To get a running device it is quite simple but to get the whole end-end setup including Lambda functions there are over 5 pages of AWS documentation a number of intricacies. 
 
@@ -151,6 +151,8 @@ We will be logging humidity and temperature at selected intervals using MQTT. Th
 
 MongooseOS is based on [mjs](https://github.com/cesanta/mjs), a strict subset of JavaScript ES6 with C/C++ RPC calls. Once MongooseOS is installed on the device we have access to virtual file system on the device which is relatively small but stores a number of items including the `init.js` (entrypoint for the program). The `config.json` files are for configuration settings related to MongooseOS internals, WiFi and Cloud configurations. Certificates, private keys and public keys are also stored in this area.
 
+![Mongoose Architecture](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/mongoose_architecture.png)
+
 Typical layout of the filesystem according to MongooseOS documentation:
 ```
 conf0.json      - default app configuration, must NOT be edited manually
@@ -162,7 +164,7 @@ api_*.js        - JavaScript API files
 api_*.jsc       - compiled JavaScript files
 ```
 
-![Mongoose Architecture](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/mongoose_architecture.png)
+
 
 There are number of funcitons we will be using in mJS:
 - `load()` takes the name of a Mongoose API and loads it into the file system upon compilation
