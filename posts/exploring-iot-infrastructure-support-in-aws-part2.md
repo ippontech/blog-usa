@@ -13,7 +13,7 @@ This a second post following from the [part one](https://blog.ippon.tech/explori
 
 # The Journey
 
-It's always been a hobby of mine to explore low-powered/mobile computing devices and hack around. Whether it was revitalising old routers, increasing page limits for printers or customising the Android OS. The basic goal for me was I wanted to have some fun whilst learning about the software and the supporting OS. The questions I always had were:
+It has always been a hobby of mine to explore low-powered/mobile computing devices and hack around. Whether it was revitalising old routers, increasing page limits for printers or customising the Android OS. I wanted to have some fun whilst learning about the software and the supporting OS. Each time I picked up one of these devices, I would ask myself the following questions:
 
 > Can we get a shell? maybe we can install a custom Linux?
 > We have Linux... Are there ways in which we can give the device more capability?
@@ -28,9 +28,9 @@ Yes you read that right. **16 Chinese Yuan!**  That is about 2 USD. A more power
 
 # Generic IoT setup
 
-Firstly, I needed to have some way of connecting to the device. This required the usual download of drivers, unloading/loading of kernel modules and debugging of serial access. This is not the focus of post but I have a few resources in the final section if you need some tips.
+Firstly, I needed to have some way of connecting to the device. This required the usual download of drivers, unloading/loading of kernel modules and debugging of serial access. Although this is not the focus of this post, I have a couple of resources in the final section if need some tips.
 
-From my experimentation I've compiled a generic setup that may differ slightly depending device will typically be what you follow with any of the sample projects provided by AWS, MongooseOS or MicroPython.
+From experiments I've compiled a generic setup. It will differ slightly depending device but typically be what you follow with any of the sample projects provided by AWS, MongooseOS or MicroPython.
 
 ## Generic Steps:
 
@@ -76,7 +76,7 @@ Even though I failed to run the `greengrassd` daemon on the RPI I decided I woul
 
 ## The Grass isn't always Greener
 
-The setup for Greengrass is quite extended and I would have expected a slightly easier setup overall. To get a running device it is quite simple but to get the whole end-end setup including Lambda functions there are over 5 pages of AWS documentation a number of intricacies. 
+The setup for Greengrass is quite long winded and I would have expected a slightly easier setup overall. To get a running device it is quite simple but to get the whole end-end setup including Lambda functions there are over 5 pages of AWS documentation a number of intricacies. 
 
 Ideally AWS should provide a packaged version or even a custom image to be downloaded and flashed based on the setup. Potentially this could be generated and stored in an S3 bucket with a temporary link. It is important to note that the public key, Greengrass software and config.json are not required to to be secure so do not necessarily need to be securely loaded to the device by hand with `scp`.
 
@@ -127,7 +127,7 @@ This lead me down the path of trying to figure out if it was possible to use the
 
 > Due to ESP8266 RAM limitations, the python modules for this project need to be included in the flashed firmware in frozen bytecode
 
-There also appears to be issues with the mutual [TLS](https://github.com/micropython/micropython/issues/2781). It looks like MicroPython is useful but it is probably not suitable for this AWS proof of concept. Perhaps there is something better for AWS integration.
+There also appears to be issues with [TLS](https://github.com/micropython/micropython/issues/2781). It looks like MicroPython is useful but it is probably not suitable for this AWS proof of concept. Perhaps there is something better for AWS integration.
 
 # MongooseOS - The King
 
@@ -143,15 +143,54 @@ Once MongooseOS was installed all I needed to do was start the `mos` browser IDE
 
 Once the initial setup is finished the device rebooted and console output was routed directly to the Web logging output. MongooseOS provides an unified cloud library and specialised [AWS libraries](https://mongoose-os.com/docs/cloud/aws.md) to interact with the AWS device shadows. We can subscribe to messages and shadow updates if needed.
 
-To communicate with our IoT devices we will be using MQTT, this allows us to access the default MQTT topics for Shadow updates and any custom topics created. We will create 2 extra topic for publishing sensor data and device settings to AWS as follows: `devices/<deviceId>/data` and `devices/<deviceId>/settings`
+To communicate with our IoT devices I've decided to use the standard MQTT over HTTPS, this allows us to access the default MQTT topics for Shadow updates and any custom topics created. We will create 2 extra topic for publishing sensor data and device settings to AWS as follows: `devices/<deviceId>/data` and `devices/<deviceId>/settings`
 
 We will be logging humidity and temperature at selected intervals using MQTT. Then Setting up actions on AWS IoT to save this data to a S3 bucket.
 
-## MongooseOS was loaded with the following code in our `init.js` file:
+## MongooseOS Architecture:
 
-## Device State and Settings:
+MongooseOS is based on [mjs](https://github.com/cesanta/mjs), a strict subset of JavaScript ES6 with C/C++ RPC calls. Once MongooseOS is installed on the device we have access to virtual file system on the device which is relatively small but stores a number of items including the `init.js` (entrypoint for the program). The `config.json` files are for configuration settings related to MongooseOS internals, WiFi and Cloud configurations. Certificates, private keys and public keys are also stored in this area.
+
+Typical layout of the filesystem according to MongooseOS documentation:
+```
+conf0.json      - default app configuration, must NOT be edited manually
+conf9.json      - user-specific overrides, changed by "mos config-set" command
+index.html      - many apps define this file, which is served by a web server
+ca.pem          - added by the ca-bundle library, contains ca root certs
+init.js         - main file for the JavaScript-enabled apps
+api_*.js        - JavaScript API files
+api_*.jsc       - compiled JavaScript files
+```
+
+![Mongoose Architecture](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/mongoose_architecture.png)
+
+There are number of funcitons we will be using in mJS:
+- `load()` takes the name of a Mongoose API and loads it into the file system upon compilation
+- `print()` simplified print statement
+- `DHT` gives us access to the DHT sensor library imported with `load('api_dht.js');`
+- `GPIO` gives us access to device gpio configuration imported with `load('api_gpio.js');`
+- As above `AWS` and `MQTT` are also loaded as additional libraries for AWS and MQTT functions
+
+## Device Settings, API and State:
+In the following code we are loading the required APIs with `load()` more APIs can be found [here](https://github.com/mongoose-os-libs) and added to your `mos.yml` build file if required. Documentation is available on the MongooseOS website for [core libraries](https://mongoose-os.com/docs/api/core.md).
+
+Once APIs have been loaded the `DHT` library helps set up the DHT11 sensor. Additionally we need to use `GPIO` to set the mode of `ledPin` to output
+
+`state` is a key variable here for managing our settings on the local device. This object will be updated depending on what messages we receive over MQTT.
 
 ```JavaScript
+// Load Mongoose OS APIs
+load('api_dht.js');
+load('api_config.js');
+load('api_timer.js');
+load('api_aws.js');
+load('api_mqtt.js');
+load('api_sys.js');
+load('api_gpio.js');
+
+let dhtPin = 13;
+let ledPin = 2;
+
 // Setting up sensor and LED pins
 let dht = DHT.create(dhtPin, DHT.DHT11);
 GPIO.set_mode(ledPin, GPIO.MODE_OUTPUT);
@@ -174,6 +213,8 @@ let state = {
 
 ## Subscription handler for subscribing to our settings topic: 
 
+`MQTT` library allows us to subscribe and post MQTT  messages. In the below function we are subscribing to updates for the `settingsUpdateTopic` When a messages is received we will parse the data into JSON and check the `sendData` attribute to see if we should disable sensor data upload.
+
 ```JavaScript
 MQTT.sub(settingsUpdateTopic, function(conn, settingsUpdateTopic, msg) {
   print('Topic: ', settingsUpdateTopic, 'message:', msg);
@@ -185,7 +226,9 @@ MQTT.sub(settingsUpdateTopic, function(conn, settingsUpdateTopic, msg) {
 }, null);
 ```
 
-## AWS Shadow state handling:
+## AWS Shadow State handling:
+
+`AWS.Shadow` gives us the ability to manage Shadows states for our AWS integration. This function will set a handler up for receiving events from AWS. It will then update the Shadow state according to reported and desired objects.
 
 ```JavaScript
 AWS.Shadow.setStateHandler(function(ud, ev, reported, desired) {
@@ -423,7 +466,7 @@ You can can see we are getting the the attributes associated with the device inc
 
  AWS has some solid IoT infrastructure but also lacks in certain areas around initial setup and device documentation. There is complexity in setup especially with Greengrass and AWS FreeRTOS. Ideally this will be streamlined in the future creating an easier setup with new ways to set up TLS mutual authentication and perhaps some other authentication methods if needed.
  
- There is also massive hole in CloudFormation and deployment options for Greengrass. AWS IoT Core isn't so bad but still lacks a huge amount of features. Hopefully in the future we see more support by AWS CloudFormation and Terraform. Right now any complex setup relies on the CLI, AWS Console or one of the supported SDK libraries. This means you need to setup your own way of managing stack state and deployment.
+ CloudFormation and deployment options for Greengrass are particularly limited. AWS IoT Core support is not as bad but still lacks a number of features. Hopefully in the future we see more support by AWS CloudFormation and Terraform. Right now any complex setup relies on the CLI, AWS Console or one of the supported SDK libraries. This means you need to setup your own way of managing stack state and deployment.
 
  ## Potential extensions or modifications of the applications:
 
@@ -443,8 +486,4 @@ You can can see we are getting the the attributes associated with the device inc
 [AWS IoT Troubleshooting](https://docs.aws.amazon.com/iot/latest/developerguide/iot_troubleshooting.html) 
 [Greengrass Troubleshooting](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-troubleshooting.html)  
 [AWS FreeRTOS Demos](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-next-steps.html)  
-[Apple USB Driver Setup](https://kig.re/2014/12/31/how-to-use-arduino-nano-mini-pro-with-CH340G-on-mac-osx-yosemite.html)  
-
-
-
-
+[Apple USB Driver Setup](https://kig.re/2014/12/31/how-to-use-arduino-nano-mini-pro-with-CH340G-on-mac-osx-yosemite.html)
