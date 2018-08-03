@@ -11,7 +11,7 @@ tags:
 - RVA
 date: 
 title: "Five Interns Walk into an Office..."
-image: 
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/RVA-Interns.JPG
 ---
 
 This blog represents the combined experiences of the five interns ([Clement Dessoude](https://www.linkedin.com/in/cl%C3%A9ment-dessoude/ "LinkedIn"), [Yashar Atajiang](https://www.linkedin.com/in/yaxarat/ "LinkedIn"), [Auguste Lehuger](https://www.linkedin.com/in/auguste-lehuger/ "LinkedIn"), [Spencer Hamilton](https://www.linkedin.com/in/spencer-hamilton-aa2816146 "LinkedIn"), and [Alexandre Andreini](https://www.linkedin.com/in/alexandre-andreini-9050a1130/ "LinkedIn"))  in Ippon’s Richmond office during the summer of 2018, including the projects we worked on, the technologies and skills we learned, and our experiences with the unique culture at Ippon. Some of us travelled from across the Atlantic to be at Ippon and some of us travelled just down the street. Some of us were here for half a year and some of us were here for half the summer. None of our experiences were exactly the same but we all got great work experience and exposure to new technologies while having some fun at the same time.
