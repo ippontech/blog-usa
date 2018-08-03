@@ -18,7 +18,7 @@ This blog represents the combined experiences of the five interns ([Clement Dess
 # The Projects
 Our time this summer was split between four main projects; Customer Oriented Sentiment Analysis (COSA), Power Plant, Taiga, and an Insurance Chatbot. COSA was the project that Clement worked on in collaboration with Ippon France during the months before the rest of us started our time at Ippon. COSA is a ready-to-use data platform, completely based on serverless services from AWS. The goal of this particular project was to enable an end-user to react as quickly as possible to external events and organize a response; it used some AWS Lambdas to collect tweets from various sources (Twitter, open data, call centers, etc.), AWS Comprehend to run data analysis, and then store the results in Elasticsearch. The Kibana plugin was then used on top of Elasticsearch to display the collected information on some dynamic dashboards.
 
-{{< cosa-architecture-diagram src="https://github.com/shamilton97/blog-usa/blob/master/images/2018/08/COSA.jpg" >}}
+![COSA Architecture Diagram](/images/2018/08/COSA.jpg)
 
 The Power Plant project followed COSA and Yashar joined Clement for it. The idea was to create a website in the interest of better marketing Ippon in the Agile delivery space with a unique offering that showcases Ippon’s talents in Agile delivery, software development, and continuous integration/delivery. The website was designed to take in requested user-stories from prospective clients and to deliver results within 24 hours. The website was initially generated with JHipster and utilized technologies such as Angular, Spring, and AWS.
 
@@ -26,7 +26,7 @@ The next project that the intern team worked on involved Taiga, which is an open
 
 The largest project that the intern team worked on was the Insurance Chatbot. The goal was to create a demo for potential clients of an imaginary car insurance company with a simple web application that was interconnected with Amazon Alexa. The project aimed at extending the user’s online experience with a fun chatbot interaction. Once a user has created his profile online, they can ask Alexa to retrieve information or purchase products. The website was built using a microservice architecture. This architecture divides an application into several different modules, in this instance, a gateway and a microservice which communicate with each other through a registry. It was created with the JHipster generator and then deployed through Jenkins to two EC2 instances connected through Amazon’s elastic load balancer. The final step was to create an Alexa skill using the Amazon development environment that would make requests of the website to retrieve information from or make changes to a user’s profile.
 
-{{< chatbot-arhietecture-diagram src="https://github.com/shamilton97/blog-usa/blob/master/images/2018/08/Insurance_Chatbot_Diagram.png" >}}
+![Chatbot Architecture Diagram](/images/2018/08/Insurance_Chatbot_Diagram.png)
 
 # The Technology
 During our time at Ippon, we were exposed to dozens of exciting technologies that are commonplace in the modern development world. We wanted to quickly touch on some of these technologies (specifically the ones used during the Insurance Chatbot project) and our thoughts on them from an intern’s point of view. The technologies we worked with can be split into three broad categories: web development, DevOps, and Amazon Web Services.
