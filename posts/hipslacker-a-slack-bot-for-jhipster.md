@@ -8,7 +8,7 @@ tags:
 - Python
 date: 2018-08-05T00:00:00.000Z
 title: "HipSlacker - A Slack bot for JHipster"
-image: 
+image: https://raw.githubusercontent.com/Falydoor/blog-usa/hipslacker/images/2018/08/hipslacker-logo.png
 ---
 
 Slack is almost used everywhere nowadays, especially because of their bot integration called Slack App. During a hackathon day, my coworkers and I decided to start building a bot using Python that will generate a JHipster app. The workflow is pretty simple, you send a message to the bot with the JHipster's configuration you want to use. Then the bot uses [JHipster Online](https://start.jhipster.tech/) to generate your application and replies with the GitHub repository's link.
