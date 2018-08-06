@@ -9,7 +9,7 @@ title: "Kafka tutorial #7 - Kafka Streams SerDes and Avro"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/kafka-logo.png
 ---
 
-This is the seventh post in this series where we go through the basics of using Kafka. We saw [in the previous post]() how to build a simple Kafka Streams application. We will see here how to use a custom SerDe (Serializer / Deserializer) and how to use Avro and the Schema Registry.
+This is the seventh post in this series where we go through the basics of using Kafka. We saw [in the previous post](/kafka-tutorial-6-kafka-streams-in-kotlin/) how to build a simple Kafka Streams application. We will see here how to use a custom SerDe (Serializer / Deserializer) and how to use Avro and the Schema Registry.
 
 # The concept of SerDe
 
