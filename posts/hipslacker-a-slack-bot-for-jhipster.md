@@ -13,13 +13,13 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/0
 
 Slack is almost used everywhere nowadays, especially because of their bot integration called Slack App. During a hackathon day, my coworkers and I decided to start building a bot using Python that will generate a JHipster app. The workflow is pretty simple, you send a message to the bot with the JHipster's configuration you want to use. Then the bot uses [JHipster Online](https://start.jhipster.tech/) to generate your application and replies with the GitHub repository's link.
 
-Here an example of a command: `@hipslacker generate a microservice with mongodb named my-awesome-app`, as you can see, the message is very simple and looks like a real sentence. The reason is because we wanted to make the usage of the bot very simple and avoid having to specify all the JHipster's configuration.
+Here is an example of a command: `@hipslacker generate a microservice with mongodb named my-awesome-app`. As you can see, the message is very simple and looks like a real sentence. The reason is because we wanted to make the usage of the bot very simple and avoid having to specify all the JHipster's configuration.
 
 All the Python code from this blog post is on the [GitHub repository of HipSlacker](https://github.com/hipslacker/hipslacker). You can easily setup your own bot by following the instructions in the README.md file.
 
 # Main method and loop
 
-The main method is very simple, the bot connects to your workspace and parse messages with a given interval. When a message is mentioning the bot, the method `handle_command` is called and a HipSlacker object is created to process the command.
+The main method is very simple, the bot connects to your workspace and parses messages with a given interval. When a message is mentioning the bot, the method `handle_command` is called and a HipSlacker object is created to process the command.
 
 ```python
 def run():
@@ -36,7 +36,7 @@ def run():
 
 def parse_slack_output(slack_rtm_output):
     """
-        Each messages are parsed
+        Each message is parsed
         The method 'handle_command' is called if a message is directed to the Bot
     """
     if slack_rtm_output and len(slack_rtm_output) > 0:
@@ -87,7 +87,7 @@ def __init__(self, slack_client, command, channel, user):
     self.payload_generator = self.payload["generator-jhipster"]
 ```
 
-Then the bot parses the command's content and updates the configuration. The command can contain the application type, the name, the database type and the port. If you're familiar with JHipster, those parameters have no secret for you!
+Then the bot parses the command's content and updates the configuration. The command can contain the application type, the name, the database type and the port. If you're familiar with JHipster, those parameters are no secret for you!
 
 For the application and database type, the bot simply looks for keywords and updates the configuration with correct values. For the port and the name, the bot uses the command after the keyword (ex: `named my-awesome-app` or `port 8080`).
 
@@ -176,7 +176,7 @@ def generate_application(self):
         self.post_fail_msg()
 ```
 
-The response from the `generate-application` endpoint is an id and we can use this id to get the status of the generation. That way the bot will post the status of the generation on your Slack channel to keep you updated. Then the bot post the link of the GitHub repository if the generation succeeded or an error if the generation failed.
+The response from the `generate-application` endpoint is an id and we can use this id to get the status of the generation. That way the bot will post the status of the generation on your Slack channel to keep you updated. Then the bot will post the link of the GitHub repository if the generation succeeded or an error if the generation failed.
 
 ```python
 def post_generation_status(self, app_id, token):
@@ -222,13 +222,13 @@ def post_generation_status(self, app_id, token):
 
 Since [JHipster Online](https://github.com/jhipster/jhipster-online) is on GitHub, you can host your own version. That is pretty useful if you want to use a specific version of JHipster or use a private version control service instead of GitHub.
 
-The main idea of the bot was to be user-friendly and not having to specify all the JHipster's configuration in one command. However multiple improvements can be done to the bot to extend its functionalities, here a small list:
+The main idea of the bot was to be user-friendly and not having to specify all the JHipster's configuration in one command. However multiple improvements can be done to the bot to extend its functionalities, here are a few examples:
 - Add support for GitLab
 - Extend the command parser to enable more JHipster's configuration (ex: translation, cache, authentication, etc)
 - Make the bot more interactive with a question/answer pattern
 
 # Conclusion
 
-Creating a Slack bot using Python is pretty easy and by dedicating the application's generation to JHipster Online you will avoid a lot of extra work. The main challenge is how the bot parses commands and generates a JHipster's configuration from them. That all depends on how the bot generates the configuration and on how complex a command can be. A flow with questions/answers can be used to give the user more control on the JHipster's configuration. But in this case, why not simply use JHipster Online ?
+Creating a Slack bot using Python is pretty easy and by dedicating the application's generation to JHipster Online you will avoid a lot of extra work. The main challenge is how the bot parses commands and generates a JHipster's configuration from them. That all depends on how the bot generates the configuration and on how complex a command can be. A flow with questions/answers can be used to give the user more control on the JHipster's configuration. But in this case, why not simply use JHipster Online?
 
-Here the [GitHub repository for HipSlacker](https://github.com/hipslacker/hipslacker), feel free to directly contribute to it or maintain your own fork!
+Here is the [GitHub repository for HipSlacker](https://github.com/hipslacker/hipslacker), feel free to directly contribute to it or maintain your own fork!
