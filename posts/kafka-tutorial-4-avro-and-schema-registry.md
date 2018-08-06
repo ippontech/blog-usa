@@ -129,7 +129,7 @@ repositories {
 }
 dependencies {
     ...
-    compile 'io.confluent:kafka-avro-serializer:4.0.0'
+    compile 'io.confluent:kafka-avro-serializer:5.0.0'
 }
 ```
 
