@@ -4,7 +4,7 @@ authors:
 tags:
 - Agile
 - XP
-date: 2018-08-03T14:18:16.000Z
+date: 
 title: "A roadmap to TDD adoption"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/TDD_Graphic.png
 ---
