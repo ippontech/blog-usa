@@ -15,6 +15,8 @@ Slack is almost used everywhere nowadays, especially because of their bot integr
 
 Here is an example of a command: `@hipslacker generate a microservice with mongodb named my-awesome-app`. As you can see, the message is very simple and looks like a real sentence. The reason is because we wanted to make the usage of the bot very simple and avoid having to specify all the JHipster's configuration.
 
+![hipslacker-screenshot](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/hipslacker-screenshot.png)
+
 All the Python code from this blog post is on the [GitHub repository of HipSlacker](https://github.com/hipslacker/hipslacker). You can easily setup your own bot by following the instructions in the README.md file.
 
 # Main method and loop
