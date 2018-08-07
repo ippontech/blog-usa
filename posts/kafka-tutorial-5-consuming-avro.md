@@ -26,7 +26,7 @@ We are now going to take the code from [part 2](/kafka-tutorial-2-simple-consume
 
 # The consumer
 
-Let's stat by changing the code that creates the consumer:
+Let's start by changing the code that creates the consumer:
 
 ```kotlin
 private fun createConsumer(brokers: String, schemaRegistryUrl: String): Consumer<String, GenericRecord> {
