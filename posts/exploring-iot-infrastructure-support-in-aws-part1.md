@@ -4,7 +4,7 @@ authors:
 tags:
 - AWS
 date: 2018-07-25T14:37:14.000Z
-title: "Exploring AWS IoT Core and Greengrass Offerings"
+title: "Exploring AWS IoT Core and Greengrass Offerings (Part 1)"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_esp_device-1.jpeg
 ---
 
@@ -20,7 +20,7 @@ In this two-part series I will look at the AWS services provided for IoT and the
 
 The ESP device will be connected to a DHT11 temperature and humidity sensor sending data to AWS over the MQTT protocol to "IoT Core". This will update the "Device Shadows" within "IoT Core". "Rules" will also be created to select information from the JSON structure of MQTT messages received and carry out "Actions". The action performed will be saving the data to S3. Once an ESP device is connected and data is being output the Android application can connect to IoT Core to access Shadow states containing device metadata and current sensor data.
 
-In part two I will be discussing the proof of concept with further examples based on the chosen SDKs, software and hardware. I will be evaluating the development process, options for Terraform/Cloudformation and discussing what I liked and did not like about the current state of AWS IoT. Finally I will be finishing off with some useful resources I found for further experimentation and learning.
+In part two I will be discussing the proof of concept with further examples based on the chosen SDKs, software and hardware. I will be evaluating the development process, options for Terraform/CloudFormation and discussing what I liked and did not like about the current state of AWS IoT. Finally I will be finishing off with some useful resources I found for further experimentation and learning.
 
 ![Overview of the idealised IoT POC infrastructure](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_idealised_poc.png)
 
@@ -49,10 +49,10 @@ The following table gives my opinions on the AWS IoT services, SDK and a summary
 Product | Summary | SDK/HW | Verdict
 ------- | ------- | ------- | ------
 [IoT Core](https://aws.amazon.com/documentation/iot/) | AWS management interface, IoT device SDK, Device Gateway, Message Broker, Authorisation, Device Registry, Rule engine and Device Shadows. | Python, Java, Android, C/C++, JavaScript. | The crux of the AWS IoT offerings; management interface.
-[Greengrass](https://aws.amazon.com/documentation/greengrass/) | Aan extension of IoT core and running on the devices providing local compute, message, sync and ML inference. | Raspberry Pi, EC2, Texas Instruments (x86/Arm >1GHz, 128MB+ of RAM).| A controller and SDK provided with more compute power with some cool toys like Lambda, ML inference and OTA (Very powerful!).  Ubuntu, Raspberry Pi, EC2.
+[Greengrass](https://aws.amazon.com/documentation/greengrass/) | An extension of IoT core and running on the devices providing local compute, message, sync and ML inference. | Raspberry Pi, EC2, Texas Instruments (x86/Arm >1GHz, 128MB+ of RAM).| A controller and SDK provided with more compute power with some cool toys like Lambda, ML inference and OTA (Very powerful!).  Ubuntu, Raspberry Pi, EC2.
 [FreeRTOS](https://aws.amazon.com/documentation/freertos/) | Extension of the standard FreeRTOS. This is the local OS for nodes in our IoT network for devices with low compute power.| Espressif, Microchip, NXP, STM and Texas instruments < 128MB of RAM. | FreeRTOS with additional libs attached to carry out AWS service calls. A low-level OS.
 [IoT 1-Click](https://aws.amazon.com/documentation/iot-1-click/) |  Simple service invokes Lambda functions with out of the box device support. | The Enterprise, AT&T or Soracom LTE-M [buttons](https://aws.amazon.com/iot-1-click/devices/). | Button invokes Lambda function. Not very powerful or useful compared to other offerings (Only US).
-[IoT Analytics](https://aws.amazon.com/documentation/iotanalytics/) |  Managed service to collect and query data from IoT devices with Jupyter notebook and Amazon quicksight integration. | - | Have not explored yet (not available in Sydney).
+[IoT Analytics](https://aws.amazon.com/documentation/iotanalytics/) |  Managed service to collect and query data from IoT devices with Jupyter notebook and Amazon Quicksight integration. | - | Have not explored yet (not available in Sydney).
 [IoT Device Management](https://aws.amazon.com/documentation/iot-device-management/) |  Part of the AWS IoT Core feature for onboarding IoT devices, fleet management, serial number management and security policies. | - | Commercial management of devices used in a production environment (larger deployments).
 
 # Current Development Options (Software, SDKs)
@@ -128,7 +128,7 @@ load('api_mqtt.js');
 // GPIO pin which has a DHT sensor data wire connected
 let pin = 16;
 
-// Initialize DHT library
+// Initialise DHT library
 let dht = DHT.create(pin, DHT.DHT11);
 
 // Sensor data topic for MQTT
@@ -168,8 +168,8 @@ Timer.set(2000, Timer.REPEAT, function() {
 - Terminology
     - Slightly confusing terms used for management of Groups, Cores and IoT cores.
     - Is a Greengrass core a "Thing" as well as a Greengrass Core?
-- It’s quite a lot more complicated than originally put forward by AWS and my preconceptions about the services.
-    - I have yet to explore Cloudformation and Terraform deeply but I could imagine there might be some inefficiencies in stack deployment.
+- It is quite a lot more complicated than originally put forward by AWS and my preconceptions about the services.
+    - I have yet to explore CloudFormation and Terraform deeply but I could imagine there might be some inefficiencies in stack deployment.
 
 ![Solving the challenges of IoT with AWS](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/solving_aws_challenges.png)
 
@@ -179,7 +179,7 @@ Timer.set(2000, Timer.REPEAT, function() {
 ----- | ------- | --- | --- | ------
 AWS | IoT, Greengrass | RTOS and SDK support for varying devices Custom authorisers Professional support. | Little documentation on RTOS or Greengrass, fragmented documentation. | AWS RTOS: 6 boards plus simulator Greengrass.
 GCP | IoT Core | JWT auth (Interesting) Limited documentation. | No CA checking by [default](https://cloud.google.com/iot/docs/how-tos/credentials/verifying-credentials). Seems to be very limited so far. | Large selection of starter kits supported: 13 kits with individual docs .
-Azure | IoT Hub | AMQP, Data simulation docs, Standard MQTT protocol with extensions Clear less ambiguous docs compared to AWS. | Limited SDK support, seems more hobbyist, No CA checking by default, C and Arduino docs. No higher level docs. | 7 non-commercial devices: Hobbyist devices like the adafruit MXChip IoT devkit and VScode extension integrations.
+Azure | IoT Hub | AMQP, Data simulation docs, Standard MQTT protocol with extensions. Less ambiguous docs compared to AWS. | Limited SDK support, seems more hobbyist, No CA checking by default, C and Arduino docs. No higher level docs. | 7 non-commercial devices: Hobbyist devices like the Adafruit MXChip IoT devkit and VS Code extension integrations.
 
 # $$$
 
@@ -189,4 +189,4 @@ Pricing is quite standard across the top 3 services we will be using. As at June
 
 AWS IoT offerings are not necessarily just for IoT but can be a generalised platform for device state management and messaging across MQTT or WebSockets. There are a number of SDKs provided including Android, Java and Python. As long as the device and language is supported by AWS IoT there are a number of potential use cases. Currently the costs are very low and quite likely lower compared to other services. Greengrass provides great flexibility with local Lambdas and "Actions" on response to MQTT messages. This gives a great deal of adaptability for other mobile devices or applications requiring a managed state, messaging and entity management. These devices have the potential to modify device state, set actions and store or send data to other AWS services if required.
 
-### Thanks for reading! Check out the part two here
+### Thanks for reading! Check out the part two [here](http://)
