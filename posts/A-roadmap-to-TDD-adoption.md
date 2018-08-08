@@ -4,9 +4,10 @@ authors:
 tags:
 - Agile
 - XP
-date: 
+- Testing
+date:
 title: "A roadmap to TDD adoption"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/TDD_Graphic.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/TDD_Graphic.jpg
 ---
 
 You've heard all about how Test Driven Development (TDD) will solve all your problems on a software project. Your defects go away, your time to market decreases, customer satisfaction goes through the roof. Everything is supposed to be awesome if your team just did TDD. However every time you try to adopt it, the adoption fails. Why?
@@ -36,7 +37,7 @@ First you'll need to want to write better code, this isn't something that can be
 
 Once you've got those basics you can start unit testing and refactoring your code so that the tests become cleaner and more robust. Note that at this point we are not doing TDD, we are still writing tests after the code. It's important to be able to write tests after the fact first before we can really adopt TDD. There are a unique set of tools and skills in testing that need to be learned prior to be able to able to do TDD effectively. At this point you can start enforcing that any production code should be paired with its unit tests in the same commit.
 
-At this point your team should be comfortable writing tests that you can start pushing for a switch to TDD. This is where TDD exercises are effective, the team already knows how to tests their code, and how to design for testability. You can pair exercises with hand picked stories from your backlog that are especially well suited for TDD, one good example are bug fixes. Any production defect that need to be fixed should be replicated by an automated tests prior to fixing it. Not only does your team get to practice TDD but you also get the assurance that this defect won't be coming back.
+At this point your team should be comfortable writing tests that you can start pushing for a switch to TDD. This is where TDD exercises are effective. The team already knows how to tests their code, and how to design for testability. You can pair exercises with hand picked stories from your backlog that are especially well suited for TDD, one good example are bug fixes. Any production defect that need to be fixed should be replicated by an automated tests prior to fixing it. Not only does your team get to practice TDD but you also get the assurance that this defect won't be coming back.
 
 # Summary
 
