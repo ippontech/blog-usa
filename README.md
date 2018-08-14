@@ -2,7 +2,7 @@
 
 This repository will be used to manage all blog posts published by Ippon USA. All drafting, editing, and peer reviewing will be done through this repository following standard Git best practices.
 
-This `README.md` will provide instructions for both a technical audience and a non-technical audience. If you have limited or no `git` experience it is recommended that you follow the "non-technical" section.
+This `README.md` will provide instructions for both a technical audience and a non-technical audience. If you have limited or no `git` experience, it is recommended that you follow the "non-technical" section.
 
 *******************************************************************************
 
@@ -10,10 +10,36 @@ This `README.md` will provide instructions for both a technical audience and a n
 
 - Use GitHub's standard Markdown.
 - Start numbering your titles at level 1 (not level 2 like we used to do).
+- Don't start a post with a level 1 title, the title indicated in metadata will already be there.
 - A paragraph should be a single line of text (no manual wrapping).
 - Paragraphs need to be separated by a blank line.
 - Avoid abbreviations (e.g. "I've" -> "I have").
 - Put your links _on_ the text itself, not after the text it refers to.
+
+## Metadata
+
+Each post should start with metadata. Here is an example:
+
+```
+---
+authors:
+- Julien Dubois
+tags:
+- Cassandra
+- JHipster
+date: 2015-04-23T12:21:50.000Z
+title: "10 Tips and tricks for Cassandra"
+image: 
+---
+```
+
+A few notes:
+
+- Authors: you can list one or multiple authors. Authors must exist in Ghost before a post can be sent to Ghost (when a PR is merged).
+- Tags: you can list zero, one or more tags. If tags don't exist in Ghost, they are ignored.
+- Date: date can be ignored. The real publication date will be overriden from Ghost.
+- Title: this should "match" the _slug_ of the post, i.e. the name of the file after converting to lowercase and replacing spaces with dashes.
+- Image: an absolute URL to an image file (optional).
 
 *******************************************************************************
 
