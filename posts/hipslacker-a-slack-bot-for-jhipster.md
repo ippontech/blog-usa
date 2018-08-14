@@ -2,11 +2,8 @@
 authors:
 - Theo Lebrun
 tags:
-- Slack
 - JHipster
-- Bot
-- Python
-date: 2018-08-05T00:00:00.000Z
+date: 2018-08-06T22:50:24.000Z
 title: "HipSlacker - A Slack bot for JHipster"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/hipslacker-logo.png
 ---

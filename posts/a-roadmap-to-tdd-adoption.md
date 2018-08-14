@@ -3,9 +3,7 @@ authors:
 - Ben Scott
 tags:
 - Agile
-- XP
-- Testing
-date:
+date: 2018-08-08T20:22:38.000Z
 title: "A roadmap to TDD adoption"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/TDD_Graphic.jpg
 ---
@@ -49,6 +47,5 @@ Here's my preferred way of getting teams to adopt TDD:
 * TDD exercises
 * Complete well suited stories in TDD fashion
 * Switch to TDD
-
 
 I also found that not everyone is suited for TDD, some will adopt it and love it, others will hate it and won't adopt it no matter how much you try. I don't enforce TDD on my teams, I encourage it and provide a good foundation for them to succeed at it. Where I'm much more strict is committing your code with tests. If you write the tests in the same commit as your production code, and you commit at least daily you get most of the benefits of TDD.

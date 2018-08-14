@@ -3,10 +3,9 @@ authors:
 - Ben Edridge
 tags:
 - AWS
-- IoT
-date: 2018-08-01T11:41:57.000Z
+date: 2018-08-08T13:05:22.000Z
 title: "Exploring AWS IoT Core and Greengrass Offerings (Part 2)"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/aws_iot_esp_device2.jpeg
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/aws_iot_esp_device2.jpeg
 ---
 
 This a second post following from the [part one](https://blog.ippon.tech/exploring-iot-infrastructure-support-in-aws-part1) of "Exploring AWS IoT Core and Greengrass Offerings". In part one I discussed the background and theoretical aspects of the AWS IoT offerings including [AWS IoT Core](https://aws.amazon.com/iot-core/), [Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/what-is-gg.html#gg-platforms) and [Amazon FreeRTOS](https://aws.amazon.com/freertos/). I also introduced a proof of concept, which will be further discussed in this blog post. More example code will be provided and the deployment options will be evaluated.
@@ -48,7 +47,7 @@ From my experiments I have compiled a generic setup. It will differ slightly dep
 In part one I discussed the potential software solutions for IoT devices. Lets recap; We have both AWS options and third party options including:
 
 - [Greengrass Software](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-config.html)
-- [AWS FreeRTOS](https://github.com/aws/amazon-freertos) 
+- [AWS FreeRTOS](https://github.com/aws/amazon-freertos)
 - [MicroPython](https://micropython.org/)
 - [MongooseOS](https://mongoose-os.com)
 
@@ -76,7 +75,7 @@ Even though I failed to run the `greengrassd` daemon on the RPI I decided I woul
 
 ## The grass is not always green:
 
-The setup for Greengrass is quite long winded and I would have expected a slightly easier setup overall. To get a running device, it is quite simple but to produce the whole end-end setup including Lambda functions there are over 6 modules in the AWS documentation for a number of intricacies. 
+The setup for Greengrass is quite long winded and I would have expected a slightly easier setup overall. To get a running device, it is quite simple but to produce the whole end-end setup including Lambda functions there are over 6 modules in the AWS documentation for a number of intricacies.
 
 Ideally AWS should provide a packaged version or even a custom image to be downloaded and flashed based on the setup. Potentially this could be generated and stored in an S3 bucket with a temporary link. It is important to note that the public key, Greengrass software and config.json are not required to be secure so do not necessarily need to be securely loaded to the device by hand with `scp`.
 
@@ -211,7 +210,7 @@ let state = {
 };
 ```
 
-## Subscription handler for subscribing to our settings topic: 
+## Subscription handler for subscribing to our settings topic:
 
 The `MQTT` library allows us to subscribe and post MQTT messages. In the below function we are subscribing to updates for the `settingsUpdateTopic`. When a messages is received we will parse the data into JSON and check the `sendData` attribute to enable or disable the upload of sensor data.
 
@@ -280,16 +279,16 @@ Once the AWS provisioning is complete and the correct permissions are setup in A
 ## An example disabling sensor upload by publishing to the settings topic:
 
 ```
-[Aug  1 12:10:08.401] Published: yes topic: devices/esp8266_94AB1C/data message: {"humidity":"80","temp":"20","device":"esp8266_94AB1C"} 
-[Aug  1 12:10:30.320] Topic:  devices/esp8266_94AB1C/settings message: {"sendData": false,"ledOn": false} 
-[Aug  1 12:10:30.335] Disabling Sensor data upload 
+[Aug  1 12:10:08.401] Published: yes topic: devices/esp8266_94AB1C/data message: {"humidity":"80","temp":"20","device":"esp8266_94AB1C"}
+[Aug  1 12:10:30.320] Topic:  devices/esp8266_94AB1C/settings message: {"sendData": false,"ledOn": false}
+[Aug  1 12:10:30.335] Disabling Sensor data upload
 [Aug  1 12:10:30.354] mgos_aws_shadow_ev   Update: {"state": {"reported": {"ledOn":false,"sendData":false}}, "clientToken": "c1e0b2d0"}
 [Aug  1 12:10:30.449] mgos_aws_shadow_ev   Version: 0 -> 94 (5)
 [Aug  1 12:10:30.455] mgos_aws_shadow_ev   Version: 93 -> 94 (5)
-[Aug  1 12:10:30.496] Event: 3 (UPDATE_ACCEPTED) 
-[Aug  1 12:10:30.496] Reported state: {"sendData":false,"ledOn":false} 
-[Aug  1 12:10:30.506] Desired state: {} 
-[Aug  1 12:10:38.381] Publishing disabled, please enable sendData flag in shadow 
+[Aug  1 12:10:30.496] Event: 3 (UPDATE_ACCEPTED)
+[Aug  1 12:10:30.496] Reported state: {"sendData":false,"ledOn":false}
+[Aug  1 12:10:30.506] Desired state: {}
+[Aug  1 12:10:38.381] Publishing disabled, please enable sendData flag in shadow
 ```
 
 # Deployment and AWS IAM setup
@@ -388,7 +387,7 @@ resource "aws_s3_bucket" "s3_bucket" {
 
 ## We have roles but we do not have mutual TLS setup for the device:
 
-We have a few options, we can manually set up certs like before and link these certs to our device, upload the certs to the device and AWS IoT core. Then TLS mutual authentication will be working. 
+We have a few options, we can manually set up certs like before and link these certs to our device, upload the certs to the device and AWS IoT core. Then TLS mutual authentication will be working.
 
 Or we can deploy our full infrastructure using `terraform` then simply use the magic `mos` tool to set things up as we did before. Since we are using MongooseOS we will use the `mos` tool to setup AWS IoT MQTT authentication and do some magic.
 
@@ -467,7 +466,7 @@ For the full code examples you can see the repositories hosted on my GitHub acco
 # What next?
 
  AWS has some solid IoT infrastructure but also lacks in certain areas around initial setup and device documentation. There is complexity in setup especially with Greengrass and AWS FreeRTOS. Ideally this will be streamlined in the future creating an easier setup with new ways to initialise TLS mutual authentication and perhaps some other authentication methods.
- 
+
  CloudFormation and deployment options for Greengrass are particularly limited. AWS IoT Core support is not as bad but still lacks a number of features. Hopefully in the future we see more support by AWS CloudFormation and Terraform. Right now any complex setup relies on the CLI, AWS Console or one of the supported SDK libraries. This means for a complicated stack you need to create your own way of managing state and deployment.
 
  ## Potential extensions or modifications of the applications:
@@ -480,12 +479,12 @@ For the full code examples you can see the repositories hosted on my GitHub acco
 
 # Stand on the shoulders of giants
 
-[MongooseOS on GitHub](https://github.com/cesanta/mongoose-os)  
-[Great blog post about MongooseOS](https://www.mjoldfield.com/atelier/2017/07/mongoose.html)  
-[MicroPython setup on the ESP8266](https://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html)  
-[Confused about ESP8266 boards versions?](https://frightanic.com/iot/comparison-of-esp8266-nodemcu-development-boards)  
-[Large AWS Connected vehicle solution](https://aws.amazon.com/answers/iot/connected-vehicle-solution)  
-[AWS IoT Troubleshooting](https://docs.aws.amazon.com/iot/latest/developerguide/iot_troubleshooting.html)   
-[Greengrass Troubleshooting](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-troubleshooting.html)  
-[AWS FreeRTOS Demos](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-next-steps.html)  
+[MongooseOS on GitHub](https://github.com/cesanta/mongoose-os)
+[Great blog post about MongooseOS](https://www.mjoldfield.com/atelier/2017/07/mongoose.html)
+[MicroPython setup on the ESP8266](https://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html)
+[Confused about ESP8266 boards versions?](https://frightanic.com/iot/comparison-of-esp8266-nodemcu-development-boards)
+[Large AWS Connected vehicle solution](https://aws.amazon.com/answers/iot/connected-vehicle-solution)
+[AWS IoT Troubleshooting](https://docs.aws.amazon.com/iot/latest/developerguide/iot_troubleshooting.html)
+[Greengrass Troubleshooting](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-troubleshooting.html)
+[AWS FreeRTOS Demos](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-next-steps.html)
 [Apple USB Driver Setup](https://kig.re/2014/12/31/how-to-use-arduino-nano-mini-pro-with-CH340G-on-mac-osx-yosemite.html)

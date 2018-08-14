@@ -4,7 +4,7 @@ authors:
 tags:
 - Apache Kafka
 - Kotlin
-date: 2018-08-01T00:00:00.000Z
+date: 2018-08-07T15:48:21.000Z
 title: "Kafka tutorial #4 - Avro and the Schema Registry"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/kafka-logo.png
 ---

@@ -4,7 +4,7 @@ authors:
 tags:
 - Apache Kafka
 - Kotlin
-date: 2018-08-03T00:00:00.000Z
+date: 2018-08-08T13:05:03.000Z
 title: "Kafka tutorial #5 - Consuming Avro data"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/kafka-logo.png
 ---

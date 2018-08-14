@@ -4,7 +4,7 @@ authors:
 tags:
 - Apache Kafka
 - Kotlin
-date: 2018-08-01T00:00:00.000Z
+date: 2018-08-01T18:05:14.000Z
 title: "Kafka tutorial #1 - Simple Kafka producer in Kotlin"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/kafka-logo.png
 ---
