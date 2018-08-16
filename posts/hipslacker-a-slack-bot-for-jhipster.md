@@ -14,7 +14,7 @@ Here is an example of a command: `@hipslacker generate a microservice with mongo
 
 ![hipslacker-screenshot](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/hipslacker-screenshot.png)
 
-All the Python code from this blog post is on the [GitHub repository of HipSlacker](https://github.com/hipslacker/hipslacker). You can easily setup your own bot by following the instructions in the README.md file.
+All the Python code from this blog post is on the [GitHub repository of HipSlacker](https://github.com/jhipster/hipslacker). You can easily setup your own bot by following the instructions in the README.md file.
 
 # Main method and loop
 
@@ -230,4 +230,4 @@ The main idea of the bot was to be user-friendly and not having to specify all t
 
 Creating a Slack bot using Python is pretty easy and by dedicating the application's generation to JHipster Online you will avoid a lot of extra work. The main challenge is how the bot parses commands and generates a JHipster's configuration from them. That all depends on how the bot generates the configuration and on how complex a command can be. A flow with questions/answers can be used to give the user more control on the JHipster's configuration. But in this case, why not simply use JHipster Online?
 
-Here is the [GitHub repository for HipSlacker](https://github.com/hipslacker/hipslacker), feel free to directly contribute to it or maintain your own fork!
+Here is the [GitHub repository for HipSlacker](https://github.com/jhipster/hipslacker), feel free to open a pull request or maintain your own fork!
