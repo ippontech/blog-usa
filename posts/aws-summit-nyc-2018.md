@@ -1,7 +1,7 @@
 ---
 authors:
 - Randeep Walia
-categories:
+tags:
 - AWS
 date: 2018-08-13T06:25:27.000Z
 title: "AWS Summit NYC 2018"
