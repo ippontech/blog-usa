@@ -1,10 +1,10 @@
 ---
 authors:
-- Randeep Walia
+- Randeep Walia
 categories:
-- AWS
+- AWS
 date: 2018-08-13T06:25:27.000Z
-title: "AWS Summit NYC 2018"
+title: "AWS Summit NYC 2018"
 ---
 The glass ceiling of the Javits Center cracked, literally, on a rainy day in July. As water poured from the roof to the floor several stories below, one couldn't be blamed for attributing it to the collective energy in the room radiating out from the hundreds of software engineers and architects that filled the space. The AWS Summit had made its way to New York City and I was in attendance to witness it.
 
