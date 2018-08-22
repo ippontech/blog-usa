@@ -28,7 +28,7 @@ The Confluent Platform ships with KSQL. I will be using the Confluent Platform v
 
 You can start the KSQL Server with the `ksql-server-start` command:
 
-```text
+```shell
 $ ksql-server-start etc/ksql/ksql-server.properties
 ...
                   ===========================================
@@ -56,7 +56,7 @@ The server is now ready for us to submit commands.
 
 Let's start the CLI with the `ksql` command:
 
-```text
+```shell
 $ ksql
 
                   ===========================================
@@ -92,13 +92,13 @@ So far, KSQL doesn't _know_ our data. We have to declare either a stream or a ta
 
 Luckily, KSQL can read data in JSON format, as well as delimited and Avro data. Let's declare a stream from our topic:
 
-```text
+```sql
 ksql> CREATE STREAM persons (firstName string, lastName string, birthDate string) WITH (kafka_topic='persons', value_format='json');
 ```
 
 We can now use the `DESCRIBE` command to see the schema of the new stream:
 
-```text
+```sql
 ksql> DESCRIBE persons;
 
 Name                 : PERSONS
@@ -117,7 +117,7 @@ Notice that, on top of the 3 fields we have declared, our stream has 2 extra fie
 
 Let's run a `SELECT` command:
 
-```text
+```sql
 ksql> SELECT * FROM persons;
 1534874843511 | null | Trinity | Beatty | 1958-06-16T13:10:49.824+0000
 1534874844526 | null | Danyka | Hodkiewicz | 1961-04-05T20:51:32.358+0000
@@ -144,7 +144,7 @@ KSQL doesn't have a function to compare 2 dates. This leaves us with 2 options:
 
 Let's start by parsing the date with the `STRINGTOTIMESTAMP` function:
 
-```text
+```sql
 ksql> SELECT firstName, lastName, birthDate, STRINGTOTIMESTAMP(birthDate,'yyyy-MM-dd''T''HH:mm:ss.SSSZ') FROM persons;
 
 Genevieve | Turner | 1990-09-26T20:55:33.072+0000 | 654382533072
@@ -155,7 +155,7 @@ Khalid | Ernser | 1961-08-24T17:33:27.626+0000 | -263629592374
 
 Now, we need to compare these timestamps with today's timestamp. There is no function to get today's time, but we can use the `STRINGTOTIMESTAMP` function to parse today's date:
 
-```text
+```sql
 ksql> SELECT firstName, lastName, birthDate, STRINGTOTIMESTAMP(birthDate,'yyyy-MM-dd''T''HH:mm:ss.SSSZ'), STRINGTOTIMESTAMP('2018-08-21','yyyy-MM-dd') FROM persons;
 
 Marquis | Friesen | 1960-02-01T11:07:04.379+0000 | -312900775621 | 1534824000000
@@ -165,7 +165,7 @@ Maci | Dare | 1983-05-17T11:56:26.007+0000 | 422020586007 | 1534824000000
 
 Good. Now, let's compare these 2 timestamps and calculate the number of days between them:
 
-```text
+```sql
 ksql> SELECT firstName, lastName, birthDate, (STRINGTOTIMESTAMP('2018-08-21','yyyy-MM-dd')-STRINGTOTIMESTAMP(birthDate,'yyyy-MM-dd''T''HH:mm:ss.SSSZ'))/(86400*1000) FROM persons;
 
 Buford | Wisoky | 1985-10-17T22:26:03.323+0000 | 11995
@@ -175,7 +175,7 @@ Watson | Gusikowski | 1984-01-15T13:49:54.942+0000 | 12636
 
 Now, let's do an approximation by dividing the number of days by 365, so that we can get a number of years. A small gotcha is that, if we try to divide by `365*86400*1000`, we will run into an integer overflow: operations seem to be done with 32 bit integers and will give invalid results. Instead. let's divide the difference between the dates by 365, then by 86400, then by 1000:
 
-```text
+```sql
 ksql> SELECT firstName, lastName, birthDate, (STRINGTOTIMESTAMP('2018-08-21','yyyy-MM-dd')-STRINGTOTIMESTAMP(birthDate,'yyyy-MM-dd''T''HH:mm:ss.SSSZ'))/365/86400/1000 FROM persons;
 
 Sherman | Hickle | 1984-06-26T03:38:21.564+0000 | 34
@@ -190,7 +190,7 @@ Done! We have a pretty good approximation of the age of the persons.
 
 We have processed the data and printed the results in real time. Now is the time to output the results to another topic. We can use the `CREATE STREAM ... AS SELECT ...` construct. Let's start with a simple one, by writing the age as a string. We are writing the data in delimited format (remember, KSQL supports JSON, delimited and Avro) but that's fine because we will only be writing one value:
 
-```text
+```sql
 ksql> CREATE STREAM ages WITH (kafka_topic='ages', value_format='delimited') AS SELECT CAST((STRINGTOTIMESTAMP('2018-08-21','yyyy-MM-dd')-STRINGTOTIMESTAMP(birthDate,'yyyy-MM-dd''T''HH:mm:ss.SSSZ'))/365/86400/1000 AS string) AS age FROM persons;
 
  Message
@@ -201,7 +201,7 @@ ksql> CREATE STREAM ages WITH (kafka_topic='ages', value_format='delimited') AS 
 
 The query is running in the background, in the KSQL Server. Let's run the console consumer to see the results:
 
-```text
+```shell
 $ kafka-console-consumer --bootstrap-server localhost:9092 --topic ages --property print.key=true
 null	20
 null	36
@@ -212,19 +212,19 @@ We're missing the key of the messages, so let's stop this query: use the `SHOW Q
 
 To write the key of the messages, we need to use a `PARTITION BY` clause. In our case, we want to use the concatenation of the first name and the last name as the key. Since the `PARTITION BY` clause doesn't accept calculated values, we need to create an intermediate stream. Let's do so:
 
-```text
+```sql
 ksql> CREATE STREAM persons_processed AS SELECT CONCAT(CONCAT(firstName, ' '), lastName) AS name, CAST((STRINGTOTIMESTAMP('2018-08-21','yyyy-MM-dd')-STRINGTOTIMESTAMP(birthDate,'yyyy-MM-dd''T''HH:mm:ss.SSSZ'))/365/86400/1000 AS string) AS age FROM persons PARTITION BY name;
 ```
 
 We have created a stream with 2 fields (`name` and `age`), and we are not writing this stream to a topic. Let's now create the `ages` stream again, this time by selecting from the intermediate stream:
 
-```text
+```sql
 ksql> CREATE STREAM ages WITH (kafka_topic='ages', value_format='delimited') AS SELECT age FROM persons_processed;
 ```
 
 The console consumer now shows the expected results:
 
-```text
+```shell
 $ kafka-console-consumer --bootstrap-server localhost:9092 --topic ages --property print.key=true
 Karli Heathcote	46
 Zack Cartwright	40
