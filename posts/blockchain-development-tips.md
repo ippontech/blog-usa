@@ -56,13 +56,13 @@ This all seems really interesting and you can’t wait to dive in. But first let
   
   
   
-![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-05.png =150x )
+![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-05.png)
 
 1/Truffle: Truffle is a popular and complete development framework for Ethereum, enabling you for example to run automated tests of your contracts, compile, migrate and deploy them. It also has a lot of promising features we did not use in the first phase of the project.
 
-  ![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-06.png  =150x )**
+  ![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-06.png)**
 2/Ganache: Ganache is a tool of the Truffle development suite that enables you to simulate a local ethereum blockchain on your computer. It generates ten different user wallets with public and private keys so you can test your smart contract features locally.
-**![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-07.png=150x)**
+**![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-07.png)**
   
   
   
@@ -70,30 +70,30 @@ This all seems really interesting and you can’t wait to dive in. But first let
 3/web3.js: web3.js is the Ethereum JavaScript API. You will use it for the frontend development of your decentralized application, as the way to link your frontend and the blockchain.
 
   
-  ![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-08.png=150x)**
+  ![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-08.png)**
 4/Metamask: Metamask is a Chrome/Firefox plugin using web3.js. It gives a convenient way to connect to the different Ethereum Blockchains (mainnet and testnets). It stores your public and private key and allow you to call and send transaction to smart contracts without running a full ethereum node. It is the most user friendly way to connect to Ethereum.
 
   
-![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-09.png=150x)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-09.png)
 
 5/geth and Mist: geth is a tool that enables you to run a local or a public blockchain node. It can be used with Mist, a browser that makes it easy to interact with smart contracts and your accounts.
 
   
-![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-10.png=150x)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-10.png)
 
 6/Remix: Remix is an online Solidity IDE allowing you to compile your code, and deploy it on the mainnet or testnets with the previous environments : Metamask, Ganache, geth… Afterwards you can directly interact with it with simple buttons, and receive all the informations needed about the results and the transactions in the Remix console.
-**![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-11.png=120x)**
+**![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-11.png)**
   
 7/ Dai: Dai is a stablecoin i.e. an ERC20 token which price is stable and equal to the value of the USD. It is the only stablecoin where users do not need to trust a centralized instance. Implementing it on a decentralized application means a user balance value will not fluctuate.
 
-  **![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-12.png=150x)**
+  **![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-12.png)**
 8/ Etherscan: Etherscan is a “Blockchain explorer”, providing you with all the informations you want about a wallet, contract, or a transaction on the blockchain! You just need to give it an address to look at.
 
-  **![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-13.png=150x)**
+  **![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-13.png)**
 9/ ZeppelinOS: We were on the brink of using ZeppelinOS, a development platform with a clear promise : easily upgradable smart contracts with the help of proxy contracts.
 
   
-![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-14.png=150x)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-14.png)
 
   
 10/ IPFS: A really promising tool we didn’t personally need, the Interplanetary File System (IPFS) is a decentralized storage system. It is vital to build a completely decentralized application as you can not store big amounts of data on a smart contract (approximately $1868 for... only 1 MB!). So if you want to trade a cat picture on the blockchain, you might prefer using only its IPFS hash.
