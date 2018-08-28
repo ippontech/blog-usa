@@ -8,7 +8,7 @@ title: "Kafka Streams - Processing late events"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/kafka-logo.png
 ---
 
-I wrote quite a few [tutorials about Kafka](https://blog.ippon.tech/tag/apache-kafka/), so now is the time to look at more advanced problems. In this post, we will see how to perform _windowed aggregations_ and we are going to deal with _late events_.
+I wrote quite a few [tutorials about Kafka](https://blog.ippon.tech/tag/apache-kafka/), so now is the time to look at more advanced problems. In this post, we will see how to perform _windowed aggregations_ and how to deal with _late events_.
 
 In the tutorials, we were processing _messages_, but we will now start dealing with **events**. Events are things that happened at a particular **time**.
 
@@ -200,7 +200,7 @@ The interesting thing is that all the results that were updated since the last o
 
 Keep in mind this is a _streaming aggregation_ and, because the stream is _unbounded_, it is difficult to know _when_ the results are final. That is, you shouldn't think an invalid result was printed. Instead, you should think that the result that was printed was valid _at the time_ of the output, and that this result might change later on.
 
-One way to get Kafka Streams to output results more frequently is to change the commit frequency, e.g.:
+To output results more frequently than every 30 seconds, you can either change the commit interval or change the size of the cache, as indicated in [Record caches in the DSL](https://kafka.apache.org/0110/documentation/streams/developer-guide#streams_developer-guide_memory-management_record-cache). Let's change the commit interval for this example:
 
 ```kotlin
 props["commit.interval.ms"] = 0
@@ -251,7 +251,7 @@ The good thing is that the window during which the late event arrived (window 15
 
 Processing a stream of events is much more complex than processing a fixed set of records. Events can arrive late, out-of-order, and it is virtually impossible to know when all the data has arrived. The capabilities of the processing framework will therefore make a big difference in how you can process the data. You have to think of _when_ you want the results to be emitted, what to do when data arrives late, etc.
 
-Although Kafka Streams did a good job at handling late events, we saw we had to change the commit interval to get more frequent results. We could also have changed the size of the cache, as indicated in [Record caches in the DSL](https://kafka.apache.org/0110/documentation/streams/developer-guide#streams_developer-guide_memory-management_record-cache). However, changing the commit interval or cache settings can have negative side effects. Apache Beam actually offers a more advanced model based on [triggers](https://beam.apache.org/documentation/programming-guide/#triggers).
+Although Kafka Streams did a good job at handling late events, we saw we had to change the commit interval or the size of the cache. However, this change can have negative side effects on the rest of your application. Apache Beam actually offers a more advanced model based on [triggers](https://beam.apache.org/documentation/programming-guide/#triggers).
 
 We did not explore in this post how to discard late events. The process is called _watermarking_ and this is controlled in Kafka Streams through the retention period of the aggregation windows. For this as well, Apache Beam offers a more advanced model: [Watermarks and late data](https://beam.apache.org/documentation/programming-guide/#watermarks-and-late-data).
 
