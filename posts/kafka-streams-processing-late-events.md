@@ -14,7 +14,7 @@ In the tutorials, we were processing _messages_, but we will now start dealing w
 
 # Time
 
-Before processing our events, we need to understand the semantics of our timestamps:
+Before processing our events, we need to understand the semantics of a timestamp:
 - **event time**: this indicates when the event _happened_ at the source
 - **processing time**: this is when the event is _processed_ by our application.
 
@@ -38,11 +38,11 @@ We would produce the following aggregations:
 - t2: 3 events
 - t3: 6 events
 
-Now, suppose one of the events that happened during `t1` actually took a little bit of time to reach our system, and only came at `t2`:
+Now, suppose one of the events that happened during `t1` actually took a little bit of time to reach our system, and only came during `t2`:
 
 ```text
 |    t1    |    t2    |    t3    |    ...
-|* *  * -  |**   *    | * *** * *|    ...
+|* *  * .  |**   *    | * *** * *|    ...
         \-----> *(t1)
 ```
 
@@ -58,7 +58,7 @@ The event that arrived at `t2` is called a **late event** and we basically have 
 - or we can try to be smart and correlate the late event with the right aggregation window.
 
 The latter can be tricky: when you are performing a _streaming aggregation_, you need to decide _when_ you will produce aggregates, and whether you can update these aggregates. For instance, we could say:
-- As soon as `t1` is over, produce a result (result for t1 = 3), then produce another result when we receive a late event (_updated_ result for t1 = 4).
+- As soon as `t1` is over, produce a result ("result for t1 = 3"), then produce another result when we receive a late event ("_updated_ result for t1 = 4").
 - Another option is to wait a little after the end of a window before producing a result, e.g. we could wait the equivalent of another window of time, and therefore produce the result for t1 at the end of t2.
 
 Frameworks offer different options (the model offered by Apache Beam being probably one of the most advanced), and we will see how Kafka Streams behaves in this case.
@@ -67,11 +67,11 @@ Frameworks offer different options (the model offered by Apache Beam being proba
 
 To test our system, we need a data generator that will send events at a fixed rate, and that will sometimes generate late events. Our generator will generate data with the following pattern:
 - 1 message every second
-- at the 58th second of every minute, the message will be delayed by 4 second.
+- at the 58th second of every minute, the message will be delayed by 4 seconds.
 
-On the consumer side, we will perform aggregations per windows of 10 seconds. Our goal will therefore to make sure that the late event get counted in the correct window.
+On the consumer side, we will perform aggregations per windows of 10 seconds. Our goal will therefore to make sure that the late event gets counted in the correct window.
 
-The code is pretty simple. We first need a timer that fires every second. We make sure this timer fires 0.2 second after every second, so as to allow the timer to drift slightly without messages being sent at 0.995 second, for instance, which would invalidate the results:
+The code is pretty simple (and it's [in Kotlin](/my-journey-with-kotlin-part-2-introduction-to-kotlin/), by the way). We first need a timer that fires every second. We make sure this timer fires 0.2 second after every second, so as to allow the timer to drift slightly without messages being sent at 0.995 second, for instance, which would invalidate the results:
 
 ```kotlin
 val now = System.currentTimeMillis()
@@ -83,8 +83,6 @@ timer.schedule(object : TimerTask() {
     }
 }, delay, 1000L)
 ```
-
-(The code is [in Kotlin](/my-journey-with-kotlin-part-2-introduction-to-kotlin/), by the way.)
 
 When the timer fires, we just need to send an event every time unless at the 58th second, and we need to send a late event at the 2nd second (with a late timestamp):
 
@@ -253,10 +251,10 @@ The good thing is that the window during which the late event arrived (window 15
 
 Processing a stream of events is much more complex than processing a fixed set of records. Events can arrive late, out-of-order, and it is virtually impossible to know when all the data has arrived. The capabilities of the processing framework will therefore make a big difference in how you can process the data. You have to think of _when_ you want the results to be emitted, what to do when data arrives late, etc.
 
-Although Kafka Streams did a good job at handling late events, we saw we had to change to the commit interval to get more frequent results. We could also have changed the size of the cache, as indicated in [Record caches in the DSL](https://kafka.apache.org/0110/documentation/streams/developer-guide#streams_developer-guide_memory-management_record-cache). However, changing the commit interval or cache settings can have negative side effects. Apache Beam offers a much more advanced model based on [triggers](https://beam.apache.org/documentation/programming-guide/#triggers).
+Although Kafka Streams did a good job at handling late events, we saw we had to change the commit interval to get more frequent results. We could also have changed the size of the cache, as indicated in [Record caches in the DSL](https://kafka.apache.org/0110/documentation/streams/developer-guide#streams_developer-guide_memory-management_record-cache). However, changing the commit interval or cache settings can have negative side effects. Apache Beam actually offers a more advanced model based on [triggers](https://beam.apache.org/documentation/programming-guide/#triggers).
 
-We did not explore in this post how to discard late events. The process is called _watermarking_ and this is controlled in Kafka Streams through the retention period of the aggregation windows. Again, Apache Beam offers a more advanced model: [Watermarks and late data](https://beam.apache.org/documentation/programming-guide/#watermarks-and-late-data).
+We did not explore in this post how to discard late events. The process is called _watermarking_ and this is controlled in Kafka Streams through the retention period of the aggregation windows. For this as well, Apache Beam offers a more advanced model: [Watermarks and late data](https://beam.apache.org/documentation/programming-guide/#watermarks-and-late-data).
 
-I do hope than, one day, Kafka Streams will implement the Apache Beam model. This would allow Kafka Streams to offer a great processing model as well as offering a simple deployment model. The best of both worlds.
+I do hope that, one day, Kafka Streams will implement the Apache Beam model. This would allow Kafka Streams to offer a great processing model as well as a simple deployment model. The best of both worlds.
 
 The code used in this post can be found [here](https://github.com/aseigneurin/kafka-tutorials/event-processing). Feel free to ask questions in the comments section below!
