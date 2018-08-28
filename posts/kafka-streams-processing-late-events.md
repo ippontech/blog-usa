@@ -71,7 +71,7 @@ To test our system, we need a data generator that will send events at a fixed ra
 
 On the consumer side, we will perform aggregations per windows of 10 seconds. Our goal will therefore to make sure that the late event gets counted in the correct window.
 
-The code is pretty simple (and it's [in Kotlin](/my-journey-with-kotlin-part-2-introduction-to-kotlin/), by the way). We first need a timer that fires every second. We make sure this timer fires 0.2 second after every second, so as to allow the timer to drift slightly without messages being sent at 0.995 second, for instance, which would invalidate the results:
+The code is pretty simple (and it's [in Kotlin](https://blog.ippon.tech/my-journey-with-kotlin-part-2-introduction-to-kotlin/), by the way). We first need a timer that fires every second. We make sure this timer fires 0.2 second after every second, so as to allow the timer to drift slightly without messages being sent at 0.995 second, for instance, which would invalidate the results:
 
 ```kotlin
 val now = System.currentTimeMillis()
