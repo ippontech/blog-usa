@@ -187,9 +187,9 @@ By default, Kafka Streams will output results every 30 seconds, and the output w
 1535401900000	10
 1535401910000	10
 1535401920000	10
-1535401930000	2
+1535401930000	2   <-- partial result
 ...   <-- 30 second gap
-1535401930000	10
+1535401930000	10  <-- updated result
 1535401940000	10
 1535401950000	10
 1535401960000	2
@@ -200,7 +200,7 @@ The interesting thing is that all the results that were updated since the last o
 
 Keep in mind this is a _streaming aggregation_ and, because the stream is _unbounded_, it is difficult to know _when_ the results are final. That is, you shouldn't think an invalid result was printed. Instead, you should think that the result that was printed was valid _at the time_ of the output, and that this result might change later on.
 
-To output results more frequently than every 30 seconds, you can either change the commit interval or change the size of the cache, as indicated in [Record caches in the DSL](https://kafka.apache.org/0110/documentation/streams/developer-guide#streams_developer-guide_memory-management_record-cache). Let's change the commit interval for this example:
+To output results more frequently than every 30 seconds, you can either change the commit interval or change the size of the cache, as indicated in [Record caches in the DSL](https://kafka.apache.org/0110/documentation/streams/developer-guide#streams_developer-guide_memory-management_record-cache) (see also [this KIP](https://cwiki.apache.org/confluence/display/KAFKA/KIP-328%3A+Ability+to+suppress+updates+for+KTables) that aims at offering more options). Let's change the commit interval for this example:
 
 ```kotlin
 props["commit.interval.ms"] = 0
