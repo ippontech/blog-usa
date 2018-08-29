@@ -183,7 +183,7 @@ streams.start()
 
 By default, Kafka Streams will output results every 30 seconds, and the output will look like this:
 
-```
+```text
 1535401900000	10
 1535401910000	10
 1535401920000	10
@@ -208,7 +208,7 @@ props["commit.interval.ms"] = 0
 
 We would now get an update every time an event is received:
 
-```
+```text
 1535402380000	1
 1535402380000	2
 1535402380000	3
