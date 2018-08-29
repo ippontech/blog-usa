@@ -4,7 +4,7 @@ authors:
 tags:
 - Apache Kafka
 date: 2018-08-14T00:00:00.000Z
-title: "Kafka tutorial #8 - Latency measures"
+title: "Kafka tutorial #9 - Latency measures"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/kafka-logo.png
 ---
 
@@ -99,7 +99,7 @@ Finally, in the results below, we are launching a producer that sends records at
 
 Let's start by measuring the latency of the processor we built with the Java Kafka client [in part 2](https://blog.ippon.tech/kafka-tutorial-2-simple-consumer-in-kotlin/).
 
-```
+```text
 Latency: 1
 Latency: 1
 Latency: 1
@@ -118,7 +118,7 @@ Latency is quite low: about 1 millisecond. This is quite good, especially since 
 
 Let's now measure the performance of the Kafka Streams application we built [in part 6](https://blog.ippon.tech/kafka-tutorial-6-kafka-streams-in-kotlin/):
 
-```
+```text
 Latency: 0
 Latency: 0
 Latency: 0
@@ -139,7 +139,7 @@ Kafka Streams is faster than a simple application built with the Java client. Th
 
 Now, let's look at how the Spark Structured Streaming application we created [in part 8](https://blog.ippon.tech/kafka-tutorial-8-spark-structured-streaming/) performs:
 
-```
+```text
 Latency: 223
 Latency: 219
 Latency: 215
@@ -176,7 +176,7 @@ Here, we are requiring the query to be processed _continuously_ with a checkpoin
 
 Let's see the results:
 
-```
+```text
 Latency: 2
 Latency: 1
 Latency: 1
