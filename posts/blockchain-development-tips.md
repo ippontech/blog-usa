@@ -42,7 +42,9 @@ You may have encountered a lot of applications and “tokens” (cryptocurrencie
 
 Yes, we are still talking about blockchain development, gas is actually a fee you have to pay to miners for each transaction. A transaction can be anything, you can call a contract, send any ETH to a wallet, trade tokens... We’ll be expanding on this subject later.
 
-If you have already used Coinbase or similar exchanges, you may know that your cryptos are stored on a wallet, represented by a public key or address and secured by a private key. To be clear, a user is represented by an address (his public key), and the same goes for a Smart Contract or even a Transaction hash, the only difference is that users have private keys which contracts do not have. For instance, here is the address of the deployed DAI contract: 0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359. But what is DAI? Don’t worry, it’s another teaser...
+If you have already used Coinbase or similar exchanges, you may know that your cryptos are stored on a wallet, represented by a public key or address and secured by a private key. To be clear, a user is represented by an address (his public key), and the same goes for a Smart Contract or even a Transaction hash, the only difference is that users have private keys which contracts do not have. For instance, here is the address of the deployed DAI contract:<br/>0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359
+<br/>
+But what is DAI? Don’t worry, this is just a teaser...
 <br/><br/>
 
 ## The Ethereum developer toolkit
