@@ -43,7 +43,7 @@ If you have already used Coinbase or similar exchanges, you may know that your c
 
   
 
-<img src="https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-04.png">
+<img src="https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-04.png" width="400">
 
 This all seems really interesting and you can’t wait to dive in. But first let’s give you a tour of the different tools and way to develop on Ethereum. We may have lied a bit about the fact that there is “a Ethereum blockchain”. There is actually several! The “mainnet”, is the only one that really matters, and where all the “real” money circulate. However you can not develop a smart contract and then just launch it on the mainnet. Well you could, but it is not free and a contract on the mainnet will be there until Doomsday, its code forever unalterable. What developers do is use “testnets” which grant you free ether to test and faster mining time. Here is a list of tools that can help you get connected and develop:
 
