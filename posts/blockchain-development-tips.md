@@ -1,5 +1,5 @@
 # Blockchain development tips
-<img src="https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-01.png">
+<img src="https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-01.png" width="400">
 
 (https://coin24.fr/2018/03/07/faut-vraiment-acheter-ethereum-2018/)
 
@@ -29,7 +29,7 @@ What you need to understand is that like the Bitcoin Blockchain, it has a crypto
 
 Smart contracts are developed in high-level languages created for Ethereum, the most common one being Solidity. Although bearing similarities to Java and C, Solidity is its own peculiar identity, and is a fascinating development environment.
   
-<img src="https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-03.png">
+<img src="https://raw.githubusercontent.com/ippontech/blog-usa/blockchain-dev-tips/images/2018/08/blockchain-interns-03.png" width="400">
 
 You may have encountered a lot of applications and “tokens” (cryptocurrencies running on Ethereum) : OmiseGO, BNB (Binance Token), CryptoKitties are some examples. The tokens of the Ethereum Blockchain can be traded and bought like other currencies, however they are different from Ether which is the only way to pay “gas fees” and reward miners.
 
