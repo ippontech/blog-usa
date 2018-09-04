@@ -29,11 +29,11 @@ When we arrived at Ippon USA for our summer internship, we had little knowledge 
 Let’s start with the Wikipedia definition:
 >A blockchain, originally <b>block chain</b>, is a growing list of records, called blocks, which are linked using cryptography. Blockchains which are readable by the public are widely used by cryptocurrencies. Private blockchains have been proposed for business use.
 
-To put it in layman’s terms, a blockchain is simply a transaction record that is decentralized. It means anybody can store and run a copy of the blockchain (becoming a “node”) and therefore read it.
+To put it in layman’s terms, a blockchain is simply a transaction record that is decentralized. It means anybody can store and run a copy of the blockchain (becoming a "node”) and therefore read it.
 
 There is not a single blockchain, but different ones for different purposes. The Bitcoin blockchain is the most famous one of all, but there is also the widely popular Ethereum blockchain which we use, and many others. These are public, but you can as easily create a private blockchain, which won’t be available to everyone.
 
-As on a classic ledger, you can only add data to a blockchain. To add new pages to the ledger or new blocks to a blockchain “miners” have to solve complicated and costly algorithm problems. Your transaction will be validated after a few blocks have been mined. This is why transactions cost a fee to reward miners.
+As on a classic ledger, you can only add data to a blockchain. To add new pages to the ledger or new blocks to a blockchain "miners” have to solve complicated and costly algorithm problems. Your transaction will be validated after a few blocks have been mined. This is why transactions cost a fee to reward miners.
 
 Finally, security is a major asset of blockchains, with the help of high-end cryptography and the distributed network effect.
 
@@ -42,14 +42,14 @@ Finally, security is a major asset of blockchains, with the help of high-end cry
 
 During our internship we worked on the Ethereum blockchain using the Ethereum environment. Proposed by Vitalik Buterin in 2013 (at 19 years old!), it is an open-source public and blockchain-based distributed computing platform and operating system featuring smart contract (scripting) functionality.
 
-What you need to understand is that like the Bitcoin Blockchain, it has a cryptocurrency: Ether (ETH) and you can handle transactions with it. However it is also possible to deploy “smart contracts” which enable you to build decentralized applications. These contracts can be any kind of script which can handle storage, logic, transactions and call from other contracts.
+What you need to understand is that like the Bitcoin Blockchain, it has a cryptocurrency: Ether (ETH) and you can handle transactions with it. However it is also possible to deploy "smart contracts” which enable you to build decentralized applications. These contracts can be any kind of script which can handle storage, logic, transactions and call from other contracts.
 
 A contract can be a decentralized exchange for instance (Etherdelta), a casino game, or just a token. They are run on the Ethereum Virtual Machine, and are written in a Turing complete language. Naturally, it allows a new range of possibilities for blockchain development. Before being compiled to bytecode for the EVM.
 
 Smart contracts are developed in high-level languages created for Ethereum, the most common one being Solidity. Although bearing similarities to Java and C, Solidity is its own peculiar identity, and is a fascinating development environment.
 
 ![Ethereum ecosystem](/images/2018/09/blockchain-interns-03.png)
-You may have encountered a lot of applications and “tokens” (cryptocurrencies running on Ethereum): OmiseGO, BNB (Binance Token), CryptoKitties are some examples. The tokens of the Ethereum Blockchain can be traded and bought like other currencies, however they are different from Ether which is the only way to pay “gas fees” and reward miners.
+You may have encountered a lot of applications and "tokens” (cryptocurrencies running on Ethereum): OmiseGO, BNB (Binance Token), CryptoKitties are some examples. The tokens of the Ethereum Blockchain can be traded and bought like other currencies, however they are different from Ether which is the only way to pay "gas fees” and reward miners.
 
 Yes, we are still talking about blockchain development, gas is actually a fee you have to pay to miners for each transaction. A transaction can be anything, you can call a contract, send any ETH to a wallet, trade tokens... We’ll be expanding on this subject later.
 
@@ -61,9 +61,9 @@ But what is DAI? Don’t worry, this is just a teaser...
 
 ![Testnets](/images/2018/09/blockchain-interns-04.png)
 
-This all seems really interesting, and you can’t wait to dive in. But first let’s give you a tour of the different tools and techniques to develop on Ethereum. We may have lied a bit about the fact that there is “a Ethereum blockchain”. There are actually several! The “mainnet”, is the only one that really matters, and where all the “real” money circulates.
+This all seems really interesting, and you can’t wait to dive in. But first let’s give you a tour of the different tools and techniques to develop on Ethereum. We may have lied a bit about the fact that there is "a Ethereum blockchain”. There are actually several! The "mainnet”, is the only one that really matters, and where all the "real” money circulates.
 
-However, you cannot develop a smart contract and then just launch it on the mainnet. Well you could, but it is not free, and a contract on the mainnet will be there until Doomsday, its code forever unalterable. Developers use “testnets” which grant you free ether to test and faster mining time. Here is a list of tools that can help you get connected and develop:
+However, you cannot develop a smart contract and then just launch it on the mainnet. Well you could, but it is not free, and a contract on the mainnet will be there until Doomsday, its code forever unalterable. Developers use "testnets” which grant you free ether to test and faster mining time. Here is a list of tools that can help you get connected and develop:
 
 ![Truffle framework](/images/2018/09/blockchain-interns-05.png)
 1. [Truffle](https://truffleframework.com): A popular and complete development framework for Ethereum, enabling you for example to run automated tests of your contracts, compile, migrate and deploy them. It also has a lot of promising features we did not use in the first phase of the project.
@@ -87,7 +87,7 @@ However, you cannot develop a smart contract and then just launch it on the main
 7. [Dai](https://makerdao.com): Dai is a stablecoin i.e. an ERC20 token which price is stable and equal to the value of the USD. It is the only stablecoin where users do not need to trust a centralized instance. Implementing it on a decentralized application means a user balance value will not fluctuate.
 
 ![Etherscan](/images/2018/09/blockchain-interns-12.png)
-8. [Etherscan](https://etherscan.io/): Etherscan is a “Blockchain explorer”, providing you with all the informations you want about a wallet, contract, or a transaction on the blockchain! You just need to give it an address to look at.
+8. [Etherscan](https://etherscan.io/): Etherscan is a "Blockchain explorer”, providing you with all the informations you want about a wallet, contract, or a transaction on the blockchain! You just need to give it an address to look at.
 
 ![ZeppelinOS](/images/2018/09/blockchain-interns-13.png)
 9. [ZeppelinOS](https://zeppelinos.org): We were on the brink of using ZeppelinOS, a development platform with a clear promise : easily upgradable smart contracts with the help of proxy contracts.
@@ -126,14 +126,14 @@ A function, if it changes any state variable, will cost gas fees to the user or 
         }
     }
 
-You can add a function modifier to a function, which is basically code common to all functions using it. A general case if having a “onlyAdmin” modifier as below. We’ll explain the “require” later!
+You can add a function modifier to a function, which is basically code common to all functions using it. A general case if having a "onlyAdmin” modifier as below. We’ll explain the "require” later!
 
     modifier onlySeller() { // Modifier  
         require(msg.sender == seller, "Only seller can call this.");  
         _;
     }
 
-The last word of the list that should have been alien to you is event, which is something that will be “fired” by the contract when it appears in the code, and will be logged inside the transactions using your contract.
+The last word of the list that should have been alien to you is event, which is something that will be "fired” by the contract when it appears in the code, and will be logged inside the transactions using your contract.
 
     contract SimpleMarket {  
         event HighestSell(address seller, uint amount); // Event  
@@ -152,7 +152,7 @@ The types used in Solidity are pretty much the ones you know and are fairly clos
 
 Another fun thing to manage close to C is of course the storage. Objects do not always behave the way you want them to and you need to remember that everything has a price on a blockchain.
 
-You have to know if the object you are defining in your function needs to be “memory” (stored temporarily) or “storage” (knowing that it will be stored in the blockchain). For example, a dynamic array has to be storage, so you may need to find a way to know the exact number of object it should need.
+You have to know if the object you are defining in your function needs to be "memory” (stored temporarily) or "storage” (knowing that it will be stored in the blockchain). For example, a dynamic array has to be storage, so you may need to find a way to know the exact number of object it should need.
 
 Other oddities may include structures not being able to be defined recursively, or more importantly, all state variables being initialized to their default value. This means that a boolean will be automatically false, and also that a mapping (Solidity’s widely used equivalent of a hashmap) will be initialized for every key at the byte 0. This means that you cannot iterate on the keys!
 
@@ -164,7 +164,7 @@ Complex storage structures can be useful, such as the Linked List we needed to i
 
 One of the burden of Solidity is how to code a secure smart contract. Writing a contract that behaves as you expect is quit easy, however making sure it won’t later act strangely is hader. Solidity, is a constantly evolving language, but can still fall short of being a secure language for creating decentralized application.
 
-One of the tools provided by Solidity is for Error handling. You will probably want to have quite a few “Require” functions used throughout your code, as they will “Revert” (which means cancelling the execution of the transaction and revert back any gas used to the sender) when you need them to. They can be used to check users balance before transfers for instance.
+One of the tools provided by Solidity is for Error handling. You will probably want to have quite a few "Require” functions used throughout your code, as they will "Revert” (which means cancelling the execution of the transaction and revert back any gas used to the sender) when you need them to. They can be used to check users balance before transfers for instance.
 
 Now let’s go over a few problems or considerations you may encounter while coding in Solidity (well, that we have encountered or seen in solidity hacking challenges). A lot of them are really specific to the way blockchain works.
 
@@ -224,7 +224,7 @@ Be very cautious when you call other contracts, because they could hide data to 
 
 However, do not be fooled thinking the risks can only come from malicious users, since Solidity may behave in ways you would not expect: overflow and underflow errors are legion in Solidity, nonexistent float type means your division will always be rounded...
 
-There is a special function that exists in a contract to address the need for floating point. It does not have a name, and will be executed when no other appropriate function is found. It is called the fallback function, and can be used for quite a few interesting hacking tricks. However as we found out, you can not close it up completely, “just to be sure”, as you need to have a payable fallback function if you want it to receive ETH from another contract!
+There is a special function that exists in a contract to address the need for floating point. It does not have a name, and will be executed when no other appropriate function is found. It is called the fallback function, and can be used for quite a few interesting hacking tricks. However as we found out, you can not close it up completely, "just to be sure”, as you need to have a payable fallback function if you want it to receive ETH from another contract!
 
     function() public payable { //Fairly open now!
 
