@@ -81,7 +81,7 @@ However, you cannot develop a smart contract and then just launch it on the main
 5. [geth](https://github.com/ethereum/go-ethereum/wiki/geth) and [Mist](https://github.com/ethereum/mist): geth is a tool that enables you to run a local or a public blockchain node. It can be used with Mist, a browser that makes it easy to interact with smart contracts and your accounts.
 
 ![Remix](/images/2018/09/blockchain-interns-10.png)
-6. [Remix](https://remix.ethereum.org): Remix is an online Solidity IDE allowing you to compile your code, and deploy it on the mainnet or testnets with the previous environments: Metamask, Ganache, geth... Afterwards you can directly interact with it with simple buttons, and receive all the informations needed about the results and the transactions in the Remix console.
+6. [Remix](https://remix.ethereum.org): Remix is an online Solidity IDE allowing you to compile your code, and deploy it on the mainnet or testnets with the previous environments: Metamask, Ganache, geth... Afterwards you can directly interact with it with simple buttons, and receive all the information needed about the results and the transactions in the Remix console.
 
 ![Dai](/images/2018/09/blockchain-interns-11.png)
 7. [Dai](https://makerdao.com): Dai is a stablecoin i.e. an ERC20 token which price is stable and equal to the value of the USD. It is the only stablecoin where users do not need to trust a centralized instance. Implementing it on a decentralized application means a user balance value will not fluctuate.
@@ -105,36 +105,36 @@ If you made it this far, you are really interested on how the Ethereum blockchai
 
 The basic idea is that a contract is a complete package, containing state variables, functions, functions modifiers, events, struct types, and enum types. You can also inherit from other contracts. It looks really similar to a Java class, it even also has a constructor if you want to initialize some variables. You can also easily access to the transaction attributes :
 
--msg.data (bytes): complete calldata
-
--msg.gas (uint): remaining gas - deprecated in version 0.4.21 and to be replaced by gasleft()
-
--msg.sender (address): sender of the message (current call)
-
--msg.sig (bytes4): first four bytes of the calldata (i.e. function identifier)
-
--msg.value (uint): number of wei sent with the message (1ETH = 10**18 wei)
+- msg.data (bytes): complete calldata
+- msg.gas (uint): remaining gas - deprecated in version 0.4.21 and to be replaced by gasleft()
+- msg.sender (address): sender of the message (current call)
+- msg.sig (bytes4): first four bytes of the calldata (i.e. function identifier)
+- msg.value (uint): number of wei sent with the message (1ETH = 10^18 wei)
 
 A function, if it changes any state variable, will cost gas fees to the user or contract calling it.
 
-
+```solidity
     pragma solidity ^0.4.0;  
-      
+
     contract SimpleMarket {  
         function sell() public  onlySeller { // Function  
         // ...  
         }
     }
+```
 
 You can add a function modifier to a function, which is basically code common to all functions using it. A general case if having a "onlyAdmin” modifier as below. We’ll explain the "require” later!
 
+```solidity
     modifier onlySeller() { // Modifier  
         require(msg.sender == seller, "Only seller can call this.");  
         _;
     }
+```
 
 The last word of the list that should have been alien to you is event, which is something that will be "fired” by the contract when it appears in the code, and will be logged inside the transactions using your contract.
 
+```solidity
     contract SimpleMarket {  
         event HighestSell(address seller, uint amount); // Event  
 
@@ -143,12 +143,15 @@ The last word of the list that should have been alien to you is event, which is 
         emit HighestSell(msg.sender, msg.value); // Triggering event  
         }
     }
+```
 
-The types used in Solidity are pretty much the ones you know and are fairly close to C. String are dynamic arrays of characters, and as such can be tricky to manage. But you may be surprised to not see float, as they do not exist. You will need to be cautious and use multipliers! The types developers seem to affectionate the most are uint256 as they offer the largest numbers (2**256 integers), and addresses, as they are used for most objects such as accounts and contracts.
+The types used in Solidity are pretty much the ones you know and are fairly close to C. String are dynamic arrays of characters, and as such can be tricky to manage. But you may be surprised to not see float, as they do not exist. You will need to be cautious and use multipliers! The types developers seem to affectionate the most are uint256 as they offer the largest numbers (2^256 integers), and addresses, as they are used for most objects such as accounts and contracts.
 
+```solidity
     uint256 i = 42;
 
     address x =  0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
+```
 
 Another fun thing to manage close to C is of course the storage. Objects do not always behave the way you want them to and you need to remember that everything has a price on a blockchain.
 
@@ -156,20 +159,23 @@ You have to know if the object you are defining in your function needs to be "me
 
 Other oddities may include structures not being able to be defined recursively, or more importantly, all state variables being initialized to their default value. This means that a boolean will be automatically false, and also that a mapping (Solidity’s widely used equivalent of a hashmap) will be initialized for every key at the byte 0. This means that you cannot iterate on the keys!
 
+```solidity
     LinkedList.Data  storage list;
 
     uint256[]  memory _parts;
+```
 
-Complex storage structures can be useful, such as the Linked List we needed to implement. By using a mapping from a uint id to a Node structure (with the data we want, the information to it will be sorted by, and the id of the next Node) and keeping the id of the head of the list, we could make an easy sortable list where we can add and delete nodes.
+Complex storage structures can be useful, such as the Linked List we needed to implement. By using a mapping from a uint id to a Node structure (with the data we want, the information by which it will be sorted, and the id of the next Node) and keeping the id of the head of the list, we could make an easily sortable list where we can add and delete nodes.
 
-One of the burden of Solidity is how to code a secure smart contract. Writing a contract that behaves as you expect is quit easy, however making sure it won’t later act strangely is hader. Solidity, is a constantly evolving language, but can still fall short of being a secure language for creating decentralized application.
+One of the burdens of Solidity is how to code a secure smart contract. Writing a contract that behaves as you expect is quite easy, however making sure it won’t later act strangely is harder. Solidity is a constantly evolving language, but can still fall short of being a secure language for creating decentralized applications.
 
 One of the tools provided by Solidity is for Error handling. You will probably want to have quite a few "Require” functions used throughout your code, as they will "Revert” (which means cancelling the execution of the transaction and revert back any gas used to the sender) when you need them to. They can be used to check users balance before transfers for instance.
 
 Now let’s go over a few problems or considerations you may encounter while coding in Solidity (well, that we have encountered or seen in solidity hacking challenges). A lot of them are really specific to the way blockchain works.
 
-The most common and biggest problem to check out is the classic reentrancy problem. For example, you do not want a user to be able to call two times a function (or two different functions) that will give him tokens before depleting his balance!
+The most common and biggest problem to check out is the classic reentrancy problem. For example, you do not want a user to be able to call two times a function (or two different functions) that will give them tokens before depleting their balance!
 
+```solidity
     contract Fund {
         /// Mapping of ether shares of the contract.  
         mapping(address  =>  uint) shares;  
@@ -183,11 +189,13 @@ The most common and biggest problem to check out is the classic reentrancy probl
             shares[msg.sender] =  0;
         }
     }
+```
 
 Close to this problem and more specific to blockchain, is the fact that every transaction being public, a malicious user could see a transaction he’s interested in, and before it is mined, do the exact same transaction but with way more gas, making his transaction be processed faster!
 
-If the code of to a soon to be deployed app is public, why not do more, and precompute its future address to send ETH to it before, allowing unexpected events? You can precompute a lot actually, and doing random functions in your code that use block number or timestamp (the time a block is mined) is not safe as it is pretty easy to figure out!
+If the code of a soon-to-be-deployed app is public, why not do more, and precompute its future address to send ETH to it before, allowing unexpected events? You can precompute a lot actually, and doing random functions in your code that use block number or timestamp (the time a block is mined) is not safe as it is pretty easy to figure out!
 
+```solidity
     pragma solidity ^0.4.18;  
 
     contract CoinFlip {
@@ -219,6 +227,7 @@ If the code of to a soon to be deployed app is public, why not do more, and prec
             }
         }
     }
+```
 
 Be very cautious when you call other contracts, because they could hide data to execute, or use the call stack limit depth or gas to halt the execution where they want it to.
 
@@ -226,26 +235,25 @@ However, do not be fooled thinking the risks can only come from malicious users,
 
 There is a special function that exists in a contract to address the need for floating point. It does not have a name, and will be executed when no other appropriate function is found. It is called the fallback function, and can be used for quite a few interesting hacking tricks. However as we found out, you can not close it up completely, "just to be sure”, as you need to have a payable fallback function if you want it to receive ETH from another contract!
 
+```solidity
     function() public payable { //Fairly open now!
 
     }
+```
 
 Security in Solidity, as in every language, is a difficult system of checks and balances between features and protection.
 
 Of course we had to link the official solidity docs, they are well documented and updated regularly:
-
-[https://solidity.readthedocs.io/en/v0.4.24/](https://solidity.readthedocs.io/en/v0.4.24/)
+- [https://solidity.readthedocs.io/en/v0.4.24/](https://solidity.readthedocs.io/en/v0.4.24/)
 
 A classic game of increasingly difficult solidity hacking challenges. It gets extremely tough!
-
-[https://ethernaut.zeppelin.solutions/](https://ethernaut.zeppelin.solutions/)
+- [https://ethernaut.zeppelin.solutions/](https://ethernaut.zeppelin.solutions/)
 
 A coding contest that highlights a lot of mistakes or malicious attacks possible in Solidity. There’s lot of exemples to check out on the github!
-[https://medium.com/@weka/announcing-the-winners-of-the-first-underhanded-solidity-coding-contest-282563a87079](https://medium.com/@weka/announcing-the-winners-of-the-first-underhanded-solidity-coding-contest-282563a87079)
+- [https://medium.com/@weka/announcing-the-winners-of-the-first-underhanded-solidity-coding-contest-282563a87079](https://medium.com/@weka/announcing-the-winners-of-the-first-underhanded-solidity-coding-contest-282563a87079)
 
 A collection of "best practices" in the Ethereum development world by Consensys, a major actor in the Ethereum market.
-
-https://consensys.github.io/smart-contract-best-practices/  
+- [https://consensys.github.io/smart-contract-best-practices/](https://consensys.github.io/smart-contract-best-practices/)
 
 # Conclusion
 
