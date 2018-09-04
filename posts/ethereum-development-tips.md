@@ -249,7 +249,7 @@ Of course we had to link the official solidity docs, they are well documented an
 A classic game of increasingly difficult solidity hacking challenges. It gets extremely tough!
 - [https://ethernaut.zeppelin.solutions/](https://ethernaut.zeppelin.solutions/)
 
-A coding contest that highlights a lot of mistakes or malicious attacks possible in Solidity. There’s lot of exemples to check out on the github!
+A coding contest that highlights a lot of mistakes or malicious attacks possible in Solidity. There’s lot of exemples to check out on GitHub!
 - [https://medium.com/@weka/announcing-the-winners-of-the-first-underhanded-solidity-coding-contest-282563a87079](https://medium.com/@weka/announcing-the-winners-of-the-first-underhanded-solidity-coding-contest-282563a87079)
 
 A collection of "best practices" in the Ethereum development world by Consensys, a major actor in the Ethereum market.
