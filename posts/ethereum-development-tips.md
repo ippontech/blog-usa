@@ -16,7 +16,7 @@ tags:
 - geth
 date: 
 title: "Ethereum Development Tips"
-image: "/images/2018/09/blockchain-interns-01.png"
+image: "https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-01.png"
 ---
 
 When we arrived at Ippon USA for our summer internship, we had little knowledge about blockchains. The goal of this article is to give you the basic tools one can use to build a decentralized application, and some tips about the language we used: Solidity. Of course our list is not exhaustive, and is just here to offer you a peek at Ethereum development.
