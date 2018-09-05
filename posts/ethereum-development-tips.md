@@ -19,9 +19,6 @@ title: "Ethereum Development Tips"
 image: "/images/2018/09/blockchain-interns-01.png"
 ---
 
-![Ethereum Development Tips](/images/2018/09/blockchain-interns-01.png)
-(source: https://coin24.fr/2018/03/07/faut-vraiment-acheter-ethereum-2018/)
-
 When we arrived at Ippon USA for our summer internship, we had little knowledge about blockchains. The goal of this article is to give you the basic tools one can use to build a decentralized application, and some tips about the language we used: Solidity. Of course our list is not exhaustive, and is just here to offer you a peek at Ethereum development.
 
 # Introduction to Blockchains and Ethereum
@@ -38,7 +35,6 @@ As on a classic ledger, you can only add data to a blockchain. To add new pages 
 Finally, security is a major asset of blockchains, with the help of high-end cryptography and the distributed network effect.
 
 ![Ethereum](/images/2018/09/blockchain-interns-02.png)
-(source: https://medium.com/the-mission/ethereum-will-be-the-next-facebook-a-fundamental-analysis-40bd95fde2a4)
 
 During our internship we worked on the Ethereum blockchain using the Ethereum environment. Proposed by Vitalik Buterin in 2013 (at 19 years old!), it is an open-source public and blockchain-based distributed computing platform and operating system featuring smart contract (scripting) functionality.
 
@@ -114,43 +110,43 @@ The basic idea is that a contract is a complete package, containing state variab
 A function, if it changes any state variable, will cost gas fees to the user or contract calling it.
 
 ```solidity
-    pragma solidity ^0.4.0;  
+pragma solidity ^0.4.0;  
 
-    contract SimpleMarket {  
-        function sell() public  onlySeller { // Function  
-        // ...  
-        }
+contract SimpleMarket {  
+    function sell() public  onlySeller { // Function  
+    // ...  
     }
+}
 ```
 
 You can add a function modifier to a function, which is basically code common to all functions using it. A general case if having a "onlyAdmin” modifier as below. We’ll explain the "require” later!
 
 ```solidity
-    modifier onlySeller() { // Modifier  
-        require(msg.sender == seller, "Only seller can call this.");  
-        _;
-    }
+modifier onlySeller() { // Modifier  
+    require(msg.sender == seller, "Only seller can call this.");  
+    _;
+}
 ```
 
 The last word of the list that should have been alien to you is event, which is something that will be "fired” by the contract when it appears in the code, and will be logged inside the transactions using your contract.
 
 ```solidity
-    contract SimpleMarket {  
-        event HighestSell(address seller, uint amount); // Event  
+contract SimpleMarket {  
+    event HighestSell(address seller, uint amount); // Event  
 
-        function sell() public {  
-        // ...  
-        emit HighestSell(msg.sender, msg.value); // Triggering event  
-        }
+    function sell() public {  
+    // ...  
+    emit HighestSell(msg.sender, msg.value); // Triggering event  
     }
+}
 ```
 
 The types used in Solidity are pretty much the ones you know and are fairly close to C. String are dynamic arrays of characters, and as such can be tricky to manage. But you may be surprised to not see float, as they do not exist. You will need to be cautious and use multipliers! The types developers seem to affectionate the most are uint256 as they offer the largest numbers (2^256 integers), and addresses, as they are used for most objects such as accounts and contracts.
 
 ```solidity
-    uint256 i = 42;
+uint256 i = 42;
 
-    address x =  0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
+address x =  0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
 ```
 
 Another fun thing to manage close to C is of course the storage. Objects do not always behave the way you want them to and you need to remember that everything has a price on a blockchain.
@@ -160,9 +156,9 @@ You have to know if the object you are defining in your function needs to be "me
 Other oddities may include structures not being able to be defined recursively, or more importantly, all state variables being initialized to their default value. This means that a boolean will be automatically false, and also that a mapping (Solidity’s widely used equivalent of a hashmap) will be initialized for every key at the byte 0. This means that you cannot iterate on the keys!
 
 ```solidity
-    LinkedList.Data  storage list;
+LinkedList.Data  storage list;
 
-    uint256[]  memory _parts;
+uint256[]  memory _parts;
 ```
 
 Complex storage structures can be useful, such as the Linked List we needed to implement. By using a mapping from a uint id to a Node structure (with the data we want, the information by which it will be sorted, and the id of the next Node) and keeping the id of the head of the list, we could make an easily sortable list where we can add and delete nodes.
@@ -176,19 +172,19 @@ Now let’s go over a few problems or considerations you may encounter while cod
 The most common and biggest problem to check out is the classic reentrancy problem. For example, you do not want a user to be able to call two times a function (or two different functions) that will give them tokens before depleting their balance!
 
 ```solidity
-    contract Fund {
-        /// Mapping of ether shares of the contract.  
-        mapping(address  =>  uint) shares;  
-        /// Withdraw your share.  
-        function withdraw() public {
+contract Fund {
+    /// Mapping of ether shares of the contract.  
+    mapping(address  =>  uint) shares;  
+    /// Withdraw your share.  
+    function withdraw() public {
 
-            /// Sending the shares beforing depleting!
+        /// Sending the shares beforing depleting!
 
-            if (msg.sender.send(shares[msg.sender]))
+        if (msg.sender.send(shares[msg.sender]))
 
-            shares[msg.sender] =  0;
-        }
+        shares[msg.sender] =  0;
     }
+}
 ```
 
 Close to this problem and more specific to blockchain, is the fact that every transaction being public, a malicious user could see a transaction he’s interested in, and before it is mined, do the exact same transaction but with way more gas, making his transaction be processed faster!
@@ -196,37 +192,37 @@ Close to this problem and more specific to blockchain, is the fact that every tr
 If the code of a soon-to-be-deployed app is public, why not do more, and precompute its future address to send ETH to it before, allowing unexpected events? You can precompute a lot actually, and doing random functions in your code that use block number or timestamp (the time a block is mined) is not safe as it is pretty easy to figure out!
 
 ```solidity
-    pragma solidity ^0.4.18;  
+pragma solidity ^0.4.18;  
 
-    contract CoinFlip {
-        uint256 public consecutiveWins;
-        uint256 lastHash;
-        uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
+contract CoinFlip {
+    uint256 public consecutiveWins;
+    uint256 lastHash;
+    uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
 
-        function CoinFlip() public {
-            consecutiveWins = 0;
+    function CoinFlip() public {
+        consecutiveWins = 0;
+    }
+
+    function flip(bool _guess) public returns (bool) {
+        uint256 blockValue = uint256(block.blockhash(block.number-1));
+
+        if (lastHash == blockValue) {
+            revert();
         }
 
-        function flip(bool _guess) public returns (bool) {
-            uint256 blockValue = uint256(block.blockhash(block.number-1));
+        lastHash = blockValue;
+        uint256 coinFlip = blockValue / FACTOR;
+        bool side = coinFlip == 1 ? true : false;
 
-            if (lastHash == blockValue) {
-                revert();
-            }
-
-            lastHash = blockValue;
-            uint256 coinFlip = blockValue / FACTOR;
-            bool side = coinFlip == 1 ? true : false;
-
-            if (side == _guess) {
-                consecutiveWins++;
-                return  true;
-            } else {
-                consecutiveWins = 0;
-                return  false;
-            }
+        if (side == _guess) {
+            consecutiveWins++;
+            return  true;
+        } else {
+            consecutiveWins = 0;
+            return  false;
         }
     }
+}
 ```
 
 Be very cautious when you call other contracts, because they could hide data to execute, or use the call stack limit depth or gas to halt the execution where they want it to.
@@ -236,25 +232,24 @@ However, do not be fooled thinking the risks can only come from malicious users,
 There is a special function that exists in a contract to address the need for floating point. It does not have a name, and will be executed when no other appropriate function is found. It is called the fallback function, and can be used for quite a few interesting hacking tricks. However as we found out, you can not close it up completely, "just to be sure”, as you need to have a payable fallback function if you want it to receive ETH from another contract!
 
 ```solidity
-    function() public payable { //Fairly open now!
+function() public payable { //Fairly open now!
 
-    }
+}
 ```
 
 Security in Solidity, as in every language, is a difficult system of checks and balances between features and protection.
 
-Of course we had to link the official solidity docs, they are well documented and updated regularly:
-- [https://solidity.readthedocs.io/en/v0.4.24/](https://solidity.readthedocs.io/en/v0.4.24/)
+- [https://solidity.readthedocs.io/en/v0.4.24/](Official solidity docs)
 
 A classic game of increasingly difficult solidity hacking challenges. It gets extremely tough!
-- [https://ethernaut.zeppelin.solutions/](https://ethernaut.zeppelin.solutions/)
+- [https://ethernaut.zeppelin.solutions/](Solidity hacking challenges)
 
 A coding contest that highlights a lot of mistakes or malicious attacks possible in Solidity. There’s lot of exemples to check out on GitHub!
-- [https://medium.com/@weka/announcing-the-winners-of-the-first-underhanded-solidity-coding-contest-282563a87079](https://medium.com/@weka/announcing-the-winners-of-the-first-underhanded-solidity-coding-contest-282563a87079)
+- [https://medium.com/@weka/announcing-the-winners-of-the-first-underhanded-solidity-coding-contest-282563a87079](Solidity coding contest winners)
 
 A collection of "best practices" in the Ethereum development world by Consensys, a major actor in the Ethereum market.
-- [https://consensys.github.io/smart-contract-best-practices/](https://consensys.github.io/smart-contract-best-practices/)
+- [https://consensys.github.io/smart-contract-best-practices/](Smart contract best practices)
 
 # Conclusion
 
-We hope this small introduction to Ethereum development has helped you. We also would like to sincerely thank the entire team of Ippon USA who hosted two French interns in Washington DC: our mentor Chris Lumpkin, our co-workers Dagmawi Mengistu, Priya Rajanna and Matt Reed who all welcomed us and showed us a priceless glimpse of the American melting pot culture.
+We hope this short introduction to Ethereum development has helped you. We also would like to sincerely thank the entire team of Ippon USA who hosted two French interns in Washington DC: our mentor Chris Lumpkin, our co-workers Dagmawi Mengistu, Priya Rajanna and Matt Reed, who all welcomed us and showed us a priceless glimpse of the American melting pot culture.
