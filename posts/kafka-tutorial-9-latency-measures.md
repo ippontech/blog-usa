@@ -3,7 +3,7 @@ authors:
 - Alexis Seigneurin
 tags:
 - Apache Kafka
-date: 2018-08-14T00:00:00.000Z
+date: 2018-08-29T14:21:37.000Z
 title: "Kafka tutorial #9 - Latency measures"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/kafka-logo.png
 ---

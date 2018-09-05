@@ -3,7 +3,7 @@ authors:
 - Alexis Seigneurin
 tags:
 - Apache Kafka
-date: 2018-08-21T00:00:00.000Z
+date: 2018-08-29T14:23:06.000Z
 title: "Kafka tutorial #10 - KSQL"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/kafka-logo.png
 ---
@@ -76,7 +76,7 @@ CLI v5.0.0, Server v5.0.0 located at http://localhost:8088
 
 Having trouble? Type 'help' (case-insensitive) for a rundown of how things work!
 
-ksql> 
+ksql>
 ```
 
 The CLI offers a prompt that is very similar to the one offered by SQL databases. You can enter SQL commands or type `help` to see additional commands.

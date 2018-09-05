@@ -3,7 +3,7 @@ authors:
 - Alexis Seigneurin
 tags:
 - Apache Kafka
-date: 2018-08-21T00:00:00.000Z
+date: 2018-08-29T14:23:16.000Z
 title: "Kafka Streams - Processing late events"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/kafka-logo.png
 ---

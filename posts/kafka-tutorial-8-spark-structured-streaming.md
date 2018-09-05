@@ -4,7 +4,7 @@ authors:
 tags:
 - Apache Kafka
 - Scala
-date: 2018-08-14T00:00:00.000Z
+date: 2018-08-15T14:51:35.000Z
 title: "Kafka tutorial #8 - Spark Structured Streaming"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/kafka-logo.png
 ---
