@@ -62,33 +62,43 @@ This all seems really interesting, and you can’t wait to dive in. But first le
 However, you cannot develop a smart contract and then just launch it on the mainnet. Well you could, but it is not free, and a contract on the mainnet will be there until Doomsday, its code forever unalterable. Developers use "testnets” which grant you free ether to test and faster mining time. Here is a list of tools that can help you get connected and develop:
 
 ![Truffle framework](/images/2018/09/blockchain-interns-05.png)
+
 1. [Truffle](https://truffleframework.com): A popular and complete development framework for Ethereum, enabling you for example to run automated tests of your contracts, compile, migrate and deploy them. It also has a lot of promising features we did not use in the first phase of the project.
 
 ![Ganache](/images/2018/09/blockchain-interns-06.png)
+
 2. [Ganache](https://truffleframework.com/ganache): A tool of the Truffle development suite that enables you to simulate a local ethereum blockchain on your computer. It generates ten different user wallets with public and private keys so you can test your smart contract features locally.
 
 ![web3js](/images/2018/09/blockchain-interns-07.png)
+
 3. [web3.js](https://github.com/ethereum/web3.js): web3.js is the Ethereum JavaScript API. You will use it for the frontend development of your decentralized application, as the way to link your frontend and the blockchain.
 
 ![Metamask](/images/2018/09/blockchain-interns-08.png)
+
 4. [Metamask](https://metamask.io): Metamask is a Chrome/Firefox plugin using web3.js. It gives a convenient way to connect to the different Ethereum Blockchains (mainnet and testnets). It stores your public and private key and allow you to call and send transaction to smart contracts without running a full ethereum node. It is the most user friendly way to connect to Ethereum.
 
 ![geth](/images/2018/09/blockchain-interns-09.png)
+
 5. [geth](https://github.com/ethereum/go-ethereum/wiki/geth) and [Mist](https://github.com/ethereum/mist): geth is a tool that enables you to run a local or a public blockchain node. It can be used with Mist, a browser that makes it easy to interact with smart contracts and your accounts.
 
 ![Remix](/images/2018/09/blockchain-interns-10.png)
+
 6. [Remix](https://remix.ethereum.org): Remix is an online Solidity IDE allowing you to compile your code, and deploy it on the mainnet or testnets with the previous environments: Metamask, Ganache, geth... Afterwards you can directly interact with it with simple buttons, and receive all the information needed about the results and the transactions in the Remix console.
 
 ![Dai](/images/2018/09/blockchain-interns-11.png)
+
 7. [Dai](https://makerdao.com): Dai is a stablecoin i.e. an ERC20 token which price is stable and equal to the value of the USD. It is the only stablecoin where users do not need to trust a centralized instance. Implementing it on a decentralized application means a user balance value will not fluctuate.
 
 ![Etherscan](/images/2018/09/blockchain-interns-12.png)
+
 8. [Etherscan](https://etherscan.io/): Etherscan is a "Blockchain explorer”, providing you with all the informations you want about a wallet, contract, or a transaction on the blockchain! You just need to give it an address to look at.
 
 ![ZeppelinOS](/images/2018/09/blockchain-interns-13.png)
+
 9. [ZeppelinOS](https://zeppelinos.org): We were on the brink of using ZeppelinOS, a development platform with a clear promise : easily upgradable smart contracts with the help of proxy contracts.
 
 ![IPFS](/images/2018/09/blockchain-interns-14.png)
+
 10.  [IPFS](https://ipfs.io/): A really promising tool we didn’t personally need, the Interplanetary File System (IPFS) is a decentralized storage system. It is vital to build a completely decentralized application as you can not store big amounts of data on a smart contract (approximately $1868 for... only 1 MB!). So if you want to trade a cat picture on the blockchain, you might prefer using only its IPFS hash.
 
 Perfect, you know the different Ethereum blockchains and how to connect yourself and your applications to them. Now you just need to actually code and deploy them. You can code as you would other project using an environment such as Visual Studio Code which has `.sol` extensions (for Solidity, or directly use Remix. It has several major uses. Its compiler will directly say if you smart contract can work and all the possible warnings attached to it. After, you can deploy your contract on the Ethereum net you want using one of the web3.js solutions aforementioned. But it doesn’t stop there! You can directly interact with the deployed contracts with simple buttons to call the different functions, and you will receive all the informations needed about the results or the transactions in the Remix console.
