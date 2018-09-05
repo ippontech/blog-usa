@@ -5,7 +5,7 @@ tags:
 - Apache Kafka
 - Machine Learning
 date:
-title: "Realtime Machine Learning predictions with Kafka and H2O AI"
+title: "Realtime Machine Learning predictions with Kafka and H2O.ai"
 image:
 ---
 
