@@ -239,16 +239,16 @@ function() public payable { //Fairly open now!
 
 Security in Solidity, as in every language, is a difficult system of checks and balances between features and protection.
 
-- [https://solidity.readthedocs.io/en/v0.4.24/](Official solidity docs)
+- [Official solidity docs](https://solidity.readthedocs.io/en/v0.4.24/)
 
 A classic game of increasingly difficult solidity hacking challenges. It gets extremely tough!
-- [https://ethernaut.zeppelin.solutions/](Solidity hacking challenges)
+- [Solidity hacking challenges](https://ethernaut.zeppelin.solutions/)
 
 A coding contest that highlights a lot of mistakes or malicious attacks possible in Solidity. There’s lot of exemples to check out on GitHub!
-- [https://medium.com/@weka/announcing-the-winners-of-the-first-underhanded-solidity-coding-contest-282563a87079](Solidity coding contest winners)
+- [Solidity coding contest winners](https://medium.com/@weka/announcing-the-winners-of-the-first-underhanded-solidity-coding-contest-282563a87079)
 
 A collection of "best practices" in the Ethereum development world by Consensys, a major actor in the Ethereum market.
-- [https://consensys.github.io/smart-contract-best-practices/](Smart contract best practices)
+- [Smart contract best practices](https://consensys.github.io/smart-contract-best-practices/)
 
 # Conclusion
 
