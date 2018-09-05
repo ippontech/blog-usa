@@ -16,7 +16,7 @@ tags:
 - geth
 date: 
 title: "Ethereum Development Tips"
-image: "https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-01.png"
+image: "/images/2018/09/blockchain-interns-01.png"
 ---
 
 When we arrived at Ippon USA for our summer internship, we had little knowledge about blockchains. The goal of this article is to give you the basic tools one can use to build a decentralized application, and some tips about the language we used: Solidity. Of course our list is not exhaustive, and is just here to offer you a peek at Ethereum development.
@@ -34,7 +34,7 @@ As on a classic ledger, you can only add data to a blockchain. To add new pages 
 
 Finally, security is a major asset of blockchains, with the help of high-end cryptography and the distributed network effect.
 
-![Ethereum](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-02.png)
+![Ethereum](/images/2018/09/blockchain-interns-02.png)
 
 During our internship we worked on the Ethereum blockchain using the Ethereum environment. Proposed by Vitalik Buterin in 2013 (at 19 years old!), it is an open-source public and blockchain-based distributed computing platform and operating system featuring smart contract (scripting) functionality.
 
@@ -44,7 +44,7 @@ A contract can be a decentralized exchange for instance (Etherdelta), a casino g
 
 Smart contracts are developed in high-level languages created for Ethereum, the most common one being Solidity. Although bearing similarities to Java and C, Solidity is its own peculiar identity, and is a fascinating development environment.
 
-![Ethereum ecosystem](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-03.png)
+![Ethereum ecosystem](/images/2018/09/blockchain-interns-03.png)
 You may have encountered a lot of applications and "tokens” (cryptocurrencies running on Ethereum): OmiseGO, BNB (Binance Token), CryptoKitties are some examples. The tokens of the Ethereum Blockchain can be traded and bought like other currencies, however they are different from Ether which is the only way to pay "gas fees” and reward miners.
 
 Yes, we are still talking about blockchain development, gas is actually a fee you have to pay to miners for each transaction. A transaction can be anything, you can call a contract, send any ETH to a wallet, trade tokens... We’ll be expanding on this subject later.
@@ -55,47 +55,47 @@ But what is DAI? Don’t worry, this is just a teaser...
 
 # The Ethereum developer toolkit
 
-![Testnets](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-04.png)
+![Testnets](/images/2018/09/blockchain-interns-04.png)
 
 This all seems really interesting, and you can’t wait to dive in. But first let’s give you a tour of the different tools and techniques to develop on Ethereum. We may have lied a bit about the fact that there is "a Ethereum blockchain”. There are actually several! The "mainnet”, is the only one that really matters, and where all the "real” money circulates.
 
 However, you cannot develop a smart contract and then just launch it on the mainnet. Well you could, but it is not free, and a contract on the mainnet will be there until Doomsday, its code forever unalterable. Developers use "testnets” which grant you free ether to test and faster mining time. Here is a list of tools that can help you get connected and develop:
 
-![Truffle framework](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-05.png)
+![Truffle framework](/images/2018/09/blockchain-interns-05.png)
 1. [Truffle](https://truffleframework.com): A popular and complete development framework for Ethereum, enabling you for example to run automated tests of your contracts, compile, migrate and deploy them. It also has a lot of promising features we did not use in the first phase of the project.
 
-![Ganache](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-06.png)
+![Ganache](/images/2018/09/blockchain-interns-06.png)
 2. [Ganache](https://truffleframework.com/ganache): A tool of the Truffle development suite that enables you to simulate a local ethereum blockchain on your computer. It generates ten different user wallets with public and private keys so you can test your smart contract features locally.
 
-![web3js](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-07.png)
+![web3js](/images/2018/09/blockchain-interns-07.png)
 3. [web3.js](https://github.com/ethereum/web3.js): web3.js is the Ethereum JavaScript API. You will use it for the frontend development of your decentralized application, as the way to link your frontend and the blockchain.
 
-![Metamask](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-08.png)
+![Metamask](/images/2018/09/blockchain-interns-08.png)
 4. [Metamask](https://metamask.io): Metamask is a Chrome/Firefox plugin using web3.js. It gives a convenient way to connect to the different Ethereum Blockchains (mainnet and testnets). It stores your public and private key and allow you to call and send transaction to smart contracts without running a full ethereum node. It is the most user friendly way to connect to Ethereum.
 
-![geth](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-09.png)
+![geth](/images/2018/09/blockchain-interns-09.png)
 5. [geth](https://github.com/ethereum/go-ethereum/wiki/geth) and [Mist](https://github.com/ethereum/mist): geth is a tool that enables you to run a local or a public blockchain node. It can be used with Mist, a browser that makes it easy to interact with smart contracts and your accounts.
 
-![Remix](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-10.png)
+![Remix](/images/2018/09/blockchain-interns-10.png)
 6. [Remix](https://remix.ethereum.org): Remix is an online Solidity IDE allowing you to compile your code, and deploy it on the mainnet or testnets with the previous environments: Metamask, Ganache, geth... Afterwards you can directly interact with it with simple buttons, and receive all the information needed about the results and the transactions in the Remix console.
 
-![Dai](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-11.png)
+![Dai](/images/2018/09/blockchain-interns-11.png)
 7. [Dai](https://makerdao.com): Dai is a stablecoin i.e. an ERC20 token which price is stable and equal to the value of the USD. It is the only stablecoin where users do not need to trust a centralized instance. Implementing it on a decentralized application means a user balance value will not fluctuate.
 
-![Etherscan](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-12.png)
+![Etherscan](/images/2018/09/blockchain-interns-12.png)
 8. [Etherscan](https://etherscan.io/): Etherscan is a "Blockchain explorer”, providing you with all the informations you want about a wallet, contract, or a transaction on the blockchain! You just need to give it an address to look at.
 
-![ZeppelinOS](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-13.png)
+![ZeppelinOS](/images/2018/09/blockchain-interns-13.png)
 9. [ZeppelinOS](https://zeppelinos.org): We were on the brink of using ZeppelinOS, a development platform with a clear promise : easily upgradable smart contracts with the help of proxy contracts.
 
-![IPFS](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-14.png)
+![IPFS](/images/2018/09/blockchain-interns-14.png)
 10.  [IPFS](https://ipfs.io/): A really promising tool we didn’t personally need, the Interplanetary File System (IPFS) is a decentralized storage system. It is vital to build a completely decentralized application as you can not store big amounts of data on a smart contract (approximately $1868 for... only 1 MB!). So if you want to trade a cat picture on the blockchain, you might prefer using only its IPFS hash.
 
 Perfect, you know the different Ethereum blockchains and how to connect yourself and your applications to them. Now you just need to actually code and deploy them. You can code as you would other project using an environment such as Visual Studio Code which has `.sol` extensions (for Solidity, or directly use Remix. It has several major uses. Its compiler will directly say if you smart contract can work and all the possible warnings attached to it. After, you can deploy your contract on the Ethereum net you want using one of the web3.js solutions aforementioned. But it doesn’t stop there! You can directly interact with the deployed contracts with simple buttons to call the different functions, and you will receive all the informations needed about the results or the transactions in the Remix console.
 
 # Solidity tips
 
-![Solidity](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-15.png)
+![Solidity](/images/2018/09/blockchain-interns-15.png)
 
 If you made it this far, you are really interested on how the Ethereum blockchain works, or you want to get to it and develop in Solidity! There is a lot to know about Solidity: although it was made with a really high-level appearance close to Java, the aforementioned specifics of blockchain and smart contracts differentiate it a lot. A lot of trial and error was necessary for us and do not hesitate to ask for help on StackExchange or all your favorite communities, Ethereum development is very active.
 
