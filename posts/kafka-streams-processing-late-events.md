@@ -257,4 +257,4 @@ We did not explore in this post how to discard late events. The process is calle
 
 I do hope that, one day, Kafka Streams will implement the Apache Beam model. This would allow Kafka Streams to offer a great processing model as well as a simple deployment model. The best of both worlds.
 
-The code used in this post can be found [here](https://github.com/aseigneurin/kafka-tutorials/event-processing). Feel free to ask questions in the comments section below!
+The code used in this post can be found [here](https://github.com/aseigneurin/kafka-tutorial-event-processing). Feel free to ask questions in the comments section below!
