@@ -180,7 +180,10 @@ val predictionsStream: KStream<String, House> = housesStream.mapValues { _, h ->
 Notice that I used a [Kotlin extension function](https://kotlinlang.org/docs/reference/extensions.html) to convert booleans:
 
 ```kotlin
-fun Boolean.toYesNo(): String = if (this == true) "yes" else "no"
+fun Boolean.toYesNo(): String = when (this) {
+    true -> "yes"
+    else -> "no"
+}
 ```
 
 I also kept the model as a member variable to avoid instantiating it multiple times:
@@ -225,4 +228,4 @@ There are pros and cons to embedding a model in your application, as opposed to 
 
 Hopefully this article lifts some interrogations about how to use Machine Learning in streaming. Let me know if it helped!
 
-The code used in this post can be found [here](https://github.com/aseigneurin/kafka-tutorials/tree/master/kafka-h2o).
+The code used in this post can be found [here](https://github.com/aseigneurin/kafka-tutorial-kafka-h2o).
