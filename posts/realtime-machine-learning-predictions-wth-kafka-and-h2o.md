@@ -17,7 +17,7 @@ To illustrate this article, let's take one of the most common use cases of Machi
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/kafka-h2o/images/2018/09/kafka-h2o-data.png)
 
-You can build a regression model so that, when there is a new house to sell, you can estimate what the selling price will be. E.g. a house of 2000 sqft with a lot of 0.5 acres might sell around $250,000.
+You can build a regression model so that, when there is a new house to sell, you can estimate what the selling price will be, e.g. a house of 2000 sqft with a lot of 0.5 acres might sell around $250,000.
 
 The first mistake people make is to think we can update the model when we receive a new house to sell. We can't, because the new piece of data is an **unlabeled** record: we know the characteristics of the house, but we don't know its selling price (yet). It is only once the house has been sold that we can enrich our training dataset with a new record.
 
