@@ -6,7 +6,7 @@ tags:
 - Machine Learning
 date:
 title: "Realtime Machine Learning predictions with Kafka and H2O.ai"
-image:
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/kafka-logo.png
 ---
 
 When you start doing some Machine Learning, you go through a batch-oriented process: you take a dataset, build a Machine Learning model from this data, and use the model to make some predictions on another dataset. Then, you want to apply this process to streaming data, and this is where it can get confusing! Let's see what you can do in streaming and what you cannot do.
