@@ -23,7 +23,7 @@ When we arrived at Ippon USA for our summer internship, we had little knowledge 
 
 # Introduction to Blockchains and Ethereum
 
-Let’s start with the Wikipedia definition:
+Let’s start with [the definition from Wikipedia](https://en.wikipedia.org/wiki/Blockchain):
 >A blockchain, originally <b>block chain</b>, is a growing list of records, called blocks, which are linked using cryptography. Blockchains which are readable by the public are widely used by cryptocurrencies. Private blockchains have been proposed for business use.
 
 To put it in layman’s terms, a blockchain is simply a transaction record that is decentralized. It means anybody can store and run a copy of the blockchain (becoming a "node”) and therefore read it.
