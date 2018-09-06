@@ -172,4 +172,4 @@ I can't say enough how Kafka Streams is a great library. It is my tool of choice
 
 There is a lot more to know about Kafka Streams, so let me know in the comments section below if there is something specific you would like me to expose in a further post.
 
-The code of these tutorials can be found [here](https://github.com/aseigneurin/kafka-tutorials).
+The code of this tutorial can be found [here](https://github.com/aseigneurin/kafka-tutorial-kafka-streams).

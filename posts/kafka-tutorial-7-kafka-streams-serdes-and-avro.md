@@ -132,6 +132,6 @@ We have seen how we can improve our Kafka Streams application to deserialize dat
 
 Notice that if you are working in Scala, [the Kafka Streams Circe library](https://github.com/joan38/kafka-streams-circe) offers SerDes that handle JSON data through the Circe library (equivalent of Jackson in the Scala world).
 
-The code of these tutorials can be found [here](https://github.com/aseigneurin/kafka-tutorials).
+The code of this tutorial can be found [here](https://github.com/aseigneurin/kafka-tutorial-kafka-streams).
 
 Feel free to ask questions in the comments section below!

@@ -159,6 +159,6 @@ When we were producing data, the main things to think about were the delivery gu
 
 We didn't see that last part, but the consumer automatically commits the offsets for you during the next call to `poll()` if `enable.auto.commit` is set to `true`, which is the default. The whole batch of records will therefore be committed: if your application crashes after processing a few messages but not all of the records of a batch, they will not be committed and will be processed again by another consumer. This is called _at least once processing_. And there is a lot more to understand about offset management, but this is outside the scope of this post!
 
-The code of these tutorials can be found [here](https://github.com/aseigneurin/kafka-tutorials).
+The code of this tutorial can be found [here](https://github.com/aseigneurin/kafka-tutorial-simple-client).
 
 Feel free to ask questions in the comments section below!

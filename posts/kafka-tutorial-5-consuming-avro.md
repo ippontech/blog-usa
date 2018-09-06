@@ -81,6 +81,6 @@ Avro also guarantees backward or forward compatibility of your messages, provide
 
 I encourage you to use Avro and the Schema Registry for all your data in Kafka, rather than just plain text or JSON messages. This is a safe choice to ensure the evolutivity of your platform.
 
-The code of these tutorials can be found [here](https://github.com/aseigneurin/kafka-tutorials).
+The code of this tutorial can be found [here](https://github.com/aseigneurin/kafka-tutorial-simple-client).
 
 Feel free to ask questions in the comments section below!

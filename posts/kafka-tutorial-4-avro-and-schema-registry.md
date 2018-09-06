@@ -218,6 +218,6 @@ Now, notice that the Kafka Avro serializer will by default register your schema 
 
 We will see in the next post how to consume the Avro messages we have produced!
 
-The code of these tutorials can be found [here](https://github.com/aseigneurin/kafka-tutorials).
+The code of this tutorial can be found [here](https://github.com/aseigneurin/kafka-tutorial-simple-client).
 
 Feel free to ask questions in the comments section below!

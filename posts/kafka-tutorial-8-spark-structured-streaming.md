@@ -323,6 +323,6 @@ My personal opinion is more contrasted, though:
 
 It is up to you to make your own opinion but, at the time of this writing, Kafka Streams is my preferred option for building a streaming application.
 
-The code of these tutorials can be found [here](https://github.com/aseigneurin/kafka-tutorials).
+The code of this tutorial can be found [here](https://github.com/aseigneurin/kafka-tutorial-spark).
 
 Feel free to ask questions in the comments section below!

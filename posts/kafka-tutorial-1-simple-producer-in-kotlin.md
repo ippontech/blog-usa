@@ -182,6 +182,6 @@ We have seen how to use Kafka's Java client to send messages to Kafka. We did th
 
 One thing to keep in mind, when producing data, is what **write guarantee** you want to achieve. Are you ready to lose data in the case of a network or broker failure? There is usually a trade-off to be made between your availability to produce, the latency when producing, and the guarantee that your messages will be safely written. In the example above, we only have one broker, the producer has a default value of `acks=1`, and we are waiting for the broker's acknowledgment (call to `future.get()`). This means that we have a guarantee that a message will be persisted (although not flushed to disk) before we can produce another message: we will not loose messages but our latency is higher than in a "fire and forget" case.
 
-The code of these tutorials can be found [here](https://github.com/aseigneurin/kafka-tutorials).
+The code of this tutorial can be found [here](https://github.com/aseigneurin/kafka-tutorial-simple-client).
 
 Feel free to ask questions in the comments section below!
