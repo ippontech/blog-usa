@@ -314,7 +314,7 @@ Finally, the `solutionExistsInTrail` filter defines a [Predicate](https://docs.o
 
 - Our semicolon key gets a rest as the majority of our functions are one-liners. Our method names are descriptive enough that composing them together adds readability to our solution. Admittedly, it can be more difficult to debug, but I would argue that structuring your programs in this manner creates a final result that contains far fewer defects than traditional methods.
 
-One critique you may have is that there is still quite a bit of verbosity to the code. For example, having a method that returns a Predicate can look unwieldy- especially if you are not familiar with that type of syntax. We also manage a parameterized List of Lists of Actions that we define as an Action Trail. We also manage our history as a Set of ArrayLists of Integers (we opt for ArrayList over generic List just to enforce the idea that the sequence of elements is important).
+One critique you may have is that there is still quite a bit of verbosity to the code. For example, having a method that returns a Predicate can look unwieldy- especially if you are not familiar with that type of syntax. We also manage a parameterized List of Lists of Actions that we define as an Action Trail. We also manage our history as a Set of Lists of Integers.
 
 # Refactoring Our Solution To Make It Scala
 Finally, we can rewrite this solution to use Scala. We will still retain the structure that we devised earlier, but let's see if the Scala syntax helps us create something more elegant. The inspiration for this solution comes from Martin Odersky's *[Functional Program Design In Scala](https://www.coursera.org/learn/progfun2)*, with some modifications made for clarity and to illustrate some different concepts.
@@ -338,19 +338,19 @@ trait Move {
     def doMove(state: State): State
 }
 case class Empty(jugIndex: Jug) extends Move {
-    override def doMove(state: State): State = state updated (jugIndex, 0)
+    override def doMove(state: State): State = state.updated(jugIndex, 0)
 }
 case class Fill(jugIndex: Jug) extends Move {
-    override def doMove(state: State): State = state updated (jugIndex, JUGS(jugIndex))
+    override def doMove(state: State): State = state.updated(jugIndex, JUGS(jugIndex))
 }
 case class Pour(fromJugIndex: Jug, toJugIndex: Jug) extends Move {
     override def doMove(state: State): State = {
         val pourAmt = math.min(state(fromJugIndex), JUGS(toJugIndex) - state(toJugIndex))
-        state updated (fromJugIndex, state(fromJugIndex) - pourAmt) updated (toJugIndex, state(toJugIndex) + pourAmt)
+        state.updated(fromJugIndex, state(fromJugIndex) - pourAmt).updated (toJugIndex, state(toJugIndex) + pourAmt)
     }
 }  
 ```
-You can see how concisely we are able to declare the trait and its implementations in the form of a case class. Using the `updated` method we can create a modified clone of state without modifying the input state. All of Scalas collections and datatypes are immutable by default so this is handled for us elegantly.
+You can see how concisely we are able to declare the trait and its implementations in the form of a case class. Using the `updated` method we can create a modified clone of state without modifying the input state. Scala's collections and datatypes are immutable by default (you can utilize their mutable counterparts in the `scala.collection.mutable` package) so this is handled for us elegantly.
 
 It's easy to define classes as well. Let's create a class that encapsulates the list of Moves we have taken with a resulting endState:
 ```scala
@@ -395,10 +395,10 @@ At this point we have essentially defined the landscape of our water pouring pro
 1. def solve(paths: Stream[Path], history: Set[State]): Stream[Path] = paths match {
 2.     case Stream.Empty => Stream()
 3.     case head #:: tail => {
-4.     val next = createPaths(head)
-5.         .filter(t => !(history contains(t._2)))
-6.         .map(t => new Path(head.moves :+ t._1, t._2))
-7.     head #:: solve(tail #::: next, history | next.map(t=>t.endState).toSet)
+4.         val next = createPaths(head)
+5.             .filter(t => !(history contains(t._2)))
+6.             .map(t => new Path(head.moves :+ t._1, t._2))
+7.         head #:: solve(tail #::: next, history | next.map(t=>t.endState).toSet)
 8.     }
 9. }
 ```
