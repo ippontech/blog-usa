@@ -4,7 +4,7 @@ authors:
 tags:
 - Apache Kafka
 - Machine Learning
-date:
+date: 2018-09-06T20:48:49.000Z
 title: "Realtime Machine Learning predictions with Kafka and H2O.ai"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/kafka-logo.png
 ---

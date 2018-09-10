@@ -4,9 +4,9 @@ authors:
 tags:
 - Scala
 - Functional programming
-date: 2018-06-11T14:43:47.000Z
+date: 2018-09-10T18:36:58.000Z
 title: "Scala For the Arrogant: Putting It Into Practice"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/scala-arrogant-diehard.jpg
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/scala-arrogant-diehard.jpg
 ---
 
 # Examining a code refactoring
@@ -39,7 +39,7 @@ public class Jug {
 ```
 However, the capacity is fixed and the amount fluctuates. A better approach will be to define our Jugs as a list of Integers, and a separate list of Integers will specify how full they are at a given moment. We'll refer to that as the state (so if we start out with two empty jugs, we'd have a list [0, 0]). We then adjust the current amount based on the actions we take. Speaking of **Actions**, we should consider what movements we can take to solve the puzzle.
 
-In this case, our game is simple enough that we can only take three actions: 
+In this case, our game is simple enough that we can only take three actions:
 
 1. Fill up a jug to its full capacity
 2. Empty a jug so that its capacity is 0
@@ -50,7 +50,7 @@ A simple enumeration defines these movements:
 ```java
 public enum MoveType {
     EMPTY,
-    FILL, 
+    FILL,
     POUR
 }
 ```
@@ -98,7 +98,7 @@ Now that we have setup the framework for our application we can work on the solu
 
 ```java
 List<Action> solve(Action action) {
-    //TODO: 
+    //TODO:
 }
 ```
 
@@ -111,7 +111,7 @@ List<Action> solve(Action action, Set<List<Integer>> stateHistory) {
 
     //Create actions for the empty, pour and fill moves
     List<Action> retState = createActions(state);
-    
+
     //If new action results in a state not in the history, record it
     List<Action> retActions = new ArrayList<>();
     for (Action nextAction : retState) {
@@ -214,7 +214,7 @@ private <T> Optional<T> last(List<T> list) {
 }
 
 private Function<MoveType, List<Action>> moveTypeToAction(final Integer jugIndex, final Optional<ArrayList<Integer>> state) {
-    return moveType -> !state.isPresent() ? 
+    return moveType -> !state.isPresent() ?
     Collections.emptyList() : moveType.requiresTwoJugs ?
             //Create n-1 actions representing the from jug defined at jugIndex to the other JUGS
             IntStream.range(0, JUGS.length)
@@ -242,11 +242,11 @@ to
 ```
 with the flatMap operation.
 
-2. If we need more details about what is going on with the `actionTrailToAvailableActions` method we can go to that directly. We see that it makes use of `Optional<T>`. This is our first introduction to a **monad** in Java! In part 1 I mentioned how Monad's were critical to the art of Algebraic Data Typing in which we can maintain functional purity by considering the possibility of a value T rather than assuming it is there. In this case we're returning an Optional of a list which, if null or empty, could otherwise generate an `IndexOutOfBounds` or `NullPointerException`. The last method generates this monad. If the input list has data we return a populated monad with the last element, otherwise an empty one. 
+2. If we need more details about what is going on with the `actionTrailToAvailableActions` method we can go to that directly. We see that it makes use of `Optional<T>`. This is our first introduction to a **monad** in Java! In part 1 I mentioned how Monad's were critical to the art of Algebraic Data Typing in which we can maintain functional purity by considering the possibility of a value T rather than assuming it is there. In this case we're returning an Optional of a list which, if null or empty, could otherwise generate an `IndexOutOfBounds` or `NullPointerException`. The last method generates this monad. If the input list has data we return a populated monad with the last element, otherwise an empty one.
 
-3. You can see that we then call the `map(...)` method of this monad to map it to its end state if it exists. A `map` is a special category of Function with Java 8 monads and streams. In the former case, when called from an optional, it will execute the input Function and wrap the resulting value in another Optional. If the input parameter Optional is empty, another empty optional is returned. In this way we can delay evaluation of the Optional and associated "isNull" type checks until the value is truly needed. 
+3. You can see that we then call the `map(...)` method of this monad to map it to its end state if it exists. A `map` is a special category of Function with Java 8 monads and streams. In the former case, when called from an optional, it will execute the input Function and wrap the resulting value in another Optional. If the input parameter Optional is empty, another empty optional is returned. In this way we can delay evaluation of the Optional and associated "isNull" type checks until the value is truly needed.
 
-It is not until we arrive at the `moveTypeToAction` that we attempt to utilize this value, and at that time we make the explicit decision of what to do if the value is not present. In this case, we can just return an empty list. 
+It is not until we arrive at the `moveTypeToAction` that we attempt to utilize this value, and at that time we make the explicit decision of what to do if the value is not present. In this case, we can just return an empty list.
 
 4. One other thing worth mentioning is that this method returns a type of `Function` which is explicitly used by the Streams API's `map(...)` method to take some Object A and turn it into type B. In this case we take a type of move **MoveType** and transform it into the **Actions** that would be associated with it. By increasing the scope of this Function via the method's parameters, we can supply a jugIndex and the current state.
 
@@ -254,7 +254,7 @@ It is not until we arrive at the `moveTypeToAction` that we attempt to utilize t
 
 The `new` keyword does not appear anywhere and yet, we have generated a lot of new data via filters and transformation. Our functions are pure in the sense that we are not mutating data in them. Passing the same inputs into them will always yield the same output and, as a result, they are highly testable with simple unit tests. These functions compose well to create an integrated solution with fewer surprises.
 
-Now let's look at the final form of `findSolution` which returns an Optional now, as no solution may exist: 
+Now let's look at the final form of `findSolution` which returns an Optional now, as no solution may exist:
 ```java
 public Optional<List<Action>> findSolution() {
     Set<ArrayList<Integer>> history = Collections.singleton(startState);
@@ -277,16 +277,16 @@ public Optional<List<Action>> findSolution() {
 While we don't modify any lists or sets as we did before, we do reassign the trails and history collections which violates pure functional principles. We've also gone from a while-loop-with-a-while-loop-with-a-for-loop to one while loop. We could even eliminate that with an additional recursive method so let's try that now:
 ```java
 public Optional<List<Action>> findSolution(List<List<Action>> trails, Set<ArrayList<Integer>> history) {
-    return (!solutionExists(trails) && !trails.isEmpty()) ? 
+    return (!solutionExists(trails) && !trails.isEmpty()) ?
         //Haven't found the solution yet, make recursive call with next states
         findSolution(trails.stream()
                 .map(actionTrailToNextActionTrails(history)).flatMap(Collection::stream)
-                .collect(Collectors.toList()), 
+                .collect(Collectors.toList()),
             Stream.concat(history.stream(), trails.stream()
                 .map(this::last).filter(Optional::isPresent)
                 .map(Optional::get)
                 .map(Action::getEndState))
-                .collect(Collectors.toSet())) : 
+                .collect(Collectors.toSet())) :
         //Found a solution or no solution available
         trails.stream().filter(SolutionExistsInTrail).findAny();
 }
@@ -306,9 +306,9 @@ We use a stream transformation [Function](https://docs.oracle.com/javase/8/docs/
 Finally, the `solutionExistsInTrail` filter defines a [Predicate](https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html) that gives a concise and clear way to identify a solution.
 
 ## Evaluating Our Design
-[Review the commit](https://github.com/randeepbydesign/diehardJugSolver/commit/63d79218996856317a371700b8b757c89d4f1fd4) for a Java **Functional** solution and you will see: 
+[Review the commit](https://github.com/randeepbydesign/diehardJugSolver/commit/63d79218996856317a371700b8b757c89d4f1fd4) for a Java **Functional** solution and you will see:
 
-- There is no modifying collections, and therefore no modification of state. If we need to create a Set with an additional element, for example, we create a new set with the original elements and the new element to be added. 
+- There is no modifying collections, and therefore no modification of state. If we need to create a Set with an additional element, for example, we create a new set with the original elements and the new element to be added.
 
 - There are no for/while loops in this solution. Rather we have replaced them with Functional logic to filter, transform, and collect our streams of data. The final form of this solution is much easier to write Unit tests for as well as we have decomposed the logic into functions that take concise and discrete inputs and return specific consistent values.
 
@@ -348,7 +348,7 @@ case class Pour(fromJugIndex: Jug, toJugIndex: Jug) extends Move {
         val pourAmt = math.min(state(fromJugIndex), JUGS(toJugIndex) - state(toJugIndex))
         state.updated(fromJugIndex, state(fromJugIndex) - pourAmt).updated (toJugIndex, state(toJugIndex) + pourAmt)
     }
-}  
+}
 ```
 You can see how concisely we are able to declare the trait and its implementations in the form of a case class. Using the `updated` method we can create a modified clone of state without modifying the input state. Scala's collections and datatypes are immutable by default (you can utilize their mutable counterparts in the `scala.collection.mutable` package) so this is handled for us elegantly.
 
@@ -381,7 +381,7 @@ MOVES.toStream.map(m => (m, m.doMove(path.endState)))
 ```
 This code makes use of one of scala's powerful features: **[for comprehensions](https://docs.scala-lang.org/tour/for-comprehensions.html)**, which provide an alternative way to process streams and handle flatMap, map, and filter operations, as well as collating the results into a collection (or simply preserving the stream for further processing). In the first line we define an Integer Iterator with the `to` keyword creating our **JUG_INDEX_RANGE**. We then use that in the for comprehension to say, in the example of the **Empty** action, "for each integer index over our jugs array, create an Empty move for the specific index."
 
-Because pouring requires two jugs, it is a bit more complicated and we see our first **multi-line for comprehension** using curly braces: "For each integer index over our jugs array defining the jug we are *pouring from*, and for each integer index over our jugs array defining the jugs we are *pouring to*, ignore the cases where the fromJug matches the toJug (since we cannot pour a jug into itself), and yield the remaining Pour moves. What you can see here is that the `<-` operator defines a `map` or iterative operation, while the `if` statement inside of the for comprehension signals a `filter` operation. `yield` most directly corresponds to the collect operation we use in Java. 
+Because pouring requires two jugs, it is a bit more complicated and we see our first **multi-line for comprehension** using curly braces: "For each integer index over our jugs array defining the jug we are *pouring from*, and for each integer index over our jugs array defining the jugs we are *pouring to*, ignore the cases where the fromJug matches the toJug (since we cannot pour a jug into itself), and yield the remaining Pour moves. What you can see here is that the `<-` operator defines a `map` or iterative operation, while the `if` statement inside of the for comprehension signals a `filter` operation. `yield` most directly corresponds to the collect operation we use in Java.
 
 Finally, we take these three categories of moves and concatenate them into a single list using `++`. Scala provides a variety of operators for concatenating lists, elements to lists, and other operations that return a new immutable list. We don't need to write any helper methods or use any java libraries to do these types of operations as we had to do prior.
 
@@ -410,7 +410,7 @@ It's just 9 lines of code, but there is a lot to unpack here. Let's go through i
 4. We call the `createPaths` method we setup before with the head of our stream. Intially this will be the beginning state where all of our jugs are empty but, as we recurse through the solution, it will also represent our subsequent states.
 5. We filter our results from the `createPath` method that already exist in our history so that we don't follow any circular paths.
 6. We map the result to a new Path. We want to take the move we just made and concatenate it to the end of the current moves array so we use the `:+` operator to do so. The _1 and _2 operators provide a shorthand for accessing the elements of the tuple and the constructor of the Path is implictly defined based on its class definition.
-7. The final line of logic is complex. It uses stream concatenation to define the way we move across our problem landscape while adding new states to our history. We start by taking the Path **head** at the beginning of our stream and concatenating to the result of calling solve recursively. Upon calling `solve`, we pass in the tail which would cause the next element in the stream to be processed, followed by the stream of `next` moves. We concatenate the Stream of tail with the Stream of next using the `#:::` which takes two streams and joins them. Finally, we send an updated form of history by taking `next`, mapping the Path to its `endState` and creating a union of the current history with the new states via the `|` operator. 
+7. The final line of logic is complex. It uses stream concatenation to define the way we move across our problem landscape while adding new states to our history. We start by taking the Path **head** at the beginning of our stream and concatenating to the result of calling solve recursively. Upon calling `solve`, we pass in the tail which would cause the next element in the stream to be processed, followed by the stream of `next` moves. We concatenate the Stream of tail with the Stream of next using the `#:::` which takes two streams and joins them. Finally, we send an updated form of history by taking `next`, mapping the Path to its `endState` and creating a union of the current history with the new states via the `|` operator.
 
 By setting up the call this way we are doing a **breadth-first search** as each element of the Stream is evaluated step-by-step as we continue to add new states to the end of the list. A **depth-first search** would probably be more efficient, but this version of the code illustrates a cool concept: wouldn't we keep recursing needlessly as we're not checking for a state that matches our goal? No!
 

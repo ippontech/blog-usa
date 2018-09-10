@@ -14,7 +14,7 @@ tags:
 - web3
 - Metamask
 - geth
-date: 
+date: 2018-09-05T14:35:53.000Z
 title: "Ethereum Development Tips"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-01.png
 ---
@@ -120,11 +120,11 @@ The basic idea is that a contract is a complete package, containing state variab
 A function, if it changes any state variable, will cost gas fees to the user or contract calling it.
 
 ```solidity
-pragma solidity ^0.4.0;  
+pragma solidity ^0.4.0;
 
-contract SimpleMarket {  
-    function sell() public  onlySeller { // Function  
-    // ...  
+contract SimpleMarket {
+    function sell() public  onlySeller { // Function
+    // ...
     }
 }
 ```
@@ -132,8 +132,8 @@ contract SimpleMarket {
 You can add a function modifier to a function, which is basically code common to all functions using it. A general case if having a "onlyAdmin” modifier as below. We’ll explain the "require” later!
 
 ```solidity
-modifier onlySeller() { // Modifier  
-    require(msg.sender == seller, "Only seller can call this.");  
+modifier onlySeller() { // Modifier
+    require(msg.sender == seller, "Only seller can call this.");
     _;
 }
 ```
@@ -141,12 +141,12 @@ modifier onlySeller() { // Modifier
 The last word of the list that should have been alien to you is event, which is something that will be "fired” by the contract when it appears in the code, and will be logged inside the transactions using your contract.
 
 ```solidity
-contract SimpleMarket {  
-    event HighestSell(address seller, uint amount); // Event  
+contract SimpleMarket {
+    event HighestSell(address seller, uint amount); // Event
 
-    function sell() public {  
-    // ...  
-    emit HighestSell(msg.sender, msg.value); // Triggering event  
+    function sell() public {
+    // ...
+    emit HighestSell(msg.sender, msg.value); // Triggering event
     }
 }
 ```
@@ -183,9 +183,9 @@ The most common and biggest problem to check out is the classic reentrancy probl
 
 ```solidity
 contract Fund {
-    /// Mapping of ether shares of the contract.  
-    mapping(address  =>  uint) shares;  
-    /// Withdraw your share.  
+    /// Mapping of ether shares of the contract.
+    mapping(address  =>  uint) shares;
+    /// Withdraw your share.
     function withdraw() public {
 
         /// Sending the shares beforing depleting!
@@ -202,7 +202,7 @@ Close to this problem and more specific to blockchain, is the fact that every tr
 If the code of a soon-to-be-deployed app is public, why not do more, and precompute its future address to send ETH to it before, allowing unexpected events? You can precompute a lot actually, and doing random functions in your code that use block number or timestamp (the time a block is mined) is not safe as it is pretty easy to figure out!
 
 ```solidity
-pragma solidity ^0.4.18;  
+pragma solidity ^0.4.18;
 
 contract CoinFlip {
     uint256 public consecutiveWins;
