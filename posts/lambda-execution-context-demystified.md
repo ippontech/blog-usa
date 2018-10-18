@@ -35,7 +35,7 @@ Between each invocation of the `handleRequest` method, the same _Execution Conte
 
 
 # Why it matters
-As you can imagine, starting-up the _Execution Context_ takes more time than just invoking the function. 
+As you can imagine, starting-up the _Execution Context_ can take some time but is inevitable before running the function for the first time.
 In the Serverless terminology, this is known as the _"cold start"_. The very first time your Lambda function is invoked, you have to wait for the _Execution Context_ to fully start. 
 AWS is not billing for this amount of time, but the _cold start_ for the first invocation is an important tradeoff to take into account when using Serverless technologies.
 
