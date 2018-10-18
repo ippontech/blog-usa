@@ -17,7 +17,7 @@ In this article, I will attempt to demystify the _Execution Context_ of a Lambda
 
 # Lambda Execution Context
 
-In its documentation, AWS describes an Execution Context as a “temporary runtime environment that initializes any external dependencies of your Lambda”.
+In the [AWS Lambda documentation](https://docs.aws.amazon.com/lambda/latest/dg/running-lambda-code.html), AWS describes an Execution Context as a “temporary runtime environment that initializes any external dependencies of your Lambda”.
 
 The _Execution Context_ is the invisible stack that AWS creates for your Lambda in order to execute the function. AWS maintains the _Context_ ready to accept new invocations of the function for an unknown amount of time[^1] and then delete it to free up some resource. Between each invocation, AWS freezes and unfreezes the Context.
 
@@ -49,7 +49,7 @@ However, the _cold start_ has a very valuable property: because the _Execution C
 
 
 # Static, Singleton and the Context
-Indeed, in the [AWS Lambda documentation](https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html), one of the best practice actually recommends to take advantage of this _Execution Context_:
+Indeed, in the [Lambda best practices documentation](https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html), one of the best practice actually recommends to take advantage of this _Execution Context_:
 
 >
     Take advantage of Execution Context reuse to improve the performance of your function. Make sure any externalized configuration or dependencies that your code retrieves are stored and referenced locally after initial execution. Limit the re-initialization of variables/objects on every invocation. Instead use static initialization/constructor, global/static variables and singletons. Keep alive and reuse connections (HTTP, database, etc.) that were established during a previous invocation.
