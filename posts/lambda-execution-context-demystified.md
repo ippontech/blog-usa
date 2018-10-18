@@ -19,7 +19,7 @@ In this article, I will attempt to demystify the _Execution Context_ of a Lambda
 
 In the [AWS Lambda documentation](https://docs.aws.amazon.com/lambda/latest/dg/running-lambda-code.html), AWS describes an Execution Context as a “temporary runtime environment that initializes any external dependencies of your Lambda”.
 
-The _Execution Context_ is the invisible stack that AWS creates for your Lambda in order to execute the function. AWS maintains the _Context_ ready to accept new invocations of the function for an unknown amount of time[^1] and then delete it to free up some resource. Between each invocation, AWS freezes and unfreezes the Context.
+The _Execution Context_ is the invisible stack that AWS creates for your Lambda in order to execute the function. AWS maintains the _Context_ ready to accept new invocations of the function for an unknown amount of time[^1] and then deletes it to free up some resource. Between each invocation, AWS freezes and unfreezes the Context.
 
 For a Lambda written in Java, this is how I like to represent the different layers of the _Execution Context_:
 
