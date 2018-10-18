@@ -7,7 +7,7 @@ tags:
 - Java
 date: 2018-10-17T18:05:14.000Z
 title: "AWS Lambda Execution context in Java demystified"
-image: image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/12/te-le-chargement.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/12/te-le-chargement.png
 ---
 
 
