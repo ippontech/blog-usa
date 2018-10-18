@@ -116,7 +116,7 @@ As expected, only the _invocation value_ changes between each invocation. The va
 
 If you access the [endpoint](https://jz2ckwdte0.execute-api.us-east-1.amazonaws.com/Prod/execute/) from your browser multiple times, you will notice the same behavior where only the _invocation value_ changes between your requests. The static and constructor values remain the same. The values will probably be different than the example above, that is because AWS has destroyed the _Execution Context_ and a new one had to get created during your first request.
 
->Note: To deploy this Lambda in your own account, clone the [project repository](https://github.com/raphaelbrugier/aws-lambda-java-exec-context) and follow the instructions in the deploy section of the README file.
+>Note: To deploy this Lambda to your own account, clone the [project repository](https://github.com/raphaelbrugier/aws-lambda-java-exec-context) and follow the instructions in the deploy section of the README file.
 
 
 # Conclusion
