@@ -83,7 +83,7 @@ Step 1: “Bring your whole authentic self to work and what your doing”. We’
 
 Step 2: Understand that equality doesn’t work for everyone. Equity is what we should be aiming for to create success! Rivers showed an image, that many people probably recognize, during her talk. It resonated with me and really shows the difference in these two types of strategies vs the reality of life.
 
-
+<responsive-figure src="images/2018/10/Leigha_IMG1.png">
 
 *The world needs more women leaders - why not you?*
 
