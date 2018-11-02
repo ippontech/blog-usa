@@ -9,7 +9,7 @@ title: "Tech Yes We Can! Version 1.1"
 image: 
 ---
 
-# Tech Yes She Can!’ Version 1.1
+# 'Tech Yes She Can!’ Version 1.1
 
 On October 18, 2018, six of IpponRVA’s consultants attended the RVATech Women in Technology conference here in Richmond Virginia. As advertised, “Central Virginia’s premier technology conference brings together professionals on a wide range of technology topics to learn, network, and collaborate.” After attending the conference and discussing the day at the conference happy hour we decided that we should share our opinions of the day with the world, or whomever would listen! 
 
