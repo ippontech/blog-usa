@@ -111,5 +111,7 @@ As I’ve said in past articles, this conference only gets better year by year. 
 
 
 *For reference to previous year's blogs please see the links below*
+
 [Women In Tech 2015](https://blog.ippon.tech/women-etc-2015/)
+
 [Women In Tech 2016](https://blog.ippon.tech/richmonds-5th-annual-rvatechwomen-conference/)
