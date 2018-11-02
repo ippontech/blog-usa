@@ -107,3 +107,9 @@ Nancy then went on to describe how the world is changing and how building and de
  
 
 As I’ve said in past articles, this conference only gets better year by year. They have an amazing group of women (and men) that take each attendees thoughts into account and put that into the following year’s conference. The speakers always blow me away, but I was struck extra hard this year; these keynotes really hit it home. They all had something totally different to say but with one major thought -- build yourself up! Be the best you that you can be by getting to know yourself better.
+
+
+
+*For reference to previous year's blogs please see the links below*
+[Women In Tech 2015](https://blog.ippon.tech/women-etc-2015/)
+[Women In Tech 2016](https://blog.ippon.tech/richmonds-5th-annual-rvatechwomen-conference/)
