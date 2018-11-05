@@ -128,7 +128,7 @@ $ java -cp build/libs/kafka-streams.jar com.ippontech.kafkastreams.StreamsProces
 
 Now, if you start the console consumer on the output topic, you should see similar results as to what we had seen in [part 2](/kafka-tutorial-2-simple-consumer-in-kotlin/):
 
-```
+```bash
 $ kafka-console-consumer --bootstrap-server localhost:9092 --topic ages
 Patrick Rempel	30
 Charlotte Windler	39
