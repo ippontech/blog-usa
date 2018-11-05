@@ -7,20 +7,20 @@ tags:
 - Spring Cloud Stream
 date: 2018-11-05T12:00:00.000Z
 title: "NYC subway data with Kafka Streams and JHipster (part 1 of 2)"
-image: 
+image: https://raw.githubusercontent.com/Falydoor/blog-usa/mta-kafka/images/2018/11/mta-kafka-logo.png
 ---
 
-The NYC subway network is pretty big, with its 468 stations and 27 lines it is the world largest subway system. New Yorkers complain a lot about delays caused by signal problems, schedule changes or super packed cars. As an engineer and curious NYC resident, I've always wanted to know statistics about the subway like the number of running trains and which line is the busiest.
+The NYC subway network is pretty big and with its 468 stations and 27 lines it is the world largest subway system. New Yorkers complain a lot about delays caused by signal problems, schedule changes or super packed cars. As an engineer and curious NYC resident, I've always wanted to know statistics about the subway like the number of running trains and which line is the busiest.
 
-In this blog post, I will explain how the [MTA Real-Time Data Feeds](http://datamine.mta.info/) can be used to retrieve statistics about each subways lines. I will be using [Apache Kafka](https://kafka.apache.org/) (Kafka Streams more precisely) and [JHipster](http://www.jhipster.tech/) to achieve that. The second part of this blog post will explain a way to easily visualize the data using [Grafana](https://grafana.com/).
+In this blog post, I will explain how the [MTA Real-Time Data Feeds](http://datamine.mta.info/) can be used to retrieve statistics about each subways lines. I will be using [Apache Kafka](https://kafka.apache.org/) (Kafka Streams more precisely) and [JHipster](http://www.jhipster.tech/) to achieve that. The second part of this blog post will explain an easy way to visualize the data using [Grafana](https://grafana.com/).
 
 All the code of this blog post can be found on this [GitHub repository](https://github.com/Falydoor/mta-kafka) and I recommend cloning it instead of copying the code examples.
 
 # Getting started with the MTA Real-Time Data Feeds
 
-To use the MTA API, you first have to register [here](https://datamine.mta.info/user/register), you will receive a key that will allow you to call the API. The API use Google's mechanism for serializing structured data called [Protocol buffers](https://developers.google.com/protocol-buffers/) instead of a regular JSON format. More information about the structure definition can be found on the [GTFS Realtime Reference page](https://developers.google.com/transit/gtfs-realtime/reference/).
+To use the MTA API, you first have to register [here](https://datamine.mta.info/user/register) to receive a key that will allow you to call the API. The API uses Google's mechanism for serializing structured data called [Protocol buffers](https://developers.google.com/protocol-buffers/) instead of a regular JSON format. More information about the structure definition can be found on the [GTFS Realtime Reference page](https://developers.google.com/transit/gtfs-realtime/reference/).
 
-The drawback of Protocol buffers is that you can't use a simple cURL command to visualize the data. You need to generate data access classes using the structure definition and then parse the API's response using your favorite language (C++, C#, Go, Java or Python). The compiler can be downloaded [here](https://developers.google.com/protocol-buffers/docs/downloads) or if you're on macOS you probably use Homebrew and you can run `brew install protobuf`.
+The drawback of Protocol buffers is that you can't use a simple cURL command to visualize the data. You need to generate data access classes using the structure definition and then parse the API's response using a popular language (C++, C#, Go, Java or Python). The compiler can be downloaded [here](https://developers.google.com/protocol-buffers/docs/downloads), if you're on macOS you can run this [Homebrew](https://brew.sh/) command `brew install protobuf`.
 
 # Microservice generation and MTA feed polling
 
@@ -65,7 +65,8 @@ Here the `.yo-rc.json` in case you want to generate you own microservice:
 ```
 
 The next step is to generate the Protobuf's classes using the command `protoc` and the [GTFS definition](https://developers.google.com/transit/gtfs-realtime/gtfs-realtime.proto). Save the definition in the resources folder and then run the below command:
-`protoc --java_out=src/main/java/ src/main/resources/gtfs-realtime.proto`
+
+```protoc --java_out=src/main/java/ src/main/resources/gtfs-realtime.proto```
 
 You should now have a java class named `GtfsRealtime` that will be used to parse the API's response.
 A Maven dependency is required as well, here the xml:
@@ -151,11 +152,11 @@ public class Subway {
 
 # Kafka integration with Spring Cloud Stream
 
-Spring Cloud Stream provides a number of abstractions and primitives that simplify the writing of message-driven microservice applications. In our case, we will use Kafka as our message broker with two topics:
+Spring Cloud Stream provides a number of abstractions and primitives that simplify the writing of message-driven microservice applications. Kafka will be used as the message broker with two topics:
 * `mta` to store the data coming from the API polling
 * `mta-stream` to store the result from streaming the `mta` topic
 
-Since we gonna use the Kafka Streams API, the below dependency must be added:
+The below dependency must be added to use the Kafka Streams API:
 ```xml
 <dependency>
     <groupId>org.springframework.cloud</groupId>
@@ -163,7 +164,7 @@ Since we gonna use the Kafka Streams API, the below dependency must be added:
 </dependency>
 ```
 
-The below configuration for Spring Cloud Stream declare 4 bindings that our microservice will use.
+The below configuration for Spring Cloud Stream declares 4 bindings that the microservice will use:
 ```yml
 spring:
     cloud:
@@ -178,7 +179,7 @@ spring:
                             default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
                             default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
             bindings:
-            	# used to publish MTA's data
+                # used to publish MTA's data
                 mta-output:
                     destination: mta
                 # used to read MTA's data as a stream
@@ -192,7 +193,7 @@ spring:
                     destination: mta-stream
 ```
 
-Since JHipster is used, the `MessagingConfiguration` class must be changed to reflect the configuration above:
+Since JHipster is used, the `MessagingConfiguration` class must be changed to reflect the above configuration:
 ```java
 // Kafka Streams provides a pre-configured interface called KafkaStreamsProcessor that uses the bindings 'input' and 'output'
 // The interface MtaStream defines the other two bindings as regular channels
@@ -213,7 +214,7 @@ public class MessagingConfiguration {
 }
 ```
 
-One last thing is to change the file `kafka.yml` that contains the Docker configuration to create the two topics. The environment variable to change is `KAFKA_CREATE_TOPICS`:
+One last thing is to change the file `kafka.yml` to have the two topics created. The environment variable to change is `KAFKA_CREATE_TOPICS`:
 ```yml
 KAFKA_CREATE_TOPICS: "mta:1:1,mta-stream:1:1"
 ```
@@ -224,7 +225,7 @@ We are now all set to publish/receive messages using Kafka!
 
 ## Publishing MTA's data
 
-The interface `MtaStream` is used to publish a message to the topic `mta`, you just need to inject it as Bean to use it. That's how our method `publishMtaFeeds` will look now:
+The interface `MtaStream` is used to publish messages to the topic `mta`, you just have to inject it as Bean. That's how the method `publishMtaFeeds` will look now:
 ```java
 @Scheduled(cron = "0 */10 * * * *")
 public void publishMtaFeeds() {
@@ -245,7 +246,7 @@ public void publishMtaFeeds() {
 
 The message is automatically serialized to a JSON array that contains all active subways.
 
-## Counting subways number per line
+## Counting subways per line
 
 ```java
 @StreamListener("input")
@@ -264,9 +265,9 @@ public KStream<?, SubwayCount> streamMtaFeeds(KStream<Object, List<Map<String, S
 }
 ```
 
-The above method does all the magic, it streams the topic `mta` and group by the route (which is the line). A window of 10mins is used since we're polling every 10mins and the stream result is published to the topic `mta-stream`.
+The above method does all the magic, it streams the topic `mta` and group by the route (which is the line). A window of 10mins is used since the API is polled every 10mins and the stream result is published to the topic `mta-stream`.
 
-The Kafka Streams binder let us use the `KStream` object directly which allow us to have a simple and clear method. The first step is to map the route from our `Subway` class and then map it to a `KeyValue` so we can group by the key. Then the second step defines the window and count the number of records in the stream. And finally the last step converts the stream back to a `KStream` and map a `KeyValue` with a value representing the count:
+The Kafka Streams binder allows to directly use the `KStream` object, the stream processing method will be more clear and simple. The first step is to map the route from the `Subway` class and then map it to a `KeyValue` so it can be grouped by the key. Then the second step defines the window and count the number of records in the stream. And finally the last step converts the stream back to a `KStream` and map a `KeyValue` with a value representing the count:
 
 ```java
 public class SubwayCount {
@@ -325,6 +326,6 @@ Before running the microservice, 3 Docker containers must be started:
 * JHipster Registry using `docker-compose -f src/main/docker/jhipster-registry.yml up -d`
 * Kafka using `docker-compose -f src/main/docker/kafka.yml up -d` (contains Zookeper and Kafka)
 
-After having all containers running, the microservice can be started using `./mvnw`. One way to view the messages in Kafka is to run the command `kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic mta` in the containers.
+After having all containers running, the microservice can be started using `./mvnw`. One way to view the messages in Kafka is to run the command `kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic mta` in the container.
 
-Having the data in Kafka is great but it would be even better to visualize those data! In the part 2 of this blog post I will explain how you can easily visualize the data using Grafana and InfluxDB. And hopefully the MTA delays mistery will be solved...
+Having the data in Kafka is great but it would be even better to visualize those data! In the part 2 of this blog post I will explain how the data can be easily visualized using Grafana and InfluxDB.
