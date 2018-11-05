@@ -28,7 +28,7 @@ The drawback of Protocol buffers is that you can't use a simple cURL command to 
 
 I will be using [JHipster](http://www.jhipster.tech/) to generate a standard Spring Boot microservice configured with Kafka. If you never used JHipster, I suggest you to take a look at the [video tutorial](https://www.jhipster.tech/video-tutorial/). The microservice will use Kafka as a message broker and will have no database configured.
 
-Here the `.yo-rc.json` in case you want to generate you own microservice:
+Here is the `.yo-rc.json` in case you want to generate you own microservice:
 ```json
 {
   "generator-jhipster": {
@@ -69,7 +69,7 @@ The next step is to generate the Protobuf's classes using the command `protoc` a
 ```protoc --java_out=src/main/java/ src/main/resources/gtfs-realtime.proto```
 
 You should now have a java class named `GtfsRealtime` that will be used to parse the API's response.
-A Maven dependency is required as well, here the xml:
+A Maven dependency is required as well, here is the xml:
 ```xml
 <dependency>
     <groupId>com.google.protobuf</groupId>
