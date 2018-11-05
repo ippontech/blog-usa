@@ -219,13 +219,11 @@ One last thing is to change the file `kafka.yml` to have the two topics created.
 KAFKA_CREATE_TOPICS: "mta:1:1,mta-stream:1:1"
 ```
 
-We are now all set to publish/receive messages using Kafka!
-
 # Data processing using Kafka Streams
 
 ## Publishing MTA's data
 
-The interface `MtaStream` is used to publish messages to the topic `mta`, you just have to inject it as Bean. That's how the method `publishMtaFeeds` will look now:
+The interface `MtaStream` is used to publish messages to the topic `mta`, it must be injected as a Bean. That's how the method `publishMtaFeeds` will look now:
 ```java
 @Scheduled(cron = "0 */10 * * * *")
 public void publishMtaFeeds() {
