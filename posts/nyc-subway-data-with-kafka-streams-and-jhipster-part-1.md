@@ -7,7 +7,7 @@ tags:
 - Spring Cloud Stream
 date: 2018-11-05T12:00:00.000Z
 title: "NYC subway data with Kafka Streams and JHipster (part 1 of 2)"
-image: https://raw.githubusercontent.com/Falydoor/blog-usa/mta-kafka/images/2018/11/mta-kafka-logo.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/mta-kafka-logo.png
 ---
 
 The NYC subway network is pretty big and with its 468 stations and 27 lines it is the world largest subway system. New Yorkers complain a lot about delays caused by signal problems, schedule changes or super packed cars. As an engineer and curious NYC resident, I've always wanted to know statistics about the subway like the number of running trains and which line is the busiest.
