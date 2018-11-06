@@ -26,7 +26,7 @@ The drawback of Protocol buffers is that you can't use a simple cURL command to 
 
 ## Microservice generation using JHipster
 
-I will be using [JHipster](http://www.jhipster.tech/) to generate a standard Spring Boot microservice configured with Kafka. If you never used JHipster, I suggest you to take a look at the [video tutorial](https://www.jhipster.tech/video-tutorial/). The microservice will use Kafka as a message broker and will have no database configured.
+I will be using [JHipster](http://www.jhipster.tech/) to generate a standard Spring Boot microservice configured with Kafka. If you have never used JHipster, I suggest you to take a look at the [video tutorial](https://www.jhipster.tech/video-tutorial/). The microservice will use Kafka as a message broker and will have no database configured.
 
 Here is the `.yo-rc.json` in case you want to generate you own microservice:
 ```json
@@ -80,7 +80,7 @@ A Maven dependency is required as well, here is the xml:
 
 ## MTA feed polling
 
-The goal is to retrieve all running subways on each lines using the MTA feed API. To achieve that, each feed id will be polled and a custom filter will be applied to only keep running subways. This can be easily done using the `@Scheduled` annotation provided by Spring, see below for the full code:
+The goal is to retrieve all running subways on each line using the MTA feed API. To achieve that, each feed ID will be polled and a custom filter will be applied to only keep running subways. This can be easily done using the `@Scheduled` annotation provided by Spring, see below for the full code:
 
 ```java
 @Scheduled(cron = "0 */10 * * * *")
@@ -265,7 +265,7 @@ public KStream<?, SubwayCount> streamMtaFeeds(KStream<Object, List<Map<String, S
 
 The above method does all the magic, it streams the topic `mta` and group by the route (which is the line). A window of 10mins is used since the API is polled every 10mins and the stream result is published to the topic `mta-stream`.
 
-The Kafka Streams binder allows to directly use the `KStream` object, the stream processing method will be more clear and simple. The first step is to map the route from the `Subway` class and then map it to a `KeyValue` so it can be grouped by the key. Then the second step defines the window and count the number of records in the stream. And finally the last step converts the stream back to a `KStream` and map a `KeyValue` with a value representing the count:
+The Kafka Streams binder allows to directly use the `KStream` object, the stream processing method will be more clear and simple. The first step is to map the route from the `Subway` class and then map it to a `KeyValue` so it can be grouped by the key. Then the second step defines the window and counts the number of records in the stream. And finally the last step converts the stream back to a `KStream` and map a `KeyValue` with a value representing the count:
 
 ```java
 public class SubwayCount {
