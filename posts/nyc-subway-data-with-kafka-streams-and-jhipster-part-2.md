@@ -6,12 +6,12 @@ tags:
 - JHipster
 - Grafana
 - InfluxDB
-date: 2018-11-06T12:00:00.000Z
+date: 2018-11-07T12:00:00.000Z
 title: "NYC subway data with Kafka Streams and JHipster (part 2 of 2)"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/mta-kafka-logo.png
 ---
 
-In the [part 1](https://blog.ippon.tech/nyc-subway-data-with-kafka-streams-and-jhipster-part-1/) of this blog post I explained how to retrieve data from the MTA feed and publish them to Kafka. I will now explain how to easily visualize those data using [InfluxDB](https://www.influxdata.com/) and [Grafana](https://grafana.com/). InfluxDB is an open-source time series database that can be used as a data source for Grafana. Grafana will be used to visualize the number of active subways for each lines through a day and see how this number changes with time.
+In the [part 1](https://blog.ippon.tech/nyc-subway-data-with-kafka-streams-and-jhipster-part-1/) of this blog post I explained how to retrieve data from the MTA feed and publish them to Kafka. I will now explain how to easily visualize those data using [InfluxDB](https://www.influxdata.com/) and [Grafana](https://grafana.com/). InfluxDB is an open-source time series database that can be used as a data source for Grafana. Grafana is an open-source, general purpose dashboard and graph composer, which runs as a web application. Grafana will be used to visualize the number of active subways for each lines through a day and see how this number changes with time.
 
 All the code of this blog post can be found on this [GitHub repository](https://github.com/Falydoor/mta-kafka) and I recommend cloning it instead of copying the code examples.
 
@@ -47,7 +47,7 @@ influxDB.setDatabase("mta");
 
 ## Measurements saving
 
-In the part 1, the Kafka topic `mta-stream` was used to store the results of the streaming process. This topic will be used to save each messages in InfluxDB since a message represents the number of active subways for a given line and time.
+In the [part 1](https://blog.ippon.tech/nyc-subway-data-with-kafka-streams-and-jhipster-part-1/), the Kafka topic `mta-stream` was used to store the results from the streaming process. This topic will be used to save each messages in InfluxDB since a message represents the number of active subways for a given line and time.
 
 ```java
 @StreamListener(MessagingConfiguration.MtaStream.INPUT)
@@ -61,7 +61,9 @@ public void saveSubwayCount(SubwayCount subwayCount) {
 }
 ```
 
-The code above listen for each message in the topic `mta-stream` and will write the message in InfluxDB. Spring Cloud Stream makes things simple by converting the Kafka message from a JSON format to the `SubwayCount` class. InfluxDB's measurement is conceptually similar to a table and all messages are inserted in the `line` measurement. The subway's route is used as a tag to allow filtering when it will be used in Grafana. There is only one field for the point and it is the number of active subways.
+The method above get triggered when a message is published in the topic `mta-stream` and will then write the message in InfluxDB. Spring Cloud Stream makes things simple by converting the Kafka message from a JSON format to the custom `SubwayCount` class.
+
+InfluxDB's measurement is conceptually similar to a table and all messages are inserted in the `line` measurement. The subway's route is used as a tag to allow filtering when it will be used in Grafana. There is only one field for the point and it is the number of active subways. Finally the time of the point is the start timestamp of the Kafka's window.
 
 # Grafana configuration and dashboard creation
 
@@ -69,11 +71,11 @@ Once again, thanks to Docker for making the Grafana setup easy:
 
 ```docker run -d -p 3000:3000 grafana/grafana```
 
-A data source for InfluxDB must be created in order to build a dashboard, here a screenshot of my configuration:
+A data source for InfluxDB must be created in order to build a dashboard, here is a screenshot of my configuration:
 
 ![mta-kafka-datasource](https://raw.githubusercontent.com/Falydoor/blog-usa/mta-kafka-2/images/2018/11/mta-kafka-datasource.png)
 
-The ip must be the one of the InfluxDB's container, it can be retrieved using:
+The ip must be the one of the InfluxDB's container, it can be retrieved using the command below:
 
 ```docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id```
 
@@ -87,6 +89,6 @@ This [JSON configuration](https://raw.githubusercontent.com/Falydoor/mta-kafka/m
 
 # Conclusion
 
-From the screenshot, we can see that the two times where the number of active subways reach its peak are 9am and 5pm. The time of the day where the number is the lowest is between midnight and 5am. The red line (or 1-2-3) is the one with the most running trains in average during a day.
+From the screenshot, we can see that the two times where the number of active subways reach its peak are 9am and 5pm. The time of the day where the number is the lowest is between midnight and 5am. The red line (or 1-2-3) is the one with the most running trains in average during a day which makes sense since it is one of the longest line.
 
 Setting up InfluxDB/Grafana was pretty easy with Docker and after few minutes I was able to have a nice visualization of the data. The next step would be to differentiate the direction for each lines because there is probably a small difference between two directions of the same line.
