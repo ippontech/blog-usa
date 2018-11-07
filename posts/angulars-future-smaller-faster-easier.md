@@ -55,7 +55,7 @@ To go further:
 
 # Angular Ivy
 
-Ivy is the angular’s new renderer. It reduces the amount of code generating and it is much simpler code debugging. It provides a non-breaking api, and produces smaller size apps. Expected to be enabled in v8.
+Ivy is Angular’s new renderer. It reduces the amount of code generating and it is much simpler code debugging. It provides a non-breaking API, and produces smaller size apps. Expected to be enabled in v8.
 
 To go further:
 * [GitHub - Ivy Renderer (beta)](https://github.com/angular/angular/issues/21706)
