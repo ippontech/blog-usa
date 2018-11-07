@@ -3,20 +3,20 @@ authors:
 - Guillaume Granger
 tags:
 - Angular
-date: 2017-07-20T16:29:00.000Z
+date: 2018-11-07T18:01:16.000Z
 title: "Angular’s Future - Smaller, faster, easier"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/devFest.png
 ---
 
-Last Thursday, I had the chance to attend the DevFest. The annual meeting for developers in Nantes, France. Here is a brief report of the conference on Angular by Wassim Chegham, Senior Developer Advocate and the Head of the Open Source Program Office at SFEIR. Wassim presented what coming next in the Angular Ecosystem. 
+Last Thursday, I had the chance to attend the DevFest. The annual meeting for developers in Nantes, France. Here is a brief report of the conference on Angular by Wassim Chegham, Senior Developer Advocate and the Head of the Open Source Program Office at SFEIR. Wassim presented what coming next in the Angular Ecosystem.
 
 # Bazel
 
-Bazel is a build and test software developed by Google. Bazel is fast, is fully incremental, there is local and distributed caching and parallel execution. It builds only modified files. 
+Bazel is a build and test software developed by Google. Bazel is fast, is fully incremental, there is local and distributed caching and parallel execution. It builds only modified files.
 
-Bazel is scalable, it handles codebases of any size, in multiple repositories or a huge monorepo. 
+Bazel is scalable, it handles codebases of any size, in multiple repositories or a huge monorepo.
 
-Bazel is polyglot, it builds and tests Java, C++, Android, iOS, Go and a wide variety of other language platforms. 
+Bazel is polyglot, it builds and tests Java, C++, Android, iOS, Go and a wide variety of other language platforms.
 
 The switch to Bazel will be transparent with the ng build command.
 
@@ -35,7 +35,7 @@ To go further:
 
 # Component Dev Kit
 
-UI components to building blocks. The Component Dev Kit (CDK) provide behaviors for your components. With CDK, you can overwrite components and reuse them. 
+UI components to building blocks. The Component Dev Kit (CDK) provide behaviors for your components. With CDK, you can overwrite components and reuse them.
 
 To go further:
 * [A Component Dev Kit for Angular](https://blog.angular.io/a-component-dev-kit-for-angular-9f06e3b4b3b4)
@@ -52,14 +52,12 @@ Custom Element is a part of Web Components Specifications. CE allow web develope
 To go further:
 * [Elements in v6 and Beyond - Rob Wormald](https://www.youtube.com/watch?v=Z1gLFPLVJjY&t=4s)
 
-
 # Angular Ivy
 
 Ivy is Angular’s new renderer. It reduces the amount of code generating and it is much simpler code debugging. It provides a non-breaking API, and produces smaller size apps. Expected to be enabled in v8.
 
 To go further:
 * [GitHub - Ivy Renderer (beta)](https://github.com/angular/angular/issues/21706)
-
 
 # To see the conference
 

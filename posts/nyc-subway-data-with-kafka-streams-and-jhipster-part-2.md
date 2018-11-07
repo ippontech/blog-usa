@@ -4,9 +4,7 @@ authors:
 tags:
 - Apache Kafka
 - JHipster
-- Grafana
-- InfluxDB
-date: 2018-11-07T12:00:00.000Z
+date: 2018-11-07T17:24:45.000Z
 title: "NYC subway data with Kafka Streams and JHipster (part 2 of 2)"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/mta-kafka-logo.png
 ---
@@ -37,7 +35,7 @@ The microservice can now connect to the instance and start saving measurements i
 </dependency>
 ```
 
-Configuring the Java client is very simple and the `InfluxDB` interface will later be used to query the database.
+Configuring the java client is very simple and the `InfluxDB` interface will later be used to query the database.
 
 ```java
 // Init influxDB

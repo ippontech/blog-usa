@@ -4,8 +4,7 @@ authors:
 tags:
 - Apache Kafka
 - JHipster
-- Spring Cloud Stream
-date: 2018-11-05T12:00:00.000Z
+date: 2018-11-06T14:43:30.000Z
 title: "NYC subway data with Kafka Streams and JHipster (part 1 of 2)"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/mta-kafka-logo.png
 ---
