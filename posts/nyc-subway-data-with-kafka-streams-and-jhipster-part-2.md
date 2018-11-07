@@ -37,7 +37,7 @@ The microservice can now connect to the instance and start saving measurements i
 </dependency>
 ```
 
-Configuring the java client is very simple and the `InfluxDB` interface will later be used to query the database.
+Configuring the Java client is very simple and the `InfluxDB` interface will later be used to query the database.
 
 ```java
 // Init influxDB
