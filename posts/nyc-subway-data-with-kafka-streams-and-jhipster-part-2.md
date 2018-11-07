@@ -91,4 +91,4 @@ This [JSON configuration](https://raw.githubusercontent.com/Falydoor/mta-kafka/m
 
 From the screenshot, we can see that the two times where the number of active subways reach its peak are 9am and 5pm. The time of the day where the number is the lowest is between midnight and 5am. The red line (or 1-2-3) is the one with the most running trains in average during a day which makes sense since it is one of the longest line.
 
-Setting up InfluxDB/Grafana was pretty easy with Docker and after few minutes I was able to have a nice visualization of the data. The next step would be to differentiate the direction for each lines because there is probably a small difference between two directions of the same line.
+Using JHipster with Kafka and Spring Cloud Stream is pretty straightforward and the integration with the MTA API was easy to do. Setting up InfluxDB/Grafana with Docker takes few minutes and it gives you a nice way to visualize the data. The next step would be to differentiate the direction for each lines because there is probably a small difference between two directions of the same line.
