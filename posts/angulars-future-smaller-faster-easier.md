@@ -1,9 +1,8 @@
 ---
 authors:
-- Matt Ritter
+- Guillaume Granger
 tags:
 - Angular
-- Front-End
 date: 2017-07-20T16:29:00.000Z
 title: "Angular’s Future - Smaller, faster, easier"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/devFest.png
@@ -22,8 +21,8 @@ Bazel is polyglot, it builds and tests Java, C++, Android, iOS, Go and a wide va
 The switch to Bazel will be transparent with the ng build command.
 
 To go further:
-https://bazel.build/
-https://docs.google.com/document/d/1OlyiUnoTirUj4gecGxJeZBcjHcFr36RvLsvpBl2mxA8/preview
+* https://bazel.build/
+* https://docs.google.com/document/d/1OlyiUnoTirUj4gecGxJeZBcjHcFr36RvLsvpBl2mxA8/preview
 
 # Schematics
 
@@ -63,4 +62,5 @@ To go further:
 
 
 # To see the conference
-[DevFest Nantes 2018 - Ready for Angular version 8](https://www.youtube.com/watch?v=zCsFUzEEfto)
+
+* [DevFest Nantes 2018 - Ready for Angular version 8](https://www.youtube.com/watch?v=zCsFUzEEfto)
