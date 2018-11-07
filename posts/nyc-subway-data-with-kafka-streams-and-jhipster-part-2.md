@@ -73,7 +73,7 @@ Once again, thanks to Docker for making the Grafana setup easy:
 
 A data source for InfluxDB must be created in order to build a dashboard, here is a screenshot of my configuration:
 
-![mta-kafka-datasource](https://raw.githubusercontent.com/Falydoor/blog-usa/mta-kafka-2/images/2018/11/mta-kafka-datasource.png)
+![mta-kafka-datasource](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/mta-kafka-datasource.png)
 
 The ip must be the one of the InfluxDB's container, it can be retrieved using the command below:
 
@@ -81,7 +81,7 @@ The ip must be the one of the InfluxDB's container, it can be retrieved using th
 
 Any dashboard can be created with the datasource, I decided to have one with a panel that will display the number of subways per line.
 
-![mta-kafka-2018-11-05](https://raw.githubusercontent.com/Falydoor/blog-usa/mta-kafka-2/images/2018/11/mta-kafka-2018-11-05.png)
+![mta-kafka-2018-11-05](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/mta-kafka-2018-11-05.png)
 
 Lines are grouped to avoid having too many series and the value is the average number of running trains for a 30mins interval. The above screenshot shows the busiest lines on Monday November 5 in 2018 which is a regular work day.
 
