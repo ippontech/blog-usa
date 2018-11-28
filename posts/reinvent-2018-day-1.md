@@ -40,15 +40,16 @@ This new storage class allows to dynamically and automatically change the storag
 # Analytics
 
 ## Athena Workload Isolation (Beta)
-The biggest thing of this tool is to be able to limit the amount of data used during the processing and being able to cancel the request.
+The most important feature of this tool is to be able to limit the amount of data used during the processing and being able to cancel a request.
 This is especially useful when new users are running long (and costly) requests that may be blocking other resources.
+
 
 # Connectivity 
 
 ## Transit Gateway
 
 Transit Gateway simplifies the connection between all the VPCs. Before that, VPCs did not support transitive peering.
-Using Transit Gateway you can now to build a hub-and-spoke network topology
+Using Transit Gateway you can now to build a hub-and-spoke network topology.
 
 [Use an AWS Transit Gateway to Simplify Your Network Architecture](https://aws.amazon.com/fr/blogs/aws/new-use-an-aws-transit-gateway-to-simplify-your-network-architecture/) 
 
