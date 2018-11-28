@@ -13,14 +13,14 @@ image:
 
 # Migrating a legacy COBOL mainframe application to a modern Java, Spring Boot, and Angular architecture
 
-Believe it or not, we haven't migrated all of the old legacy mainframe applications from the 1970's to the latest shiny new application platforms.  Okay, so that was a little tongue-in-cheek.  You _might_ be surprised to know how many critical features you use in your everyday life rely on mainframe functionality, however [ciation needed].
+Believe it or not, we haven't migrated all of the old legacy mainframe applications from the 1970's to the latest shiny new application platforms.  Okay, so that was a little tongue-in-cheek.  You _might_ be surprised to know how many [critical features you use in your everyday life rely on mainframe functionality](http://blog.syncsort.com/2017/06/mainframe/6-industries-mainframes-king/), however.
 
 Recently we here at Ippon Technologies were asked to help lead a transition from a COBOL application (that contained data from the 1800's even) to a modern microservices architecture.  We were asked to pitch in because of our famed application generator, [JHipster](https://www.jhipster.tech/).  JHipster can be useful in certain situations such as:
 * You are unfamiliar with the latest technologies and you would like to see a solid "best practices" implementation
 * You need to accelerate application development and the target application to build is some form of a [CRUDL](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) application.  You might be asking what the "L" is for at the end of "CRUDL."  It stands for listing, or pagination, which JHipster can help you with.
 * You have a large team of developers, with varying levels of expertise, and you need help standardizing development norms
 
-In our particular case, we faced all of those challenges.  We also had a problem that JHipster cannot solve that I imagine many attempts to do this will: how do you extract every business rule and other pieces of functionality from the existing legacy system?
+In our particular case, we faced all of those challenges.  We also had a common problem that JHipster cannot solve that people performing migrations will: how do you extract every business rule and other pieces of functionality from the existing legacy system?
 
 There is no great answer to this question, unfortunately.  There are tools out there that attempt to auto-migrate existing COBOL code to Java or another target language.  That can be fraught with its own set of [difficulties](https://compuware.com/converting-cobol-to-java/).  If you've ever worked with any code generation tool based on an existing source (I'm looking at you, WSDL), it can be a messy and confusing experience.
 
@@ -58,7 +58,7 @@ The JHipster application generator is one of the ways we were able to quickly br
 * Clean code: JHipster strives to start that way by generating clean code, but developers have to maintain that for new functionality developed
 * Java enterprise concepts: small CRUD apps are a different ballgame from the needs of enterprise-size companies.
 * The Spring Framework: this is one of my favorite libraries I've ever worked with, but for new and junior developers this is a _daunting_ hill to climb to learn the concepts involved
-* Angular: I've done most of my development in the days of multi-page apps (as opposed today's single-page apps). Angular is probably one of the best SPA frameworks out there, but it has been described as "enterprise-y" and does take some studying to learn
+* Angular: I've done most of my development in the days of multi-page apps (as opposed to today's single-page apps). Angular is probably one of the best SPA frameworks out there, but it has been described as "enterprise-y" and does take some studying to learn
 
 That said if you don't have a lot of mentors or seniors on your project you can't get a better teacher than JHipster.  As long as your developers are willing to learn, they can see enterprise software development best practices through that generated JHipster application.
 
