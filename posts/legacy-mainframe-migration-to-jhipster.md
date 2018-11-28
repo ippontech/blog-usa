@@ -11,7 +11,7 @@ title: "Legacy Mainframe Migration to JHipster"
 image: 
 ---
 
-# Migrating a legacy COBOL mainframe application to a modern Java, Spring Boot, and Angular architecture
+## Migrating a legacy COBOL mainframe application to a modern Java, Spring Boot, and Angular architecture
 
 Believe it or not, we haven't migrated all of the old legacy mainframe applications from the 1970's to the latest shiny new application platforms.  Okay, so that was a little tongue-in-cheek.  You _might_ be surprised to know how many [critical features you use in your everyday life rely on mainframe functionality](http://blog.syncsort.com/2017/06/mainframe/6-industries-mainframes-king/), however.
 
