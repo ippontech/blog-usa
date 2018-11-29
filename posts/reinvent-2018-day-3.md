@@ -15,7 +15,7 @@ Wednesday - Day 3 was the first big keynote with Andy Jassy - AWS CEO - and ther
 
 ## Amazon Forecast
 
-Time series forecasting, usually means predicting the next data points of the series, not the future. Even if simple to explain, it’s actually rather complicated to implement correctly.
+Time series forecasting usually means predicting the next data points of the series, not the future. Even if simple to explain, it’s actually rather complicated to implement correctly.
 Amazon Forecast allows you to build your own time series forecasting using the AWS Console, the API or the new SDK.
 
 [Amazon Forecast – Time Series Forecasting Made Easy](https://aws.amazon.com/fr/blogs/aws/amazon-forecast-time-series-forecasting-made-easy/)
@@ -26,14 +26,15 @@ Amazon Forecast allows you to build your own time series forecasting using the A
 Using this new service, AWS allows data scientists to share - and sell - their algorithms and models very easily.
 
 For Machine Learning users, they can have access to a very broad offering of models.
+
 [Machine Learning algorithms and model packages now available in AWS Marketplace](https://aws.amazon.com/fr/blogs/aws/new-machine-learning-algorithms-and-model-packages-now-available-in-aws-marketplace/)
 
 
 ## Amazon Personalize
 
-With Personalize, AWS is adding the service that made Amazon a different e-commerce website: recommendations
+With Personalize, AWS is adding the service that made Amazon a different e-commerce website: recommendations.
 
-The service is really to use and allows to ingest user data, products catalog and external data to generate user recommendations.
+The service is easy to use and allows to ingest user data, products catalog and external data to generate user recommendations.
 
 [Real-Time Personalization and Recommendation for Everyone](https://aws.amazon.com/fr/blogs/aws/amazon-personalize-real-time-personalization-and-recommendation-for-everyone/)
 
@@ -41,6 +42,7 @@ The service is really to use and allows to ingest user data, products catalog an
 ## Amazon SageMaker Neo
 
 SageMaker Neo allows you to execute your Machine Learning models (inference) at the edge for optimal performance.
+
 This could be useful when using the models offline.
 
 [Train Your Machine Learning Models Once, Run Them Anywhere](https://aws.amazon.com/fr/blogs/aws/amazon-forecast-time-series-forecasting-made-easy/)
@@ -48,9 +50,10 @@ This could be useful when using the models offline.
 
 ## Amazon SageMaker Ground Truth
 
-Anyone who has done machine learning will tell you this, creating a training dataset of good quality and correct labels are difficult and time consuming.
+Anyone who has done machine learning will tell you this, creating a training dataset of good quality and with correct labels is difficult and time consuming.
 
-Ground Truth allows to automate the labeling of your dataset when possible and you will be able to delegate to humans (Mechanical Turk) when the dataset is too complicate to be automatically labeled.
+Ground Truth allows to automate the labeling of your dataset when possible and you will be able to delegate to humans (Mechanical Turk) when the dataset is too complicated to be automatically labeled.
+
 [Amazon SageMaker Ground Truth – Build Highly Accurate Datasets and Reduce Labeling Costs by up to 70%](https://aws.amazon.com/fr/blogs/aws/amazon-sagemaker-ground-truth-build-highly-accurate-datasets-and-reduce-labeling-costs-by-up-to-70/)
 
 
@@ -68,11 +71,9 @@ Sagemaker RL completes the existing offer of supervised and unsupervised machine
 
 Definitely the funniest announcement of re:Invent so far!
 
-DeepRacer is a 1/18th scale race car designed to be an autonomous vehicle: cameras, sensors, gyroscope…
-The only missing thing? The best machine learning algorithm to drive the car!
+DeepRacer is a 1/18th scale race car designed to be an autonomous vehicle: cameras, sensors, gyroscope... The only missing thing? The best machine learning algorithm to drive the car!
 
-The goal is to open the SDK and track simulator to let developers all around the world create this intelligence.
-Once your algorithm is ready, you can compete against others in the league AWS has created. There will be events organized all year long, and the winner of each event will be invited to re:Invent 2019.
+The goal is to open the SDK and track simulator to let developers all around the world create this intelligence. Once your algorithm is ready, you can compete against others in the league AWS has created. There will be events organized all year long, and the winner of each event will be invited to re:Invent 2019.
 
 [AWS DeepRacer – Go Hands-On with Reinforcement Learning at re:Invent](https://aws.amazon.com/fr/blogs/aws/aws-deepracer-go-hands-on-with-reinforcement-learning-at-reinvent/)
 [Pre-order on Amazon](https://www.amazon.com/dp/B07JMHRKQG)
@@ -84,14 +85,15 @@ Once your algorithm is ready, you can compete against others in the league AWS h
 
 Until now, you had to configure a specific throughput (IOPS, I/O per second) when setting up your DynamoDB tables.
 
-AWS now offers to adapt the performance of the table based on the concurrent workload they receive. The billing also auto-adjust based on the number of requests.
+AWS now offers to adapt the performance of the table based on the concurrent workload they receive. The billing also auto-adjusts based on the number of requests.
 
 [Amazon DynamoDB On-Demand – No Capacity Planning and Pay-Per-Request Pricing](https://aws.amazon.com/fr/blogs/aws/amazon-dynamodb-on-demand-no-capacity-planning-and-pay-per-request-pricing/)
 
 
 ## Amazon Timestream - a Time-series database
 
-A time-series database was last missing piece in the AWS noSQL offer, and this is not the case anymore with Amazon Timestream. A time-series database is designed to ingest the stream of data generated by systems like IoT devices.
+A time-series database was the last missing piece in the AWS noSQL offer, and this is not the case anymore with Amazon Timestream. A time-series database is designed to ingest the stream of data generated by systems like IoT devices.
+
 Timestream supports the ingestion of data at high throughput, but also analytics and processing specifics to time-series.
 
 [Amazon Timestream](https://aws.amazon.com/fr/timestream/)
@@ -102,12 +104,14 @@ Timestream supports the ingestion of data at high throughput, but also analytics
 ## S3 Glacier Deep Archive
 
 This new storage class for Glacier is intended to replace the tapes that companies traditionally use for their long-term storage.
+
 [Coming Soon – S3 Glacier Deep Archive for Long-Term Data Retention](https://aws.amazon.com/about-aws/whats-new/2018/11/s3-glacier-deep-archive/)
 
 
 ## AWS Lake Formation
 
 Building your own data lake on-premise can take months. Building it using all the AWS services is faster, but still complicated when trying to integrate all the different services, security, and data governance.
+
 AWS Lake Formation aims at doing this in a matter of days by setting up all the services and configuration for you. Including security management, access management, and data sharing.
 
 [AWS Lake Formation](https://aws.amazon.com/fr/lake-formation/)
@@ -144,7 +148,7 @@ Since earlier this year, we see more and more customers using AWS Landing Zone t
 
 ## AWS Security Hub
 
-When talking about security, it’s often difficult to aggregate data points and metrics from all the AWS services across multiple accounts. This often requires to use a third-party tool. AWS Security Hub is now a central location to aggregate and configure alerts for your compliance checks.
+When talking about security, it is often difficult to aggregate data points and metrics from all the AWS services across multiple accounts. This often requires to use a third-party tool. AWS Security Hub is now a central location to aggregate and configure alerts for your compliance checks.
 
 [AWS Security Hub](https://aws.amazon.com/security-hub/)
 
