@@ -4,7 +4,7 @@ authors:
 tags:
 - AWS
 - reInvent
-date: 2018-11-29T00:08:09.000Z
+date: 2018-11-28T21:08:09.000Z
 title: "AWS re:Invent 2018 - Day 2"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/reinvent2.jpeg
 ---
