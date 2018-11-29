@@ -5,7 +5,7 @@ tags:
 - AWS
 - reInvent
 date: 2018-11-29T21:08:09.000Z
-title: "AWS re:Invent 2018 - Day 2"
+title: "AWS re:Invent 2018 - Day 3"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/deep-racer.jpg
 ---
 
