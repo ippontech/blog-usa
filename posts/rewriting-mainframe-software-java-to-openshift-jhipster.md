@@ -7,12 +7,10 @@ tags:
 - JDL Studio
 - Microservices
 date: 2018-10-08T19:54:42+00:00
-title: "Legacy Mainframe Migration to JHipster"
-image: 
+title: "Rewriting a Mainframe Software Package in Java on Openshift with JHipster"
+image: https://upload.wikimedia.org/wikipedia/commons/4/47/K-V-Laurikainen-1961.jpg
 ---
-Believe it or not, we haven't migrated all of the old legacy mainframe applications from the 1970's to the latest shiny new application platforms.  Okay, so that was a little tongue-in-cheek.  You _might_ be surprised to know how many [critical features you use in your everyday life rely on mainframe functionality](http://blog.syncsort.com/2017/06/mainframe/6-industries-mainframes-king/), however.
-
-Recently we here at Ippon Technologies were asked to help lead a transition from a COBOL application (that contained data from the 1800's even) to a modern microservices architecture.  We were asked to pitch in because of our famed application generator, [JHipster](https://www.jhipster.tech/).  JHipster can be useful in certain situations such as:
+Ippon Technologies successfully helped transition a Federal Government Agency from a COBOL application to a Java Spring Boot Microservices and Angular.  We were asked to pitch in because of our famed application generator, [JHipster](https://www.jhipster.tech/).  JHipster can be useful in certain situations such as:
 * You are unfamiliar with the latest technologies and you would like to see a solid "best practices" implementation
 * You need to accelerate application development and the target application to build is some form of a [CRUDL](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) application.  You might be asking what the "L" is for at the end of "CRUDL."  It stands for listing, or pagination, which JHipster can help you with.
 * You have a large team of developers, with varying levels of expertise, and you need help standardizing development norms
