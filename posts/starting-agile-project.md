@@ -1,6 +1,6 @@
 ---
 authors:
-- Benjamin Scott
+- Ben Scott
 tags:
 - Agile
 date: 2015-09-22T11:46:30.000Z
