@@ -8,7 +8,7 @@ tags:
 - Microservices
 date: 2018-10-08T19:54:42+00:00
 title: "Rewriting a Mainframe Software Package in Java on Openshift with JHipster"
-image: 
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/K-V-Laurikainen-1961.jpg
 ---
 Ippon Technologies successfully helped transition a Federal Government Agency from a COBOL application to a Java Spring Boot Microservices back-end application and Angular front-end.  We were asked to pitch in because of our famed application generator, [JHipster](https://www.jhipster.tech/).  JHipster can be useful in certain situations such as:
 * You are unfamiliar with the latest technologies and you would like to see a solid "best practices" implementation
@@ -38,6 +38,8 @@ The approach we used involved:
 One major constraint we faced was being able to develop and deploy the application given the options we had within the Federal Government.  For example, there were many databases we could have chosen from, and if you change which one you use, there are changes that do need to be made to the application even if you use external configuration (YAML files with Spring) or an ORM like Hibernate with JPA.  You'll find things like column name character limits that work in some databases but not in Oracle.
 
 Another constraint was the chosen application deployment platform.  We used the [OpenShift Container Platform](https://www.openshift.com/) which was a great learning experience and a pretty cool tool to use.  JHipster has a way to containerize applications to make it easy to deploy to Kubernetes, OpenShift, or any other container management solution.
+
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/FlexTerm.png)
 
 A significant curveball was how to display the front-end.  We would like to have used a modern UI with a modern CSS framework like Bootstrap, but due to the lack of training resources, we were to make the front-end look like and behave exactly like the existing "green screen" application.  Emulating a terminal application, on the web, in the year 2018!  Thankfully the flexibility and component reuse of Angular made this relatively easy.
 
