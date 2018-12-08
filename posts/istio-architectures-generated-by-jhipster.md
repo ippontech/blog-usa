@@ -138,8 +138,8 @@ Different strategies can be used to handle all of these aspects, but an applicat
 
 Depending on the needs, the two points above can be acceptable but I propose below an architecture that is coherent with Istio while still preserving the additional features of the classic JHipster architecture.
 
-# An ideal architecture ?
-Disclaimer: Currently, JHipster does not know (yet?) how to tenerate this architecture directly. It can be seen below that this would probably involve making specific changes to the generated code of the gateway that would only make sense for this particular case.
+# An ideal architecture?
+Disclaimer: as of today, JHipster does not know (yet?) how to generate this architecture directly. It can be seen below that this would probably involve making specific changes to the generated code of the gateway that would only make sense for this particular case.
 
 ![Istio-Remastered](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/12/Istio-Remastered.png)
 
@@ -151,22 +151,22 @@ The main adaptation required on JHipster's "standard" code is the adaptation of 
 
 Example:
 * The gateway receives a request: http://gatewayjhipster/product/xxxx,
-* after having applied the appropriate filters (security, throttling, etc ...), it must simply call a URL in the following form: http://servicerouter/product/xxxx
-* at the Istio level a "VirtualService" named "servicerouter" will have been defined. According to the contextPath (here "/product" or "/cart"), it will be able to route the calls to an instance of Product Microservice (or respectively of the Cart microservice).
+* after having applied the appropriate filters (security, throttling, etc ...), it must simply call a URL of the following form: http://servicerouter/product/xxxx
+* at the Istio level, a "VirtualService" named "servicerouter" will have been defined. According to the contextPath (here "/product" or "/cart"), it will be able to route the calls to an instance of Product Microservice (or respectively of the Cart microservice).
 
 In the illustration above, I chose to keep Zuul in the Gateway JHipster to continue to benefit from the custom filters provided by Spring Cloud (in Spring Cloud Security for example) or JHipster such as the [RateLimitingFilter](https://github.com/jhipster/jhipster-sample-app-gateway/blob/master/src/main/java/io/github/jhipster/sample/gateway/ratelimiting/RateLimitingFilter.java)
 * However, the standard Zuul routing filter must be reimplemented/reconfigured in order to meet the strategy described above.
 * in particulier, we don't want to integrate Hystrix (or Ribbon) in the configuration of this Zuul server
   (because as noted above, it enters into competition with Istio and their configuration might not be consistent)
 
-Of course, if the filters in question are not necessary, Zuul can be simply deleted, and replaced by a simple proxy component that merely delegates HTTP calls to URLs of the form http://servicerouter/xxxx.
+Of course, if the filters in question are not necessary, Zuul can be simply deleted, and replaced with a simple proxy component that merely delegates HTTP calls to URLs of the form http://servicerouter/xxxx.
 
 # Conclusion
 
 The microservice architecture of JHipster is based on Spring Cloud and in particular on the Netflix stack (although alternatives such as Consul and Traefik are also available), and that totally makes sense. It is therefore perfectly normal that this architecture applied as is on Istio shows some limitations.
 
-As I described at the end of this post, I think that the essence of this architecture can remain valid even lodged on Istio. However, this would require modifying the generated code on the JHipster gateway to explicitly handle this particular case.
+As I described at the end of this post, I think that the essence of this architecture can remain valid even hosted on Istio. However, this would require modifying the generated code on the JHipster gateway to explicitly handle this particular case.
 
-It's difficult to please everyone, JHipster already offers a very rich generation combinaison and therefore is complex to maintain. So in its current state, the interested reader will have to implement himself the strategy described.
+It's difficult to make everyone happy, JHipster already offers a very rich generation combination and therefore is complex to maintain. So in its current state, the interested reader will have to implement himself the strategy described above.
 
 Last but not least, version 1.0 of Istio was released at the end of July 2018. It is a very promising technology but remains young and little known. Spring Cloud, especially in a context where it is well understood, still responds very well to most issues.
