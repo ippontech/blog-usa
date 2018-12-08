@@ -115,9 +115,9 @@ The architecture looks like this:
 
 Deepu K Sasidharan ([@deepu105](https://twitter.com/deepu105)), one of the main contributor of JHipster, has also illustrated the architectural impact of the use of Istio in this article: [JHipster microserviceswith Istio service mesh on Kubernetes](https://medium.com/@deepu105/jhipster-microservices-with-istio-service-mesh-on-kubernetes-a7d0158ba9a3#b068).
 
-Here, no more Netflix stack: external calls are routed directly to the right service (while benefiting from the circuit breaking and retry) from the ingress and inter-service calls need a HTTP http client to be performed (again benefiting from Istio services).
+Here, no more Netflix stack: external calls are routed directly to the right service (while benefiting from the circuit breaking and retry) from the ingress and inter-service calls need a HTTP client to be performed (again benefiting from Istio services).
 
-To be more precise, we can of course keep Feign (originally created by Netflix) to make these calls, but Hystrix, Ribbon and Eureka are no longer necessary in the general case (in some cases, Hystrix can still provide some services). The interested reader can read this [comparison](http://blog.christianposta.com/microservices/comparing-envoy-and-istio-circuit-breaking-with-netflix-hystrix/) between Envoy and Hystrix from Christian Posta ( [@christianposta]https://twitter.com/christianposta)).
+To be more precise, we can of course keep Feign (originally created by Netflix) to make these calls, but Hystrix, Ribbon and Eureka are no longer necessary in the general case (in some cases, Hystrix can still provide some services). The interested reader can read this [comparison](http://blog.christianposta.com/microservices/comparing-envoy-and-istio-circuit-breaking-with-netflix-hystrix/) between Envoy and Hystrix from Christian Posta ([@christianposta](https://twitter.com/christianposta)).
 
 This architecture, however, has two main impacts:
 * the JHipster gateway no longer serves as an application gateway (despite its name)
