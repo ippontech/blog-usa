@@ -74,7 +74,7 @@ This partly enters in competition with the typical JHipster architecture behavio
 The main adaptation is to modify the registration mode of microservices in Eureka:
 * The generated Kubernetes descriptor sets appropriate environment variables to disable IP registration in Eureka and replace it with registration by name.
 * For Eureka, this name is considered to be the hostname of the machine hosting the service. Here it will be filled with the name of the Istio VirtualService associated with the microservice being deployed ("productservice" in my example).
-                                                                                                               
+
 In the end, we obtain an equivalent architecture:
 
 ![Classic-on-Istio](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/12/Classique-on-Istio.png)
@@ -87,36 +87,37 @@ For inter-service calls (Cart to Product in the schema), it's the same behavior:
 * if the developer uses the standard mechanisms made available by JHipster: **Eureka and Ribbon will be put to contribution but it's the Istio proxy who will have the last word on the load balancing**
 * The use of a simple HTTP client will have the same overall effect (taking into account the additionnal remarks below).
 
-It should be noted, however, that the presence of Ribbon and Hystrix can have edge effects:
+It should be noted, however, that the presence of Ribbon and Hystrix can have side effects:
 * Ribbon retry mechanisms and those of Istio will add up:
-it is desirable to activate only one of the two mechanisms for more control (by default JHipster does not activate the Ribbon retry, but Istio retry is activated in the generated descriptors)
+it is desirable to activate only one of the two mechanisms for more control (by default JHipster does not activate Ribbon's retry mechanism, but Istio's retry mechanism is activated in the generated descriptors).
 * Hystrix (and/or Feign) and Istio timeouts can also compete:
-and you have to configure them in a consistent way: you probably don't want the Hystrix timeout to trigger before the Istio timeout (or during the retry configured in Istio)
+and you have to configure them in a consistent way: you probably don't want the Hystrix timeout to be triggered before the Istio timeout (or during the retry configured in Istio).
 
-( [Tackling complexity in the heart of Spring Cloud Feign errors](https://blog.ippon.tech/tackling-complexity-in-the-heart-of-spring-cloud-feign-errors/) is a good source of information for the configuration of Hystrix in a Spring Cloud environment, especially the calculation of timeouts in the presence of retry. It will also be useful to ask yourself the right questions)
+([Tackling complexity in the heart of Spring Cloud Feign errors](https://blog.ippon.tech/tackling-complexity-in-the-heart-of-spring-cloud-feign-errors/) is a good source of information for the configuration of Hystrix in a Spring Cloud environment, especially the calculation of timeouts in the presence of retry. It will also be useful to ask yourself the right questions.)
 
-# The Istio-native architecture 
-The previous configuration has the merit of allowing to execute the application without major reconsidering, but it does not completely embrace the mechanisms of Istio and their gain on the simplification of the application code (and its configuration).
+# The Istio-native architecture
+The previous configuration has the merit of allowing to execute the application without major changes, but it does not completely embrace the mechanisms of Istio and their advantages on the simplification of the application code (and its configuration).
 
-Ray Tsang ([@saturnism](https://twitter.com/saturnism)) of Google who is the initiator of the work on Istio in JHipster has meanwhile tried to ensure to generate an architecture more adapted to Istio.
+Ray Tsang ([@saturnism](https://twitter.com/saturnism)) of Google, who is the initiator of the work on Istio in JHipster, has meanwhile tried to ensure to generate an architecture more adapted to Istio.
 
 In the current state, the change of architecture is however rather significant:
-* it actually consists to completely disable the concept of Service Discovery when generating the JHipster gateway and microservices:
+* it actually consists of completely disabling the concept of Service Discovery when generating the JHipster gateway and microservices:
   Zuul configurations and Eureka clients are no longer generated in the Jhipster gateway and microservices.
-* with the main effect that the JHispter Gateway can no longer forward any calls to microservices  
+* with the main effect that the JHispter Gateway can no longer forward any call to microservices.
 
 When generating Kubernetes/Istio descriptors, JHipster takes into account the fact that the application elements were not generated with the service discovery option and adapts accordingly:
 * on the Istio gateway (the entry point from the outside world), a route is created to access each microservice directly (based on the URL's contextPath)
-* the "JHipster Gateway" takes the same place as any of the other services and only hosts the web application and core services such as the user repository
+* the "JHipster Gateway" takes the same place as any of the other services and only hosts the web application and core services such as the user repository.
 
 The architecture looks like this:
 
 ![Istio](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/12/Istio.png)
 
-Deepu K Sasidharan ([@deepu105](https://twitter.com/deepu105)) one of the main contributor of JHipster has also illustrated the architectural impact of the use of Istio in this article: [JHipster microserviceswith Istio service mesh on Kubernetes](https://medium.com/@deepu105/jhipster-microservices-with-istio-service-mesh-on-kubernetes-a7d0158ba9a3#b068)
+Deepu K Sasidharan ([@deepu105](https://twitter.com/deepu105)), one of the main contributor of JHipster, has also illustrated the architectural impact of the use of Istio in this article: [JHipster microserviceswith Istio service mesh on Kubernetes](https://medium.com/@deepu105/jhipster-microservices-with-istio-service-mesh-on-kubernetes-a7d0158ba9a3#b068).
 
-Here no more Netflix stack: external calls are routed directly to the right service (while benefiting from the circuit breaking and retry) from the ingress and inter-service calls need a simple http client to be performed (again benefiting from Istio services)
-To be more precise, we can of course keep Feign (originally created by Netflix) to make these calls, but Hystrix, Ribbon and Eureka are no longer necessary in the general case (in some cases Hystrix can still render some services). The interested reader can read this [comparison] (http://blog.christianposta.com/microservices/comparing-envoy-and-istio-circuit-breaking-with-netflix-hystrix/) between Envoy and Hystrix from Christian Posta ([@christianposta]https://twitter.com/christianposta) )
+Here, no more Netflix stack: external calls are routed directly to the right service (while benefiting from the circuit breaking and retry) from the ingress and inter-service calls need a HTTP http client to be performed (again benefiting from Istio services).
+
+To be more precise, we can of course keep Feign (originally created by Netflix) to make these calls, but Hystrix, Ribbon and Eureka are no longer necessary in the general case (in some cases, Hystrix can still provide some services). The interested reader can read this [comparison] (http://blog.christianposta.com/microservices/comparing-envoy-and-istio-circuit-breaking-with-netflix-hystrix/) between Envoy and Hystrix from Christian Posta ([@christianposta]https://twitter.com/christianposta)).
 
 This architecture, however, has two main impacts:
 * the JHipster gateway no longer serves as an application gateway (despite its name)
@@ -124,19 +125,18 @@ This architecture, however, has two main impacts:
 
 The JHipster gateway as an application gateway has several roles to play in a microservice architecture: the routing of calls to the microservices is only one of these roles.
 
-Depending on the needs, an application gateway must be able to:
+Depending on the needs, an application gateway must be able:
 * to filter some headers
-* manage CORS headers
-* manage throttling (see the implementation of [RateLimitingFilter](https://github.com/jhipster/jhipster-sample-app-gateway/blob/master/src/main/java/io/github/jhipster/sample/gateway/ratelimiting/RateLimitingFilter.java) provided by JHipster)
-* manage an authentication context
- Note: the "JWT" authentication mode ??generated by JHipster works well here but the other modes (including UAA, which is also good because it remains stateless) will need the gateway. The integration of a more powerful JWT authentication (with refresh in particular) will also often need a gateway.
+* to manage CORS headers
+* to manage throttling (see the implementation of [RateLimitingFilter](https://github.com/jhipster/jhipster-sample-app-gateway/blob/master/src/main/java/io/github/jhipster/sample/gateway/ratelimiting/RateLimitingFilter.java) provided by JHipster)
+* to manage an authentication context
+ Note: the "JWT" authentication mode generated by JHipster works well here but the other modes (including UAA, which is also good because it remains stateless) will need the gateway. The integration of a more powerful JWT authentication (with refresh in particular) will also often need a gateway.
 * to apply transverse security rules
 * ...
 
-Different strategies can be used to handle all these aspects, but an application gateway is still the easiest way to host them centrally.
+Different strategies can be used to handle all of these aspects, but an application gateway is still the easiest way to host them centrally.
 
-Depending on the needs, the two points above can be acceptable but I propose below a architecture coherent with Istio while still preserving the additional features of the classical JHipster architecture.
-
+Depending on the needs, the two points above can be acceptable but I propose below an architecture that is coherent with Istio while still preserving the additional features of the classic JHipster architecture.
 
 # An ideal architecture ?
 Disclaimer: Currently, JHipster does not know (yet?) how to tenerate this architecture directly. It can be seen below that this would probably involve making specific changes to the generated code of the gateway that would only make sense for this particular case.
