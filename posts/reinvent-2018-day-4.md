@@ -3,10 +3,9 @@ authors:
 - Raphael Brugier
 tags:
 - AWS
-- reInvent
-date: 2018-11-30T21:08:09.000Z
+date: 2018-12-03T15:07:54.000Z
 title: "AWS re:Invent 2018 - Day 4"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/lambda.jpeg
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/12/lambda.jpeg
 ---
 
 4th Day at re:Invent with Ippon and 2nd keynote led by Dr. Werner Vogels himself. And a lot of excitement for us because many announcements were related to Serverless technologies.

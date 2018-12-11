@@ -3,13 +3,12 @@ authors:
 - Richard Yhip
 tags:
 - JHipster
-- Legacy Migration
-- JDL Studio
 - Microservices
-date: 2018-10-08T19:54:42+00:00
+date: 2018-12-07T23:22:34.000Z
 title: "Rewriting a Mainframe Software Package in Java on Openshift with JHipster"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/K-V-Laurikainen-1961.jpg
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/12/K-V-Laurikainen-1961.jpg
 ---
+
 Ippon Technologies successfully helped transition a Federal Government Agency from a COBOL application to a Java Spring Boot Microservices back-end application and Angular front-end.  We were asked to pitch in because of our famed application generator, [JHipster](https://www.jhipster.tech/).  JHipster can be useful in certain situations such as:
 * You are unfamiliar with the latest technologies and you would like to see a solid "best practices" implementation
 * You need to accelerate application development and the target application to build is some form of a [CRUDL](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) application.  You might be asking what the "L" is for at the end of "CRUDL."  It stands for listing, or pagination, which JHipster can help you with.
