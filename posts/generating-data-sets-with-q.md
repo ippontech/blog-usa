@@ -43,7 +43,7 @@ Here is a breakdown of the above, line by line:
 1. Generates 500 dates in the month of October, 2018 ranging from the 1st to the 31st.  
 2. Generates 500 timestamps in 24-hour notation.  
 3. Generates 500 symbols randomly taking the values of FB, AMZN, AAPL, NFLX, and GOOG.  
-4. Generatesn500 numbers ranging from 1 to 1000, and multiplies those numbers by 10, creating buckets of 10 (i.e. order volumes of 10).
+4. Generates 500 numbers ranging from 1 to 1000, and multiplies those numbers by 10, creating buckets of 10 (i.e. order volumes of 10).
 5. Generates 500 floats from 0 to 2000, performs a modulus on each number against 100, and applies the addition of 90 to each value.  This creates a list of 500 prices from $90 to $110.
 
 ##### SQL-isms
