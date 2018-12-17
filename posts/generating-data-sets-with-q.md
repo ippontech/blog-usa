@@ -73,7 +73,7 @@ This same process can be applied to the Volume column as well.  If you want to g
 q) Volumes:N*1+500?1000
 ```
 
-Once your satisfied with your data, run the following and a file will be saved in the directory where you opened the q prompt.
+Once you are satisfied with your data, run the following and a file will be saved in the directory where you opened the q prompt.
 ```
 q) save `Trades.csv
 ```
