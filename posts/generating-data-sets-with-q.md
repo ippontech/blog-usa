@@ -16,7 +16,7 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/1
 About a week ago, Spotify created a new playlist for me entitled "Your Top Songs 2018."  Curious, I listened to the playlist and realized it was more accurate than if I submitted a list of my top songs from 2018 manually.  This got me thinking about machine learning and how it has permeated even the most casual aspects of our lives, like music.  What struck me most about this realization was how accurate the playlist seemed.  Listening to that playlist, I felt Spotify knew better than I know me.  Then I got to thinking, how much did Spotify know me better?  Can we measure that?  Can we know for certain how much Spotify knows me versus how well I know me?  I posit yes, but music and taste are far too subjective an arena for fleshing out this concept.  Let us ask this question with something more concrete, stock prices.
 
 # The Problem
-In my sordid past, I would generate pseudo-random data using a language called _q_ and run machine learning algorithms against the data sets.  The results would be solid prediction models against an entire month of data that generated with a few keystrokes.  This was good one of the biggest barriers to machine learning was removed almost entirely: data collection.  I no longer had to gather my own data, establish an ingest pipeline, or work around the copious fields present in some online data set.  I had all of the data I wanted and nothing more than that.
+In my sordid past, I would generate pseudo-random data using a language called _q_ and run machine learning algorithms against the data sets.  The results would be useless prediction models against an entire month of fake data that I generated with a few keystrokes.  For me, this meant one of the biggest barriers to machine learning was removed almost entirely: data collection.  I no longer had to gather my own data, establish an ingest pipeline, or work around the copious fields present in some online data set.  I had all of the data I wanted and nothing more than that.
 The bad part about using _q_ to generate pseudo-random data sets is exactly that, I ran a machine learning algorithm against pseudo-random data.  This is a lazy practice and is frankly ignorant of the tenants of data science.  However, if you take a moment to think about it, how different is my pseudo-random set of generated data from my personal list of top 2018 songs?  How wide is that gap?  What factors influence the size of the gap, and can we learn to close it?  Can we automate the analysis of these factors and possible teach machines to fix our data for us?  Could a data set gathered over a period of a month be enough to seed accurate data for a week, a month, a year in advance or more?
 
 # The Motivation
@@ -99,3 +99,22 @@ This issue is at the heart and soul of this discussion.  Running machine learnin
 
 # Still, You Should Try It
 I'll admit it, Q is a tough language, and the premise under which I introduce q could be perceived as tenuous.  It's functional, cryptic, designed for timespan operations on a database, and contains its own DDL/DML syntax.  It's tiny and fast, and it likes to play in the sandbox alone.  Its only friends are algorithmic traders that have spent 25 years learning how to write q code effectively (and some of them still have trouble).  Additionally, Python and R do a lot of the same things q can do when it comes to generating data and running timespan calculations.  Still, it's a language that deserves to be looked into, especially if you work with big data and like machine learning.  
+
+## I Gave It A Shot
+I gave this technique a shot and the results were interesting.  Using Fidelity as a data source, I gathered finance data on the Google symbol and generated a very basic ML model using H2O.  For more information on this, check out this blog post on [Realtime ML Predictions](https://blog.ippon.tech/realtime-machine-learning-predictions-wth-kafka-and-h2o/) written by my colleague Alexis Seigneurin.  The model I generated used many of the default settings H2O supplies, and the predictions generated against that model followed the same trend as the original data set.  [Here's the Grafana snapshot](https://snapshot.raintank.io/dashboard/snapshot/7qqXjLstyGqcIuYWv2YBzAbzo3birjaB) for my initial predictions.
+
+Taking this idea one step further, I looked at the GOOG data and guilt a table in _q_ that followed some primitive rules derived from the data.
+```
+q)Dates:2018.10.01+5000?31   
+q)Open:750.+(5000?45001)%100
+q)High:1000.+(5000?20001)%100
+q)Low:750.+(5000?25001)%100
+q)Close:750.+(5000?45001)%100
+q)Volume:900000.+(5000?200000)
+q)Trades_Google_Generated:([] Date:Dates; Open:Open; High:High; Low:Low; Close:Close; Volume:Volume)
+q)save `Trades_Google_Generated.csv
+```
+You'll notice I increased the number of data points to 5000, so I could really push the limits of my model.  I made predictions on this data against the same model generated from the Fidelity data set and [the results](https://snapshot.raintank.io/dashboard/snapshot/XBXFMQ57zJqqHCuvkfkgGa6jrx1z7Fkr?orgId=2) were a little disheartening.  The resulting graph looks chaotic and messy.  But if you zoom in, you can start to see the predictions (green) reflected the behaviour of the actual (yellow) in a more subdued way.  The predictions became more of a trend line, showing the direction of the actual closing value.  
+
+# In Conclusion
+My little experiment in machine learning using pseudo-random data sets is probably more of a proof 
