@@ -26,9 +26,9 @@ Problem is, we can do the setup through the UI but it is tedious and not repeata
 
 # Prerequesites
 
-Before we start, you will need to install the Serverless CLI and create an account on the Serverless website. Follow the instructions on the [Getting Started](https://serverless.com/framework/docs/getting-started/) page.
+Before we start, you will need to install the Serverless CLI. Follow the instructions on the [Getting Started](https://serverless.com/framework/docs/getting-started/) page.
 
-Once the Serverless CLI is installed, you will need to setup the credentials for your Cloud provider. I will be using AWS in this post, but support for Azure, GCP, and some other platforms is also provided. Instructions for AWS can be found  [here](https://serverless.com/framework/docs/providers/aws/guide/credentials/).
+Once the Serverless CLI is installed, you will need to define credentials for your Cloud provider. I will be using AWS in this post, but support for Azure, GCP, and some other platforms is also provided. Instructions for AWS can be found  [here](https://serverless.com/framework/docs/providers/aws/guide/credentials/).
 
 # Step 1: generating files from a template
 
@@ -48,7 +48,7 @@ The first step is to scaffold the application from a template. We want a Java ap
 ./src/main/java/com/serverless/ApiGatewayResponse.java
 ```
 
-The most important file is `serverless.yml`. This contains all the settings for the Serverless CLI to do its job. We will be modifying this file a lot. Here is its content:
+The most important file is `serverless.yml`. This file contains all the settings for the Serverless CLI to do its job. We will be modifying this file a lot. Here is its content (I removed the extra comments):
 
 ```yml
 service: aws-java-gradle # NOTE: update this with your service name
@@ -65,9 +65,9 @@ functions:
     handler: com.serverless.Handler
 ```
 
-We want to start by changing the name of the service (`service: blog-stats`), the name of function (`hello:` -> `process:`) and the name of the artifact (`artifact: build/distributions/blog-stats.zip`). Make sure to update the `build.gradle` file as well (`baseName = "blog-stats"`).
+We want to start by changing the name of the service (`service: blog-stats`), the name of function (replace `hello:` with `process:`) and the name of the artifact (`artifact: build/distributions/blog-stats.zip`). Make sure to update the `build.gradle` file as well (`baseName = "blog-stats"`).
 
-Now, let's build the code (`./gradlew build`) and deploy it:
+Now, let's build the code (`./gradlew build`) and deploy it (`serverless deploy`):
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/serverless/images/2018/12/serverless-deploy.png)
 
@@ -89,7 +89,7 @@ functions:
         method: any
 ```
 
-Now, if we run `serverless deploy`, the Serverless CLI will smoothly update our stack: an API Gateway endpoint will be created and connected to our Lambda function:
+Now, if we run `serverless deploy` again, the Serverless CLI will smoothly update our stack: an API Gateway endpoint will be created and connected to our Lambda function:
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/serverless/images/2018/12/serverless-lambda-2.png)
 
@@ -102,7 +102,7 @@ endpoints:
 
 # Step 3: granting access to S3 and SNS
 
-I said earlier that our function needs to read a configuration file from S3 and needs to send notification through SNS. We need to grant permissions to the Lambda function for that. We can do so through the `iamRoleStatements` element under `provider`:
+I said earlier that our function needs to read a configuration file from S3 and needs to send notifications through SNS. We need to grant permissions to the Lambda function for that. We can do so through the `iamRoleStatements` element under `provider`:
 
 ```yml
 provider:
@@ -125,13 +125,13 @@ We can see the change in Lambda, but most importantly, the IAM role attached to 
 
 # Step 4: defining some environment variables
 
-We now need to define some configuration through environment variables that we will setup in our Lambda function. It turns out these variables are secrets, so we might as well externalize them in a `secrets.yml` file:
+We now need to define some configuration through environment variables that we will setup in our Lambda function. It turns out these variables are sensitive values, so we might as well externalize them in a `secrets.yml` file:
 
 ```yml
-sns_topic_arn: arn:aws:sns:...
-credentials_s3_location: ...
-consultants_spreadsheet_id: ...
-posts_spreadsheet_id: ...
+sns_topic_arn: "arn:aws:sns:..."
+credentials_s3_location: "..."
+consultants_spreadsheet_id: "..."
+posts_spreadsheet_id: "..."
 ```
 
 We can then include this file from our `serverless.yml` file:
@@ -153,7 +153,7 @@ provider:
 
 # Step 5: additional settings
 
-Let's define a few additional settings: the region where to deploy the code (already us-east-1 by default, but quite safer to specify it explicitly), the amount of memory allocated to the function, the timeout (6 seconds by default, which is too short in this case). We can also define the "stage" ("dev" by default) if we want to deploy multiple versions of the function.
+Let's define a few additional properties: the region where to deploy the code (already `us-east-1` by default, but it is safer to specify it explicitly), the amount of memory allocated to the function, and the timeout (6 seconds by default, which is too short in this case). We can also define the "stage" ("dev" by default) if we want to deploy multiple versions of the function.
 
 ```yml
 provider:
@@ -165,13 +165,13 @@ provider:
   stage: prod
 ```
 
-In practice, I found that the [Serverless.yml Reference](https://serverless.com/framework/docs/providers/aws/guide/serverless.yml/) was a good way to find what properties were available.
+In practice, I found that the [Serverless.yml Reference](https://serverless.com/framework/docs/providers/aws/guide/serverless.yml/) is a good way to find what properties were available.
 
 # Step 6: updating the code, and deploying again and again...
 
 Now, if we update the code of the Java application, we can easily update our stack through a `./gradlew build && serverless deploy` command. The Serverless CLI will update the AWS resources in a repeatable fashion, which is great.
 
-When we're done with this function and we want to destroy it, we can simply run `serverless remove`. All the AWS resources associated with our function will be removed: the IAM role, the temporary S3 bucket, and the Lambda function itself. Smooth.
+When we re done with this function and we want to destroy it, we can simply run `serverless remove`. All the AWS resources associated with our function will be removed: the IAM role, the temporary S3 bucket, and the Lambda function itself. Smooth.
 
 # The dashboard
 
@@ -181,11 +181,11 @@ The framework also comes with Serverless Platform which acts as a dashboard to v
 
 For your application to be registered with this dashboard, you will need to configure the `tenant` and `app` properties in your `serverless.yml` file.
 
-This dashboard is still a bit dry, but it should eventually contain the CloudWatch logs, and maybe more, which would allow you to see everything associated with one stack in a single place. The drawback is that Serverless now has your data...
+This dashboard is still a bit dry, but it should eventually contain the CloudWatch logs - and maybe more - which would allow you to see everything associated with your stack in a single place. The drawback is that Serverless now has your data on their website...
 
 # Conclusion
 
-The Serverless CLI is a very handy tool to deploy serverless functions. It brings the **infrastructure as code** pattern to the party, making it extremely easy for any member of the team to checkout the code and start deploying a stack without having to know specific commands.
+The Serverless CLI is a very handy tool for deploying serverless functions. It brings the **infrastructure as code** pattern to the party, making it extremely easy for any member of the team to checkout the code and start deploying a stack without having to know specific commands.
 
 Although Serverless supports multiple cloud providers, a given `serverless.yml` file only targets one provider. It is very easy, however, to maintain multiple `serverless.yml` files, one per provider that you are targetting.
 
