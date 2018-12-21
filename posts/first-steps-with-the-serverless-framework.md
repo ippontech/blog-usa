@@ -4,7 +4,7 @@ authors:
 tags:
 - Serverless
 date: 
-title: "First streps with the Serverless Framework"
+title: "First steps with the Serverless Framework"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/serverless/images/2018/12/serverless-framework.jpeg
 ---
 
@@ -187,6 +187,6 @@ This dashboard is still a bit dry, but it should eventually contain the CloudWat
 
 The Serverless CLI is a very handy tool for deploying serverless functions. It brings the **infrastructure as code** pattern to the party, making it extremely easy for any member of the team to checkout the code and start deploying a stack without having to know specific commands.
 
-Although Serverless supports multiple cloud providers, a given `serverless.yml` file only targets one provider. It is very easy, however, to maintain multiple `serverless.yml` files, one per provider that you are targetting.
+Although Serverless supports multiple cloud providers, a given `serverless.yml` file only targets one provider. It is very easy, however, to maintain multiple `serverless.yml` files, one per provider that you are targeting.
 
 I am still new to Serverless, but I will definitely keep an eye on it for all my serverless deployments!
