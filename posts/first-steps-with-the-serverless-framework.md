@@ -50,7 +50,7 @@ The first step is to scaffold the application from a template. We want a Java ap
 
 The most important file is `serverless.yml`. This file contains all the settings for the Serverless CLI to do its job. We will be modifying this file a lot. Here is its content (I removed the extra comments):
 
-```yml
+```yaml
 service: aws-java-gradle # NOTE: update this with your service name
 
 provider:
@@ -79,7 +79,7 @@ With this command, the artifact produced by Gradle (the zip file) got uploaded t
 
 We want to be able to trigger our Lambda function through an API Gateway endpoint. All we need is a URL that, when hit, will run the function. We can modify the `serverless.yml` file as follows:
 
-```yml
+```yaml
 functions:
   process:
     handler: tech.ippon.blog.stats.Handler
@@ -104,7 +104,7 @@ endpoints:
 
 I said earlier that our function needs to read a configuration file from S3 and needs to send notifications through SNS. We need to grant permissions to the Lambda function for that. We can do so through the `iamRoleStatements` element under `provider`:
 
-```yml
+```yaml
 provider:
   iamRoleStatements:
     - Effect: "Allow"
@@ -127,7 +127,7 @@ We can see the change in Lambda, but most importantly, the IAM role attached to 
 
 We now need to define some configuration through environment variables that we will setup in our Lambda function. It turns out these variables are sensitive values, so we might as well externalize them in a `secrets.yml` file:
 
-```yml
+```yaml
 sns_topic_arn: "arn:aws:sns:..."
 credentials_s3_location: "..."
 consultants_spreadsheet_id: "..."
@@ -136,13 +136,13 @@ posts_spreadsheet_id: "..."
 
 We can then include this file from our `serverless.yml` file:
 
-```yml
+```yaml
 custom: ${file(secrets.yml)}
 ```
 
 And we can finally define environment variables which values are read from the secrets:
 
-```yml
+```yaml
 provider:
   environment:
     TOPIC_ARN: ${self:custom.sns_topic_arn}
@@ -155,7 +155,7 @@ provider:
 
 Let's define a few additional properties: the region where to deploy the code (already `us-east-1` by default, but it is safer to specify it explicitly), the amount of memory allocated to the function, and the timeout (6 seconds by default, which is too short in this case). We can also define the "stage" ("dev" by default) if we want to deploy multiple versions of the function.
 
-```yml
+```yaml
 provider:
   name: aws
   runtime: java8
