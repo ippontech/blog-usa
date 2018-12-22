@@ -12,7 +12,7 @@ Serverless technologies have become prevalent but they lack some tooling to make
 
 # The use case
 
-Ippon's blog - the blog you are reading right now! - is backed by [Ghost](https://ghost.org/), and the content is stored [on GitHub](https://github.com/ippontech/blog-usa). Since we have the data, we want to compute statistics (e.g. how many blog posts per author, how many blog posts per year, etc.) when the Git repository was updated.
+Ippon's blog - the blog you are reading right now! - is backed by [Ghost](https://ghost.org/), and the content is stored [on GitHub](https://github.com/ippontech/blog-usa). Since we have the data, we want to compute statistics (e.g. how many blog posts per author, how many blog posts per year, etc.) when the Git repository is updated.
 
 We can implement this using AWS Lambda and a Google Spreadsheet:
 - on GitHub, we setup a webhook to hit an endpoint on AWS
@@ -171,7 +171,7 @@ In practice, I found that the [Serverless.yml Reference](https://serverless.com/
 
 Now, if we update the code of the Java application, we can easily update our stack through a `./gradlew build && serverless deploy` command. The Serverless CLI will update the AWS resources in a repeatable fashion, which is great.
 
-When we re done with this function and we want to destroy it, we can simply run `serverless remove`. All the AWS resources associated with our function will be removed: the IAM role, the temporary S3 bucket, and the Lambda function itself. Smooth.
+When we are done with this function and we want to destroy it, we can simply run `serverless remove`. All the AWS resources associated with our function will be removed: the IAM role, the temporary S3 bucket, and the Lambda function itself. Smooth.
 
 # The dashboard
 
