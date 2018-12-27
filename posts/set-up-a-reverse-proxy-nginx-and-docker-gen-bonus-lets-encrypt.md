@@ -76,7 +76,7 @@ In */etc/hosts*:
 
 Configuration example of the DNS zone in *Online.net*'s console:
 
->TODO: insert image
+![Capture-d--cran-de-2017-11-09-12-14-06](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/Capture-d--cran-de-2017-11-09-12-14-06.png)
 
 Let's move to the heart of the solution: nginx-proxy. Nginx-proxy is a Docker image based on the famous web server *Nginx* and docker-gen, a tool using the container's environment variables to generate virtual host configurations and automatically apply them to *Nginx*.
 
@@ -119,10 +119,10 @@ I will let you start the stack and appreciate the result:
 $ docker-compose up
 ```
 
->TODO: insert image
+![Capture-d--cran-de-2017-11-09-14-36-45](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/Capture-d--cran-de-2017-11-09-14-36-45.png)
 
 To finish *Owncloud*'s configuration, you can use the *Mysql* service's hostname which will be automatically resolved by Docker's DNS:
->TODO: insert image
+![Capture-d--cran-de-2017-11-09-14-38-22](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/Capture-d--cran-de-2017-11-09-14-38-22.png)
 
 As we saw, Nginx-proxy with Docker-gen is a nice solution for a reverse proxy for your containers. Its strength comes from its simplicity combined with *Nginx*'s robustness. You are now able to bootstrap a simple Docker architecture with *Docker Compose* and use it with your own domain. If you plan to use this solution, keep in mind that you can customize generated *Nginx* configurations, and if you prefer to have a UI, you might be interested in [*Træfik*](https://traefik.io/).
 
@@ -192,7 +192,7 @@ owncloud:
 ```
 
 Replace *[your-sub-domain]* by the value you would like to use then start the stack, you will then be entitled to a beautiful green https:
->TODO: insert image
+![Capture-d--cran-de-2017-11-13-10-41-42](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/Capture-d--cran-de-2017-11-13-10-41-42.png)
 
 Sources:
 
