@@ -3,9 +3,9 @@ authors:
 - Alexis Seigneurin
 tags:
 - Serverless
-date: 
+date: 2019-01-07T17:52:36.000Z
 title: "First steps with the Serverless Framework"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/12/serverless-framework.jpeg
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/serverless-framework-4.jpeg
 ---
 
 Serverless technologies have become prevalent but they lack some tooling to make them easier to work with. The [Serverless Framework](https://github.com/serverless/serverless) comes to the rescue in the form of a CLI that automates deployment tasks. This post will be an introduction to using this tool.
