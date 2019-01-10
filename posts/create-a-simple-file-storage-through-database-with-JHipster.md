@@ -57,10 +57,7 @@ The JHipster Domain Language will permit us to generate our repositories, entiti
 For this article we will use a simple JDL. Copy/paste it into JDL studio and select « create new JDL model » in the list then click on the save button:
 <img src="../images/2019/01/image8.png" width="20%" alt="Create a new JDL" title="Create a new JDL">
 
-<table>
-  <tr>
-   <td>
-   <code>
+```
 entity Car {
   model String required
 }
@@ -82,15 +79,8 @@ relationship OneToOne {
 relationship OneToMany {	 
   Car{document} to Document{car(id) required} 
 }
-</code>
-   </td>
-   <td>
-
+```
 ![The JHipster domain model](../master/images/2019/01/image9.png "The JHipster domain model")
-   </td>
-  </tr>
-</table>
-
 
 
 ## Apply the JDL model to the application
