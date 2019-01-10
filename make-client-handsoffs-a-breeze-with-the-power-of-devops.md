@@ -35,21 +35,21 @@ There's a lot of pressure out there to automate, scale, and be infinitely flexib
 ## Decisions that worked for us ##
 
 ### Discrete front-end and back-end microservices with containers ###
-This is kind of microservices 101, but go ahead and seperate front-end code early.   They will deploy and scale differently.  Segmenting also makes it easy to get truthful metrics about network traffic and system load.
+This is kind of microservices 101, but go ahead and separate front-end code early.   They will deploy and scale differently.  Segmenting also makes it easy to get truthful metrics about network traffic and system load.
 
 ### Simple automated builds and redeployment with gitlab-ci ###
 Gitlab-CI's YAML job descriptions are really quick to implement and modify.  Our job would build, test, push to repo, and call for the service to redeploy in 50 lightweight lines of YAML.  The client was able to sign up for the base-level hosted Gitlab offering, and their engineer was able to drop in the repo and CI integration.
 
 ### AWS Fargate to minimize container management overhead ###
-AWS Fargate has its place.  IMHO that's for small green field projects, where there's a very basic need to run containers without persistant storage, and no other infrastructure to integate.  Our client's project met this criteria with flying colors. 
+AWS Fargate has its place.  IMHO that's for small green field projects, where there's a very basic need to run containers without persistent storage, and no other infrastructure to integrate.  Our client's project met this criteria with flying colors. 
 
 ### Application routing delegated to ALB Rules ###
-Rather than the front end forward API requests to the backend nodes, we let ALB URL rules route traffic to the appropriate front or backend target group.   This provided a few advantages.  Service disovery was not needed since the balancer took care of routing to the different services.   Deployments instantly become transparent because ALB's healthchecks will respond to a node's availability.
+Rather than the front end forward API requests to the backend nodes, we let ALB URL rules route traffic to the appropriate front or backend target group.   This provided a few advantages.  Service discovery was not needed since the balancer took care of routing to the different services.   Deployments instantly become transparent because ALB's healthchecks will respond to a node's availability.
 
 ### Database connection information stored in AWS Systems Manger Parameter Store ###
 Since we were using Spring Boot, we had a lot of configuration methods to choose from.   Due to the small scale of the application, we opted for 12-factor style config by setting environment variables for the JDBC path and credentials.   AWS Systems Manager Parameter Store was a simple solution that could easily be extended for more configurations.  We created Secure Strings for the database configuration where the keys were spring environment variables prefixed with the `/ourapp/db/` path.
 
-To inject the configuration, the paramater store path prefix `/ourapp/db/` was defined as an environment varible in the service's task definition.   A function was added to the docker entrypoint shell script to extract the values from the paramater store and inject into the environment.   The only additional package we had to add to our container image was `jq`.
+To inject the configuration, the parameter store path prefix `/ourapp/db/` was defined as an environment variable in the service's task definition.   A function was added to the docker entrypoint shell script to extract the values from the parameter store and inject into the environment.   The only additional package we had to add to our container image was `jq`.
 
 
 ```
@@ -75,7 +75,7 @@ done
 }
 ```  
 
-The aws cli tools in the container will automatically have access to any resources specified in the [Task Execution Role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html).   We added a policy for the task's role to access the paramter store.
+The aws cli tools in the container will automatically have access to any resources specified in the [Task Execution Role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html).   We added a policy for the task's role to access the parameter store.
 
 ```
 {
@@ -97,17 +97,30 @@ The aws cli tools in the container will automatically have access to any resourc
 
 
 ### Config-driven ansible role to build VPC environment and deploy ###
+Although Terraform would likely be fewer lines of code and Cloudformations would be the most AWS native, we chose to use Ansible for our VPC build.   Since the deployment code would be used by other people, we felt that Ansible code would be the easiest to read and modify.  The role was a great time server. We were able to build concurrent test environments by changing only a few configuration values.
 
-## Some listilce-type takeaways ##
+The role will be covered in more depth in another blog post, but here are the functionality highlights:
+
+* Config driven and sane defaults provided.
+* Builds VPC
+* Creates subnets for DMZ, data, web, and application roles
+* Creates security groups for DMZ, data, web and application roles
+* Configures ECS Fargate Cluster
+* Creates task definitions and services in ECS
+* Creates ALB target groups for services
+* Configures Load Balancer for target groups.
+
+## Additional Thoughts ##
+
 
 ### Spend enough energy to assure that back-end and front-end nodes can be scaled easily ###
 Don't worry about auto scaling out of the gate.  Do assure that _someone_ can easily launch additional nodes or replace nodes with larger instances.   
 
 ### Codify security practices up front ###
-Have the pattern in place for secrets mangement, even if the provider isn't there.  12-factor style is a good place to start.   
+Have the pattern in place for secrets management, even if the provider isn't there.  12-factor style is a good place to start. 
 
-Preconfiguring network subnets, and security in the infrastrucutre deployment code can assure that safe practices for network security make it all the way through deployment.
+Preconfiguring network subnets, and security in the infrastructure deployment code can assure that safe practices for network security make it all the way through deployment.   Having it codified also creates more visibility to help developers build with security in mind. 
 
 ### Make sure your toolbox has tools in it ###
-
+It takes time to build reliable infrastructure code.   Identify your common design patterns and build flexible deployment code before you need it.
 
