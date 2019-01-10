@@ -80,7 +80,7 @@ relationship OneToMany {
   Car{document} to Document{car(id) required} 
 }
 ```
-![The JHipster domain model](../master/images/2019/01/image9.png "The JHipster domain model")
+![The JHipster domain model](../images/2019/01/image9.png "The JHipster domain model")
 
 
 ## Apply the JDL model to the application
