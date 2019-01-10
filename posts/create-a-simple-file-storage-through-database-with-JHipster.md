@@ -55,7 +55,7 @@ Generate your application by clicking on « Generate on GitHub » button. After 
 The JHipster Domain Language will permit us to generate our repositories, entities, REST resources and all the related tests. We just have to define our model and how entities work before importing them into our application.
 
 For this article we will use a simple JDL. Copy/paste it into JDL studio and select « create new JDL model » in the list then click on the save button:
-<img src="../master/images/2019/01/image8.png" width="20%" alt="Create a new JDL" title="Create a new JDL">
+<img src="../images/2019/01/image8.png" width="20%" alt="Create a new JDL" title="Create a new JDL">
 
 <table>
   <tr>
