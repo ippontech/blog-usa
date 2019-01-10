@@ -98,13 +98,13 @@ relationship OneToMany {
 In the manage JDL view ([https://start.jhipster.tech/#/design-entities](https://start.jhipster.tech/#/design-entities)) you have to select your model then click on the apply button.
 
 
-![Select our model here](../master/images/2019/01/image3.png "Select our model here")
+![Select our model here](../images/2019/01/image3.png "Select our model here")
 
 
 In the next page you will have to select your repository on which you want to  apply the JDL model.
 
 
-![Choose your repository](../master/images/2019/01/image6.png "Choose your repository")
+![Choose your repository](../images/2019/01/image6.png "Choose your repository")
 
 
 Applying the JDL model will create a Pull Request on your repository. Merge it and clone the project on your computer.
@@ -529,7 +529,7 @@ After a moment our application is running:
 
 
 
-![Your application is running !](../master/images/2019/01/image2.png "Your application is running !")
+![Your application is running !](../images/2019/01/image2.png "Your application is running !")
 
 
 Congratulations Hipster, your application is running!
@@ -540,24 +540,24 @@ Congratulations Hipster, your application is running!
 After logging in to the application you can access the menu "entities".
 
 
-![Entities are now availables !](../master/images/2019/01/image1.png "Entities are now availables")
+![Entities are now availables !](../images/2019/01/image1.png "Entities are now availables")
 
 
 Click in the car menu to access all the cars where you can create, edit/ view and of course delete a car. Because we want the car to be the only entry point to manage our documents we'll ignore Document and Content entities.
 
 
-![The car list view](../master/images/2019/01/image10.png "The car list view")
+![The car list view](../images/2019/01/image10.png "The car list view")
 
 
 Then click on the "Create new Car button", fill in the form and save.
 
-![Create a new Car](../master/images/2019/01/image5.png "Create a new Car")
+![Create a new Car](../images/2019/01/image5.png "Create a new Car")
 
 
 You will be redirected to the list where you can see the newly created car.
 
 
-![Our Car newly created](../master/images/2019/01/image4.png "Our Car newly created")
+![Our Car newly created](../images/2019/01/image4.png "Our Car newly created")
 
 
 By clicking on the "View" button we are able to validate all the acceptance criteria by looking at the SQL logs.
@@ -576,7 +576,7 @@ As you can see the Content table is not requested and we have not loaded the bin
 
 When we clicked on the "View" button we saw the car model and the documents. By clicking on the document name we should be able to download them.
 
-![You can download documents by the car view](../master/images/2019/01/image7.png "You can download documents by the car view")
+![You can download documents by the car view](../images/2019/01/image7.png "You can download documents by the car view")
 
 
 What about SQL logs now?
