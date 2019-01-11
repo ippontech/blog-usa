@@ -75,5 +75,5 @@ Have the pattern in place for secrets management, even if the preferred secrets 
 Preconfiguring network subnets, and security in the infrastructure deployment code can assure that safe practices for network security make it all the way through deployment.   Having it codified also creates more visibility to help developers build with security in mind. 
 
 ### Make sure your toolbox has tools in it ###
-It takes time to build reliable infrastructure code.   Identify your common design patterns and build flexible deployment code before you need it.  We'e been able to quickly re-use our Ansible Fargate VPC role for testing and prototyping.
+It takes time to build reliable infrastructure code.   Identify your common design patterns and build flexible deployment code before you need it.  We have been able to quickly re-use our Ansible Fargate VPC role for testing and prototyping.
 
