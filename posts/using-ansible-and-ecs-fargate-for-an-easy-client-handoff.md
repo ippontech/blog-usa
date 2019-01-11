@@ -70,7 +70,7 @@ The role will be covered in more depth in another blog post, but here are the fu
 Don't worry about auto scaling out of the gate.  Do assure that _someone_ can easily launch additional nodes or replace nodes with larger instances.  A properly defined ECS task will make it easy to launch additional nodes. 
 
 ### Codify security practices up front ###
-Have the pattern in place for secrets management, even if the preferred secrets provider isnt available.  12-factor style is a good place to start. 
+Have the pattern in place for secrets management, even if the preferred secrets provider isn't available.  12-factor style is a good place to start. 
 
 Preconfiguring network subnets, and security in the infrastructure deployment code can assure that safe practices for network security make it all the way through deployment.   Having it codified also creates more visibility to help developers build with security in mind. 
 
