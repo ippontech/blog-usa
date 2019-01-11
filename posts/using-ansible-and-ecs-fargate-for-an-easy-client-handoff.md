@@ -12,7 +12,7 @@ image:
 
 A very small start-up approached us do a POC build of their core business product.  They had no technical staff or infrastructure, and we needed to build something quickly and easy to hand off to a freelance technical team of the client’s choosing.
 
-We opted for a simple container based front and backend microservice that was easily bootstrapped with JHipster.  We were able to do so without any VMs, and were able to balance the simplicity of AWS’s modern serverless frameworks and the familiarity of some of the traditional services they provided:   
+We opted for a simple container based front and back end microservice that was easily bootstrapped with JHipster.  We were able to do so without any VMs, and were able to balance the simplicity of AWS’s modern serverless frameworks and the familiarity of some of the traditional services they provided:   
 
 * ECS Fargate -> Container Management
 * CloudWatch -> Logging
@@ -28,11 +28,11 @@ That balance let us codify the deployment and hand it off to a freelance DevOps 
 >
 ><cite>--Every DevOps talk, blog, and whitepaper.</cite>
 
-There's a lot of pressure out there to automate, scale, and be infinitely flexible. There's also a lot of pressure to ship.  Don't get tangled in trying to automate everythign.  If you don't have some frameworks in play, don't expect to have much automation bundled into your project.  It takes time.  Balance what is flexible vs what just needs to work, while insulating yourself from the long-term impact of any [tempermanent](https://www.urbandictionary.com/define.php?term=Tempermanent) solutions.   
+There's a lot of pressure out there to automate, scale, and be infinitely flexible. There's also a lot of pressure to ship.  Don't get tangled in trying to automate everything.  If you don't have some frameworks in play, don't expect to have much automation bundled into your project.  It takes time.  Balance what is flexible vs what just needs to work, while insulating yourself from the long-term impact of any [tempermanent](https://www.urbandictionary.com/define.php?term=Tempermanent) solutions.   
 
 # Decisions that worked for us 
 
-## Discrete front-end and back-end microservices with containers 
+## Discrete front-end and back end microservices with containers 
 This is kind of microservices 101, but go ahead and separate front-end code early.   They will deploy and scale differently.  Segmenting also makes it easy to get truthful metrics about network traffic and system load.
 
 ## Simple automated builds and redeployment with Gitlab-CI 
@@ -42,7 +42,7 @@ Gitlab-CI's YAML job descriptions are really quick to implement and modify.  Our
 AWS Fargate has its place.  IMHO that's for small green field projects, where there's a very basic need to run containers without persistent storage, and no other infrastructure to integrate.  Our client's project met this criteria with flying colors. Ansible 2.7 has Fargate support, which further sweetened the proposition.
 
 ## Application routing delegated to ALB Rules
-Rather than the front end forward API requests to the backend nodes, we let ALB rules route traffic to the appropriate front or backend target group based on URL.  Service discovery was not needed since the balancer took care of routing to the different services.   Deployments instantly become transparent because ALB's healthchecks will respond to a node's availability.
+Rather than the front end forward API requests to the back end nodes, we let ALB rules route traffic to the appropriate front or back end target group based on URL.  Service discovery was not needed since the balancer took care of routing to the different services.   Deployments instantly become transparent because ALB's healthchecks will respond to a node's availability.
 
 ## Database connection information stored in AWS Systems Manager Parameter Store
 Since we were using Spring Boot, we had a lot of configuration methods to choose from.   Due to the small scale of the application, we opted for 12-factor style config by setting environment variables for the JDBC path and credentials.  It did not require any code changes to use.  AWS Systems Manager Parameter Store was a simple solution that could easily be extended for more configurations.  To inject the configuration, a function was added to the Docker entrypoint shell script to extract the values from the parameter store and inject into the environment.
@@ -64,7 +64,7 @@ The role will be covered in more depth in another blog post, but here are the fu
 
 # Additional Thoughts
 
-## Spend enough energy to assure that back-end and front-end nodes can be scaled easily 
+## Spend enough energy to assure that back end and front-end nodes can be scaled easily 
 Don't worry about auto scaling out of the gate.  Do assure that _someone_ can easily launch additional nodes or replace nodes with larger instances.  A properly defined ECS task will make it easy to launch additional nodes. 
 
 ## Codify security practices up front
