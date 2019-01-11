@@ -12,7 +12,7 @@ image:
 
 A very small start-up approached us do a POC build of their core business product.  They had no technical staff or infrastructure, and we needed to build something quickly and easy to hand off to a freelance technical team of the client’s choosing.
 
-We opted for a simple container based front and backend microservice that was easily bootstrapped with jhipster.  We were able to do so without any VMs, and were able to balance the simplicity of AWS’s modern serverless frameworks and the familiarity of the some of the traditional services they provided:   
+We opted for a simple container based front and backend microservice that was easily bootstrapped with JHipster.  We were able to do so without any VMs, and were able to balance the simplicity of AWS’s modern serverless frameworks and the familiarity of some of the traditional services they provided:   
 
 * ECS Fargate -> Container Management
 * Cloudwatch -> Logging
