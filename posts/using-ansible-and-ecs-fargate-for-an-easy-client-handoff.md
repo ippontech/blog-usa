@@ -25,7 +25,8 @@ That balance let us codify the deployment and hand it off to a freelance DevOps 
 # Managing automation extremes--flexible vs simple 
 
 > Automate everything.
-<cite>Every DevOps talk, blog, and whitepaper.</cite>
+>
+><cite>--Every DevOps talk, blog, and whitepaper.</cite>
 
 There's a lot of pressure out there to automate, scale, and be infinitely flexible. There's also a lot of pressure to ship.  Don't get tangled in trying to automate everythign.  If you don't have some frameworks in play, don't expect to have much automation bundled into your project.  It takes time.  Balance what is flexible vs what just needs to work, while insulating yourself from the long-term impact of any [tempermanent](https://www.urbandictionary.com/define.php?term=Tempermanent) solutions.   
 
