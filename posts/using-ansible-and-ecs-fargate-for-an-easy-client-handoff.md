@@ -15,7 +15,7 @@ A very small start-up approached us do a POC build of their core business produc
 We opted for a simple container based front and backend microservice that was easily bootstrapped with JHipster.  We were able to do so without any VMs, and were able to balance the simplicity of AWS’s modern serverless frameworks and the familiarity of some of the traditional services they provided:   
 
 * ECS Fargate -> Container Management
-* Cloudwatch -> Logging
+* CloudWatch -> Logging
 * ELB Application Load Balancer -> Proxying / App routing, availability
 * Route53 -> DNS
 * RDS -> PostgreSQL
