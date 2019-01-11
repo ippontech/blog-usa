@@ -51,7 +51,7 @@ Since we were using Spring Boot, we had a lot of configuration methods to choose
 
 
 ### Config-driven ansible role to provision full AWS VPC environment and deploy ECS services ###
-Although Terraform would likely be fewer lines of code and Cloudformations would be the most AWS native, we chose to use Ansible for our VPC build.   Since the deployment code would be used by other people, we felt that Ansible code would be the easiest to read and modify.  The role was a great time server. We were able to build concurrent test environments by changing only a few configuration values.
+Although Terraform would likely be fewer lines of code and CloudFormation would be the most AWS native, we chose to use Ansible for our VPC build.   Since the deployment code would be used by other people, we felt that Ansible code would be the easiest to read and modify.  The role was a great time server. We were able to build concurrent test environments by changing only a few configuration values.
 
 The role will be covered in more depth in another blog post, but here are the functionality highlights:
 
