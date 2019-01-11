@@ -7,141 +7,121 @@ tags:
 - Binaries
 date: 2019-01-10T10:00:00.000Z
 title: "Create a simple file storage through database with JHipster"
-image: 
+image:
 ---
 
 Hello my fellow hipsters, let me introduce to you a use case from my experience: storing attachments in a database.
 
-This use case matches real situations met in some companies. I wrote this article because some years ago, I faced storage problematics in a tiny web app ; one of the stories was to deal with upload/download files such as .CSV or .XLS. 
+This use case matches real situations met in some companies. I wrote this article because some years ago, I faced storage problematics in a tiny web app; one of the stories was to deal with upload/download files such as .CSV or .XLS.
 
-The application, in this case a monolith, was deployed on a VM without external access with only 10 users and about 20 files generated per years as you could guess no needs to use the heavy artillery. Now that I'm aware of existence of JHipster bootstrapper, I would have realised it in few days, and I will describe the steps to achieve it easily.
+The application, in this case a monolith, was deployed on a VM without external access, with only 10 users and about 20 files generated per year. As you can guess, no need to pull the big guns. Now that I'm aware of existence of JHipster bootstrapper, I would have realised it in a few days, and I will describe the steps to achieve it easily.
 
-Storing files as a Blob in databases doesn't seem to be the approach you would follow with a large amount of calls and writes and you will probably go for a cloud solution such as Amazon S3 or [Minio](https://www.minio.io/). But in our case we will focus on a simple architecture with no extra components for file storage in reusing the existing database.
+Storing files as a Blob in databases doesn't seem to be the approach you would follow with a large amount of calls and writes, and you will probably go for a cloud solution such as Amazon S3 or [Minio](https://www.minio.io/). But in our case, we will focus on a simple architecture with no extra components for file storage in reusing the existing database.
 
-The second question could have been wondering between file system or database storage, both have pros and cons: using file system ensures better performance and makes the migration easier but you have more security issue and the file lifecycle to handle. Using a database is more secure and avoids orphan files nevertheless backups are a little bit cumbersome and files should be converted to Blob.
+The second question could have been wondering between file system or database storage. Both have pros and cons: using a file system ensures better performance and makes the migration easier, but you have more security issues and you need to handle the file's lifecycle. Using a database is more secure and avoids orphan files, nevertheless backups are a little bit cumbersome and files should be converted to Blobs.
 
-Now I will show you how to quickly build a simple application that can efficiently store binaries. As previously mentioned, we use JHipster to bootstrap the application. The [JHipster Domain Language](https://www.jhipster.tech/jdl/) (JDL) helps you to design (kind of UML editor) our entities. 
+I will now show you how to quickly build a simple application that can efficiently store binaries. As previously mentioned, we use JHipster to bootstrap the application. The [JHipster Domain Language](https://www.jhipster.tech/jdl/) (JDL) helps you design (kind of UML editor) our entities.
 
-Furthermore it provides a way to run our application like if you were in production mode thanks to docker-compose pre-built for you.
+Furthermore it provides a way to run our application as if you were in production mode thanks to a docker-compose file generated for you.
 
-To achieve this use case we will generate a JHipster application, bring some modifications to the generated code to tune Hibernate behaviour with attachments and update Angular components to manage file upload through multipart form.
-
+To achieve this use case, we will generate a JHipster application, bring some modifications to the generated code to tune the Hibernate behavior with attachments, and update Angular components to manage file upload through multipart forms.
 
 # Use case: Car technical documentation
 
-Our client, a car builder, wants us to do a simple application to manage all the car documents his company produces. For the purpose of the article we simplify the use case and imagine that a car is only defined by its name, a document with some metadata and content. A car can have one or many documents, a document can only have one content.
+Our client, a car builder, wants us to do a simple application to manage all the car documents his company produces. For the purpose of the article, we simplify the use case and imagine that a car is only defined by its name, a document with some metadata and content. A car can have one or many documents, a document can only have one content.
 
-We want to retrieve cars with their document list but content only on demand when downloading them.
-
+We want to retrieve cars with their document list, but we want the content to be only retrieved on demand when downloading them.
 
 # Prepare the application
-
 
 ## Generate the application with [JHipster Online](https://start.jhipster.tech)
 
 JHipster Online is a JHipster generator as a service. You can bootstrap your application without installing the JHipster generator locally. You can also link it with your GitHub/GitLab account and let JHipster Online initialize a new Git repository for you.
 
+Go to [https://start.jhipster.tech/#/generate-application](https://start.jhipster.tech/#/generate-application) and fill out your application and repository name.
 
-
-Go to[ https://start.jhipster.tech/#/generate-application](https://start.jhipster.tech/#/generate-application) and fill out your application and repository name.
-
-	
-
-Generate your application by clicking on « Generate on GitHub » button. After a short moment the application will be created and uploaded to  your new repository. Congratulations!
-
+Generate your application by clicking on the « Generate on GitHub » button. After a short moment, the application will be created and uploaded to your new repository. Congratulations!
 
 ## Generate the entities with the JDL studio
 
-The JHipster Domain Language will permit us to generate our repositories, entities, REST resources and all the related tests. We just have to define our model and how entities work before importing them into our application.
+The JHipster Domain Language will allow us to generate our repositories, entities, REST resources and all the related tests. We just have to define our model and how entities work before importing them into our application.
 
 For this article we will use a simple JDL. Copy/paste it into JDL studio and select « create new JDL model » in the list then click on the save button:
-<img src="../images/2019/01/image8.png" width="20%" alt="Create a new JDL" title="Create a new JDL">
 
-```
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/image8.png)
+
+```text
 entity Car {
   model String required
 }
-	
-entity Document {	 
-  title String required 
-  size Long required			 
-  mimeType String 
-} 
- 
-entity Content {			 
-  data Blob required 
-} 
- 
-relationship OneToOne {			 
-  Document{content} to Content{document(id) required} 
-} 
 
-relationship OneToMany {	 
-  Car{document} to Document{car(id) required} 
+entity Document {
+  title String required
+  size Long required
+  mimeType String
+}
+
+entity Content {
+  data Blob required
+}
+
+relationship OneToOne {
+  Document{content} to Content{document(id) required}
+}
+
+relationship OneToMany {
+  Car{document} to Document{car(id) required}
 }
 ```
 
-![The JHipster domain model](../images/2019/01/image9.png "The JHipster domain model")
-
+![The JHipster domain model](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/image9.png)
 
 ## Apply the JDL model to the application
 
-In the manage JDL view ([https://start.jhipster.tech/#/design-entities](https://start.jhipster.tech/#/design-entities)) you have to select your model then click on the apply button.
+In the manage JDL view ([https://start.jhipster.tech/#/design-entities](https://start.jhipster.tech/#/design-entities)), select your model then click on the apply button.
 
+![Select our model here](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/image3.png)
 
-![Select our model here](../images/2019/01/image3.png "Select our model here")
+In the next page, you will have to select your repository on which you want to apply the JDL model.
 
-
-In the next page you will have to select your repository on which you want to  apply the JDL model.
-
-
-![Choose your repository](../images/2019/01/image6.png "Choose your repository")
-
+![Choose your repository](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/image6.png)
 
 Applying the JDL model will create a Pull Request on your repository. Merge it and clone the project on your computer.
 
-
 # Customize the application
 
-To fulfill our client use case, we have to customize the application. Both backend and frontend have to be modified to handle documents through the car creation process and content has to be retrieved only on demand to optimize memory usage and improve performance.
+To fulfill our client use case, we have to customize the application. Both the backend and the frontend have to be modified to handle documents through the car creation process, and the content has to be retrieved only on demand to optimize memory usage and improve performance.
 
-
-## Backend 
-
+## Backend
 
 ### Modify Car and Document entities
 
 Entities come from JHipster with some Hibernate configuration. We just have to update it according to our performance goal.
 
-By default `@OneToMany` associations are LAZY in Hibernate. That mean that our documents are retrieved only with an explicit call like `car.getDocuments()`. By setting the relationship as EAGER we ask hibernate to retrieve the documents everytime we retrieve a car. As explained at the beginning of this article we always want to display cars and documents together. We are also adding `cascade = cascadeType.ALL` to propagate changes from Car to Document entities. Creating, updating or deleting a car will impact all related Documents.
+By default, `@OneToMany` associations are `LAZY` in Hibernate. This means that our documents are retrieved only with an explicit call like `car.getDocuments()`. By setting the relationship as `EAGER`, we are asking hibernate to retrieve the documents every time we retrieve a car. As explained at the beginning of this article, we always want to display cars and documents together. We are also adding `cascade = cascadeType.ALL` to propagate changes from Car to Document entities. Creating, updating or deleting a car will impact all related Documents.
 
 **Car.java**
 
-
-```
+```java
 @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 private Set<Document> documents = new HashSet<>();
 ```
 
-
-By default `@OneToOne` relations are EAGER. We don't want to retrieve content everytime we retrieve a document. Why ? Simply because the Content entity handles a Blob that we should load only when needed, for performance issues of course. So we have to set the relation as LAZY. We also add a Jackson annotation, `@JsonIgnore` to prevent a possible lazy loading during deserialization. Like above, adopt a `cascadeType.ALL` strategy.
+By default, `@OneToOne` relations are `EAGER`. We don't want to retrieve content everytime we retrieve a document. Why? Simply because the Content entity handles a Blob that we should load only when needed, for performance issues of course. So we have to set the relation as `LAZY`. We also add a Jackson annotation, `@JsonIgnore` to prevent a possible lazy loading during deserialization. As above, adopt a `cascadeType.ALL` strategy.
 
 **Document.java**
 
-
-```
+```java
 @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 @JoinColumn(unique = true)
 @JsonIgnore
 private Content content;
 ```
 
+In the same entity, we also add two new methods `addContent()` and `retrieveContent()`. They are wrapper methods to ensure that the Content entity is only handled by the Document one. The Document becomes the only way to access the byte array field and we also can remove Content accessors since they become useless.
 
-In the same entity we also add two new methods addContent() and retrieveContent().  They are wrapper methods to ensure that the Content entity is only handled by the Document one. The Document becomes the only way to access the byte array field and we also can remove Content accessors since they became useless.
-
-
-```
+```java
 public void addContent(byte[] data) {
     Content content = new Content();
     content.setData(data);
@@ -150,19 +130,16 @@ public void addContent(byte[] data) {
 }
 public byte[] retrieveContent(){
     return content.getData();
-}	
+}
 ```
 
-
-
-### Add a multipart endpoint to save a Car with documents 
+### Add a multipart endpoint to save a Car with documents
 
 Add a new class mapper in service/mapper to map MultiPartFiles to Document entities. We can see that we call `addContent()` to map multipart file binaries to our Content entity.
 
 **DocumentMapper.java**
 
-
-```
+```java
 package io.github.jhipster.application.service.mapper;
 
 import java.io.IOException;
@@ -202,13 +179,11 @@ public class DocumentMapper {
 }
 ```
 
-
-In the web.rest folder JHipster has generated a CarResource.java. Open it and add a new method createCar() - POST /v2/cars. It will be useful for sending our future form with one call.
+In the `web.rest` folder, JHipster has generated a `CarResource.java` file. Open it and add a new method `createCar()` - POST /v2/cars. It will be useful for sending our future form with one call.
 
 **CarResource.java**
 
-
-```
+```java
 private final DocumentMapper documentMapper;
 
 public CarResource(CarRepository carRepository, DocumentMapper documentMapper) {
@@ -235,13 +210,11 @@ public ResponseEntity<Car> createCar(@Valid @RequestPart Car car, @RequestPart L
 }
 ```
 
-
-Fix the CarResourceIntTest.java by adding the DocumentMapper in the constructor.
+Fix the `CarResourceIntTest.java` file by adding the DocumentMapper in the constructor.
 
 **CarResourceIntTest.java**
 
-
-```
+```java
    @Autowired
    private DocumentMapper documentMapper;
    [...]
@@ -254,30 +227,24 @@ Fix the CarResourceIntTest.java by adding the DocumentMapper in the constructor.
    }
 ```
 
-
-
 ### Add code to download the content document
 
-We can add a new car and its documents and retrieve the cars list with their documents but how do we download the content? 
+We can add a new car and its documents and retrieve the car list with their documents, but how do we download the content?
 
-As we did above, the Content entity has a lazy fetching strategy, so we have to force the fetch by adding a new method in the Document repository. To do this we are using `@EntityGraph `from Spring Data JPA, to learn more about this: [Boost the performance of your spring data jpa application](https://blog.ippon.tech/boost-the-performance-of-your-spring-data-jpa-application/).
+As we did above, the Content entity has a lazy fetching strategy, so we have to force the fetch by adding a new method in the Document repository. To do this, we are using `@EntityGraph` from Spring Data JPA. To learn more about this: [Boost the performance of your spring data jpa application](https://blog.ippon.tech/boost-the-performance-of-your-spring-data-jpa-application/).
 
 **DocumentRepository.java**
 
-
-```
+```java
 @EntityGraph(attributePaths = "content")
 Optional<Document> findOneById(Long id);
 ```
 
-
-In the package web.rest.errors add a new exception to handle when a document is not found.
-
+In the `web.rest.errors` package, add a new exception to handle when a document is not found.
 
 **DocumentNotFoundException.java**
 
-
-```
+```java
 package io.github.jhipster.application.web.rest.errors;
 
 import org.zalando.problem.AbstractThrowableProblem;
@@ -292,13 +259,11 @@ public class DocumentNotFoundException extends AbstractThrowableProblem {
 }
 ```
 
-
 We said that the Content entity is hidden for other elements than Document, so add a new endpoint in the Document resource to download the content.
 
 **DocumentResource.java**
 
-
-```
+```java
 @GetMapping("/documents/{id}/$content")
 @Timed
 public ResponseEntity<byte[]> getDocumentContent(@PathVariable Long id) {
@@ -312,38 +277,28 @@ public ResponseEntity<byte[]> getDocumentContent(@PathVariable Long id) {
 }
 ```
 
-
-
 ## Frontend
 
 When we imported the JDL model, JHipster also created the Angular code to have all the CRUD actions for each entity. All entities can be found in the webapp/app/entities folder.
 
-Because we want the car to handle documents we will add uploading and downloading features in the related views.
-
+Because we want the car to handle documents, we will add uploading and downloading features in the related views.
 
 ### Install dependencies
 
-We have to add the file-saver library. File-saver will easily allow us to save our documents to the file system. Open a terminal in your project folder and type :
+We have to add the file-saver library. File-saver will easily allow us to save our documents to the file system. Open a terminal in your project folder and type:
 
-
-```
+```bash
 npm install file-saver --save
 npm install @types/file-saver --save-dev
 ```
 
-
-	
-
-
 ### Add file upload when creating a new car
 
-In the service add a new method to call the multipart car endpoint.
-
+In the service, add a new method to call the multipart car endpoint.
 
 **car.service.ts**
 
-
-```
+```java
 public resourceUrlV2 = SERVER_API_URL + 'api/v2/cars';
 
 [...]
@@ -363,13 +318,11 @@ createV2(car: ICar, files: FileList): Observable<EntityResponseType> {
 }
 ```
 
-
 In the update view, add a new multiple upload field in the car create/update form.
 
 **car-update.component.html**
 
-
-```
+```html
 <div class="form-group">
    <label class="form-control-label" for="field_model">Model</label>
    [...]
@@ -377,13 +330,11 @@ In the update view, add a new multiple upload field in the car create/update for
 </div>
 ```
 
-
 In the controller, modify the save method to call the `createV2()` method when saving a new car.
 
 **car-update.component.ts**
 
-
-```
+```ts
 files: FileList;
 
 constructor(private carService: CarService, private activatedRoute: ActivatedRoute) {}
@@ -403,15 +354,11 @@ save() {
 }
 ```
 
-
-Then update the test class by adding FileList and spy the wright method.
-
-	
+Then update the test class by adding FileList and spy the right method.
 
 **car-update.component.spec.ts**
 
-
-```
+```ts
 it(
    'Should call create service on save for new entity',
    fakeAsync(() => {
@@ -432,16 +379,13 @@ it(
 );
 ```
 
-
-
 ### Add file download when reading a car
 
-In the Document service add a new method to download the content.
+In the Document service, add a new method to download the content.
 
 **document.service.ts**
 
-
-```
+```ts
 export class DocumentService {
    [...]
    download(id: number): Observable<Blob> {
@@ -450,13 +394,11 @@ export class DocumentService {
 }
 ```
 
-
-In the car-detail view add a link for each documents and add a click event to download it.
+In the car-detail view, add a link for each document and add a click event to download it.
 
 **car-detail.component.html**
 
-
-```
+```html
 <div *ngIf="car">
    [...]
    <dl class="row-md jh-entity-details" *ngFor="let document of car.documents">
@@ -470,13 +412,11 @@ In the car-detail view add a link for each documents and add a click event to do
 </div>
 ```
 
-
 Finally add a `downloadDocument()` method in the car-detail controller and use the FileSave library.
 
 **car-detail.component.ts**
 
-
-```
+```ts
 import * as FileSaver from 'file-saver';
 
 export class CarDetailComponent implements OnInit {
@@ -494,22 +434,17 @@ export class CarDetailComponent implements OnInit {
 }
 ```
 
-
-
 # Start the application
 
 JHipster provides all you need to start our application. According to the README.md file, generated in your project folder, you have to open a terminal and type:
 
-
-```
+```bash
 ./mvnw
 ```
 
-
 After a moment our application is running:
 
-
-```
+```text
 ----------------------------------------------------------
         Application 'documentCar' is running! Access URLs:
         Local:          http://localhost:8080/
@@ -518,113 +453,88 @@ After a moment our application is running:
 ----------------------------------------------------------
 ```
 
+![Your application is running!](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/image2.png)
 
-
-![Your application is running !](../images/2019/01/image2.png "Your application is running !")
-
-
-Congratulations Hipster, your application is running!
-
+Congratulations, Hipster, your application is running!
 
 ## Create a new car with documents
 
-After logging in to the application you can access the menu "entities".
+After logging into the application, you can access the menu "entities".
 
+![Entities are now availables!](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/image1.png)
 
-![Entities are now availables !](../images/2019/01/image1.png "Entities are now availables")
+Click in the car menu to access all the cars where you can create, edit/view and of course delete a car. Because we want the car to be the only entry point to manage our documents, we will ignore Document and Content entities.
 
-
-Click in the car menu to access all the cars where you can create, edit/ view and of course delete a car. Because we want the car to be the only entry point to manage our documents we'll ignore Document and Content entities.
-
-
-![The car list view](../images/2019/01/image10.png "The car list view")
-
+![The car list view](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/image10.png)
 
 Then click on the "Create new Car button", fill in the form and save.
 
-![Create a new Car](../images/2019/01/image5.png "Create a new Car")
-
+![Create a new Car](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/image5.png)
 
 You will be redirected to the list where you can see the newly created car.
 
+![Our Car newly created](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/image4.png)
 
-![Our Car newly created](../images/2019/01/image4.png "Our Car newly created")
+By clicking on the "View" button, we are able to validate all the acceptance criteria by looking at the SQL logs.
 
-
-By clicking on the "View" button we are able to validate all the acceptance criteria by looking at the SQL logs.
-
-
-```
+```sql
 select car0_.id as id1_0_, car0_.model as model2_0_ from car car0_
 select documents0_.car_id as car_id5_2_0_, documents0_.id as id1_2_0_, documents0_.id as id1_2_1_, documents0_.car_id as car_id5_2_1_, documents0_.content_id as content_6_2_1_, documents0_.mime_type as mime_typ2_2_1_, documents0_.jhi_size as jhi_size3_2_1_, documents0_.title as title4_2_1_ from document documents0_ where documents0_.car_id=?
 ```
 
-
-As you can see the Content table is not requested and we have not loaded the binaries as expected. If we do it twice, we can see that there are no more SQL logs because JHipster has already set a [cache](https://www.jhipster.tech/using-cache/) for us and all cars and documents are loaded from it. 
-
+As you can see, the Content table is not requested and we have not loaded the binaries as expected. If we do it twice, we can see that there are no more SQL logs because JHipster has already set a [cache](https://www.jhipster.tech/using-cache/) for us and all cars and documents are loaded from it.
 
 ## Download the content
 
-When we clicked on the "View" button we saw the car model and the documents. By clicking on the document name we should be able to download them.
+When we clicked on the "View" button, we saw the car model and the documents. By clicking on the document name, we should be able to download them.
 
-![You can download documents by the car view](../images/2019/01/image7.png "You can download documents by the car view")
-
+![You can download documents by the car view](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/image7.png)
 
 What about SQL logs now?
 
-
-```
+```sql
 select document0_.id as id1_2_0_, content1_.id as id1_1_1_, document0_.car_id as car_id5_2_0_, document0_.content_id as content_6_2_0_, document0_.mime_type as mime_typ2_2_0_, document0_.jhi_size as jhi_size3_2_0_, document0_.title as title4_2_0_, content1_.data as data2_1_1_, content1_.data_content_type as data_con3_1_1_ from document document0_ left outer join content content1_ on document0_.content_id=content1_.id where document0_.id=?
 ```
 
-
-Document and Content tables are requested as expected. The cache is not used here and the SQL request is sent at every call.
-
+Document and Content tables are requested as expected. The cache is not used here and the SQL request is sent for every call.
 
 # Run with Docker in production mode
 
-JHipster will make this step easier than expected as the generated application already comes with Docker and Docker Compose configurations. Beware! To complete this step you need Docker running on your computer. 
+JHipster will make this step easier than expected as the generated application already comes with Docker and Docker Compose configurations. Beware! To complete this step you need Docker running on your computer.
 
 Shutdown your local application instance, open a terminal in the main application folder, and build a Docker image for the application.
 
-
-```
+```bash
 ./mvnw package -Pprod verify jib:dockerBuild
 ```
 
-
 Then start the application with docker-compose.
 
-
-```
+```bash
 docker-compose -f src/main/docker/app.yml up
 ```
 
-
 And that's all, you can now play with your application by adding cars and documents, and of course downloading them.
-
 
 # Going Further
 
-What to do next? 
+What to do next?
 
-Learn more about performance tests with Gatling, e2e tests with protractor or simply unit tests for both frontend and backend. All these kinds of tests are handled by JHipster and you can read more about it here: [https://www.jhipster.tech/running-tests](https://www.jhipster.tech/running-tests/). 
+Learn more about performance tests with Gatling, end-to-end tests with Protractor or simply unit tests for both frontend and backend. All these kinds of tests are handled by JHipster and you can read more about it here: [https://www.jhipster.tech/running-tests](https://www.jhipster.tech/running-tests/).
 
-Clean up the unnecessary code (an important part of Content and Document) and tests related to that. We also should use [DTO](https://www.jhipster.tech/using-dtos/)s instead of directly using entities in the Web Resource layer.
+Clean up the unnecessary code (an important part of Content and Document) and tests related to that. We should also use [DTO](https://www.jhipster.tech/using-dtos/)s instead of directly using entities in the Web Resource layer.
 
 And by the way, you can set up your continuous integration with a JHipster sub-generator as explained here: [https://www.jhipster.tech/setting-up-ci](https://www.jhipster.tech/setting-up-ci).
 
-
 # Conclusion
 
-During this article we have generated an application, a model, pushed them into a GitHub repository, generated all classes, configurations, unit tests etc… We also coded a little to fine tune the generated application to fulfill our customer's needs. Finally we were able to run it in production mode with Docker and all the configuration brought by Jhipster.
+In this article, we have generated an application, a model, pushed them to a GitHub repository, generated all classes, configurations, unit tests etc. We also coded a little to fine tune the generated application to fulfill our customer's needs. Finally, we were able to run it in production mode with Docker and all the configuration brought by Jhipster.
 
-JHipster brings us all the things we need to start our project quickly and run it in both development and production mode. Also the philosophy around JHipster is to bring to the developer the good practices and a performant bootstrapped application, and this can be verified with this use case.
+JHipster brings us all the things we need to start our project quickly and run it in both development and production mode. Also the philosophy around JHipster is to bring to the developer the good practices and an efficient bootstrapped application, and this can be verified with this use case.
 
-Now your application is production ready, take a break and drink a coffee like a real hipster.
+Now your application is production ready, take a break and drink coffee like a real hipster.
 
-All feedback is appreciated, feel free to [contribute](https://github.com/jhipster/generator-jhipster/blob/master/CONTRIBUTING.md) to the JHipster project! Thank you for reading this article and, I hope to see you next time for a new adventure with JHipster!')
-
+All feedback is appreciated, feel free to [contribute](https://github.com/jhipster/generator-jhipster/blob/master/CONTRIBUTING.md) to the JHipster project! Thank you for reading this article and, I hope to see you next time for a new adventure with JHipster!
 
 # Resources
 
