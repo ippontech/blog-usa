@@ -46,7 +46,7 @@ AWS Fargate has its place.  IMHO that's for small green field projects, where th
 ### Application routing delegated to ALB Rules ###
 Rather than the front end forward API requests to the backend nodes, we let ALB rules route traffic to the appropriate front or backend target group based on URL.  Service discovery was not needed since the balancer took care of routing to the different services.   Deployments instantly become transparent because ALB's healthchecks will respond to a node's availability.
 
-### Database connection information stored in AWS Systems Manger Parameter Store ###
+### Database connection information stored in AWS Systems Manager Parameter Store ###
 Since we were using Spring Boot, we had a lot of configuration methods to choose from.   Due to the small scale of the application, we opted for 12-factor style config by setting environment variables for the JDBC path and credentials.  It did not require any code changes to use.  AWS Systems Manager Parameter Store was a simple solution that could easily be extended for more configurations.  To inject the configuration, a function was added to the docker entrypoint shell script to extract the values from the parameter store and inject into the environment.
 
 
