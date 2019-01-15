@@ -1,0 +1,164 @@
+---
+authors:
+- Cody Frenzel
+tags:
+- Progressive Web App
+- JHipster
+- Front-End
+date: 
+title: "Building a Progressive Web App in JHipster"
+image: 
+---
+
+
+Before building a progressive web app (PWA), we need to understand what exactly that means. If you Google progressive web app you'll find varying definitions with a common theme; Web applications that provide a native experience. This means your application must be installable from your browser onto the users device. Your application must meet three baseline criteria before a user can install the app and be called a progressive web app. Those criteria are: a service worker, a web app manifest, and to be served over HTTPS.
+
+A service worker is similar to other scripts running in your HTML with one key difference. This javascript file has no access to the DOM and that is because service workers provide instructions to the browser that are executed before a request is ever sent. Having access intercept all requests on your domain is dangerous, that's why service workers also have the extra requirements of a same-origin policy and being served over HTTPS. 
+
+# Progressive Web Apps in JHipster
+To enable the development of PWAs, JHipster uses the Google tool, Workbox, to remove a lot of the boilerplate to working with service workers. While the idea of building a progressive web app may sound scary, Workbox has some great guides to walk you through the process and explain the different configuration options.
+
+## What does JHipster do for us?
+Once I generate the JHipster frontend, three key components to building a PWA will have been created for me: `index.html`, `webpack.prod.js`, and `manifest.webapp`. In the project root there will be a `webpack` folder and in the production configuration there will be the implementation of the Webpack Workbox plugin that generates our service worker.
+
+## Webpack Configuration
+Within our production configuration we will find the inclusion of various plugins including our Workbox implementation at the bottom.
+```javascript
+plugins: [
+    ...,
+    new WorkboxPlugin.GenerateSW({
+        clientsClaim: true,
+        skipWaiting: true,
+    })
+]
+```
+This configuration will essentially cache all of your files. The significance of `clientsClaim` coupled with `skipWaiting` is that once your client detects a new service worker, the new one will take effect immediately instead of waiting.
+
+Customization is extremely easy. In my demo app I use one strategy for all of the files, but you can break down the configuration to cache all images longer than you would cache something that is likely to change more frequently, say your css files.
+```javascript
+new WorkboxPlugin.GenerateSW({
+    clientsClaim: true,
+    skipWaiting: true,
+    runtimeCaching: [{
+        urlPattern: /\.(?:png|jpg|jpeg|svg|css|js|gif|eot|ttf|woff|woff2|html)$/,
+        handler: 'staleWhileRevalidate',
+        options: {
+            cacheName: 'myCache',
+            expiration: {
+                maxAgeSeconds: 60
+            },
+            broadcastUpdate: {
+                channelName: 'update-myCache'
+            }
+        }
+    }]
+})
+```
+Handler is specifying your [cache strategy](https://developers.google.com/web/tools/workbox/modules/workbox-strategies), which specifies how the client will respond to requests for this content. Will my service worker go to the cache first, try to download from the network then fall back to my cached content, etc. The chosen strategy will depend on your content, as well as, how you break up urlPattern in your runtime caching. static assets may be alright if we update them less often, but will that be the case for all file types if the app receives frequent updates?
+
+When caching content and responding to requests with those entries, you may get content faster, but you run the risk of showing users stale data. Broadcast update provides a standard way to notify the browser client that a cached response has received an update. In the above example, when the revalidate step of my stale while revalidate strategy retrieves content that differs from what is cached, an event will be broadcasted through the channel `update-myCache`. You can configure your application to listen for that and react appropriately.
+
+Finally, restricting the age of cached items is another strategy for invalidating old entries. Old entries will be checked and removed after each request or cache update. This means that an expired entry may be used once, then expired after.
+
+## Registering your Service Worker
+When a JHipster frontend is first created, the `index.html` will have the following script commented out:
+```html
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(function () {
+                    console.log('Service Worker Registered');
+                });
+        });
+    }
+</script>
+```
+When we run the production build for our frontend Webpack will generate our service worker in the build folder for us. However, by itself that file will not do anything. In order to add the caching and offline support we want, we must first register the service worker on our domain.
+
+
+## Installing on the Homescreen
+Now that we got through the hard parts, the last file is the `manifest.webapp`. The manifest file is metadata about your app in the form of JSON to provide details for the application installed on the homescreen.
+```json
+{
+  "name": "MyPWA",
+  "short_name": "MyPWA",
+  "icons": [
+      {
+          "src": "./content/images/jhipster_family_member_0_head-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+      },
+      {
+          "src": "./content/images/jhipster_family_member_0_head-256.png",
+          "sizes": "256x256",
+          "type": "image/png"
+      },
+      {
+          "src": "./content/images/jhipster_family_member_0_head-384.png",
+          "sizes": "384x384",
+          "type": "image/png"
+      },
+      {
+          "src": "./content/images/jhipster_family_member_0_head-512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+      }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}
+```
+The entire file is generated for you and linked in the `index.html`. All of this specifies content on how the app will open when installed on a device, as well as, what the icon will look like to open it.
+
+In order for a user to install our Progressive Web App, it meet the following criteria:
+- [X] The web app is not already installed.
+- [X] Includes a web app manifest.
+- [X] Has a registered service worker.
+- [] Served over HTTPS (required for service workers).
+- [] The user meets the engagement heuristic (The user has interacted with the domain for at least 30 seconds)
+
+We have met almost all of the criteria for installing our app, the last parts are handled by our deployment and having users engage with the app. For my PWA, I chose to host the app in S3 and use cloudfront to deliver the content over HTTPS.[^1] 
+
+After meeting all of the criteria, the browser will fire the `beforeinstallprompt` event. Listen for that event and notify users that they are able to install your application.
+```html
+<script async defer>
+    var deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', function (e) {
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        e.preventDefault();
+        // Stash the event so it can be triggered later.
+        deferredPrompt = e;
+
+        showAddToHomeScreen();
+    });
+
+    function showAddToHomeScreen() {
+        var addPWABtn = document.querySelector(".add-pwa");
+        addPWABtn.style.display = "block";
+        addPWABtn.addEventListener("click", addToHomeScreen);
+    };
+
+    function addToHomeScreen() {
+        var addPWABtn = document.querySelector(".add-pwa");  // hide our user interface that shows our A2HS button
+        addPWABtn.style.display = 'none';  // Show the prompt
+        deferredPrompt.prompt();  // Wait for the user to respond to the prompt
+        deferredPrompt.userChoice
+        .then(function (choiceResult) {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the prompt');
+            } else {
+                console.log('User dismissed the prompt');
+            }
+            deferredPrompt = null;
+        });
+    };
+</script>
+```
+
+# A Few Things to Note
+* If you choose to serve your content through Cloudfront, be sure to invalidate your index, the service worker, and your manifest files. Otherwise, users who have already visited your site will have old content.
