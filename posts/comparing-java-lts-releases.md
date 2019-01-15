@@ -31,7 +31,7 @@ With lambda expressions and the corresponding impact they have had on Java libra
 ```java
 listOfStrings.forEach(i -> System.out.println(i));
 ```
-At first, this feels like an insiginificant win and, in truth, it is.  There is nothing more pretentious than a programming touting how the turned three lines of code into one.  The real power behind lambda expressions comes with an explanation of functional interfaces, another feature introduced in Java 8.  A functional interface is just like a regular interface, except you define the body of the function specified in said interface anonymously, using lambda expressions.  Consider the following:
+At first, this feels like an insignificant win and, in truth, it is.  There is nothing more pretentious than a programmer touting how the turned three lines of code into one.  The real power behind lambda expressions comes with an explanation of functional interfaces, another feature introduced in Java 8.  A functional interface is just like a regular interface, except you define the body of the function specified in said interface anonymously, using lambda expressions.  Consider the following:
 ```java
 interface FormValidator{
   boolean validate(String inputField);
