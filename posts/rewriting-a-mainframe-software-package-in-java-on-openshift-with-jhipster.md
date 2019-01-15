@@ -4,7 +4,7 @@ authors:
 tags:
 - JHipster
 - Microservices
-date: 2018-12-07T23:22:34.000Z
+date: 
 title: "Rewriting a Mainframe Software Package in Java on Openshift with JHipster"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/12/K-V-Laurikainen-1961.jpg
 ---

@@ -3,11 +3,9 @@ authors:
 - Anthony Viard
 tags:
 - JHipster
-- File storage
-- Binaries
-date: 2019-01-10T10:00:00.000Z
+date: 2019-01-11T17:28:27.000Z
 title: "Create a simple file storage through database with JHipster"
-image:
+image: 
 ---
 
 Hello my fellow hipsters, let me introduce to you a use case from my experience: storing attachments in a database.
