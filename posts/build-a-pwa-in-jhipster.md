@@ -34,7 +34,7 @@ plugins: [
 ```
 This configuration will essentially cache all of your files. The significance of `clientsClaim` coupled with `skipWaiting` is that once your client detects a new service worker, that one will take effect immediately instead of waiting for the lifecycle of the old one to finish.
 
-Customization is extremely easy following the Workbox guides. In the example below, I used the `networkFirst` strategy to cache CSS, Javascript, and HTML files. This strategy will always try to fetch the latest items from the network, then fall back to cached content if I can't establish a connection or timeout. For images, gif, and typography I used the `cacheFirst` strategy. These items are less likely to change, so I can fetch from the cache instead of downloading from the network every time.
+Customization is extremely easy following the Workbox guides. In the example below, I used the `networkFirst` strategy to cache CSS, Javascript, and HTML files. This strategy will always try to fetch the latest items from the network, then fall back to cached content if I can't establish a connection or timeout. For images, gif, and typography I used the `cacheFirst` strategy. These items are less likely to change, so I can fetch from the cache for a faster response.
 ```javascript
 new WorkboxPlugin.GenerateSW({
     clientsClaim: true,
