@@ -11,7 +11,7 @@ image:
 ---
 
 
-Before building a progressive web app (PWA), we need to understand what exactly that means. Throughout my research on progressive web apps, I found many different definitions with a common theme. Web applications that provide a native experience. This means your application must be installable from your browser onto the users' device. Before a user can install the application it must meet three baseline criteria. To be considered a PWA, each application must have a service worker, a web app manifest, and to be served over HTTPS.
+Before building a progressive web app (PWA), we need to understand what exactly that means. Throughout my research on progressive web apps, I found many different definitions with a common theme; web applications that provide a native experience. This means your application must be installable from your browser onto the users' device. Before a user can install the application it must meet three baseline criteria. To be considered a PWA, each application must have a service worker, a web app manifest, and to be served over HTTPS.
 
 A service worker is similar to other scripts running in your HTML with one key difference. This javascript file has no access to the DOM and that is because service workers provide instructions to the browser that are executed before a request is ever sent. Having access to intercept all requests on your domain is dangerous, but that is why service workers also have the extra requirements of a [same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy) and being served over HTTPS. 
 
@@ -34,7 +34,7 @@ plugins: [
 ```
 This configuration will essentially cache all of your files. The significance of `clientsClaim` coupled with `skipWaiting` is that once your client detects a new service worker, that one will take effect immediately instead of waiting for the lifecycle of the old one to finish.
 
-Customization is extremely easy following the Workbox guides. In the example below, I used the `networkFirst` strategy to cache CSS, Javascript, and HTML files. This strategy will always try to fetch the latest items from the network, then fall back to cached content if the browser cannot establish a connection in time. For images, gif, and typography I used the `cacheFirst` strategy. These items are less likely to change, so I can fetch from the cache for a faster response.
+Customization is extremely easy following the Workbox guides. In the example below, I used the `networkFirst` strategy to cache CSS, Javascript, and HTML files. This strategy will always try to fetch the latest items from the network, then fall back to cached content if the browser cannot establish a connection in time. For images, gif, and typography I used the `staleWhileRevalidate` strategy. These items are less likely to change, so I can fetch from the cache for a faster response and if they are updated the service worker will invalidate that cached item after serving it to me.
 ```javascript
 new WorkboxPlugin.GenerateSW({
     clientsClaim: true,
@@ -54,7 +54,7 @@ new WorkboxPlugin.GenerateSW({
     },
     {
         urlPattern: /\.(?:png|jpg|jpeg|svg|gif|eot|ttf|woff|woff2)$/,
-        handler: 'cacheFirst',
+        handler: 'staleWhileRevalidate',
         options: {
             cacheName: 'assetCache',
             broadcastUpdate: {
@@ -64,9 +64,9 @@ new WorkboxPlugin.GenerateSW({
     }]
 })
 ```
-Handler is specifying your [cache strategy](https://developers.google.com/web/tools/workbox/modules/workbox-strategies), which dictates how the service worker will respond to requests for this content. The chosen strategy will depend on your content, as well as, how you break up urlPattern in your runtime caching. static assets may be alright if we update them less often, but will that be the case for all file types if the app receives frequent updates? These are the types of questions you need to think about when developing your caching strategy.
+Handler is specifying your [cache strategy](https://developers.google.com/web/tools/workbox/modules/workbox-strategies), which dictates how the service worker will respond to requests for this content. The chosen strategy will depend on your content, as well as, how you break up `urlPattern` in your runtime caching. static assets may be alright if we update them less often, but will that be the case for all file types if the app receives frequent updates? These are the types of questions you need to think about when developing your caching strategy.
 
-When caching content and responding to requests with those entries, you may get content faster, but you run the risk of showing users stale data. Broadcast update provides a standard way to notify the browser client that a cached response has received an update. In the above example, when the revalidate step of my stale while revalidate strategy retrieves content that differs from what is cached, an event will be broadcasted through the channel `update-myCache`. You can configure your application to listen for that and react appropriately.
+When caching content and responding to requests with those entries, you may get content faster, but you run the risk of showing users stale data. `broadcastUpdate` provides a standard way to notify the browser client that a cached response has received an update. In the above example, when the revalidate step of my `staleWhileRevalidate` strategy retrieves content that differs from what is cached, an event will be broadcasted through the channel `update-assetCache`. You can configure your application to listen for that event and react appropriately.
 
 Finally, restricting the age of cached items is another strategy for invalidating old entries. Old entries will be checked and removed after each request or cache update. This means that an expired entry may be used once, then expired after.
 
