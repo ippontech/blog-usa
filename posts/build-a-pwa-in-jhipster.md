@@ -11,9 +11,9 @@ image:
 ---
 
 
-Before building a progressive web app (PWA), we need to understand what exactly that means. Throughout my research on progressive web apps, I found many different definitions with a common theme; web applications that provide a native experience. This means your application must be installable from your browser onto the users' device. Before a user can install the application it must meet three baseline criteria. To be considered a PWA, each application must have a service worker, a web app manifest, and to be served over HTTPS.
+Before building a progressive web app (PWA), we need to understand what exactly that means. Throughout my research on progressive web apps, I found many different definitions with a common theme; web applications that provide a native experience. This means the application must be installable from the users' browser onto their device. Before a user can install the application it must meet three baseline criteria. To be considered a PWA, each application must have a service worker, a web app manifest, and to be served over HTTPS.
 
-A service worker is similar to other scripts running in your HTML with one key difference. This javascript file has no access to the DOM and that is because service workers provide instructions to the browser that are executed before a request is ever sent. Having access to intercept all requests on your domain is dangerous, but that is why service workers also have the extra requirements of a [same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy) and being served over HTTPS. 
+A service worker is similar to other scripts running in HTML with one key difference. This javascript file has no access to the DOM and that is because service workers provide instructions to the browser that are executed before a request is ever sent. Having access to intercept all requests on a domain is dangerous, but that is why service workers also have the extra requirements of a [same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy) and being served over HTTPS. 
 
 # Progressive Web Apps in JHipster
 To enable the development of PWAs, JHipster uses Workbox, a set of libraries developed by Google to remove a lot of the boilerplate to working with service workers. While the idea of building a progressive web app may sound daunting, Workbox has some great guides to walk you through the process and explain the different configuration options.
@@ -32,7 +32,7 @@ plugins: [
     })
 ]
 ```
-This configuration will essentially cache all of your files. The significance of `clientsClaim` coupled with `skipWaiting` is that once your client detects a new service worker, that one will take effect immediately instead of waiting for the lifecycle of the old one to finish.
+This configuration will essentially cache all of our files. The significance of `clientsClaim` coupled with `skipWaiting` is that once our client detects a new service worker, that one will take effect immediately instead of waiting for the lifecycle of the old one to finish.
 
 Customization is extremely easy following the Workbox guides. In the example below, I used the `networkFirst` strategy to cache CSS, Javascript, and HTML files. This strategy will always try to fetch the latest items from the network, then fall back to cached content if the browser cannot establish a connection in time. For images, gif, and typography I used the `staleWhileRevalidate` strategy. These items are less likely to change, so I can fetch from the cache for a faster response and if they are updated the service worker will invalidate that cached item after serving it to me.
 ```javascript
@@ -64,9 +64,9 @@ new WorkboxPlugin.GenerateSW({
     }]
 })
 ```
-Handler is specifying your [cache strategy](https://developers.google.com/web/tools/workbox/modules/workbox-strategies), which dictates how the service worker will respond to requests for this content. The chosen strategy will depend on your content, as well as, how you break up `urlPattern` in your runtime caching. static assets may be alright if we update them less often, but will that be the case for all file types if the app receives frequent updates? These are the types of questions you need to think about when developing your caching strategy.
+Handler is specifying our [cache strategy](https://developers.google.com/web/tools/workbox/modules/workbox-strategies), which dictates how the service worker will respond to requests for this content. The chosen strategy will depend on your content, as well as, how you break up `urlPattern` in `runtimeCaching`. static assets may be alright if we update them less often, but will that be the case for all file types if the app receives frequent updates? These are the types of questions we need to think about when developing our caching strategy.
 
-When caching content and responding to requests with those entries, you may get content faster, but you run the risk of showing users stale data. `broadcastUpdate` provides a standard way to notify the browser client that a cached response has received an update. In the above example, when the revalidate step of my `staleWhileRevalidate` strategy retrieves content that differs from what is cached, an event will be broadcasted through the channel `update-assetCache`. You can configure your application to listen for that event and react appropriately.
+When caching content and responding to requests with those entries, we may get content faster, but we run the risk of showing users stale data. `broadcastUpdate` provides a standard way to notify the browser client that a cached response has received an update. In the above example, when the revalidate step of my `staleWhileRevalidate` strategy retrieves content that differs from what is cached, an event will be broadcasted through the channel `update-assetCache`. We can configure our application to listen for that event and react appropriately.
 
 Finally, restricting the age of cached items is another strategy for invalidating old entries. Old entries will be checked and removed after each request or cache update. This means that an expired entry may be used once, then expired after.
 
@@ -88,7 +88,7 @@ When we run the production build for our frontend Webpack will generate our serv
 
 
 ## Installing on the Home Screen
-Now that we got through the hard parts, the last file is the `manifest.webapp`. The manifest file is metadata about your app in the form of JSON to provide details for the application installed on the home screen.
+Now that we got through the hard parts, the last file is the `manifest.webapp`. The manifest file is metadata about our app in the form of JSON to provide details for the application installed on the home screen.
 ```json
 {
   "name": "MyPWA",
@@ -122,7 +122,7 @@ Now that we got through the hard parts, the last file is the `manifest.webapp`. 
   "orientation": "portrait"
 }
 ```
-The entire file is generated for you and linked in the `index.html`. All of this specifies content on how the app will open when installed on a device, as well as, what the icon will look like to open it.
+The entire file is generated for us by JHipster and linked in the `index.html`. All of this specifies content on how the app will open when installed on a device, as well as, what the icon will look like to open it.
 
 In order for a user to install a progressive web app from their browser, it must meet the following criteria:
 - [X] The web app is not already installed.
@@ -131,9 +131,9 @@ In order for a user to install a progressive web app from their browser, it must
 - [] Served over HTTPS (required for service workers).
 - [] The user meets the engagement heuristic (The user has interacted with the domain for at least 30 seconds)
 
-We have met almost all of the criteria for installing our app, the last parts are handled by our deployment and having users engage with the app. For my PWA, I chose to host the app in S3 and use CloudFront to deliver the content over HTTPS. Be careful if you choose to serve your content through CloudFront. You must be sure to invalidate your index, the service worker, and your manifest files. Otherwise, users who have already visited your site will have old content delivered from Cloudfront, which will match the existing content in their cache.
+We have met almost all of the criteria for installing our app, the last parts are handled by our deployment and having users engage with the app. For my PWA, I chose to host the app in S3 and use CloudFront to deliver the content over HTTPS. Be careful if you also choose to serve your content through CloudFront. You must be sure to invalidate your index, the service worker, and your manifest files. Otherwise, users who have already visited your site will have old content delivered from Cloudfront, which will match the existing content in their cache.
 
-After meeting all of the criteria, the browser will fire the `beforeinstallprompt` event. We can set the client to listen for that event and notify users that they are able to install your application. Below is an example of waiting for the `beforeinstallprompt` and reacting to that event by showing a button to prompt the user to add our app to their home screen.
+After meeting all of the criteria, the browser will fire the `beforeinstallprompt` event. We can set the client to listen for that event and notify users that they are able to install the application. Below is an example of waiting for the `beforeinstallprompt` and reacting to that event by showing a button to prompt the user to add our app to their home screen.
 ```html
 <script async defer>
     var deferredPrompt;
@@ -190,4 +190,4 @@ import * as _ from 'lodash';
 ```
  If you are developing an app with the express purpose of it being installable on a phone, you must expect your users to sometimes have poor connections. Poor load times can be the difference between losing users or having a successful app. Remember, the point of a progressive web app is to increase user engagement by having your application installed on their home screen. The journey to having a good product doesn't stop there. Be reliable, have an experience that delights users, and above all, be worthy of being on their home screen.
 
- Now get out there! If you weren't following along, go to the [JHipster site](https://www.jhipster.tech/) and try it out.
+ Now get out there! If you weren't following along, go to the [JHipster site](https://www.jhipster.tech/) and try it out for yourself.
