@@ -11,18 +11,18 @@ image:
 ---
 
 
-Before building a progressive web app (PWA), we need to understand what exactly that means. If you Google progressive web app you'll find varying definitions with a common theme; Web applications that provide a native experience. This means your application must be installable from your browser onto the users device. Your application must meet three baseline criteria before a user can install the app and be called a progressive web app. Those criteria are: a service worker, a web app manifest, and to be served over HTTPS.
+Before building a progressive web app (PWA), we need to understand what exactly that means. Throughout my research on progressive web apps I found many different definitions with a common theme; Web applications that provide a native experience. This means your application must be installable from your browser onto the users' device. Before a user can install the app and be called a progressive web app your application must meet three baseline criteria. To be considered a progressive web app each application must have a service worker, a web app manifest, and to be served over HTTPS.
 
-A service worker is similar to other scripts running in your HTML with one key difference. This javascript file has no access to the DOM and that is because service workers provide instructions to the browser that are executed before a request is ever sent. Having access intercept all requests on your domain is dangerous, that's why service workers also have the extra requirements of a same-origin policy and being served over HTTPS. 
+A service worker is similar to other scripts running in your HTML with one key difference. This javascript file has no access to the DOM and that is because service workers provide instructions to the browser that are executed before a request is ever sent. Having access to intercept all requests on your domain is dangerous, but that's why service workers also have the extra requirements of a same-origin policy and being served over HTTPS. 
 
 # Progressive Web Apps in JHipster
-To enable the development of PWAs, JHipster uses the Google tool, Workbox, to remove a lot of the boilerplate to working with service workers. While the idea of building a progressive web app may sound scary, Workbox has some great guides to walk you through the process and explain the different configuration options.
+To enable the development of PWAs, JHipster uses Workbox, a set of libraries developed by Google to remove a lot of the boilerplate to working with service workers. While the idea of building a progressive web app may sound daunting, Workbox has some great guides to walk you through the process and explain the different configuration options.
 
 ## What does JHipster do for us?
-Once I generate the JHipster frontend, three key components to building a PWA will have been created for me: `index.html`, `webpack.prod.js`, and `manifest.webapp`. In the project root there will be a `webpack` folder and in the production configuration there will be the implementation of the Webpack Workbox plugin that generates our service worker.
+Once I generate the JHipster frontend, three key components to building a PWA will have been created for me: `index.html`, `webpack.prod.js`, and `manifest.webapp`. Everything needed for a progressive web app will be contained in these three files. In the project root there will be a `webpack` folder and in the production configuration, there will be the implementation of the Webpack Workbox plugin that generates our service worker.
 
 ## Webpack Configuration
-Within our production configuration we will find the inclusion of various plugins including our Workbox implementation at the bottom.
+Within our production configuration, we will find the inclusion of various plugins including our Workbox implementation at the bottom.
 ```javascript
 plugins: [
     ...,
@@ -32,36 +32,46 @@ plugins: [
     })
 ]
 ```
-This configuration will essentially cache all of your files. The significance of `clientsClaim` coupled with `skipWaiting` is that once your client detects a new service worker, the new one will take effect immediately instead of waiting.
+This configuration will essentially cache all of your files. The significance of `clientsClaim` coupled with `skipWaiting` is that once your client detects a new service worker, that one will take effect immediately instead of waiting for the lifecycle of the old one to finish.
 
-Customization is extremely easy. In my demo app I use one strategy for all of the files, but you can break down the configuration to cache all images longer than you would cache something that is likely to change more frequently, say your css files.
+Customization is extremely easy following the Workbox guides. In the example below, I used the `networkFirst` strategy to cache CSS, Javascript, and HTML files. This strategy will always try to fetch the latest items from the network, then fall back to cached content if I can't establish a connection or timeout. For images, gif, and typography I used the `cacheFirst` strategy. These items are less likely to change, so I can fetch from the cache instead of downloading from the network every time.
 ```javascript
 new WorkboxPlugin.GenerateSW({
     clientsClaim: true,
     skipWaiting: true,
     runtimeCaching: [{
-        urlPattern: /\.(?:png|jpg|jpeg|svg|css|js|gif|eot|ttf|woff|woff2|html)$/,
-        handler: 'staleWhileRevalidate',
+        urlPattern: /\.(?:css|js|html)$/,
+        handler: 'networkFirst',
         options: {
             cacheName: 'myCache',
             expiration: {
-                maxAgeSeconds: 60
+                maxAgeSeconds: 60*60*24
             },
             broadcastUpdate: {
                 channelName: 'update-myCache'
             }
         }
+    },
+    {
+        urlPattern: /\.(?:png|jpg|jpeg|svg|gif|eot|ttf|woff|woff2)$/,
+        handler: 'cacheFirst',
+        options: {
+            cacheName: 'assetCache',
+            broadcastUpdate: {
+                channelName: 'update-assetCache'
+            }
+        }
     }]
 })
 ```
-Handler is specifying your [cache strategy](https://developers.google.com/web/tools/workbox/modules/workbox-strategies), which specifies how the client will respond to requests for this content. Will my service worker go to the cache first, try to download from the network then fall back to my cached content, etc. The chosen strategy will depend on your content, as well as, how you break up urlPattern in your runtime caching. static assets may be alright if we update them less often, but will that be the case for all file types if the app receives frequent updates?
+Handler is specifying your [cache strategy](https://developers.google.com/web/tools/workbox/modules/workbox-strategies), which specifies how the client will respond to requests for this content. Will my service worker go to the cache first, try to download from the network then fall back to my cached content, etc. The chosen strategy will depend on your content, as well as, how you break up urlPattern in your runtime caching. static assets may be alright if we update them less often, but will that be the case for all file types if the app receives frequent updates? These are the types of questions you need to think about for developing your caching strategy.
 
 When caching content and responding to requests with those entries, you may get content faster, but you run the risk of showing users stale data. Broadcast update provides a standard way to notify the browser client that a cached response has received an update. In the above example, when the revalidate step of my stale while revalidate strategy retrieves content that differs from what is cached, an event will be broadcasted through the channel `update-myCache`. You can configure your application to listen for that and react appropriately.
 
 Finally, restricting the age of cached items is another strategy for invalidating old entries. Old entries will be checked and removed after each request or cache update. This means that an expired entry may be used once, then expired after.
 
 ## Registering your Service Worker
-When a JHipster frontend is first created, the `index.html` will have the following script commented out:
+When a JHipster frontend is first created, the `index.html` will by default have the following script commented out:
 ```html
 <script>
     if ('serviceWorker' in navigator) {
@@ -74,11 +84,11 @@ When a JHipster frontend is first created, the `index.html` will have the follow
     }
 </script>
 ```
-When we run the production build for our frontend Webpack will generate our service worker in the build folder for us. However, by itself that file will not do anything. In order to add the caching and offline support we want, we must first register the service worker on our domain.
+When we run the production build for our frontend Webpack will generate our service worker in the build folder for us. However, by itself, that file will not do anything. In order to add the caching and offline support we want, we must first register the service worker on our domain.
 
 
-## Installing on the Homescreen
-Now that we got through the hard parts, the last file is the `manifest.webapp`. The manifest file is metadata about your app in the form of JSON to provide details for the application installed on the homescreen.
+## Installing on the Home Screen
+Now that we got through the hard parts, the last file is the `manifest.webapp`. The manifest file is metadata about your app in the form of JSON to provide details for the application installed on the home screen.
 ```json
 {
   "name": "MyPWA",
@@ -114,14 +124,14 @@ Now that we got through the hard parts, the last file is the `manifest.webapp`. 
 ```
 The entire file is generated for you and linked in the `index.html`. All of this specifies content on how the app will open when installed on a device, as well as, what the icon will look like to open it.
 
-In order for a user to install our Progressive Web App, it meet the following criteria:
+In order for a user to install a progressive web app from their browser, it must meet the following criteria:
 - [X] The web app is not already installed.
 - [X] Includes a web app manifest.
 - [X] Has a registered service worker.
 - [] Served over HTTPS (required for service workers).
 - [] The user meets the engagement heuristic (The user has interacted with the domain for at least 30 seconds)
 
-We have met almost all of the criteria for installing our app, the last parts are handled by our deployment and having users engage with the app. For my PWA, I chose to host the app in S3 and use cloudfront to deliver the content over HTTPS.[^1] 
+We have met almost all of the criteria for installing our app, the last parts are handled by our deployment and having users engage with the app. For my PWA, I chose to host the app in S3 and use CloudFront to deliver the content over HTTPS. Be careful if you choose to serve your content through CloudFront. You must be sure to invalidate your index, the service worker, and your manifest files. Otherwise, users who have already visited your site will have old content delivered from Cloudfront, which will match the existing content in their cache.
 
 After meeting all of the criteria, the browser will fire the `beforeinstallprompt` event. Listen for that event and notify users that they are able to install your application.
 ```html
@@ -160,5 +170,10 @@ After meeting all of the criteria, the browser will fire the `beforeinstallpromp
 </script>
 ```
 
-# A Few Things to Note
-* If you choose to serve your content through Cloudfront, be sure to invalidate your index, the service worker, and your manifest files. Otherwise, users who have already visited your site will have old content.
+# Testing In Chrome
+In Chrome DevTools you under the **Application** tab you can view your service worker, manifest, and cached content. This is a helpful way to check what exactly is being cached and making sure your service worker is behaving as intended.
+
+![Chrome DevTools](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/image11.png)
+
+## Auditing with Lighthouse
+Google Lighthouse is an open-source tool that you can use to measure and improve the performance of your progressive web app. Lighthouse uses fourteen auditing criteria that you can view [here](https://developers.google.com/web/progressive-web-apps/checklist#baseline), rather than the three baseline criteria for a PWA. Lighthouse is integrated with DevTools and can be found under the **Audit** tab. By meeting the extra auditing criteria, you can provide users a better mobile experience. 
