@@ -11,18 +11,18 @@ image:
 ---
 
 
-Before building a progressive web app (PWA), we need to understand what exactly that means. Throughout my research on progressive web apps, I found many different definitions with a common theme. Web applications that provide a native experience. This means your application must be installable from your browser onto the users' device. Before a user can install the app and be called a progressive web app your application must meet three baseline criteria. To be considered a progressive web app each application must have a service worker, a web app manifest, and to be served over HTTPS.
+Before building a progressive web app (PWA), we need to understand what exactly that means. Throughout my research on progressive web apps, I found many different definitions with a common theme. Web applications that provide a native experience. This means your application must be installable from your browser onto the users' device. Before a user can install the application it must meet three baseline criteria. To be considered a PWA, each application must have a service worker, a web app manifest, and to be served over HTTPS.
 
-A service worker is similar to other scripts running in your HTML with one key difference. This javascript file has no access to the DOM and that is because service workers provide instructions to the browser that are executed before a request is ever sent. Having access to intercept all requests on your domain is dangerous, but that's why service workers also have the extra requirements of a same-origin policy and being served over HTTPS. 
+A service worker is similar to other scripts running in your HTML with one key difference. This javascript file has no access to the DOM and that is because service workers provide instructions to the browser that are executed before a request is ever sent. Having access to intercept all requests on your domain is dangerous, but that's why service workers also have the extra requirements of a [same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy) and being served over HTTPS. 
 
 # Progressive Web Apps in JHipster
 To enable the development of PWAs, JHipster uses Workbox, a set of libraries developed by Google to remove a lot of the boilerplate to working with service workers. While the idea of building a progressive web app may sound daunting, Workbox has some great guides to walk you through the process and explain the different configuration options.
 
 ## What does JHipster do for us?
-Once I generate the JHipster frontend, three key components to building a PWA will have been created for me: `index.html`, `webpack.prod.js`, and `manifest.webapp`. Everything needed for a progressive web app will be contained in these three files. In the project root there will be a `webpack` folder and in the production configuration, there will be the implementation of the Webpack Workbox plugin that generates our service worker.
+Once I generate the JHipster frontend, three key components to building a PWA will have been created for me: `index.html`, `webpack.prod.js`, and `manifest.webapp`. Everything needed for a progressive web app will be contained in these three files. The Webpack production configuration contains the implementation of the Workbox plugin that generates our service worker.
 
 ## Webpack Configuration
-Within our production configuration, we will find the inclusion of various plugins including our Workbox implementation at the bottom.
+Within our configuration, we will find the inclusion of various plugins including our service worker generation at the bottom.
 ```javascript
 plugins: [
     ...,
