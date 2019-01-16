@@ -130,8 +130,8 @@ In order for a user to install a progressive web app from their browser, it must
 - [X] The web app is not already installed.
 - [X] Includes a web app manifest.
 - [X] Has a registered service worker.
-- [] Served over HTTPS (required for service workers).
-- [] The user meets the engagement heuristic (The user has interacted with the domain for at least 30 seconds)
+- [ ] Served over HTTPS (required for service workers).
+- [ ] The user meets the engagement heuristic (The user has interacted with the domain for at least 30 seconds)
 
 We have met almost all of the criteria for installing our app, the last parts are handled by our deployment and having users engage with the app. For my PWA, I chose to host the app in S3 and use CloudFront to deliver the content over HTTPS. Be careful if you also choose to serve your content through CloudFront. You must be sure to invalidate your index, the service worker, and your manifest files. Otherwise, users who have already visited your site will have old content delivered from Cloudfront, which will match the existing content in their cache.
 
