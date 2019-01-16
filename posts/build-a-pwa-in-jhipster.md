@@ -133,7 +133,7 @@ In order for a user to install a progressive web app from their browser, it must
 
 We have met almost all of the criteria for installing our app, the last parts are handled by our deployment and having users engage with the app. For my PWA, I chose to host the app in S3 and use CloudFront to deliver the content over HTTPS. Be careful if you choose to serve your content through CloudFront. You must be sure to invalidate your index, the service worker, and your manifest files. Otherwise, users who have already visited your site will have old content delivered from Cloudfront, which will match the existing content in their cache.
 
-After meeting all of the criteria, the browser will fire the `beforeinstallprompt` event. Listen for that event and notify users that they are able to install your application.
+After meeting all of the criteria, the browser will fire the `beforeinstallprompt` event. We can set the client to listen for that event and notify users that they are able to install your application. Below is an example of waiting for the `beforeinstallprompt` and reacting to that event by showing a button to prompt the user to add our app to their home screen.
 ```html
 <script async defer>
     var deferredPrompt;
@@ -171,13 +171,23 @@ After meeting all of the criteria, the browser will fire the `beforeinstallpromp
 ```
 
 # Testing In Chrome
-In Chrome DevTools you under the **Application** tab you can view your service worker, manifest, and cached content. This is a helpful way to check what exactly is being cached and making sure your service worker is behaving as intended.
+In Chrome DevTools, under the **Application** tab, you can view your service worker, manifest, and cached content. This is a helpful way to check what exactly is being cached and making sure your service worker is behaving as intended. When viewing the manifest under the application tab you will see the option to `add to home screen`. This is a manual way to fire the `beforeinstallprompt` and test the reaction.
 
-![Chrome DevTools](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/image11.png)
+![Chrome DevTools](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/devtools.png)
 
 ## Auditing with Lighthouse
 Google Lighthouse is an open-source tool that you can use to measure and improve the performance of your progressive web app. Lighthouse uses fourteen auditing criteria that you can view [here](https://developers.google.com/web/progressive-web-apps/checklist#baseline), rather than the three baseline criteria for a PWA. Lighthouse is integrated with DevTools and can be found under the **Audit** tab. By meeting the extra auditing criteria, you can provide users with a better experience. 
 
 
 # Conclusion
-Meeting the baseline criteria for a progressive web app is made easy with JHipster. Providing users with the best experience for offline or slow networks is a little trickier depending on the type of app you are building. The biggest issue I faced was dealing with [time to interactive](https://developers.google.com/web/tools/lighthouse/audits/time-to-interactive) simulated on a 3G network (one of the Lighthouse audits). There are many tools at your disposal these days for improving app performance, so be sure to take advantage of them. If you are developing an app with the express purpose of being installable on a phone, you must expect your users to sometimes have poor connections. Poor load times can be the difference between losing users or having a successful app.
+Meeting the baseline criteria for a progressive web app is made easy with JHipster. Providing users with the best experience for offline or slow networks is a little trickier depending on the type of app you are building. The biggest issue I faced was dealing with [time to interactive](https://developers.google.com/web/tools/lighthouse/audits/time-to-interactive) simulated on a 3G network (one of the Lighthouse audits). There are many methods at your disposal for improving app performance, so be sure to take advantage of them. If you can, try to make your CSS footprint as small as possible. CSS is a render blocking and CSS frameworks that you are not fully utilizing may be a network cost you don't need. Be wary of importing entire Javascript libraries too. Instead, try importing only the functions you are using. For example, I love the [Lodash library](https://lodash.com/), but importing the entire library would be too much. Sometimes all you need in a component is one Lodash function. In that case, the preferred import method would look like this:
+```javascript
+import { sampleSize } from 'lodash';
+```
+Instead of:
+```javascript
+import * as _ from 'lodash';
+```
+ If you are developing an app with the express purpose of it being installable on a phone, you must expect your users to sometimes have poor connections. Poor load times can be the difference between losing users or having a successful app. Remember, the point of a progressive web app is to increase user engagement by having your application installed on their home screen. The journey to having a good product doesn't stop there. Be reliable, have an experience that delights users, and above all, be worthy of being on their home screen.
+
+ Now get out there! If you weren't following along, go to the [JHipster site](https://www.jhipster.tech/) and try it out.
