@@ -133,7 +133,7 @@ In order for a user to install a progressive web app from their browser, it must
 - [ ] Served over HTTPS (required for service workers).
 - [ ] The user meets the engagement heuristic (The user has interacted with the domain for at least 30 seconds)
 
-We have met almost all of the criteria for installing our app, the last parts are handled by our deployment and having users engage with the app. For my PWA, I chose to host the app in S3 and use CloudFront to deliver the content over HTTPS. Be careful if you also choose to serve your content through CloudFront. You must be sure to invalidate your index, the service worker, and your manifest files. Otherwise, users who have already visited your site will have old content delivered from Cloudfront, which will match the existing content in their cache.
+We have _almost_ met all of the criteria for installing our app, the last two boxes to check are handled by our deployment and having users engage with the app. For my PWA, I chose to host the app in S3 and use CloudFront to deliver the content over HTTPS. Be careful if you also choose to serve your content through CloudFront. You must be sure to invalidate your index, the service worker, and your manifest files. Otherwise, users who have already visited your site will have old content delivered from Cloudfront, which will match the existing content in their cache.
 
 After meeting all of the criteria, the browser will fire the `beforeinstallprompt` event. We can set the client to listen for that event and notify users that they are able to install the application. Below is an example of waiting for the `beforeinstallprompt` and reacting to that event by showing a button to prompt the user to add our app to their home screen.
 ```html
@@ -171,6 +171,7 @@ After meeting all of the criteria, the browser will fire the `beforeinstallpromp
     };
 </script>
 ```
+After deploying the above script in our `index.html`, users will then have the ability to click our button with the class `.add-pwa`. We did it! We've met all of the criteria necessary for a browser to fire the `beforeinstallprompt` and get our app on a user's home screen.
 
 # Testing In Chrome
 In Chrome DevTools, under the **Application** tab, you can view your service worker, manifest, and cached content. This is a helpful way to check what exactly is being cached and making sure your service worker is behaving as intended. When viewing the manifest under the application tab you will see the option to `add to home screen`. This is a manual way to fire the `beforeinstallprompt` and test the reaction.
