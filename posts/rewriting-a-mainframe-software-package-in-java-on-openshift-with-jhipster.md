@@ -6,7 +6,7 @@ tags:
 - Microservices
 date: 
 title: "Rewriting a Mainframe Software Package in Java on Openshift with JHipster"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/12/K-V-Laurikainen-1961.jpg
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/K-V-Laurikainen-1961.jpg
 ---
 
 Ippon Technologies successfully helped transition a Federal Government Agency from a COBOL application to a Java Spring Boot Microservices back-end application and Angular front-end.  We were asked to pitch in because of our famed application generator, [JHipster](https://www.jhipster.tech/).  JHipster can be useful in certain situations such as:
