@@ -45,13 +45,13 @@ All of the dependencies we need should be OS agnostic, however if you may need t
         
         npm install truffle --save-dev
 
-   - If you want to double check all of our dependencies, run `node_modules/.bin/truffle version` ![Truffle version (pic missing)](https://github.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_version.png)
+   - If you want to double check all of our dependencies, run `node_modules/.bin/truffle version` ![Truffle version (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_version.png)
    
 4. Time to run Truffle's project init script
 
         node_modules/.bin/truffle init
         
-    ![Truffle init (pic missing)](https://github.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_init.png)
+    ![Truffle init (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_init.png)
 
 Technically you now have a truffle project! It is pretty bare, but lets try to understand what that script did for us.
 
@@ -59,7 +59,7 @@ Technically you now have a truffle project! It is pretty bare, but lets try to u
 
 When you run `ls -l` you should see:
 
-![Truffle directory (pic missing)](https://github.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_directory.png)
+![Truffle directory (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_directory.png)
 
 Truffle init was responsible for creating three directories (`contracts/`, `migrations/`, and `test/`) along with three files (`Migrations.sol`, `1_initial_migrations.js`, and `truffle-config.js`). Here are their descriptions, but examples on how to add to them, and organize your project will continue below.
 
@@ -109,7 +109,7 @@ Truffle init was responsible for creating three directories (`contracts/`, `migr
 
 ### Truffle comes with many useful commands, such as:
 
-![Truffle help (pic missing)](https://github.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_help.png)
+![Truffle help (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_help.png)
 
   Check out the documentation of [Truffle command line arguments](https://truffleframework.com/docs/truffle/reference/truffle-commands). We will only be using `init`, `compile`, `migrate`, and `test`.
 
@@ -117,7 +117,7 @@ Let us see if we can compile the single contract that was generated for us. It i
 
         node_modules/.bin/truffle compile
 
-![Truffle compile (pic missing)](https://github.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_compile.png)
+![Truffle compile (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_compile.png)
 
 Truffle will create `build/contracts/Migrations.json`. This json file contains a lot of information about the compiled contract. It includes the whole compiled bytecode, along with function signatures, events, docs, and compiler information. 
         
@@ -225,13 +225,13 @@ Anyone who knows the protocols that Ethereum layed out, can run the EVM, or conn
         export MNEMONIC="cause dry tilt taste hamster document hen over acoustic explain game distance"
     **Warning: This mnemonic should be secret!** You should treat this like a password. This is why we will always be using environment variables to inject into our scripts.
     
-    You can randomly generate by running ganach-cli without one. For example `node_modules/.bin/ganache-cli | grep Mnemonic` will output the single line with it. Then you can just kill the process with ^C. ![Ganache cli mnemonic (pic missing)](https://github.com/tylerjohnhaden/blog-usa/master/images/2019/01/ganache_cli_mnemonic.png)
+    You can randomly generate by running ganach-cli without one. For example `node_modules/.bin/ganache-cli | grep Mnemonic` will output the single line with it. Then you can just kill the process with ^C. ![Ganache cli mnemonic (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/ganache_cli_mnemonic.png)
 
 4. Run Ganache and see what is generated
 
         npm run ganache
 
-    ![Ganache cli (pic missing)](https://github.com/tylerjohnhaden/blog-usa/master/images/2019/01/ganache_cli.png)
+    ![Ganache cli (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/ganache_cli.png)
     Ganache will generate accounts based on what parameters you run it with. The default is 10 with starting balances of 100 Ether. The cli will display the addresses, private keys, mnemonic, gas price, and gas limit. These addresses can technically be used on any Ethereum blockchain, not just you local one (but they probably have 0 real Ether).
     
     This Ganache client will sit around, waiting for someone to send it a transaction on port 8545 by default. When it receives that transaction, it will attempt to run it on the EVM (see if the bytecode is correct) and it will then immediately create a single block with that transaction (mine the block) . On the main Ethereum blockchain, several transactions will be added to any given block, but we can be less efficient on our local version. All clients like this one should have a specific set of api calls that can read or write to the blockchain. This is why all transactions are public to everyone in the network.
@@ -243,8 +243,8 @@ Anyone who knows the protocols that Ethereum layed out, can run the EVM, or conn
             -H "Content-Type: application/json" \
             -d '{"jsonrpc": "2.0", "method": "web3_clientVersion"}'
 
-    ![Ganache cli curl (pic missing)](https://github.com/tylerjohnhaden/blog-usa/master/images/2019/01/ganache_cli_curl.png)
-    ![Ganache cli log (pic missing)](https://github.com/tylerjohnhaden/blog-usa/master/images/2019/01/ganache_cli_log.png)
+    ![Ganache cli curl (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/ganache_cli_curl.png)
+    ![Ganache cli log (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/ganache_cli_log.png)
     As you can see, our client responds with a client version, which tells us which protocol to use. Don't worry, you probably won't have to deal with different protocol versions if you are reading this article. This is just a way to test that your client is running properly.
     
     These api calls (like `web3_clientVersion`) are part of Ethereum's protocols. Most clients will support the majority of these methods. For an explanation of these methods see the [JSON RPC docs](https://github.com/ethereum/wiki/wiki/JSON-RPC). 
@@ -297,9 +297,9 @@ Now that we have a blockchain client to store our transactions, lets deploy our 
     
     When we run this, truffle will first compile, and then run its migration steps using the development network. The development network simply points to our Ganache client.
     
-    ![Truffle migrate 0 (pic missing)](https://github.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_migrate_0.png)
-    ![Truffle migrate 1 (pic missing)](https://github.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_migrate_1.png)
-    ![Truffle migrate 2 (pic missing)](https://github.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_migrate_2.png)
+    ![Truffle migrate 0 (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_migrate_0.png)
+    ![Truffle migrate 1 (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_migrate_1.png)
+    ![Truffle migrate 2 (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_migrate_2.png)
     Ganache's output will contain a lot of good information about what was going on. You get back a list of all the API calls made to it, such as "eth_getBlockByNumber" or "eth_sendTransaction". When you send a transaction, it will display things like the transaction hash, gas usage, block number, and contract address (if the transaction created a contract).
     
 As you can see, the client is still running. You can now send transactions to localhost:8545 from browser Javascript libraries ([Web3js](https://web3js.readthedocs.io/en/1.0/)), Java libraries ([Web3j](https://github.com/web3j/web3j)) or even curl ... although the syntax starts to become cumbersome.
@@ -328,7 +328,7 @@ So far, we have created a real working blockchain. However there are already a f
 
 Again, as long as you know the protocols (which are public domain), you can connect to these public networks with your own custom clients. However, this is a lot of work, and hipsters don't like working more than they have to. So we can either use Ethereum's open source Go client [Geth](https://github.com/ethereum/go-ethereum/wiki/geth) or we can be even lazier, and use a free hosted service called Infura.
 
-[Infura](https://infura.io) is a super easy way to connect to the public networks because you do not have to worry about running code on a server, or keeping it available. We are going to sign up for a free project. It will give us a few important things to work with. For this article, we will need the project id, and the endpoint url. ![Infura console (pic missing)](https://github.com/tylerjohnhaden/blog-usa/master/images/2019/01/infura_console.png) We will call this our Infura client because in the background, Infura is running a Geth client as a node in one of the public networks. [Infura's Getting Started Guide](https://blog.infura.io/getting-started-with-infura-28e41844cc89)
+[Infura](https://infura.io) is a super easy way to connect to the public networks because you do not have to worry about running code on a server, or keeping it available. We are going to sign up for a free project. It will give us a few important things to work with. For this article, we will need the project id, and the endpoint url. ![Infura console (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/infura_console.png) We will call this our Infura client because in the background, Infura is running a Geth client as a node in one of the public networks. [Infura's Getting Started Guide](https://blog.infura.io/getting-started-with-infura-28e41844cc89)
 
 We also want to use public networks because we might want to call other contracts that may not exist on our local development network. For example, if you want to exchange Dai tokens (a stable coin), you have to test on Kovan because only Kovan and Mainnet have the Dai contract.
 
@@ -343,7 +343,7 @@ We also want to use public networks because we might want to call other contract
             -H "Content-Type: application/json" \
             -d '{"jsonrpc":"2.0","method":"web3_clientVersion","params": [],"id":1}'
 
-    ![Infura curl (pic missing)](https://github.com/tylerjohnhaden/blog-usa/master/images/2019/01/infura_curl.png)
+    ![Infura curl (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/infura_curl.png)
     Awesome, looks like we hit our new Infura client
 
 ## Forking from Infura
@@ -435,7 +435,7 @@ Luckily, it is very easy to fork into Ganache. We just have to specify the Infur
 
 This command will start our local ganache (which forked from kovan), and then will migrate our contracts to it. Our local client will keep running, and we can view the contracts which have been successfully deployed.
 
-Run `node_modules/.bin/truffle networks`: ![Truffle network (pic missing)](https://github.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_networks.png)
+Run `node_modules/.bin/truffle networks`: ![Truffle network (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_networks.png)
 
 You can send function calls as transactions to this address on our local client. 
 
@@ -517,7 +517,7 @@ When working with contract code, you should always follow [best practices](https
         }
         
         npm run lint:sol
-    ![Solium Lint (pic missing)](https://github.com/tylerjohnhaden/blog-usa/master/images/2019/01/solium_lint.png)
+    ![Solium Lint (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/solium_lint.png)
     
     As you can see, the `Migrations.sol` generated for us has some styling errors. You will have to come up with your own criteria linting.
     
