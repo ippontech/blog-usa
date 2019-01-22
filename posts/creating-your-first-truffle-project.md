@@ -320,7 +320,13 @@ If you deployed a contract, you could now send transactions that run specific fu
           }
    Here, you can see the network is specified by a number, our local one we chose as 3431 (arbitrarily chosen). `transactionHash` is a unique identifier of that transaction. Anyone can look up that specific transaction based on it, and will be able to see all the events emitted, or other internal transactions that occurred during it. Even if it reverts because of some runtime error, it will still be present and forever recorded that you made a mistake!
    
-   So now we need to specify the address `0x2fAeC1D9fC41FC63976187cf912264a632BDc05D` if we want to talk to the contract "Migrations". *todo: be more concrete*
+   So now we need to specify the address `0x2fAeC1D9fC41FC63976187cf912264a632BDc05D` if we want to talk to the contract "Migrations". We can test it out by sending an RPC to our running ganache client. Let's get the bytecode deployed at that address...
+   
+       curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getCode","params":["0x2fAeC1D9fC41FC63976187cf912264a632BDc05D", "latest"],"id":1}' localhost:8545
+       
+   ![Ganache cli getCode (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/ganache_cli_getCode.png)
+   
+   You should see something like the above response. The address I used in the screenshot is different because this was forked at a different time. You can always get the code deployed at an address if it a contract address. You can get the balance of any address including contracts. 
 
 # Using Infura to connect to public networks
 
@@ -350,7 +356,11 @@ We also want to use public networks because we might want to call other contract
 
 You can use this new client to do essentially everything we just did on our Ganache client, see Infura's [api docs](https://infura.io/docs). However, if you want to write transactions to these public blockchains, it will cost Ether. Even on the test networks, you still have to acquire Ether. Follow [these links](https://www.google.com/search?q=ethereum+test+faucets) to lean more about *faucets*. Also, all of these public transactions are persisted across the world. For development, we still want to spin up a local ganache client to keep our code base relatively private, and so we are not incurring unnecessary costs.
 
-We can leverage our Infura client by forking it into our local Ganache. Forking is a very literal term in the sense that we are taking the "linked list" that makes up the public blockchain, and then adding our own transactions onto the end of it. We do not care about public transactions "post fork" because our linked list continues off from the other (never linking back up again) *todo: add diagram*. If we reference a contact that was created before the fork, our local ganache will simply search our Infura client for that particular code. It will never change, even if other people interact with the same contract on a different blockchain.
+We can leverage our Infura client by forking it into our local Ganache. Forking is a very literal term in the sense that we are taking the "linked list" that makes up the public blockchain, and then adding our own transactions onto the end of it. We do not care about public transactions "post fork" because our linked list continues off from the other (never linking back up again). 
+
+![Blockchain fork (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/blockchain_fork.png)
+
+If we reference a contact that was created before the fork, our local ganache will simply search our Infura client for that particular code. It will never change, even if other people interact with the same contract on a different blockchain. Notice how the blocks only retain information about the past blocks (the previous hash). Think of that as a checksum on the past. 
 
 Luckily, it is very easy to fork into Ganache. We just have to specify the Infura client endpoint along with which network. 
 
@@ -557,7 +567,7 @@ Truffle comes with the command `truffle test` which will run all the unit tests,
                 }
             }
         }
-    This will give us more information during the testing, including gas usage for each function called. ![todo take pic]()
+    This will give us more information during the testing, including gas usage for each function called. We'll see this in our testing output later.
 
 4. Now we can add our first test. Create the file `test/Deployment.test.js`:
 
@@ -610,7 +620,7 @@ Truffle comes with the command `truffle test` which will run all the unit tests,
 6. Run the tests
 
         npm run test
-    ![todo take pic]()
+    ![Truffle test (missing pic)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_test_1.png)
     
     Here, we don't see any listed methods in the table. This is because the only non-contract-creation transactions we tested was `last_completed_migration` which was a [*view*](https://solidity.readthedocs.io/en/v0.5.2/contracts.html#view-functions) function, which does not get picked up by Mocha.
     
