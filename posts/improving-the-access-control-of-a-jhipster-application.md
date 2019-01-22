@@ -9,7 +9,7 @@ tags:
 - Angular
 date: 2019-01-22T15:24:45.000Z
 title: "Improving the access-control of a JHipster application"
-image: https://raw.githubusercontent.com/falydoor/blog-usa/master/images/2019/01/access-control.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/access-control.png
 ---
 
 By default, a JHipster application will let any authenticated user the right to perform the four basic functions (or CRUD) on any entities. This behavior is very useful to showcase the application since any user can for example create an entity and update it. However, for a real application in production that kind of behavior is not really appropriate. The application's routes and API need to be restricted so a regular user does not have total freedom on every entities.
