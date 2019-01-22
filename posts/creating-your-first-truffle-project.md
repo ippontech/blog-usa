@@ -262,7 +262,10 @@ Anyone who knows the protocols that Ethereum laid out can run the EVM, or connec
    ```
 
     ![Ganache cli curl (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/ganache_cli_curl.png)
+    
+    Looking back at our ganache client, we see a `web3_clientVersion` call.
     ![Ganache cli log (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/ganache_cli_log.png)
+    
     As you can see, our client responds with a client version, which tells us which protocol to use. Don't worry, you probably won't have to deal with different protocol versions if you are reading this article. This is just a way to test that your client is running properly.
     
     These API calls (like `web3_clientVersion`) are part of Ethereum's protocols. Most clients will support the majority of these methods. For an explanation of these methods see the [JSON RPC docs](https://github.com/ethereum/wiki/wiki/JSON-RPC). 
@@ -320,7 +323,9 @@ Now that we have a blockchain client to store our transactions, let's deploy our
     When we run this, truffle will first compile, and then run its migration steps using the development network. The development network simply points to our Ganache client.
     
     ![Truffle migrate 0 (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_migrate_0.png)
+    
     ![Truffle migrate 1 (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_migrate_1.png)
+    
     ![Truffle migrate 2 (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_migrate_2.png)
     
     Ganache's output will contain a lot of good information about what was going on. You get back a list of all the API calls made to it, such as "eth_getBlockByNumber" or "eth_sendTransaction". When you send a transaction, it will display things like the transaction hash, gas usage, block number, and contract address (if the transaction created a contract).
