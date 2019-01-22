@@ -6,13 +6,13 @@ tags:
 - blockchain
 - ether
 date: 
-title: Creating your First Truffle Project
-image: 
+title: "Creating your First Truffle Project"
+image: https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_project_jumbo.png
 ---
 
-An introduction on how to get started with a Truffle-based Solidity project. This article series will not only explain how to get started with [Truffle](https://truffleframework.com/docs/truffle/overview) as an Ethereum smart contract framework, but will also describe boilerplate code that will make your life a ton easier (think linting, local blockchain clients, and improved testing). The goal will to be as transparent as possible about all the tools and configurations that are used, because it usually takes a while to start really getting the whole blockchain thing.
+This is an introduction on how to get started with a Truffle-based Solidity project. This article series will not only explain how to get started with [Truffle](https://truffleframework.com/docs/truffle/overview) as an Ethereum smart contract framework, but will also describe boilerplate code that will make your life a ton easier (think linting, local blockchain clients, and improved testing). The goal will to be as transparent as possible about all the tools and configurations that are used, because it usually takes a while to start really getting the whole blockchain thing.
 
-If you would like to explore the source code as a simple boilerplate project, checkout the [github](https://github.com/tylerjohnhaden/__truffle-boilerplate)(blog written as of [commit 0x435f745](https://github.com/tylerjohnhaden/__truffle-boilerplate/tree/435f745a21edfbff6904153b81d65e2d1ee1a6a6)). 
+If you would like to explore the source code as a simple boilerplate project, checkout the [github](https://github.com/tylerjohnhaden/__truffle-boilerplate) (blog written as of [commit 0x435f745](https://github.com/tylerjohnhaden/__truffle-boilerplate/tree/435f745a21edfbff6904153b81d65e2d1ee1a6a6)). 
 
 ### Assumptions
 This tutorial will assume that you have experience with basic bash, node, and npm. 
@@ -53,7 +53,7 @@ All of the dependencies we need should be OS agnostic, however if you may need t
         
     ![Truffle init (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_init.png)
 
-Technically you now have a truffle project! It is pretty bare, but lets try to understand what that script did for us.
+You now have a truffle project! It is pretty bare, but lets try to understand what that script did for us.
 
 ## Truffle's generated files
 
@@ -98,7 +98,7 @@ Truffle init was responsible for creating three directories (`contracts/`, `migr
         module.exports = function(deployer) {
           deployer.deploy(Migrations);
         };
-- `test/` is pretty self explanatory. It can contain js or sol files, depending on your choice of testing language. It starts off empty, but we will add a test later on.
+- `test/` is pretty self explanatory. It can contain `.js` or `.sol` files, depending on your choice of testing language. It starts off empty, but we will add a test later on.
 - `truffle-config.js` is the main configuration for your Truffle project. This is where we define what networks to use, gas usages, addresses to deploy with, and a few other variables.
         
         module.exports = {
@@ -197,7 +197,7 @@ As a smart contract *developer*, you don't really need to care about the exchang
 
 ## Using Ganache to create a local blockchain
 
-Anyone who knows the protocols that Ethereum layed out, can run the EVM, or connect to the main network. For now, we would like to run a local client that will act as our little EVM. The Truffle Suite has an easy to use client called [Ganache](https://github.com/trufflesuite/ganache-cli). It comes in two flavors, console and cli. We will be using the cli for this project, because we will be running it programmatically, and we can run it with our own configuration. If you want to get a better feel for what Ganache is doing in the background, check out the [console](https://truffleframework.com/ganache) version.
+Anyone who knows the protocols that Ethereum laid out can run the EVM, or connect to the main network. For now, we would like to run a local client that will act as our little EVM. The Truffle Suite has an easy to use client called [Ganache](https://github.com/trufflesuite/ganache-cli). It comes in two flavors, console and cli. We will be using the cli for this project, because we will be running it programmatically, and we can run it with our own configuration. If you want to get a better feel for what Ganache is doing in the background, check out the [console](https://truffleframework.com/ganache) version.
 
 1. First, lets install it into our project
 
@@ -300,6 +300,7 @@ Now that we have a blockchain client to store our transactions, lets deploy our 
     ![Truffle migrate 0 (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_migrate_0.png)
     ![Truffle migrate 1 (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_migrate_1.png)
     ![Truffle migrate 2 (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_migrate_2.png)
+    
     Ganache's output will contain a lot of good information about what was going on. You get back a list of all the API calls made to it, such as "eth_getBlockByNumber" or "eth_sendTransaction". When you send a transaction, it will display things like the transaction hash, gas usage, block number, and contract address (if the transaction created a contract).
     
 As you can see, the client is still running. You can now send transactions to localhost:8545 from browser Javascript libraries ([Web3js](https://web3js.readthedocs.io/en/1.0/)), Java libraries ([Web3j](https://github.com/web3j/web3j)) or even curl ... although the syntax starts to become cumbersome.
@@ -336,7 +337,7 @@ Again, as long as you know the protocols (which are public domain), you can conn
 
 [Infura](https://infura.io) is a super easy way to connect to the public networks because you do not have to worry about running code on a server, or keeping it available. We are going to sign up for a free project. It will give us a few important things to work with. For this article, we will need the project id, and the endpoint url. ![Infura console (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/infura_console.png) We will call this our Infura client because in the background, Infura is running a Geth client as a node in one of the public networks. [Infura's Getting Started Guide](https://blog.infura.io/getting-started-with-infura-28e41844cc89)
 
-We also want to use public networks because we might want to call other contracts that may not exist on our local development network. For example, if you want to exchange Dai tokens (a stable coin), you have to test on Kovan because only Kovan and Mainnet have the Dai contract.
+We also want to use public networks because we might want to call other contracts that may not exist on our local development network. For example, if you want to exchange Dai tokens (a stablecoin), you have to test on Kovan because only Kovan and Mainnet have the Dai contract.
 
 1. Add this project id as an environment variable
 
@@ -453,7 +454,7 @@ You can send function calls as transactions to this address on our local client.
 
 When working with contract code, you should always follow [best practices](https://solidity.readthedocs.io/en/v0.5.2/security-considerations.html#security-considerations). Not because your technical lead is particularly stubborn, but because this code will be handling your client's money. You may assume that your solidity code will be audited for security and optimization. Linting is always the first step in this process.
 
-1. Add [Ethlint](https://www.npmjs.com/package/ethlint)(formally know as Solium) to your project
+1. Add [Ethlint](https://www.npmjs.com/package/ethlint) (formally know as Solium) to your project
     
         npm install ethlint --save-dev
 
@@ -535,7 +536,7 @@ When working with contract code, you should always follow [best practices](https
 
 The best part of the whole article, we finally get to write some tests.
 
-Truffle comes with the command `truffle test` which will run all the unit tests, or specific ones if you specify them, [see docs](https://truffleframework.com/docs/truffle/testing/testing-your-contracts#command). First, we will add some scripts to abstract away the running of our local blockchain in conjunction with running the tests.
+Truffle comes with the command `truffle test` which will run all the unit tests, or specific ones if you specify them, [see the Truffle docs](https://truffleframework.com/docs/truffle/testing/testing-your-contracts#command). First, we will add some scripts to abstract away the running of our local blockchain in conjunction with running the tests.
 
 1. Install two cool modules to help us run the unit and acceptance tests:
 
@@ -622,7 +623,7 @@ Truffle comes with the command `truffle test` which will run all the unit tests,
         npm run test
     ![Truffle test (missing pic)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_test_1.png)
     
-    Here, we don't see any listed methods in the table. This is because the only non-contract-creation transactions we tested was `last_completed_migration` which was a [*view*](https://solidity.readthedocs.io/en/v0.5.2/contracts.html#view-functions) function, which does not get picked up by Mocha.
+    Here, we don't see any listed methods in the table. This is because the only non-contract-creation transaction we tested was `last_completed_migration` which was a [*view*](https://solidity.readthedocs.io/en/v0.5.2/contracts.html#view-functions) function, which does not get picked up by Mocha.
     
     We will get back a lot of logs, and the more the better. First, we see ganache starting up and truffle migrating our contract. Next we start to see the tests getting run. Once the pass, we can see the gas usages generated by Mocha.
     
