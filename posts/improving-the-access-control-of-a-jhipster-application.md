@@ -20,9 +20,9 @@ In this blog post, I will explain how to improve the access-control of the entit
 
 ## Spring Security and JHipster authorities
 
-JHipster uses [Spring Security](https://spring.io/projects/spring-security) to secure the application, it is a very mature and robust framework used to secure any Spring-based applications. Spring Security can be easily customized to change the application's authentication and access-control to fulfill any desired requirements. JHipster uses 4 kind of users (**system**, **anonymousUser**, **user** and **admin**), more information can be found on the [JHipster security page](https://www.jhipster.tech/security/).
+JHipster uses [Spring Security](https://spring.io/projects/spring-security) to secure the application, it is a very mature and robust framework used to secure any Spring-based applications. Spring Security can be easily customized to change the application's authentication and access-control to fulfill any desired requirements. JHipster uses 4 kind of users (**system**, **anonymousUser**, **user** and **admin**) that have one or multiple authorities (**ROLE_ANONYMOUS**, **ROLE_USER** and **ROLE_ADMIN**). More information about the type of users and authorities can be found on the [JHipster security page](https://www.jhipster.tech/security/).
 
-Those users have authorities that control the access-control at two different levels:
+User's access-control can be configured using authorities at two different levels: 
 - Url
     - **user** can use the entities API
     - only **admin** can use the management's API
@@ -59,7 +59,7 @@ So for example, having `.antMatchers("/api/**").hasAuthority(AuthoritiesConstant
 
 ## Customizing an endpoint for a specific HTTP verb
 
-In some cases, the access-control will be based on the HTTP verb and that can't be done using the url patterns. In this case, the control must be done in the resource class at the method level.
+In some cases, the access-control will be based on the HTTP verb and it can't be done using the url patterns. In this case, the configuration must be done the method level in the resource.
 
 The code below from the class `UserResource.java` shows how JHipster does that:
 
