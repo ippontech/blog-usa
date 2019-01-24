@@ -363,6 +363,6 @@ If you deployed a contract, you could now send transactions that run specific fu
 By now, you have learned how to initialize a new Truffle project and run code on a local blockchain.  This is enough to start developing Solidity contracts, but in order get that code tested and running on a distributed network. 
 
 - [x] Part 1: Truffle initialization and starting your very own blockchain
-- [ ] [Part 2: Using Infura to connect to public networks, linting, and testing](todo add link)
+- [ ] [Part 2: Using Infura to connect to public networks, linting, and testing](https://blog.ippon.tech/creating-your-first-truffle-project-part-2-of-2/)
 
 To see the latest version of the boilerplate code discussed in this article, check out our public [source repository](https://github.com/tylerjohnhaden/__truffle-boilerplate). Feel free to submit issues, or contribute.

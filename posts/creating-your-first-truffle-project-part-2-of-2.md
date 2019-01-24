@@ -330,7 +330,7 @@ Truffle comes with the command `truffle test` which will run all the unit tests,
 
 You have now learned enough to get started and run your Solidity contracts on public networks. The languages and tools are constantly improving, and smart contract applications can start relying on tried and tested software development patterns. Don't forget to keep security in mind, and never take someone's word on the state of a contract. Trustless applications are intended to be verified, and bytecode is intended to be public. 
 
-- [x] [Part 1: Truffle initialization and starting your very own blockchain](todo add link)
+- [x] [Part 1: Truffle initialization and starting your very own blockchain](https://blog.ippon.tech/creating-your-first-truffle-project-part-1-of-2/)
 - [x] Part 2: Using Infura to connect to public networks, linting, and testing
 
 To see the latest version of our boilerplate code, submit issues, or contribute, check out our public [repository](https://github.com/tylerjohnhaden/__truffle-boilerplate).
