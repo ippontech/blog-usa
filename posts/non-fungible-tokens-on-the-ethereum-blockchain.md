@@ -29,3 +29,49 @@ There are many assets one could "digitize", or at least create a digital tradabl
 When you purchase a painting or sculpture, there are usually documents or other artifacts to assure you of their provenance and authenticity. ERC-721 attempts to provide these assurances by associating the digital token with digital metadata. Let's dig in and see how that works under the covers.
 
 # ERC-721
+Since Ethereum is a smart contract platform, token implementations are interfaces which define functions that must be implemented. Like ERC-20, your implementation of these functions defines behavior of tokens minted from the contract during transactions.
+
+## The Interface
+```solidity
+        interface ERC721 /* is ERC165 */ {
+
+            event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);
+
+            event Approval(address indexed _owner, address indexed _approved, uint256 indexed _tokenId);
+
+            event ApprovalForAll(address indexed _owner, address indexed _operator, bool _approved);
+
+            function balanceOf(address _owner) external view returns (uint256);
+
+            function ownerOf(uint256 _tokenId) external view returns (address);
+
+            function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes data) external payable;
+
+            function safeTransferFrom(address _from, address _to, uint256 _tokenId) external payable;
+
+            function transferFrom(address _from, address _to, uint256 _tokenId) external payable;
+
+            function approve(address _approved, uint256 _tokenId) external payable;
+
+            function setApprovalForAll(address _operator, bool _approved) external;
+
+            function getApproved(uint256 _tokenId) external view returns (address);
+
+            function isApprovedForAll(address _owner, address _operator) external view returns (bool);
+        }
+
+        interface ERC165 {
+            function supportsInterface(bytes4 interfaceID) external view returns (bool);
+        }
+
+        interface ERC721TokenReceiver {
+            function onERC721Received(address _operator, address _from, uint256 _tokenId, bytes _data) external returns(bytes4);
+         }
+```
+
+## The Use Case
+As is often the case in emerging technologies, the most prevalent use cases for non-fungible tokens emerging to date are in art and gaming. I was approached by my pal [Johnny Dollar](https://johnnydollar.biz/) for help implementing and deploying an NFT contract. Johnny wanted to provide digital artists with an open source solution for minting NFTs for digital art. Thus the [Artists' Liberation Front](https://the-alf.com/) was born!
+
+![ALF](https://raw.githubusercontent.com/misterzero/blog-usa/blockchain-nft-blog/images/2019/01/non-fungible-tokens-02.jpg)
+
+## Implementing ERC-721
