@@ -9,7 +9,7 @@ title: "Creating your First Truffle Project (part 2 of 2)"
 image: https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_project_jumbo.png
 ---
 
-This is an introduction on how to get started with a Truffle-based Solidity project. The first part is [here (part 1 of 2)](todo add link). In the second part, we will go over connecting you project to Infura through forking, adding linting, and writing tests. The goal is to be prepared for security auditing by ensuring good code practices and including automated acceptance and unit tests.
+This is an introduction on how to get started with a Truffle-based Solidity project. The first part is [here (part 1 of 2)](https://blog.ippon.tech/creating-your-first-truffle-project-part-1-of-2/). In the second part, we will go over connecting you project to Infura through forking, adding linting, and writing tests. The goal is to be prepared for security auditing by ensuring good code practices and including automated acceptance and unit tests.
 
 If you would like to explore the source code as a simple boilerplate project, checkout the [github](https://github.com/tylerjohnhaden/__truffle-boilerplate) (blog written as of [commit 0x435f745](https://github.com/tylerjohnhaden/__truffle-boilerplate/tree/435f745a21edfbff6904153b81d65e2d1ee1a6a6)). 
 
