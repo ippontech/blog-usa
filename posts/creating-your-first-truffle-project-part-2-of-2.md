@@ -24,12 +24,12 @@ Again, as long as you know the protocols (which are public domain), you can conn
 We also want to use public networks because we might want to call other contracts that may not exist on our local development network. For example, if you want to exchange Dai tokens (a stablecoin), you have to test on Kovan because only Kovan and Mainnet have the Dai contract.
 
 1. Add this project id as an environment variable
-   ```
+   ```shell
    export INFURA_PROJECT_ID=1234whatever
    ```
 
 2. Let's check to see if it is working properly.
-   ```
+   ```shell
    curl https://mainnet.infura.io/v3/$INFURA_PROJECT_ID \
        -X POST \
        -H "Content-Type: application/json" \
@@ -52,7 +52,7 @@ If we reference a contact that was created before the fork, our local ganache wi
 Luckily, it is very easy to fork into Ganache. We just have to specify the Infura client endpoint along with which network. 
 
 1. Let's add to our scripts in `package.json`
-   ```
+   ```json
    {
        ...
        "scripts": {
@@ -69,7 +69,7 @@ Luckily, it is very easy to fork into Ganache. We just have to specify the Infur
    ```
 
 2. We need to add to our `truffle-config.js` to point to these new networks:
-   ```
+   ```js
    var HDWalletProvider = require('truffle-hdwallet-provider');
    // environment variables not set in the package config
    var infuraProjectId = process.env.INFURA_PROJECT_ID;
@@ -124,12 +124,12 @@ Luckily, it is very easy to fork into Ganache. We just have to specify the Infur
     We have to use the mnemonic here, because when we start sending transactions to the main networks, we have to use existing addresses with balances. 
     
 3. Now we need to install [HDWalletProvider](https://github.com/trufflesuite/truffle-hdwallet-provider) so we can turn mnemonics into our addresses and private keys.
-   ```
+   ```shell
    npm install truffle-hdwallet-provider --save-dev
    ```
 
 4. Try running one or all of the forking scripts:
-   ```
+   ```shell
    npm run start:kovan
    ```
 
@@ -144,17 +144,17 @@ You can send function calls as transactions to this address on our local client.
 When working with contract code, you should always follow [best practices](https://solidity.readthedocs.io/en/v0.5.2/security-considerations.html#security-considerations). Not because your technical lead is particularly stubborn, but because this code will be handling your client's money. You may assume that your Solidity code will be audited for security and optimization. Linting is always the first step in this process.
 
 1. Add [Ethlint](https://www.npmjs.com/package/ethlint) (formally know as Solium) to your project
-   ```
+   ```shell
    npm install ethlint --save-dev
    ```
 
 2. Init Solium
-   ```
+   ```shell
    node_modules/.bin/solium --init
    ```
     This generated two files `.soliumrc.json` and `.soliumignore`.
     - `.soliumrc.json` will store your rules for running lint on the Solidity code.
-      ```
+      ```json
       {
         "extends": "solium:recommended",
         "plugins": [
@@ -177,14 +177,14 @@ When working with contract code, you should always follow [best practices](https
       }
       ```
     - `.soliumignore` tells Ethlint what to skip. 
-      ```
+      ```text
       node_modules
       contracts/Migrations.sol
       ```
         There will end up being Solidity code from third parties, such as [OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-solidity). Obviously you will want to vet any code you include, but as far as getting started with development, you do not want to have to fix other people's styling errors.
 
 3. Update `.soliumrc.json` to include better security and general linting:
-   ```
+   ```json
    {
      "extends": "solium:all",
      "plugins": ["security"],
@@ -212,7 +212,7 @@ When working with contract code, you should always follow [best practices](https
 4. Optionally, update `.soliumignore` so that Ethlint will lint `Migrations.sol`
 
 5. Add Ethlint to your list of scripts. Then run the linter:
-   ```
+   ```json
    {
        "scripts": {
            ...
@@ -220,7 +220,7 @@ When working with contract code, you should always follow [best practices](https
        }
    }
    ```
-   ```
+   ```shell
    npm run lint:sol
    ```
     ![Solium Lint (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/solium_lint.png)
@@ -234,12 +234,12 @@ The best part of the whole article, we finally get to write some tests.
 Truffle comes with the command `truffle test` which will run all the unit tests, or specific ones if you specify them, [see the Truffle docs](https://truffleframework.com/docs/truffle/testing/testing-your-contracts#command). First, we will add some scripts to abstract away the running of our local blockchain in conjunction with running the tests.
 
 1. Install two cool modules to help us run the unit and acceptance tests:
-   ```
+   ```shell
    npm install truffle-test-utils eth-gas-reporter --save-dev
    ```
 
 2. Add a script to `package.json`
-   ```
+   ```json
    {
        ...
        "scripts": {
@@ -252,7 +252,7 @@ Truffle comes with the command `truffle test` which will run all the unit tests,
     All this does is start a local Ganache client, migrate the current contracts, then run units/acceptance tests on that deployed code. `--kill-others --success first` just tells [Concurrently](https://www.npmjs.com/package/concurrently#usage) to stop running the Ganache client after the tests have finished.
     
 3. We can update `truffle-config.js` to use [eth-gas-reporter](https://www.npmjs.com/package/eth-gas-reporter) in its [Mocha](https://mochajs.org/) configuration
-   ```
+   ```js
    ...
    
    modules.export = { 
@@ -269,7 +269,7 @@ Truffle comes with the command `truffle test` which will run all the unit tests,
     This will give us more information during the testing, including gas usage for each function called. We'll see this in our testing output later.
 
 4. Now we can add our first test. Create the file `test/Deployment.test.js`:
-   ```
+   ```js
    require('truffle-test-utils').init();
    
    const Migrations = artifacts.require('Migrations');
@@ -306,7 +306,7 @@ Truffle comes with the command `truffle test` which will run all the unit tests,
     Here is an acceptance test. It can be writen for every contract because it makes no assumptions about the contract functions or data. Instead, it tests the compiled bytecode's size. It is important when writing smart contracts, to be aware of the transactions with the blockchain because not only do you pay for every byte of code, but some transactions are too large and will fail.
 
 5. We can also write a unit test
-   ```
+   ```js
    it('sets lastCompletedMigration by the owner', async () => {
        let expectedCompleted = 1234;
        await migrations.setCompleted(expectedCompleted, { from: accounts[0] });
@@ -317,7 +317,7 @@ Truffle comes with the command `truffle test` which will run all the unit tests,
     Here is a unit test that tests the happy path for the function `setCompleted`. Notice the use of async and await in these tests. Every time we call the contract, we must wait for our client to respond. 
 
 6. Run the tests
-   ```
+   ```shell
    npm run test
    ```
     ![Truffle test (missing pic)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_test_1.png)
