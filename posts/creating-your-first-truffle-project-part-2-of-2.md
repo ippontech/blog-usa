@@ -4,14 +4,14 @@ authors:
 tags:
 - ethereum
 - blockchain
-date: 
+date: 2019-01-24T19:48:59.000Z
 title: "Creating your First Truffle Project (part 2 of 2)"
 image: https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_project_jumbo.png
 ---
 
 This is an introduction on how to get started with a Truffle-based Solidity project. The first part is [here (part 1 of 2)](https://blog.ippon.tech/creating-your-first-truffle-project-part-1-of-2/). In the second part, we will go over connecting you project to Infura through forking, adding linting, and writing tests. The goal is to be prepared for security auditing by ensuring good code practices and including automated acceptance and unit tests.
 
-If you would like to explore the source code as a simple boilerplate project, checkout the [github](https://github.com/tylerjohnhaden/__truffle-boilerplate) (blog written as of [commit 0x435f745](https://github.com/tylerjohnhaden/__truffle-boilerplate/tree/435f745a21edfbff6904153b81d65e2d1ee1a6a6)). 
+If you would like to explore the source code as a simple boilerplate project, checkout the [github](https://github.com/tylerjohnhaden/__truffle-boilerplate) (blog written as of [commit 0x435f745](https://github.com/tylerjohnhaden/__truffle-boilerplate/tree/435f745a21edfbff6904153b81d65e2d1ee1a6a6)).
 
 # Using Infura to connect to public networks
 
@@ -43,13 +43,13 @@ We also want to use public networks because we might want to call other contract
 
 You can use this new client to do essentially everything we just did on our Ganache client, see Infura's [API docs](https://infura.io/docs). However, if you want to write transactions to these public blockchains, it will cost Ether. Even on the test networks, you still have to acquire Ether. Follow [these links](https://www.google.com/search?q=ethereum+test+faucets) to lean more about *faucets*. Also, all of these public transactions are persisted across the world. For development, we still want to spin up a local ganache client to keep our code base relatively private, and so we are not incurring unnecessary costs.
 
-We can leverage our Infura client by forking it into our local Ganache. Forking is a very literal term in the sense that we are taking the "linked list" that makes up the public blockchain, and then adding our own transactions onto the end of it. We do not care about public transactions "post fork" because our linked list continues off from the other (never linking back up again). 
+We can leverage our Infura client by forking it into our local Ganache. Forking is a very literal term in the sense that we are taking the "linked list" that makes up the public blockchain, and then adding our own transactions onto the end of it. We do not care about public transactions "post fork" because our linked list continues off from the other (never linking back up again).
 
 ![Blockchain fork (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/blockchain_fork.png)
 
-If we reference a contact that was created before the fork, our local ganache will simply search our Infura client for that particular code. It will never change, even if other people interact with the same contract on a different blockchain. Notice how the blocks only retain information about the past blocks (the previous hash). Think of that as a checksum on the past. 
+If we reference a contact that was created before the fork, our local ganache will simply search our Infura client for that particular code. It will never change, even if other people interact with the same contract on a different blockchain. Notice how the blocks only retain information about the past blocks (the previous hash). Think of that as a checksum on the past.
 
-Luckily, it is very easy to fork into Ganache. We just have to specify the Infura client endpoint along with which network. 
+Luckily, it is very easy to fork into Ganache. We just have to specify the Infura client endpoint along with which network.
 
 1. Let's add to our scripts in `package.json`
    ```json
@@ -74,7 +74,7 @@ Luckily, it is very easy to fork into Ganache. We just have to specify the Infur
    // environment variables not set in the package config
    var infuraProjectId = process.env.INFURA_PROJECT_ID;
    var mnemonic = process.env.MNEMONIC;
-   
+
    // naive environment assertions, since these aren't present by default
    if (infuraProjectId === undefined || infuraProjectId === '') {
        throw new Error('truffle-config.js needs the environment variable "INFURA_PROJECT_ID"');
@@ -83,9 +83,9 @@ Luckily, it is very easy to fork into Ganache. We just have to specify the Infur
    } else if (mnemonic.split(' ').length != 12) {
        throw new Error('The environment variable "MNEMONIC" must be 12 words (space delineated)');
    }
-   
+
    ...
-   
+
    modules.export = {
        networks: {
            ...
@@ -121,8 +121,8 @@ Luckily, it is very easy to fork into Ganache. We just have to specify the Infur
        ...
    }
    ```
-    We have to use the mnemonic here, because when we start sending transactions to the main networks, we have to use existing addresses with balances. 
-    
+    We have to use the mnemonic here, because when we start sending transactions to the main networks, we have to use existing addresses with balances.
+
 3. Now we need to install [HDWalletProvider](https://github.com/trufflesuite/truffle-hdwallet-provider) so we can turn mnemonics into our addresses and private keys.
    ```shell
    npm install truffle-hdwallet-provider --save-dev
@@ -137,7 +137,7 @@ This command will start our local ganache (which forked from kovan), and then wi
 
 Run `node_modules/.bin/truffle networks`: ![Truffle network (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_networks.png)
 
-You can send function calls as transactions to this address on our local client. 
+You can send function calls as transactions to this address on our local client.
 
 # Adding linting to your project
 
@@ -176,7 +176,7 @@ When working with contract code, you should always follow [best practices](https
         }
       }
       ```
-    - `.soliumignore` tells Ethlint what to skip. 
+    - `.soliumignore` tells Ethlint what to skip.
       ```text
       node_modules
       contracts/Migrations.sol
@@ -201,7 +201,7 @@ When working with contract code, you should always follow [best practices](https
        "quotes": ["error", "double"],
        "uppercase": "off",
        "visibility-first": "error",
-   
+
        "security/enforce-explicit-visibility": ["error"],
        "security/no-block-members": ["warning"],
        "security/no-inline-assembly": ["warning"]
@@ -224,9 +224,9 @@ When working with contract code, you should always follow [best practices](https
    npm run lint:sol
    ```
     ![Solium Lint (pic missing)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/solium_lint.png)
-    
+
     As you can see, the `Migrations.sol` generated for us has some styling errors. You will have to come up with your own criteria linting.
-    
+
 # Testing
 
 The best part of the whole article, we finally get to write some tests.
@@ -250,12 +250,12 @@ Truffle comes with the command `truffle test` which will run all the unit tests,
    }
    ```
     All this does is start a local Ganache client, migrate the current contracts, then run units/acceptance tests on that deployed code. `--kill-others --success first` just tells [Concurrently](https://www.npmjs.com/package/concurrently#usage) to stop running the Ganache client after the tests have finished.
-    
+
 3. We can update `truffle-config.js` to use [eth-gas-reporter](https://www.npmjs.com/package/eth-gas-reporter) in its [Mocha](https://mochajs.org/) configuration
    ```js
    ...
-   
-   modules.export = { 
+
+   modules.export = {
        ...
        mocha: {
            reporter: 'eth-gas-reporter',
@@ -271,36 +271,35 @@ Truffle comes with the command `truffle test` which will run all the unit tests,
 4. Now we can add our first test. Create the file `test/Deployment.test.js`:
    ```js
    require('truffle-test-utils').init();
-   
+
    const Migrations = artifacts.require('Migrations');
-   
+
    const MAX_DEPLOYED_BYTECODE_SIZE = 24576;
-   
-   
+
    contract('Migrations', (accounts) => {
-   
+
        let migrations;
-   
+
        // build up and tear down a new Migrations before each test
        beforeEach(async () => {
            migrations = await Migrations.deployed();
            console.log(migrations);
        });
-   
+
        it('has a validated contract size', async () => {
            // bytecode is in hexadecimal, where each byte is represented by two characters: 0x00 -> 0xff
            let bytecodeSize = migrations.constructor._json.bytecode.length / 2;
            let deployedBytecodeSize = migrations.constructor._json.deployedBytecode.length / 2;
-   
+
            console.info('Migrations deployed at address: ' + web3.utils.toChecksumAddress(migrations.address))
            console.info(' -- size of bytecode in bytes = ', bytecodeSize);
            console.info(' -- size of deployed in bytes = ', deployedBytecodeSize);
            console.info(' -- initialisation and constructor code in bytes = ', bytecodeSize - deployedBytecodeSize);
-   
+
            // Make assertion on deployed since the initial transaction takes constructor bytecode into account
            assert(deployedBytecodeSize <= MAX_DEPLOYED_BYTECODE_SIZE, 'Contract bytecode is too big to deploy!');
        });
-   
+
    });
    ```
     Here is an acceptance test. It can be writen for every contract because it makes no assumptions about the contract functions or data. Instead, it tests the compiled bytecode's size. It is important when writing smart contracts, to be aware of the transactions with the blockchain because not only do you pay for every byte of code, but some transactions are too large and will fail.
@@ -314,21 +313,21 @@ Truffle comes with the command `truffle test` which will run all the unit tests,
            'setComplete did not update last_completed_migration');
    });
    ```
-    Here is a unit test that tests the happy path for the function `setCompleted`. Notice the use of async and await in these tests. Every time we call the contract, we must wait for our client to respond. 
+    Here is a unit test that tests the happy path for the function `setCompleted`. Notice the use of async and await in these tests. Every time we call the contract, we must wait for our client to respond.
 
 6. Run the tests
    ```shell
    npm run test
    ```
     ![Truffle test (missing pic)](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_test_1.png)
-    
+
     Here, we don't see any listed methods in the table. This is because the only non-contract-creation transaction we tested was `last_completed_migration` which was a [*view*](https://solidity.readthedocs.io/en/v0.5.2/contracts.html#view-functions) function, which does not get picked up by Mocha.
-    
+
     We will get back a lot of logs, and the more the better. First, we see ganache starting up and truffle migrating our contract. Next we start to see the tests getting run. Once the pass, we can see the gas usages generated by Mocha.
-    
+
 # Recap
 
-You have now learned enough to get started and run your Solidity contracts on public networks. The languages and tools are constantly improving, and smart contract applications can start relying on tried and tested software development patterns. Don't forget to keep security in mind, and never take someone's word on the state of a contract. Trustless applications are intended to be verified, and bytecode is intended to be public. 
+You have now learned enough to get started and run your Solidity contracts on public networks. The languages and tools are constantly improving, and smart contract applications can start relying on tried and tested software development patterns. Don't forget to keep security in mind, and never take someone's word on the state of a contract. Trustless applications are intended to be verified, and bytecode is intended to be public.
 
 - [x] [Part 1: Truffle initialization and starting your very own blockchain](https://blog.ippon.tech/creating-your-first-truffle-project-part-1-of-2/)
 - [x] Part 2: Using Infura to connect to public networks, linting, and testing
