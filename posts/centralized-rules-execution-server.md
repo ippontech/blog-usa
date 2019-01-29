@@ -14,18 +14,18 @@ title: Centralized Rules Engine on AWS ECS
 ---
 
 ## Introduction
-As software engineers we architect and develop many real world applications solving many business problems, and in those applications we add business logic to solve various issues. Often this business logic is difficult to implement in application code and often these business rules keep on changing and hard to maintain.
+As software engineers we architect and develop many real world applications solving many business problems, and in those applications we add business logic to solve various issues. Often this business logic is difficult to implement in application code, business rules keep on changing and hard to maintain.
 
 ## Why rules engine
-A rules engine may be handy in certain cases where the business logic keep on changing, there is no easy solution to implement the logic in the code, the code becomes cluttered or may be the business analysts want an easy way to maintain this logic. Apart from these, rules engines implement rules execution algorithms such as Rete algorithm which are more efficient than traditional if..else or switch statements.
+A rules engine may be handy in certain cases where the business logic keeps on changing, there is no easy solution to implement the logic in the code, the code becomes cluttered or may be the business analysts want an easy way to maintain the business rules. Apart from these, rules engines implement rules execution algorithms such as Rete algorithm which are more efficient than traditional if..else or switch statements.
 
 ## The problem
-At one of our recent customer's location, we were tasked to resolve a problem and the application has to look into more than hundred different scenarios to come up with a result. Also the customer wanted to have a provision to maintain the rules separately as the rules can change quite often.
+At one of our recent customer's location, we were tasked to resolve a problem and the application has to look into more than hundred different scenarios to come up with a result. Also the customer wanted to have a provision to maintain the rules separately as the rules can change quite often so that the main applications do not have to be redployed whenever there is a rule change.
 
 ## The solution
-We decided to use a centralized rules execution engine based on Jboss Drools (Kie execution server) to make the rules engine a loosely coupled application, to maintain the rules outside of the business application, to make the rules engine available to other applications in the organization which has similar use cases.
+We decided to use a centralized rules execution engine based on Jboss Drools (Kie execution server) to make the rules engine a loosely coupled application, to maintain the rules outside of the business application, to make the rules engine available to other applications in the organization which have similar use cases.
 
-Kie execution server instantiate and execute rules via Rest, JMS or Java client side application, it support runtime updates to the rules
+Kie execution server can be used to instantiate and execute rules via Rest, JMS or Java client side applications, it supports runtime updates to the rules.
 
 
 ## Architecture
@@ -43,7 +43,7 @@ The service has access to customer's LDAP to support security and authorizations
 - ### Development architecture
 Each development team is responsible for the maintenance of their rules, the rules are maintained in the git repository as maven projects. The project contains the rules files in .drl or .xls formats and any dependencies are maintained in the pom.xml such as POJO's used in the rules, or any other utilities used in the rules files.
 
-The project is configured to built and packaged using the existing Jenkins pipeline. The built artifact is pushed into the internal maven repository and it complies to the existing release management process.
+The project is configured to built and packaged using the existing Jenkins pipeline into a jar file. The built artifact is pushed into the internal maven repository and it complies to the existing release management process.
 
 ![alt](https://raw.githubusercontent.com/msambaraju/blog-usa/master/images/2019/01/Kie_Container_Process.png)
 
