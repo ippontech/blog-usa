@@ -414,7 +414,79 @@ Now we just need to tweak and upload the metadata (also to IPFS) and set the tok
 
 ![Mint](https://raw.githubusercontent.com/misterzero/blog-usa/blockchain-nft-blog/images/2019/01/non-fungible-tokens-09.png)
 
+Here's the code that calls the `mint` function in our contract (compacted for brevity):
+```javascript
+this.setState({
+    myToken: {
+        ...this.state.myToken,
+        blockNumber: 'waiting..',
+        gasUsed: 'waiting...'
+    }
+});
+
+// bring in user's metamask account address
+const accounts = await web3.eth.getAccounts();
+const myTokenInstance = new web3.eth.Contract(
+    this.state.myToken.abi,
+    this.state.web3ctx.tokenAddress
+);
+
+console.log('Sending from Metamask account: ' + accounts[0] + ' to token address '
+    + myTokenInstance.options.address);
+
+console.log('DEBUG recipientAddress: ' + this.state.myToken.recipientAddress);
+console.log('DEBUG ipfsMetadataUrl: ' + this.state.myToken.ipfsMetadataUrl);
+
+// see, this https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html#methods-mymethod-send
+await myTokenInstance.methods.mint(this.state.myToken.recipientAddress, this.state.myToken.ipfsMetadataUrl).send({
+    from: accounts[0]
+}, (error, txHash) => {
+    console.log('txHash: ' + txHash + ', error: ' + error);
+
+    this.setState({
+        myToken: {
+            ...this.state.myToken,
+            txHash: txHash
+        }
+    });
+});
+
+// get Transaction Receipt in console on click
+// See: https://web3js.readthedocs.io/en/1.0/web3-eth.html#gettransactionreceipt
+await web3.eth.getTransactionReceipt(this.state.myToken.txHash, (err, txReceipt) => {
+    if (txReceipt) {
+        this.setState({
+            myToken: {
+                ...this.state.myToken,
+                txReceipt: txReceipt
+            }
+        });
+    }
+});
+```
+Note the `await` modifiers; Ethereum transactions are not real-time, so these are async calls.
+
 **Caveat #13,427:** you must have been added as a minter for this token using the `addMinter` function!
+
+Here's the code for adding a minter to our token (though not currently exposed on ALF):
+```javascript
+// grab user's metamask account address
+const accounts = await web3.eth.getAccounts();
+const myTokenInstance = new web3.eth.Contract(
+    JSON.parse(this.state.myToken.abi),
+    this.state.web3ctx.tokenAddress
+);
+
+console.log('Adding minter address ' + minterAddress + ' as minter for token address '
+    + myTokenInstance.options.address);
+
+// see, this https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html#methods-mymethod-send
+await myTokenInstance.methods.addMinter(minterAddress).send({
+    from: accounts[0]
+}, (error, txHash) => {
+    console.log('txHash = ' + txHash + '; Error = ' + error);
+});
+```
 
 Once we've minted our token, the status block provides a link to our transaction record on https://etherscan.io and shows the tx hash, block number, and gas used:
 
