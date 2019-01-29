@@ -1,7 +1,7 @@
 ---
-authors: 
+authors:
 - Mallik Sambaraju
-- Amine Alami
+- Amine Ouali Alami
 tags:
 - Rules
 - Kie
@@ -17,21 +17,24 @@ title: Centralized Rules Engine on AWS ECS
 As software engineers we architect and develop many real world applications solving many business problems, and in those applications we add business logic to solve various issues. Often this business logic is difficult to implement in application code and often these business rules keep on changing and hard to maintain.
 
 ## Why rules engine
-A rules engine may be handy in certain cases where the business logic keep on changing, there is no easy solution to implement the logic in the code, the code becomes cluttered or may be the business analysts want an easy way to maintain this logic. Apart from these, rules engines implement rules execution algorithms such as rete algorithm which are more efficient than traditional if..else or switch statememts.
+A rules engine may be handy in certain cases where the business logic keep on changing, there is no easy solution to implement the logic in the code, the code becomes cluttered or may be the business analysts want an easy way to maintain this logic. Apart from these, rules engines implement rules execution algorithms such as Rete algorithm which are more efficient than traditional if..else or switch statements.
 
 ## The problem
-At one of our recent customer's location, we were tasked to resolve a problem and the application has to look into more than hundred different scenarios to come up with a result. Also the customer wanted to have a provision to maintain the rules seperately as the rules can change quite often.
+At one of our recent customer's location, we were tasked to resolve a problem and the application has to look into more than hundred different scenarios to come up with a result. Also the customer wanted to have a provision to maintain the rules separately as the rules can change quite often.
 
 ## The solution
-We decided to use a centralized rules execution engine based on Jboss Drools (Kie execution server) to make the rules engine a loosly coupled application, to maintain the rules outside of the business application, to make the rules engine available to other applications in the organization which has similar use cases.
+We decided to use a centralized rules execution engine based on Jboss Drools (Kie execution server) to make the rules engine a loosely coupled application, to maintain the rules outside of the business application, to make the rules engine available to other applications in the organization which has similar use cases.
+
+Kie execution server instantiate and execute rules via Rest, JMS or Java client side application, it support runtime updates to the rules
+
 
 ## Architecture
-The version 1 of the rules engine is designed to adhere to the customer's infrastructure, ability to use the customer's source control repository, security standards and CI/CD process. The solution is designed to auto-recover in case of rules engine restarts/crashes.
+The first version of the rules engine is designed to adhere to the customer's infrastructure, ability to use the customer's source control repository, security standards and CI/CD process. The solution is designed to auto-recover in case of rules engine restarts/crashes.
 
 - ### Deployment architecture
-The rules engine is deployed into the existing AWS ECS infrastructure as a spring boot application. The service has access to AWS EFS service so that it can store its state in the metadata file on the network so that it can recover from the unexpected restarts. 
+The rules engine is deployed into the existing AWS ECS infrastructure as a spring boot application. The service has access to AWS EFS service so that it can store its state in the metadata file on the network so that it can recover from the unexpected restarts.
 
-The service has access to the internal maven repository so that it can access the rules artifacts and load them as KieContainers. Each KieContainer represents one set of rules maintained by a project team. 
+The service has access to the internal maven repository so that it can access the rules artifacts and load them as Kie Containers. Each Kie Container represents one set of rules maintained by a project team.
 
 The service has access to customer's LDAP to support security and authorizations, so that only the authorized users have access to update the rules.
 
@@ -40,14 +43,14 @@ The service has access to customer's LDAP to support security and authorizations
 - ### Development architecture
 Each development team is responsible for the maintenance of their rules, the rules are maintained in the git repository as maven projects. The project contains the rules files in .drl or .xls formats and any dependencies are maintained in the pom.xml such as POJO's used in the rules, or any other utilities used in the rules files.
 
-The project is configured to to built and packaged using the existing Jenkins pipeline. The built artifact is pushed into the internal maven repository and it complies to the existing release management process.
+The project is configured to built and packaged using the existing Jenkins pipeline. The built artifact is pushed into the internal maven repository and it complies to the existing release management process.
 
 ![alt](https://raw.githubusercontent.com/msambaraju/blog-usa/master/images/2019/01/Kie_Container_Process.png)
 
-## Implimentation
-The base spring boot application is generated by JHipster so that the capabilities provided by JHipster are already part of the generated application.For more information on JHipster visit [JHipster](https://www.jhipster.tech). JHipster is already standardized at the customer location to support existing infrastructure.
+## Implementation
+The base spring boot application is generated by JHipster so that the capabilities provided by JHipster are already part of the generated application. For more information on JHipster visit [JHipster](https://www.jhipster.tech). JHipster is already standardized at the customer location to support existing infrastructure.
 
-The kie spring boot starter project is included as dependency in the pom.xml and other suppoprting dependencies are added accordingly
+The kie spring boot starter project is included as dependency in the pom.xml and other supporting dependencies are added accordingly
 
 ```xml
         <dependency>
@@ -57,8 +60,8 @@ The kie spring boot starter project is included as dependency in the pom.xml and
 	    </dependency>
 ```
 
-```yaml
 Configuration changes in application.yml
+```yaml
 kieserver:
     serverId: CustomerRulesEngine
     serverName: Customer KIE Server
@@ -71,7 +74,7 @@ kieserver:
         enabled: false
     jbpmui:
         enabled: false
-    casemgmt: 
+    casemgmt:
         enabled: false
     optaplanner:
         enabled: false
@@ -80,12 +83,12 @@ kieserver:
 cxf:
     path: /rest
 
-jbpm: 
+jbpm:
     executor:
         enabled: false
 ```
 
-The execution server is configured to use the custom maven settings file and custom repository to store metadata.
+The execution server is configured to use the custom maven settings file and custom repository to store metadata with the following system properties.
 
 ```
 kie.maven.settings.custom = /usr/kieserver/settings.xml
@@ -93,5 +96,5 @@ org.kie.server.repo = /mnt/efs/kie/repository (this is the mount on the AWS EFS)
 
 ```
 
-## Future
+## Improvements
 The future versions of the application is to enable scaling of the rules execution server and have a front end router application to route the rule execution requests and support the rules workbench.
