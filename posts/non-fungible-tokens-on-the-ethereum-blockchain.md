@@ -434,9 +434,6 @@ const myTokenInstance = new web3.eth.Contract(
 console.log('Sending from Metamask account: ' + accounts[0] + ' to token address '
     + myTokenInstance.options.address);
 
-console.log('DEBUG recipientAddress: ' + this.state.myToken.recipientAddress);
-console.log('DEBUG ipfsMetadataUrl: ' + this.state.myToken.ipfsMetadataUrl);
-
 // see, this https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html#methods-mymethod-send
 await myTokenInstance.methods.mint(this.state.myToken.recipientAddress, this.state.myToken.ipfsMetadataUrl).send({
     from: accounts[0]
