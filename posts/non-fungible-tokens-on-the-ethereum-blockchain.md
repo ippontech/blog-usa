@@ -11,7 +11,7 @@ title: "Non-Fungible Tokens on the Ethereum Blockchain"
 image: https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-01.jpg
 ---
 
-In this post I will explain a bit about Non-Fungible Tokens (NFTs) and walk through an implementation of the ERC-721 standard in Ethereum. If you're looking for a non-technical intro to blockchain, check out my friend [Johnny Dollar's explanation](https://www.youtube.com/watch?v=EyytRm0j2EY), and follow up with a more [in-depth explanation from Andreas Antonopoulos](https://www.youtube.com/watch?v=eMoc4zU39hM).
+In this post I will explain a bit about Non-Fungible Tokens (NFTs) and walk through an implementation of the ERC-721 standard in Ethereum. If you're looking for a non-technical intro to blockchain, check out my friend [Johnny Dollar's explanation](https://www.youtube.com/watch?v=EyytRm0j2EY), and follow up with a more [in-depth explanation from Andreas Antonopoulos](https://www.youtube.com/watch?v=eMoc4zU39hM). If you want to ramp up on developing software on Ethereum with Solidity and Truffle, read [Tyler Haden's posts](https://blog.ippon.tech/creating-your-first-truffle-project-part-1-of-2/) on Solidity and Truffle.
 
 # What are Tokens?
 Most people think of blockchains as cryptocurrencies, but open distributed ledgers are a great way to track many kinds of assets. Think of tokens as poker chips that can be traded in a marketplace without hauling the physical assets around. When you hold digital tokens, you have cryptographic security and 24/7 access to exchanges to buy/sell. Unlike poker chips, blockchain tokens do not require you to trust "the house". `Vires in numeris`!
@@ -513,6 +513,7 @@ If you're interested in minting ALF tokens, join the [ALF Telegram channel](http
 ## Resources
 * [Bitcoin And Blockchain simplified](https://www.youtube.com/watch?v=EyytRm0j2EY)
 * [Blockchain for Beginners](https://www.youtube.com/watch?v=eMoc4zU39hM)
+* [Creating your First Truffle Project](https://blog.ippon.tech/creating-your-first-truffle-project-part-1-of-2/)
 * [IPFS](https://ipfs.io)
 * [Ethereum Token Standards and Proposals](https://eips.ethereum.org/erc)
 * [The Real Cost of Cryptogoods](https://medium.com/@joelooney/the-real-cost-of-cryptogoods-dd156f5df056)
