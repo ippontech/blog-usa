@@ -498,7 +498,7 @@ Non-fungible tokens present some interesting opportunities in tokenization; fung
 
 By the same token...
 
-![BaDumTss](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-12.png)
+![BaDumTss](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-12.jpg)
 
 ...not everything needs to be tokenized. It's fun to work with the pioneers from the art and gaming worlds and explore how the technology can be applied to both digital and physical assets.
 
@@ -508,7 +508,7 @@ This could be remedied with an [oracle (not that Oracle!) on the blockchain](htt
 
 If you're interested in minting ALF tokens, join the [ALF Telegram channel](https://t.me/ArtistLiberationFront) and send us your Ethereum wallet address!
 
-![NotSoRarePepe](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-13.png)
+![NotSoRarePepe](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-13.jpg)
 
 ## Resources
 * [Bitcoin And Blockchain simplified](https://www.youtube.com/watch?v=EyytRm0j2EY)
