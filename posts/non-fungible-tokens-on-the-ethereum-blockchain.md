@@ -11,10 +11,10 @@ title: "Non-Fungible Tokens on the Ethereum Blockchain"
 image: https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-01.jpg
 ---
 
-In this post I will explain a bit about Non-Fungible Tokens (NFTs) and walk through an implementation of the ERC-721 standard in Ethereum. If you're looking for a non-technical intro to blockchain, check out my friend [Johnny Dollar's explanation](https://www.youtube.com/watch?v=EyytRm0j2EY), and follow up with a more [in-depth explanation from Andreas Antonopoulos](https://www.youtube.com/watch?v=eMoc4zU39hM). If you want to ramp up on developing software on Ethereum with Solidity and Truffle, read [Tyler Haden's posts](https://blog.ippon.tech/creating-your-first-truffle-project-part-1-of-2/) on Solidity and Truffle.
+In this post, I will explain a bit about Non-Fungible Tokens (NFTs) and walk through an implementation of the ERC-721 standard in Ethereum. If you're looking for a non-technical intro to blockchain, check out my friend [Johnny Dollar's explanation](https://www.youtube.com/watch?v=EyytRm0j2EY), and follow up with a more [in-depth explanation from Andreas Antonopoulos](https://www.youtube.com/watch?v=eMoc4zU39hM). If you want to ramp up on developing software on Ethereum with Solidity and Truffle, read [Tyler Haden's posts](https://blog.ippon.tech/creating-your-first-truffle-project-part-1-of-2/) on Solidity and Truffle.
 
 # What are Tokens?
-Most people think of blockchains as cryptocurrencies, but open distributed ledgers are a great way to track many kinds of assets. Think of tokens as poker chips that can be traded in a marketplace without hauling the physical assets around. When you hold digital tokens, you have cryptographic security and 24/7 access to exchanges to buy/sell. Unlike poker chips, blockchain tokens do not require you to trust "the house". `Vires in numeris`!
+Most people think of blockchains as cryptocurrencies, but open, distributed ledgers are a great way to track many kinds of assets. Think of tokens as poker chips that can be traded in a marketplace without hauling the physical assets around. When you hold digital tokens, you have cryptographic security and 24/7 access to exchanges to buy/sell. Unlike poker chips, blockchain tokens do not require you to trust "the house". `Vires in numeris`!
 
 ## Tokens on the Ethereum Blockchain
 When discussing token standards on the Ethereum network, usually the first thing that comes to mind is [ERC-20](https://en.wikipedia.org/wiki/ERC-20), the fungible token standard. ERC-20 is _fungible_ because every token is the same as every other token. This is why so many startups were using ERC-20 tokens to kick start their projects during the ICO craze; they were (mostly) tokenizing their business ventures, products, or services and selling pieces of the value.
@@ -24,12 +24,12 @@ _Side note:_ "Fungibility" is often touted as a desirable trait in assets, but i
 The advent of ERC-20 opened a Pandora's Box of differing requirements for tokens. Check Ethereum's site for an [exhaustive list](https://eips.ethereum.org/erc). For this post, I'm focusing on ERC-721: non-fungible tokens.
 
 ## Why Non-Fungible Tokens?
-There are many assets one could "digitize", or at least create a digital tradable proxy, which are unique in some respect. Event tickets often have a particular seat associated with each ticket; real estate parcels have unique location and characteristics; virtual items in online games are often unique (sometimes _terminally_ unique); art and music are particularly good use cases, because uniqueness is part of their intrinsic value.
+There are many assets one could "digitize", or at least create a tradable digital proxy, which are unique in some respect. Event tickets often have a particular seat associated with each ticket; real estate parcels have unique location and characteristics; virtual items in online games are often unique (sometimes _terminally_ unique); art and music are particularly good use cases, because uniqueness is part of their intrinsic value.
 
 When you purchase a painting or sculpture, there are usually documents or other artifacts to assure you of their provenance and authenticity. ERC-721 attempts to provide these assurances by associating the digital token with digital metadata. Let's dig in and see how that works under the covers.
 
 # ERC-721
-Since Ethereum is a smart contract platform, token implementations are interfaces which define functions that must be implemented. Like ERC-20, your implementation of these functions defines behavior of tokens minted from the contract during transactions.
+Since Ethereum is a smart contract platform, token implementations are interfaces which define functions that must be implemented. Like ERC-20, your implementation of these functions defines the behavior of tokens minted from the contract during transactions.
 
 ## The Interface
 The following will look familiar to anyone who has worked with ERC-20 tokens, with the addition of `_tokenId` to track the provenance of each unique token:
@@ -406,7 +406,7 @@ After you've uploaded your file to IPFS, you should land on the `Metadata` tab w
 
 ![Upload](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-08.png)
 
-Note in above that the IPFS image is displayed in the status block on the right. One of the amazing features of IPFS is that you _cannot_ upload duplicate images, because every image is addressed by the hash of the file, and guess what happens if you hash the same file more than once? That's right folks, you get **the same hash**.
+Note in above that the IPFS image is displayed in the status block on the right. One of the great features of IPFS is that you _cannot_ upload duplicate images, because every image is located using the hash of the file, and guess what happens if you hash the same file more than once? That's right folks, you get **the same hash**.
 
 One annoying thing about this UI right now is that all the input fields update React state `onChange`, so you'll probably want to copy the metadata JSON to your favorite text editor (or any editor that doesn't lose focus every time you enter a character). Improving this is on my to-do list. :)
 
@@ -500,11 +500,11 @@ By the same token...
 
 ![BaDumTss](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-12.jpg)
 
-...not everything needs to be tokenized. It's fun to work with the pioneers from the art and gaming worlds and explore how the technology can be applied to both digital and physical assets.
+...not everything needs to be tokenized. It's fun to work with the pioneers from the art and gaming worlds and explore how this technology can be applied to both digital and physical assets.
 
 I find it a bit inconsistent that we're minting tokens on a distributed ledger using a distributed file system, yet we're using old school centralized DNS to reference our metadata and images via IPFS gateways.
 
-This could be remedied with an [oracle (not that Oracle!) on the blockchain](https://medium.com/@jesus_notchrist/blockchain-oracles-af3b216bed6b) to locate the metadata and image files. If this was implemented, then perhaps the organizations involved with NFTs would agree to a new standard where the **IPFS hash** of the metadata is stored in the token, rather than the URI, and similarly the IPFS hash of the image is stored in the metadata. This way, we could at least hedge our reliance on a single DNS domain by allowing the oracle to determine which IPFS gateway is appropriate at the time the image is requested.
+This could be remedied with an [oracle (not that Oracle!) on the blockchain](https://medium.com/@jesus_notchrist/blockchain-oracles-af3b216bed6b) to locate the metadata and image files. If this was implemented, then perhaps the organizations involved with NFTs would agree to a new standard where the **IPFS hash** of the metadata is stored in the token, rather than the URI, and similarly, the IPFS hash of the image is stored in the metadata. This way, we could at least hedge our reliance on a single DNS domain by allowing the oracle to determine which IPFS gateway is appropriate at the time the image is requested.
 
 If you're interested in minting ALF tokens, join the [ALF Telegram channel](https://t.me/ArtistLiberationFront) and send us your Ethereum wallet address!
 
