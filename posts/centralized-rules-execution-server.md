@@ -4,7 +4,7 @@ authors:
 - Amine Ouali Alami
 tags:
 - Rules
-- Kie
+- KIE
 - Drools
 - JHipster
 - AWS ECS
@@ -29,9 +29,9 @@ At one of our recent customer's locations, we were tasked to solve a problem whe
 
 
 ## The solution
-We decided to use a centralized rules execution engine based on Jboss Drools (Kie execution server) to make the rules engine a loosely coupled application, to maintain the rules outside of the business application, and to make the rules engine available to other applications in the organization which have similar use cases.
+We decided to use a centralized rules execution engine based on Jboss Drools (KIE execution server) to make the rules engine a loosely coupled application, to maintain the rules outside of the business application, and to make the rules engine available to other applications in the organization which have similar use cases.
 
-Kie execution server can be used to instantiate and execute rules via Rest, JMS or Java client side applications. It supports runtime updates to the rules.
+KIE execution server can be used to instantiate and execute rules via Rest, JMS or Java client side applications. It supports runtime updates to the rules.
 
 
 
@@ -41,16 +41,16 @@ The first version of the rules engine is designed to adhere to the customer's in
 - ### Deployment architecture
 The rules engine is deployed into the existing AWS ECS infrastructure as a spring boot application. The service has access to the AWS EFS service so that it can store its state in the metadata file on the network so that it can recover from unexpected restarts.
 
-The service has access to the internal maven repository so that it can access the rules artifacts and load them as Kie Containers. Each Kie Container represents one set of rules maintained by a project team.
+The service has access to the internal Maven repository so that it can access the rules artifacts and load them as KIE Containers. Each KIE Container represents one set of rules maintained by a project team.
 
 The service has access to the customer's LDAP to support security and authorizations, so that only the authorized users have access to update the rules.
 
 ![alt](https://raw.githubusercontent.com/msambaraju/blog-usa/master/images/2019/01/Kie_Server.png)
 
 - ### Development architecture
-Each development team is responsible for the maintaining their rules. These rules are maintained in the git repository as maven projects. The project contains the rules files in `.drl` or `.xls` formats along with any dependencies which are maintained in the `pom.xml` such as POJO's used in the rules, or any other utilities used in the rules files.
+Each development team is responsible for the maintaining their rules. These rules are maintained in the git repository as Maven projects. The project contains the rules files in `.drl` or `.xls` formats along with any dependencies which are maintained in the `pom.xml` such as POJO's used in the rules, or any other utilities used in the rules files.
 
-The project is configured to be built and packaged using the existing Jenkins pipeline into a `jar` file. The built artifact is then pushed into the internal maven repository and complies to the existing release management process.
+The project is configured to be built and packaged using the existing Jenkins pipeline into a `jar` file. The built artifact is then pushed into the internal Maven repository and complies to the existing release management process.
 
 ![alt](https://raw.githubusercontent.com/msambaraju/blog-usa/master/images/2019/01/Kie_Container_Process.png)
 
@@ -95,7 +95,7 @@ jbpm:
         enabled: false
 ```
 
-The execution server is configured to use the custom maven settings file and custom repository to store metadata with the following system properties:
+The execution server is configured to use the custom Maven settings file and custom repository to store metadata with the following system properties:
 
 ```
 kie.maven.settings.custom = /usr/kieserver/settings.xml
