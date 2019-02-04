@@ -8,7 +8,7 @@ tags:
 - ERC-721
 date: 
 title: "Non-Fungible Tokens on the Ethereum Blockchain"
-image: https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-01.jpg
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/non-fungible-tokens-01.jpg
 ---
 
 In this post, I will explain a bit about Non-Fungible Tokens (NFTs) and walk through an implementation of the ERC-721 standard in Ethereum. If you're looking for a non-technical intro to blockchain, check out my friend [Johnny Dollar's explanation](https://www.youtube.com/watch?v=EyytRm0j2EY), and follow up with a more [in-depth explanation from Andreas Antonopoulos](https://www.youtube.com/watch?v=eMoc4zU39hM). If you want to ramp up on developing software on Ethereum with Solidity and Truffle, read [Tyler Haden's posts](https://blog.ippon.tech/creating-your-first-truffle-project-part-1-of-2/) on Solidity and Truffle.
@@ -67,7 +67,7 @@ The key to minting NFTs for marketplaces like OpenSea and Rarebits is the `token
 ## The Use Case
 As is often the case in emerging technologies, the most prevalent use cases for non-fungible tokens emerging to date are in art and gaming. I was approached by my pal [Johnny Dollar](https://johnnydollar.biz/) for help implementing and deploying an NFT contract. Johnny wanted to provide digital artists with an open source solution for minting NFTs for digital art. Thus the [Artist Liberation Front](https://the-alf.com/) was born!
 
-![ALF](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-02.png)
+![ALF](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/non-fungible-tokens-02.png)
 
 The goal of ALF is to make it easy for artists to mint non-fungible tokens without paying fees using open source software. The user interface isn't anything fancy; I'm no UI designer. It's just simple, and it works. There are many features we'd like to add as we get feedback from artists using the tool.
 
@@ -228,7 +228,7 @@ There is still a *lot* of code, so I'm only going to highlight the most critical
 
 Users entering the application without MetaMask installed and enabled will see the following:
 
-![MetaMask](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-03.png)
+![MetaMask](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/non-fungible-tokens-03.png)
 
 React state is initialized in the constructor and tracks values related to the web3 network, the state of the current token being minted, and the actions passed to components:
 ```javascript
@@ -367,19 +367,19 @@ checkNetwork = async () => {
 
 Once you get MetaMask installed and authenticated to a wallet, you should see the start page:
 
-![Home](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-04.png)
+![Home](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/non-fungible-tokens-04.png)
 
 The `Token` tab exposes settings used for the IPFS gateway and token contract. We're storing the unique image on the Interplanetary File System (IPFS) because the blockchain is not efficient for (or in some cases _capable of_) storing large binary files. You can read more about IPFS [on their site](https://ipfs.io/).
 
-![Token](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-05.png)
+![Token](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/non-fungible-tokens-05.png)
 
 Although IPFS is distributed, you can't access IPFS unless you're running a node, so we're pointing to IPFS Gateways to upload and access our files (more on this later). Since I've never heard of a website with 100% uptime, we encourage our users to verify the selected gateway is up:
 
-![IPFS](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-06.png)
+![IPFS](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/non-fungible-tokens-06.png)
 
 Now we get to the fun part: uploading our image and metadata to IPFS! Click the `Choose File` button for file picker dialog. Once you've chosen a file, the `Upload File` button is enabled.
 
-![Upload](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-07.png)
+![Upload](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/non-fungible-tokens-07.png)
 
 Here's the code that pushes the uploaded image to our IPFS gateway:
 ```javascript
@@ -404,7 +404,7 @@ await ipfs.add(this.state.myToken.imageBuffer, (err, ipfsHash) => {
 
 After you've uploaded your file to IPFS, you should land on the `Metadata` tab with your IPFS file URI pre-filled in the metadata JSON input field:
 
-![Upload](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-08.png)
+![Upload](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/non-fungible-tokens-08.png)
 
 Note in above that the IPFS image is displayed in the status block on the right. One of the great features of IPFS is that you _cannot_ upload duplicate images, because every image is located using the hash of the file, and guess what happens if you hash the same file more than once? That's right folks, you get **the same hash**.
 
@@ -412,7 +412,7 @@ One annoying thing about this UI right now is that all the input fields update R
 
 Now we just need to tweak and upload the metadata (also to IPFS) and set the token recipient (I'm minting to my own wallet in this case). Here's what the page looks like when we've uploaded our metadata file and we're ready to mint our token:
 
-![Mint](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-09.png)
+![Mint](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/non-fungible-tokens-09.png)
 
 Here's the code that calls the `mint` function in our contract (compacted for brevity):
 ```javascript
@@ -487,18 +487,18 @@ await myTokenInstance.methods.addMinter(minterAddress).send({
 
 Once we've minted our token, the status block provides a link to our transaction record on https://etherscan.io and shows the tx hash, block number, and gas used:
 
-![TxData](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-10.png)
+![TxData](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/non-fungible-tokens-10.png)
 
 I waited a few minutes for my transaction to be mined on Ethereum, then I headed to https://opensea.io/account and my shiny new ERC-721 token had appeared!
 
-![OpenSea](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-11.png)
+![OpenSea](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/non-fungible-tokens-11.png)
 
 ## Conclusion
 Non-fungible tokens present some interesting opportunities in tokenization; fungibility isn't for everything.
 
 By the same token...
 
-![BaDumTss](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-12.jpg)
+![BaDumTss](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/non-fungible-tokens-12.jpg)
 
 ...not everything needs to be tokenized. It's fun to work with the pioneers from the art and gaming worlds and explore how this technology can be applied to both digital and physical assets.
 
@@ -508,7 +508,7 @@ This could be remedied with an [oracle (not that Oracle!) on the blockchain](htt
 
 If you're interested in minting ALF tokens, join the [ALF Telegram channel](https://t.me/ArtistLiberationFront) and send us your Ethereum wallet address!
 
-![NotSoRarePepe](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-13.jpg)
+![NotSoRarePepe](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/non-fungible-tokens-13.jpg)
 
 ## Resources
 * [Bitcoin And Blockchain simplified](https://www.youtube.com/watch?v=EyytRm0j2EY)
