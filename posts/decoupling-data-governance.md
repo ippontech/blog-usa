@@ -2,9 +2,7 @@
 authors:
 - Justin Risch
 tags:
-- data governance
-- best practices
-date: 2017-08-17T18:22:50.000Z
+date: 2019-01-24T20:56:31.000Z
 title: "Decoupling Data Governance"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/decoupling.png
 ---

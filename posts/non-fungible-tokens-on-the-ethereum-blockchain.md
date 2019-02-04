@@ -2,13 +2,9 @@
 authors:
 - Chris Lumpkin
 tags:
-- Blockchain
-- Ethereum
-- Non-Fungible Tokens
-- ERC-721
-date: 
+date: 2019-02-04T17:11:00.000Z
 title: "Non-Fungible Tokens on the Ethereum Blockchain"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/non-fungible-tokens-01.jpg
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/02/non-fungible-tokens-01.jpg
 ---
 
 In this post, I will explain a bit about Non-Fungible Tokens (NFTs) and walk through an implementation of the ERC-721 standard in Ethereum. If you're looking for a non-technical intro to blockchain, check out my friend [Johnny Dollar's explanation](https://www.youtube.com/watch?v=EyytRm0j2EY), and follow up with a more [in-depth explanation from Andreas Antonopoulos](https://www.youtube.com/watch?v=eMoc4zU39hM). If you want to ramp up on developing software on Ethereum with Solidity and Truffle, read [Tyler Haden's posts](https://blog.ippon.tech/creating-your-first-truffle-project-part-1-of-2/) on Solidity and Truffle.
@@ -80,9 +76,9 @@ I began by researching the example code at [OpenSea](https://opensea.io/), one o
 This is the metadata standard from OpenSea:
 ```json
 {
-  "description": "Friendly OpenSea Creature that enjoys long swims in the ocean.", 
-  "external_url": "https://openseacreatures.io/3", 
-  "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png", 
+  "description": "Friendly OpenSea Creature that enjoys long swims in the ocean.",
+  "external_url": "https://openseacreatures.io/3",
+  "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png",
   "name": "Dave Starbelly",
   "attributes": []
 }

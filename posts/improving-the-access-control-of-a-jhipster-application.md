@@ -4,10 +4,9 @@ authors:
 tags:
 - JHipster
 - Spring
-- Spring Security
 - React
 - Angular
-date: 2019-01-22T15:24:45.000Z
+date: 2019-01-24T20:56:21.000Z
 title: "Improving the access-control of a JHipster application"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/access-control.png
 ---
@@ -22,7 +21,7 @@ In this blog post, I will explain how to improve the access-control of the entit
 
 JHipster uses [Spring Security](https://spring.io/projects/spring-security) to secure the application, it is a very mature and robust framework that can be used to secure Spring-based applications. Spring Security can be easily customized to change the application's authentication and access-control to fulfill any desired requirements. JHipster uses 4 kind of users (**system**, **anonymousUser**, **user** and **admin**) that have one or multiple authorities (**ROLE_ANONYMOUS**, **ROLE_USER** and **ROLE_ADMIN**). More information about the type of users and authorities can be found on the [JHipster security page](https://www.jhipster.tech/security/).
 
-User's access-control can be configured using authorities at two different levels: 
+User's access-control can be configured using authorities at two different levels:
 - URL
     - **user** can use the entities API
     - only **admin** can use the management API
