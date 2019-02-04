@@ -489,7 +489,7 @@ Once we've minted our token, the status block provides a link to our transaction
 
 ![TxData](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-10.png)
 
-I waited a few minutes for my transaction to be mined on Ethereum, then I head to https://opensea.io/account and my shiny new ERC-721 token has appeared!
+I waited a few minutes for my transaction to be mined on Ethereum, then I headed to https://opensea.io/account and my shiny new ERC-721 token had appeared!
 
 ![OpenSea](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/01/non-fungible-tokens-11.png)
 
