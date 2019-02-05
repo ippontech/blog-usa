@@ -15,9 +15,9 @@ To submit a post to be published on the blog, you need to make a Pull Request on
 
 - Create a file in the `posts/` directory
 - The name of the file should be a _lowercase-dashed_ version of the title, with a `.md` extension ("Example title" -> `example-title.md`)
-- Add images in the `images/<yyyy>/<MM>/` directory
+- Add images in the `images/<YYYY>/<MM>/` directory
 - Start your post with metadata (see below)
-- Write your post in Markdown
+- Write your post in [Markdown](https://guides.github.com/features/mastering-markdown/)
 
 ## Metadata
 
@@ -44,9 +44,19 @@ A few notes:
 - Title: this should "match" the _slug_ of the post, i.e. the name of the file after converting to lowercase and replacing spaces with dashes.
 - Image: an absolute URL to an image file (optional).
 
+## Images
+
+To include an image in your post, first add it in the `images/<YYYY>/<MM>/` directory.
+
+You can then reference the image by using the following markdown snipet:
+
+```
+![alternate text](https://github.com/<your account>/blog-usa/blob/master/images/<YYYY>/<MM>/<image>)
+```
+
 ## A few rules to follow when writing a post
 
-- Use [GitHub's standard Markdown](https://guides.github.com/features/mastering-markdown/).
+- Use GitHub's standard Markdown - don't try to be fancy, less things are supported on Ghost than by GitHub.
 - Start numbering your titles at level 1 (not level 2 like we used to do).
 - Don't start a post with a level 1 title, the title indicated in metadata will already be there.
 - A paragraph should be a single line of text (no manual wrapping).
