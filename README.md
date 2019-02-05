@@ -56,7 +56,6 @@ You can then reference the image by using the following markdown snipet:
 
 ## A few rules to follow when writing a post
 
-- Use GitHub's standard Markdown - don't try to be fancy, less things are supported on Ghost than by GitHub.
 - Start numbering your titles at level 1 (not level 2 like we used to do).
 - Don't start a post with a level 1 title, the title indicated in metadata will already be there.
 - A paragraph should be a single line of text (no manual wrapping).
