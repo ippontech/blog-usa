@@ -9,8 +9,8 @@ tags:
 - Information 
 date: 2019-02-05T12:21:50.000Z
 title: "Information as an Asset Through Business Intelligence and Data Analytics"
-
 ---
+
 ## Make Better Decisions Faster
 
 Business Intelligence and Data Analytics are critical practices to ensure your organization is running efficiently and proactively. To determine _how_ these fundamentals of data practices can help improve operations within your organization, we must first be able to determine the difference between the two and answer how they can be utilized moving forward.
