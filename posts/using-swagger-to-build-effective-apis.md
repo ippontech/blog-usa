@@ -15,3 +15,13 @@ The rise of serverless computing and platform agnostic, app-based service use ha
 As REST APIs became more prevalant across the Internet, the standards used to develop them became more varied.  To fix this issue, a bunch of companies got together and created the [OpenAPI Initiative](https://www.openapis.org/about).  This initiative sought to codify and finalize a standard ruleset for REST API development.  Since the inception of this open source group, the OpenAPI Specification has gone through 3 version, the last two of which are fully supported by the [Swagger API Editor](https://swagger.io/solutions/getting-started-with-oas/).  This makes studying the specifications of all OpenAPIs very easy; the rules are on [Github](https://github.com/OAI/OpenAPI-Specification) for any user to peruse, and tools like Swagger make conforming to these rules easy to do.  The rules themselves are very detailed, and describing each one in this blog post would be redundant.  Instead we are going learn how to use Swagger to build your REST API which conforms to OpenAPI standards.
 
 # Step 1
+Build your TRD
+
+# Step 2
+Build UMLs
+https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/08/TDD_Graphic.jpg
+
+# Step 3
+Build Swagger Models
+
+# Test your Swagger using swagger UI tools
