@@ -4,7 +4,7 @@ authors:
 tags:
 - Docker
 - JHipster
-- Devops
+- DevOps
 date: 2018-01-08T19:10:23.000Z
 title: "GoCD with JHipster"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/11/Screen-Shot-2017-11-15-at-9.37.07-AM.png

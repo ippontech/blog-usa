@@ -2,7 +2,7 @@
 authors:
 - Chris Lumpkin
 tags:
-- blockchain
+- Blockchain
 - JHipster
 date: 2017-10-17T13:05:53.000Z
 title: "Summer of Blockchain: Decentralization Deep Dive at Ippon"

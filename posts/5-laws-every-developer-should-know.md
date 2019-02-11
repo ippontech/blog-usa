@@ -2,8 +2,7 @@
 authors:
 - Raphael Brugier
 tags:
-- software craftsmanship
-- design patterns
+- Software Craftsmanship
 date: 2017-08-17T18:22:50.000Z
 title: "5 laws every developer should know"
 image: 
