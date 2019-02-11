@@ -3,7 +3,7 @@ authors:
 - Dennis Sharpe
 tags:
 - JHipster
-- Devops
+- DevOps
 date: 2017-03-03T15:15:04.000Z
 title: "Hosting a Workshop at DevNexus 2017"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/03/DevNexus-Blog.png

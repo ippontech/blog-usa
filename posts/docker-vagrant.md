@@ -3,7 +3,7 @@ authors:
 - Laurent Mathieu
 tags:
 - Docker
-- vagrant
+- Vagrant
 date: 2014-10-08T04:12:27.000Z
 title: "Docker & Vagrant Introductions"
 image: 
