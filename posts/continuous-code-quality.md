@@ -2,16 +2,13 @@
 authors:
 - Amine Ouali Alami
 tags:
-- Continuous Code Quality
-- Jenkinsfile
-- Quality Gate
 - DevOps
 - Jenkins
-- SonarQube
-- Fixing the water leak
-date: 2010-01-23T10:00:00.000Z
-title: Implement a Continuous Code Quality approach
+date: 2019-02-13T20:16:10.000Z
+title: "Implement a Continuous Code Quality approach"
+image: 
 ---
+
 Imagine waking up in the morning and find a huge puddle of water in the middle of your kitchen. The first thing people start doing is to find the water leak and fix it. Once this is done, we can start to cleaning up the mess.
 Code quality in a development project should be treated exactly the same.
 
@@ -19,13 +16,11 @@ In a traditional approach of quality, the development team should audit the code
 - The code review occurs late in the process. All parties are waiting for the new product.
 - The team is not necessarily aware of code quality at the time of development.
 
-
 In a continuous code quality approach, the team focuses on new code:
 - It is difficult for the team to review the product's legacy code but is generally delighted to fix the most recent code changes.
 - The team is responsible for the quality of the code.
 - Go or no-go criteria are clear and shared by everyone because they apply to the new code regardless of the context of the project.
 - The quality cost is reduced because it is part of the development process.
-
 
 # Quality gate
 The SonarQube Quality Gate is a way to enhance the quality of your project. It is an integral part of your DevOps pipeline and answers a simple question: can I deliver my code?
@@ -46,7 +41,7 @@ To implement the quality gate in your pipeline you can add a step in your Jenkin
 
 The Jenkins [SonarQube Scanner plugin](https://plugins.jenkins.io/sonar) must be installed and configured
 
-```
+```js
 stage('Quality Analysis') {
     withSonarQubeEnv('sonarqube-server') {
        sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
@@ -62,7 +57,7 @@ In a Continuous Code Quality approach, it is necessary to retrieve the result of
 
 We can add the next step in our Jenkinsfile just after the sonar analysis step
 
-```
+```js
 stage("Quality Gate"){
   timeout(time: 1, unit: 'HOURS') {
     def qg = waitForQualityGate()
