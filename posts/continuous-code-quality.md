@@ -12,7 +12,7 @@ tags:
 date: 2010-01-23T10:00:00.000Z
 title: Implement a Continuous Code Quality approach
 ---
-Imagine your self waking up in the morning and find a huge puddle of water in the middle of your kitchen, the first thing people start doing is to find the water leak and fix it. Once is done we can start to clean up the mess.
+Imagine waking up in the morning and find a huge puddle of water in the middle of your kitchen. The first thing people start doing is to find the water leak and fix it. Once this is done, we can start to cleaning up the mess.
 Code quality in a development project should be treated exactly the same.
 
 In a traditional approach of quality, the development team should audit the code before each publication. This is not always the right approach in the long term:
@@ -74,7 +74,7 @@ stage("Quality Gate"){
 ```
 
 # Conclusion
-To be successful the quality gate must be run at an early stage of developement, implemeting a quality gate in your project guaranty that your code quality moves in the right direction and that will be no surprise at release time.
+To be successful, the quality gate must be run at an early stage of development. Implemeting a quality gate in your project guarantees that your code quality will be moving in the right direction and that there will be no surprise at release time.
 
 ##### References
 * [Quality Gate](https://docs.sonarqube.org/latest/user-guide/quality-gates/)
