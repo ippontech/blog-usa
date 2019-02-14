@@ -4,8 +4,6 @@ authors:
 tags:
 - Apache Spark
 - Scala
-- tdd
-- test
 date: 2016-03-11T09:28:21.000Z
 title: "Testing strategy for Apache Spark jobs - Part 1 of 2"
 image: 

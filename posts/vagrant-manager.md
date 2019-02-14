@@ -2,7 +2,7 @@
 authors:
 - Valentin Carmignac
 tags:
-- vagrant
+- Vagrant
 date: 2016-02-08T10:48:59.000Z
 title: "Vagrant Manager"
 image: 

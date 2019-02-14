@@ -5,7 +5,6 @@ tags:
 - JPA
 - Performance
 - Spring
-- Spring-Petclinic
 date: 2013-03-14T11:00:37.000Z
 title: "Improving the performance of the Spring-Petclinic sample application (part 4 of 5)"
 image: 
