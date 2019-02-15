@@ -7,7 +7,7 @@ tags:
 - JHipster
 date: 2019-02-14T12:12:12.000Z
 title: "Improving the access-control of a JHipster application"
-image: 
+image: https://raw.githubusercontent.com/Falydoor/blog-usa/vuejs-jhipster/images/2019/02/vuejs-jhipster-logo.png
 ---
 
 [Vue.js](https://vuejs.org/) is the new trending framework in the Javascript front-end world and its simplicity let you build web application pretty fast. The structure of a Vue.js application is very similar to Angular as it uses components and templates to build pages. [This video](https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance) is a good introduction to start playing with Vue.js especially if you never used Angular or React before.
@@ -96,7 +96,7 @@ const message = this.$t('blogpostApp.operation.updated', { param: param.id });
 
 Like React, all the routes are centralized in one file: `src/main/webapp/app/router/index.ts` and JHipster will automatically generate the routes for your entities.
  
- Custom routes should be added after the comment `// jhipster-needle-add-entity-to-router - JHipster will add entities to the router here` so it does not break things when other entities are gonna be genreated.
+ Custom routes should be added after the comment `// jhipster-needle-add-entity-to-router - JHipster will add entities to the router here` so it does not break things when other entities are generated.
 
 The field `meta` is used for checking user's authorities (can be used to pass any variables as well):
 
