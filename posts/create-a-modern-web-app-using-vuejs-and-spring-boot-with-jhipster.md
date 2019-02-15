@@ -7,7 +7,7 @@ tags:
 - JHipster
 date: 2019-02-14T12:12:12.000Z
 title: "Create a modern Web app using Vue.js and Spring Boot with JHipster"
-image: https://raw.githubusercontent.com/Falydoor/blog-usa/vuejs-jhipster/images/2019/02/vuejs-jhipster-logo.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/02/vuejs-jhipster-logo.png
 ---
 
 [Vue.js](https://vuejs.org/) is the new trending framework in the Javascript front-end world and its simplicity let you build web application pretty fast. The structure of a Vue.js application is very similar to Angular as it uses components and templates to build pages. [This video](https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance) is a good introduction to start playing with Vue.js especially if you never used Angular or React before.
@@ -49,7 +49,7 @@ jhipster -d --blueprint vuejs
 
 The default answers can be selected for each questions and if the blueprint is correctly installed you should see this message:
 
-![](https://raw.githubusercontent.com/Falydoor/blog-usa/vuejs-jhipster/images/2019/02/vuejs-jhipster.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/02/vuejs-jhipster.png)
 
 Here is my [.yo-rc.json](https://raw.githubusercontent.com/Falydoor/blogpost-vuejs/master/.yo-rc.json) in case you want to generate the exact same application as me. The file can be put in the application directory and then running `jhipster -d --blueprint vuejs` will generate the application without asking any questions.
 
@@ -59,7 +59,7 @@ Before starting the application, let's generate few entities using a simple jdl 
 
 You can make sure that everything is working by running the command `./mvnw` to start the application and then visiting `http://localhost:8080/#/`. After login in, the entities menu should have the three entities like below:
 
-![](https://raw.githubusercontent.com/Falydoor/blog-usa/vuejs-jhipster/images/2019/02/vuejs-jhipster-entities.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/02/vuejs-jhipster-entities.png)
 
 # Deep dive in the Vue.js structure
 
@@ -118,7 +118,7 @@ The field `meta` is used for checking user's authorities (can be used to pass an
 
 The folder `src/main/webapp/app/shared/model` contains the models and like in Angular, there is a component associated with a `.vue` template for each "page" of the application.
 
-![](https://raw.githubusercontent.com/Falydoor/blog-usa/vuejs-jhipster/images/2019/02/vuejs-jhipster-operation.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/02/vuejs-jhipster-operation.png)
 
 I recommend creating a custom service/component/template when creating a new page so you don't have to resolve conflicts when re-generating an entity.
 
