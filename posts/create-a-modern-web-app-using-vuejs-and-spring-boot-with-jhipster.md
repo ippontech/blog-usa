@@ -6,7 +6,7 @@ tags:
 - Spring Boot
 - JHipster
 date: 2019-02-14T12:12:12.000Z
-title: "Improving the access-control of a JHipster application"
+title: "Create a modern Web app using Vue.js and Spring Boot with JHipster"
 image: https://raw.githubusercontent.com/Falydoor/blog-usa/vuejs-jhipster/images/2019/02/vuejs-jhipster-logo.png
 ---
 
@@ -14,15 +14,17 @@ image: https://raw.githubusercontent.com/Falydoor/blog-usa/vuejs-jhipster/images
 
 Here is a size comparison (minified) of the current popular frameworks ([more details here](https://gist.github.com/Restuta/cda69e50a853aa64912d)):
 
-Name  | Size
-------------- | -------------
-Angular 2| 566K
-Ember 2.2.0 | 435K
-React 0.14.5 + React DOM | 133K
-React 16.2.0 + React DOM | 97.5K
-**Vue 2.4.2** | **58.8K**
-Inferno 1.2.2 | 48K
-Preact 7.2.0 | 16K
+```text
+| Name                     | Size  |
+| ------------------------ | ----- |
+| Angular 2                | 566K  |
+| Ember 2.2.0              | 435K  |
+| React 0.14.5 + React DOM | 133K  |
+| React 16.2.0 + React DOM |  97K  |
+| Vue 2.4.2                |  58K  |
+| Inferno 1.2.2            |  48K  |
+| Preact 7.2.0             |  16K  |
+```
 
 As I said before, the simplicity of Vue.js makes it very lightweight and easy to integrate with other libraries or existing projects. On the other hand, Vue.js is totally capable of building robust Single-Page Applications with the right tools and [JHipster](https://www.jhipster.tech/) is the perfect match for that. If you're not familiar with JHipster, I recommend watching [this video](https://www.youtube.com/watch?v=-VQ_SVkaXbs) that will give you a good introduction on what you can do with JHipster.
 
