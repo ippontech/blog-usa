@@ -38,7 +38,7 @@ The official Vue.js blueprint will be used to generate the front-end, you can fo
 
 ## Application generation
 
-Let's start by creating a fresh folder for the application:
+Let's start by creating a new folder and run JHipster with the vuejs blueprint:
 
 ```bash
 mkdir vuejs-app
@@ -51,13 +51,13 @@ The default answers can be selected for each questions and if the blueprint is c
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/02/vuejs-jhipster.png)
 
-Here is my [.yo-rc.json](https://raw.githubusercontent.com/Falydoor/blogpost-vuejs/master/.yo-rc.json) in case you want to generate the exact same application as me. The file can be put in the application directory and then running `jhipster -d --blueprint vuejs` will generate the application without asking any questions.
+This [.yo-rc.json](https://raw.githubusercontent.com/Falydoor/blogpost-vuejs/master/.yo-rc.json) can be used in case you want to generate the exact same application as me. The file can be put in the application directory and then running `jhipster -d --blueprint vuejs` will generate the application without asking any questions.
 
 ## Entities generation
 
-Before starting the application, let's generate few entities using a simple jdl that contains three entities. Simply create a file named `entities.jdl` in the root folder of the application with [this content](https://raw.githubusercontent.com/Falydoor/blogpost-vuejs/master/entities.jdl). Then the command `jhipster import-jdl entities.jdl` will generate the entities using the Vue.js blueprint.
+Before starting the application, let's generate few entities using a simple jdl that contains three entities. Simply create a file named `entities.jdl` in the root folder of the application with [this content](https://raw.githubusercontent.com/Falydoor/blogpost-vuejs/master/entities.jdl). Then run the command `jhipster import-jdl entities.jdl` to generate the entities using the Vue.js blueprint.
 
-You can make sure that everything is working by running the command `./mvnw` to start the application and then visiting `http://localhost:8080/#/`. After login in, the entities menu should have the three entities like below:
+You can make sure that everything is working by running the command `./mvnw` to start the application and then visiting [http://localhost:8080/#/](http://localhost:8080/#/). After login in, the entities menu should have the three entities like below:
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/02/vuejs-jhipster-entities.png)
 
@@ -100,7 +100,7 @@ Like React, all the routes are centralized in one file: `src/main/webapp/app/rou
  
  Custom routes should be added after the comment `// jhipster-needle-add-entity-to-router - JHipster will add entities to the router here` so it does not break things when other entities are generated.
 
-The field `meta` is used for checking user's authorities (can be used to pass any variables as well):
+The field `meta` is used for checking user's authorities and it can be used to pass other variables:
 
 ```javascript
 // This route will only allow users with the "ROLE_ADMIN" authority
@@ -124,7 +124,7 @@ I recommend creating a custom service/component/template when creating a new pag
 
 ### Validation
 
-The validation is done using the [vuelidate library](https://github.com/monterail/vuelidate) and the usage is pretty straight forward. The entity **Operation** is a good example to understand how the custom validation is done with **vuelidate**. The `OperationUpdate` component contains the validations options, see below:
+The validation is done using the [vuelidate library](https://github.com/monterail/vuelidate) and the usage is pretty straight forward. The entity **Operation** is a good example to understand how the custom validation is done with **vuelidate**. The `OperationUpdate` component contains the validations options as you can see below:
 
 ```javascript
 const validations: any = {
@@ -149,7 +149,7 @@ export default class OperationUpdate extends Vue {
 }
 ```
 
-Custom validation messages can be shown/hidden using the validation rules, here is how it is done in the template `operation-update.vue`:
+The file `operation-update.vue` uses the validation rules to show/hide custom validation messages:
 
 ```html
 <input type="number" class="form-control" name="amount" id="operation-amount"
