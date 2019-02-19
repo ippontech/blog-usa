@@ -10,7 +10,7 @@ title: "Create a modern Web app using Vue.js and Spring Boot with JHipster"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/02/vuejs-jhipster-logo.png
 ---
 
-[Vue.js](https://vuejs.org/) is the new trending framework in the Javascript front-end world and its simplicity let you build web application pretty fast. The structure of a Vue.js application is very similar to Angular as it uses components and templates to build pages. [This video](https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance) is a good introduction to start playing with Vue.js especially if you never used Angular or React before.
+[Vue.js](https://vuejs.org/) is the new trending framework in the Javascript front-end world and its simplicity lets you build web applications pretty fast. The structure of a Vue.js application is very similar to an Angular application as it uses components and templates to build pages. [This video](https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance) is a good introduction to start playing with Vue.js especially if you never used Angular or React before.
 
 Here is a size comparison (minified) of the current popular frameworks ([more details here](https://gist.github.com/Restuta/cda69e50a853aa64912d)):
 
@@ -30,11 +30,11 @@ As I said before, the simplicity of Vue.js makes it very lightweight and easy to
 
 # Vue.js using a JHipster blueprint
 
-By default, JHipster asks you to choose between Angular or React for the front-end framework. The concept of blueprint was introduced in the version 5 and the goal is to extend the functionality of JHipster by letting you use your own sub-generator. More information on how to create and use a blueprint can be found on [the documentation](https://www.jhipster.tech/modules/creating-a-blueprint/).
+By default, JHipster asks you to choose between Angular or React for the front-end framework. The concept of blueprint was introduced in version 5 and the goal is to extend the functionality of JHipster by letting you use your own sub-generator. More information on how to create and use a blueprint can be found in [the documentation](https://www.jhipster.tech/modules/creating-a-blueprint/).
 
 ## Installation
 
-The official Vue.js blueprint will be used to generate the front-end, you can follow the installation instruction on [the blueprint repository](https://github.com/jhipster/jhipster-vuejs). Since the blueprint was still in development when I wrote this blog post, you may encounter some issues. Feel free to report them and submit a Pull Request if you think that a part was done the wrong way.
+The official Vue.js blueprint will be used to generate the front-end. You can follow the installation instruction on [the blueprint repository](https://github.com/jhipster/jhipster-vuejs). Since the blueprint was still in development when I wrote this blog post, you may encounter some issues. Feel free to report them and submit a Pull Request if you think that a part was done the wrong way.
 
 ## Application generation
 
@@ -55,9 +55,9 @@ This [.yo-rc.json](https://raw.githubusercontent.com/Falydoor/blogpost-vuejs/mas
 
 ## Entities generation
 
-Before starting the application, let's generate few entities using a simple jdl that contains three entities. Simply create a file named `entities.jdl` in the root folder of the application with [this content](https://raw.githubusercontent.com/Falydoor/blogpost-vuejs/master/entities.jdl). Then run the command `jhipster import-jdl entities.jdl` to generate the entities using the Vue.js blueprint.
+Before starting the application, let's generate a few entities using a simple JDL that contains three entities. Simply create a file named `entities.jdl` in the root folder of the application with [this content](https://raw.githubusercontent.com/Falydoor/blogpost-vuejs/master/entities.jdl). Then run the `jhipster import-jdl entities.jdl` command to generate the entities using the Vue.js blueprint.
 
-You can make sure that everything is working by running the command `./mvnw` to start the application and then visiting [http://localhost:8080/#/](http://localhost:8080/#/). After login in, the entities menu should have the three entities like below:
+You can make sure that everything is working by running the `./mvnw` command to start the application and then visiting [http://localhost:8080/#/](http://localhost:8080/#/). After login in, the "entities" menu should have the three entities like below:
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/02/vuejs-jhipster-entities.png)
 
@@ -116,7 +116,7 @@ The field `meta` is used for checking user's authorities and it can be used to p
 
 ### Structure
 
-The folder `src/main/webapp/app/shared/model` contains the models and like in Angular, there is a component associated with a `.vue` template for each "page" of the application.
+The folder `src/main/webapp/app/shared/model` contains the models and like in Angular. There is a component associated with a `.vue` template for each "page" of the application.
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/02/vuejs-jhipster-operation.png)
 
