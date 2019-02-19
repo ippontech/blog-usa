@@ -57,7 +57,11 @@ $ docker ps
 CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS                  PORTS                      NAMES
 258a99d971e9        swaggerapi/swagger-editor   "sh /usr/share/nginx…"   1 second ago        Up Less than a second   127.0.0.1:8080->8080/tcp   elated_margulis
 ```
-By navigating to port 8080 in our browser, we can see the default Swagger Editor UI.  You should see the standard Pet Store sample API definition in the Swagger UI ![](https://github.com/ippontech/blog-usa/blob/master/images/2019/02/swagger-default-ui.png) .  The Pet Store API is the sample API for the Swagger 2.0 specification.  In the next section, we'll explore how we can convert this API into an OpenAPI 3.0 Specification API, in accordance with the UML diagrams above.
+By navigating to port 8080 in our browser, we can see the default Swagger Editor UI.  You should see the standard Pet Store sample API definition in the Swagger UI:
+
+![](https://github.com/ippontech/blog-usa/blob/master/images/2019/02/swagger-default-ui.png)
+
+The Pet Store API is the sample API for the Swagger 2.0 specification.  In the next section, we'll explore how we can convert this API into an OpenAPI 3.0 Specification API, in accordance with the UML diagrams above.
 
 ### Swagger-Editor vs. Swagger Hub
 If the above steps were at all difficult or prohibitive for you, check out [Swagger.io](https://swagger.io/).  This website hosts all of the web services discussed here in their newest versions.  The only drawback is you will have to login to the Swagger website and host your API there.  If this is not a problem for you, feel free to use Swagger Hub for the remainder of this tutorial.  Both platforms feature Ctrl+Space code completion tips that are essential if you find yourself struggling to format your API properly.  We will be using Swagger Hub later in this post to test our API.
