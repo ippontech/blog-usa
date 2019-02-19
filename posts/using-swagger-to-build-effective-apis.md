@@ -356,7 +356,7 @@ $ curl -X GET "https://virtserver.swaggerhub.com/dferguson992/aspotr/1.0.0/exerc
 ```
 As you can see, these two GET requests return basic Exercise objects.  This mocking allows us to view the exercises as they would be returned from the API.  This is important, as it allows us to easily define improved endpoints for future releases of the API.  Seeing the results of the endpoint requests, even if they are mocked, will always be more valuable than writing the specification and never seeing it in action until business logic is written.
 
-We can even modify the request body of the POST endpoint we defined earlier
+We can even modify the request body of the POST endpoint we defined earlier:
 ```SHELL
 $ curl -X POST "https://virtserver.swaggerhub.com/dferguson992/aspotr/1.0.0/exercises/exercise" -H "accept: application/json" -H "Content-Type: application/json" -d {"id":1,"sets":[{"id":0,"exercise":{"id":0,"name":"stricription":"string","primaryMuscleGroupId":{"id":0,"name":"string"},"movementModifier":"isolation"},"repetitions":[{"id":0,"weight":0,"system":true,"repetitionModified":"tempo"}],"name":"string"}],"avgRestTime":0}
 {
