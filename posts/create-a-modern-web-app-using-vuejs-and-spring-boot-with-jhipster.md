@@ -170,3 +170,5 @@ The important object is **$v** and it can be used to get the status of any valid
 Vue.js has a smooth learning curve and the time required to be productive is very short. It is an excellent alternative to Angular/React and having experience in those frameworks will help. [The comparison with other frameworks](https://vuejs.org/v2/guide/comparison.html) page will help you decide if Vue.js is a good fit for your application.
 
 JHipster will provide everything you need to start a complete modern Web app and take it to production in a very short amount of time. On top of that, the back-end is built as a high-performance and robust Java stack with Spring Boot.
+
+If something in this article piqued your interest and you would like more information on JHipster or the services we offer at Ippon USA we’d love to hear from you! Please contact us at [contact@ippon.tech](mailto:contact@ippon.tech) with your questions and inquiries.
