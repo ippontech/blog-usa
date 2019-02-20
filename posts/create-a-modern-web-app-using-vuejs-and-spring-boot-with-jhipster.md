@@ -43,8 +43,7 @@ Let's start by creating a new folder and run JHipster with the vuejs blueprint:
 ```bash
 mkdir vuejs-app
 cd vuejs-app
-npm link generator-jhipster-vuejs
-jhipster -d --blueprint vuejs
+jhipster --blueprint vuejs
 ```
 
 The default answers can be selected for each questions and if the blueprint is correctly installed you should see this message:
