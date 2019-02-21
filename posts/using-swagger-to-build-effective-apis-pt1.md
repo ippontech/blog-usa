@@ -5,7 +5,7 @@ tags:
 - API
 - Swagger
 date: 2019-02-07T20:22:38.000Z
-title: "Using Swagger to Build Effective APIs"
+title: "Using Swagger to Build Effective APIs Part 1"
 image:
 ---
 
