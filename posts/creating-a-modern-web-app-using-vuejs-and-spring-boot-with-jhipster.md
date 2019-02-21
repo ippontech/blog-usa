@@ -6,7 +6,7 @@ tags:
 - Spring Boot
 - JHipster
 date: 2019-02-14T12:12:12.000Z
-title: "Create a modern Web app using Vue.js and Spring Boot with JHipster"
+title: "Creating a modern Web app using Vue.js and Spring Boot with JHipster"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/02/vuejs-jhipster-logo.png
 ---
 
