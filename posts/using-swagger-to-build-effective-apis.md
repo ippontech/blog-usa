@@ -299,7 +299,7 @@ Usually, APIs are written by architects, for developers.  This immediately impli
 # Test your Swagger using Swagger Hub tools
 Once you've built your API Specification using the Swagger Editor, you have to test it.  By far, the easiest way you can test your API specification is to copy it from the Swagger Editor and paste it into Swagger Hub.  This will, of course, require you to sign-in to Swagger Hub and create a new API; but the ease of testing involved make the process well worth it.  Additionally, you can make any new API private on Swagger Hub, if you are concerned others may poach your API.
 
-Once you've pasted your API into the Swagger Hub, you'll notice the UI will take on a very similar look and feel as the Swagger Editor.  They are not identical displays however; in fact you may notice that Swagger Hub adds a server line for you.  This is what Swagger Hub added to the server section of my API
+Once you've pasted your API into the Swagger Hub, you'll notice the UI will take on a very similar look and feel as the Swagger Editor.  They are not identical displays however; in fact, you may notice that Swagger Hub adds a server line for you.  This is what Swagger Hub added to the server section of my API
 ```YAML
 # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
