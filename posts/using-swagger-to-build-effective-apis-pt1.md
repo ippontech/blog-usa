@@ -227,3 +227,5 @@ For our purposes now, this API will work just fine; but as you continue to read,
 
 # Summary
 This post is the first in a series discussing API development for serverless applications.  In the next post, we will discuss developing API paths in your Swagger specification, and how to test that API specification using Swagger tools.
+
+If something in this article piqued your interest and you would like more information on JHipster or the services we offer at Ippon USA we’d love to hear from you! Please contact us at contact@ippon.tech with your questions and inquiries.
