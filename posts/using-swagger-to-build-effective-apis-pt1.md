@@ -25,7 +25,7 @@ Every API needs to have a purpose which defines how it will be used.  Personally
 
 Take a look at this graphic:
 
-![](https://github.com/ippontech/blog-usa/blob/master/images/2019/02/aspotr_umls.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/02/aspotr_umls.png)
 
 Here we define a workout as an array of exercises.  Each exercise is a combination of sets with a rest time.  Each set is an array of repetitions defined primarily by a weight, as well as a lift, which is defined primarily by an affected muscle group.  Now we have the framework to easily define a weight lifting workout.  How do we translate this diagram of loose fitting parts into an API?
 
@@ -35,7 +35,7 @@ There are three steps we will need to take to turn these UML diagrams into tangi
 If you prefer to work entirely online, feel free to check out [Swagger.io](https://swagger.io/).  Their service, Swagger Hub, functions exactly like Swagger Editor, and it even includes testing features which we will explore later.  Personally, I prefer to use Docker containers so I do not always have to be connected to the Internet.  If you do decide to use Swagger Hub, you can skip over this portion of the post.
 ## MacOS
 For MacOS, install Docker on your laptop by running the following in a terminal:
-```
+```shell
 brew install docker
 ```
 ## Windows
@@ -54,18 +54,18 @@ $
 $ docker pull swaggerapi/swagger-editor
 ```
 Once you have your container downloaded, run the following command to start the container and map the container port 8080 to your computer's port 8080
-```
+```shell
 $ docker run -p 127.0.0.1:8080:8080 swaggerapi/swagger-editor &
 ```
 This should start the container, but we can confirm by running `docker ps` which should give output similar to the following: 
-```
+```shell
 $ docker ps
 CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS                  PORTS                      NAMES
 258a99d971e9        swaggerapi/swagger-editor   "sh /usr/share/nginx…"   1 second ago        Up Less than a second   127.0.0.1:8080->8080/tcp   elated_margulis
 ```
 By navigating to port 8080 in our browser, we can see the default Swagger Editor UI.  You should see the standard Pet Store sample API definition in the Swagger UI:
 
-![](https://github.com/ippontech/blog-usa/blob/master/images/2019/02/swagger-default-ui.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/02/swagger-default-ui.png)
 
 The Pet Store API is the sample API for the Swagger 2.0 specification.  In the next section, we'll explore how we can convert this API into an OpenAPI 3.0 Specification API, in accordance with the UML diagrams above.
 
@@ -77,7 +77,7 @@ The default Swagger file in the Swagger Editor conforms to Swagger 2.0 (also kno
 
 ## API Metadata & Additional Docs Section
 The first component of an OAS 3.0 API is not relevant to the function of the API.  This section of an API specification retains information about the API like which version it is, who wrote the API, servers where you can contact the API, additional documentation, licensing information, and the APIs schema.  In our case, this block of YAML should look similar to the following:
-```YAML
+```yaml
 openapi: 3.0.0
 info:
   title: ASpotr
@@ -102,7 +102,7 @@ The first line defines the specification this API adheres too.  This will usuall
 
 ## Components Section
 The second major component to an OAS 3.0 API are the components.  For those of you with an object-oriented programming background, it is easy to think of components as plain objects without any business logic.  In order to build strong path definitions in your API, it is imperative we build strong, well-defined models that can be referenced from your paths.  This is where the UML diagram from above comes in handy.  Considering the UML diagram, we can create API models defined below.  As you read this section, pay close attention to the use of the `$ref` tag:
-```YAML
+```yaml
 components:
   schemas:
     MuscleGroup:
