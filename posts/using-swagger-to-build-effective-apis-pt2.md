@@ -13,7 +13,7 @@ This post is a continuation in a discussion on developing APIs which prescribe t
 
 ## Paths Sections
 The third and most important component to an API specification is the paths section.  Here is the meat and potatoes of the API, the definitions behind how it will be used by developers in the future.  Let's look at a simple example of two paths this API could take for the exercise resource:
-```YAML
+```yaml
 paths:
   /exercises:
     summary: Returns a paginated list of exercises
@@ -98,7 +98,7 @@ Usually, APIs are written by architects, for developers.  This immediately impli
 Once you've built your API Specification using the Swagger Editor, you have to test it.  By far, the easiest way you can test your API specification is to copy it from the Swagger Editor and paste it into Swagger Hub.  This will, of course, require you to sign-in to Swagger Hub and create a new API; but the ease of testing involved make the process well worth it.  Additionally, you can make any new API private on Swagger Hub, if you are concerned others may poach your API.
 
 Once you've pasted your API into the Swagger Hub, you'll notice the UI will take on a very similar look and feel as the Swagger Editor.  They are not identical displays however; in fact, you may notice that Swagger Hub adds a server line for you.  This is what Swagger Hub added to the server section of my API
-```YAML
+```yaml
 # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/dferguson992/aspotr/1.0.0
@@ -106,7 +106,7 @@ Once you've pasted your API into the Swagger Hub, you'll notice the UI will take
 This is a virtual server used to mock requests to your API.  Your username, API name, and API Version number all define the URL of the mock server.  You cannot ping the server, but you can run curl commands against API endpoints hosted on the server.  These API endpoints are pulled straight from your specification and will send mock data to your endpoints so you can physically see the responses.  Furthermore, you are free to modify the mock data to fit any edge cases you may want to program into your application in the future.  It is important to note, this is just a sanity test designed to allow you to see the specified output of your API.  You should not use the mock endpoints to actually test your business logic.  The mock endpoint is created solely for the purpose of viewing and verifying the expected output.  
 
 Let's look at a few of the examples from the demo API:
-```SHELL
+```shell
 $ curl -X GET "https://virtserver.swaggerhub.com/dferguson992/aspotr/1.0.0/exercises" -H "accept: application/json"
 [ {
   "id" : 0,
@@ -161,7 +161,7 @@ $ curl -X GET "https://virtserver.swaggerhub.com/dferguson992/aspotr/1.0.0/exerc
 As you can see, these two GET requests return basic Exercise objects.  This mocking allows us to view the exercises as they would be returned from the API.  This is important, as it allows us to easily define improved endpoints for future releases of the API.  Seeing the results of the endpoint requests, even if they are mocked, will always be more valuable than writing the specification and never seeing it in action until business logic is written.
 
 We can even modify the request body of the POST endpoint we defined earlier:
-```SHELL
+```shell
 $ curl -X POST "https://virtserver.swaggerhub.com/dferguson992/aspotr/1.0.0/exercises/exercise" -H "accept: application/json" -H "Content-Type: application/json" -d {"id":1,"sets":[{"id":0,"exercise":{"id":0,"name":"stricription":"string","primaryMuscleGroupId":{"id":0,"name":"string"},"movementModifier":"isolation"},"repetitions":[{"id":0,"weight":0,"system":true,"repetitionModified":"tempo"}],"name":"string"}],"avgRestTime":0}
 {
   "id" : 0,
