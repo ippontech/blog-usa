@@ -42,7 +42,7 @@ brew install docker
 For Windows, navigate to the [Docker download link](https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe) and follow the prompts until Docker is installed.  
 ## Next Steps
 Once Docker is installed, run the `docker search swagger` command using the docker CLI to search for the swagger editor container.  It is important to note here, we want the swaggerapi/swagger-editor image.  The swagger-ui image is better for presenting API documentation in a web browser.  The swagger-generator image starts a web server that will generate clients or servers in a RESTful context when given an API as input.  The swagger-validator image is used for assigning Swagger badges to Github repositories.  In this instance, we only care about the swagger-editor image, as it will allow us to deploy a local web service that we can use to edit our API without logging into Swagger's online services.
-```
+```shell
 $ docker search swagger
 NAME                                     DESCRIPTION                                     STARS               OFFICIAL         
 swaggerapi/swagger-editor                The swagger-editor web service                  240                                   
