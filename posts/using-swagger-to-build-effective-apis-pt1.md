@@ -3,25 +3,24 @@ authors:
 - Dan Ferguson
 tags:
 - API
-- Swagger
-date: 2019-02-07T20:22:38.000Z
+date: 2019-02-25T19:56:18.000Z
 title: "Using Swagger to Build Effective APIs Part 1"
-image:
+image: 
 ---
 
 The rise of serverless computing and platform agnostic, app-based services use has forced the casual developer to learn proper API development, a task usually reserved for platform architects.  Unfortunately, there are many programmers, start-ups, and full-fledged companies that do not adhere to proper API development and maintenance. The skillsets and mindsets involved in creating APIs are different from those involved in developing the business logic which uses an API.
- 
+
 This schism does not affect developers or architects; it only affects the users of the API.  Poorly developed or poorly documented APIs which are susceptible to frequent changes or misleading design decisions are difficult to use.  If a product is difficult to use it likely will not be used at all, especially if that product is an API.  The good news is there are specifications and tools which aid in the development of easy to use APIs that change as fast as your business.  I am speaking specifically about the Open API Specification and Swagger.
 
 # OpenAPI Initiative and Swagger
 As REST APIs became more prevalent across the Internet, the standards used to develop them became more varied.  To fix this issue, a bunch of companies got together and created the [OpenAPI Initiative](https://www.openapis.org/about).  This initiative sought to codify and finalize a standard ruleset for REST API development.  Since the inception of this open source group, the OpenAPI Specification (OAS) has gone through 3 versions, the last two of which are fully supported by the [Swagger API Editor](https://swagger.io/solutions/getting-started-with-oas/).
 
-Swagger is a company that creates and supports open source API development tools.  Many of these tools are available on their website, or as we will shortly see as Docker containers.  These tools like Swagger Hub, Swagger Editor, Swagger UI, and Swagger Validator all work together to aid in developing proper APIs.  Furthermore, all Swagger tools support the OAS 3.0.n specification.  This fact makes adhering to OAS standards very easy when using Swagger tools.  
+Swagger is a company that creates and supports open source API development tools.  Many of these tools are available on their website, or as we will shortly see as Docker containers.  These tools like Swagger Hub, Swagger Editor, Swagger UI, and Swagger Validator all work together to aid in developing proper APIs.  Furthermore, all Swagger tools support the OAS 3.0.n specification.  This fact makes adhering to OAS standards very easy when using Swagger tools.
 
 The exact rules defining OAS are on [Github](https://github.com/OAI/OpenAPI-Specification) for any user to peruse, but tools like Swagger make conforming to these rules easy for anyone.  You do not have to be familiar with every detail of the OpenAPI specification to develop an API which conforms to said specification.  The rules themselves are very detailed, and describing each one in this blog post would be redundant.  Instead, we are going to use Swagger to build a demo REST API which conforms to OpenAPI standards and syntax.  After walking through this tutorial, I encourage the reader to browse the specification in more detail.  I will cover as many features of the OpenAPI version 3.0.0 specification as possible in this article, but the most detail can be found in [the specification itself](https://swagger.io/solutions/getting-started-with-oas/).
 
 # What is this API going to do?
-Every API needs to have a purpose which defines how it will be used.  Personally, I love to exercise.  Going to the gym, taking a fitness class, and running are all ways I like to workout.  But as my workouts become more varied, it is difficult to track my progress from workout to workout.  We are going to develop a sample API which will help me track my exercises, no matter how varied they are.  
+Every API needs to have a purpose which defines how it will be used.  Personally, I love to exercise.  Going to the gym, taking a fitness class, and running are all ways I like to workout.  But as my workouts become more varied, it is difficult to track my progress from workout to workout.  We are going to develop a sample API which will help me track my exercises, no matter how varied they are.
 
 Take a look at this graphic:
 
@@ -39,15 +38,15 @@ For MacOS, install Docker on your laptop by running the following in a terminal:
 brew install docker
 ```
 ## Windows
-For Windows, navigate to the [Docker download link](https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe) and follow the prompts until Docker is installed.  
+For Windows, navigate to the [Docker download link](https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe) and follow the prompts until Docker is installed.
 ## Next Steps
 Once Docker is installed, run the `docker search swagger` command using the docker CLI to search for the swagger editor container.  It is important to note here, we want the swaggerapi/swagger-editor image.  The swagger-ui image is better for presenting API documentation in a web browser.  The swagger-generator image starts a web server that will generate clients or servers in a RESTful context when given an API as input.  The swagger-validator image is used for assigning Swagger badges to Github repositories.  In this instance, we only care about the swagger-editor image, as it will allow us to deploy a local web service that we can use to edit our API without logging into Swagger's online services.
 ```shell
 $ docker search swagger
-NAME                                     DESCRIPTION                                     STARS               OFFICIAL         
-swaggerapi/swagger-editor                The swagger-editor web service                  240                                   
-swaggerapi/swagger-ui                    A simple docker container for hosting swagge…   145                                   
-swaggerapi/swagger-generator             The swagger codegen web service                 66                                    
+NAME                                     DESCRIPTION                                     STARS               OFFICIAL
+swaggerapi/swagger-editor                The swagger-editor web service                  240
+swaggerapi/swagger-ui                    A simple docker container for hosting swagge…   145
+swaggerapi/swagger-generator             The swagger codegen web service                 66
 ......
 $
 $
@@ -57,7 +56,7 @@ Once you have your container downloaded, run the following command to start the 
 ```shell
 $ docker run -p 127.0.0.1:8080:8080 swaggerapi/swagger-editor &
 ```
-This should start the container, but we can confirm by running `docker ps` which should give output similar to the following: 
+This should start the container, but we can confirm by running `docker ps` which should give output similar to the following:
 ```shell
 $ docker ps
 CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS                  PORTS                      NAMES
@@ -199,7 +198,7 @@ components:
       required:
         - id
         - sets
-    Workout: 
+    Workout:
       type: object
       properties:
         id:
@@ -226,6 +225,6 @@ The first option is not convenient, but it lends itself well to exercise trackin
 For our purposes now, this API will work just fine; but as you continue to read, consider optimizations to the API that would make it scalable and easy to use.  It is essential to think about the API from all perspectives, those modeling the business logic on the back-end, and those submitted REST requests on the front-end.  If you keep these tenants in mind, you can build a much more atomic API that maintains its usability by both developers and users.
 
 # Summary
-This post is the first in a series discussing API development for serverless applications.  In the next post, we will discuss developing API paths in your Swagger specification, and how to test that API specification using Swagger tools.
+This post is the first in a series discussing API development for serverless applications.  In [the next post](https://blog.ippon.tech/using-swagger-to-build-effective-apis-pt2/), we will discuss developing API paths in your Swagger specification, and how to test that API specification using Swagger tools.
 
 If something in this article piqued your interest and you would like more information on JHipster or the services we offer at Ippon USA we’d love to hear from you! Please contact us at contact@ippon.tech with your questions and inquiries.
