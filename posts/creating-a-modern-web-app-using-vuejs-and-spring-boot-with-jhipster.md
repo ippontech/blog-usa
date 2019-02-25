@@ -2,10 +2,8 @@
 authors:
 - Theo Lebrun
 tags:
-- Vue.js
-- Spring Boot
 - JHipster
-date: 2019-02-14T12:12:12.000Z
+date: 2019-02-21T14:50:55.000Z
 title: "Creating a modern Web app using Vue.js and Spring Boot with JHipster"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/02/vuejs-jhipster-logo.png
 ---
@@ -96,7 +94,7 @@ const message = this.$t('blogpostApp.operation.updated', { param: param.id });
 ### Routes
 
 Like React, all the routes are centralized in one file: `src/main/webapp/app/router/index.ts` and JHipster will automatically generate the routes for your entities.
- 
+
  Custom routes should be added after the comment `// jhipster-needle-add-entity-to-router - JHipster will add entities to the router here` so it does not break things when other entities are generated.
 
 The field `meta` is used for checking user's authorities and it can be used to pass other variables:

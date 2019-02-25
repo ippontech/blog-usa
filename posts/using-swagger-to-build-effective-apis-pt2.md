@@ -3,13 +3,12 @@ authors:
 - Dan Ferguson
 tags:
 - API
-- Swagger
-date: 2019-02-07T20:22:38.000Z
+date: 2019-02-25T19:57:38.000Z
 title: "Using Swagger to Build Effective APIs Part 2"
-image:
+image: 
 ---
 
-This post is a continuation in a discussion on developing APIs which prescribe to the Open API 3.0 specification using Swagger tools.  In this post, we will continue our dicussion with writing paths for your API and testing those paths using Swagger Hub.
+This post is a continuation [in a discussion](https://blog.ippon.tech/using-swagger-to-build-effective-apis-pt1/) on developing APIs which prescribe to the Open API 3.0 specification using Swagger tools.  In this post, we will continue our dicussion with writing paths for your API and testing those paths using Swagger Hub.
 
 ## Paths Sections
 The third and most important component to an API specification is the paths section.  Here is the meat and potatoes of the API, the definitions behind how it will be used by developers in the future.  Let's look at a simple example of two paths this API could take for the exercise resource:
@@ -43,7 +42,7 @@ paths:
         - Exercise ID
       summary: "Returns an exercise based on the ID passed"
       description: "Returns an exercise based on the ID passed"
-      parameters: 
+      parameters:
         - name: id
           in: path
           description: Exercise ID
@@ -103,7 +102,7 @@ Once you've pasted your API into the Swagger Hub, you'll notice the UI will take
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/dferguson992/aspotr/1.0.0
 ```
-This is a virtual server used to mock requests to your API.  Your username, API name, and API Version number all define the URL of the mock server.  You cannot ping the server, but you can run curl commands against API endpoints hosted on the server.  These API endpoints are pulled straight from your specification and will send mock data to your endpoints so you can physically see the responses.  Furthermore, you are free to modify the mock data to fit any edge cases you may want to program into your application in the future.  It is important to note, this is just a sanity test designed to allow you to see the specified output of your API.  You should not use the mock endpoints to actually test your business logic.  The mock endpoint is created solely for the purpose of viewing and verifying the expected output.  
+This is a virtual server used to mock requests to your API.  Your username, API name, and API Version number all define the URL of the mock server.  You cannot ping the server, but you can run curl commands against API endpoints hosted on the server.  These API endpoints are pulled straight from your specification and will send mock data to your endpoints so you can physically see the responses.  Furthermore, you are free to modify the mock data to fit any edge cases you may want to program into your application in the future.  It is important to note, this is just a sanity test designed to allow you to see the specified output of your API.  You should not use the mock endpoints to actually test your business logic.  The mock endpoint is created solely for the purpose of viewing and verifying the expected output.
 
 Let's look at a few of the examples from the demo API:
 ```shell
@@ -188,7 +187,7 @@ $ curl -X POST "https://virtserver.swaggerhub.com/dferguson992/aspotr/1.0.0/exer
   "avgRestTime" : 0
 }
 ```
-We defined the payload as an exercise containing just default values for each field, and passed it in JSON to the curl statement under the `-d` flag.  As you can see, our API returned a sample exercise object that deviated from our payload.  It is difficult to see at first, but if you look closely you will see we passed an exercise with an id of "1" to the curl statment, and received an exercise with an id of "0" in the response body.  This is a short-coming inherent to mocking.  In our API specification, we may have intended our API to return the exact response we sent, but there is no way to emulate this behavior in a mock.  This is because REST APIs are stateful.  There is no way for us to emulate this intended behavior without designing business logic.  Situations like these are important to pay close attention to when mocking an API, as they may reveal flaws in your assumption about how your API will work.  
+We defined the payload as an exercise containing just default values for each field, and passed it in JSON to the curl statement under the `-d` flag.  As you can see, our API returned a sample exercise object that deviated from our payload.  It is difficult to see at first, but if you look closely you will see we passed an exercise with an id of "1" to the curl statment, and received an exercise with an id of "0" in the response body.  This is a short-coming inherent to mocking.  In our API specification, we may have intended our API to return the exact response we sent, but there is no way to emulate this behavior in a mock.  This is because REST APIs are stateful.  There is no way for us to emulate this intended behavior without designing business logic.  Situations like these are important to pay close attention to when mocking an API, as they may reveal flaws in your assumption about how your API will work.
 
 # Summary
 Swagger is a great toolset for anyone looking to develop an API.  For those of us looking to write APIs, you should always adhere to a common standard which will make your API usable.  That is why you should use the OAS 3.0.n specification for your API.  APIs that do not adhere to this design have the potential to be difficult to use and maintain.  Any tool that is difficult to maintain will not be used.
