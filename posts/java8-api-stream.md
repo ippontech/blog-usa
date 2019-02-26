@@ -4,7 +4,6 @@ authors:
 tags:
 - API
 - Java
-- MapReduce
 date: 2014-04-24T13:30:56.000Z
 title: "Java 8's Stream API: a new way to manage collections"
 image: 

@@ -2,7 +2,7 @@
 authors:
 - Pierre Baillet
 tags:
-- Devops
+- DevOps
 date: 2017-03-15T09:30:00.000Z
 title: "10 Ansible tips and tricks"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/02/ansible.gif

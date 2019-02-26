@@ -2,7 +2,6 @@
 authors:
 - Chris Champagnie
 tags:
-- EBX
 date: 2018-06-26T00:02:30.000Z
 title: "Ippon jumps aboard the EBXpress"
 image: 

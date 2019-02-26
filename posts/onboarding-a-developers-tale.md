@@ -5,7 +5,6 @@ tags:
 - Agile
 - Culture
 - Git
-- Workflows
 date: 2016-12-16T16:59:00.000Z
 title: "On-boarding… a developer’s tale"
 image: 

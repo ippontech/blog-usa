@@ -2,7 +2,6 @@
 authors:
 - Malcolm Thirus
 tags:
-- chatbot
 date: 2017-11-29T20:31:12.000Z
 title: "Questions about Chatbots"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/11/Chatbot-Evolution-1.png

@@ -2,8 +2,6 @@
 authors:
 - Laurent Mathieu
 tags:
-- liferay
-- liferay portal
 date: 2014-04-01T11:38:57.000Z
 title: "The Responsive Web Design Approach for the Liferay #3 Portal:  The Often Forgotten Design"
 image: 

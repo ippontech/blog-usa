@@ -4,9 +4,7 @@ authors:
 tags:
 - Career Development
 - Conference
-- Gamification
 - Innovation
-- Public Speaking
 - Women ETC
 - Women in Technology
 date: 2015-11-05T09:31:09.000Z
