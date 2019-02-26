@@ -4,9 +4,6 @@ authors:
 tags:
 - Performance
 - Spring
-- Spring-Petclinic
-- Webjars
-- Yourkit
 date: 2013-03-13T11:00:09.000Z
 title: "Improving the performance of the Spring-Petclinic sample application (part 3 of 5)"
 image: 

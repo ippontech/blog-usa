@@ -2,9 +2,8 @@
 authors:
 - Jake Henningsgaard
 tags:
-- blockchain
-- ethereum
-- node.js
+- Blockchain
+- Ethereum
 date: 2017-11-13T14:22:53.000Z
 title: "Monitoring the Ethereum Blockchain"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/10/globe-2679754.jpg

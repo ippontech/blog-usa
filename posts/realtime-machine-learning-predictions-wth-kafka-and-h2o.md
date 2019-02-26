@@ -64,7 +64,7 @@ Start by creating a project, then put the POJO you downloaded earlier under the 
 
 ![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/kafka-h2o-project-structure.png)
 
-We are not going to use H2O's Gen Model library to interact with the model, so let's add a dependency in our Gradle build:
+We are going to use H2O's Gen Model library to interact with the model, so let's add a dependency in our Gradle build:
 
 ```gradle
 dependencies {

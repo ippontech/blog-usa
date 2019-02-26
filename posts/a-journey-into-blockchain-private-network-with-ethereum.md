@@ -2,11 +2,8 @@
 authors:
 - Jake Henningsgaard
 tags:
-- blockchain
-- ethereum
-- bitcoin
-- cryptocurrencies
-- ether
+- Blockchain
+- Ethereum
 date: 2017-10-09T14:57:45.000Z
 title: "A Journey into Blockchain: Private Network with Ethereum"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/10/blog_thumbnail.jpeg

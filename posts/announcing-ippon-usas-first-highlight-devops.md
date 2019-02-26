@@ -2,7 +2,7 @@
 authors:
 - Olivia Deputy
 tags:
-- Devops
+- DevOps
 - Cloud
 date: 2017-03-14T13:47:51.000Z
 title: "Announcing Ippon USA's first highlight: DevOps!"

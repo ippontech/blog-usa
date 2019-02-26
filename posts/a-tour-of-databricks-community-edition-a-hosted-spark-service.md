@@ -3,8 +3,6 @@ authors:
 - Raphael Brugier
 tags:
 - Apache Spark
-- Databricks
-- streaming
 - Big Data
 date: 2016-04-13T10:32:21.000Z
 title: "A tour of Databricks Community Edition: a hosted Spark service"
