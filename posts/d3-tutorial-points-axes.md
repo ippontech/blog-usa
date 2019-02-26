@@ -2,12 +2,12 @@
 authors:
 - Justin Risch
 tags:
-- d3
+- d3.js
 - tutorial
 - data governance
 - data visualization
 date: 2017-08-17T18:22:50.000Z
-title: "Plotting Points on Two Axes with D3"
+title: "Plotting Points on Two Axes with D3.JS"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/alignmentgraph.png
 ---
 
