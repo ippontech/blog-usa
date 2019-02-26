@@ -2,7 +2,6 @@
 authors:
 - Raphael Brugier
 tags:
-- sbt
 - Scala
 date: 2016-06-01T11:02:54.000Z
 title: "SBT - simple build tool for Scala projects"

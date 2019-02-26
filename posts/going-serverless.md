@@ -2,13 +2,12 @@
 authors:
 - Steve Houël
 tags:
-- Devops
+- DevOps
 - Cloud
 - AWS
 - GCP
 - Azure
 - Serverless
-- FaaS
 date: 2018-06-20T20:00:06.000Z
 title: "Going Serverless"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/12/te-le-chargement.png
