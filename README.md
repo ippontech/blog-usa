@@ -54,6 +54,19 @@ You can then reference the image by using the following markdown snipet:
 ![alternate text](https://github.com/<your account>/blog-usa/blob/master/images/<YYYY>/<MM>/<image>)
 ```
 
+## Code
+
+To add a code snippet, use triple backquotes and add the name of the language for syntax highlighting:
+
+    ```java
+    public class Test {
+    }
+    ```
+
+For the list of supported languages, see [languages-list](https://prismjs.com/#languages-list).
+
+Use `text` if you can't find the language you are looking for, but don't just omit the language name (the rendering would be completely different).
+
 ## A few rules to follow when writing a post
 
 - Start numbering your titles at level 1 (not level 2 like we used to do).
