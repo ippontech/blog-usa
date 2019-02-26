@@ -4,7 +4,6 @@ authors:
 - Gerard Gigliotti
 tags:
 - API
-- Fintech
 date: 2018-07-23T14:01:02.000Z
 title: "Open Banking, Open Opportunities"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/07/open-banking-1036857.jpeg

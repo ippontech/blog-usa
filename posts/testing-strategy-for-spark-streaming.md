@@ -3,8 +3,6 @@ authors:
 - Raphael Brugier
 tags:
 - Apache Spark
-- streaming
-- test
 - Big Data
 date: 2016-03-30T11:53:21.000Z
 title: "Testing strategy for Spark Streaming - Part 2 of 2"

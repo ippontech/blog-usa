@@ -3,7 +3,7 @@ authors:
 - Ben Scott
 tags:
 - Agile
-- software craftsmanship
+- Software Craftsmanship
 date: 2018-01-23T01:29:24.000Z
 title: "Agile Project Development"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/01/MVP-1.png

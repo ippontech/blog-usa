@@ -2,10 +2,9 @@
 authors:
 - Cody Frenzel
 tags:
-- Progressive Web App
 - JHipster
 - Front-End
-date: 
+date: 2019-01-18T14:59:01.000Z
 title: "Building a Progressive Web App in JHipster"
 image: 
 ---
@@ -87,7 +86,6 @@ When a JHipster frontend is first created, the `index.html` will by default have
 </script>
 ```
 When we run the production build for our frontend Webpack will generate our service worker in the build folder for us. However, by itself, that file will not do anything. In order to add the caching and offline support we want, we must first register the service worker on our domain.
-
 
 ## Installing on the Home Screen
 Now that we got through the hard parts, the last file is the `manifest.webapp`. The manifest file is metadata about our app in the form of JSON to provide details for the application installed on the home screen.
@@ -179,8 +177,7 @@ In Chrome DevTools, under the **Application** tab, you can view your service wor
 ![Chrome DevTools](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/devtools.png)
 
 ## Auditing with Lighthouse
-Google Lighthouse is an open-source tool that you can use to measure and improve the performance of your progressive web app. Lighthouse uses fourteen auditing criteria that you can view [here](https://developers.google.com/web/progressive-web-apps/checklist#baseline), rather than the three baseline criteria for a PWA. Lighthouse is integrated with DevTools and can be found under the **Audit** tab. By meeting the extra auditing criteria, you can provide users with a better experience. 
-
+Google Lighthouse is an open-source tool that you can use to measure and improve the performance of your progressive web app. Lighthouse uses fourteen auditing criteria that you can view [here](https://developers.google.com/web/progressive-web-apps/checklist#baseline), rather than the three baseline criteria for a PWA. Lighthouse is integrated with DevTools and can be found under the **Audit** tab. By meeting the extra auditing criteria, you can provide users with a better experience.
 
 # Conclusion
 Meeting the baseline criteria for a progressive web app is made easy with JHipster. Providing users with the best experience for offline or slow networks is a little trickier depending on the type of app you are building. The biggest issue I faced was dealing with [time to interactive](https://developers.google.com/web/tools/lighthouse/audits/time-to-interactive) simulated on a 3G network (one of the Lighthouse audits). There are many methods at your disposal for improving app performance, so be sure to take advantage of them. If you can, try to make your CSS footprint as small as possible. CSS is a render blocking and CSS frameworks that you are not fully utilizing may be a network cost you don't need. Be wary of importing entire Javascript libraries too. Instead, try importing only the functions you are using. For example, I love the [Lodash library](https://lodash.com/), but importing the entire library would be too much. Sometimes all you need in a component is one Lodash function. In that case, the preferred import method would look like this:
