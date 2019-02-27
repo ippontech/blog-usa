@@ -19,7 +19,7 @@ Welcome to this simple tutorial on how to plot a point on Two Axes, along with s
 2. After either downloading it as a zip or cloning it, use the following command in that directory to download the needed node\_modules packages: `npm install`
    1. If you don't have npm installed, you can install it using [these instructions](https://www.npmjs.com/get-npm).
    2. If it complains about permissions, try this command instead: `sudo npm install`
-3. Run the following command to start your Http Server: http-server -p 8888
+3. Run the following command to start your Http Server: `http-server -p 8888`
    1. If you don't have http-server installed, retry the above after running the command: `npm install http-server -g`
 
 You should now be able to navigate to the example UI by navigating to http://localhost:8888/src/alignment-axis.html
