@@ -75,7 +75,7 @@ Here's where things start to get a bit fun! xScale and yScale create two linear 
              .interpolate(d3.interpolateHcl)
              .range([d3.rgb("#0000ff"), d3.rgb("#8B0000")]); 
 
-Colorscale, meanwhile, takes a value from 0-4 and maps it to a color-HexCode from lightblue (0,0 or Lawful Good) to Dark Red (4,4 or Chaotic Evil). It does this by using D3's built-in interpolation libraries. The practical upshot of this is that the bottom-left of our graph will be very light blue, while the middle will be purple, and the top right will be dark red.
+`colorscale`, meanwhile, takes a value from 0-4 and maps it to a color-HexCode from lightblue (0,0 or Lawful Good) to Dark Red (4,4 or Chaotic Evil). It does this by using D3's built-in interpolation libraries. The practical upshot of this is that the bottom-left of our graph will be very light blue, while the middle will be purple, and the top right will be dark red.
 
 ## Rendering the Axes
 
