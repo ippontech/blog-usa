@@ -126,7 +126,7 @@ Lastly, we will select all the ticks along the x-axis and create vertical line e
              .attr("r", 10);
          }
 
-This rather small function will create a Circle object, use the same transformation as the original axis to put adjust for the size of the graph and the margins, then use the xScale and yScales to position it on that graph appropriately (with 0,0 being the bottom left and 4,4 being the top right). The colorscale will take the average of the X and Y values, and change the color of the circle from blue (0,0) to red (4,4) based on its position in the chart, making it more visually interesting. From there, if we want to render a point on the graph, we only need to call the method as so: renderPoint(X, Y);
+This rather small function will create a Circle object, use the same transformation as the original axis to put adjust for the size of the graph and the margins, then use the `xScale` and `yScale` to position it on that graph appropriately (with 0,0 being the bottom left and 4,4 being the top right). The colorscale will take the average of the X and Y values, and change the color of the circle from blue (0,0) to red (4,4) based on its position in the chart, making it more visually interesting. From there, if we want to render a point on the graph, we only need to call the method as so: renderPoint(X, Y);
 
 # Finale
 
