@@ -56,7 +56,7 @@ The above code simply selects the "body" element of the HTML page, and adds an "
 
            xAxisLength = width - 2 * margin;
 
-yAxisLength and xAxisLength determine the size of those axes, which is scaled to the height & width of the SVG item we're working within, respectively, while also taking into account the margin.
+`yAxisLength` and `xAxisLength` determine the size of those axes, which is scaled to the height & width of the SVG item we're working within, respectively, while also taking into account the margin.
 
     var xScale = d3
              .scaleLinear()
