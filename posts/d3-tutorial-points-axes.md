@@ -79,7 +79,7 @@ Here's where things start to get a bit fun! xScale and yScale create two linear 
 
 ## Rendering the Axes
 
-Now let's look at the renderXAxis method to learn how we rendered the Axes. Note that the Y Axis is incredibly similar, so we will only be going over the X.
+Now let's look at the `renderXAxis` method to learn how we rendered the Axes. Note that the Y Axis is incredibly similar, so we will only be going over the X.
 
     var xAxis = d3
              .axisBottom()
