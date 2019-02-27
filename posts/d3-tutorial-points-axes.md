@@ -99,7 +99,7 @@ First we create an Axis object oriented to the Bottom of the grid. We then give 
              .attr("opacity", 1)
              .call(xAxis);
 
-Here, we are taking the SVG object and adding a new x-axis class object to it. The Transform method provided will position it, giving us a way to easily map other points to it later. We're setting the Opacity of this line to 100% (1) so that it appears bolder than the other gridlines, and passing the previously created "xAxis" object to the call method.
+Here, we are taking the SVG object and adding a new x-axis class object to it. The `transform` method provided will position it, giving us a way to easily map other points to it later. We're setting the `opacity` of this line to 100% (1) so that it appears bolder than the other gridlines, and passing the previously created `xAxis` object to the call method.
 
     d3.selectAll("g.x-axis g.tick") 
              .append("line") 
