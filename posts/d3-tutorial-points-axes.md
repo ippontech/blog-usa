@@ -89,7 +89,7 @@ Now let's look at the renderXAxis method to learn how we rendered the Axes. Note
              })
              .scale(xScale);
 
-First we create an Axis object oriented to the Bottom of the grid. We then give it a number of Ticks equal to the amount of items in our array, and format the label of that Tick to be the string value in our array. Then, we use the xScale we created earlier to map this 0-4 axis to the size of our xAxisLength.
+First we create an Axis object oriented to the Bottom of the grid. We then give it a number of Ticks equal to the amount of items in our array, and format the label of that Tick to be the string value in our array. Then, we use the `xScale` we created earlier to map this 0-4 axis to the size of our `xAxisLength`.
 
      svg.append("g")
              .attr("class", "x-axis")
