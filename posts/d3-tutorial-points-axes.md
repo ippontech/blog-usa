@@ -16,7 +16,7 @@ Welcome to this simple tutorial on how to plot a point on Two Axes, along with s
 ## Setup
 
 1. Grab the source code from the following [link](https://github.com/JustinRisch/D3Example).
-2. After either downloading it as a zip or cloning it, use the following command in that directory to downloaded the needed node\_modules packages: npm install
+2. After either downloading it as a zip or cloning it, use the following command in that directory to download the needed node\_modules packages: `npm install`
    1. If you don't have npm installed, you can install it using [these instructions](https://www.npmjs.com/get-npm).
    2. If it complains about permissions, try this command instead: `sudo npm install`
 3. Run the following command to start your Http Server: http-server -p 8888
