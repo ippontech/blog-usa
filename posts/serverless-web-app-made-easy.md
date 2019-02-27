@@ -12,7 +12,7 @@ tags:
 - Front
 date: 2019-02-27T17:27:07.000Z
 title: "A Guinea Pig in the Cloud"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/02/guinea-pigs.png
+image: https://github.com/bpinel/blog-usa/master/images/2019/02/guinea-pigs.png
 ---
 
 # Introduction
@@ -217,6 +217,7 @@ Once this is done, provisioning the whole platform is as simple as running the f
 ```
 terraform init
 terraform apply
+```
 
 As already stated before, the terraform scripts create the following resources :
 
