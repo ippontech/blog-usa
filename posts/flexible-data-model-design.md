@@ -7,7 +7,7 @@ tags:
 - coding standards
 - design
 date: 2019-02-26T18:16:00.000Z
-title: "Fundamental Data Model Design"
+title: "Flexible Data Model Design"
 image:
 ---
 
@@ -23,9 +23,17 @@ There are basically two different schemes for designing a class that contains a 
 
 ## Beans ##
 
-The usual pattern for a bean is to declare all member fields `private` and provide "getters" and "setters" to access those fields. However the usual standard dictates that all such mutators must return `void`.
+The usual pattern for a bean is to declare all member fields `private` and provide "getters" and "setters" to access those fields. However the usual standard dictates that all such mutators must return `void`. The practical problem with this is that **you end up with a lot of tedious repetition in your code**.
 
-<details><summary>Example 1: A Bean</summary>
+First, there's the issue of constructors. Most data marshalling frameworks require the use of a "default" constructor with no arguments, in order to initialize instances. However, to work with the bean, the code then needs to call a series of `.setX()` methods, referencing the instance each time. If the class has certain fields that are "always" (or, at least, commonly) known upfront, then it might also provide a constructor that directly initializes those fields, but when using that constructor, if any of those fields has no initial value to set at runtime, you end up with a bunch of potentially-confusing `null`s in your invocation. This problem is particularly evident in Android's SQLite query API, which is commonly shot through with `null` arguments.
+
+Whichever constructor pattern you choose, you still have to initialize whatever values _aren't_ covered by a construtor argument. In the bean pattern, all mutator methods return `void`. This means that, for every member that you want to initialize, you have to call a `.setX()` method, referencing the same class instance over and over again. This tends to look silly in practice, and further, any form of repetition is error-prone, even with IDEs. This way of thinking also tends to spread to other methods provided by the bean: Anything that doesn't explicitly return a value tends to return `void`, so you have to keep referring to the same object over and over again.
+
+Finally, consider writing unit tests for the class. If you provide default and "full" constructors, then you have to test both. And in order to fully cover the class, you have to tediously repeat references to the class as you "set" and then "get" each member.
+
+There's nothing _wrong_ with this approach, but it's clumsy, repetitive, and inconvenient.
+
+<details><summary>Example 1.1: A Bean</summary>
 
 ```java
 public class Thing
@@ -60,9 +68,7 @@ public class Thing
 
 </details>
 
-The practical problem with this is that **you end up with a lot of repetition in your code**. This needless repetition can come in two forms. First, let's look at that constructor. If you don't provide a "full" constructor, then you have to use the empty constructor, and then call a bunch of `set` methods. If you _do_ provide a "full" constructor, then unless you're _always_ initializing _every_ member field _every_ time, you're going to end up with a bunch of `null`s in your constructor calls.
-
-<details><summary>Example 2: Problems with Beans</summary>
+<details><summary>Example 1.2: Bean Usage Annoyances</summary>
 
 ```java
 // To initialize Thing 1 with just a name and creation time, we leave two fields null.
@@ -77,11 +83,7 @@ thing2.setCreatedTime( (new Date()).getTime() ) ;
 
 </details>
 
-This way of thinking also tends to spread to other methods provided by the bean. Anything that doesn't explicitly return a value tends to return `void`, so you can't have to keep referring to the same object over and over again.
-
-Then we come to the unit testing of the class. In order to provide full coverage, you have to exercise both constructors, but also do the same sort of repetition.
-
-<details><summary>Example 3: 100% Bean Coverage Tedium</summary>
+<details><summary>Example 1.3: 100% Bean Coverage Tedium</summary>
 
 ```java
 @RunWith( JUnit4.class )
@@ -110,19 +112,21 @@ public class ThingTest
 
 </details>
 
-There's nothing _wrong_ with this approach, but it's clumsy. You're working with the same object all the time, but have to keep referring to it over and over again.
-
 ### :running: The TL;DR on Beans ###
 
 | + | - |
 | --- | --- |
-| Standard design pattern for most data-marshalling frameworks. | Clumsy and stuttery in practice, with lots of repetitive code. |
+| Standard design pattern for most data-marshalling frameworks. | Clumsy and stuttery in practice, with lots of repetitive code, and possibly multiple constructors. |
 
 ## Builders ##
 
 Partly in reaction to the bean pattern, the concept of a "builder" started to appear in Java usage. **A builder is a discrete class whose sole purpose is to initialize another class.** It uses the pattern of "fluid" method invocation to let you intuitively set exactly the values you want to set, then "build" an instance of the object. For example, we can extend the `Thing` above with a `ThingBuilder`.
 
-<details><summary>Example 4: A Builder</summary>
+With a builder, we can intuitively build up instances of objects with arbitrary members initialized or not.
+
+
+
+<details><summary>Example 2.4: A Builder</summary>
 
 ```java
 /**
@@ -154,8 +158,6 @@ public class ThingBuilder
 ```
 
 </details>
-
-With a builder, we can intuitively build up instances of objects with arbitrary members initialized or not.
 
 <details><summary>Example 5: A Builder in Use</summary>
 
