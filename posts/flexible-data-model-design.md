@@ -124,7 +124,7 @@ Partly in reaction to the bean pattern, the concept of a "builder" started to ap
 
 With a builder, we can intuitively build up instances of objects with arbitrary members initialized or not.
 
-
+While this gives us the nice "fluid" and free-form initialization style that we wanted (note we didn't have to do `id(null)` or `updatedTime(null)` in there), we now need _a second class_ just to push and pull data in and out of our data container. And then, of course, you have to unit test _that_, in _addition_ to the tests we did with beans.
 
 <details><summary>Example 2.4: A Builder</summary>
 
@@ -170,8 +170,6 @@ Thing thing = (new ThingBuilder())
 ```
 
 </details>
-
-While this gives us the nice "fluid" and free-form initialization style that we wanted (note we didn't have to do `id(null)` or `updatedTime(null)` in there), we now need _a second class_ just to push and pull data in and out of our data container. And then, of course, you have to unit test _that_, in _addition_ to the tests we did with beans.
 
 <details><summary>Example 6: 100% Builder Coverage Tedium</summary>
 
