@@ -11,8 +11,6 @@ title: "Flexible Data Model Design"
 image:
 ---
 
-THIS IS A ZEROTH DRAFT AND IS VERY LIKELY CRAP. 
-
 The only thing that most discussions of “standards” agree on is that no one agrees on standards. The world of coding standards, in particular, is perhaps one of the most hotly-contested battlegrounds of computer science. Given the patterns and trends emerging in the usage of Java today, there are certain design and implementation practices that, while they don’t provide an end to anyone’s holy wars, do tend to make the most pragmatic sense. This discussion will focus on design principles in one of the most fundamental of these arenas — how to design and implement a data model that can be used flexibly across multiple contexts in a large application architecture.
 
 A lot of the material in this post is pretty basic, so if you're impatient and want to skip to the new stuff, look for this guy: :running:
