@@ -126,7 +126,7 @@ With a builder, we can intuitively build up instances of objects with arbitrary 
 
 While this gives us the nice "fluid" and free-form initialization style that we wanted (note we didn't have to do `id(null)` or `updatedTime(null)` in there), we now need _a second class_ just to push and pull data in and out of our data container. And then, of course, you have to unit test _that_, in _addition_ to the tests we did with beans.
 
-<details><summary>Example 2.4: A Builder</summary>
+<details><summary>Example 2.1: A Builder</summary>
 
 ```java
 /**
@@ -159,7 +159,7 @@ public class ThingBuilder
 
 </details>
 
-<details><summary>Example 5: A Builder in Use</summary>
+<details><summary>Example 2.2: A Builder in Use</summary>
 
 ```java
 Thing thing = (new ThingBuilder())
@@ -171,7 +171,7 @@ Thing thing = (new ThingBuilder())
 
 </details>
 
-<details><summary>Example 6: 100% Builder Coverage Tedium</summary>
+<details><summary>Example 2.3: 100% Builder Coverage Tedium</summary>
 
 ```java
 /**
@@ -210,7 +210,7 @@ public class ThingBuilderTest
 
 To get all the access protections (and compatibility with data frameworks), and all the "fluid" invocation style of builders, the simple solution is to design "self-building" data objects, where **any method that doesn't return a value returns the instance,** including the basic mutator methods.
 
-### Example 7: Best of Both Patterns ###
+### Example 3.1: Best of Both Patterns ###
 
 ```java
 /** Revised. */
@@ -239,7 +239,7 @@ public class Thing
 
 We've simply changed all the methods that were returning `void` to return the object instance instead. Below we revisit the earlier examples using the new pattern.
 
-### Example 8: Initializing Things ###
+### Example 3.2: Initializing Things ###
 
 ```java
 Thing thing1 = (new Thing())
@@ -252,7 +252,7 @@ Thing thing2 = (new Thing())
                 ;
 ```
 
-### Example 9: Testing Things ###
+### Example 3.3: Testing Things ###
 
 ```java
 /** Revised. **
@@ -272,9 +272,7 @@ public class ThingTest
 }
 ```
 
-## So... So what? ##
-
-![So... who cares?](https://i.imgur.com/umKXQLx.png)
+## :running: Why bother changing design patterns? ##
 
 What's the big deal with being fluid _and_ still being a bean? Why did I just waste your time with this giant wall of text?
 
@@ -285,5 +283,68 @@ This design pattern allows us to do a lot of interesting things that capture the
     * It can still be provided as a `@Bean` to `@Autowired` fields in Java Spring.
 * You can use the empty constructor and then call a chain of individual mutators, like a builder.
 * You don't have to implement, and test, and instantiate a second class just to build your data class.
-* This pattern, extended across other methods of the class, helps the usability of the whole class.
+
+and...
+
+### Because a pattern of "fluidity" extends across your entire stack. ###
+
+This pattern, extended across other methods of the class, helps the usability of the whole class. Further, it instills a mindset and pattern of "fluidity" across your entire codebase.
+
+Your class can provide mutators that make sense but don't fit the usual `get`/`set` formula. In particular, any object that contains its unique ID can have an `identify()` which regenerates the ID _only if it doesn't already have one_, and returns the object for further modification, or direct storage.
+    
+    ```
+    this.someDatabaseHandler.insertOrUpdate( o.identify() ) ;
+    ```
+
+Another useful verb you can add to a vital data object is `validate()`. Before saving the object to the data store, you can execute a series of one or more validations on the object's integrity. In the interest of maintainability, this method can further break down into atomic steps, each of which is also fluidly invoked.
+
+<details><summary>Example 4.1: A Fluid Validator</summary>
+
+```
+/**
+ * Instead of being Boolean, each method either succeeds
+ * or fails with a specific exception, which is more informative
+ * to the consumer than "true" or "false".
+ */
+public Thing validate() throws RuntimeException
+{
+    return this.isIdentifiedProperly()
+        .hasBeenNamed()
+        .doesNotDivideByZero()
+        .doesNotBreakTheFabricOfSpaceTime()
+        ; // If we add more validation criteria, they just add to the chain.
+}
+    
+/** Obviously we could just use identify() but just roll with the example, OK? */
+protected Thing isIdentifiedProperly() throws UnidentifiedFlyingObjectException
+{
+    if( this.id == null || this.id.isEmpty() )
+        throw new UnidentifiedFlyingObjectException( "Identify this thing!" ) ;
+    return this ; // success
+}
+
+protected Thing hasBeenNamed() throws TheThingWithNoNameException
+{
+    if( this.name == null || this.name.isEmpty() )
+        throw new TheThingWithNoNameException( "Name this thing!" ) ;
+    return this ;
+}
+
+// etc.
+```
+
+</details>
+
+When writing your database integration layer (if it isn't already provided for you), you can extend this downward to the class that marshals the objects to/from the database. The `select(UUID)` (or `select(String)`) method returns a thing named by the ID; the `insert(Thing)` and `update(Thing)` methods return the inserted/updated thing; the `delete(Thing)` and/or `delete(String)` methods can return `null`, or a `boolean` success/failure flag, but could also pop the deleted thing in case there's anything else we want to do to it.
+
+The pattern also extends upward. If you're engineering a web service, then the RESTful API that allows a client to access these data objects will also naturally fit this design pattern.
+
+* `GET /api/thing/{ID}` gets a specific thing
+* `POST /api/thing` inserts a thing _and returns the same thing_ so that you don't have to immediately `GET` it again (to discover its new UUID, for example)
+* `PUT /api/thing/{ID}` updates a thing _and returns the updated thing_ so that you don't have to `GET` it again (in case there's an "updated by"/"updated at time" audit trail).
+* While functions of the form `DELETE /api/thing/{ID}` typically return `HTTP 204 No Content`, you could also choose to have it return the deleted thing, _like the `Map#remove()` method does in Java._
+
+This continues to extend into the frontend, where the client/user interacts with the service. Alice wants to create a thing, so she enters the data, taps "Submit", and a screen showing the saved thing appears - maybe even in the same layout as the form. There's an "edit" button that makes it all editable again; no context-switching needed. You don't get shunted out of the context of dealing with that thing until you take an explicit action to move away from that thing.
+
+All of this is to reinforce the thought-pattern that **I always get back the object that I acted on, and can act on it again**. This simplicity of interaction keeps a lid on the complexity of every part of the stack, from the DB schema, to the model, to the API, to the UI.
 
