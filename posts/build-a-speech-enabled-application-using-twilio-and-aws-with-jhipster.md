@@ -141,7 +141,7 @@ To keep this post simple, I decided to upload the TwiML to S3 with a public read
 
 To test that everything is working fine, the application must be first started with the command `./mvnw`. You can then browse to [http://localhost:8080/#/entity/voice-call/new](http://localhost:8080/#/entity/voice-call/new) to create a VoiceCall (don't forget the `+1` in front of your number).
 
-![](https://raw.githubusercontent.com/Falydoor/blog-usa/blob/speech-enabled-application/images/2019/03/twilio.png)
+![](https://raw.githubusercontent.com/Falydoor/blog-usa/speech-enabled-application/images/2019/03/twilio.png)
 
 In case of Twillio's issues, the [calls logs console](https://www.twilio.com/console/voice/calls/logs) keeps track of all the calls and can be used for troubleshooting.
 
