@@ -6,7 +6,7 @@ tags:
 - Twilio
 - JHipster
 date: 2019-03-04T14:50:55.000Z
-title: "Build a speech-enabled application using Twilio and AWS with JHipster"
+title: "Building a speech-enabled application using Twilio and AWS with JHipster"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/03/twilio-logo.png
 ---
 
