@@ -8,7 +8,7 @@ tags:
 - blockchain
 date: 
 title: Integrating Civic into a Static Serverless Website
-image: civic_jumbo.png
+image: https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_jumbo.png
 ---
 
 
@@ -23,7 +23,7 @@ Lambda is a great option to run Civic's server side Javascript SDK, and will als
 
 # User Flow and Outline
 
-![missing pic: Civic Architecture](civic_architecture.png)
+![missing pic: Civic Architecture](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_architecture.png)
 
 From the app's perspective, there are three general steps. 
 
@@ -73,7 +73,7 @@ You will also want to make sure that CloudFront has access to the bucket. This i
    
 Finally, to get that domain to route to your distribution, we can add an alias to Route53. The easiest way to do this is to copy the domain name of the CloudFront distribution (not its CNAME), and setting it as the Alias Target in Route53. It should look something like this:
 
-![missing pic: Civic Alias](civic_alias.png)
+![missing pic: Civic Alias](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_alias.png)
 
 p.s. This does not need to be a sub-domain. I just happen to be using the root domain `tylerjohnhaden.com` for something else.
 
@@ -87,7 +87,7 @@ In order to use the developer tools for Civic, we need to use our identity to cr
 
 Checkout their [developer's guide](https://docs.civic.com) for an explanation of the service and APIs. They describe the flow using the following graphic.
 
-![missing pic: Civic Flow](civic_flow.png)
+![missing pic: Civic Flow](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_flow.png)
 
 As you can see, they are pretty open about their data flow, which can give confidence to the application owner and users about what and how their data is being shared. Civic integration was designed as a security solution and is intended to be used with confidential and secure applications (so security through obscurity is not an option).
 
@@ -95,7 +95,7 @@ Referencing the above diagram, we will need to implement the "User Agent" and "A
 
 ### Create a new application
 
-![missing pic: Civic Enrollment](civic_enrollment.png)
+![missing pic: Civic Enrollment](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_enrollment.png)
 
 This step should be straight forward, following their clean developer interface. All you need will be the name, domain, and a logo to display to users in their mobile app. The name and logo can be whatever you like, and we already went through the trouble of setting up our domain registration.
 
@@ -105,7 +105,7 @@ The domain you whitelist here should be the one used for the static site. Only t
 
 Once you have your app configured, you will need to generate keys for use in Civic's SDKs. In Civic's integration portal for your app, click on the "Generate Keys Now" button. It will display several public and several private strings and will prompt you to save them before exiting. **This is the last time you have the chance to save them!** You can always revoke and regenerate new keys, or specify a time-to-live later on.
 
-![missing pic: Civic Keys](civic_keys.png)
+![missing pic: Civic Keys](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_keys.png)
 
 For this project, we will need the *Private Signing Key*, and the *App Secret*. We will also need the *App ID*, which will stay constant for our application and is not necessarily secret.
 
@@ -174,7 +174,7 @@ civicSip.on('auth-code-received', event => {
 
 The decoding of the token above is just for debugging. You can see how we can't yet access the identity information inside the token. Civic requires the token to be verified on the backend before sharing the user's data. It just so happens that in this use case, we eventually pass back the user id but we don't have to.
 
-![missing pic: Civic JWT Token](civic_jwt_token.png)
+![missing pic: Civic JWT Token](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_jwt_token.png)
 
 We can get a little bit of insight into the token by decoding, such as the expiration is 30 minutes. Here, `codeToken` will eventually be converted into our user id. For more information on JWT in general, checkout the [jwt.io docs](https://jwt.io/introduction/).
 
@@ -589,7 +589,7 @@ This will allow the incoming request to be cross-domain with the authorization t
 
 To debug problems with CORS, it helps to watch the network requests in the browser. The `OPTIONS` pre-flight check should be successful and allow the next method to be sent. Here is [a Serverless  specific CORS guide](https://serverless.com/blog/cors-api-gateway-survival-guide/).
 
-![missing pic: Civic Options](civic_options.png)
+![missing pic: Civic Options](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_options.png)
 
 ### Specify a custom domain and certificate
 
@@ -624,14 +624,14 @@ Finally, we have our project built. Two commands left to run.
 
 `sls deploy` is the magic command. This will create the CloudFormation template, a new bucket to store or Lambda code, our Lambda functions, and the API Gateway to connect them.
 
-![missing pic: Civic Sls Deploy](civic_sls_deploy.png)
+![missing pic: Civic Sls Deploy](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_sls_deploy.png)
 
 The output of our Serverless commands. There is only one endpoint because the authorizer cannot be hit directly. 
 
 You can use the AWS console to explore the resources generated using the CloudFormation template. The CloudFormation, S3 bucket, Lambdas, CloudWatch logs, and API Gateway should all be available. You can individually test the Lambdas by crafting the test event payloads. Since we already have our static site available, all we need to do is wait till the CloudFront inside the API spins up with the custom domain.
 
 # Success!
-![missing pic: Civic Success](civic_success.png)
+![missing pic: Civic Success](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_success.png)
 
 Looks like my personal identity maps to some green color.
 
