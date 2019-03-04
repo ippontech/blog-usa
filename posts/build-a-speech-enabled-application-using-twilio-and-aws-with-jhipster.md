@@ -16,7 +16,6 @@ The popularity of smart home devices like Amazon Echo or Google Home increased a
 
 In this blog post, I will explain how Amazon Polly and Twilio can be used to build a speech-enabled application. The application will make phone calls and use Amazon Polly to talk with the callee in a realistic way. [Twilio](https://www.twilio.com/) is the leader in the Cloud communications platform world, and as a developer, using their Java SDK is very simple and powerful.
 
-
 # Twilio
 
 ## Twilio and Amazon Polly integration
