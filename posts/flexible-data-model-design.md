@@ -290,15 +290,15 @@ This pattern, extended across other methods of the class, helps the usability of
 
 Your class can provide mutators that make sense but don't fit the usual `get`/`set` formula. In particular, any object that contains its unique ID can have an `identify()` which regenerates the ID _only if it doesn't already have one_, and returns the object for further modification, or direct storage.
     
-    ```
-    this.someDatabaseHandler.insertOrUpdate( o.identify() ) ;
-    ```
+```java
+thingRepository.insertOrUpdate( o.identify() ) ;
+```
 
 Another useful verb you can add to a vital data object is `validate()`. Before saving the object to the data store, you can execute a series of one or more validations on the object's integrity. In the interest of maintainability, this method can further break down into atomic steps, each of which is also fluidly invoked.
 
 <details><summary>Example 4.1: A Fluid Validator</summary>
 
-```
+```java
 /**
  * Instead of being Boolean, each method either succeeds
  * or fails with a specific exception, which is more informative
@@ -332,6 +332,7 @@ protected Thing hasBeenNamed() throws TheThingWithNoNameException
 ```
 
 </details>
+
 
 When writing your database integration layer (if it isn't already provided for you), you can extend this downward to the class that marshals the objects to/from the database. The `select(UUID)` (or `select(String)`) method returns a thing named by the ID; the `insert(Thing)` and `update(Thing)` methods return the inserted/updated thing; the `delete(Thing)` and/or `delete(String)` methods can return `null`, or a `boolean` success/failure flag, but could also pop the deleted thing in case there's anything else we want to do to it.
 
