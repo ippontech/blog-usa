@@ -7,7 +7,7 @@ tags:
 - JHipster
 date: 2019-03-04T14:50:55.000Z
 title: "Build a speech-enabled application using Twilio and AWS with JHipster"
-image: https://raw.githubusercontent.com/Falydoor/blog-usa/speech-enabled-application/images/2019/03/twilio-logo.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/03/twilio-logo.png
 ---
 
 The popularity of smart home devices like Amazon Echo or Google Home increased a lot for the past years. All this traction improved the text to speech experience to a point where it is actually hard to tell that you are actually not talking to a real person. And this experience is not only available in English, those home devices support multiple different languages.
@@ -57,7 +57,7 @@ entity VoiceCall {
 	date ZonedDateTime // Date of the call
 }
 enum Voice {
-	JOANNA, MATTHEW, CELINE, MATHIEU // 4 Amazon Polly voices are used but over fifty are available
+	JOANNA, MATTHEW, CELINE, MATHIEU // 4 voices are used but 50 are available
 }
 ```
 
@@ -141,9 +141,9 @@ To keep this post simple, I decided to upload the TwiML to S3 with a public read
 
 To test that everything is working fine, the application must be first started with the command `./mvnw`. You can then browse to [http://localhost:8080/#/entity/voice-call/new](http://localhost:8080/#/entity/voice-call/new) to create a VoiceCall (don't forget the `+1` in front of your number).
 
-![](https://raw.githubusercontent.com/Falydoor/blog-usa/speech-enabled-application/images/2019/03/twilio.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/03/twilio.png)
 
-In case of Twillio's issues, the [calls logs console](https://www.twilio.com/console/voice/calls/logs) keeps track of all the calls and can be used for troubleshooting.
+If you don't receive the call after saving, the [Twilio's calls log](https://www.twilio.com/console/voice/calls/logs) keeps track of all the calls and can be used for troubleshooting.
 
 # Conclusion
 
