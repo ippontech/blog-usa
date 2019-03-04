@@ -7,7 +7,7 @@ tags:
 - JHipster
 date: 2019-03-04T14:50:55.000Z
 title: "Build a speech-enabled application using Twilio and AWS with JHipster"
-image: 
+image: https://raw.githubusercontent.com/Falydoor/blog-usa/speech-enabled-application/images/2019/03/twilio-logo.png
 ---
 
 The popularity of smart home devices like Amazon Echo or Google Home increased a lot for the past years. All this traction improved the text to speech experience to a point where it is actually hard to tell that you are actually not talking to a real person. And this experience is not only available in English, those home devices support multiple different languages.
@@ -42,11 +42,11 @@ Twilio requires a TwiML to initiate a call and the file must be accessible from 
 
 ## Generation with JHipster
 
-I decided to use [JHipster](https://www.jhipster.tech/) to generate my speech-enabled application since I want a complete and modern Web app. JHipster uses Spring Boot for the back-end and I decided to use [Vue.js](https://vuejs.org/) for the front-end. This [.yo-rc.json]() can be used in case you want to generate the same application referenced in this article. The file is placed in the application directory and then running `jhipster --blueprint vuejs` will generate the application without asking any questions.
+I decided to use [JHipster](https://www.jhipster.tech/) to generate my speech-enabled application since I want a complete and modern Web app. JHipster uses Spring Boot for the back-end and I decided to use [Vue.js](https://vuejs.org/) for the front-end. This [.yo-rc.json](https://raw.githubusercontent.com/Falydoor/jhipster-twilio-polly/master/.yo-rc.json) can be used in case you want to generate the same application referenced in this article. The file is placed in the application directory and then running `jhipster --blueprint vuejs` will generate the application without asking any questions.
 
 ## Entities generation
 
-The entity `VoiceCall` will be used to keep track of the calls made by the application. Here is the jdl `entities.jdl` and the command `jhipster import-jdl entities.jdl` will generate everything for you.
+The entity `VoiceCall` will be used to keep track of the calls made by the application. Here is `entities.jdl` and the command `jhipster import-jdl entities.jdl` will generate everything for you.
 
 ```
 entity VoiceCall {
