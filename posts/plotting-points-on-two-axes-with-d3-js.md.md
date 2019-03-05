@@ -30,7 +30,7 @@ The code takes a linear scale from 0-4, maps those values to categories from the
 
 ## The Code
 
-### Variables and Scales.
+### Variables and Scales
 
 ```javascript
 width = 800,
