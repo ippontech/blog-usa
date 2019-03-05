@@ -6,25 +6,25 @@ tags:
 - Twilio
 - JHipster
 date: 2019-03-04T14:50:55.000Z
-title: "Building a speech-enabled application using Twilio and AWS with JHipster"
+title: "Building a Speech-Enabled application using Twilio and AWS with JHipster"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/03/twilio-logo.png
 ---
 
-The popularity of smart home devices like Amazon Echo or Google Home increased a lot for the past years. All this traction improved the text to speech experience to a point where it is actually hard to tell that you are actually not talking to a real person. And this experience is not only available in English, those home devices support multiple different languages.
+The popularity of smart home devices like Amazon Echo or Google Home has increased a lot over the past years. All this traction improved the text to speech experience to a point where it is difficult to tell that you are actually not talking to a real person. Not only does this happen in English, but also other supported languages such as French or Japanese, thus exacerbating the problem.
 
-[Amazon Polly](https://aws.amazon.com/polly/) is a AWS service that uses advanced deep learning technologies to synthesize speech that sounds like a human voice. This service lets you transcribe any text to a high-quality natural sounding voice in a very simple way without spending outrageous amount of money. Amazon Polly’s pay-as-you-go pricing, low cost per character converted, and unlimited replays make it a cost-effective way to voice your applications. Amazon Polly is used by many companies like [Duolingo](https://aws.amazon.com/blogs/machine-learning/powering-language-learning-on-duolingo-with-amazon-polly/) or telephony companies since the speech experience is very realistic.
+[Amazon Polly](https://aws.amazon.com/polly/) is an AWS service that uses advanced deep learning technologies to synthesize speech that sounds like a human voice. This service lets you transcribe any text to a high-quality natural sounding voice in a very simple way without overspending. Amazon Polly’s pay-as-you-go pricing, low cost per character converted, and unlimited replays make it a cost-effective way to give your applications a voice. [Duolingo](https://aws.amazon.com/blogs/machine-learning/powering-language-learning-on-duolingo-with-amazon-polly/) and telephony companies are powered by Amazon Polly since the speech experience is very realistic.
 
-In this blog post, I will explain how Amazon Polly and Twilio can be used to build a speech-enabled application. The application will make phone calls and use Amazon Polly to talk with the callee in a realistic way. [Twilio](https://www.twilio.com/) is the leader in the Cloud communications platform world, and as a developer, using their Java SDK is very simple and powerful.
+Up next, I will explain how Amazon Polly and Twilio can be used to build a speech-enabled application. The application will make phone calls and use Amazon Polly to talk with the callee in a realistic way. [Twilio](https://www.twilio.com/) is the leader in the cloud communications platform world and using their Java SDK is very simple and powerful for developers.
 
 # Twilio
 
 ## Twilio and Amazon Polly integration
 
-Twilio has its own speech synthesis but it is language limited and not very realistic. A workaround is to use Amazon Polly to generate `mp3` and have the files available on S3 so they can be used by Twilio. The good news is that Twilio recently added [Amazon Polly](https://www.twilio.com/blog/2018/08/introducing-50-additional-text-to-speech-voices-with-amazon-polly-integration.html) so it can be directly used without having to manage your own files. That makes the setup pretty easy and everything can be configured in the Twilio console. You can follow the instructions from the Twilio's blog post to configure the text-to-speech provider to use Amazon Polly.
+Twilio has its own speech synthesis but it is language limited and not very life-like. A workaround is to use Amazon Polly to generate `mp3` files and have them available on Amazon S3 for consumption by Twilio. The good news is that Twilio recently added an [Amazon Polly integration](https://www.twilio.com/blog/2018/08/introducing-50-additional-text-to-speech-voices-with-amazon-polly-integration.html) so it can be directly used without having to manage your own files. This integration makes the setup easy and everything can be configured in the Twilio console. You can follow the instructions from the Twilio's blog post to configure the text-to-speech provider to use Amazon Polly.
 
 ## TwiML
 
-TwiML (the Twilio Markup Language) is a set of instructions you can use to tell Twilio what to do when making a call or sending a SMS. For now, the application will just call a number and say custom text with a configurable voice. TwiML verbs are actions to take on a given call, cool things can be done like recording the callee's voice or collecting typed digits. Here is the [documentation page](https://www.twilio.com/docs/voice/twiml) about TwiML, you can find a list of all verbs that can be used.
+TwiML (the Twilio Markup Language) is a set of instructions you can use to tell Twilio what to do when making a call or sending a SMS. For now, the application will just call a number and say custom text with a configurable voice. TwiML verbs are actions to take on a given call, cool things can be done like recording the callee's voice or collecting typed digits. A list of all TwiML usable verbs can be found at the [documentation page](https://www.twilio.com/docs/voice/twiml) about TwiML.
 
 The TwiML to say `Hello from Twilio and Amazon Polly` with the Amazon Polly `Joanna` voice looks like below:
 
@@ -37,9 +37,9 @@ The TwiML to say `Hello from Twilio and Amazon Polly` with the Amazon Polly `Joa
 
 Twilio requires a TwiML to initiate a call and the file must be accessible from a regular URL. To fulfil this requirement, the application will simply upload the generated TwiML to Amazon S3 with a public read access. A different way would be to have a simple `GET` endpoint in the application that returns the TwiML.
 
-# Speech-enabled application
+# Speech-Enabled Application
 
-## Generation with JHipster
+## JHipster Generation
 
 I decided to use [JHipster](https://www.jhipster.tech/) to generate my speech-enabled application since I want a complete and modern Web app. JHipster uses Spring Boot for the back-end and I decided to use [Vue.js](https://vuejs.org/) for the front-end. This [.yo-rc.json](https://raw.githubusercontent.com/Falydoor/jhipster-twilio-polly/master/.yo-rc.json) can be used in case you want to generate the same application referenced in this article. The file is placed in the application directory and then running `jhipster --blueprint vuejs` will generate the application without asking any questions.
 
@@ -62,7 +62,7 @@ enum Voice {
 
 ## Create realistic calls with Twilio
 
-The Twilio and AWS client need to be initialized with working credentials so they can be later used:
+The Twilio and AWS clients need to be initialized with working credentials so they can be later used:
 
 ```java
 private static final String BUCKET = "MY_BUCKET";
@@ -146,6 +146,6 @@ If you don't receive the call after saving, the [Twilio's calls log](https://www
 
 # Conclusion
 
-Building a speech-enabled application might sound difficult but with the help of Twilio and AWS it is actually a very easy duty. The developer experience is also very good since Twilio provides a SDK in 6 languages (Node, C#, PHP, Ruby, Python and Java) but they also provide a [REST API](https://www.twilio.com/docs/usage/api). Amazon Polly gives you a large panel of realistic voices to make your application fully international by supporting multiple languages.
+Building a speech-enabled application might sound difficult but with the help of Twilio and AWS it is actually very easy. The developer experience is also very good since Twilio provides a SDK in 6 languages (Node, C#, PHP, Ruby, Python and Java) and they also provide a [REST API](https://www.twilio.com/docs/usage/api). Amazon Polly gives you a large panel of realistic voices to make your application fully international by supporting multiple languages.
 
 The code used in this blog post is available at [this GitHub repository](https://github.com/Falydoor/jhipster-twilio-polly) in case you want to clone a working example.
