@@ -12,43 +12,43 @@ image: https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2
 ---
 
 
-This article describes an application that takes advantage of AWS serverless services to provide a static website and anonymously access controlled resources. To satisfy the static website hosting, we will use Route53, ACM, CloudFront, and S3. Https should be the standard so we will skip "S3 only" hosting.
+This article describes an application that takes advantage of AWS serverless services to provide a static website and anonymously-access-controlled resources. To satisfy the static website hosting, we will use Route53, ACM, CloudFront, and S3. Https should be the standard so we will skip "S3 only" hosting.
 
 Our application will also have some super secret resources that will require our user to supply some form of identity. [Civic](https://www.civic.com/) is a third party secure identity ecosystem, that we can integrate for seamless anonymous (or non anonymous) user management. We can use this identity to uniquely control resource access, and customize the user's experience. Civic uses "Blockchain attestation-based access" instead of relying on username and password, allowing decentralized authorization.
 
 Lambda is a great option to run Civic's server side Javascript SDK, and will also satisfy our _serverless_ fascination. We can employee the [Serverless framework](https://serverless.com/) to spin up an API Gateway, and Lambda function for us. It'll also include a tool for specifying the same SSL certificate we used to secure our static site for our API.
 
-*Disclaimer:* You may incur some small charges to your AWS account depending on how you use the tech stack described in this article. Route53 may charge per Hosted Zone for example. AWS has explicit [billing details and documentation](https://docs.aws.amazon.com/account-billing/index.html#lang/en_us) that you can use to estimate the cost. Generally, serverless is the cheapest way to integrate compute and storage for beginner applications.
+*Disclaimer:* You may incur some small charges to your AWS account depending on how you use the tech stack described in this article. Route53 may charge per Hosted Zone for example. AWS has explicit [billing details and documentation](https://docs.aws.amazon.com/account-billing/index.html#lang/en_us) that you can use to estimate the cost. Generally, serverless is the cheapest way to integrate compute and storage for small applications like this.
 
 
-# User Flow and Outline
+# Project Architecture
 
 ![missing pic: Civic Architecture](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_architecture.png)
 
-From the app's perspective, there are three general steps. 
+From the user's perspective, there are three general steps. 
 
 1. When the user navigates to the static site, Civic's SDK will download either a QR code, or a code for linking to their mobile app if it is a mobile browser.
-2. Once the user has scanned the QR code or used the deep link to open the Civic mobile app, Civic can return a signed JWT token unique to the app, user, and scope request. The token itself cannot be used to identity the user as it is essentially a signed UUID generated for every request.
-3. The client now sends this token to the app's API which will be able to exchange the token for the user's data. If it is an anonymous scope request, only the user id will be returned. The API backend must now use the user id to craft the resources sent back to the client.
+2. Once the user has scanned the QR code or used the deep link to open the Civic mobile app, Civic can return a signed JWT token unique to the app, user, and scope request. The token itself cannot be used to identity the user as it is essentially a signed UUID generated for every request and must be decoded on the backend.
+3. The client now sends this token to the app's API which will be able to exchange the token for the user's data. If it is an anonymous scope request, only the user ID will be returned by Civic. The API backend must now use the user ID to craft the resources sent back to the client.
 
 
 # Create static website with custom domain and SSL on AWS
 
-There are many ways to accomplish this, and many online resources to help you in this process. We will give an overview, but for more detailed instructions, follow AWS's [instructions for CloudFront static websites](https://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-serve-static-website/).
+There are many ways to accomplish this, and many online resources to help you in this process. I will give an overview, but for more detailed instructions, follow AWS's [instructions for CloudFront static websites](https://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-serve-static-website/).
 
-### Register a domain and set route53 as it's DNS
+### Register a domain and set Route53 as it's DNS
    
-If you did not get the domain through AWS, check out their [instructions for migrating DNS to Route53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/migrate-dns-domain-inactive.html). It essentially involves setting the name servers for your domain to AWS's name servers. That way, we can use route53 to quickly set up CNAME and alias records under that domain.
+If you did not get the domain through AWS, check out their [instructions for migrating DNS to Route53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/migrate-dns-domain-inactive.html). It essentially involves setting the name servers for your domain to AWS's name servers. That way, we can use route53 to quickly set up CNAME and ALIAS records under that domain.
 
 ### Request a certificate for your domain
    
-Here are AWS's [instructions for requesting a public certificate](https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html). It's important that you add an additional sub-domain to the certificate, i.e. `api.yourdomain.com` or `*.yourdomain.com`. This is necessary for use, since wish to use sub-domains to differentiate between the static CloudFront frontend, and the API Gateway backend. Now we can use the same certificate for both resources.
+Here are AWS's [instructions for requesting a public certificate](https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html). It's important that you add an additional sub-domain to the certificate, i.e. `api.yourdomain.com` or `*.yourdomain.com`. This is necessary for us, since we wish to use sub-domains to differentiate between the static CloudFront frontend, and the API Gateway backend. Now we can use the same certificate for both resources.
 
-   For this project, I'm using [https://color.tylerjohnhaden.com](https://color.tylerjohnhaden.com) for the website and [https://api.color.tylerjohnhaden.com](https://api.color.tylerjohnhaden.com) for the API endpoint.
+   For this project, I'm using [https://color.tylerjohnhaden.com](https://color.tylerjohnhaden.com) for the website and [https://api.color.tylerjohnhaden.com](https://api.color.tylerjohnhaden.com) for the API endpoint. If this app is still up when you are reading this, you can see the demo by going to first link.
 
 ### Create an S3 bucket and upload initial static files
 
-Since CloudFront takes the longest to spin up, let us speed up the process by skipping any integration yet. Let us put at least an `index.html` in a public S3 bucket. Here is an [intro to getting started with S3](https://docs.aws.amazon.com/quickstarts/latest/s3backup/welcome.html). We won't need to configure static website hosting because CloudFront will take care of that (the S3 built-in hosting does not support SSL for custom domains).
+Since CloudFront takes the longest to spin up, let us speed up the process by skipping any integration yet. We can put at least an `index.html` in a public S3 bucket. Here is an [intro to getting started with S3](https://docs.aws.amazon.com/quickstarts/latest/s3backup/welcome.html). We will not need to configure static website hosting because CloudFront will take care of that (the S3 built-in hosting does not support SSL for custom domains).
 
 ```html
 <!DOCTYPE html>
@@ -63,7 +63,7 @@ Since CloudFront takes the longest to spin up, let us speed up the process by sk
 </html>
 ```
 
-We will define `requestAnonymousIdentity()` later on. And what's a website without a [fun favicon](https://color.tylerjohnhaden.com/color.png)?
+We will define `requestAnonymousIdentity()` later on. And what's a website without a [fun favicon](https://opensea.io/assets/0xaefa27a665d48e19c38437ba7135c8107bb5928f/17)?
 
 ### Create a CloudFront distribution with your domain
 
@@ -78,8 +78,6 @@ Finally, to get that domain to route to your distribution, we can add an alias t
 p.s. This does not need to be a sub-domain. I just happen to be using the root domain `tylerjohnhaden.com` for something else.
 
 Once created, it will take a while to spin up, so let us continue with the rest of the stack. Uploading a new `index.html` or other resource to S3 takes a few seconds, so we can easily update our client side code later.
-
-***
 
 # Setup your Civic integration
 
@@ -107,9 +105,9 @@ Once you have your app configured, you will need to generate keys for use in Civ
 
 ![missing pic: Civic Keys](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_keys.png)
 
-For this project, we will need the *Private Signing Key*, and the *App Secret*. We will also need the *App ID*, which will stay constant for our application and is not necessarily secret.
+For this project, we will need to securely store the *Private Signing Key*, and the *App Secret*. The *App ID*, which stays constant for our application and is not necessarily secret, is also needed.
 
-Since AWS Lambda will eventually need to use these parameters, let us save these into [Systems Manager - Parameter Store](https://console.aws.amazon.com/systems-manager/parameters) (also so we don't lose them). Both the Private Signing Key and the App Secret should be encrypted at rest. Anyone with those values  could capture the JWT token and potentially access user's data by pretending to be us.
+Since AWS Lambda will eventually need to use these parameters, let us save these into [Systems Manager - Parameter Store](https://console.aws.amazon.com/systems-manager/parameters) (also so we don't lose them). Both the Private Signing Key and the App Secret should be encrypted at rest. Anyone with those values could capture the JWT token mid-flight and potentially access user's data by pretending to be us.
 
 ### Add Civic's client side SDK to our website
 
@@ -142,7 +140,7 @@ function requestAnonymousIdentity() {
 }
 ```
 
-This particular application does not need any user's personally identifiable data like phone number or email. We can choose `ANONYMOUS_LOGIN` scope request to ensure we don't receive this data. As of writing this article, this feature is still in beta, but the use case is still achievable by simply ignoring the user's data and only passing the unique user id with any scope. Find more about these options in their [scope request docs](https://docs.civic.com/#ScopeRequests).
+This particular application does not need any user's personally identifiable data like phone number or email. We can choose `ANONYMOUS_LOGIN` scope request to ensure we don't receive this data. As of writing this article, this feature is still in beta, but the use case is still achievable by simply ignoring the user's data and only passing the unique user ID with any scope. Find more about these options in their [scope request docs](https://docs.civic.com/#ScopeRequests).
 
 > In order for Civic to function as an MFA solution, you must use the userID field returned in the Anonymous or Basic scope request response as your MFA credential. Additional information such as email address or phone number can be requested as needed; however, this data is not necessarily a unique identifier for the Civic user.
 
@@ -172,11 +170,11 @@ civicSip.on('auth-code-received', event => {
 });
 ```
 
-The decoding of the token above is just for debugging. You can see how we can't yet access the identity information inside the token. Civic requires the token to be verified on the backend before sharing the user's data. It just so happens that in this use case, we eventually pass back the user id but we don't have to.
+The decoding of the token above is just for debugging. You can see how we can't yet access the identity information inside the token. Civic requires the token to be verified on the backend before sharing the user's data. It just so happens that in this use case, we eventually pass back the user ID but we don't have to.
 
 ![missing pic: Civic JWT Token](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_jwt_token.png)
 
-We can get a little bit of insight into the token by decoding, such as the expiration is 30 minutes. Here, `codeToken` will eventually be converted into our user id. For more information on JWT in general, checkout the [jwt.io docs](https://jwt.io/introduction/).
+We can get a little bit of insight into the token by decoding, like that it expires after 30 minutes. Here, `codeToken` will eventually be converted into our user id. For more information on JWT in general, checkout the [jwt.io docs](https://jwt.io/introduction/).
 
 Next, we send this token to our backend. There is nothing wrong with passing the token back in the body, but the standard way is using the `Authorization` header. This also makes it simpler for us to use AWS Lambda Authorizers (although they can use custom locations for the token). 
 
@@ -211,9 +209,9 @@ function getColorIdentity(token) {
 }
 ```
 
-Our backend will turn the Civic JWT token into an anonymous user identity, and color identity. The user id is just for debugging, and our use case uses the color identity to set the background color of the web page.
+Our backend will turn the Civic JWT token into an anonymous user identity, and color identity. The user ID is just for debugging, and our use case uses the color identity to set the background color of the web page.
 
-The Javascript [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) and most http request APIs abstract away the CORS negotiation. Since our backend is at a different origin (even sub-domains count as cross-origin), there is a request to `OPTIONS` that will return various important headers agreeing with our credentials and cross-origin request, more on this in the next section.
+The Javascript [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) and most HTTP request APIs abstract away the CORS negotiation. Since our backend is at a different origin (even sub-domains count as cross-origin), there is a request to `OPTIONS` that will return various important headers agreeing with our credentials and cross-origin request, more on this in the next section.
 
 ### Upload new static files
 
@@ -221,11 +219,9 @@ With `index.html` and `color.js` finished, upload these to your S3 bucket we cre
 
 To test our latest static web site, navigate to it in a browser. You should get Civic to respond with a QR code, but the request to our backend will fail. Now we can continue on to writing our API!
 
-***
-
 # Create a backend to verify identity
 
-The way we designed our architecture, the backend API is a completely separate component from our static website. This offers several advantages and is common in a serverless architecture. Of course it's pretty easy to separate concerns when there is only one API call needed for the project. 
+The way we designed our architecture, the backend API is a completely separate component from our static website. This offers several advantages and is common in a serverless architecture. Of course there is only one API call needed so it is not a great concern, but scalability should always be considered.
 
 Our solution is to use AWS Lambda to both interface with Civic and to perform our backend "color processing". Writing a special [Lambda authorizer function](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html) will best suite our needs for interfacing with Civic, although we could use one function for the entire backend. Isolating our app secrets to one runtime, and abstracting away Civic is desirable and will increase extensibility if we were to add more functionality to the app later on.
 
@@ -233,7 +229,7 @@ Using the Serverless framework, we can specify both functions, setup CORS, and e
 
 ### Start a Serverless application
 
-To start, install the [Serverless npm package](https://www.npmjs.com/package/serverless). I won't go into detail about npm or Node, maybe [this article](https://www.w3schools.com/nodejs/nodejs_npm.asp) would help.
+To start, install the [Serverless npm package](https://www.npmjs.com/package/serverless). I won't go into detail about npm or Node (maybe [this article](https://www.w3schools.com/nodejs/nodejs_npm.asp) would be a place to start).
 
 `npm install -g serverless`
 
@@ -242,9 +238,9 @@ p.s. You will be able to use `sls` and `serverless` commands interchangeably.
 We could use a template to generate the directory and config file, which would take the command `sls create --template aws-nodejs --path ServerlessCivicApp`, but we're gonna change almost everything generated. You could see Serverless's [list of templates](https://github.com/serverless/serverless/tree/master/lib/plugins/create/templates) for possible template options. They support a large range of languages and hosting services.
 
 Our project structure should look like the following.
-```yaml
+```text
 ServerlessCivicApp: 
-  - functions: 
+  - functions
       - auth.js
       - color.js
   - package.json
@@ -286,15 +282,15 @@ functions:
 ```
 
 Here is the core of the config file. We will be adding more later too.
-- `service` is just the title that is used to generate various resource names in AWS. I should be descriptive and will tie each deployment together (if you keep deploying from the same project).
+- `service` is just the title that is used to generate various resource names in AWS. It should be descriptive and will tie each deployment together (if you keep deploying from the same project).
 - `provider` lets Serverless know where to deploy our resources. `name` and `runtime` are the only ones required, as the others have defaults. 
 - `functions` lists out our lambdas. We only have two so you can see where Serverless picks up the function handlers. Those functions will need to be exported from each file as we will see later.
 
 ### Write our Lambda authorizer
 
-A good resource that AWS provides for learning how to define Lambda functions using NodeJS can be found [here](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-handler.html). The main pieces of information are what the function signature can be and how to return/error out of the function. All of the code here will be taking advantage of [ES2017 async and await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), but there is no problem with refactoring with promises and callbacks.
+A good resource that AWS provides for learning how to define Lambda functions using NodeJS can be found [here](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-handler.html). The main pieces of information that we need to know are what the function signatures should be and how to return or error out of the function. All of the code here will be taking advantage of [ES2017 async and await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), but there is no problem with refactoring with promises and callbacks.
 
-We will be using [Civic's server side SDK](https://www.npmjs.com/package/civic-sip-api) which comes as an npm package. First, we need to setup a Civic client for sending tokens. This can be done outside of the Lambda function because multiple calls could use the same client. Importing `jsonwebtoken` will just be used for debugging the incoming tokens and isn't required for this authorizer. Here is the start of `auth.js`:
+We will be using [Civic's server side SDK](https://www.npmjs.com/package/civic-sip-api) which comes as an npm package. First, we need to setup a Civic client for sending tokens. This can be done outside of the function handler itself because multiple calls could use the same client without issue. Importing `jsonwebtoken` is just used for debugging the incoming tokens and is not required for this particular authorizer. Here is the start of `auth.js`:
 
 ```javascript
 'use strict';
@@ -311,7 +307,7 @@ const civicClient = civicSip.newClient({
 exports.customCivicAuthorizer = async event => {};
 ```
 
-We are going to use environment variables for injecting app secrets and the app id. This follows best practices, and Serverless can easily pull these values from our AWS Parameter Store. The asynchronous function `customCivicAuthorizer` will be used as the actual Lambda function. In `serverless.yml`, we need to link the Parameter Store values to the function variables.
+We are going to use environment variables for injecting app secrets and the app id. This follows best practices and Serverless can easily pull these values from our AWS Parameter Store. The asynchronous function `customCivicAuthorizer` will be used as the actual Lambda function handler. In `serverless.yml`, we need to link the Parameter Store values to the function variables.
 
 ```yaml
 ...
@@ -328,7 +324,7 @@ functions:
 
 Add the above environment variables. Serverless allows us to add them to the [individual functions, or to the whole stage](https://serverless.com/framework/docs/providers/aws/guide/variables/) but we can improve security by limiting the scope of the app secrets to just the authorizer. The `ssm` links to AWS System Manager Parameter Store, and the `~true` tells Serverless to [use your local credentials to decrypt vis KMS](https://hackernoon.com/you-should-use-ssm-parameter-store-over-lambda-env-variables-5197fc6ea45b).
 
-Let us continue with defining the handler. According to [AWS's authorizer documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-lambda-authorizer-input.html), the Lambda authorizer event will have the following pattern:
+Let us continue with defining the handler. According to [AWS's authorizer documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-lambda-authorizer-input.html), the Lambda authorizer input `event` will have the following pattern:
 
 ```json
 {
@@ -363,7 +359,7 @@ exports.customCivicAuthorizer = async event => {
 };
 ```
 
-A successful response will be different depending on the scope request. The `ANONYMOUS_LOGIN` will return the user id as the only form of identity.
+A successful response will be different depending on the scope request. The `ANONYMOUS_LOGIN` will return the user ID as the only form of identity inside `identityData`.
 
 ```json
 {
@@ -389,7 +385,7 @@ Our response should follow [these specs](https://docs.aws.amazon.com/apigateway/
 
 ```json
 {
-  "principalId": "yyyyyyyy", // The principal user identification associated with the token sent by the client.
+  "principalId": "yyyyyyyy",
   "policyDocument": {
     "Version": "2012-10-17",
     "Statement": [
@@ -425,19 +421,19 @@ exports.customCivicAuthorizer = async event => {
     ) {
 
         return {
-            principalId: identityData.userId,
+            principalId: identityData.userId,  // whatever our app uses, helps track usage
             policyDocument: {
                 Version: '2012-10-17',
                 Statement: [
                     {
                         Action: 'execute-api:Invoke',
                         Effect: 'Allow',
-                        Resource: methodArn,
+                        Resource: methodArn,  // parsed from the input event
                     }
                 ],
             },
             context: {
-                "anonymousUserId": identityData.userId  // duplicates principalId, but can be whatever
+                "anonymousUserId": identityData.userId  // duplicates principalId to be more explicit
             },
         };
 
@@ -451,7 +447,7 @@ We duplicate values for `principalId` and `context.anonymousUserId` so we actual
 
 ### Write our main Lambda function
 
-Now we can take care of the core functionality of our backend. The goal is to take a unique user id and turn it into a unique color id. It would also be nice if this function was one-way so that once a user know's their user id, they still need our service to calculate their color id. This is easily done by hashing the user id with a server side secret and then casting to a 24 bit integer (3 bytes for RGB).
+Now we can take care of the core functionality of our backend. The goal is to take a unique user ID and turn it into a unique color id. It would also be nice if this function was one-way so that once a user know's their user id, they still need our service to calculate their color id. This is easily done by hashing the user ID with a server side secret and then casting to a 24 bit integer (3 bytes for RGB).
 
 The setup is the same as the authorizer, except we won't need any Civic code.
 
@@ -463,9 +459,9 @@ const crypto = require('crypto');
 exports.colorIdentification = async event => {};
 ```
 
-`crypto` is built into Node so we don't need to install it. Its hashing library will help us with the one-way requirement.
+`crypto` is built into Node so we do not need to install it. Its hashing library will help us with the one-way requirement.
 
-The `event` input is different that the authorizer, and will be specific to [AWS Lambda proxy integration](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format). All we need is the context that was add by our authorizer which we will find in `event.requestContext.authorizer`.
+The `event` input is different than for the authorizer, and will be specific to [AWS Lambda proxy integration](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format). All we need is the context that was add by our authorizer which we will find in `event.requestContext.authorizer`.
 
 ```javascript
 ...
@@ -474,8 +470,8 @@ exports.colorIdentification = async event => {
     const { requestContext: { authorizer: { anonymousUserId } } } = event;
 
     try {
-        // hash the user's unique id and our secret together to generate the user's unique color hash
-        // ps node's crypto doesn't store intermediate state so we can't "cache" the secret part :(
+        // hash the user's unique ID and our secret together to generate the user's unique color hash
+        // ps Node's crypto doesn't store intermediate state so we can't "cache" the secret part :(
         const colorIdDigest = crypto
             .createHash('sha256')
             .update(process.env.CIVIC_PRIVATE_SIGNING_KEY, 'ascii')
@@ -505,9 +501,9 @@ exports.colorIdentification = async event => {
 };
 ```
 
-Notice the headers returned if successful. These only need to be added if using proxy integration vs standard Lambda. Set the origin to where ever the static site is be served at.
+Notice the headers returned if successful. These only need to be added if using proxy integration vs standard Lambda. Set the origin to where ever the static site is served at.
 
-We are using the same signing key from the Civic integration to hash into the color id. This could be any server side secret, but now we need to add it to the function environment. There's more we need to add to the function config too.
+We are using the same signing key from the Civic integration to hash into the color id. This could be any server side secret, but it is already available to us. Now we need to add it to the function environment, along with a few other configuration details.
 
 ```yaml
 ...
@@ -525,7 +521,7 @@ functions:
   ...
 ```
 
-Might as well add in the event specs. `events` will be exposed by the API Gateway. `custom-civic-authorizer` is the name of the other function specified in this file. This can also refer to a Lambda not specified here, you will just have to use the ARN for the Lambda.
+`events` will be exposed by the API Gateway. `custom-civic-authorizer` is the name of the other function specified in this file. This can also refer to a Lambda not specified here, you will just have to use the ARN of the Lambda.
 
 ### Configuring CORS for our back end
 
@@ -585,15 +581,15 @@ functions:
     ...
 ```
 
-This will allow the incoming request to be cross-domain with the authorization token in the header. The headers are the default for AWS proxy integration, and may not all be necessary for our usage. Our API will now include an `OPTIONS` along with the `GET`.
+This will allow the incoming request to be cross-domain with the authorization token in the header. The headers are the default for AWS proxy integration, and may not all be necessary for our usage. Our API will now include an `OPTIONS` along with the `GET` when created in API Gateway.
 
-To debug problems with CORS, it helps to watch the network requests in the browser. The `OPTIONS` pre-flight check should be successful and allow the next method to be sent. Here is [a Serverless  specific CORS guide](https://serverless.com/blog/cors-api-gateway-survival-guide/).
+To debug problems with CORS, it helps to watch the network requests in the browser. The `OPTIONS` pre-flight check should be successful and allow the next method to be sent. Here is a [Serverless  specific CORS guide](https://serverless.com/blog/cors-api-gateway-survival-guide/).
 
 ![missing pic: Civic Options](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_options.png)
 
 ### Specify a custom domain and certificate
 
-Last thing to add to our `serverless.yml` configuration is the API's custom domain. API Gateway allows us to specify a custom domain (technically CloudFront) that will allow us to attach an SSL certificate too!
+Last thing to add to our `serverless.yml` configuration is the API's custom domain. API Gateway allows us to specify a custom domain (technically CloudFront) that will allow us to attach an SSL certificate too. Yay security!
 
 ```yaml
 ...
@@ -626,14 +622,14 @@ Finally, we have our project built. Two commands left to run.
 
 ![missing pic: Civic Sls Deploy](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_sls_deploy.png)
 
-The output of our Serverless commands. There is only one endpoint because the authorizer cannot be hit directly. 
+You can use the AWS console to explore the resources generated using the CloudFormation template. The CloudFormation, S3 bucket, Lambdas, CloudWatch logs, and API Gateway should all be available. You can individually test the Lambdas by crafting the test event payloads for quick debugging feedback. 
 
-You can use the AWS console to explore the resources generated using the CloudFormation template. The CloudFormation, S3 bucket, Lambdas, CloudWatch logs, and API Gateway should all be available. You can individually test the Lambdas by crafting the test event payloads. Since we already have our static site available, all we need to do is wait till the CloudFront inside the API spins up with the custom domain.
+Since we already have our static site available, all we need to do is wait till the CloudFront inside the API spins up with the custom domain.
 
 # Success!
 ![missing pic: Civic Success](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_success.png)
 
-Looks like my personal identity maps to some green color.
+Looks like my personal identity maps to some greenish color.
 
 You can find the [source code for this project here](https://github.com/tylerjohnhaden/ServerlessWithCivicIdentity). If there are any mistakes found, please submit an issue or pull request.
 
