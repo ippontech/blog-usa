@@ -3,7 +3,6 @@ authors:
 - Victoria De Belilovsky
 tags:
 - OWASP
-- ressources
 - Security
 - white-paper
 date: 2014-07-17T04:25:48.000Z

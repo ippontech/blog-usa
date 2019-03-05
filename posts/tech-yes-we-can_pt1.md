@@ -7,17 +7,14 @@ authors:
 - Erin Geoghan
 - Ramya Shetty
 tags:
-- Women In Technology
-- RVATech
-date: 2018-10-31T12:21:50.000Z
+date: 2018-11-04T17:05:18.000Z
 title: "Tech Yes We Can! Version 1.1"
-image:
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/rvatech-women-1.jpg
 ---
 
 On October 18, 2018, six of IpponRVA's consultants attended the RVATech Women in Technology conference here in Richmond Virginia. As advertised, "Central Virginia's premier technology conference brings together professionals on a wide range of technology topics to learn, network, and collaborate." After attending the conference and discussing the day at the conference happy hour we decided that we should share our opinions of the day with the world, or whomever would listen!
 
 It was advised, and properly so, that the ramblings of six women and their experience at a conference may be a bit overwhelming to society, so we broke this inspirational knowledge fest into a two-parter. We hope that you find something here to inspire you, regardless of gender, to go out into the world and make a difference, even if that difference is solely introspective. We have done our best to carry on the essence of the conference within our tales and more importantly bring along our own experiences in order to offer some sort of guidance if you are here to seek it. Although we do not speak for RVATech or all women, we do speak as six women IN technology from various backgrounds, points in our careers, and stylistic preferences. Take what you want, leave what you don't and comments or feedback are encouraged!
-
 
 # Sarah Narum
 *Ippon Engineer | Data | snarum@ipponusa.com*
@@ -108,6 +105,10 @@ I love when a speaker starts their talk with a simple image and questions to the
 Nancy then went on to describe how the world is changing and how building and designing for that world requires a different way of things. We as engineers need to be building for a more inclusive world. One fabulous example she gave was changing stations only existing in womens restrooms. Who thought that women would be the only ones out and about needing to change a babys diaper? But then again -- why would it cross your mind as any other way? It's the way it's always been. We need to change our thoughts, test and design differently.
 
 As I've said in past articles, this conference only gets better year by year. They have an amazing group of women (and men) that take each attendees thoughts into account and put that into the following year's conference. The speakers always blow me away, but I was struck extra hard this year; these keynotes really hit it home. They all had something totally different to say but with one major thought -- build yourself up! Be the best you that you can be by getting to know yourself better.
+
+- - -
+
+[Make sure to also read part 2!](https://blog.ippon.tech/tech-yes-we-can_pt2/)
 
 *For reference to previous year's blogs please see the links below*
 

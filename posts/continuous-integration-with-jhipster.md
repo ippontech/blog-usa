@@ -4,7 +4,7 @@ authors:
 tags:
 - Agile
 - Back-End
-- Devops
+- DevOps
 - JHipster
 date: 2017-05-05T13:35:00.000Z
 title: "Introduction to Continuous Integration with JHipster"

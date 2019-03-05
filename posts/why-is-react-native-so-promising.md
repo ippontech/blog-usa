@@ -4,7 +4,6 @@ authors:
 tags:
 - JavaScript
 - React
-- Mobile
 - Front-End
 date: 2018-02-27T20:16:13.000Z
 title: "Why is React Native so promising?"

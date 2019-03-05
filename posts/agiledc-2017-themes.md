@@ -4,7 +4,7 @@ authors:
 tags:
 - Agile
 - Conference
-- Devops
+- DevOps
 - Career Development
 date: 2017-10-19T17:54:01.000Z
 title: "AgileDC 2017 - Agile Rises Above the Scrum"

@@ -7,16 +7,16 @@ authors:
 - Erin Geoghan
 - Ramya Shetty
 tags:
-- Women In Technology
-- RVATech
-date: 2018-10-31T12:21:50.000Z
+date: 2018-11-04T17:05:24.000Z
 title: "Tech Yes We Can! Version 1.2"
-image:
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/rvatech-women.jpg
 ---
 
 On October 18, 2018, six of IpponRVA's consultants attended the RVATech Women in Technology conference here in Richmond Virginia. As advertised, "Central Virginia's premier technology conference brings together professionals on a wide range of technology topics to learn, network, and collaborate." After attending the conference and discussing the day at the conference happy hour we decided that we should share our opinions of the day with the world, or whomever would listen!
 
 It was advised, and properly so, that the ramblings of six women and their experience at a conference may be a bit overwhelming to society, so we broke this inspirational knowledge fest into a two-parter. We hope that you find something here to inspire you, regardless of gender, to go out into the world and make a difference, even if that difference is solely introspective. We have done our best to carry on the essence of the conference within our tales and more importantly bring along our own experiences in order to offer some sort of guidance if you are here to seek it. Although we do not speak for RVATech or all women, we do speak as six women IN technology from various backgrounds, points in our careers, and stylistic preferences. Take what you want, leave what you don't and comments or feedback are encouraged!
+
+If you haven't done so, [make sure to also read part 1 first!](https://blog.ippon.tech/tech-yes-we-can_pt1/)
 
 # Ramya Shetty
 *Ippon Engineer | Data | rshetty@ipponusa.com*
@@ -85,7 +85,9 @@ Nancy Douyon closed the conferencewith "Humanizing Usability Through Inclusive D
 
 So there are five different talks and one host, repeating the same things. Let's get everyone to the table and try and have better conversations. My background is in design and it's been hard to find footing in an industry that's always changing and one that's not always so female friendly. Which is why these conferences, these speakers are so refreshing to hear. I think in this new world of thinking about yourself as a brand it's really easy to feel like an imposter. It's really easy to feel you don't know enough or don't fit somewhere. It's even easy to feel like you need to lose five pounds, be thicker skinned, or get a makeover, and reinvent yourself. But it's really important to be reminded we all bring something special to the table and we are all supporting one another to find our own path. And there are people out there trying to better support one-another by improving our ways of looking, listening and thinking about our projects, our teams, and about each other. At the end of the day I just don't think the 5lb conversation is one worth having, but there are so many other worthwhile things we can be discussing in the now.
 
-[Ippon RVA Women In Technology 2018](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/10/RVATech_Group2018.jpg")
+- - -
+
+![Ippon RVA Women In Technology 2018](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/10/RVATech_Group2018.jpg)
 
 *For reference to previous year's blogs please see the links below*
 

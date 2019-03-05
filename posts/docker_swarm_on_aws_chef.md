@@ -2,10 +2,9 @@
 authors:
 - Mallik Sambaraju
 tags:
-- Devops
+- DevOps
 - AWS
 - Docker
-- Chef
 date: 2017-05-01T14:34:31.000Z
 title: "Docker Swarm on AWS using Chef"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/04/Docker-Swarm-on-AWS-Blog.png

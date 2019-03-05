@@ -3,17 +3,6 @@ authors:
 - Louis Fournier
 - Hugo de Almeida Rodrigues
 tags:
-- Blockchain
-- Ethereum
-- Dai
-- Stablecoin
-- Solidity
-- Truffle
-- Remix
-- ZeppelinOS
-- web3
-- Metamask
-- geth
 date: 2018-09-05T14:35:53.000Z
 title: "Ethereum Development Tips"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/09/blockchain-interns-01.png

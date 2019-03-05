@@ -3,7 +3,7 @@ authors:
 - Florian Garcia
 tags:
 - Docker
-- Devops
+- DevOps
 date: 2017-02-05T14:29:00.000Z
 title: "Please welcome Docker 1.13"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/03/Welcome-Docker-1.13-Blog.png

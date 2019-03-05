@@ -3,9 +3,7 @@ authors:
 - Josh Shipp
 tags:
 - AWS
-- Network
 - Security
-- Security Groups
 - Front-End
 - Cloud
 date: 2016-08-23T16:07:00.000Z

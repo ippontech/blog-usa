@@ -2,12 +2,8 @@
 authors:
 - Julien Dubois
 tags:
-- Dandelion
 - Performance
 - Spring
-- Spring-Petclinic
-- Tomcat
-- Yourkit
 date: 2013-03-12T11:00:11.000Z
 title: "Improving the performance of the Spring-Petclinic sample application (part 2 of 5)"
 image: 

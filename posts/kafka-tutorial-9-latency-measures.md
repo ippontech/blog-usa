@@ -189,7 +189,7 @@ Latency: 1
 Latency: 3
 ```
 
-Latency is much closer to what the Java client and Kafka Streans have to offer, which is a major improvement over Spark's normal execution mode. This comes at the cost of not being able to perform aggregations, and by a lower processing guarantee: at-least-once, versus exactly-once with Spark's microbatches, but keep in mind this is only the _processing_ guarantee, not the _delivery_ guarantee, so this may not be a big problem in its own.
+Latency is much closer to what the Java client and Kafka Streams have to offer, which is a major improvement over Spark's normal execution mode. This comes at the cost of not being able to perform aggregations, and by a lower processing guarantee: at-least-once, versus exactly-once with Spark's microbatches, but keep in mind this is only the _processing_ guarantee, not the _delivery_ guarantee, so this may not be a big problem in its own.
 
 # Conclusions
 
