@@ -16,7 +16,7 @@ Since early November my team has started utilizing a software development strate
 
 The easiest place to start understanding the concept of mob programming is with a tactic most have heard about or utilized at some point in their software-related careers: [paired programming](https://en.wikipedia.org/wiki/Pair_programming). Paired programming, or "pairing", on a problem consists of two individuals sitting and staring at the same screen while they share a single keyboard/mouse. There is an exchange between the two about what and how the code should be written in order to come to a well-formed solution. The "driver", or typer at the keyboard, writes out their solution.
 
-So where does mob programming, or "mobbing", come into the picture? Consider the following situation. During a pairing session between two rather opinionated engineers, neither person will concede on their stance for the best course of action. They require outside consultation from their very busy lead. The lead comes in later and listens to both explain their rationales. While they do, a team member nearby listens in and can't help but interject themselves having just worked previously on the service class in question. What was a two person effort has now bloomed into a four person venture. And of course there is still functionally only one screen and one keyboard/mouse combination.
+So where does mob programming, or "mobbing", come into the picture? Consider the following situation. During a pairing session between two rather opinionated engineers, neither person will concede on their stance for the best course of action. They require outside consultation from their very busy lead. The lead comes in later and listens to both explain their rationales. While they do, a team member nearby listens in and can not help but interject themselves having just worked previously on the service class in question. What was a two person effort has now bloomed into a four person venture. And of course there is still functionally only one screen and one keyboard/mouse combination.
 
 One person now sits at the computer, "driving", while the other three look over his/her shoulder. They all exchange on how best to move forward then make sure the individual at the computer is understanding what the team agreed upon as it is typed out. I think even if someone has not participated in paired programming previously we can all envision times like this in our professional careers. Mob programming is just the name we have given this situation.
 
@@ -28,7 +28,7 @@ Mobbing is meant to be an inclusive exercise so that no one individual on the te
 1. One person coding at a time
 1. Person coding switches every N minutes
 1. Problem solve as a group
-1. Person on the keyboard does not type anything they don't understand
+1. Person on the keyboard does not type anything they do not understand
 
 The whole group is centered around completing a single goal. Since only one individual is driving at a time at the keyboard, this allows for the entire team to participate, share, and collaborate on the group's solution.
 
@@ -56,7 +56,7 @@ One common aspect we have changed in the various sessions we have held is the sw
 1. How does anybody come up with a seemly arbitrary length of time?
 1. How does the group arrive at a consensus?
 
-The most straightforward way our team has arrived at a switch time is by considering the amount of work involved. If this is a feature epic or more nebulous piece of work with a loftier goal, our switch time will be set accordingly high. We have also used story points to decide on switch times. 1 and 2 point stories haven't been considered for mobbing on our team, so it's a pretty easy 1:1 correlation of X story points to N minutes.
+The most straightforward way our team has arrived at a switch time is by considering the amount of work involved. If this is a feature epic or more nebulous piece of work with a loftier goal, our switch time will be set accordingly high. We have also used story points to decide on switch times. 1 and 2 point stories have not been considered for mobbing on our team, so it is a pretty easy 1:1 correlation of X story points to N minutes.
 
 The next factor our team uses for determining switch time is the number of people in the mob. A group of three or four developers will require each developer to drive more frequently than one of seven. Now, because our team tends to get easily distracted in general, we need to combat short attention spans while not changing drivers so frequently that it hinders the integrity of the solution. We want to find the right balance of switch time so we can keep the group motivated and engaged.
 
