@@ -253,7 +253,7 @@ Thing thing2 = (new Thing())
 ### Example 3.3: Testing Things ###
 
 ```java
-/** Revised. **
+/** Revised. */
 @RunWith( JUnit4.class )
 public class ThingTest
 {
