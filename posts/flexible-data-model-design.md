@@ -270,7 +270,7 @@ public class ThingTest
 }
 ```
 
-## :running: Why bother changing design patterns? ##
+# :running: So... what's the point? #
 
 What's the big deal with being fluid _and_ still being a bean? Why did I just waste your time with this giant wall of text?
 
