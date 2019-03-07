@@ -10,19 +10,19 @@ title: "Mobs Are Not Always Destructive"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2018/11/mobbing-goal-rules.png
 ---
 
-Since early November my team has started utilizing a software development strategy that I had never heard of before:  Mob Programming. I am sure many might envision situations as I did of an angry group of engineers pitching comments and improvements on my code with a multitude of GitHub Pull Requests from their forked repositories. Good news, it was nothing like this pitch-forked scenario. Instead of it being a destructive or distributed activity, my experience with mob programming was quite the opposite.
+Since early November my team has been utilizing a software development strategy that I have never heard of before:  Mob Programming. I am sure many might envision situations, as I did, of an angry group of engineers pitching comments and improvements on my code with a multitude of GitHub Pull Requests from their forked repositories. Good news, it was nothing like this pitch-forked scenario. Instead of it being a destructive or distributed activity, my experience with mob programming was quite the opposite.
 
 # The Basis
 
 The easiest place to start understanding the concept of mob programming is with a tactic most have heard about or utilized at some point in their software-related careers: [paired programming](https://en.wikipedia.org/wiki/Pair_programming). Paired programming, or "pairing", on a problem consists of two individuals sitting and staring at the same screen while they share a single keyboard/mouse. There is an exchange between the two about what and how the code should be written in order to come to a well-formed solution. The "driver", or typer at the keyboard, writes out their solution.
 
-So where does mob programming, or "mobbing", come into the picture? Consider the following situation. During a pairing session between two rather opinionated engineers, neither person will concede on their stance for the best course of action. They require outside consultation from their very busy lead. The lead comes in later and listens to both explain their rationales. While they do, a team member nearby listens in and can not help but interject themselves having just worked previously on the service class in question. What was a two person effort has now bloomed into a four person venture. And of course there is still functionally only one screen and one keyboard/mouse combination.
+So where does mob programming, or "mobbing", come into the picture? Consider the following situation. During a pairing session between two rather opinionated engineers, neither person will concede on their stance for the best course of action. They require outside consultation from their very busy lead. The lead comes in later and listens to both explain their rationales. While they do that, a team member nearby listens in and can not help but interject themselves having just worked previously on the service class in question. What was a two person effort has now bloomed into a four person venture. And of course there is still functionally only one screen and one keyboard/mouse combination.
 
-One person now sits at the computer, "driving", while the other three look over his/her shoulder. They all exchange on how best to move forward then make sure the individual at the computer is understanding what the team agreed upon as it is typed out. I think even if someone has not participated in paired programming previously we can all envision times like this in our professional careers. Mob programming is just the name we have given this situation.
+One person now sits at the computer, "driving", while the other three look over his/her shoulder. They all exchange on how best to move forward and then make sure the individual at the computer understands what the team agreed upon as it is typed out. I is my belief, that even if someone has not participated in paired programming previously, we can all recall times like these in our professional careers. Mob programming is just the name we have given this situation.
 
 # There are... Guidelines
 
-Mobbing is meant to be an inclusive exercise so that no one individual on the team is always dictating what to do. Guidelines were created therefore to help enforce that mentality. They are as follows:
+Mobbing is meant to be an inclusive exercise so that no one individual on the team is always dictating what to do. Guidelines were created, therefore, to help enforce that mentality. They are as follows:
 
 1. Everyone focused on the goal (if you have to do something else step out)
 1. One person coding at a time
