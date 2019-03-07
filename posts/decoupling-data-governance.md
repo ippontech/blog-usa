@@ -2,7 +2,9 @@
 authors:
 - Justin Risch
 tags:
-date: 2019-01-24T20:56:31.000Z
+- data governance
+- best practices
+date: 2017-08-17T18:22:50.000Z
 title: "Decoupling Data Governance"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/01/decoupling.png
 ---
@@ -51,3 +53,4 @@ With the potential repercussions of being a provocateur, it should also be someo
 Additionally, this project should be someone’s full time job. It will require several meetings a week, oversight of technical aspects, as well as a thorough knowledge of and willingness to implement best practices. It cannot be completed as a side project or an afterthought.
 
 These parameters paint the image of a consultant, free from office politics, who’s able to speak plainly, directly, and with integrity on the subject. Someone who’s able to stick their neck out when necessary, but knows which battles to fight, and which are a distraction from the main goal. They would be an external driver whose sole focus is this one goal: Focusing on the big picture to better improve your data quality.
+
