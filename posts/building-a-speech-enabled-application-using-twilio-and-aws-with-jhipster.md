@@ -41,7 +41,9 @@ Twilio requires a TwiML to initiate a call and the file must be accessible from 
 
 ## JHipster Generation
 
-I decided to use [JHipster](https://www.jhipster.tech/) to generate my speech-enabled application since I want a complete and modern Web app. JHipster uses Spring Boot for the back-end and I decided to use [Vue.js](https://vuejs.org/) for the front-end. This [.yo-rc.json](https://raw.githubusercontent.com/Falydoor/jhipster-twilio-polly/master/.yo-rc.json) can be used in case you want to generate the same application referenced in this article. The file is placed in the application directory and then running `jhipster --blueprint vuejs` will generate the application without asking any questions.
+I decided to use [JHipster](https://www.jhipster.tech/) to generate my speech-enabled application since I want a complete and modern Web app. JHipster uses Spring Boot for the back-end and I decided to use [Vue.js](https://vuejs.org/) for the front-end. You can read my previous [blog post about JHipster and Vue.js](https://blog.ippon.tech/creating-a-modern-web-app-using-vuejs-and-spring-boot-with-jhipster/) for more details. 
+
+This [.yo-rc.json](https://raw.githubusercontent.com/Falydoor/jhipster-twilio-polly/master/.yo-rc.json) can be used in case you want to generate the same application referenced in this article. The file is placed in the application directory and then running `jhipster --blueprint vuejs` will generate the application without asking any questions.
 
 ## Entities generation
 
