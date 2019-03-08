@@ -25,7 +25,7 @@ Lambda is a great option to run Civic's server side Javascript SDK, and will als
 
 ![missing pic: Civic Architecture](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_architecture.png)
 
-From the user's perspective, there are three general steps. 
+From the user's perspective, there are three basic steps. 
 
 1. When the user navigates to the static site, Civic's SDK will download either a QR code, or a code for linking to their mobile app if it is a mobile browser.
 2. Once the user has scanned the QR code or used the deep link to open the Civic mobile app, Civic can return a signed JWT token unique to the app, user, and scope request. The token itself cannot be used to identity the user as it is essentially a signed UUID generated for every request and must be decoded on the backend.
@@ -219,6 +219,13 @@ With `index.html` and `color.js` finished, upload these to your S3 bucket we cre
 
 To test our latest static web site, navigate to it in a browser. You should get Civic to respond with a QR code, but the request to our backend will fail. Now we can continue on to writing our API!
 
+
 # Review
 
-So far, we have 
+So far, we have stood up a CloudFront distribution serving a static website from an S3 bucket. This website runs Civic's client side SDK to fetch an anonymous Civic JWT token. We also call our yet-to-be-implemented API to exchange the token for our color identity.
+
+To get the source code used for this article, checkout my [Github repo](https://github.com/tylerjohnhaden/ServerlessWithCivicIdentity). It's open source, so feel free to fork, submit issues, or contribute.
+
+In the next part, we will delve into the wonderful world of serverless computing!
+
+[https://blog.ippon.tech/integrating-civic-into-a-static-serverless-website-part-1-of-2/](https://blog.ippon.tech/integrating-civic-into-a-static-serverless-website-part-1-of-2/)

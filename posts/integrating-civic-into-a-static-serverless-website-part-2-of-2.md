@@ -11,13 +11,12 @@ title: "Integrating Civic into a Static Serverless Website (part 2 of 2)"
 image: https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_jumbo.png
 ---
 
+This is the second part of this tutorial ([first part here](https://blog.ippon.tech/integrating-civic-into-a-static-serverless-website-part-2-of-2/)). By now your static website should be up and running. All that is left is to generate our API backend using Serverless. In the picure below, the user can complete the first two steps, but the third will fail for now.
 
-This is the second part of the 
 
 # Project Architecture
 
 ![missing pic: Civic Architecture](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_architecture.png)
-
 
 
 # Create a backend to verify identity
@@ -427,11 +426,18 @@ You can use the AWS console to explore the resources generated using the CloudFo
 
 Since we already have our static site available, all we need to do is wait till the CloudFront inside the API spins up with the custom domain.
 
-# Success!
+## Success!
 ![missing pic: Civic Success](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_success.png)
 
 Looks like my personal identity maps to some greenish color.
 
-You can find the [source code for this project here](https://github.com/tylerjohnhaden/ServerlessWithCivicIdentity). If there are any mistakes found, please submit an issue or pull request.
-
 P.S. To tear down the Serverless stack, you can use the `sls remove` [Serverless command](https://serverless.com/framework/docs/providers/aws/cli-reference/remove/). 
+
+
+# Review
+
+We have completed the whole picture. A serverless static website that can anonymously identity users using Civic. The flexibility and extensibility built into this architecture makes it easy to build up the core functionality. The authorizer can be seamlessly integrated into many AWS services through the API Gateway, and the client side code can be easily injected to any existing website!
+
+To get the source code used for this article, checkout my [Github repo](https://github.com/tylerjohnhaden/ServerlessWithCivicIdentity). It's open source, so feel free to fork, submit issues, or contribute.
+
+Here is the link back the the first part, [https://blog.ippon.tech/integrating-civic-into-a-static-serverless-website-part-2-of-2/](https://blog.ippon.tech/integrating-civic-into-a-static-serverless-website-part-2-of-2/)
