@@ -18,7 +18,7 @@ The easiest place to start understanding the concept of mob programming is with 
 
 So where does mob programming, or "mobbing", come into the picture? Consider the following situation. During a pairing session between two rather opinionated engineers, neither person will concede on their stance for the best course of action. They require outside consultation from their very busy lead. The lead comes in later and listens to both explain their rationales. While they do that, a team member nearby listens in and can not help but interject themselves having just worked previously on the service class in question. What was a two person effort has now bloomed into a four person venture. And of course there is still functionally only one screen and one keyboard/mouse combination.
 
-One person now sits at the computer, "driving", while the other three look over his/her shoulder. They all exchange on how best to move forward and then make sure the individual at the computer understands what the team agreed upon as it is typed out. I is my belief, that even if someone has not participated in paired programming previously, we can all recall times like these in our professional careers. Mob programming is just the name we have given this situation.
+One person now sits at the computer, "driving", while the other three look over his/her shoulder. They all exchange on how best to move forward and then make sure the individual at the computer understands what the team agreed upon as it is typed out. It is my belief, that even if someone has not participated in paired programming previously, we can all recall times like these in our professional careers. Mob programming is just the name we have given this situation.
 
 # There are... Guidelines
 
@@ -34,9 +34,9 @@ The whole group is centered around completing a single goal. Since only one indi
 
 # How a Whole Mob can be Agile
 
-Worth highlighting that mob programming first was mentioned in "[Chapter 28: Mob Programming and the Transition to XP](https://www.worldcat.org/title/extreme-programming-perspectives/oclc/49663563)" of the _Extreme Programming Perspectives_ by Moses Hohman in 2003. However, just because it originated in the Extreme Programming (XP) methodology does not mean it cannot also be applied to other methodologies like scrum, kanban, scrum-ban, lean, etc. and here are two reasons why that is the case:
+It is worth highlighting that mob programming first was mentioned in "[Chapter 28: Mob Programming and the Transition to XP](https://www.worldcat.org/title/extreme-programming-perspectives/oclc/49663563)" of the _Extreme Programming Perspectives_ by Moses Hohman in 2003. However, just because it originated in the Extreme Programming (XP) methodology does not mean it cannot also be applied to other methodologies like scrum, kanban, scrum-ban, lean, etc. and here are two reasons why that is the case:
 
-1. At its core mobbing has only one purpose which is to deliver a single piece of work.
+1. At its core, mobbing has only one purpose, which is to deliver a single piece of work.
 1. A team does not jump into mobbing without a well-defined goal.
 
 Prior to the designated mobbing time, a shared goal is selected for the exercise which may push the team in the right direction and be utilized further on down the line. It can be easily incorporated into the project's agile methodology whether it is scrum, kanban, or XP. It is a way to work on a story, a task, or whatever the team deems as an integral step for everyone to continue going forward. This step will be as complex or simple as necessary because it depends on what the participating group is capable of completing.
@@ -45,7 +45,7 @@ Prior to the designated mobbing time, a shared goal is selected for the exercise
 
 ## Team Capability and Capacity
 
-Devil's advocates will be quick to point out that mobbing directly reduces capacity across any team since all developers are involved in the same piece of work. While this is a valid concern from those concerned about velocity and throughput within a sprint, our most effective mobbing sessions were used for tackling large stories that probably would not have been completed within a sprint by a single developer anyway. These sessions were so successful for us that we even combined forces with our sister team to start in on new feature epics. For multiple teams that share a single backlog, this could be a preferable method of getting everyone on the same page as it cuts down on the number of design sessions that are necessary afterwards. All team members are now familiar enough with this shared codebase and each person has actually been hands-on with it. This means all the developers involved are going to be that much more productive in their work going forward.
+Devil's advocates will be quick to point out that mobbing directly reduces capacity across any team since all developers are involved in the same piece of work. While this is a valid concern from those concerned about velocity and throughput within a sprint, our most effective mobbing sessions were used for tackling large stories that probably would not have been completed within a sprint by a single developer anyway. These sessions were so successful for us that we even combined forces with our sister team to start on new feature epics. For multiple teams that share a single backlog, this could be a preferable method of getting everyone on the same page as it cuts down on the number of design sessions that are necessary afterwards. All team members are now familiar enough with this shared codebase and each person has actually been hands-on with it. This means all the developers involved are going to be that much more productive in their work going forward.
 
 For more on this topic, check out this quick Medium article: [Here’s the science behind mob programming.](https://medium.com/comparethemarket/you-asked-me-to-prove-mob-programming-works-heres-the-proof-70eb6a1d0279)
 
@@ -62,7 +62,7 @@ The next factor our team uses for determining switch time is the number of peopl
 
 Last major piece of criteria is the allotted time. For us it has been anywhere from a half hour to a whole, six-hour day. But why this matters is because, just as the agricultural revolution found, it is important to rotate break times into your product's growth. Either halfway in or after each person has gone through a full rotation, we introduce a dedicated break to give people a breather. (This is separate from the guideline which advises stepping away when one is forced to do something else outside of the mobbing topic.)
 
-Say we are mobbing on a feature epic with eight people for an allotted time of five hours, our switch time will probably sit at around 15 minutes. In comparison, a smaller mobbing session of 45 minutes on a three-point story with four developers have had switch times of only five minutes. So why no formula to determining switch time (N)? Someone could propose one however this is analogous with story pointing which has no perfect formula either.
+Say we are mobbing on a feature epic with eight people for an allotted time of five hours, our switch time will probably sit at around 15 minutes. In comparison, a smaller mobbing session of 45 minutes on a three-point story with four developers have had switch times of only five minutes. So why no formula to determining switch time (N)? Someone could propose one, however, this is analogous with story pointing which has no perfect formula either.
 
 ## Past Mobbing Goals
 
@@ -76,7 +76,7 @@ Subsequent mobbing goals have included implementations of:
 
 # TL;DR
 
-Our team flourishes by having mob programming as another technique in our wheelhouse for solving large, complex problems. A mobbing session is three or more developers all taking turns on the keyboard for N-time increments. By the end of a mobbing session, each developer shares an understanding of the solutions completed having physically typed through the code and not solely talking through high-level designs. It gives all involved the opportunity to communicate different perspectives/ideas which fosters team inclusivity and garners the ability to learn new coding styles.
+Our team flourishes by having mob programming as another technique in our wheelhouse for solving large, complex problems. A mobbing session is three or more developers all taking turns on the keyboard for N-time increments. By the end of a mobbing session, each developer shares an understanding of the solutions completed, having physically typed through the code and not solely talking through high-level designs. It gives all involved the opportunity to communicate different perspectives/ideas which fosters team inclusivity and garners the ability to learn new coding styles.
 
 Looking for a way to mix up your team's current dynamic? You may just want to start a mob.
 
