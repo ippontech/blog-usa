@@ -13,7 +13,7 @@ On September 7, 2017, one of the most lethal earthquakes in Mexican history hit 
 
 
 
-More than a year after the devastating Earthquakes hit, many schools in Mexico remained unsafe for children to learn in, which forced many students to study in dangerous temporary learning centres. For this reason, we are continuing our work in Mexico within the Mexican state of Oaxaca.
+More than a year after the devastating Earthquakes hit, many schools in Mexico remained unsafe for children to learn in, which forced many students to study in dangerous temporary learning centers. For this reason, we are continuing our work in Mexico within the Mexican state of Oaxaca.
 The Oaxaca program began in January 2019, focusing on assisting the Celso Muñoz Primary School within the Oaxaca state, where our work will be centered around rebuilding 7 classrooms, retrofitting 4 classrooms and rebuilding the office and library to ensure that students have a safe and disaster-resilient place to learn. This school will allow 170 students, between the ages of 6 and 12 to return to school and receive the education they need for a brighter future. We look forward to working with this diverse and culturally-rich community to rebuild a school that will ensure they build a safer future for their students that will allow their diversity of culture to thrive for many years to come.
 My Time on Project:
 15 hours after setting off from my apartment in NYC and taking nearly every mode of transport available, I arrived at the HQ of the volunteer program in Oaxaca, Mexico. The so-called base is located in small neighbourhood La Santita, a barrio of Salinas Del Marquez. This town is separated by a massive harbour from the more well known Salina Cruz, famous for the oil refinery. 
