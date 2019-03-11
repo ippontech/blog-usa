@@ -38,13 +38,13 @@ This connection with communities which we would otherwise miss in our daily live
 On my last Sunday on the project, we played football (soccer) against the local workers (known as masons) from the community. It was an early morning kick-off but already extremely hot. We kicked off later than planned as both masons and volunteers were nursing hangovers from drinking together until late the evening before. It was an exhausting yet hilarious match which went into extra time and then happily, the volunteer team eventually won 3-2 on penalties. This game served to further create a closer connection between the international volunteers and the wider local community. As on the construction site, the language barrier fails to stop bonds and friendships forged. This has since become a monthly fixture and will be continued for the duration of the project until late summer 2019. 
 
 
-**Reflections**
+**Reflections:**
 
 All in all, it has once again been a broad, culturally diverse experience, in a very welcoming community. 
 
 The positive vibes and energy coming from the volunteers and all the people of the local community are amazing. They make you realize what you are there for: it is all for the kids. Rebuilding their school, so they can return to a safe learning environment to grow and have all the opportunities we take for granted. It has once again been my great privilege to find the time and support to be able to serve alongside my fellow volunteers, under the banner of All Hands & Hearts, in the goal of helping those impacted by natural disaster who are unable to help themselves. 
 
-**How you can help**
+**How You Can Help:**
 
 If you too want to challenge the notion, that one person cannot change the world, just click the link below and go find out for yourselves. I’m certain you won’t regret it. https://www.allhandsandhearts.org/volunteer/
 
