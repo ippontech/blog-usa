@@ -13,6 +13,8 @@ image:
 
 **About Me:**
 
+![alt](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/03/about_me.jpg)
+
  My name is Danny Collins and I work for Ippon Technologies USA as a senior project manager. I have 14 years experience in the field of change and project management across multiple sectors on several continents. 
  
  Firstly, I am extremely fortunate to have a transferable skill set as a result of my career in project management, that can be used to build schools in rural Mexico as well as being able to manage a complex data migration in the abyss of the big data/cloud consulting world. 
@@ -26,6 +28,8 @@ On September 7, 2017, one of the most lethal earthquakes in Mexican history hit 
 More than a year after the devastating Earthquakes hit, many schools in Mexico remained unsafe for children to learn in, which forced many students to study in dangerous temporary learning centers. For this reason, we are continuing our work in Mexico within the Mexican state of Oaxaca. The Oaxaca program began in January 2019, focusing on assisting the Celso Muñoz Primary School within the Oaxaca state, where our work includes rebuilding seven classrooms, retrofitting four classrooms and rebuilding the office and library to ensure that students have a safe and disaster-resilient place to learn. This school will allow 170 students, between the ages of 6 and 12 to return to school and receive the education they need for a brighter future. We look forward to working with this diverse and culturally-rich community to rebuild a school that will ensure they build a safer future for their students that will allow their diversity of culture to thrive for many years to come. 
 
 **My Time on Project:**
+
+![alt](https://github.com/ippontech/blog-usa/blob/f233887795d22441f007291265556c35a3b518e9/images/2019/03/my_time_on_project.jpg)
 
 Fifteen hours after setting off from my apartment in NYC and taking nearly every mode of transport available, I arrived at the HQ of the volunteer program in Oaxaca, Mexico. 
 
@@ -43,6 +47,8 @@ On my last Sunday on the project, we played football (soccer) against the local 
 All in all, it has once again been a broad, culturally diverse experience, in a very welcoming community. 
 
 The positive vibes and energy coming from the volunteers and all the people of the local community are amazing. They make you realize what you are there for: it is all for the kids. Rebuilding their school, so they can return to a safe learning environment to grow and have all the opportunities we take for granted. It has once again been my great privilege to find the time and support to be able to serve alongside my fellow volunteers, under the banner of All Hands & Hearts, in the goal of helping those impacted by natural disaster who are unable to help themselves. 
+
+![alt](https://github.com/ippontech/blog-usa/blob/f233887795d22441f007291265556c35a3b518e9/images/2019/03/reflections.jpg
 
 **How You Can Help:**
 
