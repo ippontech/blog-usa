@@ -1,16 +1,13 @@
-
-authors: Dan Collins
-
+---
+authors:
+- Dan Collins
 tags:
 - life-at-ippon
-- culture 
-
+- Culture
 date: 
-
 title: "Ippon USA Offers a Helping Hand to Those Impacted By Natural Disaster"
-
 image: 
-
+---
 
 *“Let us remember: One book, one pen, one child, and one teacher, can change the world. Never doubt that a small group of thoughtful committed citizens can change the world. Indeed, it is the only thing that ever has.” - Malala Yousafzai*
 
@@ -36,13 +33,20 @@ The so-called base is located in a small neighborhood La Santita, a barrio of Sa
 
 The people living in Salinas del Marquez are very generous, open and loving. The masons invite you to their houses, or take you to one of the local bars, in someone’s garden. I was and still am humbled by the generosity of people that live in totally different circumstances than what I am used to. I have met so many amazing people and have been lucky to hear their great stories. The kids are screaming for us when we encounter them on the streets, and they are happy that we are there to rebuild their school.
 
-This connection with communities which we would otherwise miss in our daily lives is part of the reason I keep coming back to serve with this organization. I caught the bug after joining them on a project in Nepal 2016, initially a 4-week commitment which quickly escalated into a 5-month tenure on a project to complete the school we were building there. I have since answered the call to serve on both international and domestic projects, both within the US and its territories, including Puerto Rico where I joined the cleanup following hurricane Maria. On my last Sunday on the project, we played football (soccer) against the local workers (known as masons) from the community. It was an early morning kick-off but already extremely hot. We kicked off later than planned as both masons and volunteers were nursing hangovers from drinking together until late the evening before.
+This connection with communities which we would otherwise miss in our daily lives is part of the reason I keep coming back to serve with this organization. I caught the bug after joining them on a project in Nepal 2016, initially a 4-week commitment which quickly escalated into a 5-month tenure on a project to complete the school we were building there. I have since answered the call to serve on both international and domestic projects, both within the US and its territories, including Puerto Rico where I joined the cleanup following hurricane Maria.
 
-It was an exhausting yet hilarious match which went into extra time and then happily, the volunteer team eventually won 3-2 on penalties. This game served to further create a closer connection between the international volunteers and the wider local community. As on the construction site, the language barrier fails to stop bonds and friendships forged. This has since become a monthly fixture and will be continued for the duration of the project until late summer 2019. All in all, it has once again been a broad, culturally diverse experience, in a very welcoming community. 
+On my last Sunday on the project, we played football (soccer) against the local workers (known as masons) from the community. It was an early morning kick-off but already extremely hot. We kicked off later than planned as both masons and volunteers were nursing hangovers from drinking together until late the evening before. It was an exhausting yet hilarious match which went into extra time and then happily, the volunteer team eventually won 3-2 on penalties. This game served to further create a closer connection between the international volunteers and the wider local community. As on the construction site, the language barrier fails to stop bonds and friendships forged. This has since become a monthly fixture and will be continued for the duration of the project until late summer 2019. 
+
+
+**Reflections**
+
+All in all, it has once again been a broad, culturally diverse experience, in a very welcoming community. 
 
 The positive vibes and energy coming from the volunteers and all the people of the local community are amazing. They make you realize what you are there for: it is all for the kids. Rebuilding their school, so they can return to a safe learning environment to grow and have all the opportunities we take for granted. It has once again been my great privilege to find the time and support to be able to serve alongside my fellow volunteers, under the banner of All Hands & Hearts, in the goal of helping those impacted by natural disaster who are unable to help themselves. 
 
-If you too want to challenge the notion, that one person cannot change the world, just click the link below and go find out for yourselves. I’m certain you won’t regret it. https://www.allhandsandhearts.org/volunteer/ 
+**How you can help**
+
+If you too want to challenge the notion, that one person cannot change the world, just click the link below and go find out for yourselves. I’m certain you won’t regret it. https://www.allhandsandhearts.org/volunteer/
 
 Thanks for taking the time to read this blog! You can reach me at dcollins@ippon.fr if you’d like to know more about my time in Mexico, other projects or the organization itself. 
 
