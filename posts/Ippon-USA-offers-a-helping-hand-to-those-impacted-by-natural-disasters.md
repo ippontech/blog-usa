@@ -16,7 +16,11 @@ image:
 
 **About Me:**
 
- My name is Danny Collins and I work for Ippon Technologies USA as a senior project manager. I have 14 years experience in the field of change and project management across multiple sectors on several continents. Firstly, I am extremely fortunate to have a transferable skill set as a result of my career in project management, that can be used to build schools in rural Mexico as well as being able to manage a complex data migration in the abyss of the big data/cloud consulting world. Secondly, I am grateful to work for such a socially conscious and empathetic organization as Ippon Technologies USA who have made my volunteering with All Hands & Hearts - Smart Response possible by allowing me the scope and flexibility to go off and help others, at the temporary expense of our deliverables here in the United States. Shout out to Romain Lheritier, our Managing Director and Jamie Bock, our Head of HR for not laughing me out of the room when I pitched this to them back in November. 
+ My name is Danny Collins and I work for Ippon Technologies USA as a senior project manager. I have 14 years experience in the field of change and project management across multiple sectors on several continents. 
+ 
+ Firstly, I am extremely fortunate to have a transferable skill set as a result of my career in project management, that can be used to build schools in rural Mexico as well as being able to manage a complex data migration in the abyss of the big data/cloud consulting world. 
+ 
+Secondly, I am grateful to work for such a socially conscious and empathetic organization as Ippon Technologies USA who have made my volunteering with All Hands & Hearts - Smart Response possible by allowing me the scope and flexibility to go off and help others, at the temporary expense of our deliverables here in the United States. Shout out to Romain Lheritier, our Managing Director and Jamie Bock, our Head of HR for not laughing me out of the room when I pitched this to them back in November. 
 
 **Background:**
 
