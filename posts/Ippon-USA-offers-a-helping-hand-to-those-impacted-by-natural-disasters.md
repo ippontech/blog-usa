@@ -48,7 +48,7 @@ All in all, it has once again been a broad, culturally diverse experience, in a 
 
 The positive vibes and energy coming from the volunteers and all the people of the local community are amazing. They make you realize what you are there for: it is all for the kids. Rebuilding their school, so they can return to a safe learning environment to grow and have all the opportunities we take for granted. It has once again been my great privilege to find the time and support to be able to serve alongside my fellow volunteers, under the banner of All Hands & Hearts, in the goal of helping those impacted by natural disaster who are unable to help themselves. 
 
-![alt](https://github.com/ippontech/blog-usa/blob/images/2019/03/reflections.jpg
+![alt](https://github.com/ippontech/blog-usa/blob/images/2019/03/reflections.jpg)
 
 **How You Can Help:**
 
