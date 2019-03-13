@@ -4,7 +4,6 @@ authors:
 tags:
 - JHipster
 - Java
-- application
 date: 2017-11-22T11:46:00.000Z
 title: "Tinkering for Non-Developers Part 2: Creating an Application"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/10/Part-2-blog-header.png

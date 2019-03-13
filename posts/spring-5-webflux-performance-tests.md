@@ -4,6 +4,7 @@ authors:
 tags:
 - Spring
 - JHipster
+- Back-End
 date: 2017-07-31T17:17:37.000Z
 title: "Spring 5 WebFlux: Performance tests"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2017/07/reactive-reactive-everywhere-596e05.jpg

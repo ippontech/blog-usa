@@ -4,7 +4,7 @@ authors:
 tags:
 - Cloud
 - Docker
-- Devops
+- DevOps
 date: 2016-12-16T16:47:39.000Z
 title: "AWS re:Invent 2016"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2016/12/aws1.png

@@ -2,10 +2,8 @@
 authors:
 - Julien Dubois
 tags:
-- Cache
 - Performance
 - Spring
-- Spring-Petclinic
 date: 2013-03-15T11:00:40.000Z
 title: "Improving the performance of the Spring-Petclinic sample application (part 5 of 5)"
 image: 
