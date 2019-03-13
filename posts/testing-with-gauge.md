@@ -8,9 +8,10 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/0
 ---
 
 End-to-end (e2e) testing is one of the most overlooked, underappreciated aspects of software delivery. A well written e2e suite gives you the confidence to develop and deploy quickly. A badly written e2e suite results in deliverables of unknown quality, leads to frustration, and inevitably project delays. As [Michael Feathres](https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052) wrote in his book, Working Effectively with Legacy Code:
+
  > To me, legacy code is simply code without tests. I’ve gotten some grief for this definition… I have no problem defining legacy code as code without tests. It is a good working definition, and it points to a solution.
 
-The problem I have found with e2e testing, is that they are generally very difficult to setup and maintain. Particularly in the JavaScript space there are a bunch of existing frameworks and libraries available, but I feel that every time I try and do something I spend the majority of my time fumbling with different versions and configuration incompatibilities. It is like trying to tape a bunch of cats together.
+The problem I have found with e2e testing suites, is that they are generally very difficult to setup and maintain. Particularly in the JavaScript space there are a bunch of existing frameworks and libraries available, but I feel that every time I try and do something I spend the majority of my time fumbling with different versions and configuration incompatibilities. It's like trying to tape a bunch of cats together.
 
 Enter [Gauge](https://gauge.org/), a new lightweight Open Source Testing Framework. It provides an opinionated CLI tool to allow you to rapidly develop tests, without having to worry about the underlying plumbing. Install gauge, select a language, start writing tests. A promise too good to be true?
 
@@ -25,9 +26,8 @@ Gauge uses a Markdown based format for its [specification files](https://docs.ga
 There are however, a couple of very powerful other features.
 
 - [Concepts Steps](https://docs.gauge.org/latest/writing-specifications.html#concept-steps): Allow you to combine re-usable logical groups of steps into a single unit. Think of having a "Login with user "bob" function, where you define the login as a Concept which you can reuse across different scenarios.
-- [Special Parameters](https://docs.gauge.org/latest/writing-specifications.html#special-parameters): It natively allows you to externalize large text In Files, or pass in large tables via CSV.
-
-In addition, the integration with Visual Studio Code is second to none.
+- [Special Parameters](https://docs.gauge.org/latest/writing-specifications.html#special-parameters): It natively allows you to externalize large text In Files, or pass in large tables via CSV. No more enormous specification files.
+- VS Code Integration: The integration is second to none, with step auto-complete and the ability to handle execution from within VS Code.
 
 ## Gauge Runner
 Gauge itself is written in Go, but allows you to define your step definitions in a variety of other languages. There is official Gauge support for Java, C#, Ruby, JavaScript, Go and Python. The Java and JavaScript runners seem to be the most feature rich, and we will be looking at the JS runner because it supports Taiko.
@@ -36,17 +36,17 @@ Gauge itself is written in Go, but allows you to define your step definitions in
 The step definitions provide the glue for the execution of your tests, similar to how they work for Cucumber. However, there are a couple of additional features that I would like to call out:
 
 - [Filtering Hooks](https://docs.gauge.org/latest/writing-specifications.html#tags): Allow you to trigger filters based on tags associated with a scenario. So for example, you might setup a test differently if it is a production test instead of a local test. 
-- [Data Stores](https://docs.gauge.org/latest/writing-specifications.html#data-store): Gauge provides a mechanism to store and retrieve data between step definitions. This is important, because Gauge allows your tests to be run in parrallel.
+- [Data Stores](https://docs.gauge.org/latest/writing-specifications.html#data-store): Gauge provides a mechanism to store and retrieve data between step definitions. This is important, because Gauge allows your tests to be run in parallel.
 
 ## Gauge CLI
 The CLI is the heart of Gauge. It allows you to execute your specs as required, initialize your project, and interact with your test suite. The power is in its simplicity; you have one utility that you need to remember and that is it.
 
 ## Taiko
-[Taiko](https://taiko.gauge.org/) is a Node library for interacting with Chrome, which on the surface sounds very similar to Selenium. Despite the similarities, its main difference is its smart selector system. The aim with this is that you treat the webpage itself as a black-box, and you interact with it like a user would. 
+[Taiko](https://taiko.gauge.org/) is a Node library for interacting with Chrome, which on the surface sounds very similar to Selenium. Despite the similarities, its main difference is its [smart selector system](https://taiko.gauge.org/#smart-selectors). The aim with this is that you treat the webpage itself as a black-box, and you interact with it like a user would. 
 
-Lets look at a login box example, where a user needs to enter their username and password before proceeding. Using a traditional Selenium approach, you would use some kind of selector, general a CSS selector, to identify the input boxes, and then write in the values as required. With Taiko, you state that you want to write a value into a field, and you select it by its onscreen label; this might even be a label above the actual element. Taiko then works out which element you require based on the action you are performing, and the data you have provided. You effectively are able to use the presentation of the page to interact with it, instead of having to worry about the underlying structure. If a developer inadvertently renames an element, or restructures some of the HTML, as long as the presentation is the same/similar, your tests will still function.
+Let us take a login scenario as an example, where a user needs to enter their username and password before proceeding. Using a traditional Selenium approach, you would use some kind of selector, general a CSS selector, to identify the input boxes, and then write in the values as required. With Taiko, you state that you want to write a value into a field, and you select it by its onscreen label; this might even be a label above the actual element. Taiko then works out which element you require based on the action you are performing, and the data you have provided. You effectively are able to use the presentation of the page to interact with it, instead of having to worry about the underlying structure. If a developer inadvertently renames an element, or restructures some of the HTML, as long as the presentation is the same/similar, your tests will still function. I am sure there are scenarios where this won't work effectively, so there are fallback options.
 
-The other amazing feature of Taiko is the [Interactive Recorder](https://taiko.gauge.org/#interactive-recorder), with is a [RPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) interactive shell which allows you to interact with your browser dynamically. This allows you to verify how you are step definition will function before write it in code, and will also generate the code for you.
+Another amazing feature of Taiko is the [Interactive Recorder](https://taiko.gauge.org/#interactive-recorder), with is a [RPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) interactive shell which allows you to interact with your browser dynamically. This allows you to verify the Taiko commands you would like to use, and will also generate the code for you when you are done.
 
 # Example
 You will first need to install [Gauge](https://docs.gauge.org/latest/installation.html). There are plenty of package options available; for example on MacOS you can use `brew`. Once installed, all you need to do is run the following to initialise your Taiko based project.
@@ -60,13 +60,13 @@ gauge run ./specs
 ```
 ![Gauge Initialisation](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/03/gauge_init.png)
 
-You're already cooking with gas. Now, lets say we want to have a test that goes to the [Jhipster](https://www.jhipster.tech) page and clicks the Sponsors link. You can use the Taiko RPL to generate the step definition for you. See below for an example of interacting with Taiko.
+You're already cooking with gas. Now, say we want to have a test that goes to the [Jhipster](https://www.jhipster.tech) page and clicks the `Sponsors` link. You can use the Taiko RPL to generate the step definition for you. See below for an example of interacting with Taiko.
 
 ![Taiko RPL](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/03/gauge_rpl.png)
 
 The code generated by the `.code` command can then be inserted into a step definition, or multiple step definitions. It is generally better to have generic step definitions, and then use detailed definitions for things that really require them. You can also always use Concepts to bundle up complex interactions into single steps, another useful feature of Gauge.
 
-We could massage the above generated code into the following step definitions, to make it a bit more generic.
+If we massage the above generated code into the following step definitions, we can make it generic.
 
 ```javascript
 const {
@@ -107,7 +107,7 @@ Then, the specification file can look like this:
 * Click link "SPONSORS"
 ```
 
-Running it again via `gauge run ./specs` will have the test navigate to the website and interact with the defined elements. It also generates a pretty report for you so you can see what's up.
+Running it again via `gauge run ./specs` will have the test navigate to the website and interact with the defined elements. It also generates a pretty report for you so you can see what is up.
 
 ![Gauge Report](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/03/gauge_report.png)
 
