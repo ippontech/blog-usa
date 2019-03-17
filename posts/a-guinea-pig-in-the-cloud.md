@@ -23,7 +23,7 @@ The idea is very simple. On one hand, thanks to the Cloud Providers, it is now v
 
 ![Ember logo](https://www.emberjs.com/images/brand/ember_Tomster-Lockup-3a0f7b78.png)
 
-(hence the guinea pig!) provide great interactions directly in the browser and rely on REST services for handling the communication with the back-end. 
+...(hence the guinea pig!) provide great interactions directly in the browser and rely on REST services for handling the communication with the back-end. 
 
 Focusing on Ember, its embedded addon [Ember Data](https://guides.emberjs.com/release/models/) is able to completely manage an application model including the relationships and to take care of the interaction with the backend server, relying on the [JSON API specification](https://jsonapi.org). This decoupling between the model stored in the browser and the one on the back-end system is definitely something that pushed me to use this (excellent) framework rather than one of its competitor.
 
