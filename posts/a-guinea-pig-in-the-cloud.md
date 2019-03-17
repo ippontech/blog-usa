@@ -19,7 +19,7 @@ image: https://github.com/bpinel/blog-usa/master/images/2019/02/guinea-pigs.png
 
 This article is not about the latest performance of the Chinese space industry and it will not hurt any pets. It is just a teaser about an idea that popped in my mind a few months ago and is the basis for a small tool I have been writing since that moment. 
 
-The idea is very simple. On one hand, thanks to the Cloud Providers, it is now very easy to host both a web site and some REST services and to benefit from managed services like Databases. On the other hand, JavaScript frameworks like [Angular](https://angular.io/), [React](https://reactjs.org/) or [Ember](https://emberjs.com/) 
+The idea is very simple. On one hand, thanks to the Cloud Providers, it is now very easy to host both a web site and some REST services and to benefit from managed services like Databases. On the other hand, JavaScript frameworks like [Angular](https://angular.io/), [React](https://reactjs.org/) or [Ember](https://emberjs.com/)... 
 
 ![Ember logo](https://www.emberjs.com/images/brand/ember_Tomster-Lockup-3a0f7b78.png)
 
