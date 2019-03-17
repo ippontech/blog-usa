@@ -21,7 +21,7 @@ This article is not about the latest performance of the Chinese space industry a
 
 The idea is very simple. On one hand, thanks to the Cloud Providers, it is now very easy to host both a web site and some REST services and to benefit from managed services like Databases. On the other hand, JavaScript frameworks like [Angular](https://angular.io/), [React](https://reactjs.org/) or [Ember](https://emberjs.com/) 
 
-![Ember logo](https://github.com/bpinel/blog-usa/master/images/2019/02/emberjs.png)
+![Ember logo](https://www.emberjs.com/images/brand/ember_Tomster-Lockup-3a0f7b78.png)
 
 (hence the guinea pig!) provide great interactions directly in the browser and rely on REST services for handling the communication with the back-end. 
 
