@@ -113,3 +113,4 @@ Running it again via `gauge run ./specs` will have the test navigate to the webs
 
 # Final Thoughts
 Gauge for me fills a gap in the market when it comes to fast, maintainable testing. It takes the lessons learned around Cucumber and Selenium, and removes the obvious pain points around them. It seems obvious that e2e testing would move in this direction, and I am excited to see where it is going to develop in the future. Go get Gauge, and start testing.
+
