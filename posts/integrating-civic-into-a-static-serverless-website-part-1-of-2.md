@@ -36,7 +36,7 @@ From the user's perspective, there are three basic steps.
 
 There are many ways to accomplish this, and many online resources to help you in this process. I will give an overview, but for more detailed instructions, follow AWS's [instructions for CloudFront static websites](https://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-serve-static-website/).
 
-### Register a domain and set Route53 as it's DNS
+### Register a domain and set Route53 as its DNS
    
 If you did not get the domain through AWS, check out their [instructions for migrating DNS to Route53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/migrate-dns-domain-inactive.html). It essentially involves setting the name servers for your domain to AWS's name servers. That way, we can use route53 to quickly set up CNAME and ALIAS records under that domain.
 
