@@ -48,7 +48,7 @@ Here are AWS' [instructions for requesting a public certificate](https://docs.aw
 
 ### Create an S3 bucket and upload initial static files
 
-Since CloudFront takes the longest to spin up, let us speed up the process by skipping any integration yet. We can put at least an `index.html` in a public S3 bucket. Here is an [intro to getting started with S3](https://docs.aws.amazon.com/quickstarts/latest/s3backup/welcome.html). We will not need to configure static website hosting because CloudFront will take care of that (the S3 built-in hosting does not support SSL for custom domains).
+Since CloudFront takes the longest to spin up, let us speed up the process by skipping any integration for now. We can put an `index.html` in a public S3 bucket to get started. Here is an [intro to getting started with S3](https://docs.aws.amazon.com/quickstarts/latest/s3backup/welcome.html). We will not need to configure static website hosting, because CloudFront will take care of that (S3 built-in hosting does not support SSL for custom domains).
 
 ```html
 <!DOCTYPE html>
