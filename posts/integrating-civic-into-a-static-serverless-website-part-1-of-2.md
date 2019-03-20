@@ -87,7 +87,7 @@ Checkout their [developer's guide](https://docs.civic.com) for an explanation of
 
 ![missing pic: Civic Flow](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_flow.png)
 
-As you can see, they are pretty open about their data flow, which can give confidence to the application owner and users about what and how their data is being shared. Civic integration was designed as a security solution and is intended to be used with confidential and secure applications (so security through obscurity is not an option).
+As you can see, they are pretty open about their data flow, which can give confidence to the application owner and users about what and how their data is being shared. Civic integration was designed as a security solution and is intended to be used with confidential and secure applications (so "security through obscurity" is not an option).
 
 Referencing the above diagram, we will need to implement the "User Agent" and "Application Server" which is where Civic's front and backend SDKs come in. But first, we have to set up our application using Civic's portal.
 
