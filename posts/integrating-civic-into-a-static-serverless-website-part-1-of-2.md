@@ -170,7 +170,7 @@ civicSip.on('auth-code-received', event => {
 });
 ```
 
-The decoding of the token above is just for debugging. You can see how we can't yet access the identity information inside the token. Civic requires the token to be verified on the backend before sharing the user's data. It just so happens that in this use case, we eventually pass back the user ID but we don't have to.
+The decoding of the token above is just for debugging. You can see how we can't yet access the identity information inside the token. Civic requires the token to be verified on the backend before sharing the user's data. It just so happens that in this use case we eventually pass back the user ID, but this is not required.
 
 ![missing pic: Civic JWT Token](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_jwt_token.png)
 
