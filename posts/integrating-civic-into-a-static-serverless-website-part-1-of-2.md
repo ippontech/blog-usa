@@ -42,7 +42,7 @@ If you did not get the domain through AWS, check out their [instructions for mig
 
 ### Request a certificate for your domain
    
-Here are AWS's [instructions for requesting a public certificate](https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html). It's important that you add an additional sub-domain to the certificate, i.e. `api.yourdomain.com` or `*.yourdomain.com`. This is necessary for us, since we wish to use sub-domains to differentiate between the static CloudFront frontend, and the API Gateway backend. Now we can use the same certificate for both resources.
+Here are AWS' [instructions for requesting a public certificate](https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html). It's important that you add an additional sub-domain to the certificate, i.e. `api.yourdomain.com` or `*.yourdomain.com`. This is necessary since we wish to use sub-domains to differentiate between the static CloudFront frontend, and the API Gateway backend. Now we can use the same certificate for both resources.
 
    For this project, I'm using [https://color.tylerjohnhaden.com](https://color.tylerjohnhaden.com) for the website and [https://api.color.tylerjohnhaden.com](https://api.color.tylerjohnhaden.com) for the API endpoint. If this app is still up when you are reading this, you can see the demo by going to first link.
 
