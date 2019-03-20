@@ -18,7 +18,7 @@ Our application will also have some super secret resources that will require our
 
 Lambda is a great option to run Civic's server-side Javascript SDK, and will also satisfy our _serverless_ fascination. We can employ the [Serverless framework](https://serverless.com/) to spin up an API Gateway and Lambda function for us. It will also include a tool for specifying the same SSL certificate we used to secure our static site for our API.
 
-*Disclaimer:* You may incur some small charges to your AWS account depending on how you use the tech stack described in this article. Route53 may charge per Hosted Zone for example. AWS has explicit [billing details and documentation](https://docs.aws.amazon.com/account-billing/index.html#lang/en_us) that you can use to estimate the cost. Generally, serverless is the cheapest way to integrate compute and storage for small applications like this.
+*Disclaimer:* You may incur some small charges to your AWS account depending on how you use the tech stack described in this article. Route53 may charge per Hosted Zone, for example. AWS has explicit [billing details and documentation](https://docs.aws.amazon.com/account-billing/index.html#lang/en_us) that you can use to estimate the cost. Generally, serverless is the cheapest way to integrate compute and storage for small applications like this.
 
 
 # Project Architecture
