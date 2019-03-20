@@ -107,7 +107,7 @@ Once you have your app configured, you will need to generate keys for use in Civ
 
 For this project, we will need to securely store the *Private Signing Key*, and the *App Secret*. The *App ID*, which stays constant for our application and is not necessarily secret, is also needed.
 
-Since AWS Lambda will eventually need to use these parameters, let us save these into [Systems Manager - Parameter Store](https://console.aws.amazon.com/systems-manager/parameters) (also so we don't lose them). Both the Private Signing Key and the App Secret should be encrypted at rest. Anyone with those values could capture the JWT token mid-flight and potentially access user's data by pretending to be us.
+Since AWS Lambda will eventually need to use these parameters, let us save these into [Systems Manager - Parameter Store](https://console.aws.amazon.com/systems-manager/parameters) (also so we don't lose them). Both the Private Signing Key and the App Secret should be encrypted at rest. Anyone with those values could capture the JWT token mid-flight and potentially access a user's data by pretending to be us.
 
 ### Add Civic's client side SDK to our website
 
