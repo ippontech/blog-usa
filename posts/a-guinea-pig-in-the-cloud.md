@@ -253,7 +253,7 @@ As a matter of fact, you need to tell your Ember application to use this URL as 
 
 ### A little test before going further
 
-To check the good provisioning of the cloud infrastructure, you can easily launch a test. To do that, just go to the API Gateway Web console, look for the newly created _JsonApiRestGateway_ API and especially to the GET méthod for /{type} and click on the 'Test' button:
+To verify that the cloud infrastructure is properly provisioned, you can open the API Gateway Web console, look for the newly created `JsonApiRestGateway` API –– specifically, the `GET` method for `/{type}` –– and click on the **Test** button:
 
 ![API Gateway web console](https://github.com/bpinel/blog-usa/blob/master/images/2019/02/api-gateway-console-03.png)
 
