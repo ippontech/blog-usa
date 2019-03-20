@@ -174,7 +174,7 @@ The decoding of the token above is just for debugging. You can see how we can't 
 
 ![missing pic: Civic JWT Token](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_jwt_token.png)
 
-We can get a little bit of insight into the token by decoding, like that it expires after 30 minutes. Here, `codeToken` will eventually be converted into our user id. For more information on JWT in general, checkout the [jwt.io docs](https://jwt.io/introduction/).
+We can get a little bit of insight into the token by decoding e.g. that it expires after 30 minutes. Here, `codeToken` will eventually be converted into our user id. For more information on JWT in general, checkout the [jwt.io docs](https://jwt.io/introduction/).
 
 Next, we send this token to our backend. There is nothing wrong with passing the token back in the body, but the standard way is using the `Authorization` header. This also makes it simpler for us to use AWS Lambda Authorizers (although they can use custom locations for the token). 
 
