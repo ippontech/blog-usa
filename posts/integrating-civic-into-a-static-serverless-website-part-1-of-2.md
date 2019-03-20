@@ -211,7 +211,7 @@ function getColorIdentity(token) {
 
 Our backend will turn the Civic JWT token into an anonymous user identity, and color identity. The user ID is just for debugging, and our use case uses the color identity to set the background color of the web page.
 
-The Javascript [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) and most HTTP request APIs abstract away the CORS negotiation. Since our backend is at a different origin (even sub-domains count as cross-origin), there is a request to `OPTIONS` that will return various important headers agreeing with our credentials and cross-origin request, more on this in the next section.
+The Javascript [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) and most HTTP request APIs abstract away the CORS negotiation. Since our backend is at a different origin (even sub-domains count as cross-origin), there is a request to `OPTIONS` that will return various important headers agreeing with our credentials and cross-origin request. More on this in the next section.
 
 ### Upload new static files
 
