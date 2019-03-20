@@ -81,7 +81,7 @@ Once created, it will take a while to spin up, so let us continue with the rest 
 
 # Setup your Civic integration
 
-In order to use the developer tools for Civic, we need to use our identity to create an account and Civic app. [Login](https://integrate.civic.com/login) to the their developer's portal. This will also give you an identity that can be used to test out the app later on. They have straight forward instructions on downloading the mobile app and verifying your identity.
+In order to use the developer tools for Civic, we need to use our identity to create an account and Civic app. [Login](https://integrate.civic.com/login) to their developer's portal. This will also give you an identity that can be used to test out the app later on. They have straightforward instructions on downloading the mobile app and verifying your identity.
 
 Checkout their [developer's guide](https://docs.civic.com) for an explanation of the service and APIs. They describe the flow using the following graphic.
 
