@@ -203,7 +203,7 @@ This main infrastructure for the backend is completed by the following elements:
 
 *   Three **S3 buckets**:
     *   The first one (_lambda-jsonapi-code-bucket_) is simply used for provisioning the lambda code at its creation time,
-    *   The other two (_ember-aws-ehipster-staging_ et _ember-aws-ehipster-production_) will be used later to store the 'staging' and 'production' versions of the application.  
+    *   The other two (_ember-aws-ehipster-staging_ and _ember-aws-ehipster-production_) will be used later to store the 'staging' and 'production' versions of the application.  
 *   An **IAM role** (_lambda_jsonapi_) allowing the lambda function to get access to the DynamoDB database,
 *   Two entries in **CloudFront** corresponding respectively to the buckets of 'staging' and 'production'
 
