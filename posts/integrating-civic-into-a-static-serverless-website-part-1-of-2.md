@@ -34,7 +34,7 @@ From the user's perspective, there are three basic steps.
 
 # Create static website with custom domain and SSL on AWS
 
-There are many ways to accomplish this, and many online resources to help you in this process. I will give an overview, but for more detailed instructions, follow AWS's [instructions for CloudFront static websites](https://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-serve-static-website/).
+There are many ways to accomplish this, and many online resources to help you in this process. I will give an overview, but for more detailed instructions, follow AWS' [instructions for CloudFront static websites](https://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-serve-static-website/).
 
 ### Register a domain and set Route53 as its DNS
    
