@@ -28,7 +28,7 @@ Lambda is a great option to run Civic's server-side Javascript SDK, and will als
 From the user's perspective, there are three basic steps. 
 
 1. When the user navigates to the static site, Civic's SDK will download either a QR code, or a code for linking to their mobile app if it is a mobile browser.
-2. Once the user has scanned the QR code or used the deep link to open the Civic mobile app, Civic can return a signed JWT token unique to the app, user, and scope request. The token itself cannot be used to identity the user as it is essentially a signed UUID generated for every request and must be decoded on the backend.
+2. Once the user has scanned the QR code or used the deep link to open the Civic mobile app, Civic can return a signed JWT token unique to the app, user, and scope request. The token itself cannot be used to identify the user, as it is essentially a signed UUID generated for every request and must be decoded on the backend.
 3. The client now sends this token to the app's API, which will be able to exchange the token for the user's data. If it is an anonymous scope request, only the user ID will be returned by Civic. The API backend can now use the user ID to craft the resources sent back to the client.
 
 
