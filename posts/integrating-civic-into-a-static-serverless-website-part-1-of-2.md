@@ -95,7 +95,7 @@ Referencing the above diagram, we will need to implement the "User Agent" and "A
 
 ![missing pic: Civic Enrollment](https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_enrollment.png)
 
-This step should be straight forward, following their clean developer interface. All you need will be the name, domain, and a logo to display to users in their mobile app. The name and logo can be whatever you like, and we already went through the trouble of setting up our domain registration.
+This step should be straight forward, following their clean developer interface. All you need is the name, domain, and a logo to display to users in their mobile app. The name and logo can be whatever you like, and we already set up our domain registration.
 
 The domain you whitelist here should be the one used for the static site. Only the client side code will need this origin set to initially retrieve the JWT token. Our API endpoint is not needed since the backend uses app secrets to verify its identity. Whitelisting domains ensures Civic only sends the QR code to our website.
 
