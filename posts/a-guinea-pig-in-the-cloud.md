@@ -371,7 +371,7 @@ The final deployment on the AWS S3 buckets is them simply done through the follo
 ember deploy staging --verbose
 ```
 
-The --verbose can be skipped but show you the different processing on the files, the optimizations done and the copy to S3 bucket.
+The `--verbose` can be skipped but show you the different processing on the files, the optimizations done and the copy to S3 bucket.
 
 You can them use your application directly on the Cloud while using the URL exposed by CloudFront:
 
