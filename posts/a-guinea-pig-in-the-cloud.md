@@ -106,7 +106,7 @@ relationship OneToMany {
 Note that **Authority** and **User** objects are just taken from the JHipster model and can be represented by the following diagram:
 ![JDL model](https://github.com/bpinel/blog-usa/blob/master/images/2019/02/jdl-todo.png)
 
-Just store the previous object model into a file named **<code>todo.jh</code></strong> inside the <em>guineapig_inthecloud</em> directory and play the following command: 
+Just store the previous object model into a file named <strong><code>todo.jh</code></strong> inside the <em>guineapig_inthecloud</em> directory and play the following command: 
 
 ```shell
 ember g jdl-importer todo.jh
