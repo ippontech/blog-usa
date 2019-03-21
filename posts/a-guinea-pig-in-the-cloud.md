@@ -347,7 +347,7 @@ AWS_REGION='us-east-1'
 
 For the other two files, you have to collect in the CloudFront Web console, the distribution identifier for each target environment and paste them in the corresponding .env file:
 
-![CloudFront access](https://github.com/bpinel/blog-usa/blob/master/images/2019/02/list-authorities.png)
+![CloudFront access](https://github.com/bpinel/blog-usa/blob/master/images/2019/02/cloudfront-web.png)
 
 (Please note that this console also give you the URL exposed at CloudFront level that you will need later on) 
 
@@ -375,7 +375,7 @@ The `--verbose` can be skipped but show you the different processing on the file
 
 You can them use your application directly on the Cloud while using the URL exposed by CloudFront:
 
-![CloudFront acceweb console](https://github.com/bpinel/blog-usa/blob/master/images/2019/02/cloudfront-web.png)
+![CloudFront acceweb console](https://github.com/bpinel/blog-usa/blob/master/images/2019/02/list-authorities.png)
 
 
 # As a temporary conclusion...
