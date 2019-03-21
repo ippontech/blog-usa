@@ -43,7 +43,7 @@ This solution should be available in three modes :
 
 *   The **production mode** just pushes the web resources to a S3 bucket exposed through CloudFront. The application can then be accessed all over the world!
 
- ![Production mode](https://github.com/bpinel/blog-usa/master/images/2019/02/ember-aws-ehipster-prod.png)
+ ![Production mode](https://github.com/bpinel/blog-usa/blob/master/images/2019/02/ember-aws-ehipster-prod.png)
 
 In a future post, I will show a way to also integrate Cognito to set up some authentication and authorization directly on the Cloud.
 
