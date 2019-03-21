@@ -39,7 +39,7 @@ This solution should be available in three modes :
 
 *   The **Integration mode** uses the proxy feature of Ember to rely on a Cloud back-end persisting data in [DynamoDB](https://aws.amazon.com/dynamodb/). To do that, it benefits from the fact that Ember Data heavily relies on the JSON API specification. The cloud part of the framework therefore has the goal of setting up this Cloud infrastructure, thanks to the [API Gateway](https://aws.amazon.com/api-gateway/) delivering REST services with the right semantics and transferring the payload of the message to a lambda function interacting with a Dynamo database. This mode is great for thoroughly testing the application before complete deployment to the Cloud. The following diagram illustrate this behaviour and the way Mirage has been substituted to the real back-end:
 
-![Integration mode](https://github.com/bpinel/blog-usa/master/images/2019/02/ember-aws-ehipster-int.png)
+![Integration mode](https://github.com/bpinel/blog-usa/blob/master/images/2019/02/ember-aws-ehipster-int.png)
 
 *   The **production mode** just pushes the web resources to a S3 bucket exposed through CloudFront. The application can then be accessed all over the world!
 
