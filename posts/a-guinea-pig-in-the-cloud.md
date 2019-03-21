@@ -210,7 +210,7 @@ This main infrastructure for the backend is completed by the following elements:
 
 ### Building the backend infrastructure in AWS
 
-Rather than going through a manual construction of this infrastructure thanks to the AWS Web console, I have privilege an automated approach based on [terraform](https://www.terraform.io/) scripts, largely easier to read than their [CloudFormation](https://aws.amazon.com/fr/cloudformation/) counterparts. All necessary files are available in the cloud directory of the gitlab project: [https://gitlab.ippon.fr/bpinel/ember-aws-ehipster/tree/master/cloud](https://gitlab.ippon.fr/bpinel/ember-aws-ehipster/tree/master/cloud) that you should get on your local computer.
+Rather than going through a step-by-step construction of this infrastructure thanks to the AWS Web console, I have privilege an automated approach based on [terraform](https://www.terraform.io/) scripts. To my mind, Terraform scripts are definitely easier to write and to maintain than their [CloudFormation](https://aws.amazon.com/fr/cloudformation/) counterparts. All necessary files are available in the cloud directory of the gitlab project: [https://gitlab.ippon.fr/bpinel/ember-aws-ehipster/tree/master/cloud](https://gitlab.ippon.fr/bpinel/ember-aws-ehipster/tree/master/cloud) that you should download on your local computer.
 
 Once this is done, provisioning the whole platform is as simple as running the following terraform command:
 
