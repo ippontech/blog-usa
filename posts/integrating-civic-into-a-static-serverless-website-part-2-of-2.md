@@ -301,7 +301,7 @@ exports.colorIdentification = async event => {
 };
 ```
 
-Notice the headers returned if successful. These only need to be added if using proxy integration vs standard Lambda. Set the origin to where ever the static site is served at.
+Notice the headers returned if successful. These only need to be added if using proxy integration vs standard Lambda. Set the origin to the URI where the static site is served.
 
 We are using the same signing key from the Civic integration to hash into the color id. This could be any server side secret, but it is already available to us. Now we need to add it to the function environment, along with a few other configuration details.
 
