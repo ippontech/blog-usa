@@ -31,7 +31,7 @@ Each of the above steps are iterative by themselves. Multiple iterations can hap
 # AWS Sagemaker
 AWS Sagemaker is a fully managed AWS Machine Learning service which helps in building, training and deploying Machine Learning models. It has a rich set API's, built-in algorithms, integration with various popular libraries such as Tensorflow, PyTorch, SparkML e.t.c., developers tools for authoring models, and hosted production environment for deploying the models.
 
-# Example Regression Model
+# Regression Model Implementation
 In this example we will develop a regression model to predict body fat percentage based on 14 parameters like Age, Height, Weight, Abdomen circumference e.t.c. This data is widely available on the internet. A more advanced process is to find only the relevent features or parameters to use.
 
 We will use the Jupyter Notebook authoring environment provided by Sagemaker to Prepare Data, Train and Evaluate Model, Deploy and Test the deployed Model. The Notebook environment also supports version control systems like CodeCommit or GitHub. Upload any test data used by the Notebooks into the environment.
