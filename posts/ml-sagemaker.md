@@ -12,7 +12,7 @@ title: "Linear Regression using AWS Sagemaker"
 image: 
 ---
 
-Various industries such as Banking, Manufacturing, Insurance, Health, Defence e.t.c are using Machine learning to solve many use cases such as Fraud Detection, Improving Healthcare, Personal security, Providing more secured transportation e.t.c. Recently Ippon Technologies sent me to a summit on Data Science where I learnt about how organizations are using Machine Learning to improve their business and productivity. During the course of the summit many service and cloud providers presented various tools, libraries, algorithms and platforms for developing Machine Learning applications. One of the services introduced to me was Sagemaker by AWS. In this blog I will talk about How I implemented a basic regression model.
+Various industries such as Banking, Manufacturing, Insurance, Health, Defence e.t.c are using Machine Learning to solve many use cases such as Fraud Detection, Improving Healthcare, Personal security, Providing more secured transportation e.t.c. Recently Ippon Technologies sent me to a summit on Data Science where I learnt about how organizations are using Machine Learning to improve their business and productivity. During the course of the summit many service and cloud providers presented various tools, libraries, algorithms and platforms for developing Machine Learning applications. One of the services introduced to me was Sagemaker by AWS. In this blog I will talk about How I implemented a basic regression model.
 
 # Machine Learning Process
 Typically Machine Learning process is an iterative process, it starts with identifying a use case to solve. Some of the steps involved in this process are as follows. This could change based on the use case you are trying to solve.
@@ -38,9 +38,12 @@ We will use the Jupyter Notebook authoring environment provided by Sagemaker to 
 
 In order to use the Jupyter Notebook, we need to create a Notebook Instance by providing an instance type such as ml.t2.medium. Provide IAM role with proper access control during instance creation.
 
+Now create a new Jupyter notebook to interactively author, train and deploy the model.
+
 ![Jupyter Notebook](https://raw.githubusercontent.com/msambaraju/blog-usa/master/images/2019/03/Jupiter_Notebook_Env.png)
 
-Read training data from the S3 bucket or from an uploaded file. Format the data read into an acceptable format usually in the form of arrays and vectors.
+
+Prepare the data by reading training dataset from the S3 bucket or from an uploaded file. Format the data read into an acceptable format usually in the form of arrays and vectors.
 
 ```python
 import pandas as pd
@@ -58,6 +61,7 @@ labels_vec = np.squeeze(np.asarray(labels))
 
 ```
 
+
 Upload the prepared data into S3 bucket.
 
 ``` python
@@ -72,6 +76,7 @@ s3_training_data_location = 's3://{}/{}/train/{}'.format(bucket, prefix, key)
 
 ```
 
+
 Fetch the container with proper algorithm to use from the list for pre-defined Sagemaker algorithms or give your own custom container to support custom algorithms. In this case linear-learner algorithm is used which is a pre-defined algorithm.
 
 ``` python
@@ -80,6 +85,7 @@ from sagemaker.amazon.amazon_estimator import get_image_uri
 container = get_image_uri(boto3.Session().region_name, 'linear-learner')
 
 ```
+
 
 Now train the model using the container and the training data previously prepared. Create a new instance for training the model, provide the instance type needed. The trained model is stored in the S3 bucket as a tar file so provide S3 bucket details.
 
@@ -110,6 +116,7 @@ linear.fit({'train': s3_training_data_location})
 
 ```
 
+
 Deploy the trained model using the Sagemaker API. Provide instance type and instance count as required. Once the deployment is complete the test data is used to test the deployed application. Once tha model is deployed an Http Endpoint is generated which can be used by other applications to invoke deployed Machine Learning model.
 
 ``` python
@@ -133,7 +140,6 @@ for tf in test_features:
     print(result)
 
 ```
-
 
 # Conclusion
 AWS Sagemaker provides capabilities to author, train, deploy and monitor Machine Learning applications using wide variety of algorithms, libraries and infrastructure.
