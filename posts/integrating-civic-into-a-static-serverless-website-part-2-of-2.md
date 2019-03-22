@@ -81,7 +81,7 @@ functions:
     handler: functions/auth.customCivicAuthorizer
 ```
 
-Here is the core of the config file. We will be adding more later too.
+Here is the core of the config file. We will be adding more to this later.
 - `service` is just the title that is used to generate various resource names in AWS. It should be descriptive and will tie each deployment together (if you keep deploying from the same project).
 - `provider` lets Serverless know where to deploy our resources. `name` and `runtime` are the only ones required, as the others have defaults. 
 - `functions` lists out our lambdas. We only have two so you can see where Serverless picks up the function handlers. Those functions will need to be exported from each file as we will see later.
