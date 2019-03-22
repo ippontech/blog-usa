@@ -35,7 +35,7 @@ To start, install the [Serverless npm package](https://www.npmjs.com/package/ser
 
 p.s. You will be able to use `sls` and `serverless` commands interchangeably.
 
-We could use a template to generate the directory and config file, which would take the command `sls create --template aws-nodejs --path ServerlessCivicApp`, but we're gonna change almost everything generated. You could see Serverless's [list of templates](https://github.com/serverless/serverless/tree/master/lib/plugins/create/templates) for possible template options. They support a large range of languages and hosting services.
+We could use a template to generate the directory and config file, which would take the command `sls create --template aws-nodejs --path ServerlessCivicApp`, but we're going to change almost everything generated. You could see Serverless's [list of templates](https://github.com/serverless/serverless/tree/master/lib/plugins/create/templates) for possible template options. They support a large range of languages and hosting services.
 
 Our project structure should look like the following.
 ```text
