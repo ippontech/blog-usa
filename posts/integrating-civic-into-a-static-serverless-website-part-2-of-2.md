@@ -122,7 +122,7 @@ functions:
       CIVIC_PRIVATE_SIGNING_KEY: ${ssm:/tylerjohnhaden/civic-color/PRIVATE_SIGNING_KEY~true}
 ```
 
-Add the above environment variables. Serverless allows us to add them to the [individual functions, or to the whole stage](https://serverless.com/framework/docs/providers/aws/guide/variables/) but we can improve security by limiting the scope of the app secrets to just the authorizer. The `ssm` links to AWS System Manager Parameter Store, and the `~true` tells Serverless to [use your local credentials to decrypt vis KMS](https://hackernoon.com/you-should-use-ssm-parameter-store-over-lambda-env-variables-5197fc6ea45b).
+Add the above environment variables. Serverless allows us to add them to the [individual functions, or to the whole stage](https://serverless.com/framework/docs/providers/aws/guide/variables/) but we can improve security by limiting the scope of the app secrets to just the authorizer. The `ssm` links to AWS System Manager Parameter Store, and the `~true` tells Serverless to [use your local credentials to decrypt via KMS](https://hackernoon.com/you-should-use-ssm-parameter-store-over-lambda-env-variables-5197fc6ea45b).
 
 Let us continue with defining the handler. According to [AWS's authorizer documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-lambda-authorizer-input.html), the Lambda authorizer input `event` will have the following pattern:
 
