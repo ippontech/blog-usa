@@ -88,7 +88,7 @@ Here is the core of the config file. We will be adding more to this later.
 
 ### Write our Lambda authorizer
 
-A good resource that AWS provides for learning how to define Lambda functions using NodeJS can be found [here](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-handler.html). The main pieces of information that we need to know are what the function signatures should be and how to return or error out of the function. All of the code here will be taking advantage of [ES2017 async and await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), but there is no problem with refactoring with promises and callbacks.
+A good resource that AWS provides for learning how to define Lambda functions using NodeJS can be found [here](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-handler.html). The main pieces of information that we need to know are what the function signatures should be and how to return or error out of the function. All of the code here will be taking advantage of [ES2017 async and await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), but this can be refactored to use promises and callbacks instead.
 
 We will be using [Civic's server side SDK](https://www.npmjs.com/package/civic-sip-api) which comes as an npm package. First, we need to setup a Civic client for sending tokens. This can be done outside of the function handler itself because multiple calls could use the same client without issue. Importing `jsonwebtoken` is just used for debugging the incoming tokens and is not required for this particular authorizer. Here is the start of `auth.js`:
 
