@@ -20,7 +20,7 @@ Typically Machine Learning process is an iterative process, it starts with ident
 * Identify and Obtain Data.
 * Pre-process and Prepare Data.
 * Train a Model using the Prepared Data.
-* Evalate the Model.
+* Evaluate the Model.
 * Deploy the Model.
 * Obtain Feedback of the Model.
 
@@ -89,7 +89,7 @@ container = get_image_uri(boto3.Session().region_name, 'linear-learner')
 
 Now train the Model using the container and the training data previously prepared. Create a new instance for training the Model, provide the instance type needed. The trained Model is stored in the S3 bucket as a tar file so provide S3 bucket details.
 
-Note: Only certain types of
+Note: Only certain types of instance types can be used for training and deploying the models.
 
 ``` python
 from sagemaker import get_execution_role
