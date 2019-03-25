@@ -3,7 +3,6 @@ authors:
 - Gerard Gigliotti
 tags:
 - AWS
-- GraphQL
 - JavaScript
 date: 2018-06-15T11:41:57.000Z
 title: "AWS AppSync is coming for your API"

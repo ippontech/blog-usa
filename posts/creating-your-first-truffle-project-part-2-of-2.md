@@ -2,8 +2,8 @@
 authors:
 - Tyler John Haden
 tags:
-- ethereum
-- blockchain
+- Ethereum
+- Blockchain
 date: 2019-01-24T19:48:59.000Z
 title: "Creating your First Truffle Project (part 2 of 2)"
 image: https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/01/truffle_project_jumbo.png

@@ -2,10 +2,8 @@
 authors:
 - Julien Dubois
 tags:
-- JMeter
 - Performance
 - Spring
-- Spring-Petclinic
 date: 2013-03-11T11:00:54.000Z
 title: "Improving the performance of the Spring-Petclinic sample application (part 1 of 5)"
 image: 

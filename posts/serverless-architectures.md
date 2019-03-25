@@ -2,7 +2,7 @@
 authors:
 - Steve Houël
 tags:
-- Devops
+- DevOps
 - Cloud
 - Serverless
 - Architectures
