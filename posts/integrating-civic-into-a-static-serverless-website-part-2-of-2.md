@@ -11,7 +11,7 @@ title: "Integrating Civic into a Static Serverless Website (part 2 of 2)"
 image: https://raw.githubusercontent.com/tylerjohnhaden/blog-usa/master/images/2019/02/civic_jumbo.png
 ---
 
-This is the second part of this tutorial ([first part here](https://blog.ippon.tech/integrating-civic-into-a-static-serverless-website-part-2-of-2/)). By now your static website should be up and running. All that is left is to generate our API backend using Serverless. In the picure below, the user can complete the first two steps, but the third will fail for now.
+This is the second part of this tutorial ([first part here](https://blog.ippon.tech/integrating-civic-into-a-static-serverless-website-part-1-of-2/)). By now your static website should be up and running. All that is left is to generate our API backend using Serverless. In the picure below, the user can complete the first two steps, but the third will fail for now.
 
 
 # Project Architecture
