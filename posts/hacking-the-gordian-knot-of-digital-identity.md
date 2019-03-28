@@ -72,7 +72,7 @@ That's right folks, one day you may be able to move and _only change your addres
 
 ![Flying Spaghetti Monster](https://i.pinimg.com/originals/69/09/ef/6909ef0d0bd64ed91aa17a08363edde1.png)
 
-There is no single technical panacea for self-sovereign identity. You can't just "put it on the blockchain". As Vitalek Buterin has pointed out, blockchains only care about accounts, and someone with sufficient funds can create thousands of "[sock puppets](https://www.coindesk.com/understanding-the-radicalxchange-movement-and-its-cypherpunk-appeal)" to overpower democratic votes. The solutions require a bit more nuance.
+There is no single technical panacea for self-sovereign identity. You can't just "put it on the blockchain". As Vitalik Buterin of [Ethereum](https://www.ethereum.org/) has pointed out, blockchains only care about accounts, and someone with sufficient funds can create thousands of "[sock puppets](https://www.coindesk.com/understanding-the-radicalxchange-movement-and-its-cypherpunk-appeal)" to overpower democratic votes. The solutions require a bit more nuance.
 
 The good news is that there are several digital identity solutions, with varying degrees of decentralization and organizational transparency, which may fit our use cases. There is also a [decentralized digital identity standard](http://identity.foundation/) emerging which will allow for interoperability and portability.
 
@@ -81,12 +81,11 @@ I hope you have a better grasp of some reasons you may want to consider decentra
 # Resources
 
  * [Tyler's post on integrating Civic Secure ID with a static web application](https://blog.ippon.tech/integrating-civic-into-a-static-serverless-website-part-1-of-2/)
- * [Hash function](https://en.wikipedia.org/wiki/Hash_function)
- * [Authentication versus Federation](https://medium.com/@robert.broeckelmann/authentication-vs-federation-vs-sso-9586b06b1380)
- * [Cambridge Analytica](https://en.wikipedia.org/wiki/Cambridge_Analytica)
+ * [Hash function on Wikipedia](https://en.wikipedia.org/wiki/Hash_function)
+ * [Authentication versus Federation on Medium](https://medium.com/@robert.broeckelmann/authentication-vs-federation-vs-sso-9586b06b1380)
+ * [Cambridge Analytica on Wikipedia](https://en.wikipedia.org/wiki/Cambridge_Analytica)
  * [Pew Research](https://www.pewresearch.org/fact-tank/2018/03/27/americans-complicated-feelings-about-social-media-in-an-era-of-privacy-concerns/)
  * [Tristan's TED talk](https://www.ted.com/talks/tristan_harris_the_manipulative_tricks_tech_companies_use_to_capture_your_attention)
- * [self-sovereign identity](https://bitsonblocks.net/2017/05/17/gentle-introduction-self-sovereign-identity/)
- * [digital nomads](https://www.reddit.com/r/digitalnomad/)
- * [sock puppets](https://www.coindesk.com/understanding-the-radicalxchange-movement-and-its-cypherpunk-appeal)
- * [decentralized digital identity standard](http://identity.foundation/)
+ * [Self-sovereign identity at Bits on Blocks blog](https://bitsonblocks.net/2017/05/17/gentle-introduction-self-sovereign-identity/)
+ * [Vitalik on 'sock puppets'](https://www.coindesk.com/understanding-the-radicalxchange-movement-and-its-cypherpunk-appeal)
+ * [Decentralized Identity Foundation](http://identity.foundation/)
