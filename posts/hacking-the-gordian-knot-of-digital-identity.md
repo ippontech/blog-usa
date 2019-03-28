@@ -43,7 +43,7 @@ Tristan characterizes the operating environment of competing digital advertisers
 
 # Self-Sovereign Identity
 
-So far we've discussed the importance of freeing our identities from Big Bad Tech. There is a rising tide of decentralist thinkers (_raises hand_) who believe there is also a case for separation if identity from nation-states, or [self-sovereign identity](https://bitsonblocks.net/2017/05/17/gentle-introduction-self-sovereign-identity/).
+So far we've discussed the importance of freeing our identities from Big Bad Tech. There is a rising tide of decentralist thinkers (_raises hand_) who believe there is also a case for separation of identity from nation-states, or [self-sovereign identity](https://bitsonblocks.net/2017/05/17/gentle-introduction-self-sovereign-identity/).
 
 ![Self-Sovereignty](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/03/identity-self-sovereignty.jpg)
 
@@ -51,7 +51,7 @@ I think the simplest articulation of self-sovereignty is that your home country 
 
 Just like an online retailer or social media platform, your local, state, and national government probably has some stake in data about you that results from civic interaction (or "imperial entanglements"). Examples are the date of your birth or first entry into the country, any visas or federal licenses that you may have been granted. These agencies are the source of truth for these facts about you.
 
-Otther agencies or nations may have similar claims to facts about you. Maybe you are a dual passport holder, or one of the growing class of [digital nomads](https://www.reddit.com/r/digitalnomad/). Some countries may have requirements around your status in your home country, but generally they just want to know _who you are_.
+Other agencies or nations may have similar claims to facts about you. Maybe you are a dual passport holder, or one of the growing class of [digital nomads](https://www.reddit.com/r/digitalnomad/). Some countries may have requirements around your status in your home country, but generally they just want to know _who you are_.
 
 Case in point: In a world with self-sovereign identity, Edward Snowden may have been permitted to reach his originally intended destination in Latin America. Instead, the government whose criminal actions he exposed was able to revoke his passport, his only internationally recognized identity. It's almost as if he ceased to be a person.
 
@@ -70,13 +70,13 @@ That's right folks, one day you may be able to move and _only change your addres
 
 # Hacking the Gordian Knot
 
-![Flying Spaghetti Monster](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/03/identity-spaghetti-monster.jpg)
+![Flying Spaghetti Monster](https://i.pinimg.com/originals/69/09/ef/6909ef0d0bd64ed91aa17a08363edde1.png)
 
 There is no single technical panacea for self-sovereign identity. You can't just "put it on the blockchain". As Vitalek Buterin has pointed out, blockchains only care about accounts, and someone with sufficient funds can create thousands of "[sock puppets](https://www.coindesk.com/understanding-the-radicalxchange-movement-and-its-cypherpunk-appeal)" to overpower democratic votes. The solutions require a bit more nuance.
 
 The good news is that there are several digital identity solutions, with varying degrees of decentralization and organizational transparency, which may fit our use cases. There is also a [decentralized digital identity standard](http://identity.foundation/) emerging which will allow for interoperability and portability.
 
-I hope you have a better grasp of some reasons you may want to sonsider decentralized federated identity solutions, and a basic understanding of the tenets of self-sovereign identity. In my next post I will dig in to the emerging DID standards and the platforms providing federated authentication.
+I hope you have a better grasp of some reasons you may want to consider decentralized federated identity solutions, and a basic understanding of the tenets of self-sovereign identity. In my next post I will dig in to the emerging DID standards and the platforms providing federated authentication.
 
 # Resources
 
