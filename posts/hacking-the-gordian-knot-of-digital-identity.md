@@ -43,7 +43,7 @@ Tristan characterizes the operating environment of competing digital advertisers
 
 # Self-Sovereign Identity
 
-So far we've discussed the importance of freeing our identities from Big Bad Tech. There is a rising tide of decentralist thinkers (_raises hand_) who believe there is also a case for separation if identity from nation-states, or [self-sovereign identity](https://bitsonblocks.net/2017/05/17/gentle-introduction-self-sovereign-identity/).
+So far we've discussed the importance of freeing our identities from Big Bad Tech. There is a rising tide of decentralist thinkers (_raises hand_) who believe there is also a case for separation of identity from nation-states, or [self-sovereign identity](https://bitsonblocks.net/2017/05/17/gentle-introduction-self-sovereign-identity/).
 
 ![Self-Sovereignty](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/03/identity-self-sovereignty.jpg)
 
