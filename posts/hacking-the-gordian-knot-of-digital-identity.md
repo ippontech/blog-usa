@@ -12,7 +12,7 @@ In this post I will discuss some of the concepts and problems surrounding digita
 
 # Age of Innocence
 
-The Internet 1.0 was not built with security baked-in. In the Bad Old Days, we built security for systems by storing user credentials in databases, sometimes in cleartext. The standard was upgraded to storing passwords encrypted, or preferably _hashed_, using an [irreversible encryption algorithm](https://en.wikipedia.org/wiki/Hash_function) that guarantees the same source string will always produce the same result.
+The Internet 1.0 was not built with security baked-in. In the Bad Old Days, we built security for systems by storing user credentials in databases, sometimes in cleartext. The standard was upgraded to storing passwords encrypted, or preferably _hashed_, using an [irreversible encryption algorithm](https://en.wikipedia.org/wiki/Hash_function) that guarantees the same source string will always produce the same result (without exposing passwords, even to system admins).
 
 Finally, we have come to the age of [federated identity](https://medium.com/@robert.broeckelmann/authentication-vs-federation-vs-sso-9586b06b1380): trusted third parties like Google, Facebook, and Twitter provide standards-based APIs so that their users can use their platform to verify their identities in other applications without reinventing the wheel.
 
