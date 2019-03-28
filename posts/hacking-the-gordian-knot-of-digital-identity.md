@@ -25,7 +25,7 @@ Using federated identity solutions, we have some guarantees that our digital ide
 
 For most of the Internet revolution, users haven't cared much about data privacy or security, enduring requirements for increased password strength or multi-factor authentication with eye-rolls and exchanging XKCD comics.
 
-![](https://imgs.xkcd.com/comics/password_strength.png)
+![Password strength](https://imgs.xkcd.com/comics/password_strength.png)
 
 Enter [Cambridge Analytica](https://en.wikipedia.org/wiki/Cambridge_Analytica).
 
