@@ -2,6 +2,9 @@
 authors:
 - Chris Lumpkin
 tags:
+- digital-identity
+- blockchain
+- self-sovereignty
 date: 
 title: "Hacking the Gordian Knot of Digital Identity"
 description: "First they came for our data, now they're defining who we are online. Is there an end in sight for our digital identity crisis?"
