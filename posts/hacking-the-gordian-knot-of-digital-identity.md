@@ -51,7 +51,7 @@ I think the simplest articulation of self-sovereignty is that your home country 
 
 Just like an online retailer or social media platform, your local, state, and national government probably has some stake in data about you that results from civic interaction (or "imperial entanglements"). Examples are the date of your birth or first entry into the country, any visas or federal licenses that you may have been granted. These agencies are the source of truth for these facts about you.
 
-Otther agencies or nations may have similar claims to facts about you. Maybe you are a dual passport holder, or one of the growing class of [digital nomads](https://www.reddit.com/r/digitalnomad/). Some countries may have requirements around your status in your home country, but generally they just want to know _who you are_.
+Other agencies or nations may have similar claims to facts about you. Maybe you are a dual passport holder, or one of the growing class of [digital nomads](https://www.reddit.com/r/digitalnomad/). Some countries may have requirements around your status in your home country, but generally they just want to know _who you are_.
 
 Case in point: In a world with self-sovereign identity, Edward Snowden may have been permitted to reach his originally intended destination in Latin America. Instead, the government whose criminal actions he exposed was able to revoke his passport, his only internationally recognized identity. It's almost as if he ceased to be a person.
 
