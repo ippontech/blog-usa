@@ -8,7 +8,7 @@ tags:
 date: 
 title: "Hacking the Gordian Knot of Digital Identity"
 description: "First they came for our data, now they're defining who we are online. Is there an end in sight for our digital identity crisis?"
-image: https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/03/identity-main.jpg
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/03/identity-main.jpg
 ---
 
 In this post I will discuss some of the concepts and problems surrounding digital identity. I will then introduce the concept of federated decentralized identity management and explain its importance in the context of digital commerce and governance. For a more technical look at decentralized identity management, see [Tyler's post on integrating Civic Secure ID with a static web application](https://blog.ippon.tech/integrating-civic-into-a-static-serverless-website-part-1-of-2/).
@@ -45,7 +45,7 @@ Tristan characterizes the operating environment of competing digital advertisers
 
 So far we've discussed the importance of freeing our identities from Big Bad Tech. There is a rising tide of decentralist thinkers (_raises hand_) who believe there is also a case for separation of identity from nation-states, or [self-sovereign identity](https://bitsonblocks.net/2017/05/17/gentle-introduction-self-sovereign-identity/).
 
-![Self-Sovereignty](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/03/identity-self-sovereignty.jpg)
+![Self-Sovereignty](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/03/identity-self-sovereignty.jpg)
 
 I think the simplest articulation of self-sovereignty is that your home country may rightfully control your rights as a _citizen_, but every human has the right to control their own proof of _identity_. Let's unpack that a bit and look at some examples to illustrate the differences.
 
