@@ -7,7 +7,6 @@ tags:
 - self-sovereignty
 date: 
 title: "Hacking the Gordian Knot of Digital Identity"
-description: "First they came for our data, now they're defining who we are online. Is there an end in sight for our digital identity crisis?"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/03/identity-main.jpg
 ---
 
