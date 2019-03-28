@@ -76,7 +76,7 @@ There is no single technical panacea for self-sovereign identity. You can't just
 
 The good news is that there are several digital identity solutions, with varying degrees of decentralization and organizational transparency, which may fit our use cases. There is also a [decentralized digital identity standard](http://identity.foundation/) emerging which will allow for interoperability and portability.
 
-I hope you have a better grasp of some reasons you may want to sonsider decentralized federated identity solutions, and a basic understanding of the tenets of self-sovereign identity. In my next post I will dig in to the emerging DID standards and the platforms providing federated authentication.
+I hope you have a better grasp of some reasons you may want to consider decentralized federated identity solutions, and a basic understanding of the tenets of self-sovereign identity. In my next post I will dig into the emerging DID standards and the platforms providing federated authentication.
 
 # Resources
 
