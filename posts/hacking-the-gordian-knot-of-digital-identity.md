@@ -67,7 +67,7 @@ That's right folks, one day you may be able to move and _only change your addres
 
 # Hacking the Gordian Knot
 
-![Flying Spaghetti Monster](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/03/identity-spaghetti-monster.png)
+![Flying Spaghetti Monster](https://raw.githubusercontent.com/misterzero/blog-usa/master/images/2019/03/identity-spaghetti-monster.jpg)
 
 There is no single technical panacea for self-sovereign identity. You can't just "put it on the blockchain". As Vitalek Buterin has pointed out, blockchains only care about accounts, and someone with sufficient funds can create thousands of "[sock puppets](https://www.coindesk.com/understanding-the-radicalxchange-movement-and-its-cypherpunk-appeal)" to overpower democratic votes. The solutions require a bit more nuance.
 
