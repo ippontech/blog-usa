@@ -177,7 +177,7 @@ The deployed application can be invoked from a custom application using the AWS 
 String csvLine = "1.061,33.,211.75,73.5,40.,106.2,100.5,109.,65.8,40.6,24.,37.1,30.1,18.2";
 AmazonSageMakerRuntime client = AmazonSageMakerRuntimeClientBuilder.standard().
 				withRegion(Regions.US_EAST_1).withCredentials
-        (new AWSStaticCredentialsProvider(creds)).build();
+                             (new AWSStaticCredentialsProvider(creds)).build();
 		
 InvokeEndpointRequest invokeEndpointRequest = new InvokeEndpointRequest();
 ByteBuffer buf = ByteBuffer.wrap(csvLine.getBytes());
