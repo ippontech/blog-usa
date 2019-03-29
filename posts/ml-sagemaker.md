@@ -58,7 +58,8 @@ import pandas as pd
 dataset = pd.read_csv("Bio_Train.csv")
 
 // Determine the features and labels.
-feature_dataset = dataset[['Density', 'Age', 'Wt', 'Ht', 'Neck', 'Chest', 'ABD', 'Hip', 'Thigh', 'Knee', 'Ankle', 'Biceps', 'Farm', 'Wrist']]
+feature_dataset = dataset[['Density', 'Age', 'Wt', 'Ht', 'Neck', 'Chest', 
+      'ABD', 'Hip', 'Thigh', 'Knee', 'Ankle', 'Biceps', 'Farm', 'Wrist']]
 features = np.array(feature_dataset.values).astype('float32')
 
 label_dataset= dataset[['BFat']]
@@ -97,7 +98,13 @@ Now train the Model using the container and the training data previously prepare
 
 Note: Only certain types of instance types can be used for training and deploying the models. You will be warned with a message as below.
 ``` text
-ClientError: An error occurred (ValidationException) when calling the CreateTrainingJob operation: 1 validation error detected: Value 'ml.t2.medium' at 'resourceConfig.instanceType' failed to satisfy constraint: Member must satisfy enum value set: [ml.p2.xlarge, ml.m5.4xlarge, ml.m4.16xlarge, ml.p3.16xlarge, ml.m5.large, ml.p2.16xlarge, ml.c4.2xlarge, ml.c5.2xlarge, ml.c4.4xlarge, ml.c5.4xlarge, ml.c4.8xlarge, ml.c5.9xlarge, ml.c5.xlarge, ml.c4.xlarge, ml.c5.18xlarge, ml.p3.2xlarge, ml.m5.xlarge, ml.m4.10xlarge, ml.m5.12xlarge, ml.m4.xlarge, ml.m5.24xlarge, ml.m4.2xlarge, ml.p2.8xlarge, ml.m5.2xlarge, ml.p3.8xlarge, ml.m4.4xlarge]
+ClientError: An error occurred (ValidationException) when calling the CreateTrainingJob operation: 
+1 validation error detected: Value 'ml.t2.medium' at 'resourceConfig.instanceType' failed to 
+satisfy constraint: Member must satisfy enum value set: [ml.p2.xlarge, ml.m5.4xlarge, 
+ml.m4.16xlarge, ml.p3.16xlarge, ml.m5.large, ml.p2.16xlarge, ml.c4.2xlarge, ml.c5.2xlarge, 
+ml.c4.4xlarge, ml.c5.4xlarge, ml.c4.8xlarge, ml.c5.9xlarge, ml.c5.xlarge, ml.c4.xlarge,
+ ml.c5.18xlarge, ml.p3.2xlarge, ml.m5.xlarge, ml.m4.10xlarge, ml.m5.12xlarge, ml.m4.xlarge,
+ml.m5.24xlarge, ml.m4.2xlarge, ml.p2.8xlarge, ml.m5.2xlarge, ml.p3.8xlarge, ml.m4.4xlarge]
 ```
 
 ``` python
@@ -144,7 +151,8 @@ linear_predictor.serializer = csv_serializer
 linear_predictor.deserializer = json_deserializer
 
 test_dataset = pd.read_csv("Bio_Train.csv")
-test_feature_dataset = test_dataset[['Density', 'Age', 'Wt', 'Ht', 'Neck', 'Chest', 'ABD', 'Hip', 'Thigh', 'Knee', 'Ankle', 'Biceps', 'Farm', 'Wrist']]
+test_feature_dataset = test_dataset[['Density', 'Age', 'Wt', 'Ht', 'Neck', 
+      'Chest', 'ABD', 'Hip', 'Thigh', 'Knee', 'Ankle', 'Biceps', 'Farm', 'Wrist']]
 
 test_features = np.array(test_feature_dataset.values).astype('float32')
 
