@@ -32,20 +32,26 @@ Each of the above steps are iterative by themselves. Multiple iterations can hap
 AWS Sagemaker is a fully managed AWS Machine Learning service which helps in building, training and deploying Machine Learning models. It has a rich set API's, built-in algorithms, integration with various popular libraries such as Tensorflow, PyTorch, SparkML e.t.c., developers tools for authoring models, and hosted production environment for deploying the models.
 
 # Regression Model Implementation
-In this example we will develop a regression model to predict body fat percentage based on 14 parameters like Age, Height, Weight, Abdomen circumference e.t.c. This data is widely available on the internet. A more advanced process is to find only the relevent features or parameters to use.
+In this example we will develop a regression model to predict body fat percentage based on already labeled data with 14 parameters like Age, Height, Weight, Abdomen circumference e.t.c. This data is widely available on the internet. A more advanced process is to find only the relevent features or parameters to train the model.
 
-We will use the Jupyter Notebook authoring environment provided by Sagemaker to Prepare Data, Train and Evaluate Model, Deploy and Test the deployed Model. The Notebook environment also supports version control systems like CodeCommit or GitHub. Upload any test data used by the Notebooks into the environment.
+We will use the Jupyter Notebook authoring environment provided by Sagemaker to Prepare Data, Train and Evaluate Model, Deploy and Test Model. The notebook environment also supports version control systems like CodeCommit or GitHub. Upload any test data used by the Notebooks into the environment. The notebook lets you install any python libraries needed for your model using tools such as pip, run any git commands to push your changes to version control system.
 
 In order to use the Jupyter Notebook, we need to create a Notebook Instance by providing an instance type such as ml.t2.medium. Provide IAM role with proper access control during instance creation.
 
-Now create a new Jupyter Notebook to interactively Author, Train and Deploy the Model.
+Now create a new Jupyter Notebook to interactively Author, Train, Test and Deploy the Model.
 
 ![Jupyter Notebook](https://raw.githubusercontent.com/msambaraju/blog-usa/master/images/2019/03/Jupiter_Notebook_Env.png)
 
 
-Prepare the data by reading training dataset from the S3 bucket or from an uploaded file. Format the data into an acceptable format usually in the form of arrays and vectors.
+Prepare the data by reading training dataset from the S3 bucket or from an uploaded file. Format the data into an acceptable format usually in the form of arrays and vectors depending on the algorithm used.
 
 ```python
+import numpy as np
+import boto3
+import sagemaker
+import io
+import sagemaker.amazon.common as smac
+import os
 import pandas as pd
 
 //Read from csv or someother location like s3.
@@ -82,27 +88,32 @@ Fetch the container with proper algorithm to use from the list of pre-defined Sa
 ``` python
 
 from sagemaker.amazon.amazon_estimator import get_image_uri
-container = get_image_uri(boto3.Session().region_name, 'linear-learner')
+linear_container = get_image_uri(boto3.Session().region_name, 'linear-learner')
 
 ```
 
 
 Now train the Model using the container and the training data previously prepared. Create a new instance for training the Model, provide the instance type needed. The trained Model is stored in the S3 bucket as a tar file so provide S3 bucket details.
 
-Note: Only certain types of instance types can be used for training and deploying the models.
+Note: Only certain types of instance types can be used for training and deploying the models. You will be warned with a message as below.
+``` text
+ClientError: An error occurred (ValidationException) when calling the CreateTrainingJob operation: 1 validation error detected: Value 'ml.t2.medium' at 'resourceConfig.instanceType' failed to satisfy constraint: Member must satisfy enum value set: [ml.p2.xlarge, ml.m5.4xlarge, ml.m4.16xlarge, ml.p3.16xlarge, ml.m5.large, ml.p2.16xlarge, ml.c4.2xlarge, ml.c5.2xlarge, ml.c4.4xlarge, ml.c5.4xlarge, ml.c4.8xlarge, ml.c5.9xlarge, ml.c5.xlarge, ml.c4.xlarge, ml.c5.18xlarge, ml.p3.2xlarge, ml.m5.xlarge, ml.m4.10xlarge, ml.m5.12xlarge, ml.m4.xlarge, ml.m5.24xlarge, ml.m4.2xlarge, ml.p2.8xlarge, ml.m5.2xlarge, ml.p3.8xlarge, ml.m4.4xlarge]
+```
 
 ``` python
 from sagemaker import get_execution_role
 
 role = get_execution_role()
 
+sagemaker_session = sagemaker.Session()
+
 // Provide the container, role, instance type and model output location
-linear = sagemaker.estimator.Estimator(container,
+linear = sagemaker.estimator.Estimator(linear_container,
                                        role=role, 
                                        train_instance_count=1, 
                                        train_instance_type='ml.c4.xlarge',
                                        output_path=output_location,
-                                       sagemaker_session=sess)
+                                       sagemaker_session=sagemaker_session)
 
 // Provide the number of features identified during data preparation
 // Provide the predictor_type 
@@ -119,7 +130,7 @@ linear.fit({'train': s3_training_data_location})
 ```
 
 
-Deploy the trained Model using the Sagemaker API. Provide instance type and instance count as required. Once the deployment is complete the test data is used to test the deployed application. Once tha Model is deployed an Http Endpoint is generated which can be used by other applications to invoke deployed Machine Learning application.
+Deploy the Trained Model using the Sagemaker API. Provide instance type and instance count as required. Once the deployment is complete the test data is used to test the deployed application. Once tha Model is deployed a http endpoint is generated which is used by other applications such as a lambda function which is part of a streaming application or a synchronous application.
 
 ``` python
 
@@ -151,8 +162,28 @@ Input: [  1.061  33.    211.75   73.5    40.    106.2   100.5   109.     65.8
 Prediction: {'predictions': [{'score': 20.166656494140625}]}
 ```
 
+The deployed application can be invoked from a custom application using the AWS Sagemaker API's as below.
+
+``` java
+//Process input data and fetch the input for the model.
+String csvLine = "1.061,33.,211.75,73.5,40.,106.2,100.5,109.,65.8,40.6,24.,37.1,30.1,18.2";
+AmazonSageMakerRuntime client = AmazonSageMakerRuntimeClientBuilder.standard().
+				withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(creds)).build();
+		
+InvokeEndpointRequest invokeEndpointRequest = new InvokeEndpointRequest();
+ByteBuffer buf = ByteBuffer.wrap(csvLine.getBytes());
+invokeEndpointRequest.setContentType("text/csv");
+invokeEndpointRequest.setAccept("application/json");
+invokeEndpointRequest.setBody(buf);
+// provide appropriate endpoint name.
+invokeEndpointRequest.setEndpointName("ippon-sagemaker-regression-v1");		
+InvokeEndpointResult result = client.invokeEndpoint(invokeEndpointRequest);
+String responseJson = new String(result.getBody().array());
+//Add business logic based on the prediction received.
+```
+
 # Conclusion
-AWS Sagemaker provides capabilities to Author, Train, Deploy and Monitor Machine Learning applications using wide variety of algorithms, libraries and infrastructure.
+AWS Sagemaker provides capabilities to Author, Train, Deploy and Monitor Machine Learning applications using wide variety of algorithms, libraries and infrastructure. This can help Data Engineers and Data Scientists to come up with quality models.
 
 
 
