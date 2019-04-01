@@ -137,12 +137,13 @@ linear.fit({'train': s3_training_data_location})
 ```
 
 
-Deploy the Trained Model using the Sagemaker API. Provide instance type and instance count as required. Once the deployment is complete the test data is used to test the deployed application. Once tha Model is deployed a http endpoint is generated which is used by other applications such as a lambda function which is part of a streaming application or a synchronous application.
+Deploy the Trained Model using the Sagemaker API. Provide instance type and instance count as required. Once the deployment is complete the test data is used to test the deployed application. Once tha Model is deployed a http endpoint is generated which is used by other applications such as a lambda function as part of a streaming application or a synchronous application. To support varying  loads the application can be autoscaled.
 
 ``` python
 
 linear_predictor = linear.deploy(initial_instance_count=1,
-                                 instance_type='ml.c4.xlarge')
+                                 instance_type='ml.c4.xlarge',
+                                 endpoint_name='ippon-sagemaker-regression-v1')
 
 from sagemaker.predictor import csv_serializer, json_deserializer
 
