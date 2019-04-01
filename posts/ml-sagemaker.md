@@ -185,8 +185,8 @@ Sample predictions for the inputs provided
 '''
 ```
 
-The deployed application can be invoked from a custom application using the AWS Sagemaker API's as below. For more information on Sagemaker API's please visit (Sagemaker Python SDK)[https://sagemaker.readthedocs.io/en/stable/] or
-(Sagemaker Java SDK)[https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/]
+The deployed application can be invoked from a custom application using the AWS Sagemaker API's as below. For more information on Sagemaker API's please visit [Sagemaker Python SDK](https://sagemaker.readthedocs.io/en/stable/) or
+[Sagemaker Java SDK](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/)
 
 ``` java
 //Process input data and fetch the input for the model.
