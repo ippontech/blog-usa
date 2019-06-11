@@ -5,8 +5,8 @@ tags:
 - AWS
 - Data
 date: 2019-06-11T21:24:13.000Z
-title: "EC2 Options for Cassandra on AWS"
-image: 
+title: "EC2 Considerations for Cassandra on AWS"
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/6/cassandra-aws.png
 ---
 
 There may seem to be endless options for deploying Cassandra clusters to Amazon Web Services. As an engineer at Ippon Technologies, I have deployed, tested, and productionalized both Apache and Datastax flavors of Cassandra and seen the pitfalls and benefits of several approaches with EC2. I will especially be going over the consequences to your monthly cloud bill and engineering resources. 
