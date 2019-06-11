@@ -46,17 +46,20 @@ You might look at this number and wonder why it's so much cheaper than the EBS s
 
 We can estimate that using EBS volumes almost doubles our monthly bill. Why would you want to take on such costs for EBS?
 
-## Making a Case for EBS
+### Making a Case for EBS
 As an engineering consultant that has dealt with building EBS-backed Cassandra clusters, I can attest to their operational simplicity. There is no better option when it comes to easy, safe, disaster recovery. Again, I want to encourage you to take a look at The Last Pickle's [blog](https://thelastpickle.com/blog/2018/04/03/cassandra-backup-and-restore-aws-ebs.html) on this topic as he does a deeper dive from an operational point-of-view. But I want to add to this with my developer perspective.
 
-## More Scenarios
+### More Scenarios
 #### #1 You just received an alert that AWS is retiring the hardware that one of your nodes is running on
+
 **EBS recovery**
+
 1. Detach the EBS volume 
 2. Decommission old node VM
 3. Bootstrap new node and attach old EBS volume
 
 **Instance-store recovery**
+
 1. Bootstrap new node 
 2. Configure new node to replace old node in cassandra.yaml
 3. Stream data into new node 
@@ -66,10 +69,12 @@ Not much difference here. EBS has the advantage of recovery time because data is
 
 #### #2 Your organization requires that you refresh all services with new AMIs every quarter
 **EBS recovery**
+
 Basically the same as above, for each node in the cluster.
 One-by-one, detach EBS volume, decommission old node, and then bootstrap new node and attach old volume. Only do one at a time. As long as your replication factor is higher than one, this method has no downtime. This is very simple and safe. Can be made even easier if you use the same private ips for new nodes as the ones they are replacing. 
 
 **Instance-store recovery**
+
 There are several ways you could approach this but ultimately they will be just as complex as the following:
 1. Create new cluster and run it alongside old one
 2. Change topology on old cluster to add new cluster as a datacenter
@@ -82,12 +87,14 @@ This process is arduous, difficult to automate, and much more inferior to the EB
 
 #### #3 The worst has happened, your cluster was bricked and you must implement the disaster recovery plan
 **EBS recovery**
+
 1. Create volumes from the snapshots you've been taking, for each node
 2. Bootstrap new cluster and attach EBS volumes from snapshot
 
 That's mostly it. It's dead simple disaster recovery. Your recovery time is short and can be done manually or automated painlessly.
 
 **Instance-store recovery**
+
 1. Create new cluster 
 2. Bulk load the new cluster with SSTableLoader from the incremental backups on S3
 3. nodetool refresh
