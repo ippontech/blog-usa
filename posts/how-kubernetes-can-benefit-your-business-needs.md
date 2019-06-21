@@ -18,7 +18,7 @@ When reading into microservices, you and your developers will ask yourselves: `W
 install an OS, find dependencies, manage security, etc or would you like to spin up a container which does all that 
 for you in seconds?`
 
-Today, we're going to discuss what is Kubernetes and why your business would benefit from this technology. First
+Today, we're going to discuss what Kubernetes is and why your business would benefit from this technology. First
 we'll briefly discuss the differences in microservices and monoliths.
 
 ### A Brief History in Microservices
