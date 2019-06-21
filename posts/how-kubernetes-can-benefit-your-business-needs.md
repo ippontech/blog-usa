@@ -7,7 +7,7 @@ tags:
 - microservices
 
 date: 
-title: "How Kubernetes Adds to Your Business"
+title: "How Kubernetes Can Benefit Your Business Needs"
 image: https://github.com/ippontech/kakorrhaphio/blob/master/images/2019/6/kubernetes-image.png
 ---
 
