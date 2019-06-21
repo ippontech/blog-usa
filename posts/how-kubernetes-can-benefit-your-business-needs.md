@@ -12,7 +12,7 @@ image: https://github.com/ippontech/kakorrhaphio/blob/master/images/2019/6/kuber
 ---
 
 Monolithic applications have been the industry norm for years, however, we here at Ippon have noticed a shift in the 
-industry, wherein many, companies in the insurance to e-commerce to banking industries are bound for generating more 
+industry, wherein many, companies in industries such as insurance, banking, e-commerce, etc. are bound for generating more 
 focused and specific applications. These applications exist in the form of [microservices](https://blog.ippon.tech/monolithic-to-microservice-consistency-in-distributed-systems/).  When talking about microservices, its difficult _not_ to talk about containers and container orchestration tools.
 When reading into microservices, you and your developers will ask yourselves: `Would you want to spin up a VM,  
 install an OS, find dependencies, manage security, etc or would you like to spin up a container which does all that 
