@@ -24,7 +24,7 @@ Today, we're going to discuss what Kubernetes is and why your business would ben
 we'll briefly discuss the differences in microservices and monoliths.
 
 ### A Brief History in Microservices
-Before microservices, we had (and still have) monoliths. Applying good development practices, its best to break up 
+Before microservices, we had (and still have) monoliths. Applying good development practices, it is best to break up 
 your main component into modular pieces. These modular pieces, in the form of microservices, are transforming into 
 containers.
 
