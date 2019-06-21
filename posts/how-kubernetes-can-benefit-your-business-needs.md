@@ -28,7 +28,7 @@ Before microservices, we had (and still have) monoliths. Applying good developme
 your main component into modular pieces. These modular pieces, in the form of microservices, are transforming into 
 containers.
 
-Making monoliths modular into microservices have real cost saving benefits both financially and in developer time:
+Making monoliths modular into microservices are a dual threat of sorts when it comes to savings -- both in terms of financial costs and also in development time.
 - Containers help with keeping deployment times low 
 - The main service operates if a component is down or redeploying
 - Adding new features is independent of the entire monolith 
@@ -36,10 +36,11 @@ Making monoliths modular into microservices have real cost saving benefits both 
 
 To add to the point, this [research](https://www.researchgate.net/publication/316532483_Cost_comparison_of_running_web_applications_in_the_cloud_using_monolithic_microservice_and_AWS_Lambda_architectures) paper from 2015 breaks down the actual cost of using a monolith vs 
 microservice architecture using then-current relevant tech stacks. The researchers found that using a microservice 
-architecture in place of monoliths save up to 70% under similar loads.
+architecture in place of monoliths can save up to 70% under similar loads.
 
 Now that I've convinced you that microservices have a place in the world, there are some managerial questions to
-address: what happens when there are a bunch of microservices running and how does a development team manage them?
+address: What happens when there are a bunch of microservices running and how does a development team manage them all
+ at once?
 Enter: Kubernetes.
 
 ### Kubernetes: A Container Orchestration Solution
@@ -58,5 +59,5 @@ There are many benefits of having a Container Orchestration system such as Kuber
 
 ### Conclusion
 Effectively, Kubernetes is powerful tool to use at your helm where your developers have more time to work on the core
- product and increase their velocity. To put it more simply, Kubernetes saves IT/Developers time. Time saved saves 
- money.
+ product and increase their velocity. To put it more simply, Kubernetes saves IT/Developers time. Time savings = cost
+  savings.
