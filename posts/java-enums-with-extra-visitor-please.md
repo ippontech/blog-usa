@@ -44,7 +44,7 @@ The switch-case statement is probably the most straightforward way to do this. H
 
 The method `getAssetClassBehavior()` returns a behavior according to the value of `AssetClass`. Defining a default behavior then becomes mandatory, even if in this example all the values of `AssetClass` enum are handled. We can do this by either returning a default implementation of `AssetClassBehavior`, null, or throwing an exception.
 
-Using this defaulting mechanism silences any adding of new value inside the enum. It requires to check any piece of code using `AssetClass` as a conditioner without any guarantee that an oversight has been avoided.
+Using this defaulting mechanism silences any addition of a new value inside the enum. It requires a check of any piece of code using `AssetClass` as a conditioner without any guarantee that an oversight has been avoided.
 
 The last problem is probably the least obvious. Using the switch-case statement generates a strong coupling between the business logic and the enum's values, breaking the open/close principle.
 Yet, the switch-case statement has no interest in knowing if the asset class is an enum or an object or anything else. Only the semantic matters.
