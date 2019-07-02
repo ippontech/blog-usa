@@ -55,7 +55,7 @@ For instance, metals could be split into two sub assets: base metals and preciou
 
 How can we break this coupling while offering the ability to contextualize the decision making to the enum's values? The answer is in the title: let's use the Visitor pattern.
 
-In the first place, we need to create an interface which will be used as a contract between the enum and the code relying on its values.
+First off, we need to create an interface which will be used as a contract between the enum and the code relying on its values.
 
 ```java
 public interface AssetClassVisitor<T> {
