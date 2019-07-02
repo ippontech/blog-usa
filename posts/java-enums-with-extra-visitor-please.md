@@ -194,6 +194,6 @@ assetClass.accept(new AssetClassVisitor<AssetClassBehavior>() {
  
 # In a nutshell
 
-During one of my mission, the team was facing a huge number of enums and many business logic was based upon their values. The visitor pattern was our shield against unpredicted edge cases. It became the standard way to deal with enum in the whole code base.
+During one of my missions, the team was dealing with a large number of enums and there was business logic based upon their values. The visitor pattern was our shield against unpredicted edge cases. It became our standard way to deal with enums in the code base.
 
 Using this pattern is not necessary if your enums are purely descriptive. However, bringing the heavy artillery is definitively worth the extra cost. Breaking the coupling between enum's values and the business logic offers flexibility while the compiler provides an instantaneous feedback about potential oversight and edge cases.
