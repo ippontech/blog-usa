@@ -67,7 +67,7 @@ public interface AssetClassVisitor<T> {
 
 The interface is generified in order to allow implementations whose purpose differs according to the context.
 
-It is now necessary to update the enum to make it accept any implementation of the `AssetClassVisitor`.
+Now it's necessary to update the enum to make it accept any implementation of the `AssetClassVisitor`.
 
 ```java
 public enum AssetClass {
