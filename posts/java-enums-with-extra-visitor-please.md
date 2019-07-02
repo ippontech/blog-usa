@@ -40,7 +40,7 @@ public AssetClassBehavior getAssetClassBehavior(AssetClass assetClass) throws Ex
 }
 ```
 
-The swith-case statement is probably the most straightforward way to do. It has, however, several flaws.
+The switch-case statement is probably the most straightforward way to do this. However, it has several flaws.
 
 The method `getAssetClassBehavior()` returns a behavior according to the value of `AssetClass`. Defining a default behavior then becomes mandatory, even if, in this example, all the values of `AssetClass` enum are handled. To do so, we can either return a default implementation of `AssetClassBehavior` or null or throw an exception.
 
