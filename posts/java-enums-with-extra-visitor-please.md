@@ -47,7 +47,7 @@ The method `getAssetClassBehavior()` returns a behavior according to the value o
 Using this defaulting mechanism silences any addition of a new value inside the enum. It requires a check of any piece of code using `AssetClass` as a conditioner without any guarantee that an oversight has been avoided.
 
 The last problem is probably the least obvious. Using the switch-case statement generates a strong coupling between the business logic and the enum's values, breaking the open/close principle.
-Yet, the switch-case statement has no interest in knowing if the asset class is an enum or an object or anything else. Only the semantic matters.
+Yet, the switch-case statement has no interest in knowing if the asset class is an enum, object, or anything else. Only the semantic matters.
 For instance, metals could be split into two sub assets: base metals and precious metals. Any already existing code based on `AssetClass.METAL` will have to be reworked to take this change into account. No business value has been added where the rework was necessary while it exposed a working implementation to the risk of regressions.
 
 
