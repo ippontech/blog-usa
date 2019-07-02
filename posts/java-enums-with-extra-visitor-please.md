@@ -9,15 +9,14 @@ title: "Java enums? With extra Visitor please!"
 image: 
 ---
 
-Enums can be seen as a group of strongly typed constants. It is very convenient to make code more readable or ensure that data received through our API is compliant to our contract. But it can become tricky when conditional statements are based upon enum values. 
+Enums can be seen as a group of strongly typed constants. They are usefull to a several use cases: attribute a strong semantic to values, limit and validate available values for data, enhance code readability etc.
+Using enums can be, however, tricky when it is about making decision according to its values. As the enum evolves, every part of the code where it has been used as a condition must be checked. If a lot of decisions has been based upon enum's values, maintaining the code base can become a nightmare: one forgotten verification can lead to a corruption of the system as a whole.
 
-As the code evolves, the number of enum’s values can increase and everywhere it has been used to switch between some kind of behavior must be checked. If a lot of conditions has been based upon an enum value then it can become a nightmare to maintain and have some unexpected side effects on the system as a whole.
+Is there then a way to reduce the impact of enums' evolutions on the code base?
 
-But what if the compiler told us where to look as we add or update enums’ values ?
+# The switch-case approach
 
-# The switch case approach
-
-Let’s say we have an `AssetClass` enum which references the different types of tradable commodities:
+Consider the `AssetClass` enum which represents the different group of tradable commodities:
 
 ```java
 public enum AssetClass {
@@ -27,33 +26,35 @@ public enum AssetClass {
 }
 ```
 
-This enum will probably be used at some point to choose the appropriate strategy, mapper or anything else depending on the asset class. This would generally look like the following code:
+This enum can be used to decide which strategy, mapper or any other behavior according to the value of `AssetClass`. This would generally look like the following code:
 
 ```java
 public AssetClassBehavior getAssetClassBehavior(AssetClass assetClass) throws Exception {
     switch (assetClass) {
-        case METAL: return new MetalBehavior();
+        case METAL:return new MetalBehavior();
         case ENERGY: return new EnergyBehavior();
         case AGRICULTURAL: return new AgriculturalBehavior();
         default: throw new Exception("Unexpected asset class");
-    
+    }
 }
 ```
 
-Using switch-case statement is probably the most straightforward way to do it. However, this has several flaws. 
+The swith-case statement is probably the most straightforward way to do. It has, however, several flaws.
 
-As the method is returning SomeInstrumentBehavior, using the default statement is mandatory, even if all the `AssetClass` values have been cased. This implies either returning a default behavior, null or throwing an exception.
+The method `getAssetClassBehavior()` returns a behavior according to the value of `AssetClass`. Defining a default behavior then becomes mandatory, even if, in this example, all the values of `AssetClass` enum are handled. To do so, we can either return a default implementation of `AssetClassBehavior` or null or throw an exception.
 
-Adding a new value to `AssetClass` will require to check every switch-case statement based on its values. And there is no guarantee that we won’t miss one.
+Using this defaulting mechanism silences any adding of new value inside the enum. It requires to check any piece of code using `AssetClass` as a conditioner without any guarantee that an oversight has been avoided.
 
-The switch case has to be aware of the enum values which creates a strong coupling. This can have a huge impact in the code as a whole and breaks the open-close principle. 
-For instance: Metal assets could be split into 2 different sub asset classes: precious and base metal. If at some point we need to do it, every part of the code relying on the metal asset class will actually have to be reworked even if the expected behavior on already implemented features remains the same.
+The last problem is probably the least obvious. Using the switch-case statement generates a strong coupling between the business logic and the enum's values, breaking the open/close principle.
+Yet, the switch-case statement has no interest in knowing if the asset class is an enum or an object or anything else. Only the semantic matters.
+For instance, metals could be split into two sub assets: base metals and precious metals. Any already existing code based on `AssetClass.METAL` will have to be reworked to take this change into account. No business value has been added where the rework was necessary while it exposed a working implementation to the risk of regressions.
+
 
 # Visitor pattern to the rescue
 
-Let's start with a brief reminder of what is the visitor pattern. Among the design patterns, the visitor is considered as a behavioral one. It helps to split the business logic from the objects it operates on. 
+How can we break this coupling while offering the ability to contextualize the decision making to the enum's values ? The answer is in the title: let's use the Visitor pattern.
 
-First, let’s create a visitor interface for our enum. This interface will create a contract between the enum and code wanting to interact with it.
+In the first place, we need to create an interface which will be used as a contract between the enum and the code relying on its values.
 
 ```java
 public interface AssetClassVisitor<T> {
@@ -63,7 +64,9 @@ public interface AssetClassVisitor<T> {
 }
 ```
 
-Let’s update `AssetClass` enum to expose an accept function which will open the door to its visitor:
+The interface is generified in order to allow implementations whose purpose differs according to the context.
+
+It is now necessary to update the enum to make it accept any implementation of the `AssetClassVisitor`.
 
 ```java
 public enum AssetClass {
@@ -71,53 +74,53 @@ public enum AssetClass {
         @Override
         public <E> E accept(AssetClassVisitor<E> visitor) {
             return visitor.visitMetal();
-        
+        }
     },
     ENERGY {
         @Override
         public <E> E accept(AssetClassVisitor<E> visitor) {
             return visitor.visitEnergy();
-        
+        }
     },
     AGRICULTURAL {
         @Override
         public <E> E accept(AssetClassVisitor<E> visitor) {
             return visitor.visitAgricultural();
-        
+        }
     };
 
     public abstract <E> E accept(AssetClassVisitor<E> visitor);
 }
 ```
 
-Let's use it !
+The code is now ready to forget the switch-case and use an implementation of the `AssetClassVisitor`:
 
 ```java
 assetClass.accept(new AssetClassVisitor<AssetClassBehavior>() {
     @Override
     public AssetClassBehavior visitMetal() {
         return new MetalBehavior();
-    
+    }
 
     @Override
     public AssetClassBehavior visitEnergy() {
         return new EnergyBehavior();
-    
+    }
 
     @Override
     public AssetClassBehavior visitAgricultural() {
         return new AgriculturalBehavior();
-    
+    }
 });
 ```
 
-As we see in this implementation, each `AssetClass` value is responsible for calling the appropriate visitor’s method. This means that from now on, there is no need to know about `AssetClass` values as responding to the visitor contract will assure that the behavior will remain the same even if the values changes. For instance, renaming one of the values won’t affect any part of the code which responds to the contract.
-Moreover, handling defaulting is no more required. We have scoped the behaviors to the interface.
+It can be observed that each value of `AssetClass` is responsible for call the appropriate method of `AssetClassVisitor`. Values of `AssetClass` can now be ignored as the semantic is brought by the visitor. `AssetClass.AGRICULTURAL` could be renamed `AssetClass.AGRI` without rework needed where the business logic occurs.
+Furthermore, handling default behavior is not required anymore. Possibilities are now scoped to the one provided by the interface.
 
+# Add a new asset class
 
-# Adding a new asset class
-
-We now need to extend our activity to livestock and meat commodities. It’s simple as adding the value in the enum and the associated visitor method.
+The business is growing and activities are extending to livestock and meat. 
+This is simple as adding `AssetClass.LIVESTOCK_AND_MEAT` value and updating the visitor interface.
 
 ```java
 public enum AssetClass {
@@ -125,26 +128,26 @@ public enum AssetClass {
         @Override
         public <E> E accept(AssetClassVisitor<E> visitor) {
             return visitor.visitMetal();
-        
+        }
     },
     ENERGY {
         @Override
         public <E> E accept(AssetClassVisitor<E> visitor) {
             return visitor.visitEnergy();
-        
+        }
     },
     AGRICULTURAL {
         @Override
         public <E> E accept(AssetClassVisitor<E> visitor) {
             return visitor.visitAgricultural();
-        
+        }
     },
-    // Our new enum value
+    // The new value
     LIVESTOCK_AND_MEAT {
         @Override
         public <E> E accept(AssetClassVisitor<E> visitor) {
             return visitor.visitLiveStockAndMeat();
-        
+        }
     };
 
     public abstract <E> E accept(AssetClassVisitor<E> visitor);
@@ -156,13 +159,13 @@ public interface AssetClassVisitor<T> {
     T visitMetal();
     T visitEnergy();
     T visitAgricultural();
-    // and our new visit method
-    T visitLiveStockAndMeat(); 
+    // The new method
+    T visitLiveStockAndMeat();
 }
 ```
 
-After this, the code will look like a Christmas tree: it doesn’t compile anymore. And the compiler should be thanked for his job as shown errors are highlighting every part of the code where handling the new value is required.
-So let’s fix the issue. The previously implemented feature is not supported yet for our new asset. For the sake of the example, we will simply throw an exception.
+After this, the code will light up like a Christmas Tree: it does not compile anymore. Et compiler should be thanked for doing such a great job! All those highlighted errors show that some part of the code are not designed to handle the new value yet. Let's correct this using an exception: the existing features are not available yet for livestock and meat.
+
 
 ```java
 assetClass.accept(new AssetClassVisitor<AssetClassBehavior>() {
@@ -183,15 +186,13 @@ assetClass.accept(new AssetClassVisitor<AssetClassBehavior>() {
 
     @Override
     public AssetClassBehavior visitLiveStockAndMeat() {
-        throw new NotImplementedException("My awesome new feature is not  enabled yet for livestock and meat.")
+        throw new NotImplementedException("This feature is not enabled yet for livestock and meat.")
     }
 });
 ```
-
+ 
 # In a nutshell
-One of my missions was rich of treatments which were different according to enum values. I discovered this practice as it was the standard way the team chose to deal with enum.
-It revealed us many unseen edge cases while coding and then became an automatism.
 
-There is no need to go through this pattern when enums are purely descriptive or if only one place uses it as a behavior discriminant. In such cases, sticking to a simple switch-case statement will probably be enough.
+During one of my mission, the team was facing a huge number of enums and many business logic was based upon their values. The visitor pattern was our shield against unpredicted edge cases. It became the standard way to deal with enum in the whole code base.
 
-However, bringing the heavy artillery when meeting multiple switch-case statements on an enum is definitely worth the extra cost. It reduces the coupling between enum and business logic and can save time by highlighting unseen cases.
+Using this pattern is not necessary if your enums are purely descriptive. However, bringing the heavy artillery is definitively worth the extra cost. Breaking the coupling between enum's values and the business logic offers flexibility while the compiler provides an instantaneous feedback about potential oversight and edge cases.
