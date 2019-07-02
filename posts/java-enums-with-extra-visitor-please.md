@@ -121,7 +121,7 @@ Furthermore, handling default behavior is not required anymore. Possibilities ar
 # Add a new asset class
 
 The business is growing and activities are extending to livestock and meat. 
-This is simple as adding `AssetClass.LIVESTOCK_AND_MEAT` value and updating the visitor interface.
+This is as simple as adding `AssetClass.LIVESTOCK_AND_MEAT` value and updating the visitor interface.
 
 ```java
 public enum AssetClass {
