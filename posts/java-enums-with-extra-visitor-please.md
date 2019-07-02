@@ -3,7 +3,8 @@ authors:
 - Grégory ELHAIMER
 tags:
 - Java
-- Design pattern
+- Software Development
+- Software Craftmanship
 date: 2019-05-28T12:21:50.000Z
 title: "Java enums? With extra Visitor please!"
 image: 
