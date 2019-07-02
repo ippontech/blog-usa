@@ -42,7 +42,7 @@ public AssetClassBehavior getAssetClassBehavior(AssetClass assetClass) throws Ex
 
 The switch-case statement is probably the most straightforward way to do this. However, it has several flaws.
 
-The method `getAssetClassBehavior()` returns a behavior according to the value of `AssetClass`. Defining a default behavior then becomes mandatory, even if, in this example, all the values of `AssetClass` enum are handled. To do so, we can either return a default implementation of `AssetClassBehavior` or null or throw an exception.
+The method `getAssetClassBehavior()` returns a behavior according to the value of `AssetClass`. Defining a default behavior then becomes mandatory, even if in this example all the values of `AssetClass` enum are handled. We can do this by either returning a default implementation of `AssetClassBehavior`, null, or throwing an exception.
 
 Using this defaulting mechanism silences any adding of new value inside the enum. It requires to check any piece of code using `AssetClass` as a conditioner without any guarantee that an oversight has been avoided.
 
