@@ -10,7 +10,7 @@ title: "Java enums? With extra Visitor please!"
 image: 
 ---
 
-Enums can be seen as a group of strongly typed constants. They are usefull to a several use cases: attribute a strong semantic to values, limit and validate available values for data, enhance code readability etc.
+Enums can be seen as a group of strongly typed constants. Their several use cases include: attributing a strong semantic to values, limiting and validating available values for data, enhancing code readability, etc.
 Using enums can be, however, tricky when it is about making decision according to its values. As the enum evolves, every part of the code where it has been used as a condition must be checked. If a lot of decisions has been based upon enum's values, maintaining the code base can become a nightmare: one forgotten verification can lead to a corruption of the system as a whole.
 
 Is there then a way to reduce the impact of enums' evolutions on the code base?
