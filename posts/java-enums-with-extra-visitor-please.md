@@ -115,7 +115,7 @@ assetClass.accept(new AssetClassVisitor<AssetClassBehavior>() {
 });
 ```
 
-It can be observed that each value of `AssetClass` is responsible for call the appropriate method of `AssetClassVisitor`. Values of `AssetClass` can now be ignored as the semantic is brought by the visitor. `AssetClass.AGRICULTURAL` could be renamed `AssetClass.AGRI` without rework needed where the business logic occurs.
+It can be observed that each value of `AssetClass` is responsible for calling the appropriate method of `AssetClassVisitor`. Values of `AssetClass` can now be ignored as the semantic is brought by the visitor. `AssetClass.AGRICULTURAL` could be renamed `AssetClass.AGRI` without changes where the business logic occurs.
 Furthermore, handling default behavior is not required anymore. Possibilities are now scoped to the one provided by the interface.
 
 # Add a new asset class
