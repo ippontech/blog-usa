@@ -165,7 +165,7 @@ public interface AssetClassVisitor<T> {
 }
 ```
 
-After this, the code will light up like a Christmas Tree: it does not compile anymore. Et compiler should be thanked for doing such a great job! All those highlighted errors show that some part of the code are not designed to handle the new value yet. Let's correct this using an exception: the existing features are not available yet for livestock and meat.
+After this, the code will light up like a Christmas Tree: it does not compile anymore. The compiler should be thanked for doing such a great job! All those highlighted errors show that some part of the code is not designed to handle the new value yet. Let's correct this by using an exception: the existing features are not available yet for livestock and meat.
 
 
 ```java
