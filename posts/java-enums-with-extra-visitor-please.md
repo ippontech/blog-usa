@@ -27,7 +27,7 @@ public enum AssetClass {
 }
 ```
 
-This enum can be used to decide which strategy, mapper or any other behavior according to the value of `AssetClass`. This would generally look like the following code:
+This enum can be used to decide which strategy, mapper or any other behavior to use according to the value of `AssetClass`. A general example of this is given in the following code:
 
 ```java
 public AssetClassBehavior getAssetClassBehavior(AssetClass assetClass) throws Exception {
