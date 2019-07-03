@@ -30,19 +30,19 @@ public enum AssetClass {
 This enum can be used to decide which strategy, mapper or any other behavior to use according to the value of `AssetClass`. A general example of this is given in the following code:
 
 ```java
-public AssetClassBehavior getAssetClassBehavior(AssetClass assetClass) throws Exception {
+public AutomatedTradingStrategy getAutomatedTradingStrategy(AssetClass assetClass) {
     switch (assetClass) {
-        case METAL:return new MetalBehavior();
-        case ENERGY: return new EnergyBehavior();
-        case AGRICULTURAL: return new AgriculturalBehavior();
-        default: throw new Exception("Unexpected asset class");
+        case METAL:return new HedgingStrategy();
+        case ENERGY: return new SwingTradingStrategy();
+        case AGRICULTURAL:
+        default: return DayTradingStrategy();
     }
 }
 ```
 
 The switch-case statement is probably the most straightforward way to do this. However, it has several flaws.
 
-The method `getAssetClassBehavior()` returns a behavior according to the value of `AssetClass`. Defining a default behavior then becomes mandatory, even if in this example all the values of `AssetClass` enum are handled. We can do this by either returning a default implementation of `AssetClassBehavior`, null, or throwing an exception.
+The method `getAutomatedTradingStrategy()` returns a behavior according to the value of `AssetClass`. Defining a default behavior then becomes mandatory, even if in this example all the values of `AssetClass` enum are handled. We can do this by either returning a default implementation of `AutomatedTradingStrategy`, null, or throwing an exception.
 
 Using this defaulting mechanism silences any addition of a new value inside the enum. It requires a check of any piece of code using `AssetClass` as a conditioner without any guarantee that an oversight has been avoided.
 
@@ -97,22 +97,24 @@ public enum AssetClass {
 The code is now ready to forget the switch-case and use an implementation of the `AssetClassVisitor`:
 
 ```java
-assetClass.accept(new AssetClassVisitor<AssetClassBehavior>() {
-    @Override
-    public AssetClassBehavior visitMetal() {
-        return new MetalBehavior();
-    }
+public AutomatedTradingStrategy getAutomatedTradingStrategy(AssetClass assetClass) {
+    return assetClass.accept(new AssetClassVisitor<AutomatedTradingStrategy>() {
+        @Override
+        public AutomatedTradingStrategy visitMetal() {
+            return new HedgingStrategy();
+        }
 
-    @Override
-    public AssetClassBehavior visitEnergy() {
-        return new EnergyBehavior();
-    }
+        @Override
+        public AutomatedTradingStrategy visitEnergy() {
+            return new SwingTradingStrategy();
+        }
 
-    @Override
-    public AssetClassBehavior visitAgricultural() {
-        return new AgriculturalBehavior();
-    }
-});
+        @Override
+        public AutomatedTradingStrategy visitAgricultural() {
+            return new DayTradingStrategy();
+        }
+    });
+}
 ```
 
 It can be observed that each value of `AssetClass` is responsible for calling the appropriate method of `AssetClassVisitor`. Values of `AssetClass` can now be ignored as the semantic is brought by the visitor. `AssetClass.AGRICULTURAL` could be renamed `AssetClass.AGRI` without changes where the business logic occurs.
@@ -169,27 +171,29 @@ After this, the code will light up like a Christmas Tree: it does not compile an
 
 
 ```java
-assetClass.accept(new AssetClassVisitor<AssetClassBehavior>() {
-    @Override
-    public AssetClassBehavior visitMetal() {
-        return new MetalBehavior();
-    }
+public AutomatedTradingStrategy getAutomatedTradingStrategy(AssetClass assetClass) {
+    return assetClass.accept(new AssetClassVisitor<AutomatedTradingStrategy>() {
+        @Override
+        public AutomatedTradingStrategy visitMetal() {
+            return new HedgingStrategy();
+        }
 
-    @Override
-    public AssetClassBehavior visitEnergy() {
-        return new EnergyBehavior();
-    }
+        @Override
+        public AutomatedTradingStrategy visitEnergy() {
+            return new SwingTradingStrategy();
+        }
 
-    @Override
-    public AssetClassBehavior visitAgricultural() {
-        return new AgriculturalBehavior();
-    }
+        @Override
+        public AutomatedTradingStrategy visitAgricultural() {
+            return new DayTradingStrategy();
+        }
 
-    @Override
-    public AssetClassBehavior visitLiveStockAndMeat() {
-        throw new NotImplementedException("This feature is not enabled yet for livestock and meat.")
-    }
-});
+        @Override
+        public AutomatedTradingStrategy visitLiveStockAndMeat() {
+            throw new AutomatedTradingNotSupported("Automated trading for Livestock and meat is not allowed.")
+        }
+    });
+}
 ```
  
 # In a nutshell
