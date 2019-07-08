@@ -52,7 +52,7 @@ In case you did not know, the whole JHipster's artwork was updated with a new lo
 
 # Videos
 
-Every talks can be viewed on the youtube channel here (ADD LINK WHEN VIDEOS ARE ONLINE).
+All the talks of the JHipster Conf 2 can be viewed on the [youtube playlist](https://www.youtube.com/playlist?list=PL6IFaLdAcgE3aSgmRyhi6eULdlrwjA5sm).
 
 To resume, JHipster Conf 2019 with its English and French track was a huge success. This success was made possible by having high quality and diversity talks, many thanks to our rockstars speakers! And also thanks to our sponsors: [Ippon Technologies](https://www.ippon.tech/), [Société Générale](https://www.societegenerale.com/), [Microsoft](https://www.microsoft.com/), [Okta](https://www.okta.com/) and [Heroku](https://www.heroku.com/).
 
