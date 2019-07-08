@@ -5,7 +5,7 @@ tags:
 - JHipster
 date: 2019-07-01T17:27:07.000Z
 title: "JHipster Conf 2 - Hottest JHipster Day of the Year"
-image: https://github.com/falydoor/blog-usa/blob/jhipster-conf-2/images/2019/07/jhipster-conf.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/07/jhipster-conf.png
 ---
 
 June 27 was one of the hottest days (90°F) in beautiful Paris, but it was also the hottest JHipster day of the year with its worldwide event: the JHipster Conf 2! 300 people attended (almost twice last year's number) from all over the world with 19 different countries including Australia and South Africa. With English and French tracks, the conference covered many different topics with speakers from the JHipster core team and from big organizations such as Google or Pivotal.
@@ -44,7 +44,7 @@ In case you did not know, JHipster's artwork was updated with a new logo and a w
 
 ## JDL centrict configuration
 
-![JDL](https://github.com/falydoor/blog-usa/blob/jhipster-conf-2/images/2019/07/jdl.png)
+![JDL](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/07/jdl.png)
 
 ## Prettier for Java
 
