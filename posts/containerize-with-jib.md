@@ -6,29 +6,30 @@ tags:
 - Jenkins
 - Docker
 - Nexus
+- Maven
 date: 2019-07-24T20:16:10.000Z
 title: "Containerize your Spring Boot app with JIB"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/07/container-2539942_1920.jpg
 ---
-Java developers are familiar with building war or jar files using their preferred tools, In a Microservice architecture, they will also need to build docker images. 
-Building an image is not always an easy task, a minimum docker knowledge is required, writing a docker file, runing a docker daemon and finally building and publishing an image to a registry.
-Making the Docker build process integrate with your app build tool is becoming more obvious, There are several Maven/Gradle docker plugins that emerge like [Spotify docker plugin](https://github.com/spotify/dockerfile-maven) and [fabric8 Docker plugin](https://github.com/fabric8io/docker-maven-plugin).
-In this article we are going to focus on Jib, an open-source container image builder developed by Google that uses a new approach,
-Jib lets Java build containers using Maven or Gradle without a dockerfile or a docker daemon installed.
+Java developers are familiar with building war or jar files using their preferred tools but in a Microservice architecture, they will also need to build docker images. 
+Building an image is not always an easy task, a minimum of docker knowledge is required, writing a docker file, running a docker daemon, and finally, building and publishing an image to a registry.
+Making the Docker build process integrate with your app build tool is becoming more obvious. There are several Maven/Gradle docker plugins that emerge like [Spotify docker plugin](https://github.com/spotify/dockerfile-maven) and [fabric8 Docker plugin](https://github.com/fabric8io/docker-maven-plugin).
+In this article, we are going to focus on Jib, an open-source container image builder developed by Google that uses a new approach.
+Jib allows for Java build containers using Maven or Gradle without a dockerfile or a docker daemon installed.
 
 
 
 # Docker build flow
-There is many steps between your project and your container being on a registry
+There are many steps between your project and your container being on a registry.
 
 ![01](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/07/docker_build_flow.png)
 
-We need a Dockerfile and the docker daemon installed as root which can bring complexity to a CI/DC pipeline.
+We need a Dockerfile and the docker daemon installed as root, which can bring complexity to a CI/DC pipeline.
 
 # JIB build flow
 ![02](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/07/jib_build_flow.png)
 
-Jib provide a build process that hide all the complexity of a docker build flow
+Jib provides a build process that hides all the complexity of a docker build flow.
 
 # Add JIB to your application
 Jib requires minimal configuration, we just need to add the plugin to the pom.xml and configure the target image :
@@ -58,17 +59,17 @@ stage('build and push docker image') {
     }
 }
 ```
-Jib's build approach separates the Java application into multiple layers, so when there are any code changes, only those changes are rebuilt, rather than the entire application. Jib packs the Java application into a container by deducting what it needs from your Maven or Gradle project, which results in a faster build process.
+Jib's build approach separates the Java application into multiple layers so when there are any code changes, only those changes are rebuilt, rather than the entire application. Jib packs the Java application into a container by deducting what it needs from your Maven or Gradle project, which results in a faster build process.
 
 ![03](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/07/JibBuildJenkins.png)
 
 
 # Advanced Configuration
-For users who require authenticating with private registries, Jib provides [Docker credential helpers](https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin#using-docker-credential-helpers) for AWS Elastic Container Registry and other cloud provider, it also support Nexus private repository.
+For users who require authenticating with private registries, Jib provides [Docker credential helpers](https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin#using-docker-credential-helpers) for AWS Elastic Container Registry and other cloud providers, it also supports Nexus private repository.
 
-Jib also provide [advanced configuration](https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin#extended-usage) for choosing the image, ports etc ...
+Jib also provides [advanced configuration](https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin#extended-usage) for choosing the image, ports, etc ...
 ### Example
-This is example of advanced configuration from the Jib website
+This is an example of an advanced configuration from the Jib website:
 1. The image is built from a base of openjdk:alpine (pulled from Docker Hub)
 1. Pushed to a local private nexus repository localhost:5000/my-image:built-with-jib, localhost:5000 my-image:tag2, and localhost:5000/my-image:latest
 1. Runs by calling java -Xms512m -Xdebug -Xmy:flag=jib-rules -cp app/libs/*:app/resources:app/classes mypackage.MyApp some args
