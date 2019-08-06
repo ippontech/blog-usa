@@ -9,7 +9,7 @@ title: "Innovative Snowflake Features"
 image:
 ---
 I recently attended the Snowflake Partner Bootcamp in Baltimore, and was given the opportunity to learn more about Snowflake. In the following blog, I am going to give a run-down of the innovative features Snowflake offers to its clients and some of the benefits of using them.
-
+---
 # What is Snowflake?
 [Snowflake](https://www.snowflake.com/) is a Data Warehouse as a Service in the cloud. Highly available and fully managed, Snowflake handles the following for you:
 * Authentication
@@ -29,18 +29,20 @@ Snowflake offers a variety of editions which offer differing levels of service. 
 
 ---
 # Why Snowflake?
-Snowflake uses a central data repository for persisted data that is accessible to all compute nodes and processes queries in MPP (Massively Parallel Processing) compute clusters referred to as Virtual Warehouses (we'll address these more later). This unique architecture allows both for easy data management as well as performance benefits and increased scalability.
+Snowflake uses a central data repository for persisted data that is accessible to all compute nodes and processes queries in Massively Parallel Processing compute clusters referred to as Virtual Warehouses. This unique architecture allows both for easy data management as well as performance benefits and increased scalability.
 
 In addition, Snowflake is completely ANSI SQL compliant.
 
 ---
 # Architecture:
-Snowflake's Architecture consists of three layers:
-* Database Storage
-* Query Processing
-* Global Services
+Snowflake's Architecture consists of the three layers stated below. In each of the following sections, I'll talk a little bit about what each layer contributes to Snowflake.
 
-## Storage
+The Three Layers:
+1. [Database Storage](## 1. Database Storage)
+2. [Query Processing](## 2. Query Processing)
+3. [Global Services](## 3. Global Services)
+
+## 1. Database Storage
 Snowflake automatically converts all data stored into an optimized compressed columnar format and encrypts it using AES-256 strong encryption.
 
 ### Micro-Partitions (FDN [^1])
@@ -68,6 +70,7 @@ Snowflake also provides two features which allow a customer to access historical
 * Fail-Safe data storage occurs during the 7 days immediately following the Time-Travel retention period.
 
 Snowflake preserves the state of data for a data retention period (automatically set to one day for all table types). This data retention time limit cannot be disabled on an account level, but can be disabled for individual databases, schemas and tables.
+
 ![Table Types](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/08/Snowflake-Table-Types.png) [source](https://docs.snowflake.net/manuals/user-guide/tables-temp-transient.html#comparison-of-table-types)
 
 As seen above, all table types have a Time-Travel period, but only permanent tables have a Fail-Safe period. Fail-Safe is non-configurable, and is not intended as a means for accessing historical data after the Time-Travel period has elapsed. Fail-Safe is intended for Snowflake to retrieve data that may have been lost or damaged due to extreme operational failures.
@@ -79,7 +82,7 @@ Storage fees are incurred for maintaining data in both Time-Travel and Fail-Safe
 
 *Temporary tables will be deleted once the session ends. One day of Time-Travel on Temporary Tables will only occur if the session is greater than 24 hours in length.*
 
-## Query Processing
+## 2. Query Processing
 The layer of the Snowflake Architecture in which queries are executed using resources provisioned from a cloud provider.
 
 ### Virtual Warehouses
@@ -110,8 +113,8 @@ Multi-Cluster Warehouses allow for the scalability of compute clusters to manage
 #### Credit Usage and Billing
 All costs for compute resources are based on Snowflake Credits. Credits are charged based on the number of Virtual Warehouses used, how long they run and their size. There is a one-to-one relationship between the number of servers in a warehouse and the number of credits they consume per hour. Warehouses are only billed when they are running. Credits are billed per-second, with a 60-second minimum. After 1 minute, all subsequent billing is per-second. When a warehouse is resized, credits are billed only for the additional servers.
 
-## Global Services
-The Global Services layer coordinates and manages the entire Snowflake system. It authenticates users, manages sessions and secures data. In addition, the Global Services layer performs query optimization and compilation as well as managing Virtual Warehouses so that once a transaction on a virtual warehouse is complete, all virtual warehouses see the new data.
+## 3. Global Services
+The Global Services layer coordinates and manages the entire Snowflake system. It authenticates users, manages sessions and secures data. In addition, the Global Services layer performs query optimization and compilation, as well as managing Virtual Warehouses. Using the Global Services layer, Snowflake can ensure that once a transaction on a virtual warehouse is complete, all virtual warehouses see the new data.
 
 All communication to Snowflake is encrypted from end-to-end.
 
@@ -127,8 +130,6 @@ Snowflake automatically manages some clustering and micro-partition metadata. In
 * Number of Micro-Partitions containing values overlapping with each together
 * The depth of overlapping Micro-Partitions
   * This is an indication of how well-clustered a table is, since as this value decreases, the number of pruned columns can increase.
-
-This cache is maintained in the Global Services Layer.
 
 All DML operations take advantage of micro-partition metadata for table maintenance. In addition, some operations are metadata alone, and require no Compute resources in order to complete.
 > Deleting all rows from a table is one of these operations.
@@ -168,7 +169,7 @@ Snowflake currently supports data-sharing between accounts in the same geographi
 * Data Consumers - Can access and query objects in shared data. Consumers pay for compute on shared resources.
 * Reader Account - Consumer without a Snowflake Account or for Accounts not in the same geographic region as the provider. These accounts are created and completely paid for by the Providers. Reader Account Consumers can only read data shared with them.
 
-###Data Sharing for HIPAA Protected Datasets
+### Data Sharing for HIPAA Protected Datasets
 Data in an Enterprise for Sensitive Data (ESD) Account which is HIPAA protected can only be shared with other ESD accounts.
 
 ## Sharing Data
@@ -178,12 +179,12 @@ Shares can only currently be created for other accounts in our region. You recei
 
 ---
 # Supported Data Formats and Types
-##Semi-Structured Data
+## Semi-Structured Data
 Snowflake natively supports the load and access of several types of Semi-Structured data, including JSON, Avro, XML and Parquet.
 
 In order to support loading these data-types, Snowflake has a few specialized data-types. These are:
 * VARIANT - Universal type that can store values of any other type.
-* ARRAY
+* ARRAY - Represents Arrays of arbitrary size with a non-negative integer index and containing values of VARIANT type[^3].
 * OBJECT - Collection of key-value pairs where the key is a non-empty string and the value is of VARIANT type.
 
 ### Accessing Values From JSON
@@ -197,12 +198,15 @@ OR
 SELECT v:key1 FROM (SELECT PARSE_JSON('{"key1":"value1", "key2":2}') as v);
 ```
 
-In addition, if required, data can becast from Variants into SQL types using the **::** operator.
+In addition, if required, data can be cast from Variants into SQL types using the **::** operator.
 
 ### Accessing Data in Arrays (JSON)
-LATERAL FLATTEN() is the function Snowflake provides for accessing data from nested arrays. [For more Information And a Tutorial Click Here!](https://community.snowflake.com/s/article/How-To-Lateral-Join-Tutorial)
+LATERAL FLATTEN() is the function Snowflake provides for accessing data from nested arrays. [For more Information and a Tutorial Click Here!](https://community.snowflake.com/s/article/How-To-Lateral-Join-Tutorial)
 
 
 ---
 [^1] FDN: *Flocon de Neige*, the proprietary file format which Micro-Partitions are stored as.
+
 [^2] When defining a multi-column clustering key, the order of the columns matters. Snowflake recommends ordering columns from lowest to highest cardinality. In addition, when using a particularly high cardinality column, it is recommended to define the clustering key as an expression on that column in order to reduce the number of distinct values.
+
+[^3] Snowflake does not currently support fixed-size arrays or arrays of elements of a specific non-VARIANT type.
