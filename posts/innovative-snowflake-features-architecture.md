@@ -25,13 +25,11 @@ Look at [Snowflake Editions](https://docs.snowflake.net/manuals/user-guide/intro
 
 ---
 # Why Snowflake?
-Snowflake uses a central data repository for persisted data that is accessible to all compute nodes and processes queries in Massively Parallel Processing compute clusters referred to as Virtual Warehouses. This unique architecture allows both for easy data management as well as performance benefits and increased scalability.
-
-In addition, Snowflake is completely ANSI SQL compliant.
+Snowflake's unique architecture allows both for easy data management as well as performance benefits and increased scalability as well as easy data management. In addition, Snowflake is completely ANSI SQL compliant.
 
 ---
 # Architecture:
-Snowflake's Architecture consists of the three layers stated below. In each of the following sections, I'll talk a little bit about what each layer contributes to Snowflake.
+Snowflake uses a central data repository for persisted data that is accessible to all compute nodes and processes queries in Massively Parallel Processing compute clusters referred to as Virtual Warehouses. This Architecture consists of the three layers stated below. In each of the following sections, I'll talk a little bit about what each layer contributes to Snowflake.
 
 The Three Layers:
 1. [Database Storage](## 1. Database Storage)
@@ -49,21 +47,21 @@ When data is loaded into Snowflake, it is automatically divided into **micro-par
 In the image above, the table has 24 rows which have been divided into 4 micro-partitions, organized and sorted by column. By dividing the data into micro-partitions, Snowflake can first prune micro-partitions not needed for the query and then prune by column for the remaining micro-partitions. This results in fewer records traversed and much faster response times.
 
 ### Clustering
-In addition to storing data as micro-partitions, Snowflake also sorts them naturally according to natural dimensions. This *Clustering* is very important to Snowflake data storage, as it can greatly impact query performance. Clustering occurs upon ingestion. As data is loaded, Snowflake co-locates column data with the same values in the same micro-partition if possible.
+In addition to storing data as micro-partitions, Snowflake also sorts them according to natural dimensions. This *Clustering* is very important to Snowflake data storage, as it can greatly impact query performance. Clustering occurs upon ingestion. As data is loaded, Snowflake co-locates column data with the same values in the same micro-partition if possible.
 
 Over time, as a table grows, its naturally defined clustering keys can become stale, resulting in reduced query performance. When this occurs, periodic re-clustering is required. During re-clustering, Snowflake uses the clustering key for a table to reorganize the column data. This deletes all affected records, which Snowflake will re-insert grouped according to the Clustering Key.
 
-#### Clustering Key?
+#### What is a Clustering Key And How Do You Select One?
 A clustering key is one or more columns or expressions that can be used to sort a table. The number of distinct values in a column is a key aspect when selecting clustering keys for a table. It is important to choose a clustering key with a large enough number of distinct values to enable effective query pruning while containing a small enough number of distinct values to allow Snowflake to effectively group rows into micro-partitions.
 
-You should select a clustering key for your table, if queries on your dataset typically use sorting operations or if you typically filter on a column or several. If so, you should consider designating the column or columns as a clustering key for a table [^2].
+You should select a clustering key for your table if queries on your dataset typically use sorting operations or if you typically filter on a column or several. If so, you should consider designating the column or columns as a clustering key for a table [^2].
 
 *You should only cluster when queries will substantially benefit. Much of the time, Snowflake's natural clustering will suffice!*
 
 #### Time-Travel and Fail-Safe
 Snowflake also provides two features which allow a customer to access historical data.
 * Time-Travel facilitate the restoration of deleted objects, Duplicating and backing-up data from key points in the past and analyzing data usage over time.
-* Fail-Safe data storage occurs during the 7 days immediately following the Time-Travel retention period.
+* Fail-Safe data storage occurs for the 7 days immediately following the Time-Travel retention period.
 
 Snowflake preserves the state of data for a data retention period (automatically set to one day for all table types). This data retention time limit cannot be disabled on an account level, but can be disabled for individual databases, schemas and tables.
 
@@ -71,7 +69,7 @@ Snowflake preserves the state of data for a data retention period (automatically
 
 As seen above, all table types have a Time-Travel period, but only permanent tables have a Fail-Safe period. Fail-Safe is non-configurable, and is not intended as a means for accessing historical data after the Time-Travel period has elapsed. Fail-Safe is intended for Snowflake to retrieve data that may have been lost or damaged due to extreme operational failures.
 
-*In case retrieval of data from Fail-Safe is necessary, you must speak to the Snowflake sales team.*
+***In case retrieval of data from Fail-Safe is necessary, you must speak to the Snowflake sales team.***
 
 ##### Storage Costs Associated with Time-Travel and Fail-Safe
 Storage fees are incurred for maintaining data in both Time-Travel and Fail-Safe. These costs are calculated for each 24 hour period from the time the data changed. Snowflake minimizes the amount of storage required for historical data by maintaining only the information needed to restore rows that were updated or deleted (This means that if a table were truncated or dropped, Snowflake will maintain the fully copy). As Temporary and Transient tables only use 1 day of Time-Travel and no Fail-Safe, these should be used to reduce costs.
@@ -82,7 +80,7 @@ Storage fees are incurred for maintaining data in both Time-Travel and Fail-Safe
 The layer of the Snowflake Architecture in which queries are executed using resources provisioned from a cloud provider.
 
 ### Virtual Warehouses
-At their core, virtual warehouses are one or more clusters of servers that provide compute resources. Warehouses are sized in traditional t-shirt sizing, and each size determines the number of servers in each cluster of the warehouse. Size can be managed using SQL or in the Web UI.
+At their core, virtual warehouses are one or more clusters of servers that provide compute resources. Warehouses are sized in traditional t-shirt sizes, and each size determines the number of servers in each cluster of the warehouse. Size can be managed using SQL or in the Web UI.
 
 | Warehouse Size | Servers per Cluster | Credits per Hour | Notes
 | -------------- | ------------------- | ---------------- | -----
@@ -99,7 +97,7 @@ At their core, virtual warehouses are one or more clusters of servers that provi
 
 Warehouses can be resized at any time with no downtime or performance degradation. Any queries already running against the warehouse will complete using the current resource levels. Any queued and new queries will use the newly provisioned resource levels.
 
-By default, Snowflake will automatically suspend an unused warehouse after a period of time. Similarly, Snowflake will automatically resume a warehouse when a query using it is submitted and the warehouse is the current warehouse for the session.
+By default, Snowflake will automatically suspend an unused warehouse after a period of time. Similarly, Snowflake will automatically resume a warehouse when a query using it is submitted and the warehouse is the current warehouse for the session. Both auto-resume and auto-suspend can be turned on and off, though it is highly suggested that both are used since Snowflake **will** charge for any and all ***running*** warehouses. 
 
 #### Multi-Cluster Warehouses
 Multi-Cluster Warehouses allow for the scalability of compute clusters to manage user and query concurrency needs. Typically, a virtual warehouse contains a single cluster of servers. By setting the minimum and maximum number of server clusters, Snowflake will automatically scale warehouses horizontally according to demand.
