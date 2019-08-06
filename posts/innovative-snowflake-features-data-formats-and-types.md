@@ -13,7 +13,7 @@ In the previous blog in this series [Innovative Snowflake Features Part 2: Cachi
 
 ---
 # Data Types
-Snowflake supports 
+Snowflake supports all of the standard SQL data types, but casts them on ingest.
 ## Semi-Structured Data
 Snowflake natively supports the load and access of several types of Semi-Structured data, including JSON, Avro, XML[^4] and Parquet.
 
