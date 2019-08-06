@@ -12,7 +12,8 @@ image:
 In the previous blog in this series [Innovative Snowflake Features Part 2: Caching](), we walked through the three Snowflake Caches and their effect on query performance. In this final blog of the series, we will examine Snowflake's data formats and types as well as how you can load and access Semi-Structured data using Snowflake.
 
 ---
-# Supported Data Formats and Types
+# Data Types
+Snowflake supports 
 ## Semi-Structured Data
 Snowflake natively supports the load and access of several types of Semi-Structured data, including JSON, Avro, XML[^4] and Parquet.
 
