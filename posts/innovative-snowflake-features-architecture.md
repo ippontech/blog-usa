@@ -10,18 +10,7 @@ image:
 
 ---
 
-Earlier this year, Ippon published an [Introduction to Snowflake](https://blog.ippon.tech/introduction-to-snowflake/) post which provided a Snowflake Primer. I recently attended the Snowflake Partner Bootcamp in Baltimore, a four day instructor led training program, and was given the opportunity to learn even more. In this first of three posts, I am going to do an in-depth examination of Snowflake's unique architecture style and some of the benefits resulting from it. Before we get started, I've included a small section on the different Snowflake Editions as well as a link to the Documentation page for them.
-
----
-# Snowflake Editions
-Snowflake offers a variety of editions which offer differing levels of service and features. These include:
-* Standard
-* Premier
-* Enterprise
-* Enterprise for Sensitive data (ESD)
-* Virtual Private Snowflake (VPS)
-
-Look at [Snowflake Editions](https://docs.snowflake.net/manuals/user-guide/intro-editions.html "Snowflake Editions") in the Snowflake Documentation for more information.
+Earlier this year, Ippon published an [Introduction to Snowflake](https://blog.ippon.tech/introduction-to-snowflake/) post which provided a Snowflake Primer. I recently attended the Snowflake Partner Bootcamp in Baltimore, a four day instructor led training program, and was given the opportunity to learn even more. In this first of three posts, I am going to do an in-depth examination of Snowflake's unique architecture style and some of the benefits resulting from it.
 
 ---
 # Why Snowflake?
