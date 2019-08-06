@@ -37,10 +37,10 @@ The Three Layers:
 3. [Global Services](#global-services)
 
 ## Database Storage
-Snowflake automatically converts all data stored into an optimized compressed columnar format (Micro-Partitions) and encrypts it using AES-256 strong encryption.
+Snowflake automatically converts all data stored into an optimized immutable compressed columnar format (Micro-Partitions) and encrypts it using AES-256 strong encryption.
 
 ### Micro-Partitions (FDN [^1])
-When data is loaded into Snowflake, it is automatically divided into **micro-partitions**. Micro-partitions are automatically derived, physical data files which can contain between 50 and 500 MB of uncompressed data. Groups of rows in tables are mapped into individual micro-partitions and are organized in columnar fashion. These micro-partitions are not directly accessible or visible.
+When data is loaded into Snowflake, it is automatically divided into **micro-partitions**. Micro-partitions are automatically derived, physical data files which can contain between 50 and 500 MB of uncompressed data. Groups of rows in tables are mapped into individual micro-partitions and are organized in columnar fashion. These micro-partitions are not directly accessible or visible and are immutable. Any updates to data in a table will result in the deletion and recreation of Micro-Partitions to reflect the new data.
 
 ![Micro-Partitions](https://docs.snowflake.net/manuals/_images/tables-clustered1.png) [source](https://docs.snowflake.net/manuals/_images/tables-clustered1.png)
 
@@ -84,11 +84,11 @@ At their core, virtual warehouses are one or more clusters of servers that provi
 
 | Warehouse Size | Servers per Cluster | Credits per Hour | Notes
 | -------------- | ------------------- | ---------------- | -----
-| X-Small        | 1                   | 1                | Default size for warehouses using CREATE
+| X-Small        | 1                   | 1                | Default size for warehouses created in SQL using CREATE.
 | Small          | 2                   | 2                |
 | Medium         | 4                   | 4                |
 | Large          | 8                   | 8                |
-| X-Large        | 16                  | 16               | Default size for warehouses created in the UI
+| X-Large        | 16                  | 16               | Default size for warehouses created in the UI.
 | 2X-Large       | 32                  | 32               |
 | 3X-Large       | 64                  | 64               |
 | 4X-Large       | 128                 | 128              |
@@ -102,7 +102,7 @@ By default, Snowflake will automatically suspend an unused warehouse after a per
 #### Multi-Cluster Warehouses
 Multi-Cluster Warehouses allow for the scalability of compute clusters to manage user and query concurrency needs. Typically, a virtual warehouse contains a single cluster of servers. By setting the minimum and maximum number of server clusters, Snowflake will automatically scale warehouses horizontally according to demand.
 
-*These cost more than standard Virtual Warehouses and are only available for Enterprise Edition customers and above*
+*These cost more than standard Virtual Warehouses since there are more clusters running and are only available for Enterprise Edition customers and above*
 
 #### Credit Usage and Billing
 All costs for compute resources are based on Snowflake Credits. Credits are charged based on the number of Virtual Warehouses used, how long they run and their size. There is a one-to-one relationship between the number of servers in a warehouse and the number of credits they consume per hour. Warehouses are only billed when they are running. Credits are billed per-second, with a 60-second minimum. After 1 minute, all subsequent billing is per-second.
