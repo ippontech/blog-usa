@@ -14,7 +14,7 @@ Earlier this year, Ippon published an [Introduction to Snowflake](https://blog.i
 
 ---
 # Snowflake Editions
-Snowflake offers a variety of editions which offer differing levels of service. These include:
+Snowflake offers a variety of editions which offer differing levels of service and features. These include:
 * Standard
 * Premier
 * Enterprise
