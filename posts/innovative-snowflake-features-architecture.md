@@ -32,11 +32,11 @@ Snowflake's unique architecture allows both for easy data management as well as 
 Snowflake uses a central data repository for persisted data that is accessible to all compute nodes and processes queries in Massively Parallel Processing compute clusters referred to as Virtual Warehouses. This Architecture consists of the three layers stated below. In each of the following sections, I'll talk a little bit about what each layer contributes to Snowflake.
 
 The Three Layers:
-1. [Database Storage](## 1-database-storage)
-2. [Query Processing](## 2-query-processing)
-3. [Global Services](## 3-global-services)
+1. [Database Storage](#database-storage)
+2. [Query Processing](#query-processing)
+3. [Global Services](#global-services)
 
-## 1. Database Storage
+## Database Storage
 Snowflake automatically converts all data stored into an optimized compressed columnar format (Micro-Partitions) and encrypts it using AES-256 strong encryption.
 
 ### Micro-Partitions (FDN [^1])
@@ -76,7 +76,7 @@ Storage fees are incurred for maintaining data in both Time-Travel and Fail-Safe
 
 *Temporary tables will be deleted once the session ends. One day of Time-Travel on Temporary Tables will only occur if the session is greater than 24 hours in length.*
 
-## 2. Query Processing
+## Query Processing
 The layer of the Snowflake Architecture in which queries are executed using resources provisioned from a cloud provider.
 
 ### Virtual Warehouses
@@ -107,7 +107,7 @@ Multi-Cluster Warehouses allow for the scalability of compute clusters to manage
 #### Credit Usage and Billing
 All costs for compute resources are based on Snowflake Credits. Credits are charged based on the number of Virtual Warehouses used, how long they run and their size. There is a one-to-one relationship between the number of servers in a warehouse and the number of credits they consume per hour. Warehouses are only billed when they are running. Credits are billed per-second, with a 60-second minimum. After 1 minute, all subsequent billing is per-second.
 
-## 3. Global Services
+## Global Services
 The Global Services layer coordinates and manages the entire Snowflake system. It authenticates users, manages sessions and secures data. In addition, the Global Services layer performs query optimization and compilation, as well as managing Virtual Warehouses. Using the Global Services layer, Snowflake can ensure that once a transaction on a virtual warehouse is complete, all virtual warehouses see the new data.
 
 ---
