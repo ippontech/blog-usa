@@ -8,10 +8,12 @@ date: 2019-08-07T10:33:00.000Z
 title: "Innovative Snowflake Features Part 2: Caching"
 image:
 ---
+
 In the previous blog in this series [](), we walked through through the Snowflake Architecture. In this follow-up, we will examine Snowflake's three caches, where they are 'stored' in the Snowflake Architecture and how they improve query performance.
+
 ---
 # Snowflake Caches
-Snowflake uses three caches listed below to improve query performance. In each of the following sections, I will talk about each cache.
+Snowflake uses the three caches listed below to improve query performance. In each of the following sections, I will talk about each cache.
 1. [Metadata Cache](## Metadata Cache)
 2. [Query Result Cache](## Query Result Cache)
 3. [Warehouse Data Cache](## Warehouse Data Cache)
