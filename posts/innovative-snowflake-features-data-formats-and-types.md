@@ -8,7 +8,9 @@ date: 2019-08-07T10:33:00.000Z
 title: "Innovative Snowflake Features Part 3: Data Formats and Data Types"
 image:
 ---
-I recently attended the Snowflake Partner Bootcamp in Baltimore, and was given the opportunity to learn more about Snowflake. In the following blog, I am going to give a run-down of the innovative features Snowflake offers to its clients and some of the benefits of using them.
+
+In the previous blog in this series [Innovative Snowflake Features Part 2: Caching](), we walked through the three Snowflake Caches and their effect on query performance. In this final blog of the series, we will examine Snowflake's data formats and types as well as how you can load and access Semi-Structured data using Snowflake.
+
 ---
 # Supported Data Formats and Types
 ## Semi-Structured Data
