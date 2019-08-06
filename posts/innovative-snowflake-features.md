@@ -180,7 +180,7 @@ Shares can only currently be created for other accounts in our region. You recei
 ---
 # Supported Data Formats and Types
 ## Semi-Structured Data
-Snowflake natively supports the load and access of several types of Semi-Structured data, including JSON, Avro, XML and Parquet.
+Snowflake natively supports the load and access of several types of Semi-Structured data, including JSON, Avro, XML[^4] and Parquet.
 
 In order to support loading these data-types, Snowflake has a few specialized data-types. These are:
 * VARIANT - Universal type that can store values of any other type.
@@ -210,3 +210,5 @@ LATERAL FLATTEN() is the function Snowflake provides for accessing data from nes
 [^2] When defining a multi-column clustering key, the order of the columns matters. Snowflake recommends ordering columns from lowest to highest cardinality. In addition, when using a particularly high cardinality column, it is recommended to define the clustering key as an expression on that column in order to reduce the number of distinct values.
 
 [^3] Snowflake does not currently support fixed-size arrays or arrays of elements of a specific non-VARIANT type.
+
+[^4] XML is supported but is currently on public preview (meaning support for XML parsing and storage is functional, just not released fully into Production).
