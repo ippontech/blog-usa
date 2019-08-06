@@ -5,27 +5,20 @@ tags:
 - Cloud
 - Snowflake
 date: 2019-08-07T10:33:00.000Z
-title: "Innovative Snowflake Features"
+title: "Innovative Snowflake Features Part 1: Architecture"
 image:
 ---
-I recently attended the Snowflake Partner Bootcamp in Baltimore, and was given the opportunity to learn more about Snowflake. In the following blog, I am going to give a run-down of the innovative features Snowflake offers to its clients and some of the benefits of using them.
+Earlier this year, Ippon published an [Introduction to Snowflake](https://blog.ippon.tech/introduction-to-snowflake/) post which provided a Snowflake Primer. I recently attended the Snowflake Partner Bootcamp in Baltimore, a four day instructor led training program, and was given the opportunity to learn even more. In this first of three posts, I am going to do an in-depth examination of Snowflake's unique architecture style and some of the benefits resulting from it. Before we get started, I've included a small section on the different Snowflake Editions as well as a link to the Documentation page for them.
 ---
-# What is Snowflake?
-[Snowflake](https://www.snowflake.com/) is a Data Warehouse as a Service in the cloud. Highly available and fully managed, Snowflake handles the following for you:
-* Authentication
-* Configuration
-* Resource Management
-* Data Protection
-* Availability
-* Optimization
-* Cross Cloud Support
+# Snowflake Editions
+Snowflake offers a variety of editions which offer differing levels of service. These include:
+* Standard
+* Premier
+* Enterprise
+* Enterprise for Sensitive data (ESD)
+* Virtual Private Snowflake (VPS)
 
-Snowflake runs on popular cloud providers, including Microsoft Azure, Amazon Web Services and, as of July 2019, Google Cloud Platform (available in Public Preview).
-
-Snowflake also provides native connectors for a variety of languages in addition to a Web UI and Command Line Interface called SnowSQL.
-
-## Snowflake Editions
-Snowflake offers a variety of editions which offer differing levels of service. Look at [Snowflake Editions](https://docs.snowflake.net/manuals/user-guide/intro-editions.html "Snowflake Editions") in the Snowflake Documentation for more information.
+Look at [Snowflake Editions](https://docs.snowflake.net/manuals/user-guide/intro-editions.html "Snowflake Editions") in the Snowflake Documentation for more information.
 
 ---
 # Why Snowflake?
@@ -43,17 +36,17 @@ The Three Layers:
 3. [Global Services](## 3. Global Services)
 
 ## 1. Database Storage
-Snowflake automatically converts all data stored into an optimized compressed columnar format and encrypts it using AES-256 strong encryption.
+Snowflake automatically converts all data stored into an optimized compressed columnar format (Micro-Partitions) and encrypts it using AES-256 strong encryption.
 
 ### Micro-Partitions (FDN [^1])
 When data is loaded into Snowflake, it is automatically divided into **micro-partitions**. Micro-partitions are automatically derived, physical data files which can contain between 50 and 500 MB of uncompressed data. Groups of rows in tables are mapped into individual micro-partitions and are organized in columnar fashion. These micro-partitions are not directly accessible or visible.
 
 ![Micro-Partitions](https://docs.snowflake.net/manuals/_images/tables-clustered1.png) [source](https://docs.snowflake.net/manuals/_images/tables-clustered1.png)
 
-In the image above, the table has 24 rows which have been divided into 4 micro-partitions, organized and sorted by column. By dividing the data into micro-partitions, Snowflake can, upon receiving a query to process, first prune micro-partitions un-needed for the query and then prune by column for the remaining micro-partitions.
+In the image above, the table has 24 rows which have been divided into 4 micro-partitions, organized and sorted by column. By dividing the data into micro-partitions, Snowflake can first prune micro-partitions not needed for the query and then prune by column for the remaining micro-partitions. This results in fewer records traversed and much faster response times.
 
 ### Clustering
-In addition to storing data as micro-partitions, Snowflake also sorts them naturally according to natural dimensions. This *Clustering* is very important to Snowflake data storage, as it can greatly impact query performance. Clustering occurs upon ingestion and, as data is loaded, Snowflake co-locates column data with the same values in the same micro-partition if possible.
+In addition to storing data as micro-partitions, Snowflake also sorts them naturally according to natural dimensions. This *Clustering* is very important to Snowflake data storage, as it can greatly impact query performance. Clustering occurs upon ingestion. As data is loaded, Snowflake co-locates column data with the same values in the same micro-partition if possible.
 
 Over time, as a table grows, its' naturally defined clustering keys can become stale, resulting in reduced query performance. When this occurs, periodic re-clustering is required. During re-clustering, Snowflake uses the clustering key for a table to reorganize the column data. This deletes all affected records, which Snowflake will re-insert grouped according to the Clustering Key.
 
@@ -99,9 +92,9 @@ At their core, virtual warehouses are one or more clusters of servers that provi
 | 3X-Large       | 64                  | 64               |
 | 4X-Large       | 128                 | 128              |
 
-*It is possible for users to script warehouses of size up to 5XL. 4XL is the maximum size when creating warehouses from the Web UI. If a warehouse of size greater than 5XL is required, the customer will need to work with the Snowflake Sales Team.*
+*It is possible for users to script warehouses of size up to 5XL. 4XL is the maximum size when creating warehouses from the Web UI. If a warehouse of size greater than 5XL is required, you will need to work with the Snowflake Sales Team.*
 
-Warehouses can be resized at any time with no latency. Any queries already running against the warehouse will complete using the current resource levels. Any queued and new queries will use the newly provisioned resource levels.
+Warehouses can be resized at any time with no downtime or performance degradation. Any queries already running against the warehouse will complete using the current resource levels. Any queued and new queries will use the newly provisioned resource levels.
 
 By default, Snowflake will automatically suspend an unused warehouse after a period of time. Similarly, Snowflake will automatically resume a warehouse when a query using it is submitted and the warehouse is the current warehouse for the session.
 
@@ -117,98 +110,12 @@ All costs for compute resources are based on Snowflake Credits. Credits are char
 The Global Services layer coordinates and manages the entire Snowflake system. It authenticates users, manages sessions and secures data. In addition, the Global Services layer performs query optimization and compilation, as well as managing Virtual Warehouses. Using the Global Services layer, Snowflake can ensure that once a transaction on a virtual warehouse is complete, all virtual warehouses see the new data.
 
 All communication to Snowflake is encrypted from end-to-end.
-
 ---
-# Snowflake Caches
-Snowflake uses three caches to improve query performance.
 
-## Metadata Cache
-**Fully Managed in the Global Services Layer**
+During the course of this blog, we've examined each of the three layers of the Snowflake Architecture. We've learned about Micro-partitions and their benefits as well as some of the data recovery features Snowflake provides. Stay tuned for a follow-up where we discuss Snowflake's cache structure for query optimization!
 
-Snowflake automatically manages some clustering and micro-partition metadata. Information maintained includes:
-* The total number of Micro-Partitions
-* Number of Micro-Partitions containing values overlapping with each together
-* The depth of overlapping Micro-Partitions
-  * This is an indication of how well-clustered a table is, since as this value decreases, the number of pruned columns can increase.
-
-All DML operations take advantage of micro-partition metadata for table maintenance. In addition, some operations are metadata alone, and require no Compute resources in order to complete.
-> Deleting all rows from a table is one of these operations.
-
-In addition, micro-partition metadata allows for the precise pruning of columns in micro-partitions:
-1. Snowflake's pruning algorithm first identifies the micro-partitions required to answer a query.
-2. Snowflake will only scan the portion of those micro-partitions that contain the required columns.
-3. Snowflake then uses columnar scanning of partitions so an entire micro-partition is not scanned if a query filters by a single column.
-
-## Query Result Cache
-**Fully Managed in the Global Services Layer**
-
-The query result cache is the fastest way to retrieve data from Snowflake. The query result cache contains a combination of Logical and Statistical metadata on micro-partitions. It used primarily for query compilation, but also for SHOW commands and queries against the INFORMATION_SCHEMA table.
-
-If a user repeats a query that has already been run, and the data hasn’t changed, Snowflake will return the result it returned previously.
-
-Typically, query results are reused if:
-* The user executing the query has the necessary access privileges for all the tables used in the query.
-* The new query matches the previously-executed query (with an exception for spaces).
-* The table data has not changed.
-* The persisted result is still available. *The Query Result Cache will purge query results after 24 hours. This time period will be reset if the query is run again at any point*
-* The micro-partitions have not changed.
-
-## Warehouse Data Cache
-**Implemented in the Virtual Warehouse Layer**
-
-All Snowflake Virtual Warehouses have attached SSD Storage. This SSD Storage is used to store micro-partitions that have been pulled from the Storage Layer. Reading from SSD is faster. As such, when a warehouse receives a query to process, it will first scan the SSD cache for received queries, then pull from the Storage Layer.
-
-The SSD Cache stores query specific FILE HEADER and COLUMN data. This cache type has a finite size and uses the LRU (Least Recently Used) policy to purge data that has not been recently used.
-
----
-# Data Sharing
-Snowflake currently supports data-sharing between accounts in the same geographic region.
-
-## Data Sharing Accounts
-* Data Providers - Share the data. Providers own the data and get billed for its' storage.
-* Data Consumers - Can access and query objects in shared data. Consumers pay for compute on shared resources.
-* Reader Account - Consumer without a Snowflake Account or for Accounts not in the same geographic region as the provider. These accounts are created and completely paid for by the Providers. Reader Account Consumers can only read data shared with them.
-
-### Data Sharing for HIPAA Protected Datasets
-Data in an Enterprise for Sensitive Data (ESD) Account which is HIPAA protected can only be shared with other ESD accounts.
-
-## Sharing Data
-Snowflake uses shares, which are Snowflake objects containing all the information needed to share objects within a database. Shares contain privileges that grant access to the database, schema, or specific objects as well as the Consumer Account Name.
-
-Shares can only currently be created for other accounts in our region. You receive a share as a consumer by creating a database for it either through the Web UI or SnowSQL.
-
----
-# Supported Data Formats and Types
-## Semi-Structured Data
-Snowflake natively supports the load and access of several types of Semi-Structured data, including JSON, Avro, XML[^4] and Parquet.
-
-In order to support loading these data-types, Snowflake has a few specialized data-types. These are:
-* VARIANT - Universal type that can store values of any other type.
-* ARRAY - Represents Arrays of arbitrary size with a non-negative integer index and containing values of VARIANT type[^3].
-* OBJECT - Collection of key-value pairs where the key is a non-empty string and the value is of VARIANT type.
-
-### Accessing Values From JSON
-It is possible to access values from JSON in the two ways below:
-
-```plsql
-SELECT v['key1'] FROM (SELECT PARSE_JSON('{"key1":"value1", "key2":2}') as v);
-```
-OR
-```plsql
-SELECT v:key1 FROM (SELECT PARSE_JSON('{"key1":"value1", "key2":2}') as v);
-```
-
-In addition, if required, data can be cast from Variants into SQL types using the **::** operator.
-
-### Accessing Data in Arrays (JSON)
-LATERAL FLATTEN() is the function Snowflake provides for accessing data from nested arrays. [For more Information and a Tutorial Click Here!](https://community.snowflake.com/s/article/How-To-Lateral-Join-Tutorial)
-
-
+For more information on how Ippon Technologies, a Snowflake partner, can help your organization utilize the benefits of Snowflake for a migration from a traditional Data Warehouse, Data Lake or POC, contact sales@ipponusa.com.
 ---
 [^1] FDN: *Flocon de Neige*, the proprietary file format which Micro-Partitions are stored as.
 
 [^2] When defining a multi-column clustering key, the order of the columns matters. Snowflake recommends ordering columns from lowest to highest cardinality. In addition, when using a particularly high cardinality column, it is recommended to define the clustering key as an expression on that column in order to reduce the number of distinct values.
-
-[^3] Snowflake does not currently support fixed-size arrays or arrays of elements of a specific non-VARIANT type.
-
-[^4] XML is supported but is currently on public preview (meaning support for XML parsing and storage is functional, just not released fully into Production).
