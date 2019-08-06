@@ -7,8 +7,11 @@ tags:
 date: 2019-08-07T10:33:00.000Z
 title: "Innovative Snowflake Features Part 1: Architecture"
 image:
+
 ---
+
 Earlier this year, Ippon published an [Introduction to Snowflake](https://blog.ippon.tech/introduction-to-snowflake/) post which provided a Snowflake Primer. I recently attended the Snowflake Partner Bootcamp in Baltimore, a four day instructor led training program, and was given the opportunity to learn even more. In this first of three posts, I am going to do an in-depth examination of Snowflake's unique architecture style and some of the benefits resulting from it. Before we get started, I've included a small section on the different Snowflake Editions as well as a link to the Documentation page for them.
+
 ---
 # Snowflake Editions
 Snowflake offers a variety of editions which offer differing levels of service. These include:
@@ -48,7 +51,7 @@ In the image above, the table has 24 rows which have been divided into 4 micro-p
 ### Clustering
 In addition to storing data as micro-partitions, Snowflake also sorts them naturally according to natural dimensions. This *Clustering* is very important to Snowflake data storage, as it can greatly impact query performance. Clustering occurs upon ingestion. As data is loaded, Snowflake co-locates column data with the same values in the same micro-partition if possible.
 
-Over time, as a table grows, its' naturally defined clustering keys can become stale, resulting in reduced query performance. When this occurs, periodic re-clustering is required. During re-clustering, Snowflake uses the clustering key for a table to reorganize the column data. This deletes all affected records, which Snowflake will re-insert grouped according to the Clustering Key.
+Over time, as a table grows, its naturally defined clustering keys can become stale, resulting in reduced query performance. When this occurs, periodic re-clustering is required. During re-clustering, Snowflake uses the clustering key for a table to reorganize the column data. This deletes all affected records, which Snowflake will re-insert grouped according to the Clustering Key.
 
 #### Clustering Key?
 A clustering key is one or more columns or expressions that can be used to sort a table. The number of distinct values in a column is a key aspect when selecting clustering keys for a table. It is important to choose a clustering key with a large enough number of distinct values to enable effective query pruning while containing a small enough number of distinct values to allow Snowflake to effectively group rows into micro-partitions.
@@ -110,11 +113,13 @@ All costs for compute resources are based on Snowflake Credits. Credits are char
 The Global Services layer coordinates and manages the entire Snowflake system. It authenticates users, manages sessions and secures data. In addition, the Global Services layer performs query optimization and compilation, as well as managing Virtual Warehouses. Using the Global Services layer, Snowflake can ensure that once a transaction on a virtual warehouse is complete, all virtual warehouses see the new data.
 
 All communication to Snowflake is encrypted from end-to-end.
+
 ---
 
 During the course of this blog, we've examined each of the three layers of the Snowflake Architecture. We've learned about Micro-partitions and their benefits as well as some of the data recovery features Snowflake provides. Stay tuned for a follow-up where we discuss Snowflake's cache structure for query optimization!
 
 For more information on how Ippon Technologies, a Snowflake partner, can help your organization utilize the benefits of Snowflake for a migration from a traditional Data Warehouse, Data Lake or POC, contact sales@ipponusa.com.
+
 ---
 [^1] FDN: *Flocon de Neige*, the proprietary file format which Micro-Partitions are stored as.
 
