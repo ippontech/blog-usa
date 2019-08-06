@@ -97,7 +97,7 @@ At their core, virtual warehouses are one or more clusters of servers that provi
 
 Warehouses can be resized at any time with no downtime or performance degradation. Any queries already running against the warehouse will complete using the current resource levels. Any queued and new queries will use the newly provisioned resource levels.
 
-By default, Snowflake will automatically suspend an unused warehouse after a period of time. Similarly, Snowflake will automatically resume a warehouse when a query using it is submitted and the warehouse is the current warehouse for the session. Both auto-resume and auto-suspend can be turned on and off, though it is highly suggested that both are used since Snowflake **will** charge for any and all ***running*** warehouses. 
+By default, Snowflake will automatically suspend an unused warehouse after a period of time. Similarly, Snowflake will automatically resume a warehouse when a query using it is submitted and the warehouse is the current warehouse for the session. Both auto-resume and auto-suspend can be turned on and off, though it is highly suggested that both are used since Snowflake **will** charge for any and all ***running*** warehouses.
 
 #### Multi-Cluster Warehouses
 Multi-Cluster Warehouses allow for the scalability of compute clusters to manage user and query concurrency needs. Typically, a virtual warehouse contains a single cluster of servers. By setting the minimum and maximum number of server clusters, Snowflake will automatically scale warehouses horizontally according to demand.
@@ -106,11 +106,10 @@ Multi-Cluster Warehouses allow for the scalability of compute clusters to manage
 
 #### Credit Usage and Billing
 All costs for compute resources are based on Snowflake Credits. Credits are charged based on the number of Virtual Warehouses used, how long they run and their size. There is a one-to-one relationship between the number of servers in a warehouse and the number of credits they consume per hour. Warehouses are only billed when they are running. Credits are billed per-second, with a 60-second minimum. After 1 minute, all subsequent billing is per-second. When a warehouse is resized, credits are billed only for the additional servers.
+> For example, if you have an X-Small Warehouse and resize to a Small, you will only be charged one Snowflake Credit.
 
 ## 3. Global Services
 The Global Services layer coordinates and manages the entire Snowflake system. It authenticates users, manages sessions and secures data. In addition, the Global Services layer performs query optimization and compilation, as well as managing Virtual Warehouses. Using the Global Services layer, Snowflake can ensure that once a transaction on a virtual warehouse is complete, all virtual warehouses see the new data.
-
-All communication to Snowflake is encrypted from end-to-end.
 
 ---
 
