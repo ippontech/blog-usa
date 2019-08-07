@@ -9,16 +9,16 @@ title: "Innovative Snowflake Features Part 2: Caching"
 image:
 ---
 
-In the previous blog in this series [Innovative Snowflake Features Part 1: Architecture](), we walked through through the Snowflake Architecture. In this follow-up, we will examine Snowflake's three caches, where they are 'stored' in the Snowflake Architecture and how they improve query performance.
+In the previous blog in this series [Innovative Snowflake Features Part 1: Architecture](https://blog.ippon.tech/innovative-snowflake-features-part-1-architecture), we walked through through the Snowflake Architecture. In this follow-up, we will examine Snowflake's three caches, where they are 'stored' in the Snowflake Architecture and how they improve query performance.
 
 ---
 # Snowflake Caches
 Snowflake uses the three caches listed below to improve query performance. In the following sections, I will talk about each cache.
-1. [Metadata Cache](## Metadata Cache)
-2. [Query Result Cache](## Query Result Cache)
-3. [Warehouse Data Cache](## Warehouse Data Cache)
+1. <a href="#metadata-cache">Metadata Cache</a>
+2. <a href="#query-result-cache">Query Result Cache</a>
+3. <a href="#warehouse-data-cache">Warehouse Data Cache</a>
 
-## Metadata Cache
+<h2 id="metadata-cache">Metadata Cache</h2>
 **Fully Managed in the Global Services Layer**
 
 Snowflake automatically collects and manages metadata about tables and micro-partitions.
@@ -53,6 +53,7 @@ In addition, micro-partition metadata allows for the precise pruning of columns 
 2. Snowflake will only scan the portion of those micro-partitions that contain the required columns.
 3. Snowflake then uses columnar scanning of partitions so an entire micro-partition is not scanned if a query filters by a single column.
 
+<h2 id="query-result-cache">Query Result Cache</h2>
 ## Query Result Cache
 **Fully Managed in the Global Services Layer**
 
@@ -77,7 +78,7 @@ In order to show the tables that are empty, we can do the following:
 ```
 In the above example, the RESULT_SCAN function returns the result set of the previous query pulled from the Query Result Cache!
 
-## Warehouse Data Cache
+<h2 id="warehouse-data-cache">Warehouse Data Cache</h2>
 **Implemented in the Virtual Warehouse Layer**
 
 All Snowflake Virtual Warehouses have attached SSD Storage. This SSD Storage is used to store micro-partitions that have been pulled from the Storage Layer. Reading from SSD is faster. As such, when a warehouse receives a query to process, it will first scan the SSD cache for received queries, then pull from the Storage Layer.
