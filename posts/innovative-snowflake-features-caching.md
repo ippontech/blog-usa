@@ -9,11 +9,11 @@ title: "Innovative Snowflake Features Part 2: Caching"
 image:
 ---
 
-In the previous blog in this series [](), we walked through through the Snowflake Architecture. In this follow-up, we will examine Snowflake's three caches, where they are 'stored' in the Snowflake Architecture and how they improve query performance.
+In the previous blog in this series [Innovative Snowflake Features Part 1: Architecture](), we walked through through the Snowflake Architecture. In this follow-up, we will examine Snowflake's three caches, where they are 'stored' in the Snowflake Architecture and how they improve query performance.
 
 ---
 # Snowflake Caches
-Snowflake uses the three caches listed below to improve query performance. In each of the following sections, I will talk about each cache.
+Snowflake uses the three caches listed below to improve query performance. In the following sections, I will talk about each cache.
 1. [Metadata Cache](## Metadata Cache)
 2. [Query Result Cache](## Query Result Cache)
 3. [Warehouse Data Cache](## Warehouse Data Cache)
@@ -39,7 +39,7 @@ For Clustering, Snowflake Stores:
 * The depth of overlapping Micro-Partitions
   * This is an indication of how well-clustered a table is, since as this value decreases, the number of pruned columns can increase.
 
-All DML operations take advantage of micro-partition metadata for table maintenance. In addition, some operations are metadata alone, and require no Compute resources in order to complete.
+All DML operations take advantage of micro-partition metadata for table maintenance. In addition, some operations are metadata alone, and require no Compute resources in order to complete, like the query below.
 
 ```plsql
 SELECT MIN(L_SHIP_DATE), MAX(L_SHIP_DATE) FROM LINE_ITEM;
@@ -84,7 +84,7 @@ All Snowflake Virtual Warehouses have attached SSD Storage. This SSD Storage is 
 
 The SSD Cache stores query specific FILE HEADER and COLUMN data. This cache type has a finite size and uses the Least Recently Used policy to purge data that has not been recently used.
 ---
-During the course of this blog, we've examined the three cache structures Snowflake uses to improve query performance. For an analysis on the benefits of using the Result Set and Warehouse Storage caches, look at [Caching in Snowflake Data Warehouse](https://community.snowflake.com/s/article/Caching-in-Snowflake-Data-Warehouse).
+During the course of this blog, we've examined the three cache structures Snowflake uses to improve query performance. For a study on the performance benefits of using the Result Set and Warehouse Storage caches, look at [Caching in Snowflake Data Warehouse](https://community.snowflake.com/s/article/Caching-in-Snowflake-Data-Warehouse).
 
 As always, for more information on how Ippon Technologies, a Snowflake partner, can help your organization utilize the benefits of Snowflake for a migration from a traditional Data Warehouse, Data Lake or POC, contact sales@ipponusa.com.
 ---
