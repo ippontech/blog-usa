@@ -7,8 +7,8 @@ tags:
 date: 2019-08-07T10:33:00.000Z
 title: "Innovative Snowflake Features Part 3: Data Formats, Data Types and Data Sharing"
 image:
----
 
+---
 In the previous blog in this series [Innovative Snowflake Features Part 2: Caching](), we walked through the three Snowflake Caches and their effect on query performance. In the final blog of the series, we will examine Snowflake's data formats and types as well as how you can load and access Semi-Structured data using Snowflake.
 
 ---
@@ -79,6 +79,7 @@ The following limitations apply to creating materialized views:
   * MIN
   * MAX
   ***The remaining aggregate functions are all NOT SUPPORTED in materialized views.***
+
 > In addition, the aggregate functions supported in Materialized Views still have some restrictions:
 > * Aggregate functions cannot be nested
 > * Aggregate functions cannot be used in complex expressions
@@ -118,9 +119,8 @@ User Defined Functions:
 * ***MUST*** return a value
 * DDL and UML operations are not permitted in User Defined functions
 
-### Snowflake When to Use What:
+### When to Use What: Procedures vs. User Defined Functions vs. Materialized Views
 | Stored Procedure                              | User Defined Function                                                                   | Materialized View                                                                                   |
-|-----------------------------------------------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
 |-----------------------------------------------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
 | When migrating stored procedures.             | When migrating UDFs.                                                                    | When you have simple group buys/aggregation you need to persist for performance.                    |
 | When you need to perform database operations. | When you need a function to work as part of a SQL statement and it must return a value. | When you have different clustering key needs.                                                       |
@@ -131,15 +131,26 @@ Snowflake allows Constraints to be defined for both tables and columns. All trad
 
 ***Only "NOT NULL" constraints are enforced! All other constraints are maintained only as a Metadata convenience for third party tools.***
 
-## Semi-Structured Data
-Snowflake natively supports the load and access of several types of Semi-Structured data, including JSON, Avro, XML[^1] and Parquet.
+---
+# Semi-Structured Data
+Snowflake natively supports the load and access of several types of Semi-Structured data, including JSON, Avro, XML[^1], ORC and Parquet.
 
-In order to support loading these data-types, Snowflake has a few specialized data-types. These are:
-* VARIANT - Universal type that can store values of any other type.
+In order to support loading these data-types, Snowflake has a few specialized data-types. They are:
+* VARIANT - Universal type that can store values of any other type. Snowflake imposes a compressed size limit of 16MB per row.
 * ARRAY - Represents Arrays of arbitrary size with a non-negative integer index and containing values of VARIANT type[^2].
 * OBJECT - Collection of key-value pairs where the key is a non-empty string and the value is of VARIANT type.
 
-### Accessing Values From JSON
+## Storing Semi-Structured Data
+If you are not sure of the types of operations you will be performing on your semi-structured data, Snowflake recommends storing it in a VARIANT column. Data that is mostly regular and is comprised of mainly Strings and Integers will have similar storage requirements and query performance as VARIANT data as they will as separate columns.
+
+For better pruning and less storage consumption, Snowflake recommends flattening object and key data into separate columns if semi-structured data includes:
+* Dates and Timestamps as String values
+* Numbers within Strings
+* Arrays
+
+Non-native values like dates and timestamps get stored as Strings when loaded into VARIANT columns, and operations on these columns can be slower and also consume more space than if these values are stored in columns with the corresponding type.
+
+## Accessing Values From JSON
 It is possible to access values from JSON in the two ways below:
 
 ```plsql
@@ -152,7 +163,7 @@ SELECT v:key1 FROM (SELECT PARSE_JSON('{"key1":"value1", "key2":2}') as v);
 
 In addition, if required, data can be cast from Variants into SQL types using the **::** operator.
 
-### Accessing Data in Arrays (JSON)
+## Accessing Data in Arrays (JSON)
 LATERAL FLATTEN() is the function Snowflake provides for accessing data from nested arrays. [For more Information and a Tutorial Click Here!](https://community.snowflake.com/s/article/How-To-Lateral-Join-Tutorial)
 
 
