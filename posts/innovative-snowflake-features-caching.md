@@ -54,7 +54,7 @@ In addition, micro-partition metadata allows for the precise pruning of columns 
 3. Snowflake then uses columnar scanning of partitions so an entire micro-partition is not scanned if a query filters by a single column.
 
 <h2 id="query-result-cache">Query Result Cache</h2>
-## Query Result Cache
+
 **Fully Managed in the Global Services Layer**
 
 The query result cache is the fastest way to retrieve data from Snowflake. The query result cache contains a combination of Logical and Statistical metadata on micro-partitions. It used primarily for query compilation, but also for SHOW commands and queries against the INFORMATION_SCHEMA table.
@@ -84,6 +84,7 @@ In the above example, the RESULT_SCAN function returns the result set of the pre
 All Snowflake Virtual Warehouses have attached SSD Storage. This SSD Storage is used to store micro-partitions that have been pulled from the Storage Layer. Reading from SSD is faster. As such, when a warehouse receives a query to process, it will first scan the SSD cache for received queries, then pull from the Storage Layer.
 
 The SSD Cache stores query specific FILE HEADER and COLUMN data. This cache type has a finite size and uses the Least Recently Used policy to purge data that has not been recently used.
+
 ---
 During the course of this blog, we've examined the three cache structures Snowflake uses to improve query performance. For a study on the performance benefits of using the Result Set and Warehouse Storage caches, look at [Caching in Snowflake Data Warehouse](https://community.snowflake.com/s/article/Caching-in-Snowflake-Data-Warehouse).
 
