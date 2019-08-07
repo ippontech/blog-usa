@@ -6,7 +6,7 @@ tags:
 - Snowflake
 date: 2019-08-07T10:33:00.000Z
 title: "Innovative Snowflake Features Part 2: Caching"
-image:
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/08/Snowflake.jpg
 ---
 
 In the previous blog in this series [Innovative Snowflake Features Part 1: Architecture](https://blog.ippon.tech/innovative-snowflake-features-part-1-architecture), we walked through through the Snowflake Architecture. In this follow-up, we will examine Snowflake's three caches, where they are 'stored' in the Snowflake Architecture and how they improve query performance.
