@@ -87,11 +87,3 @@ The SSD Cache stores query specific FILE HEADER and COLUMN data. This cache type
 During the course of this blog, we've examined the three cache structures Snowflake uses to improve query performance. For a study on the performance benefits of using the Result Set and Warehouse Storage caches, look at [Caching in Snowflake Data Warehouse](https://community.snowflake.com/s/article/Caching-in-Snowflake-Data-Warehouse).
 
 As always, for more information on how Ippon Technologies, a Snowflake partner, can help your organization utilize the benefits of Snowflake for a migration from a traditional Data Warehouse, Data Lake or POC, contact sales@ipponusa.com.
----
-[^1] FDN: *Flocon de Neige*, the proprietary file format which Micro-Partitions are stored as.
-
-[^2] When defining a multi-column clustering key, the order of the columns matters. Snowflake recommends ordering columns from lowest to highest cardinality. In addition, when using a particularly high cardinality column, it is recommended to define the clustering key as an expression on that column in order to reduce the number of distinct values.
-
-[^3] Snowflake does not currently support fixed-size arrays or arrays of elements of a specific non-VARIANT type.
-
-[^4] XML is supported but is currently on public preview (meaning support for XML parsing and storage is functional, just not released fully into Production).
