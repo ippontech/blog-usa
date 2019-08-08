@@ -19,6 +19,7 @@ Snowflake uses the three caches listed below to improve query performance. In th
 3. <a href="#warehouse-data-cache">Warehouse Data Cache</a>
 
 <h2 id="metadata-cache">Metadata Cache</h2>
+
 **Fully Managed in the Global Services Layer**
 
 Snowflake automatically collects and manages metadata about tables and micro-partitions.
