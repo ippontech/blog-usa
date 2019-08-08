@@ -5,10 +5,10 @@ tags:
 - Cloud
 - Snowflake
 date: 2019-08-07T10:33:00.000Z
-title: "Innovative Snowflake Features Part 3: Data Formats, Data Types and Data Sharing"
+title: "Innovative Snowflake Features Part 3: Some Data Types and Semi-Structured Data"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/08/Snowflake.jpg
 ---
-In the previous blog in this series [Innovative Snowflake Features Part 2: Caching](), we walked through the three Snowflake Caches and their effect on query performance. In the final blog of the series, we will examine Snowflake's data formats and types as well as how you can load and access Semi-Structured data using Snowflake.
+In the previous blog in this series [Innovative Snowflake Features Part 2: Caching](), we walked through the three Snowflake Caches and their effect on query performance. In the final blog of the series, we will examine some of Snowflake's data formats and types as well as how you can access Semi-Structured data using Snowflake.
 
 ---
 # Data Types
@@ -132,11 +132,11 @@ Snowflake allows Constraints to be defined for both tables and columns. All trad
 
 ---
 # Semi-Structured Data
-Snowflake natively supports the load and access of several types of Semi-Structured data, including JSON, Avro, XML[^1], ORC and Parquet.
+Snowflake natively supports the load and access of several types of Semi-Structured data, including JSON, Avro, XML^[XML is supported but is currently on public preview (meaning support for XML parsing and storage is functional, just not released fully into Production).], ORC and Parquet.
 
 In order to support loading these data-types, Snowflake has a few specialized data-types. They are:
 * VARIANT - Universal type that can store values of any other type. Snowflake imposes a compressed size limit of 16MB per row.
-* ARRAY - Represents Arrays of arbitrary size with a non-negative integer index and containing values of VARIANT type[^2].
+* ARRAY - Represents Arrays of arbitrary size with a non-negative integer index and containing values of VARIANT type^[Snowflake does not currently support fixed-size arrays or arrays of elements of a specific non-VARIANT type.].
 * OBJECT - Collection of key-value pairs where the key is a non-empty string and the value is of VARIANT type.
 
 ## Storing Semi-Structured Data
@@ -174,7 +174,7 @@ INSERT INTO PETS SELECT PARSE_JSON ('{"species":"cat", "name":"Buddy", "is_dog":
 INSERT INTO PETS SELECT PARSE_JSON ('{"species":"cat", "name":"Dog Terror", "is_dog":"false"}');
 
 SELECT a.v, b.key, b.value FROM PETS a, LATERAL FLATTEN(input => a.v) b
-WHERE b.value LIKE '%dog';
+WHERE b.value LIKE '%dog%';
 ```
 This will return the following result set:
 | V                                                         | KEY     | VALUE        |
@@ -220,10 +220,6 @@ LATERAL FLATTEN(t.<variant_column>, recursive=>true) f;
 For a Tutorial on using JSON data with Snowflake look at [Tutorial: JSON Basics](https://docs.snowflake.net/manuals/user-guide/json-basics-tutorial.html).
 
 ---
-During the course of this blog we have examined some of the
+During the course of this blog we have examined Snowflake Views and discussed some of the limitations and best recommended practices for using them. We also explored a few of the functions Snowflake provides in order to access Semi-Structured Data.
 
-
----
-[^1] XML is supported but is currently on public preview (meaning support for XML parsing and storage is functional, just not released fully into Production).
-
-[^2] Snowflake does not currently support fixed-size arrays or arrays of elements of a specific non-VARIANT type.
+As always, for more information on how Ippon Technologies, a Snowflake partner, can help your organization utilize the benefits of Snowflake for a migration from a traditional Data Warehouse, Data Lake or POC, contact sales@ipponusa.com.
