@@ -6,8 +6,7 @@ tags:
 - Snowflake
 date: 2019-08-07T10:33:00.000Z
 title: "Innovative Snowflake Features Part 3: Data Formats, Data Types and Data Sharing"
-image:
-
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/08/Snowflake.jpg
 ---
 In the previous blog in this series [Innovative Snowflake Features Part 2: Caching](), we walked through the three Snowflake Caches and their effect on query performance. In the final blog of the series, we will examine Snowflake's data formats and types as well as how you can load and access Semi-Structured data using Snowflake.
 
@@ -28,7 +27,7 @@ SELECT COUNT(*) FROM DB.SCHEMA.TABLE_NAME;
 ```
 
 ## Views and View Types
-There are two types of views that Snowflake supports: Non-Materialized Views (simply referred to as 'views') and Materialized Views.
+There are two types of views that Snowflake supports: Non-Materialized Views (simply referred to as 'Views') and Materialized Views.
 
 ### Non-Materialized Views (Views)
 This view-type is the most commonly used in Snowflake. Since this view is the named definition of a query, its results are created by executing the query when the view is referenced. The results ***will not*** be stored for future use. As such, performance is slower than with materialized views.
@@ -43,7 +42,7 @@ For security reasons, you may not want to expose the underlying tables or intern
 Secure Views are also the Snowflake recommended method for sharing views to other customers using Snowflake's [Data Sharing](https://docs.snowflake.net/manuals/user-guide/data-sharing-intro.html) option.
 
 ### Materialized Views
-Behaves like a table. A materialized view's results are stored, which allows for faster access, but requires storage space and maintenance, ***both of which will cost Snowflake Credits***.
+Behaves like a table. A materialized view's results are stored, which allows for faster access, but also requires storage space and maintenance, ***both of which will cost Snowflake Credits***.
 
 Snowflake's implementation of Materialized Views provides the following unique characteristics:
 * They can improve the performance of queries that use the same subquery results repeatedly.
@@ -161,10 +160,67 @@ OR
 SELECT v:key1 FROM (SELECT PARSE_JSON('{"key1":"value1", "key2":2}') as v);
 ```
 
-In addition, if required, data can be cast from Variants into SQL types using the **::** operator.
+## Casting and Null Values
+If required, data can be cast from Variants into SQL types using the **::** operator. NULL values in VARIANT columns are stored as a string containing the word "null" which allows for the easy differentiation of "null" values from values that are absent, which would produce an SQL NULL. To convert a VARIANT "null" value to SQL NULL, cast it as a String.
 
-## Accessing Data in Arrays (JSON)
-LATERAL FLATTEN() is the function Snowflake provides for accessing data from nested arrays. [For more Information and a Tutorial Click Here!](https://community.snowflake.com/s/article/How-To-Lateral-Join-Tutorial)
+## Accessing Data
+The FLATTEN function explodes nested values into separate columns. You can use the function to query results in a WHERE clause in the following manner:
+
+```plsql
+CREATE TABLE PETS(v VARIANT);
+
+INSERT INTO PETS SELECT PARSE_JSON ('{"species":"dog", "name":"Fido", "is_dog":"true"}');
+INSERT INTO PETS SELECT PARSE_JSON ('{"species":"cat", "name":"Buddy", "is_dog":"false"}');
+INSERT INTO PETS SELECT PARSE_JSON ('{"species":"cat", "name":"Dog Terror", "is_dog":"false"}');
+
+SELECT a.v, b.key, b.value FROM PETS a, LATERAL FLATTEN(input => a.v) b
+WHERE b.value LIKE '%dog';
+```
+This will return the following result set:
+| V                                                         | KEY     | VALUE        |
+|-----------------------------------------------------------|---------|--------------|
+| { "is_dog":"true", "name":"Fido", "species":"dog"}        | species | "dog"        |
+
+### FLATTEN to List Keys
+When working with unfamiliar semi-structured data, you can use the FLATTEN function with the RECURSIVE argument to return the list of distinct key names in all nested elements in an object like so:
+
+```plsql
+SELECT REGEXP_REPLACE(f.path, '\\[[0-9]+\\]', '[]') as "Path",
+  TYPEOF(f.value) as "Type",
+  COUNT(*) as "Count"
+FROM <table>,
+LATERAL FLATTEN(<variant_column>, RECURSIVE=>true) f
+GROUP BY 1, 2 ORDER BY 1, 2;
+```
+
+I did this for the PETS table we created above and received the output below. Note that the types for all the columns are VARCHAR, since we saved the entire JSON as a VARIANT column in the PETS table.
+| Path    | Type    | Count |
+|---------|---------|-------|
+| is_name | VARCHAR | 3     |
+| name    | VARCHAR | 3     |
+| species | VARCHAR | 3     |
+
+### FLATTEN to List Paths in Objects
+Similar to above, where we used FLATTEN with the RECURSIVE argument to list keys, we can use the same combination to retrieve all the keys and paths in an object:
+```plsql
+SELECT
+  t.<variant_column>,
+  f.seq,
+  f.key,
+  f.path,
+  REGEXP_COUNT(f.path, '\\.|\\[') +1 as level,
+  TYPEOF(f.value) as "Type",
+  f.index,
+  f.value as "Current Level Value",
+  f.this as "Above Level Value"
+FROM <table> t,
+LATERAL FLATTEN(t.<variant_column>, recursive=>true) f;
+```
+
+For a Tutorial on using JSON data with Snowflake look at [Tutorial: JSON Basics](https://docs.snowflake.net/manuals/user-guide/json-basics-tutorial.html).
+
+---
+During the course of this blog we have examined some of the
 
 
 ---
