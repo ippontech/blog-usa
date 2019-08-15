@@ -71,13 +71,13 @@ CREATE OR REPLACE PROCEDURE stproc1()
 
 The parameters of stproc1():
 1. ```CREATE OR REPLACE PROCEDURE stproc1()```
-  * Specifies the name (and optionally one or more arguments/inputs) for the stored procedure. ^[The name does not need to be unique in a schema since procedures are identified by both name and arguments. In this way, you can have overloaded procedures, as long as the procedures differ by number of arguments or the argument type.]
+  Specifies the name (and optionally one or more arguments/inputs) for the stored procedure. ^[The name does not need to be unique in a schema since procedures are identified by both name and arguments. In this way, you can have overloaded procedures, as long as the procedures differ by number of arguments or the argument type.]
 2. ```RETURNS array```
-  * Specifies the results returned by the stored procedure. This return value cannot be used since the call cannot be a part of an expression.
+  Specifies the results returned by the stored procedure. This return value cannot be used since the call cannot be a part of an expression.
 3. ```LANGUAGE javascript```
-  * Specifies what language the stored procedure is written in.  Currently, JavaScript is the only language supported; specifying any other language will result in an error message.
+  Specifies what language the stored procedure is written in.  Currently, JavaScript is the only language supported; specifying any other language will result in an error message.
 4. ```AS $$ <procedure_logic> $$;```
-  * Defines the JavaScript code to be executed as the Stored Procedure. Snowflake does not validate the code at stored procedure creation time; the procedure will always be created successfully. If the code is not valid, errors will be returned when the stored procedure is called. The delimiters around the JavaScript code can either be single-quotes or '$$'. Using '$$' makes it easier to write procedures using single-quotes.
+  Defines the JavaScript code to be executed as the Stored Procedure. Snowflake does not validate the code at stored procedure creation time; the procedure will always be created successfully. If the code is not valid, errors will be returned when the stored procedure is called. The delimiters around the JavaScript code can either be single-quotes or '$$'. Using '$$' makes it easier to write procedures using single-quotes.
 
 There are also several optional parameters that can be specified in a CREATE PROCEDURE statement:
 * ```CALLED ON NULL INPUT``` or ```RETURNS NULL ON NULL INPUT | STRICT```
@@ -137,6 +137,7 @@ Snowflake will automatically convert SQL data types to JavaScript data types and
 
 Here is a table which shows the Snowflake SQL data types and their corresponding JavaScript data types:
 ![SQL Data Type to JavaScript Data Type Conversion Table](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/08/Snowflake-SQL-to-JavaScript-Type-Conversion-Table.png) [source](https://docs.snowflake.net/manuals/sql-reference/stored-procedures-usage.html#converting-from-sql-to-javascript)
+
 Not all Snowflake SQL data types have a corresponding JavaScript data type. JavaScript does not directly support the INTEGER or NUMBER data types. In these cases, you should convert the SQL data type to an appropriate alternative data type.^[SQL INTEGER can be converted to SQL FLOAT which will be mapped to JavaScript number]
 
 ## Session State in a Stored Procedure
@@ -183,8 +184,8 @@ Owner's Rights Stored Procedures adhere to the following rules in a session:
 
 ### Choosing between Owner's Rights and Caller's Rights
 Create a stored procedure as an owner's rights stored procedure if **all** of the following is true:
-* A task needs to be delegated to another user who will run with owner's privileges not their own.
-  * Ex: If you need a user without DELTE privilege on a table to be able to call a procedure to delete old data, but not current data
+* A task needs to be delegated to another user who will run with owner's privileges, not their own.
+  * Ex: If you need a user without DELETE privilege on a table to be able to call a procedure to delete old data, but not current data.
 * The restrictions on Owner's Rights Stored Procedures (discussed in the section above) will not prevent a procedure from working as intended.
 
 Create a stored procedure as a caller's rights stored procedure if the following is true:
@@ -200,4 +201,5 @@ To finish off our discussion of Snowflake Stored Procedures, I am going to delve
 During this blog, we've examined Snowflake Stored Procedures from Creation to Execution. In addition, we've discussed some of the key differences between stored procedures and user defined functions as well as examined session state and the two 'types' of procedures Snowflake provides. To round out procedures, we briefly viewed access control in Snowflake and how privileges can affect procedure execution.
 
 For more information on how Ippon Technologies, a Snowflake partner, can help your organization utilize the benefits of Snowflake for a migration from a traditional Data Warehouse, Data Lake or POC, contact sales@ipponusa.com.
+
 ---
