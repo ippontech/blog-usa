@@ -15,7 +15,7 @@ In the previous blog in this series [Innovative Snowflake Features Part 2: Cachi
 Snowflake supports all of the standard SQL data types, with a few differences.
 
 ## Object Names
-Object names need to be unique within a given container. The same table name can exist in different schemas and/or different databases. The same schema name can exist in different databases. This is legal in Snowflake since the objects themselves are unique. Only their names are shared. You can access objects in Snowflake in one of 2 ways:
+Object names need to be unique within a given container. The same table name can exist in different schemas and/or different databases. The same schema name can exist in different databases. This is legal in Snowflake since the objects themselves are unique. Only their names are shared. You can access objects in Snowflake in one of two ways:
 
 ```plsql
 USE DATABASE DB;
