@@ -90,7 +90,7 @@ The following limitations apply when creating materialized views:
 * Snowflake's Time Travel feature is not supported on materialized views
 
 #### Limitations on Using Materialized Views
-To ensure that materialized views remain consistent with the base table on which they are defined, most DML operations are banned. Truncating a materialized view is supported, but not recommended. See [TRUNCATE MATERIALIZED VIEW](https://docs.snowflake.net/manuals/sql-reference/sql/truncate-materialized-view.html) for more information. You also cannot clone a materialized view directly. If you clone a schema or DB containing, the materialized view, however, the view will be cloned and included in the new schema or DB.
+To ensure that materialized views remain consistent with the base table on which they are defined, most DML operations are banned. Truncating a materialized view is supported, but not recommended. See [TRUNCATE MATERIALIZED VIEW](https://docs.snowflake.net/manuals/sql-reference/sql/truncate-materialized-view.html) for more information. You also cannot clone a materialized view directly. If you clone a schema or DB containing the materialized view, however, the view will be cloned and included in the new schema or DB.
 
 Time Travel is not supported and Materialized Views are not monitored by Snowflake [Resource Monitors](https://docs.snowflake.net/manuals/user-guide/resource-monitors.html).
 
