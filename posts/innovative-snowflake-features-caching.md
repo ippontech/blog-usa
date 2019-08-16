@@ -79,6 +79,7 @@ To show the empty tables, we can do the following:
 In the above example, the RESULT_SCAN function returns the result set of the previous query pulled from the Query Result Cache!
 
 <h2 id="warehouse-data-cache">Warehouse Data Cache</h2>
+
 **Implemented in the Virtual Warehouse Layer**
 
 All Snowflake Virtual Warehouses have attached SSD Storage. This SSD storage is used to store micro-partitions that have been pulled from the Storage Layer. Reading from SSD is faster. As such, when a warehouse receives a query to process, it will first scan the SSD cache for received queries, then pull from the Storage Layer.
