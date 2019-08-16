@@ -14,6 +14,7 @@ In the previous blog in this series [Innovative Snowflake Features Part 2: Cachi
 # Data Types
 Snowflake supports all of the standard SQL data types, with a few differences.
 
+## Object Names
 Object names need to be unique within a given container. The same table name can exist in different schemas and/or different databases. The same schema name can exist in different databases. This is legal in Snowflake since the objects themselves are unique. Only their names are shared. You can access objects in Snowflake in one of 2 ways:
 
 ```plsql
@@ -33,7 +34,7 @@ There are two types of views that Snowflake supports: Non-Materialized Views (si
 This view-type is the most commonly used in Snowflake. Since this view is the named definition of a query, its results are created by executing the query when the view is referenced. The results ***will not*** be stored for future use. As such, performance is slower than with materialized views.
 
 #### Secure Views
-When creating simple views in Snowflake, some of the internal optimizations require access to the underlying data in the base table(s) for the view. This may allow some data which is hidden from users of the view to be exposed through user-defined functions or other programmatic methods. In addition, the query expressions used to create a standard view is visible to users in the SHOW VIEWS command, GET_DDL utility function, VIEWS Information Schema view, and the Query Profiler in the Web Interface.
+When creating simple views in Snowflake, some of the internal optimizations require access to the underlying data in the base table(s) for the view. This may allow some data which is hidden from users of the view to be exposed through user-defined functions or other programmatic methods. The query expressions used to create a standard view is also visible to users in the SHOW VIEWS command, GET_DDL utility function, VIEWS Information Schema view, and the Query Profiler in the Web Interface.
 
 For security reasons, you may not want to expose the underlying tables or internal structures for a view. With secure views, the view definition and details are only available to authorized users.
 
@@ -52,7 +53,7 @@ Snowflake's implementation of Materialized Views provides the following unique c
 For a comparison of materialized views with tables, regular views and cached results, refer to [Working With Materialized Views](https://docs.snowflake.net/manuals/user-guide/views-materialized.html#comparison-with-tables-regular-views-and-cached-results).
 
 #### Limitations on Creating Materialized Views
-The following limitations apply to creating materialized views:
+The following limitations apply when creating materialized views:
 * A materialized view can query only a single table.
 * The self-join of a materialized view is not allowed.
 * The query cannot contain set operators like UNION or INTERSECT.
@@ -61,7 +62,7 @@ The following limitations apply to creating materialized views:
   * A regular view
   * A User Defined Table Function
 * A materialized view cannot include:
-  * User Defined Functions
+  * User-Defined Functions
   * Window Functions
   * HAVING clauses
   * ORDER BY clause
@@ -79,11 +80,11 @@ The following limitations apply to creating materialized views:
   * MAX
   ***The remaining aggregate functions are all NOT SUPPORTED in materialized views.***
 
-> In addition, the aggregate functions supported in Materialized Views still have some restrictions:
+> The aggregate functions supported in Materialized Views still have some restrictions:
 > * Aggregate functions cannot be nested
 > * Aggregate functions cannot be used in complex expressions
 > * DISTINCT cannot be combined with Aggregate Functions
-> * In a Materialized View, the aggregate functions COUNT, MIN, MAX and SUM can be used as aggregate functions but not window functions. They also cannot be used with the OVER clause.
+> * In a Materialized View, the aggregate functions COUNT, MIN, MAX, and SUM can be used as aggregate functions but not window functions. They also cannot be used with the OVER clause.
 
 * Functions used in a materialized view must be deterministic
 * Snowflake's Time Travel feature is not supported on materialized views
@@ -94,7 +95,7 @@ To ensure that materialized views remain consistent with the base table on which
 Time Travel is not supported and Materialized Views are not monitored by Snowflake [Resource Monitors](https://docs.snowflake.net/manuals/user-guide/resource-monitors.html).
 
 ### Snowflake View Limitations
-View definitions in Snowflake *CANNOT* be updated using ALTER VIEW. You must recreate the view with the new definition. In addition, changes to tables are not immediately propagated to views created on the table.
+View definitions in Snowflake *CANNOT* be updated using ALTER VIEW. You must recreate the view with the new definition. Changes to tables are also not immediately propagated to views created on the table.
 > Dropping a column on a table may make the views on that table invalid.
 
 Views are read-only, meaning you cannot execute DML statements directly on a view. If behavior such as this is necessary, you can use a view in a subquery within a DML statement that updates the underlying base table.
@@ -103,17 +104,17 @@ Views are read-only, meaning you cannot execute DML statements directly on a vie
 DELETE FROM MY_TABLE WHERE COL_1 > (SELECT AVG(COL_1) from VIEW_1);
 ```
 
-## User Defined Functions
-Snowflake supports User Defined Functions to perform operations not available through built-in functions provided by Snowflake. SQL and JavaScript are both supported. They can be insecure or secure and can be defined to return a singular scalar value or a set of rows.
+## User-Defined Functions
+Snowflake supports User-Defined Functions to perform operations not available through built-in functions provided by Snowflake. SQL and JavaScript are both supported. They can be insecure or secure and can be defined to return a singular scalar value or a set of rows.
 
-### UDFs vs. Stored Procedures
+### User-Defined Functions vs. Stored Procedures
 Stored Procedure:
 * Invoked as a call to a single statement
 * ***MAY*** return a value
 * Does not handle returned values
 * JavaScript in a stored procedure calling another can handle return values.
 
-User Defined Functions:
+User-Defined Functions:
 * Called inside another statement
 * ***MUST*** return a value
 * DDL and UML operations are not permitted in User Defined functions
@@ -128,13 +129,13 @@ User Defined Functions:
 ### Constraints:
 Snowflake allows Constraints to be defined for both tables and columns. All traditional constraint types are supported: Unique, Primary, Foreign Key, NOT NULL.
 
-***Only "NOT NULL" constraints are enforced! All other constraints are maintained only as a Metadata convenience for third party tools.***
+***Only "NOT NULL" constraints are enforced! All other constraints are maintained only as a Metadata convenience for third-party tools.***
 
 ---
 # Semi-Structured Data
 Snowflake natively supports the load and access of several types of Semi-Structured data, including JSON, Avro, XML^[XML is supported but is currently on public preview (meaning support for XML parsing and storage is functional, just not released fully into Production).], ORC and Parquet.
 
-In order to support loading these data-types, Snowflake has a few specialized data-types. They are:
+To support loading these data structures, Snowflake has a few specialized data-types. They are:
 * VARIANT - Universal type that can store values of any other type. Snowflake imposes a compressed size limit of 16MB per row.
 * ARRAY - Represents Arrays of arbitrary size with a non-negative integer index and containing values of VARIANT type^[Snowflake does not currently support fixed-size arrays or arrays of elements of a specific non-VARIANT type.].
 * OBJECT - Collection of key-value pairs where the key is a non-empty string and the value is of VARIANT type.
@@ -142,7 +143,7 @@ In order to support loading these data-types, Snowflake has a few specialized da
 ## Storing Semi-Structured Data
 If you are not sure of the types of operations you will be performing on your semi-structured data, Snowflake recommends storing it in a VARIANT column. Data that is mostly regular and is comprised of mainly Strings and Integers will have similar storage requirements and query performance as VARIANT data as they will as separate columns.
 
-For better pruning and less storage consumption, Snowflake recommends flattening object and key data into separate columns if semi-structured data includes:
+For better pruning and less storage consumption, Snowflake recommends flattening object and key data into separate columns if the semi-structured data include the following:
 * Dates and Timestamps as String values
 * Numbers within Strings
 * Arrays
@@ -193,7 +194,7 @@ LATERAL FLATTEN(<variant_column>, RECURSIVE=>true) f
 GROUP BY 1, 2 ORDER BY 1, 2;
 ```
 
-I did this for the PETS table we created above and received the output below. Note that the types for all the columns are VARCHAR, since we saved the entire JSON as a VARIANT column in the PETS table.
+I did this for the PETS table we created above and received the output below. Note that the types for all the columns are VARCHAR since we saved the entire JSON as a VARIANT column in the PETS table.
 | Path    | Type    | Count |
 |---------|---------|-------|
 | is_name | VARCHAR | 3     |
@@ -201,7 +202,7 @@ I did this for the PETS table we created above and received the output below. No
 | species | VARCHAR | 3     |
 
 ### FLATTEN to List Paths in Objects
-Similar to above, where we used FLATTEN with the RECURSIVE argument to list keys, we can use the same combination to retrieve all the keys and paths in an object:
+As above, where we used FLATTEN with the RECURSIVE argument to list the keys, we can use the same combination to retrieve all the keys and paths in an object:
 ```plsql
 SELECT
   t.<variant_column>,
@@ -217,9 +218,9 @@ FROM <table> t,
 LATERAL FLATTEN(t.<variant_column>, recursive=>true) f;
 ```
 
-For a Tutorial on using JSON data with Snowflake look at [Tutorial: JSON Basics](https://docs.snowflake.net/manuals/user-guide/json-basics-tutorial.html).
+For a Tutorial on using JSON data with Snowflake look at [Tutorial: JSON Basics](https://docs.snowflake.net/manuals/user-guide/json-basics-tutorial.html). For a full list of built-in functions, Snowflake provides to build and access Semi-Structured Data, refer to [Snowflake SemiStructured Data Functions](https://docs.snowflake.net/manuals/sql-reference/functions-semistructured.html).
 
 ---
-During the course of this blog we have examined Snowflake Views and discussed some of the limitations and best recommended practices for using them. We also explored a few of the functions Snowflake provides in order to access Semi-Structured Data.
+During this blog, we have examined Snowflake Views and discussed some of the limitations and best-recommended practices for using them. We also explored a few of the functions Snowflake provides to access Semi-Structured Data.
 
 As always, for more information on how Ippon Technologies, a Snowflake partner, can help your organization utilize the benefits of Snowflake for a migration from a traditional Data Warehouse, Data Lake or POC, contact sales@ipponusa.com.
