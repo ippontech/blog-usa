@@ -85,6 +85,9 @@ All Snowflake Virtual Warehouses have attached SSD Storage. This SSD storage is 
 
 The SSD Cache stores query-specific FILE HEADER and COLUMN data. This cache type has a finite size and uses the Least Recently Used policy to purge data that has not been recently used.
 
+### How does Snowflake Reconcile Cached Data when Underlying Data Changes?
+Each query submitted to a Snowflake Virtual Warehouse operates on the data set committed at the beginning of query execution. The query optimizer will check the freshness of each segment of data in the cache for the assigned compute cluster while building the query plan. This query plan will include replacing any segment of data which needs to be updated. Each virtual warehouse behaves independently and overall system data freshness is handled by the Global Services Layer as queries and updates are processed.
+
 ---
 During this blog, we've examined the three cache structures Snowflake uses to improve query performance. For a study on the performance benefits of using the ResultSet and Warehouse Storage caches, look at [Caching in Snowflake Data Warehouse](https://www.analytics.today/blog/caching-in-snowflake-data-warehouse).
 
