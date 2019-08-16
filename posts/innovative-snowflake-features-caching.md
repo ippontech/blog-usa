@@ -86,6 +86,6 @@ All Snowflake Virtual Warehouses have attached SSD Storage. This SSD storage is 
 The SSD Cache stores query-specific FILE HEADER and COLUMN data. This cache type has a finite size and uses the Least Recently Used policy to purge data that has not been recently used.
 
 ---
-During this blog, we've examined the three cache structures Snowflake uses to improve query performance. For a study on the performance benefits of using the ResultSet and Warehouse Storage caches, look at [Caching in Snowflake Data Warehouse](https://community.snowflake.com/s/article/Caching-in-Snowflake-Data-Warehouse).
+During this blog, we've examined the three cache structures Snowflake uses to improve query performance. For a study on the performance benefits of using the ResultSet and Warehouse Storage caches, look at [Caching in Snowflake Data Warehouse](https://www.analytics.today/blog/caching-in-snowflake-data-warehouse).
 
 As always, for more information on how Ippon Technologies, a Snowflake partner, can help your organization utilize the benefits of Snowflake for a migration from a traditional Data Warehouse, Data Lake or POC, contact sales@ipponusa.com.
