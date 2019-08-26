@@ -31,6 +31,7 @@ In this post, we’ll describe the hybrid cloud concept, the <a href="#benefits"
 <h2 id="architecture">Ippon's Approach</h2>
 This approach allows customers to seamlessly integrate the best features from each cloud into one “best of the breed” infrastructure. Strategically combining and modernizing existing environments while expanding into one or more clouds.  We have created a reference architecture using proven technologies that supports the view of multiple cloud vendors (including on-prem) as a single cloud.  The following diagram illustrates the high-level architecture.
 
+
 ![alternate text](https://github.com/ippontech/blog-usa/blob/master/images/2019/08/hybrid-cloud-architecture.png)
 
 ### Ippon selects the following software for our solution:
