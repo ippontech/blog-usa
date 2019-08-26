@@ -10,7 +10,7 @@ tags:
 - POC
 date: 2019-08-26T12:00:00.000Z
 title: "Hybric Cloud - Cloud Responsibly"
-image: https://github.com/ippontech/blog-usa/blob/master/images/2019/08/hybrid-cloud-architecture.png
+image: https://github.com/ippontech/blog-usa/blob/master/images/2019/08/hybrid-cloud.jpg
 ---
 
 Moving from on-prem to the cloud via “forklift migration”, where legacy systems are dumped into a cloud-based host, is inefficient and ineffective. The goal should be to strategically extend into the cloud without abandoning the on-prem infrastructure. Instead, we will incrementally move services to the cloud, leveraging the advantages of the cloud platform while retaining the value of on-prem where appropriate. This flexibility allows us to treat cloud vendors as interchangeable based upon cost/value criteria driven by the needs of the business. 
@@ -31,7 +31,7 @@ In this post, we’ll describe the hybrid cloud concept, the <a href="#benefits"
 <h2 id="architecture">Ippon's Approach</h2>
 This approach allows customers to seamlessly integrate the best features from each cloud into one “best of the breed” infrastructure. Strategically combining and modernizing existing environments while expanding into one or more clouds.  We have created a reference architecture using proven technologies that supports the view of multiple cloud vendors (including on-prem) as a single cloud.  The following diagram illustrates the high-level architecture.
 
-![alternate text](https://github.com/ippontech/blog-usa/blob/master/images/2019/08/hybrid-cloud.jpg)
+![alternate text](https://github.com/ippontech/blog-usa/blob/master/images/2019/08/hybrid-cloud-architecture.png)
 
 ### Ippon selects the following software for our solution:
 - Scheduler/Orchestration - Nomad
