@@ -19,16 +19,10 @@ Moving from on-prem to the cloud via “forklift migration”, where legacy syst
 
 ---
 
-
-
-
 <h2 id="concept">Concept</h2>
 Hybrid Cloud is about logically bringing data center environments closer together. Network engineers may view this as the evolution of North-South traffic being treated as East-West. In this context a data center can be a traditional colocation facility, a cloud provider, serverless provider, or SaaS provider. 
 
 As infrastructure technology has improved, the logical boundary where we naturally segment our infrastructure moved. Data center to data center was a natural boundary to designate as WAN traffic for years. Introducing adjacent data centers in close proximity as “availability zones” challenged the idea of a brick-and-mortar data center being the WAN-distance boundary for infrastructure. Regional replication and multi-master technology has further moved the boundary. Now, the only true boundary for infrastructure segmentation is latency.
-
-<h2>Example</h2>
-Hybrid Cloud is about running your infrastructure where it makes sense. For example, a finance company may be running heavy computations in November and December so instead of running on-prem they can burst their workload to the cloud, temporarily leasing resources. Having a hybrid cloud allows them to transition their data back to on-prem when complete, taking advantage of the cloud’s resources but only when necessary.
 
 <h2 id="benefits">What are the benefits?</h2>
 
@@ -61,6 +55,13 @@ The JHipster Gateway communicates with Keycloak to perform authentication and au
 The microservices are load balanced by Fabio, a fine grained application router that routes subsets of URLs to different instances of micro services. The service discovery engine, Consul, finds services in the network, health checks them, and notifies Fabio of what services are healthy/available. The container technology, Nomad, defines services to be deployed (Docker) for Consul assigning them names, ports, and tags to tell Fabio what type of service it is.
 
 The arrowed lines represent the request flow through the deployed application. The user interface is a single page application (SPA) that obtains content from the gateway and submits REST calls for data to the gateway. The gateway forwards requests to Fabio which are then load balanced and routed to the appropriate microservice to be serviced. Additionally, microservices can leverage Kafka streams to support queuing and asynchronous processing for applications having those needs.
+
+<h2>Example</h2>
+Hybrid Cloud is about running your infrastructure where it makes sense. For example, the diagram below shows an application in AWS so that it’s fault tolerant, and it uses Fabio which routes to microservices either on-prem or in the cloud depending on whether it’s a compute-heavy request (cloud) or something simple like a lookup (on-prem). While the federated directory and user authentication is kept private on-prem.
+
+
+![alternate text](https://github.com/ippontech/blog-usa/blob/master/images/2019/08/IpponWay-Hybrid-Cloud-Example.png)
+
 
 <h2>Software Selection</h2>
 Ippon selected the following software for our solution:
