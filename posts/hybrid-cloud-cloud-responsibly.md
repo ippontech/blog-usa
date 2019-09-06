@@ -9,11 +9,11 @@ tags:
 - JHipster
 - POC
 date: 2019-08-26T12:00:00.000Z
-title: "Hybric Cloud - Cloud Responsibly"
+title: "Hybrid Cloud - Cloud Responsibly"
 image: https://github.com/ippontech/blog-usa/blob/master/images/2019/08/hybrid-cloud.jpg
 ---
 
-In this post, we’ll describe the <a href="#concept">hybrid cloud concept</a>, the <a href="#benefits">benefits</a> it provides, and a <a href="#architecture">reference architecture</a> to implementing it.
+In this post, we’ll describe the <a href="#concept">hybrid cloud concept</a>, the <a href="#benefits">benefits</a> it provides, and a <a href="#architecture">reference architecture</a> to implement it.
 
 Moving from on-prem to the cloud via “forklift migration”, where legacy systems are dumped into a cloud-based host, is inefficient and ineffective. The goal should be to strategically extend into the cloud without abandoning the on-prem infrastructure. We do this by incrementally moving services to the cloud, leveraging the advantages of the cloud platform while retaining the value of on-prem where appropriate. This approach allows us to treat cloud vendors as interchangeable based upon cost/value criteria driven by the needs of the business. 
 
@@ -33,11 +33,12 @@ As infrastructure technology has improved, the logical boundary where we natural
 - Manage risk of committing to a single vendor
 - Support proximity to customers for location-sensitive applications
 - Assure availability of enterprise-critical services
+- Workflow portability (support corporate aquisition)
 
 <h2 id="architecture">Ippon's Approach</h2>
-Our approach allows clients to seamlessly integrate the best features from each cloud into one “best of the breed” infrastructure. Strategically combining and modernizing existing environments while expanding into one or more clouds.  We have created a reference architecture using modern technologies that supports the view of multiple cloud vendors (including on-prem) as a single cloud.  
+Our approach allows clients to seamlessly integrate the best features from each cloud into one “best of breed” infrastructure. We are strategically combining and modernizing existing environments while expanding into one or more clouds. We have created a reference architecture using modern technologies that supports the view of multiple cloud vendors (including on-prem) as a single cloud. 
 
-The first step is to conceive of an abstraction layer to allow us to handle all infrastructure in a common manner.  In the diagram below we introduce this layer (using the HashiCorp offerings Nomad and Consul).
+The first step is to conceive of an abstraction layer to allow us to handle all infrastructure in a common manner. In the diagram below we introduce this layer (using the HashiCorp offerings Nomad and Consul).
 
 
 ![alternate text](https://github.com/ippontech/blog-usa/blob/master/images/2019/08/IpponWay-Hybrid-Cloud.png)
@@ -48,16 +49,16 @@ The following diagram introduces the high-level software/application architectur
 
 ![alternate text](https://github.com/ippontech/blog-usa/blob/master/images/2019/08/IpponWay-Software-Architecture.png)
 
-Our proof of concept uses the HashiStack Consul and Nomad with JHipster to produce a hybrid cloud compatible solution. The solution can be deployed in the cloud or on-prem with the intent that the deployment target does not alter the architecture of the application software.  Deployment of the application is performed and controlled using HashiCorp Nomad software. All configuration information used by the application, and Nomad, is maintained within the HashiCorp Consul software which is distributed in a fault-tolerant manner across the hybrid infrastructure. Nomad, using Consul as a configuration store, deploys and invokes the application code in the target environments (cloud or on-prem) via a job specification.  These configuration and deployment communications are represented by arrow-less lines connecting the components in the above diagram.
+Our proof of concept uses the HashiCorp products Consul and Nomad with JHipster to produce a hybrid cloud compatible solution. The solution can be deployed in the cloud or on-prem with the intent that the deployment target does not alter the architecture of the application software. Deployment of the application is performed and controlled using Nomad. All configuration information used by the application, and Nomad, is maintained within Consul which is distributed in a fault-tolerant manner across the hybrid infrastructure. Nomad, using Consul as a configuration store, deploys and invokes the application code in the target environments (cloud or on-prem) via a job specification. These configuration and deployment communications are represented by arrow-less lines connecting the components in the above diagram.
 
-The JHipster Gateway communicates with Keycloak to perform authentication and authorization against a directory server (typically LDAP or Active Directory). User’s information is stored in a federated directory and securely managed with Keycloak, via a dedicated user interface, which provides user authentication and role based access control. The JHipster Gateway and microservices enforce role based access (using Spring Security) supported by Keycloak to allow users access to services according to their permissions. 
+The JHipster Gateway communicates with Keycloak to perform authentication and authorization against a directory server (typically LDAP or Active Directory). User information is stored in a federated directory and securely managed with Keycloak, via a dedicated user interface, which provides user authentication and role based access control. The JHipster Gateway and microservices enforce role based access (using Spring Security) supported by Keycloak to allow users access to services according to their permissions. 
 
 The microservices are load balanced by Fabio, a fine grained application router that routes subsets of URLs to different instances of micro services. The service discovery engine, Consul, finds services in the network, health checks them, and notifies Fabio of what services are healthy/available. The container technology, Nomad, defines services to be deployed (Docker) for Consul assigning them names, ports, and tags to tell Fabio what type of service it is.
 
-The arrowed lines represent the request flow through the deployed application. The user interface is a single page application (SPA) that obtains content from the gateway and submits REST calls for data to the gateway. The gateway forwards requests to Fabio which are then load balanced and routed to the appropriate microservice to be serviced. Additionally, microservices can leverage Kafka streams to support queuing and asynchronous processing for applications having those needs.
+The arrowed lines represent the request flow through the deployed application. The user interface is a single page application (SPA) that obtains content from the gateway and submits REST calls for data to the gateway. The gateway forwards requests to Fabio which are then load balanced and routed to the appropriate microservice to be serviced.
 
 <h2>Example</h2>
-Hybrid Cloud is about running your infrastructure where it makes sense. For example, the diagram below shows an application in AWS so that it’s fault tolerant, and it uses Fabio which routes to microservices either on-prem or in the cloud depending on whether it’s a compute-heavy request (cloud) or something simple like a lookup (on-prem). While the federated directory and user authentication is kept private on-prem.
+Hybrid Cloud is about running your infrastructure where it makes sense. For example, the diagram below shows an application in AWS (so that it’s fault tolerant) and uses Fabio to route to microservices discriminating between on-prem and AWS by compute-heavy (cloud) vs enterprise data lookup (on-prem). The sensitive functions of federated directory and user authentication remain on-prem.
 
 
 ![alternate text](https://github.com/ippontech/blog-usa/blob/master/images/2019/08/IpponWay-Hybrid-Cloud-Example.png)
@@ -80,12 +81,11 @@ Ippon selected the following software for our solution:
 - Back-end/Microservice framework/language - Spring Boot/Java
 - User Account Management - Keycloak
 - Cloud Deployment - Nomad, Ansible, Docker
-- Queuing/Streaming - Kafka
 
 A key aspect of the above software selection was the preference for open source software over commercial software. For example, this guided the choice of Keycloak over Okta for
-authentication and authorization services. HashiCorp software (Nomad, Consul) was selected to obtain the abstraction layer to insulate the solution from the specifics of individual cloud providers and on-prem. JHipster was selected because of our company’s expertise in using it to quickly produce enterprise grade applications. The remaining software selections were guided by popularity in the industry and proven reliability.
+authentication and authorization services. HashiCorp software (Nomad, Consul) was selected to obtain the abstraction layer to insulate the solution from the specifics of individual cloud providers and on-prem. JHipster was selected because of its ease of use in quickly generating enterprise grade applications. The remaining software selections were guided by popularity in the industry and proven reliability.
 
-While our selections represent Ippon’s preferences for building this solution, our understanding of the roles of each component allow us to interchange them as necessary to fit into specific environments dictated by the needs and desires of our clients.
+ <span style="background-color:#f0f0f0"> While our selections represent Ippon’s preferences for building this solution, our understanding of the roles of each component allow us to interchange them as necessary to fit into specific environments dictated by the needs and desires of our clients.</span>
 
 ---
 There are many nuances to what makes sense in the cloud, and what doesn’t, as well as which cloud to use. No one wants to admit it, but it’s true. In a lot of circumstances running things on your own hardware is cheaper and has better performance. With Ippon’s wisdom, we can guide you to the cloud where it makes sense and how it makes sense.
