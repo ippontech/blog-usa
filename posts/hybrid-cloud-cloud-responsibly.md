@@ -91,4 +91,3 @@ authentication and authorization services. HashiCorp software (Nomad, Consul) wa
 There are many nuances to what makes sense in the cloud, and what doesn’t, as well as which cloud to use. No one wants to admit it, but it’s true. In a lot of circumstances running things on your own hardware is cheaper and has better performance. With Ippon’s wisdom, we can guide you to the cloud where it makes sense and how it makes sense.
 
 In short, Hybrid Cloud is about running your infrastructure and applications where it makes sense...Cloud responsibly.
-
