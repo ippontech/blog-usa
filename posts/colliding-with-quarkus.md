@@ -2,6 +2,10 @@
 authors:
 - Gerard Gigliotti
 tags:
+- Java
+- GraalVM
+- Quarkus
+- Containers
 date: 2019-09-10T17:11:00.000Z
 title: "Colliding with Quarkus"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/09/quarkus.png
