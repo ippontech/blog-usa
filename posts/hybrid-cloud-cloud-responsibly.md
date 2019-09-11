@@ -4,10 +4,8 @@ authors:
 - Courtney Parry
 - Rob Zabriskie
 tags:
-- Hybrid
 - Cloud
-- JHipster
-- POC
+- AWS
 date: 2019-08-26T12:00:00.000Z
 title: "Hybrid Cloud - Cloud Responsibly"
 image: https://github.com/ippontech/blog-usa/blob/master/images/2019/08/hybrid-cloud.jpg
