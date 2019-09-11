@@ -4,10 +4,8 @@ authors:
 - Courtney Parry
 - Rob Zabriskie
 tags:
-- Hybrid
 - Cloud
-- JHipster
-- POC
+- AWS
 date: 2019-08-26T12:00:00.000Z
 title: "Hybrid Cloud - Cloud Responsibly"
 image: https://github.com/ippontech/blog-usa/blob/master/images/2019/08/hybrid-cloud.jpg
@@ -41,13 +39,13 @@ Our approach allows clients to seamlessly integrate the best features from each 
 The first step is to conceive of an abstraction layer to allow us to handle all infrastructure in a common manner. In the diagram below we introduce this layer (using the HashiCorp offerings Nomad and Consul).
 
 
-![alternate text](https://github.com/ippontech/blog-usa/blob/master/images/2019/08/IpponWay-Hybrid-Cloud.png)
+![alternate text](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/08/IpponWay-Hybrid-Cloud.png)
 
 
 The following diagram introduces the high-level software/application architecture supporting this approach.
 
 
-![alternate text](https://github.com/ippontech/blog-usa/blob/master/images/2019/08/IpponWay-Software-Architecture.png)
+![alternate text](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/08/IpponWay-Software-Architecture.png)
 
 Our proof of concept uses the HashiCorp products Consul and Nomad with JHipster to produce a hybrid cloud compatible solution. The solution can be deployed in the cloud or on-prem with the intent that the deployment target does not alter the architecture of the application software. Deployment of the application is performed and controlled using Nomad. All configuration information used by the application, and Nomad, is maintained within Consul which is distributed in a fault-tolerant manner across the hybrid infrastructure. Nomad, using Consul as a configuration store, deploys and invokes the application code in the target environments (cloud or on-prem) via a job specification. These configuration and deployment communications are represented by arrow-less lines connecting the components in the above diagram.
 
@@ -61,7 +59,7 @@ The arrowed lines represent the request flow through the deployed application. T
 Hybrid Cloud is about running your infrastructure where it makes sense. For example, the diagram below shows an application in AWS (so that it’s fault tolerant) and uses Fabio to route to microservices discriminating between on-prem and AWS by compute-heavy (cloud) vs enterprise data lookup (on-prem). The sensitive functions of federated directory and user authentication remain on-prem.
 
 
-![alternate text](https://github.com/ippontech/blog-usa/blob/master/images/2019/08/IpponWay-Hybrid-Cloud-Example.png)
+![alternate text](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/08/IpponWay-Hybrid-Cloud-Example.png)
 
 
 <h2>Software Selection</h2>
