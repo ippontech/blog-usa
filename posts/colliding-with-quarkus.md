@@ -18,10 +18,10 @@ On first impressions, the framework seems very similar to SpringBoot, which isn'
 [GraalVM](https://www.graalvm.org/) is a relatively new universal virtual machine for running JVM-based languages, as well as JavaScript, Python, Ruby and R. The feature that Quarkus really embraces is the [SubstrateVM](https://github.com/oracle/graal/tree/master/substratevm), which allows Java applications to be compiled into native executable images. Instead of running your Java code against a JVM, you can compile it down to a portable, native executable. Quarkus abstracts all this complexity from you, and allows you to just run `nativeImage` to build a executable binary.
 
 # Taking it for a spin
-So I have put together a [small HTTP server example](https://github.com/ggotti/kanye-quarkus) which basically just proxies requests to the `https://api.kanye.rest` service, which returns a random Kanye West quotes. The application has three small classes:
+So I have put together a [small HTTP server example](https://github.com/ggotti/kanye-quarkus) which basically just proxies requests to the `https://api.kanye.rest` service, which returns a random Kanye West quote. The application has three small classes:
 - VoteKanyeResource
 - KanyeService
-- KanyeQutote
+- KanyeQuote
 
 ## VoteKanyeResource
 The class uses dependency injection to inject the `KanyeService`, which is then invoked in the `quote` method, which is defined as HTTP accessible using the `@GET` annotation. 
