@@ -121,7 +121,7 @@ User-Defined Functions:
 ## When to Use What: Procedures vs. User Defined Functions vs. Materialized Views
 | Stored Procedure                              | User Defined Function                                                                   | Materialized View                                                                                   |
 |-----------------------------------------------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| When migrating stored procedures.             | When migrating UDFs.                                                                    | When you have simple group buys/aggregation you need to persist for performance.                    |
+| When migrating stored procedures.             | When migrating UDFs.                                                                    | When you have simple group bys/aggregation you need to persist for performance.                    |
 | When you need to perform database operations. | When you need a function to work as part of a SQL statement and it must return a value. | When you have different clustering key needs.                                                       |
 | For administrative tasks on database objects. | When you want to return a value for each row and each row provides a value.             | When query results don't change often but are used often and the query consumes a lot of resources. |
 
