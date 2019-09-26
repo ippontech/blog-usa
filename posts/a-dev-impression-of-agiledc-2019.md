@@ -32,11 +32,17 @@ The [second talk](https://www.slideshare.net/secret/MAe6cHpszkj2h9) I attended a
 
 Whenever we fly we observe a shared agreement to not smoke while we are onboard. The third session I attended layed out how to develop these [Social Contracts](https://speakerdeck.com/elipbig/agiledc-team-culture-and-social-contracts) to drive culture on our teams. As I have participated in meetings establishing norms several times over my consulting career, the power of this presentation lay in when it is appropriate to **revisit** these social contracts.
 
-For example, most individuals these days no longer smoke cigarettes. Does this invalidate the "no smoking" norm? Smoking is still prohibited due to safety reasons and could cause major problems if a fire actually did break out onboard the plane. Something this critical should be understood by everyone. Not only this, but the recent rise in e-cigarettes would suggest as well we all need this constant reminder.
+For example, most individuals these days no longer smoke cigarettes. Does this invalidate the "no smoking" norm? Smoking is still prohibited due to safety reasons and could cause major problems if a fire actually did break out onboard the plane. Something this critical should be understood by everyone. Not only this, but the popular rise in e-cigarettes would suggest as well this constant reminder is still relevant.
 
 ## Observing the Signs
 
+Of course whenever we fly, there is also always that person who ignores the illuminated fasten-seatbelt sign. Immediately, I am left with questions around their intentions. What I learned in the next workshop on aspects for [observing a retrospective](https://www.slideshare.net/slideshow/embed_code/key/dmxdQ8ddtjJguC?feature=oembed)is that observation is key, but try not to assume anything right away. Analyzing and jumping to conclusions is a powerful ability developers often do very well. But when it is with regards to another human being, we tend to overlook some important factors: body language, tone of voice, what pronouns are said, how physical space is utilized, collaboration styles, decision making, and the way information is shared.
+
+Retrospectives are one of the ceremonies which can require a ton of empathy. I realized through this exercise that better observing, without judgment, led to asking non-biased questions about these indicators. This action is crucial to the formation of bonds with each other and as a team.
+
 ## Quality Keeps Us Airborne
+
+Speaking of biases, one of my favorite talks of the day was presented by Ippon's own, Ben Scott, on [cultivating Software Craftsmanship](https://www.slideshare.net/slideshow/embed_code/key/ranGHnIPlrMDDI?feature=oembed).
 
 ## Tracking Journey Metrics
 
