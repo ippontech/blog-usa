@@ -10,7 +10,7 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/0
 
 ## The Question
 
-"What is a developer hoping to get out of an agile conference?" While networking at the 10th annual AgileDC conference, I received this question a few times because I was in the minority there as a developer. To be fair, I had the same thought when I was registering. And well, since the people asked, I thought it might be insightful to share the dev impression of an agile conference in the year 2019.
+"What is a developer hoping to get out of an agile conference?" While networking at the [10th annual AgileDC conference](https://www.agiledc.org), I received this question a few times because I was in the minority there as a developer. To be fair, I had the same thought when I was registering. And well, since the people asked, I thought it might be insightful to share the dev impression of an agile conference in the year 2019.
 
 ## A Dev in The Aircraft Journey
 
@@ -20,10 +20,28 @@ Depending on your role in the agile process, the starting point for and involvem
 
 During this impressive journey, a developer can easily get caught up in the instrument minutia. From time to time, it is necessary to hit autopilot and remember where our various roles fit in the grander picture. This was my rationale for attending the conference as a developer.
 
-## Our Drivers Wear Many Hats
+## In-Flight Communications
 
-The majority of individuals I spoke with tended to be Program/Project Managers, Product Owners, Scrum Masters, Agile Coaches, Business Analyst or a conglomeration of any aforementioned. It was interesting that they typically "wore multiple hats" of these agile roles since each one of these should be a different person in the traditional sense. Through the past experiences of my various consulting projects though, I was not surprised these individuals were assigned to multiple functions. I was quietly skeptical on how they kept each one's intentions separated. As a developer, I have shared some of the responsibilities of scrum master or coached on certain agile approaches. But something about the multiple, shared PM/PO/SM seemed next level to me.
+The [keynote speaker](http://theagilevmo.com) 
+
+## Turbulence Detected
+
+The [second talk](https://www.slideshare.net/secret/MAe6cHpszkj2h9) I attended attributed shortened cycle time to a technique the team used called the "Andon Cord". This is a Toyota innovation designed to empower front-line employees to recognize issues, initiate a stoppage of work, and work together as a team to quickly identify a path forward. The emergency cable strung above assembly lines became a symbol of the Toyota Way, and has widely been copied throughout the auto industry and beyond. The presenter's team replicated by using a Slack "@here" to force halt the team's multi-streamed work so they could together be effective on a single objective. I've talked previously about the benefits of [mob programming](https://blog.ippon.tech/mobs-are-not-always-destructive/) to collaborate on a single solution so this concept definitely spoke positively to me.
+
+## No Smoking Allowed
+
+Whenever we fly we observe a shared agreement to not smoke while we are onboard. The third session I attended layed out how to develop these [Social Contracts](https://speakerdeck.com/elipbig/agiledc-team-culture-and-social-contracts) to drive culture on our teams. As I have participated in meetings establishing norms several times over my consulting career, the power of this presentation lay in when it is appropriate to **revisit** these social contracts.
+
+For example, most individuals these days no longer smoke cigarettes. Does this invalidate the "no smoking" norm? Smoking is still prohibited due to safety reasons and could cause major problems if a fire actually did break out onboard the plane. Something this critical should be understood by everyone. Not only this, but the recent rise in e-cigarettes would suggest as well we all need this constant reminder.
+
+## Observing the Signs
+
+## Quality Keeps Us Airborne
+
+## Tracking Journey Metrics
+
+## Cloudy Priorities
 
 ## The Hot Take The Wheel
 
-What did the AgileDC conference lack the most? Might I dare to say: More developers! As I learned from one of the talks, most people are not aware agile actually originated from developers. And what it says most to me is that more developers need to take control of the agile process they are already a part of or that is needed on their projects. Most of us have sat in the backseat and let the process lead whereas it should be the other way around.
+What did the AgileDC conference lack the most? Might I dare to say: More developers! As I learned, most people are not aware agile actually originated from developers. What this says most to me is that more developers need to take control of the agile process they are already a part of or that is needed on their projects. Even non-developers, most of us have taken a backseat as a passenger on the agile aircraft and let the process steer whereas it should be the other way around.
