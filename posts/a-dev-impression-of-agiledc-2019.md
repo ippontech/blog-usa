@@ -42,7 +42,11 @@ Retrospectives are one of the ceremonies which can require a ton of empathy. I r
 
 ## Quality Keeps Us Airborne
 
-Speaking of biases, one of my favorite talks of the day was presented by Ippon's own, Ben Scott, on [cultivating Software Craftsmanship](https://www.slideshare.net/slideshow/embed_code/key/ranGHnIPlrMDDI?feature=oembed).
+Speaking of biases, one of my favorite talks of the day was presented by Ippon's own Ben Scott on [cultivating Software Craftsmanship](https://www.slideshare.net/slideshow/embed_code/key/ranGHnIPlrMDDI?feature=oembed). In order to grow developers into craftsmen, the team must establish norms for bettering the project as a whole. For example, some norms might include writing comprehensive tests to cover a multitude of scenarios, mentoring others in areas of expertise by sharing individual informational wealth, and giving constructive reviews for cleaner code.
+
+The PO and SM on the team need to incentivize craftsmanship first over efficiency. Yes, the developers can still deliver many lines of code, but they will not bullet-proof features. It is almost guaranteed to be riddled with bugs. Then subsequent sprints will then be spent fixing these previous sprint's bugs.
+
+I can't say that I much considered how this idea of [software craftsmanship](http://manifesto.softwarecraftsmanship.org/) supplemented the [agile development process](https://agilemanifesto.org) prior to this talk, but now that I see it, it makes so much sense why it is an important distinction to make.
 
 ## Tracking Journey Metrics
 
