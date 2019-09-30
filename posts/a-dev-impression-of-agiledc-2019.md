@@ -8,11 +8,11 @@ title: "Driving Home A Dev Impression of AgileDC 2019"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/09/AgileDC+Red+lines.png
 ---
 
-## The Question
+# The Question
 
 "What is a developer hoping to get out of an agile conference?" While networking at the [10th annual AgileDC conference](https://www.agiledc.org), I received this question a few times because I was in the minority there as a developer. To be fair, I had the same thought when I was registering. And well, since the people asked, I thought it might be insightful to share the dev impression of an agile conference in the year 2019.
 
-## A Dev in The Aircraft Journey
+# A Dev in The Aircraft Journey
 
 Let us start off by envisioning we are on a team which has decided to set out on a journey with a single destination in mind. If we are taking a small plane, there is a lot we need to do as a team to get from point A to B. Our aircraft's instruments are critical for giving us real time measurements. But there are still calculations that need to be performed when it comes to fuel, distance, speed, etc. in order to arrive at our destination safely.
 
@@ -20,13 +20,15 @@ Depending on your role in the agile process, the starting point for and involvem
 
 During this impressive journey, a developer can easily get caught up in the instrument minutia. From time to time, it is necessary to hit autopilot and remember where our various roles fit in the grander picture. This was my rationale for attending the conference as a developer.
 
+# The Talks
+
 ## In-Flight Communications
 
 The [keynote speaker](http://theagilevmo.com) 
 
 ## Turbulence Detected
 
-The [second talk](https://www.slideshare.net/secret/MAe6cHpszkj2h9) I attended attributed shortened cycle time to a technique the team used called the "Andon Cord". This is a Toyota innovation designed to empower front-line employees to recognize issues, initiate a stoppage of work, and work together as a team to quickly identify a path forward. The emergency cable strung above assembly lines became a symbol of the Toyota Way, and has widely been copied throughout the auto industry and beyond. The presenter's team replicated by using a Slack "@here" to force halt the team's multi-streamed work so they could together be effective on a single objective. I've talked previously about the benefits of [mob programming](https://blog.ippon.tech/mobs-are-not-always-destructive/) to collaborate on a single solution so this concept definitely spoke positively to me.
+The [second talk](https://www.slideshare.net/secret/MAe6cHpszkj2h9) I attended attributed shortened cycle time to a technique the team used called the "Andon Cord". The presenters explained this is a Toyota innovation designed to empower front-line employees to recognize issues, initiate a stoppage of work, and work together as a team to quickly identify a path forward. The emergency cable strung above assembly lines became a symbol of the Toyota Way, and has widely been copied throughout the auto industry and beyond. Their team replicated the Andon Cord concept by using a Slack "@here" to force halt the team's multi-streamed work so they could together be effective on a single objective. I have talked previously about the benefits of [mob programming](https://blog.ippon.tech/mobs-are-not-always-destructive/) to collaborate on a single solution so this concept definitely spoke positively to me.
 
 ## No Smoking Allowed
 
@@ -36,7 +38,7 @@ For example, most individuals these days no longer smoke cigarettes. Does this i
 
 ## Observing the Signs
 
-Of course whenever we fly, there is also always that person who ignores the illuminated fasten-seatbelt sign. Immediately, I am left with questions around their intentions. What I learned in the next workshop on aspects for [observing a retrospective](https://www.slideshare.net/slideshow/embed_code/key/dmxdQ8ddtjJguC?feature=oembed)is that observation is key, but try not to assume anything right away. Analyzing and jumping to conclusions is a powerful ability developers often do very well. But when it is with regards to another human being, we tend to overlook some important factors: body language, tone of voice, what pronouns are said, how physical space is utilized, collaboration styles, decision making, and the way information is shared.
+Of course whenever we fly, there is also always that person who ignores the illuminated fasten-seatbelt sign. Immediately, I am left with questions around their intentions. What I learned in the next workshop on aspects for [observing a retrospective](https://www.slideshare.net/slideshow/embed_code/key/dmxdQ8ddtjJguC?feature=oembed) is that observation is key, but try not to assume anything right away. Analyzing and jumping to conclusions is a powerful ability developers often do very well. Though when it is with regards to another human being, we tend to overlook some important factors: body language, tone of voice, what pronouns are said, how physical space is utilized, collaboration styles, decision making, and the way information is shared.
 
 Retrospectives are one of the ceremonies which can require a ton of empathy. I realized through this exercise that better observing, without judgment, led to asking non-biased questions about these indicators. This action is crucial to the formation of bonds with each other and as a team.
 
@@ -44,14 +46,18 @@ Retrospectives are one of the ceremonies which can require a ton of empathy. I r
 
 Speaking of biases, one of my favorite talks of the day was presented by Ippon's own Ben Scott on [cultivating Software Craftsmanship](https://www.slideshare.net/slideshow/embed_code/key/ranGHnIPlrMDDI?feature=oembed). In order to grow developers into craftsmen, the team must establish norms for bettering the project as a whole. For example, some norms might include writing comprehensive tests to cover a multitude of scenarios, mentoring others in areas of expertise by sharing individual informational wealth, and giving constructive reviews for cleaner code.
 
-The PO and SM on the team need to incentivize craftsmanship first over efficiency. Yes, the developers can still deliver many lines of code, but they will not bullet-proof features. It is almost guaranteed to be riddled with bugs. Then subsequent sprints will then be spent fixing these previous sprint's bugs.
+The PO and SM on the team need to incentivize craftsmanship first over efficiency. Yes, the developers can still deliver many lines of code, but they will not be bullet-proof features. It is almost guaranteed to be unstable and riddled with bugs. Then subsequent sprints will then be spent securing and fixing these previous sprint's bugs.
 
-I can't say that I much considered how this idea of [software craftsmanship](http://manifesto.softwarecraftsmanship.org/) supplemented the [agile development process](https://agilemanifesto.org) prior to this talk, but now that I see it, it makes so much sense why it is an important distinction to make.
+I cannot say that I much considered how this idea of [software craftsmanship](http://manifesto.softwarecraftsmanship.org/) supplemented the [agile development process](https://agilemanifesto.org) prior to this talk, yet now that I see it, it makes so much sense why it was an important distinction to make.
 
-## Tracking Journey Metrics
+## Metrics to Clear Up the Clouds
 
-## Cloudy Priorities
+The next [presentation on agile metric tracking](https://www.slideshare.net/slideshow/embed_code/key/Cuwh6sECdLka3y?feature=oembed) introduced a transformational process for examining project goals to generate measurement-orientated questions and then finding metrics to capture qualitative/quantitative data for answering those questions. It was explained that there are key indicators for which metrics to track. These were called "lagging" and "leading" indicators.
 
-## The Hot Take The Wheel
+Lagging indicators are output focused, easy to measure and hard to improve/influence, and confirm certain patterns. These are numbers that show us for instance how much a person weighs or how long it takes to drive from point A to B. Leading indicators are easier to influence, and can be used to change behavior or the environment in the moment, but require processes/tools in order to do so. These are numbers that are changing more rapidly like caloric intake/expenditure and current vehicle speed/fuel or if there is traffic on the route causing delays.
+
+These leading and lagging indicators really spoke to me and I partially took them as inspiration for the aviation theme of this blog post!
+
+# The Hot Take The Wheel
 
 What did the AgileDC conference lack the most? Might I dare to say: More developers! As I learned, most people are not aware agile actually originated from developers. What this says most to me is that more developers need to take control of the agile process they are already a part of or that is needed on their projects. Even non-developers, most of us have taken a backseat as a passenger on the agile aircraft and let the process steer whereas it should be the other way around.
