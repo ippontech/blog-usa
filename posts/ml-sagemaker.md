@@ -12,7 +12,7 @@ title: "Regression using AWS Sagemaker"
 image: 
 ---
 
-Various industries such as Banking, Manufacturing, Insurance, Health, and Defence are using Machine Learning to solve many use cases such as Fraud Detection, Improving Healthcare, Personal security, Providing more secured transportation etc. Recently [Ippon Technologies](https://en.ippon.tech) sent me to a summit on Data Science where I learnt about how organizations are using Machine Learning to improve their business and productivity. During the course of the summit many service and cloud providers presented various tools, libraries, algorithms and platforms for developing Machine Learning applications. One of the services introduced to me was Sagemaker by AWS. In this blog I will talk about How I implemented a basic regression model.
+Various industries such as Banking, Manufacturing, Insurance, Health, and Defense are using Machine Learning to solve many use cases such as fraud detection, improving healthcare, personal security, providing more secured transportation etc. Recently [Ippon Technologies](https://en.ippon.tech) sent me to a summit on Data Science where I learnt about how organizations are using Machine Learning to improve their business and productivity. During the course of the summit many service and cloud providers presented various tools, libraries, algorithms and platforms for developing Machine Learning applications. One of the services introduced to me was Sagemaker by AWS. In this blog I will talk about how I implemented a basic regression model.
 
 # Machine Learning Process
 Typically Machine Learning process is an iterative process; it starts with identifying a use case to solve. Some of the steps involved in this process are as follows. This could change based on the use case you are trying to solve.
@@ -29,16 +29,16 @@ Each of the above steps are iterative by themselves. Multiple iterations can hap
 ![Machine Learning Process](https://raw.githubusercontent.com/msambaraju/blog-usa/master/images/2019/03/Machine_Learning.png)
 
 # AWS Sagemaker
-AWS Sagemaker is a fully managed AWS Machine Learning service which helps in building, training and deploying Machine Learning models. It has a rich set API's, built-in algorithms, integration with various popular libraries such as Tensorflow, PyTorch, SparkML etc. It also developers tools for authoring models, and hosted production environment for deploying the models.
+AWS Sagemaker is a fully managed AWS Machine Learning service which helps in building, training and deploying Machine Learning models. It has a rich set of API's, built-in algorithms, and integration with various popular libraries such as Tensorflow, PyTorch, SparkML etc. It also has developers tools for authoring models, and provides a production environment for deploying the models.
 
 # Regression Model Implementation
 In this example we will develop a regression model to predict body fat percentage based on already labeled data with 14 parameters like age, height, weight, abdomen circumference etc. This data is widely available ([Dataset Location1](http://lib.stat.cmu.edu/datasets/bodyfat) or [Dataset Location2](http://wiki.stat.ucla.edu/socr/index.php/SOCR_Data_BMI_Regression#References)) on the internet. A more advanced process is to find only the relevant features or parameters to train the model.
 
-We will use the Jupyter Notebook authoring environment provided by Sagemaker to Prepare Data, Train and Evaluate a model, to Deploy and Test the model. The notebook environment also supports version control systems like CodeCommit or GitHub. You can upload any test data used by the Notebooks into the environment. The notebook lets you install any python libraries needed for your model using tools such as pip, run any git commands to push your changes to version control system.
+We will use the Jupyter Notebook authoring environment provided by Sagemaker to prepare data, train and evaluate a model, to deploy and test the model. The notebook environment also supports version control systems like CodeCommit or GitHub. You can upload any test data used by the Notebooks into the environment. The notebook lets you install any python libraries needed for your model using tools such as pip, and run any git commands to push your changes in to a git repository.
 
 In order to use the Jupyter Notebook, we need to create a Notebook Instance by providing an instance type such as `ml.t2.medium`. Provide an IAM role with the proper access control during instance creation.
 
-Now create a new Jupyter Notebook to interactively Author, Train, Test and Deploy the Model.
+Now create a new Jupyter Notebook to interactively author, train, test and deploy the Model.
 
 ![Jupyter Notebook](https://raw.githubusercontent.com/msambaraju/blog-usa/master/images/2019/03/Jupiter_Notebook_Env.png)
 
@@ -94,7 +94,7 @@ linear_container = get_image_uri(boto3.Session().region_name, 'linear-learner')
 ```
 
 
-Now train the Model using the container and the training data previously prepared. Create a new instance for training the Model, provide the instance type needed. The trained Model is stored in the S3 bucket as a tar file so provide S3 bucket details.
+Now train the model using the container and the training data previously prepared. Create a new instance for training the Model, provide the instance type needed. The trained Model is stored in the S3 bucket as a tar file so provide S3 bucket details.
 
 Note: Only certain types of instance types can be used for training and deploying the models. You will be warned with a message as below.
 
