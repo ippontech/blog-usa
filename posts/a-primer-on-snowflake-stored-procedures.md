@@ -20,6 +20,61 @@ Snowflake Stored Procedures use a combination of JavaScript and SQL. JavaScript 
 ## The Benefits of Stored Procedures
 Stored Procedures allow for procedural logic and error handling, as well as the dynamic execution of SQL Statements. Using store procedures, it is also possible to write code that executes with the privileges of the role **owning** the procedure, rather than the privileges of the role **running** the procedure.
 
+### Session State in a Stored Procedure
+The CALL statement used to execute a stored procedure, much like other SQL commands, runs within and inherits context from that session, including session variables, the current database, the current warehouse, and others. The context inherited depends on whether the procedure is a caller's rights procedure or an owner's rights procedure. Changes the stored procedure makes to the session can persist after the end of the CALL if the stored procedure is a caller’s rights stored procedure. Owner’s rights stored procedures are not permitted to change session state.
+
+#### Caller's Rights Stored Procedures
+Caller's rights stored procedures adhere to the following rules in a session:
+* Run with the privileges of the caller
+* Inherit the current warehouse of the caller
+* Uses the database and schema the caller is currently using
+* Can view, set and unset the caller's session variables and session parameters.
+
+A Caller's Rights Stored Procedure can see variables that were set by statements before the procedure was called.  Statements executed after the stored procedure can see the variable that was set inside the procedure. This is a little difficult to grasp, so I've included an example below to help.
+> Suppose you have a stored procedure named MyStoredProcedure which executes SQL Statements that read and set session-level variables. In pseudo-code, we'll call the two commands ```READ_SESSION_VAR1``` and ```SET_SESSION_VAR2```. In the same session, you can, therefore, execute the following statements:
+> ```plsql
+> SET SESSION_VAR1 = 'some value';
+> CALL MyStoredProcedure(); -- Executes READ_SESSION_VAR1 and uses the value of SESSION_VAR1
+>                           -- Executes SET_SESSION_VAR2, which is still set after the procedure all is completed.
+> SELECT * FROM table WHERE column1 = $SESSION_VAR2;
+> ```
+> This is equivalent to executing the following statements:
+> ``` plsql
+> SET SESSION_VAR1 = 'some value';
+> READ_SESSION_VAR1;
+> SET_SESSION_VAR2;
+> SELECT * FROM table WHERE column1 = $SESSION_VAR2;
+> ```
+>
+> For more examples, refer to [Session Variables with Caller's Rights and Owner's Rights](https://docs.snowflake.net/manuals/sql-reference/stored-procedures-usage.html#label-sp-session-variables-example).
+
+In many cases, this is the desired behavior since we may want to inherit contextual information. In cases where the stored procedure should be more isolated, Snowflake provides a few pointers:
+* Avoid using session-level variables directly. Pass them as explicit parameters, as it forces the caller to think about exactly what values the stored procedure will use.
+* Clean up any session-level variables that you set inside the stored procedure and use names that are not likely to be used anywhere else.
+Above all, remember that unlike programming in languages such as C or Java, variables set inside a stored procedure will not be garbage collected once the function is finished. Isolating your stored procedure from its environment requires more effort in SQL than in C or Java.
+
+#### Owner's Rights Stored Procedures
+Owner's Rights Stored Procedures adhere to the following rules in a session:
+* Run with the privileges of the owner.
+* Inherit the current warehouse of the caller.
+* Use the database and schema that the stored procedure is created in.
+* Cannot access most caller-specific information ^[This information includes viewing, setting and unsetting session variables, calling functions such as CURRENT_USER() and querying INFORMATION_SCHEMA table functions that return results based on the current user.]
+* Can only read supported session parameters, and cannot set or unset any of the caller’s session parameters.
+* Non-owners are not able to view information about the procedure from the PROCEDURES view.
+
+##### Choosing between Owner's Rights and Caller's Rights
+Create a stored procedure as an owner's rights stored procedure if **all** of the following is true:
+* A task needs to be delegated to another user who will run with owner's privileges, not their own.
+  * Ex: If you need a user without DELETE privilege on a table to be able to call a procedure to delete old data, without manipulating current data.
+* The restrictions on Owner's Rights Stored Procedures (discussed in the section above) will not prevent a procedure from working as intended.
+
+Create a stored procedure as a caller's rights stored procedure if the following is true:
+* The stored procedure operates only on objects the caller owns or has required privileges on.
+* The restrictions on Owner's Rights Stored Procedures (discussed in the section above) would prevent the procedure from working.
+  * Ex: Use a Caller's Rights Procedure if the caller of the procedure needs to use the caller's environment (session variables, account parameters, etc.).
+
+---
+
 ## Differences Between Stored Procedures and User-Defined Functions
 * Stored Procedures are called as independent statements rather than a part of a statement.
 ```plsql
@@ -41,7 +96,7 @@ y = stored_procedure1(x) --NOT ALLOWED
 
 ---
 # Stored Procedures 101
-Now that we've discussed some of the benefits of stored procedures and examined the differences between User Defined Functions and Stored Procedures, we will begin our deep dive into Stored Procedures starting with Creating a Stored Procedure.
+Now that we've discussed some of the benefits of stored procedures, how session state can be handled in stored procedures and examined the differences between User Defined Functions and Stored Procedures, we will begin our deep dive into Stored Procedures by creating a new stored procedure that will .
 
 ## Creating a Stored Procedure
 In Snowflake, Stored Procedures are First-Class Objects^[An entity that can be dynamically created, destroyed, passed to a function or returned as a value], and as such can use the following commands: CREATE PROCEDURE, ALTER PROCEDURE, DROP PROCEDURE, DESCRIBE PROCEDURE and SHOW PROCEDURES. Snowflake also provides the CALL command for executing Stored Procedures.
@@ -98,7 +153,7 @@ There are also optional parameters that can be specified in a CREATE PROCEDURE s
     * By default, if neither is specified explicitly at procedure creation, the procedure runs as an owner’s rights stored procedure. Owner’s rights stored have less access to the caller’s environment (caller’s session variables, etc.), and Snowflake defaults to this higher level of privacy and security.
 
 ## JavaScript in a Stored Procedure
-Snowflake stored procedures are written in JavaScript and SQL statements are executed using the Snowflake JavaScript API. It is, therefore, possible to execute an SQL statement, retrieve the result set of a query and retrieve metadata about the result set within a stored procedure. Each of these operations is carried out by calling methods on the following objects:
+Snowflake stored procedures are written in JavaScript and SQL statements are executed using the Snowflake JavaScript API. This way it is possible to execute an SQL statement, retrieve the result set of a query, and retrieve metadata about the result set within a stored procedure. Each of these operations is carried out by calling methods on the following objects:
 * **snowflake** which has methods to create a **Statement** and execute an SQL command
 * **Statement** which has methods to execute and access the metadata of prepared statements as well as allowing the return of a ResultSet object.
 * **ResultSet** which holds the results of the query
@@ -140,58 +195,7 @@ Here is a table which shows the Snowflake SQL data types and their corresponding
 
 Not all Snowflake SQL data types have a corresponding JavaScript data type. JavaScript does not directly support the INTEGER or NUMBER data types. In these cases, you should convert the SQL data type to an appropriate alternative data type.^[SQL INTEGER can be converted to SQL FLOAT which will be mapped to JavaScript number]
 
-## Session State in a Stored Procedure
-The CALL statement used to execute a stored procedure, much like other SQL commands, runs within and inherits context from that session, including session variables, the current database, the current warehouse, and others. The context inherited depends on whether the procedure is a caller's rights procedure or an owner's rights procedure. Changes the stored procedure makes to the session can persist after the end of the CALL, if the stored procedure is a caller’s rights stored procedure. Owner’s rights stored procedures are not permitted to change session state.
 
-### Caller's Rights Stored Procedures
-Caller's rights stored procedures adhere to the following rules in a session:
-* Run with the privileges of the caller
-* Inherit the current warehouse of the caller
-* Uses the database and schema the caller is currently using
-* Can view, set and unset the caller's session variables and session parameters.
-
-A Caller's Rights Stored Procedure can see variables that were set by statements before the procedure was called.  Statements executed after the stored procedure can see the variable that was set inside the procedure. This is a little difficult to grasp, so I've included an example below to help.
-> Suppose you have a stored procedure named MyStoredProcedure which executes SQL Statements that read and set session-level variables. In pseudo-code, we'll call the two commands ```READ_SESSION_VAR1``` and ```SET_SESSION_VAR2```. In the same session, you can, therefore, execute the following statements:
-> ```plsql
-> SET SESSION_VAR1 = 'some value';
-> CALL MyStoredProcedure(); -- Executes READ_SESSION_VAR1 and uses the value of SESSION_VAR1
->                           -- Executes SET_SESSION_VAR2, which is still set after the procedure all is completed.
-> SELECT * FROM table WHERE column1 = $SESSION_VAR2;
-> ```
-> This is equivalent to executing the following statements:
-> ``` plsql
-> SET SESSION_VAR1 = 'some value';
-> READ_SESSION_VAR1;
-> SET_SESSION_VAR2;
-> SELECT * FROM table WHERE column1 = $SESSION_VAR2;
-> ```
->
-> For more examples, refer to [Session Variables with Caller's Rights and Owner's Rights](https://docs.snowflake.net/manuals/sql-reference/stored-procedures-usage.html#label-sp-session-variables-example).
-
-In many cases, this is the desired behavior since we may want to inherit contextual information. In cases where the stored procedure should be more isolated, Snowflake provides a few pointers:
-* Avoid using session-level variables directly. Pass them as explicit parameters, as it forces the caller to think about exactly what values the stored procedure will use.
-* Clean up any session-level variables that you set inside the stored procedure and use names that are not likely to be used anywhere else.
-Above all, remember that unlike programming in languages such as C or Java, variables set inside a stored procedure will not be garbage collected once the function is finished. Isolating your stored procedure from its environment requires more effort in SQL than in C or Java.
-
-### Owner's Rights Stored Procedures
-Owner's Rights Stored Procedures adhere to the following rules in a session:
-* Run with the privileges of the owner.
-* Inherit the current warehouse of the caller.
-* Use the database and schema that the stored procedure is created in.
-* Cannot access most caller-specific information ^[This information includes viewing, setting and unsetting session variables, calling functions such as CURRENT_USER() and querying INFORMATION_SCHEMA table functions that return results based on the current user.]
-* Can only read supported session parameters, and cannot set or unset any of the caller’s session parameters.
-* Non-owners are not able to view information about the procedure from the PROCEDURES view.
-
-### Choosing between Owner's Rights and Caller's Rights
-Create a stored procedure as an owner's rights stored procedure if **all** of the following is true:
-* A task needs to be delegated to another user who will run with owner's privileges, not their own.
-  * Ex: If you need a user without DELETE privilege on a table to be able to call a procedure to delete old data, without manipulating current data.
-* The restrictions on Owner's Rights Stored Procedures (discussed in the section above) will not prevent a procedure from working as intended.
-
-Create a stored procedure as a caller's rights stored procedure if the following is true:
-* The stored procedure operates only on objects the caller owns or has required privileges on.
-* The restrictions on Owner's Rights Stored Procedures (discussed in the section above) would prevent the procedure from working.
-  * Ex: Use a Caller's Rights Procedure if the caller of the procedure needs to use the caller's environment (session variables, account parameters, etc.).
 
 ---
 # Access Control on Stored Procedures
