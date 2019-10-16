@@ -13,12 +13,12 @@ Snowflake is a data warehouse as a service hosted completely in the cloud. For a
 
 ---
 # Stored Procedures
-Stored Procedures, much like functions, are created once and can be executed many times. They are created with the ```CREATE PROCEDURE``` command and are executed with the ```CALL``` command. Stored Procedures in Snowflake return a single value, and while ```SELECT``` statements can be executed inside a procedure, the results must be used within the stored procedure or narrowed down to a single value to be returned.
+Stored Procedures, much like functions, are created once and can be executed many times. They are created with the ```CREATE PROCEDURE``` command and are executed with the ```CALL``` command. It is important to note Stored Procedures in Snowflake always return a single value or nothing at all. So, while ```SELECT``` statements can be executed inside a procedure, their results must be utilized somewhere within the stored procedure or narrowed down to a single value to be returned.
 
-Snowflake Stored Procedures use JavaScript and in most cases, SQL. JavaScript provides the branching and looping while SQL is executed by calling functions from the [Snowflake Stored Procedure API](https://docs.snowflake.net/manuals/sql-reference/stored-procedures-api.html).
+Snowflake Stored Procedures use a combination of JavaScript and SQL. JavaScript provides the branching and looping aspects, while SQL statements are executed by calling functions via the [Snowflake Stored Procedure API](https://docs.snowflake.net/manuals/sql-reference/stored-procedures-api.html).
 
 ## The Benefits of Stored Procedures
-Stored Procedures allow procedural logic and error handling. They also allow for the dynamic execution of SQL Statements and allow you to write code that executes with the privileges of the role which owns the procedure, rather than the privileges of the role which runs the procedure.
+Stored Procedures allow for procedural logic and error handling, as well as the dynamic execution of SQL Statements. Using store procedures, it is also possible to write code that executes with the privileges of the role **owning** the procedure, rather than the privileges of the role **running** the procedure.
 
 ## Differences Between Stored Procedures and User-Defined Functions
 * Stored Procedures are called as independent statements rather than a part of a statement.
