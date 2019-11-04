@@ -5,7 +5,7 @@ tags:
 - JHipster
 - AWS
 - Elastic Beanstalk
-date: 2019-09-06T14:50:55.000Z
+date: 2019-11-04T14:50:55.000Z
 title: "Deploying a JHipster app to AWS using Elastic Beanstalk"
 image: https://raw.githubusercontent.com/falydoor/blog-usa/jhipster-on-aws-with-beanstalk/images/2019/11/jhipster-beanstalk.png
 ---
