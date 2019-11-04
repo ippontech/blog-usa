@@ -7,7 +7,7 @@ tags:
 - Elastic Beanstalk
 date: 2019-09-06T14:50:55.000Z
 title: "Deploying a JHipster app to AWS using Elastic Beanstalk"
-image: 
+image: https://raw.githubusercontent.com/falydoor/blog-usa/jhipster-on-aws-with-beanstalk/images/2019/11/jhipster-beanstalk.png
 ---
 
 [JHipster](https://www.jhipster.tech/) is a great development platform to help you bootstrap a modern Web app in less than 5 minutes. One small detail is that everything runs on your local laptop which can be an issue if you want to showcase your app to external people. Cloud providers like [AWS](https://aws.amazon.com/), [Azure](https://azure.microsoft.com) or [GCP](https://cloud.google.com/) are the current leaders and they provide services to help you deploy your JHipster app to the Cloud.
