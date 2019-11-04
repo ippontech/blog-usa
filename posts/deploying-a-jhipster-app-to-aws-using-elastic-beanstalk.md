@@ -76,7 +76,7 @@ The `.yo-rc.json` above can be used to avoid answering all the questions manuall
 
  ![](https://raw.githubusercontent.com/falydoor/blog-usa/jhipster-on-aws-with-beanstalk/images/2019/11/jhipster-aws.png)
 
- The AWS account used needs access to the S3 bucket since it will be used as a storage location for the application's Jars. The sub-generator will also create a RDS instance so make sure that the database credentials are correct and match the ones in `application-prod.yml`. The application will be always packaged using the `prod` profile, which means that all the tests must be green!
+ The AWS account used needs access to the S3 bucket since it will be used as a storage location for the application's Jars. The sub-generator will also create a RDS instance so make sure that the database credentials are correct and match the ones in `application-prod.yml`. The application will always be packaged using the `prod` profile, which means that all the tests must be green!
 
  Once the Elastic Beanstalk application is created, navigate to the [Elastic Beanstalk console](https://console.aws.amazon.com/elasticbeanstalk/home) to view the details of the application. Use the public URL to check that everything was correctly deployed and running.
 
@@ -86,9 +86,9 @@ The `.yo-rc.json` above can be used to avoid answering all the questions manuall
 
 # Elastic Beanstalk application improvements
 
-By default, your Elastic Beanstalk application uses a classic load balancer with auto scaling up to 4 instances. The default configuration is enough for demo purpose, but if you expect an heavy load I recommend updating the configuration. Also, it might be a better idea to set the scaling trigger to the `CPUUtilization` metric instead of `NetworkOut`.
+By default, your Elastic Beanstalk application uses a classic load balancer with auto scaling up to 4 instances. The default configuration is enough for demo purpose, but if you expect a heavy load I recommend updating the configuration. Also, it might be a better idea to set the scaling trigger to the `CPUUtilization` metric instead of `NetworkOut`.
 
-An other good practice is to enable `S3 log storage` or `CloudWatch Logs` in `Configuration > Software`. It is always a good idea to have a strong log retention policy with a production application in order to track faulty/suspicious behavior.
+Another good practice is to enable `S3 log storage` or `CloudWatch Logs` in `Configuration > Software`. It is always a good idea to have a strong log retention policy with a production application in order to track faulty/suspicious behavior.
 
  ![](https://raw.githubusercontent.com/falydoor/blog-usa/jhipster-on-aws-with-beanstalk/images/2019/11/eb-configuration.png) 
 
@@ -96,6 +96,6 @@ An other good practice is to enable `S3 log storage` or `CloudWatch Logs` in `Co
 
  # Conclusion
 
-Elastic Beanstalk saves you a lot of time and removes all the complexity of creating a production ready infrastructure from scratch. The JHipster AWS sub-generator is easy to use and let you create your Elastic Beanstalk environment in few steps.
+Elastic Beanstalk saves you a lot of time and removes all the complexity of creating a production ready infrastructure from scratch. The JHipster AWS sub-generator is easy to use and will let you create your Elastic Beanstalk environment in few steps.
 
 Since the sub-generator uses a default Beanstalk configuration, I recommended tweaking it a little bit to fulfill your production requirements.
