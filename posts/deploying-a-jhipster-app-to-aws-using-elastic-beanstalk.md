@@ -86,7 +86,7 @@ If the deployment failed, the "Logs" tab on the left can be used to view all the
 
 ## Application updates
 
-Updating the application is pretty simple, it is done just by running `jhipster aws` again. The sub-generator knows that there is already a Beanstalk environment and will simply update the application's code with the new version. But remember, the sub-generator will everytime package the application which means that any local changes are gonna be included. Also, the application will experience a small downtime because it has to restart (I explain how to avoid that later in this blog).
+Updating the application is pretty simple, it is done just by running `jhipster aws` again. The sub-generator knows that there is already a Beanstalk environment and will simply update the application's code with the new version. But remember, the sub-generator will package the application every time, which means that any local changes or features currently being tested will be included in the deployment. Also, the application will experience a small bit of downtime because it has to restart for the new version to be reflected (I explain how to avoid that later in this blog).
 
 It is also possible to update the application by manually upload a `war` or choosing a version from the "Application versions" tab. That is very useful if for example you want to deploy a previous version.
 
