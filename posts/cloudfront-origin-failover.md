@@ -12,7 +12,9 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/0
 
 Amazon's [CloudFront service](https://aws.amazon.com/cloudfront/) does its best to speed up ***content delivery*** by caching frequently accessed files and it is obvious the service does a superb job of this by attracting an extensive [list of customers](https://aws.amazon.com/cloudfront/case-studies/). But what happens when you turn on the prescribed failover solution and its seemingly simple implementation on your project mysteriously causes more content delivery issues then before? Get ready for a deeper dive into CloudFront's caching strategies and how they talk to the associated Lambda@Edge Functions.
 
-# Only Unrecognized the First Time
+# Application Pre-Failover
+
+## Only Unrecognized the First Time
 
 To understand the problem at hand, it is best to set up the use case as it was intended (and before mentioning anything about failover). Typically whenever a user enters a modern website, the first response always comes back with a header called the ["Content-Security-Policy" (CSP)](https://content-security-policy.com/). That's because most frameworks need to load various styles and scripts from a whole host of different sources. As [Mozzila's spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) states, "A CSP compatible browser will then only execute scripts loaded in source files received from those allowlisted domains..." For those unfamiliar here is an example of a CSP header (guess which site it comes from):
 
@@ -20,7 +22,7 @@ To understand the problem at hand, it is best to set up the use case as it was i
 
 Intended functionality gives an unrecognized user entering a website this CSP header, but only on the first time. Keep this in mind as it will come back a little later on. Now it is time to talk about CloudFront.
 
-# Life On The Edge
+## Life On The Edge
 
 CloudFront allows for one or more Lambda@Edge Functions to be executed in between fetches to the [Origin](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html). Why Lambda@Edge Functions? For those familiar with the more common Serverless Lambda Functions, the basic premise of Lambda@Edge Functions is similar however they are run on [much less computationally capable](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html#limits-lambda-at-edge) servers in more diverse locations. This is so that they exist closer to the end user to decrease load time on their side. What Lambda@Edge Functions primarily are purposed for is minor customizations of the fetched ***content*** during ***delivery***. Amazon docs even show [quite a few example functions for popular topics](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/lambda-examples.html) such as:
 
@@ -30,23 +32,9 @@ CloudFront allows for one or more Lambda@Edge Functions to be executed in betwee
 * Redirecting Viewer Requests to a Country-Specific URL
 * Using an Origin-Response Trigger to Update the ***Error Status Code*** to 200-OK
 
-# Proper Failover
+## Pulse Check
 
-In the event of a cache miss at an edge location, CloudFront goes to retrieve the file and replenish the cache. So then how does it work if the origin is unavailable at the time CloudFront goes looking for it? Fortunately, [support for Origin Failover](https://aws.amazon.com/about-aws/whats-new/2018/11/amazon-cloudfront-announces-support-for-origin-failover/) was introduced November 2018, which was another important advancement in making AWS-based web applications highly available. Origin Failover is achievable through the ability to specify a primary and a secondary origin into what is called an [Origin Group](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html). When CloudFront is unsuccessful in connecting to the primary origin, an ***error status code*** is returned which prompts the failover action. CloudFront will then attempt the same request with the secondary origin. This is customizable in that any combination of the following status codes can be selected: 500, 502, 503, 504, 404, or 403.
-![Origin Failover on cache miss](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/images/origingroups-overview.png)
-
-# Failover The Edge
-
-Different Lambda@Edge Functions are allowed to be executed on request and response events. So how does this work in conjunction with Origin Failover? The following graphic should make this clear.
-![Origin Failover with Lambda@Edge Functions on origin request and response events](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/images/origingroups-with-lambda-edge.png)
-
-# Administer the Prescription
-
-
-
-# The Error Status Code Complication
-
-Based on our knowledge of CloudFront's Origin Failover based on ***error status code***, we are going to focus on the listed topic of "Using an Origin-Response Trigger to Update the ***Error Status Code*** to 200-OK". Let's look at the code:
+This application utilizes a Lambda@Edge Function on the response event to update the "Content-Security-Policy" header the first time it is returned. The example for "Overriding a Response Header" is relevant for the situation but, more importantly, focus is required for the sample code of listed topic "Using an Origin-Response Trigger to Update the ***Error Status Code*** to 200-OK":
 
     exports.handler = (event, context, callback) => {
         const response = event.Records[0].cf.response;
@@ -67,13 +55,37 @@ Based on our knowledge of CloudFront's Origin Failover based on ***error status 
         callback(null, response);
     };
 
+How does the Lambda@Edge determine if it is the first-time response? The Origin responds with a 403 error (forbidden). Great, and this satisfies the if-statement range for a `response.status` value between 400 and 599. Knowing this, the sample will successfully allow for a first-time response to be modified for that CSP header needed for loading in various assets.
+
+# Presciption Failover
+
+## Proper Failover
+
+In the event of a cache miss at an edge location, CloudFront goes to retrieve the file and replenish the cache. So then how does it work if the origin is unavailable at the time CloudFront goes looking for it? Fortunately, [support for Origin Failover](https://aws.amazon.com/about-aws/whats-new/2018/11/amazon-cloudfront-announces-support-for-origin-failover/) was introduced November 2018, which was another important advancement in making AWS-based web applications highly available. Origin Failover is achievable through the ability to specify a primary and a secondary origin into what is called an [Origin Group](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html). When CloudFront is unsuccessful in connecting to the primary origin, an ***error status code*** is returned which prompts the failover action. CloudFront will then attempt the same request with the secondary origin. This is customizable in that any combination of the following status codes can be selected: 500, 502, 503, 504, 404, or 403.
+![Origin Failover on cache miss](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/images/origingroups-overview.png)
+
+## Failover The Edge
+
+Different Lambda@Edge Functions are allowed to be executed on request and response events. So how does this work in conjunction with Origin Failover? The following graphic should make this clear.
+![Origin Failover with Lambda@Edge Functions on origin request and response events](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/images/origingroups-with-lambda-edge.png)
+
+# Administer the Prescription
+
+Tying everything together thus far, prior to implementing the application utilizes a Lambda@Edge Function on the response event to update the "Content-Security-Policy" header
+
+## The Error Status Code Complication
+
+Based on our knowledge of how the CloudFront's Origin Failover is triggered on ***error status codes***, the 403 code the primary Origin responded with previously now should in fact **not** always be caught!
+
+
 <u>Sources</u>:
 
 * [CloudFront](https://aws.amazon.com/cloudfront/)
 * [CloudFront Case Studies](https://aws.amazon.com/cloudfront/case-studies/)
 * [Content-Security-Policy Header](https://content-security-policy.com/)
 * [Mozilla Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
-* [CloudFront Origin](https://docs.aws.amazon.com/en_pv/cloudfront/latest/APIReference/API_Origin.html)
+* [Using Amazon S3 Origins, MediaPackage Channels, and Custom Origins for Web Distributions](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html)
+* [CloudFront Origin API Doc](https://docs.aws.amazon.com/en_pv/cloudfront/latest/APIReference/API_Origin.html)
 * [Origin Group Failover](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html)
 * [How CloudFront retrieves files and replenishes the cache](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/HowCloudFrontWorks.html)
 * [Making AWS-based web applications highly available](https://dzone.com/articles/designing-web-apps-for-high-availability-in-aws)
