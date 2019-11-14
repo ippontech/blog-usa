@@ -24,7 +24,7 @@ Intended functionality gives an unrecognized user entering a website this CSP he
 
 ## Life On The Edge
 
-CloudFront allows for one or more Lambda@Edge Functions to be executed in between fetches to the [Origin](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html). Why Lambda@Edge Functions? For those familiar with the more common Serverless Lambda Functions, the basic premise of Lambda@Edge Functions is similar however they are run on [much less computationally capable](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html#limits-lambda-at-edge) servers in more diverse locations. This is so that they exist closer to the end user to decrease load time on their side. What Lambda@Edge Functions primarily are purposed for is minor customizations of the fetched ***content*** during ***delivery***. Amazon docs even show [quite a few example functions for popular topics](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/lambda-examples.html) such as:
+CloudFront allows for one or more Lambda@Edge Functions to be [executed in between fetches](https://docs.aws.amazon.com/lambda/latest/dg/lambda-edge.html) to the [Origin](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html). Why Lambda@Edge Functions? For those familiar with the more common Serverless Lambda Functions, the basic premise of Lambda@Edge Functions is similar however they are run on [much less computationally capable](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html#limits-lambda-at-edge) servers in more diverse locations. This is so that they exist closer to the end user to decrease load time on their side. What Lambda@Edge Functions primarily are purposed for is minor customizations of the fetched ***content*** during ***delivery***. Amazon docs even show [quite a few example functions for popular topics](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/lambda-examples.html) such as:
 
 * A/B Testing
 * Overriding a Response Header
@@ -71,12 +71,23 @@ Different Lambda@Edge Functions are allowed to be executed on request and respon
 
 # Administer the Prescription
 
-Tying everything together thus far, prior to implementing the application utilizes a Lambda@Edge Function on the response event to update the "Content-Security-Policy" header
+Tying everything together thus far, the application utilizes a Lambda@Edge Function on the response event to update the "Content-Security-Policy" header based on a 403 error status code. Yet, an unfortunate consequence occurs when proper failover is implemented.
 
 ## The Error Status Code Complication
 
-Based on our knowledge of how the CloudFront's Origin Failover is triggered on ***error status codes***, the 403 code the primary Origin responded with previously now should in fact **not** always be caught!
+Based on our knowledge of how the CloudFront's Origin Failover is triggered on ***error status codes***, the example code implemented previously should **not** catch every `response.status` value between 400 and 599! The sample code from "Using an Origin-Response Trigger to Update the Error Status Code to 200-OK" must be updated to only catch the expected 403 error. All other errors need to be passed on for proper failover to function correctly. Here is the updated snippet which is also allowing future asset responses through:
 
+    exports.handler = (event, context, callback) => {
+        const response = event.Records[0].cf.response;
+
+        if (response.status == 403 && !request.uri.includes('.')) {
+            response.status = 200;
+            response.statusDescription = 'OK';
+            response.body = 'Body generation example';
+        }
+
+        callback(null, response);
+    };
 
 <u>Sources</u>:
 
@@ -84,6 +95,7 @@ Based on our knowledge of how the CloudFront's Origin Failover is triggered on *
 * [CloudFront Case Studies](https://aws.amazon.com/cloudfront/case-studies/)
 * [Content-Security-Policy Header](https://content-security-policy.com/)
 * [Mozilla Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+* [Using AWS Lambda with CloudFront Lambda@Edge](https://docs.aws.amazon.com/lambda/latest/dg/lambda-edge.html)
 * [Using Amazon S3 Origins, MediaPackage Channels, and Custom Origins for Web Distributions](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html)
 * [CloudFront Origin API Doc](https://docs.aws.amazon.com/en_pv/cloudfront/latest/APIReference/API_Origin.html)
 * [Origin Group Failover](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html)
