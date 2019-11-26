@@ -16,7 +16,9 @@ Amazon's [CloudFront service](https://aws.amazon.com/cloudfront/) does its best 
 
 ## The Set Up
 
-To understand the problem at hand, it is best to set up the use case as it was intended (and before mentioning anything about failover). The [Ippon Podcast](https://podcast.ipponway.com/) exploratory project is hosted through S3.
+To understand the problem at hand, it is best to set up the use case as it was intended (and before mentioning anything about failover). The [Ippon Podcast](https://podcast.ipponway.com/) exploratory project is possible through a combination of CloudFront and S3. The application's `index.html`, styles, scripts, and media files are all located in us-east-1 S3 buckets with the property for "Static website hosting" enabled. The site is served via a CloudFront distribution with reference to these S3 buckets as [Origins](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html). So what happens to the site if a bucket is deleted or the files are removed? What about if the entire us-east-1 region goes down?
+
+Failure to retrieve these files will result in 4xx error codes since they will either be considered not found or forbidden. Enabling the "Versioning" property or "Cross Regional Replication" management of these buckets can help ensure the buckets and their files survive; but, the CloudFront distribution still needs a way to retrieve those files in the event of a region shutdown.
 
 # Prescription Failover
 
@@ -33,7 +35,7 @@ In the event of a cache miss at an edge location, CloudFront goes to retrieve th
 
 ## Life On The Edge
 
-CloudFront allows for one or more Lambda@Edge Functions to be [executed in between fetches](https://docs.aws.amazon.com/lambda/latest/dg/lambda-edge.html) to the [Origin](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html). Why Lambda@Edge Functions? For those familiar with the more common Serverless Lambda Functions, the basic premise of Lambda@Edge Functions is similar however they are run on [much less computationally capable](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html#limits-lambda-at-edge) servers in more diverse locations. This is so that they exist closer to the end user to decrease load time on their side. What Lambda@Edge Functions primarily are purposed for is minor customizations of the fetched content during delivery. Amazon docs even show [quite a few example functions for popular topics](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/lambda-examples.html).
+CloudFront allows for one or more Lambda@Edge Functions to be [executed in between fetches](https://docs.aws.amazon.com/lambda/latest/dg/lambda-edge.html) to the Origin. Why Lambda@Edge Functions? For those familiar with the more common Serverless Lambda Functions, the basic premise of Lambda@Edge Functions is similar however they are run on [much less computationally capable](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html#limits-lambda-at-edge) servers in more diverse locations. This is so that they exist closer to the end user to decrease load time on their side. What Lambda@Edge Functions primarily are purposed for is minor customizations of the fetched content during delivery. Amazon docs even show [quite a few example functions for popular topics](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/lambda-examples.html).
 
 ## Failover The Edge
 
@@ -66,6 +68,7 @@ For more information, see [Adding HTTP Security Headers Using Lambda@Edge and Am
 
 * [CloudFront](https://aws.amazon.com/cloudfront/)
 * [CloudFront Case Studies](https://aws.amazon.com/cloudfront/case-studies/)
+* [How do I use CloudFront to serve a static website hosted on Amazon S3?](https://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-serve-static-website/)
 * [Using AWS Lambda with CloudFront Lambda@Edge](https://docs.aws.amazon.com/lambda/latest/dg/lambda-edge.html)
 * [Using Amazon S3 Origins, MediaPackage Channels, and Custom Origins for Web Distributions](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html)
 * [CloudFront Origin API Doc](https://docs.aws.amazon.com/en_pv/cloudfront/latest/APIReference/API_Origin.html)
