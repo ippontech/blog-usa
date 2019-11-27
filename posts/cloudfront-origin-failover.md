@@ -25,7 +25,7 @@ In the event of a cache miss at an edge location, CloudFront goes to retrieve th
 
 ## Administer the Prescription
 
-In its current state, the [Ippon Podcast](https://podcast.ipponway.com/) site relies on S3 buckets located in the `us-east-1` region. Proper failover cannot be implemented without redundant S3 buckets in another region like `us-west-2`. This can be implemented in any of the following ways (using the AWS CLI is recommended):
+In its current state, the [Ippon Podcast](https://podcast.ipponway.com/) site relies on S3 buckets located in the `us-east-1` region. Proper failover cannot be implemented without redundant S3 buckets in another region like `us-west-2`. This can be implemented in any of the following ways (using the AWS CLI for operations and an [infrequently accessed storage class](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html) for the new bucket is recommended):
 
 * Make an S3 bucket in `us-west-2` then copy the objects over from the original `us-east-1` bucket. Object consistency between the two buckets will require manual intervention.
 * Enable "Cross-Region Replication" on the `us-east-1` bucket and specifying the creation of a new S3 bucket. This will force the "Versioning" property to be enabled on both buckets and also requires the objects to be re-uploaded to the original `us-east-1` bucket so they automatically get copied over into the new `us-west-2` bucket.
@@ -37,9 +37,15 @@ From the "Origins *" drop-down, add the two S3 bucket origins in order of reques
 
 The final step under the **Behaviors** tab is to replace the intended behavior's origin field that was previously using just the single S3 bucket in `us-east-1` for the new origin group. And with that, the application should now be better equipped for handling failures! So how can that be tested?
 
-## East... West... Active... Testing
+## Testing Active-Active
 
+At least in the case of the [Ippon Podcast](https://podcast.ipponway.com/), there are two buckets utilized in its functionality. One is for holding the `index.html`, styles, and scripts of the application. The other contains the podcast audio recordings. This allows for two different opportunities to test the origin group's failover capability. Just a note, if any of the following described does not reflect immediately, it is because it takes time for the changes to propagate. Invalidating the cache using `/*` will allow differences to take effect more quickly but [may have a cost](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html#PayingForInvalidation).
 
+Removing the `index.html` is an easy one to test with because the site will break completely. To see this, revert the associated behavior back to the single origin and then delete the `index.html` file from this primary bucket (have no fear about losing the file since it will still be versioned within the bucket and also located in the alternate). Hard refresh the page and the site should come to a screeching halt (open the browser's developer tools to confirm a 4xx status code). Now, back in CloudFront, change the behavior to use the origin group again so that failure will be redirected to the alternate S3 bucket that contains the backup `index.html` file. Hard refresh the page once more and the site should spring back to life!
+
+A similar test can be performed on the media files. While this will not break the site completely, reverting the associated behavior to the single origin and then deleting one or any of the files should cause failure to load/play. Changing the behavior to use the origin group will allow the backup file to be loaded and played as intended.
+
+Remember to restore removed primary files either by deleting the "Delete marker" under show versions or re-upload the file. Ensure that any changed behaviors use the origin groups.
 
 # Extra Info
 
@@ -54,7 +60,7 @@ Different Lambda@Edge Functions are allowed to be executed on request and respon
 
 ## Adding Headers
 
-Typically whenever a user navigates a modern website, the response comes back with a header called the ["Content-Security-Policy" (CSP)](https://content-security-policy.com/). That's because most frameworks need to load various styles and scripts from a whole host of different sources. As [Mozzila's spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) states, "A CSP compatible browser will then only execute scripts loaded in source files received from those allowlisted domains..." For those unfamiliar, here is an example of a CSP header (take a guess which site it comes from):
+Typically whenever a user navigates a modern website, the response comes back with a header called the ["Content-Security-Policy" (CSP)](https://content-security-policy.com/). The reason for that is because most frameworks need to load various styles and scripts from a whole host of different sources. As [Mozzila's spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) states, "A CSP compatible browser will then only execute scripts loaded in source files received from those allowlisted domains..." For those unfamiliar, here is an example of a CSP header (take a guess which site it comes from):
 
 `Content-Security-Policy: default-src * data: blob: 'self';script-src *.facebook.com *.fbcdn.net *.facebook.net *.google-analytics.com *.virtualearth.net *.google.com 127.0.0.1:* *.spotilocal.com:* 'unsafe-inline' 'unsafe-eval' blob: data: 'self';style-src data: blob: 'unsafe-inline' *;connect-src *.facebook.com facebook.com *.fbcdn.net *.facebook.net *.spotilocal.com:* wss://*.facebook.com:* https://fb.scanandcleanlocal.com:* attachment.fbsbx.com ws://localhost:* blob: *.cdninstagram.com 'self';`
 
