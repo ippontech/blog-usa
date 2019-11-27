@@ -10,7 +10,7 @@ title: "When A CloudFront Origin Must Fail for Testing High Availability"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/11/cloudfront_failover.png
 ---
 
-Amazon's [CloudFront service](https://aws.amazon.com/cloudfront/) does its best to speed up content delivery by caching frequently accessed files and it is obvious the service does a superb job of this by attracting an extensive [list of customers](https://aws.amazon.com/cloudfront/case-studies/). But what happens when you turn on the prescribed failover solution and need to test its seemingly simple implementation? Get ready for a deeper dive into CloudFront's Origin Groups.
+Amazon's [CloudFront service](https://aws.amazon.com/cloudfront/) does its best to speed up content delivery by caching frequently accessed files and it is obvious the service does a superb job of this by attracting an extensive [list of customers](https://aws.amazon.com/cloudfront/case-studies/). But what happens when you turn on the prescribed failover solution for redundancy and need to test its seemingly simple implementation? Get ready for a deeper dive into CloudFront's Origin Groups.
 
 ## Application Set-Up
 
@@ -25,11 +25,11 @@ In the event of a cache miss at an edge location, CloudFront goes to retrieve th
 
 ## Administer the Prescription
 
-In its current state, the [Ippon Podcast](https://podcast.ipponway.com/) site relies on S3 buckets located in the `us-east-1` region. Proper failover cannot be implemented without redundant S3 buckets in another region like `us-west-2`. This can be implemented in any of the following ways (using the AWS CLI for operations and an [infrequently accessed storage class](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html) for the new bucket is recommended):
+In its current state, the [Ippon Podcast](https://podcast.ipponway.com/) site relies on S3 buckets located in the `us-east-1` region. Proper failover cannot be implemented without redundant S3 buckets in another region like `us-west-2`. This can be implemented in any of the following ways (using the AWS CLI for better control over operations and an [infrequently accessed storage class](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html) for a new, cost-effective bucket is recommended):
 
 * Make an S3 bucket in `us-west-2` then copy the objects over from the original `us-east-1` bucket. Object consistency between the two buckets will require manual intervention.
 * Enable "Cross-Region Replication" on the `us-east-1` bucket and specifying the creation of a new S3 bucket. This will force the "Versioning" property to be enabled on both buckets and also requires the objects to be re-uploaded to the original `us-east-1` bucket so they automatically get copied over into the new `us-west-2` bucket.
-* A combination of the first two operations, make an S3 bucket in `us-west-2` and copy the objects over from the original `us-east-1` bucket. Then, enable "Cross-Region Replication" on the `us-east-1` bucket and specifying the new S3 bucket which was just created in `us-west-2`. This will still force the "Versioning" property to be enabled on both buckets but re-uploading is no longer necessary for redundancy.
+* A combination of the first two operations, make an S3 bucket in `us-west-2` and copy the objects over from the original `us-east-1` bucket. Then, enable "Cross-Region Replication" on the `us-east-1` bucket and specify the new S3 bucket which was just created in `us-west-2`. This will still force the "Versioning" property to be enabled on both buckets, but re-uploading is not necessary since the objects are already copied.
 
 Returning to the CloudFront distribution, under the **Origins and Origin Groups** tab, enter the new S3 bucket in `us-west-2`'s information through the **Create Origin** interface. Make sure to specify "Restrict Bucket Access" as "Yes" and allow the grant read permission to the desired Origin Access Identity. There should now be at least two origins listed before moving on to the **Create Origin Group** interface.
 
@@ -37,15 +37,19 @@ From the "Origins *" drop-down, add the two S3 bucket origins in order of reques
 
 The final step under the **Behaviors** tab is to replace the intended behavior's origin field that was previously using just the single S3 bucket in `us-east-1` for the new origin group. And with that, the application should now be better equipped for handling failures! So how can that be tested?
 
-## Testing Active-Active
+## Testing... Testing... Redundancy
 
-At least in the case of the [Ippon Podcast](https://podcast.ipponway.com/), there are two buckets utilized in its functionality. One is for holding the `index.html`, styles, and scripts of the application. The other contains the podcast audio recordings. This allows for two different opportunities to test the origin group's failover capability. Just a note, if any of the following described does not reflect immediately, it is because it takes time for the changes to propagate. Invalidating the cache using `/*` will allow differences to take effect more quickly but [may have a cost](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html#PayingForInvalidation).
+At least in the case of the [Ippon Podcast](https://podcast.ipponway.com/), there are two buckets utilized in its functionality. One is for holding the `index.html`, styles, and scripts of the application. The other contains the podcast audio recordings. This allows for two different opportunities to test the origin group's failover capability. Just a note, if any of the following described does not reflect immediately, it is because it takes time for the changes to propagate. Invalidating the cache using `/*` will allow differences to take effect more quickly but may have a [cost involved if performing over 1,000 in a month](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html#PayingForInvalidation).
 
-Removing the `index.html` is an easy one to test with because the site will break completely. To see this, revert the associated behavior back to the single origin and then delete the `index.html` file from this primary bucket (have no fear about losing the file since it will still be versioned within the bucket and also located in the alternate). Hard refresh the page and the site should come to a screeching halt (open the browser's developer tools to confirm a 4xx status code). Now, back in CloudFront, change the behavior to use the origin group again so that failure will be redirected to the alternate S3 bucket that contains the backup `index.html` file. Hard refresh the page once more and the site should spring back to life!
+Removing the `index.html` is an easy one to test with because the site will break completely. To see this, revert the associated behavior back to the single origin and then delete the `index.html` file from this primary bucket (have no fear about losing the file since it will still be versioned within the bucket and also located in the alternate). Hard refresh the page and the site should come to a screeching halt. Open the browser's developer tools to confirm the expected 4xx status code through the Network tab. Now, back in CloudFront, change the behavior to use the origin group again so that failure will be redirected to the alternate S3 bucket that contains the backup `index.html` file. Hard refresh the page once more and the site should spring back to life!
 
-A similar test can be performed on the media files. While this will not break the site completely, reverting the associated behavior to the single origin and then deleting one or any of the files should cause failure to load/play. Changing the behavior to use the origin group will allow the backup file to be loaded and played as intended.
+A similar test can be performed on the media files. While this will not break the site completely, reverting the associated behavior to the single origin and then deleting one or any of the files should cause failure to load/play. Changing the behavior over to use the origin group will allow the backup file to be loaded and played as intended.
 
 Remember to restore removed primary files either by deleting the "Delete marker" under show versions or re-upload the file. Ensure that any changed behaviors use the origin groups.
+
+## Wrap Up
+
+The [Ippon Podcast](https://podcast.ipponway.com/) site is still very much a work-in-progress. Since it is more exploratory, high availability is not as critical. This makes it a good application to test proper failover through CloudFront's origin groups. There are more subtle details to utilizing origin groups which require some exploration. Yet, hopefully, this provided an easy first step towards building and testing redundancy in a CloudFront/S3-hosted application.
 
 # Extra Info
 
