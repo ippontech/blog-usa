@@ -12,22 +12,32 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/1
 
 Amazon's [CloudFront service](https://aws.amazon.com/cloudfront/) does its best to speed up content delivery by caching frequently accessed files and it is obvious the service does a superb job of this by attracting an extensive [list of customers](https://aws.amazon.com/cloudfront/case-studies/). But what happens when you turn on the prescribed failover solution and need to test its seemingly simple implementation? Get ready for a deeper dive into CloudFront's Origin Groups.
 
-# Application Pre-Failover
+## Application Set-Up
 
-## The Set Up
+To understand the problem at hand, it is best to set up the use case as it was intended (and before mentioning anything about failover). The [Ippon Podcast](https://podcast.ipponway.com/) exploratory project is possible through a combination of CloudFront and S3. The application's `index.html`, styles, scripts, and media files are all located in `us-east-1` S3 buckets with the property for "Static website hosting" enabled. The site is served via a CloudFront distribution concerning these S3 buckets as [Origins](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html). So what happens to the site if a bucket is deleted or the files are removed? What about if the entire `us-east-1` region goes down?
 
-To understand the problem at hand, it is best to set up the use case as it was intended (and before mentioning anything about failover). The [Ippon Podcast](https://podcast.ipponway.com/) exploratory project is possible through a combination of CloudFront and S3. The application's `index.html`, styles, scripts, and media files are all located in us-east-1 S3 buckets with the property for "Static website hosting" enabled. The site is served via a CloudFront distribution with reference to these S3 buckets as [Origins](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html). So what happens to the site if a bucket is deleted or the files are removed? What about if the entire us-east-1 region goes down?
+Failure to retrieve these files will result in 4xx error codes since they will either be considered not found or forbidden. Enabling the "Versioning" property or "Cross-Region Replication" management of these buckets can help ensure the buckets and their files survive; but, the CloudFront distribution still needs a way to retrieve those files in the event of a region shutdown.
 
-Failure to retrieve these files will result in 4xx error codes since they will either be considered not found or forbidden. Enabling the "Versioning" property or "Cross Regional Replication" management of these buckets can help ensure the buckets and their files survive; but, the CloudFront distribution still needs a way to retrieve those files in the event of a region shutdown.
+## Prescription Failover
 
-# Prescription Failover
-
-## Proper Failover
-
-In the event of a cache miss at an edge location, CloudFront goes to retrieve the file and replenish the cache. So then how does it work if the origin is unavailable at the time CloudFront goes looking for it? Fortunately, [support for Origin Failover](https://aws.amazon.com/about-aws/whats-new/2018/11/amazon-cloudfront-announces-support-for-origin-failover/) was introduced November 2018, which was another important advancement in making AWS-based web applications highly available. Origin Failover is achievable through the ability to specify a primary and a secondary origin into what is called an [Origin Group](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html). When CloudFront is unsuccessful in connecting to the primary origin, an error status code is returned which prompts the failover action. CloudFront will then attempt the same request with the secondary origin. This is customizable in that any combination of the following status codes can be selected: 500, 502, 503, 504, 404, or 403.
+In the event of a cache miss at an edge location, CloudFront goes to retrieve the file and replenish the cache. So then how does it work if the origin is unavailable at the time CloudFront goes looking for it? Fortunately, [support for Origin Failover](https://aws.amazon.com/about-aws/whats-new/2018/11/amazon-cloudfront-announces-support-for-origin-failover/) was introduced in November 2018, which was another important advancement in making AWS-based web applications highly available. Origin Failover is achievable through the ability to specify a primary and a secondary origin into what is called an [Origin Group](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html). When CloudFront is unsuccessful in connecting to the primary origin, an error status code is returned which prompts the failover action. CloudFront will then attempt the same request with the secondary origin. This is customizable in that any combination of the following status codes can be selected: 500, 502, 503, 504, 404, or 403.
 ![Origin Failover on cache miss](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/images/origingroups-overview.png)
 
-# Administer the Prescription
+## Administer the Prescription
+
+In its current state, the [Ippon Podcast](https://podcast.ipponway.com/) site relies on S3 buckets located in the `us-east-1` region. Proper failover cannot be implemented without redundant S3 buckets in another region like `us-west-2`. This can be implemented in any of the following ways (using the AWS CLI is recommended):
+
+* Make an S3 bucket in `us-west-2` then copy the objects over from the original `us-east-1` bucket. Object consistency between the two buckets will require manual intervention.
+* Enable "Cross-Region Replication" on the `us-east-1` bucket and specifying the creation of a new S3 bucket. This will force the "Versioning" property to be enabled on both buckets and also requires the objects to be re-uploaded to the original `us-east-1` bucket so they automatically get copied over into the new `us-west-2` bucket.
+* A combination of the first two operations, make an S3 bucket in `us-west-2` and copy the objects over from the original `us-east-1` bucket. Then, enable "Cross-Region Replication" on the `us-east-1` bucket and specifying the new S3 bucket which was just created in `us-west-2`. This will still force the "Versioning" property to be enabled on both buckets but re-uploading is no longer necessary for redundancy.
+
+Returning to the CloudFront distribution, under the **Origins and Origin Groups** tab, enter the new S3 bucket in `us-west-2`'s information through the **Create Origin** interface. Make sure to specify "Restrict Bucket Access" as "Yes" and allow the grant read permission to the desired Origin Access Identity. There should now be at least two origins listed before moving on to the **Create Origin Group** interface.
+
+From the "Origins *" drop-down, add the two S3 bucket origins in order of request priority. The 4xx status codes are necessary but feel free to select any of the errors as "Failover criteria *". Hit **Create** and confirm the Origin Group is now listed.
+
+The final step under the **Behaviors** tab is to replace the intended behavior's origin field that was previously using just the single S3 bucket in `us-east-1` for the new origin group. And with that, the application should now be better equipped for handling failures! So how can that be tested?
+
+## East... West... Active... Testing
 
 
 
