@@ -89,28 +89,28 @@ y = stored_procedure1(x) --NOT ALLOWED
   * There are indirect ways to use the returned value of a stored procedure:
     * You can call a stored procedure inside a stored procedure and use the JavaScript from the outer procedure to retrieve and store the output of the inner. *The outer stored procedure is still unable to return more than one value to its caller.*
     * You can call the stored procedure, then call the RESULT_SCAN function and pass it the statement ID generated for the procedure.
-    * If the stored procedure is a [caller’s rights stored procedure](###caller's-rights-stored-procedures), you can store a result set in a temporary (or permanent) table, and use the table after returning from the stored procedure call.
+    * If the stored procedure is a [caller’s rights stored procedure](####caller's-rights-stored-procedures), you can store a result set in a temporary (or permanent) table, and use the table after returning from the stored procedure call.
     * If the volume of data is not too large, you can store multiple rows and multiple columns in a VARIANT (for example, as a JSON value) and return that VARIANT.
 * Only one Stored Procedure can be called per CALL statement.
 * Snowflake provides a JavaScript API which enables Stored Procedures to access the database and issue nested queries. UDFs do not have an API which allows them to perform database operations (CREATE, UPDATE, SELECT).
 
 ---
 # Stored Procedures 101
-Now that we've discussed some of the benefits of stored procedures, how session state can be handled in stored procedures and examined the differences between User Defined Functions and Stored Procedures, we will begin our deep dive into Stored Procedures by creating a new stored procedure that will read data from the tables pets, containing Variant data and return only cats.
+Now that we've discussed some of the benefits of stored procedures, how session state can be handled in stored procedures and examined the differences between User Defined Functions and Stored Procedures, we will begin our deep dive into Stored Procedures by creating a new stored procedure that will, given the type of animal, return the names of all the creatures of that type.
 
 ## Creating a Stored Procedure
 In Snowflake, Stored Procedures are First-Class Objects^[An entity that can be dynamically created, destroyed, passed to a function or returned as a value], and as such can use the following commands: CREATE PROCEDURE, ALTER PROCEDURE, DROP PROCEDURE, DESCRIBE PROCEDURE and SHOW PROCEDURES. Snowflake also provides the CALL command for executing Stored Procedures.
 
 Let's walk through an example to view the different components of a Stored Procedure in Snowflake.
 ```plsql
-CREATE OR REPLACE PROCEDURE stproc1()
+CREATE OR REPLACE PROCEDUR stproc1(animal varchar)
   RETURNS array
   LANGUAGE javascript
   AS
   -- "$$" is the delimiter for the beginning and end of the stored procedure.
   $$
-    var query_to_retrieve_only_cats = "select V:name::String as name from pets where V:species like '%cat%';";
-    var statement1 = snowflake.createStatement({sqlText:query_to_retrieve_only_cats});
+    var query_to_retrieve = "select V:name::String as name from pets where V:species like '%" + ANIMAL +"%';";
+    var statement1 = snowflake.createStatement({sqlText:query_to_retrieve});
     var result_set = statement1.execute();
     var returned_count = statement1.getRowCount();
 
@@ -165,44 +165,30 @@ var my_sql_command1 = "delete from history_table where event_year < 2016";
 var statement1 = snowflake.createStatement(my_sql_command1);
 statement1.execute();
 ```
-This code uses the object **snowflake**, which is a special object that does not need to be declared. This object is present within the context of each stored procedure and exposes the API for use. All other variables, such as my_sql_command1 and statement1 are created as JavaScript vars. You can also retrieve the ResultSet and iterate through it.
-```plsql
-create or replace procedure read_result_set()
-  returns float not null
-  language javascript
-  as     
-  $$  
-    var my_sql_command = "select * from table1";
-    var statement1 = snowflake.createStatement( {sqlText: my_sql_command} );
-    var result_set1 = statement1.execute();
-    // Loop through the results...
-    while (result_set1.next())  {
-       var column1 = result_set1.getColumnValue(1);
-       var column2 = result_set1.getColumnValue(2);
-       // Do something with the retrieved values...
-       }
-  return 0.0; //return the singular result
-  $$
-  ;
-```
-For more examples on each of the four objects and API methods Snowflake provides, look at [Examples](https://docs.snowflake.net/manuals/sql-reference/stored-procedures-usage.html#label-stored-procedure-examples).
+This code uses the object **snowflake**, which is a special object that does not need to be declared. This object is present within the context of each stored procedure and exposes the API for use. All other variables, such as my_sql_command1 and statement1 are created as JavaScript vars. You can also retrieve the ResultSet and iterate through it. For more on each of the four objects and API methods Snowflake provides, look at the [Snowflake Example Documentation](https://docs.snowflake.net/manuals/sql-reference/stored-procedures-usage.html#label-stored-procedure-examples).
 
 ### How do SQL and JavaScript Data Types Map?
-Snowflake will automatically convert SQL data types to JavaScript data types and vice versa. The SQL to JavaScript conversion can occur when calling a stored procedure with an argument (where the argument will be converted from an SQL type to a JavaScript type so it can be used in the procedure) or when retrieving a value from a ResultSet object into a JavaScript variable. The JavaScript to SQL conversion can occur when returning a value from the stored procedure, when dynamically constructing an SQL statement that uses a value from a JavaScript variable, or when binding a JavaScript variable's value to a PreparedStatement.
+Snowflake will automatically convert SQL data types to JavaScript data types and vice versa. The SQL to JavaScript conversion can occur in a number of scenarios. Snowflake will convert SQL types into Javascript types when:
+  * Calling a stored procedure with an argument. The argument is a SQL data type; when it is stored inside a JavaScript variable inside the stored procedure, it must be converted.
+  * Retrieving a value from a ResultSet object into a JavaScript variable. The ResultSet holds the value as a SQL data type, and the JavaScript variable must store the value as one of the JavaScript data types.
+Snowflake will also convert Javascript into SQL when:
+  * Returning a value from the stored procedure. The return statement typically contains a JavaScript variable that must be converted to a SQL data type.
+  * When dynamically constructing a SQL statement that uses a value in a JavaScript variable.
+  * When binding a JavaScript variable’s value to a prepared statement.
 
 Here is a table which shows the Snowflake SQL data types and their corresponding JavaScript data types:
 ![SQL Data Type to JavaScript Data Type Conversion Table](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/08/Snowflake-SQL-to-JavaScript-Type-Conversion-Table.png) [source](https://docs.snowflake.net/manuals/sql-reference/stored-procedures-usage.html#converting-from-sql-to-javascript)
 
-Not all Snowflake SQL data types have a corresponding JavaScript data type. JavaScript does not directly support the INTEGER or NUMBER data types. In these cases, you should convert the SQL data type to an appropriate alternative data type.^[SQL INTEGER can be converted to SQL FLOAT which will be mapped to JavaScript number]
-
-
+Not all Snowflake SQL data types have a corresponding JavaScript data type. JavaScript does not directly support the INTEGER or NUMBER data types. In these cases, you should convert the SQL data type to an appropriate alternative data type ^[SQL INTEGER can be converted to SQL FLOAT which will be mapped to JavaScript number].
 
 ---
 # Access Control on Stored Procedures
-To finish off our discussion of Snowflake Stored Procedures, I am going to delve a little bit into access control features Snowflake provides for Stored Procedures. There are two types of privileges that stored procedures utilize: Those directly on the procedure and those on the database objects that the procedure can access. Similar to other database objects in Snowflake, stored procedures are owned by a role and have one or more privileges that can be granted to other roles. There are currently two privileges that can apply to stored procedures: USAGE and OWNERSHIP. For a role to use a stored procedure, it must either be the owner of the stored procedure or have been granted USAGE on the procedure ^[For a more in-depth view on Access Control in Snowflake, I refer you to [Access Control Considerations](https://docs.snowflake.net/manuals/user-guide/security-access-control-considerations.html) in the Snowflake Documentation.].
+To finish off our discussion of Snowflake Stored Procedures, I am going to delve a little bit into access control features Snowflake provides for Stored Procedures. There are two types of privileges that stored procedures utilize: Those directly on the procedure and those on the database objects that the procedure can access. Similar to other database objects in Snowflake, stored procedures are owned by a role and have one or more privileges that can be granted to other roles.
+
+There are currently two privileges that can apply to stored procedures: USAGE and OWNERSHIP. For a role to use a stored procedure, it must either be the owner of the stored procedure or have been granted USAGE on the procedure ^[For a more in-depth view on Access Control in Snowflake, I refer you to [Access Control Considerations](https://docs.snowflake.net/manuals/user-guide/security-access-control-considerations.html) in the Snowflake Documentation.]. In addition, the roles executing the procedure must also have the USAGE privilege for all database objects accessed during the course of the procedure.
 
 ----
-During this blog, we've examined Snowflake Stored Procedures from Creation to Execution. We've also discussed some of the key differences between stored procedures and user-defined functions as well as examined session state and the two 'types' of procedures Snowflake provides. To round out procedures, we briefly viewed access control in Snowflake and how privileges can affect procedure execution.
+During this blog, we've examined Snowflake Stored Procedures from Creation to Execution. We've also discussed some of the key differences between stored procedures and user-defined functions as well as examined session state and the two 'types' of procedures Snowflake provides. To round out procedures, we briefly viewed access control in Snowflake and how privileges can affect procedure execution. Hopefully this primer on Stored Procedures has provided a modic
 
 For more information on how Ippon Technologies, a Snowflake partner, can help your organization utilize the benefits of Snowflake for a migration from a traditional Data Warehouse, Data Lake or POC, contact sales@ipponusa.com.
 
