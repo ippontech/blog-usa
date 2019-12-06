@@ -96,7 +96,7 @@ y = stored_procedure1(x) --NOT ALLOWED
 
 ---
 # Stored Procedures 101
-Now that we've discussed some of the benefits of stored procedures, how session state can be handled in stored procedures and examined the differences between User Defined Functions and Stored Procedures, we will begin our deep dive into Stored Procedures by creating a new stored procedure that will .
+Now that we've discussed some of the benefits of stored procedures, how session state can be handled in stored procedures and examined the differences between User Defined Functions and Stored Procedures, we will begin our deep dive into Stored Procedures by creating a new stored procedure that will read data from the tables pets, containing Variant data and return only cats.
 
 ## Creating a Stored Procedure
 In Snowflake, Stored Procedures are First-Class Objects^[An entity that can be dynamically created, destroyed, passed to a function or returned as a value], and as such can use the following commands: CREATE PROCEDURE, ALTER PROCEDURE, DROP PROCEDURE, DESCRIBE PROCEDURE and SHOW PROCEDURES. Snowflake also provides the CALL command for executing Stored Procedures.
