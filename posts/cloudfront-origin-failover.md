@@ -20,7 +20,7 @@ Failure to retrieve these files will result in 4xx error codes since they will e
 
 ## Prescription Failover
 
-In the event of a cache miss at an edge location, CloudFront goes to retrieve the file and replenish the cache. So then how does it work if the origin is unavailable at the time CloudFront goes looking for it? Fortunately, [support for Origin Failover](https://aws.amazon.com/about-aws/whats-new/2018/11/amazon-cloudfront-announces-support-for-origin-failover/) was introduced in November 2018, which was another important advancement in making AWS-based web applications highly available. Origin Failover is achievable through the ability to specify a primary and a secondary origin into what is called an [Origin Group](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html). When CloudFront is unsuccessful in connecting to the primary origin, an error status code is returned which prompts the failover action. CloudFront will then attempt the same request with the secondary origin. This is customizable in that any combination of the following status codes can be selected: 500, 502, 503, 504, 404, or 403.
+In the event of a cache miss at an edge location, CloudFront goes to retrieve the file and replenish the cache. So then how does it work if the origin is unavailable at the time CloudFront goes looking for it? Fortunately, [support for Origin Failover](https://aws.amazon.com/about-aws/whats-new/2018/11/amazon-cloudfront-announces-support-for-origin-failover/) was introduced in November 2018, which was another important advancement in making AWS-based web applications highly available. Origin Failover is achievable through the ability to specify a primary and a secondary origin into what is called an [Origin Group](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html). When CloudFront is unsuccessful in connecting to the primary origin, an error status code is returned which prompts the failover action. CloudFront will then attempt the same request with the secondary origin. This is customizable in that any combination of the following status codes can be selected: 500, 502, 503, 504, 403, or 404.
 ![Origin Failover on cache miss](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/images/origingroups-overview.png)
 
 ## Administer the Prescription
@@ -38,11 +38,145 @@ aws s3 cp s3://mybucket s3://mybucket_west --recursive
 aws s3 sync s3://mybucket s3://mybucket_west
 ```
 
-Returning to the CloudFront distribution, under the **Origins and Origin Groups** tab, enter the new S3 bucket in `us-west-2`'s information through the **Create Origin** interface. Make sure to specify "Restrict Bucket Access" as "Yes" and allow the grant read permission to the desired Origin Access Identity. There should now be at least two origins listed.
+Returning to the CloudFront distribution, set up the behavior with a new Origin Group [through the AWS console](https://www.intricatecloud.io/2019/10/setting-up-automatic-failover-for-your-static-websites-hosted-on-s3/) with the following steps:
 
-Moving on to the **Create Origin Group** interface, from the "Origins *" drop-down, add the two S3 bucket origins in order of request priority. The 4xx status codes are necessary but feel free to select any of the errors as "Failover criteria *". Hit **Create** and confirm the Origin Group is now listed.
+1. Under the **Origins and Origin Groups** tab, enter the new S3 bucket in `us-west-2`'s information through the **Create Origin** interface. Make sure to specify "Restrict Bucket Access" as "Yes" and allow the grant read permission to the desired Origin Access Identity. There should now be at least two origins listed.
+1. Moving on to the **Create Origin Group** interface, from the "Origins *" drop-down, add the two S3 bucket origins in order of request priority. The 4xx status codes are necessary but feel free to select any of the errors as "Failover criteria *". Hit **Create** and confirm the Origin Group is now listed.
+1. The final step under the **Behaviors** tab is to replace the intended behavior's origin field that was previously using just the single S3 bucket in `us-east-1` for the new origin group.
 
-The final step under the **Behaviors** tab is to replace the intended behavior's origin field that was previously using just the single S3 bucket in `us-east-1` for the new origin group. And with that, the application should now be better equipped for handling failures! So how can that be tested?
+Or, set up the behavior with a new Origin Group programmatically:
+
+1. Retrieve the current [`"DistributionConfig"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DistributionConfig.html) member using the [`get-distribution-config`](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/get-distribution-config.html) command. Save the `"DistributionConfig"` object to its own file and store the `ETag` attribute's value for reference as both will be necessary later to update the distribution.
+
+```language-shell
+aws cloudfront get-distribution-config --region us-east-1 --id EDFDVBD632BHDS5
+```
+
+2. Open the saved `DistributionConfig` file and modify its [`"Origins"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_Origins.html) object with the new S3 bucket in `us-west-2`'s information to create a new [`"Origin"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_Origin.html).
+
+```language-json
+"Origins": {
+    "Quantity": 2,
+    "Items": [
+        {
+            "Id": "originalHostingS3Bucket",
+            "DomainName": "mybucket.s3.amazonaws.com",
+            "OriginPath": "",
+            "CustomHeaders": {
+                "Quantity": 0
+            },
+            "S3OriginConfig": {
+                "OriginAccessIdentity": "origin-access-identity/cloudfront/_ID-of-origin-access-identity_"
+            }
+        },
+        {
+            "Id": "newHostingS3Bucket_west",
+            "DomainName": "mybucket_west.s3.amazonaws.com",
+            "OriginPath": "",
+            "CustomHeaders": {
+                "Quantity": 0
+            },
+            "S3OriginConfig": {
+                "OriginAccessIdentity": "origin-access-identity/cloudfront/_ID-of-origin-access-identity_"
+            }
+        }
+    ]
+}
+```
+
+3. Now modify the file to include an [`"OriginGroups"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_OriginGroups.html) attribute if there is not one. Add an [`"OriginGroup"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_OriginGroup.html) with the origins that were added previously. Specify any combination of 403, 404, 500, 502, 503, or 504 [`"StatusCodes"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_StatusCodes.html) which CloudFront will attempt to connect with the secondary origin.
+
+```language-json
+"OriginGroups": {
+    "Quantity": 1,
+    "Items": [
+        {
+            "Id": "OriginGroup-hostingS3Bucket",
+            "FailoverCriteria": {
+                "StatusCodes": {
+                    "Quantity": 6,
+                    "Items": [
+                        403,
+                        404,
+                        500,
+                        502,
+                        503,
+                        504
+                    ]
+                }
+            },
+            "Members": {
+                "Quantity": 2,
+                "Items": [
+                    {
+                    "OriginId": "originalHostingS3Bucket"
+                    },
+                    {
+                    "OriginId": "newHostingS3Bucket_west"
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+4. Last part to modify is the Behavior with the new Origin Group. Update the [`"DefaultCacheBehavior"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DefaultCacheBehavior.html) and/or [`"CacheBehaviors"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CacheBehaviors.html) members with the file. When using Origin Groups for Behaviors, the [`"AllowedMethods"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_AllowedMethods.html) are only `"HEAD"`, `"GET"`, and `"OPTIONS"`.
+
+```language-json
+"DefaultCacheBehavior": {
+    "TargetOriginId": "OriginGroup-hostingS3Bucket",
+    "ForwardedValues": {
+        "QueryString": false,
+        "Cookies": {
+            "Forward": "none"
+        },
+        "Headers": {
+            "Quantity": 0
+        },
+        "QueryStringCacheKeys": {
+            "Quantity": 0
+        }
+    },
+    "TrustedSigners": {
+        "Enabled": false,
+        "Quantity": 0
+    },
+    "ViewerProtocolPolicy": "redirect-to-https",
+    "MinTTL": 60,
+    "AllowedMethods": {
+        "Quantity": 3,
+        "Items": [
+            "HEAD",
+            "GET",
+            "OPTIONS"
+        ],
+        "CachedMethods": {
+            "Quantity": 2,
+            "Items": [
+                "HEAD",
+                "GET"
+            ]
+        }
+    },
+    "SmoothStreaming": false,
+    "DefaultTTL": 86400,
+    "MaxTTL": 31536000,
+    "Compress": true,
+    "LambdaFunctionAssociations": {
+        "Quantity": 0
+    },
+    "FieldLevelEncryptionId": ""
+}
+```
+
+5. Confirm the DistributionConfig JSON file is saved with the changes just made. Then run the [`update-distribution`](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/update-distribution.html) command using that file's location. Make sure to provide the `--if-match` flag with the `"ETag"` value returned in the first step's command. The updated DistributionConfig JSON should be echoed back if successful.
+
+```language-shell
+aws cloudfront update-distribution --if-match E2QWRUHEXAMPLE --id EDFDVBD632BHDS5 --distribution-config file://origin-failover.json --region us-east-1
+```
+
+And with that, the application should now be better equipped for handling failures! So how can that be tested?
 
 ## Testing... Testing... Redundancy
 
@@ -61,7 +195,7 @@ A similar test can be performed on the media files. While this will not break th
 
 Remember to restore removed primary files either by deleting the "Delete marker" under show versions or re-upload the file. Ensure that any changed behaviors use the origin groups.
 
-## Wrap Up
+## Debrief
 
 The [Ippon Podcast](https://podcast.ipponway.com/) site is still very much a work-in-progress. Since it is more exploratory, high availability is not as critical. This makes it a good application to test proper failover through CloudFront's origin groups. There are more subtle details to utilizing origin groups which require some exploration. Yet, hopefully, this provided an easy first step towards building and testing redundancy in a CloudFront/S3-hosted application.
 
@@ -76,5 +210,6 @@ The [Ippon Podcast](https://podcast.ipponway.com/) site is still very much a wor
 * [How to enable the cross region replication on S3?](https://geekylane.com/cross-region-replication-on-s3/)
 * [CloudFront Origin API Doc](https://docs.aws.amazon.com/en_pv/cloudfront/latest/APIReference/API_Origin.html)
 * [Origin Group Failover](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html)
+* [Setting up automatic failover for your static websites hosted on S3](https://www.intricatecloud.io/2019/10/setting-up-automatic-failover-for-your-static-websites-hosted-on-s3/)
 * [How CloudFront retrieves files and replenishes the cache](https://docs.aws.amazon.com/en_pv/AmazonCloudFront/latest/DeveloperGuide/HowCloudFrontWorks.html)
 * [CloudFront Invalidating Files](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html)
