@@ -48,13 +48,13 @@ Or, set up the behavior with a new Origin Group programmatically:
 
 1. Retrieve the current [`"DistributionConfig"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DistributionConfig.html) member using the [`get-distribution-config`](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/get-distribution-config.html) command. Save the `"DistributionConfig"` object to its own file and store the `ETag` attribute's value for reference as both will be necessary later to update the distribution.
 
-```language-shell
+```Shell
 aws cloudfront get-distribution-config --region us-east-1 --id EDFDVBD632BHDS5
 ```
 
 2. Open the saved `DistributionConfig` file and modify its [`"Origins"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_Origins.html) object with the new S3 bucket in `us-west-2`'s information to create a new [`"Origin"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_Origin.html).
 
-```language-json
+```JSON
 "Origins": {
     "Quantity": 2,
     "Items": [
@@ -86,7 +86,7 @@ aws cloudfront get-distribution-config --region us-east-1 --id EDFDVBD632BHDS5
 
 3. Now modify the file to include an [`"OriginGroups"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_OriginGroups.html) attribute if there is not one. Add an [`"OriginGroup"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_OriginGroup.html) with the origins that were added previously. Specify any combination of 403, 404, 500, 502, 503, or 504 [`"StatusCodes"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_StatusCodes.html) which CloudFront will attempt to connect with the secondary origin.
 
-```language-json
+```JSON
 "OriginGroups": {
     "Quantity": 1,
     "Items": [
@@ -123,7 +123,7 @@ aws cloudfront get-distribution-config --region us-east-1 --id EDFDVBD632BHDS5
 
 4. Last part to modify is the Behavior with the new Origin Group. Update the [`"DefaultCacheBehavior"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DefaultCacheBehavior.html) and/or [`"CacheBehaviors"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CacheBehaviors.html) members with the file. When using Origin Groups for Behaviors, the [`"AllowedMethods"`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_AllowedMethods.html) are only `"HEAD"`, `"GET"`, and `"OPTIONS"`.
 
-```language-json
+```JSON
 "DefaultCacheBehavior": {
     "TargetOriginId": "OriginGroup-hostingS3Bucket",
     "ForwardedValues": {
@@ -170,10 +170,11 @@ aws cloudfront get-distribution-config --region us-east-1 --id EDFDVBD632BHDS5
 }
 ```
 
-5. Confirm the DistributionConfig JSON file is saved with the changes just made. Then run the [`update-distribution`](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/update-distribution.html) command using that file's location. Make sure to provide the `--if-match` flag with the `"ETag"` value returned in the first step's command. The updated DistributionConfig JSON should be echoed back if successful.
+5. Confirm the `DistributionConfig` JSON file is saved with the changes just made. Then run the [`update-distribution`](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/update-distribution.html) command using that file's location. Make sure to provide the `--if-match` flag with the `"ETag"` value returned in the first step's command. The updated `DistributionConfig` JSON should be echoed back if successful.
 
-```language-shell
-aws cloudfront update-distribution --if-match E2QWRUHEXAMPLE --id EDFDVBD632BHDS5 --distribution-config file://origin-failover.json --region us-east-1
+```Shell
+aws cloudfront update-distribution --if-match E2QWRUHEXAMPLE --id EDFDVBD632BHDS5 
+        --distribution-config file://origin-failover.json --region us-east-1
 ```
 
 And with that, the application should now be better equipped for handling failures! So how can that be tested?
