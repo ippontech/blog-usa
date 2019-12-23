@@ -5,7 +5,7 @@ tags:
 - AWS
 - CloudFront
 - Origin Groups
-date: 2019-5-07T00:00:00.000Z
+date: 2019-12-23T00:00:00.000Z
 title: "When A CloudFront Origin Must Fail for Testing High Availability"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/11/cloudfront_failover.png
 ---
