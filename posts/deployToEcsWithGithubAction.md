@@ -7,10 +7,14 @@ tags:
 - GitHub
 - GitHub Actions
 - DevOps
+- AWS
+- Amazon ECS
+- AWS Fargate
+- Amazon ECR
 
 date: 2020-20-10T20:16:10.000Z
 title: "Deploy to ECS using GitHub Actions"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/07/container-2539942_1920.jpg
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/01/deployToEcsWithGithubAction.jpg
 ---
 
 Building a DevOps platform nowadays can be challenging for Architect and Infrastructure teams, due to the integration complexity with many platforms: source control, ci/cd, artifact repositories, quality, SAST/SCA, deployment ...  , Many DevOps leader believes that the challenge of DevOps is to reduce the number of the platforms involved in one pipeline.
