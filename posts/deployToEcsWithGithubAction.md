@@ -170,7 +170,7 @@ After running this pipeline, the results looks like:
 
 
 # Conclusion
-GitHub is working actively to integrate all the necessary DevOps features in their platform like GitHub Package to store your artifacts, and security alerts that track security vulnerabilities that apply to your project dependencies (Sofware Composition Analysis).
+GitHub is working actively to integrate all the necessary DevOps features in their platform like GitHub Package to store your artifacts, and security alerts that track security vulnerabilities that apply to your project dependencies (Software Composition Analysis).
 If you are using GitHub at an enterprise level or hosting an open-source project, these new features can be a serious alternative to the classic DevOps toolkit.
 
 ### Sources
