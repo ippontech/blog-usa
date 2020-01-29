@@ -11,7 +11,7 @@ tags:
 - Amazon ECS
 - AWS Fargate
 - Amazon ECR
-date: 2020-20-10T20:16:10.000Z
+date: 2020-01-29T20:16:10.000Z
 title: "Deploy to ECS using GitHub Actions"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/01/deployToEcsWithGithubAction.jpg
 ---
