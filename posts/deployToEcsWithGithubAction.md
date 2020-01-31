@@ -105,7 +105,7 @@ jobs:
 
 ```
 
-This pipeline  will checkout the code, build the JAR file, build and push the Docker image to [Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/), and then  deploy a new task definition to Amazon ECS, on every push to the master branch.
+This pipeline will checkout the code, build the JAR file, build and push the Docker image to [Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/), and then deploy a new task definition to Amazon ECS on every push to the master branch.
 
 Before using this pipeline, you will need to complete all the necessary infrastructure configuration on AWS:
 - Create an ECS repository
