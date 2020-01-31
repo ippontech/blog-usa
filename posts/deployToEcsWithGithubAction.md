@@ -29,7 +29,7 @@ Behind the scenes, your pipeline is run on GitHub-hosted machines, called "runne
 
 # Create Your First Pipeline With Github Actions
 On your GitHub repository select the **Actions** tab.
-GitHub propose popular pipelines to start with. We will choose: **Deploy to Amazon ECS**
+GitHub proposes popular pipelines to start with. We will choose: **Deploy to Amazon ECS**
 
 ![01](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/01/deployToEcsWithGithubAction-01.png)
 
