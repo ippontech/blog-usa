@@ -23,7 +23,7 @@ In this article, we will deploy a simple [Spring Boot](https://spring.io/project
 
 # What is GitHub Actions?
 GitHub Actions enables you to create custom software development lifecycle pipelines directly in your GitHub repository.
-You can write individual tasks, called "actions", and combine them to create a custom pipeline.
+You can write individual tasks, called "actions" and combine them to create a custom pipeline.
 Behind the scenes, your pipeline is run on GitHub-hosted machines, called "runners".
 
 
