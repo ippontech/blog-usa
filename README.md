@@ -8,7 +8,7 @@ To submit a post to be published on the blog, you need to make a Pull Request on
 - Clone this repository
 - Make changes in your fork
 - Submit a Pull Request
-- One or multiple people will review your PR and submit comments
+- ASK one or multiple people to review your blog. Do not just post a link into slack or workplace.
 - Once the review process is complete, the PR will be merged and your post will be published on [Ippon's blog](https://blog.ippon.tech/)
 
 ## How to write a post
