@@ -13,7 +13,7 @@ title: "Audit your data with JaVers"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/07/container-2539942_1920.jpg
 ---
 
-As an IT consultant, the first requirements that come to mind when you are working in the Healthcare Industry is HIPAA, The technology plays a significant role to ensure data remains secure and HIPAA-compliant. According to cybercrime experts, stolen PHI (Protected Health Information) is 10 times more valuable than credit card information.
+As an IT consultant, the first requirements that come to mind when you are working in the Healthcare Industry is Health Insurance Portability and Accountability Act (HIPAA), The technology plays a significant role to ensure data remains secure and HIPAA-compliant. According to cybercrime experts, stolen Protected Health Information (PHI) is 10 times more valuable than credit card information.
 
 The data contained in PHI, can be used to generate identities, obtain health services, submit false insurance claims, order pharmaceuticals, and perform other illegal acts. That is why auditing PHI is critical: the ability to show who and how the data is used.
 
@@ -26,7 +26,7 @@ On the application layer, the two main tools for data auditing are Envers and Ja
 Since our client is mainly using MongoDB, we choosed to use JaVers.
 JaVers is an audit log framework that helps to track changes of entities in the application.
 
-The usage of this tool is not limited to debugging and auditing only. It can be successfully applied to perform analysis, force security policies and maintaining the event log, too.
+The usage of this tool is not limited to debugging and auditing only. It can be successfully applied to perform analysis, force security policies and maintaining the event log.
 
 # Spring Boot Integration and Setup
 JaVers provide a spring boot starter that integrate all the required JaVers beans with default configuration.
@@ -75,9 +75,9 @@ import org.javers.organization.structure.domain.Person;
 public interface PersonRepository extends MongoRepository<Person, String> {
 }
 ```
-All the changes made to Person objects  will be audited by JaVers.
+All the changes made to Person objects will be audited by JaVers.
 
-In case of a custom repository, the @JaversAuditable needs to be used a the method level
+In case of a custom repository, the @JaversAuditable needs to be added at the method level
 
 ```
 @Repository
