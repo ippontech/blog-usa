@@ -17,7 +17,7 @@ title: "Deploy to ECS using GitHub Actions"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/01/deployToEcsWithGithubAction.jpg
 ---
 
-Building a DevOps platform nowadays can become a challenge for architecture and platform infrastructure teams due to the integration complexity with many platforms: Source Control, Continuous Integration/Continuous Delivery (CI/CD), Artifact Repositories, Quality, SAST/SCA, and Deployment. Many DevOps leaders believe that the challenge of DevOps is to ultimately reduce the number of platforms involved in one single pipeline.
+Building a DevOps platform nowadays can become a challenge for architecture and platform infrastructure teams due to the integration complexity with many platforms: source control, continuous integration/continuous delivery (CI/CD), artifact repositories, quality,  security, and deployment. Many DevOps leaders believe that the challenge of DevOps is to ultimately reduce the number of platforms involved in one single pipeline.
 That's why tech giants are trying to integrate all pipeline steps into their platforms.
 In this article, we will deploy a simple [Spring Boot](https://spring.io/projects/spring-boot) application to [Amazon Elastic Container Service (ECS)](https://spring.io/projects/spring-boot) using the new GitHub feature called [GitHub Actions](https://github.com/features/actions).
 
