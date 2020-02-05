@@ -68,7 +68,7 @@ javers:
 
 # Auto audit annotations
 
-Auditing specific entities can be done very easy without additionnal code, simply add the @JaversSpringDataAuditable on the corresponding Spring Data repositories.
+Auditing specific entities can be done very easily without additional code. Simply add the `@JaversSpringDataAuditable` annotation on the corresponding Spring Data repositories.
 
 Example on MongoRepository
 ```
