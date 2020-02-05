@@ -46,7 +46,7 @@ pom.xml
 
 # JaVers repository configuration
 JaVers [Spring Boot starter](https://javers.org/documentation/spring-boot-integration/) is configured to reuse the application's persistent data store.  This is managed by Spring Data.
-Alternativelly, we can choose to store JaVers data in a separate database as shown bellow:
+Alternatively, we can choose to store JaVers data in a separate database as shown bellow:
 
 ```yaml
 javers:
@@ -170,7 +170,7 @@ class MongoStoredEntity {
 ```
 
 # Retrieve the change
-As mentioned earlier, we stored all our auditing in a separate Mongo collection from client-facing data. However, we needed to find a way to display back the information collected. JaVers provides its' own JaVers Query Language (JQL), which can be used to query the Javers Repository for changes on a given class, object or property.
+As mentioned earlier, we stored all our auditing data in a separate Mongo collection from client-facing data. However, we needed to find a way to display back the information collected. JaVers provides its' own JaVers Query Language (JQL), which can be used to query the Javers Repository for changes on a given class, object or property.
 
 Data can be retrieved from JaVers in 3 possible ways: Shadows, Changes and Snapshots.
   * *Shadows* are historical versions of objects
@@ -200,9 +200,9 @@ Shadows shadows = javers.findShadows(QueryBuilder.byInstance(bob).build());
 Shadows, as provided here is a wrapper object containing all the distinct instances of the Employee object bob.
 
 ##Snapshots
-Snapshots are the historical state of a domain object captured as the property-value map. Snapshots are raw data stored in the JaversRepository. When an object is committed, JaVers makes a Snapshot of its state and persists it. JaVers reuses Snapshots and creates a new one only when a given object is changed.
+Snapshots are the historical state of a domain object captured as the property-value map. Snapshots are raw data stored in the JaversRepository. When an object is committed, JaVers makes a Snapshot of its state and persists it. JaVers reuses Snapshots and creates a new one only when a given object is changed. This mechanism allows the user to save Repository space. In addition, you can use the snapshot version to retrieve the snapshot for an object version. The snapshot version is local for each object stored in the JaversRepository. When an object is committed for the first time, it has version 1. In the next commit it gets version 2 and so on.
 
-JaVers fetches snapshots in reversed chronological order.
+JaVers fetches snapshots in reverse chronological order.
 
 Looking once again at Bob, when we query the following:
 ```java
@@ -211,14 +211,16 @@ List<CdoSnapshot> snapshots = javers.findSnapshots( QueryBuilder.byInstance(bob)
 CdoSnapshot, as seen here is a wrapper object containing the historical state of an object at a point in time.
 
 ##Changes
-The Changes view of JaVers provides the list of differences between versions of a domain object. Changes are calculated as the difference between Snapshots loaded from the JaVers Repository. As per our client requirements, we needed to display the changes for an object from creation. We decided to use the **findChanges** method to do so. There are 3 types of changes tracked by JaVers: NewObject, ObjectRemoved and PropertyChange.
+The Changes view of JaVers provides the list of differences between versions of a domain object. Changes are calculated as the difference between snapshots loaded from the 'JaVers Repository'. As per our client requirements, we needed to display the changes for an object from creation. As such we decided to use the **findChanges** method to do so. There are 3 types of changes tracked by JaVers: 'NewObject', 'ObjectRemoved', and 'PropertyChange'.
 
 Let us revisit the example of Bob. When we query the following and print the changes,
+
 ```java
 Changes changes = javers.findChanges( QueryBuilder.byInstance(bob).build());
 System.out.println( changes.prettyPrint());
 ```
 we see a query result of:
+
 ```
 Changes:
 Commit 2.0 done by author at 13 Apr 2018, 23:27:38 :
