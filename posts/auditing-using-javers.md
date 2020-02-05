@@ -4,18 +4,21 @@ authors:
 - Pooja Krishnan
 tags:
 - HIPAA
+- PHI
+- Audit Trail
+- JaVers
 - Spring Data
 - Spring Boot
 - JHipster
 
 date: 2020-01-10T20:16:10.000Z
 title: "Audit your data with JaVers"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/07/container-2539942_1920.jpg
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/01/audit-trail.jpg
 ---
 
 As an IT consultant, the first requirements that comes to mind when you are working in the Healthcare Industry is Health Insurance Portability and Accountability Act (HIPAA). The technology plays a significant role to ensure data remains secure and HIPAA-compliant. According to cybercrime experts, stolen Protected Health Information (PHI) is 10 times more valuable than credit card information.
 
-The data contained in PHI can be used to generate identities, obtain health services, submit false insurance claims, order pharmaceuticals, and perform other illegal acts. That is why auditing PHI is critical: the ability to show who and how the data is used.
+The data contained in PHI can be used to generate identities, obtain health services, submit false insurance claims, order pharmaceuticals, and perform other illegal acts. That is why auditing PHI is critical: the ability to show who, when and how the data is used.
 
 On the application layer, the two main tools for data auditing are Envers and JaVers.
 - Envers is a core Hibernate module, it provides an easy auditing solution when using Hibernate or JPA, Envers is not an option if you are using a NoSQL database.
@@ -43,9 +46,9 @@ pom.xml
 
 # JaVers repository configuration
 JaVers spring boot starter is configured to reuse the application's database (managed by Spring Data).
-Alternativelly, we can choose to store JaVers data in a separate database as shown bellow :
+Alternativelly, we can choose to store JaVers data in a separate database as shown bellow:
 
-```
+```yaml
 javers:
   mongodb:
     host: localhost
@@ -57,7 +60,7 @@ javers:
 ```
 Or
 
-```
+```yaml
 javers:
   mongodb:
     uri: mongodb://javers:password@localhost:27017/javers-audit&authSource=admin
@@ -79,9 +82,9 @@ public interface PersonRepository extends MongoRepository<Person, String> {
 ```
 All the changes made to Person objects will be audited by JaVers.
 
-In case of a custom repository, the @JaversAuditable needs to be added at the method level
+In case of a custom repository, the @JaversAuditable needs to be added at the method level:
 
-```
+```java
 @Repository
 class UserRepository {
 
@@ -96,9 +99,9 @@ class UserRepository {
 }
 ```
 
-For a fine-grained control, the JaVers spring bean can be used
+For a fine-grained control, the JaVers spring bean can be used:
 
-```
+```java
 @Service
 class PersonService {
     private final Javers javers;
@@ -123,11 +126,11 @@ class PersonService {
 In this example the auditing is only recorded on Fridays.
 
 # Domain model annotations
-One of the challenges faced in our client is to keep the size of the audited data reasonable. JaVers provide a good Domain model configuration, and we were able to use the @ValueObject annotation at the class level to audit on our embedded objects
+One of the challenges faced in our client is to keep the size of the audited data reasonable. JaVers provide a good domain model configuration, and we were able to use the @ValueObject annotation at the class level to audit on our embedded objects
 
 Example :
 
-```
+```java
 @ValueObject
 public class Address {
     private final String city;
@@ -153,7 +156,7 @@ We also excluded from the audit all the no-PHI data using the @DiffIgnore annota
 
 Example :
 
-```
+```java
 class MongoStoredEntity {
 
     // ...
@@ -180,7 +183,7 @@ JaVers uses the primary key on the table or collection in order to compile this 
 Shadows most easily offer a view of data history. Shadows are instances of your object from different points in time. Since Shadows are instances of your domain classes, they can be easily used.
 
 Example:
-```
+```java
 Employee bob = new Employee("bob",
                              1000,
                              new Address("London"));
@@ -191,7 +194,7 @@ Employee bob = new Employee("bob",
       javers.commit("author", bob);       // second commit
 ```
 With the transactions above, we can query the following:
-```
+```java
 Shadows shadows = javers.findShadows(QueryBuilder.byInstance(bob).build());
 ```
 Shadows, as provided here is a wrapper object containing all the distinct instances of the Employee object bob.
@@ -202,7 +205,7 @@ Snapshots are the historical state of a domain object captured as the property-v
 JaVers fetches snapshots in reversed chronological order.
 
 Looking once again at Bob, when we query the following:
-```
+```java
 List<CdoSnapshot> snapshots = javers.findSnapshots( QueryBuilder.byInstance(bob).build());
 ```
 CdoSnapshot, as seen here is a wrapper object containing the historical state of an object at a point in time.
@@ -211,7 +214,7 @@ CdoSnapshot, as seen here is a wrapper object containing the historical state of
 The Changes view of JaVers provides the list of differences between versions of a domain object. Changes are calculated as the difference between Snapshots loaded from the JaVers Repository. As per our client requirements, we needed to display the changes for an object from creation. We decided to use the **findChanges** method to do so. There are 3 types of changes tracked by JaVers: NewObject, ObjectRemoved and PropertyChange.
 
 Let us revisit the example of Bob. When we query the following and print the changes,
-```
+```java
 Changes changes = javers.findChanges( QueryBuilder.byInstance(bob).build());
 System.out.println( changes.prettyPrint());
 ```
@@ -225,6 +228,7 @@ Commit 2.0 done by author at 13 Apr 2018, 23:27:38 :
 ```
 
 # Conclusion
+As a complementary solution, the JaVers audit logs should be consolidated in real-time into a centralized log system to monitor and enable security alerts on top of the audit logs, and give read access to a third party Auditor.
 
 
 
