@@ -45,7 +45,7 @@ pom.xml
 
 
 # JaVers repository configuration
-JaVers spring boot starter is configured to reuse the application's database (managed by Spring Data).
+JaVers [Spring Boot starter](https://javers.org/documentation/spring-boot-integration/) is configured to reuse the application's persistent data store.  This is managed by Spring Data.
 Alternativelly, we can choose to store JaVers data in a separate database as shown bellow:
 
 ```yaml
