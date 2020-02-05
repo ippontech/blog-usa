@@ -82,7 +82,7 @@ public interface PersonRepository extends MongoRepository<Person, String> {
 ```
 All the changes made to Person objects will be audited by JaVers.
 
-In case of a custom repository, the @JaversAuditable needs to be added at the method level:
+In case of a custom repository, the `@JaversAuditable` annotation needs to be added at the method level:
 
 ```java
 @Repository
