@@ -228,7 +228,7 @@ Commit 2.0 done by author at 13 Apr 2018, 23:27:38 :
 ```
 
 # Conclusion
-As a complementary solution, the JaVers audit logs should be consolidated in real-time into a centralized log system to monitor and enable security alerts on top of the audit logs, and give read access to a third party Auditor.
+As a complementary solution, the JaVers audit logs should be consolidated in real-time into a centralized log system to monitor and enable security alerts on top of the audit logs, and give read access to a third party auditor.
 
 
 
