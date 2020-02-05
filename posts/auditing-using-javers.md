@@ -21,7 +21,7 @@ As an IT consultant, the first requirements that comes to mind when you are work
 The data contained in PHI can be used to generate identities, obtain health services, submit false insurance claims, order pharmaceuticals, and perform other illegal acts. That is why auditing PHI is critical: the ability to show who, when and how the data is used.
 
 On the application layer, the two main tools for data auditing are Envers and JaVers.
-- Envers is a core Hibernate module, it provides an easy auditing solution when using Hibernate or JPA, Envers is not an option if you are using a NoSQL database.
+- Envers is a core Hibernate module. It provides an easy auditing solution when using Hibernate or JPA. Envers is not an option if you are using a NoSQL database.
 - JaVers is a lightweight java library for auditing changes in your data. it can be used with any kind of database and any kind of persistence framework since the audit data is decoupled from live data; we can choose where to store them.
 
 
