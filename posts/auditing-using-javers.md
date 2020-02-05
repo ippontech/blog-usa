@@ -30,6 +30,8 @@ The usage of this tool is not limited to debugging and auditing only. It can be 
 
 # Spring Boot Integration and Setup
 JaVers provide a spring boot starter that integrate all the required JaVers beans with default configuration.
+
+pom.xml
 ```xml
 <dependency>
 			<groupId>org.javers</groupId>
