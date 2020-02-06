@@ -13,7 +13,7 @@ tags:
 
 date: 2020-01-10T20:16:10.000Z
 title: "Audit your data with JaVers"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/01/audit-trail.jpg
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/01/Ippon_Javers.jpg
 ---
 
 As an IT consultant, the first requirements that comes to mind when you are working in the Healthcare Industry is Health Insurance Portability and Accountability Act (HIPAA). The technology plays a significant role to ensure data remains secure and HIPAA-compliant. According to cybercrime experts, stolen Protected Health Information (PHI) is 10 times more valuable than credit card information.
@@ -29,7 +29,7 @@ On the application layer, the two main tools for data auditing are Envers and Ja
 Since our client is mainly using MongoDB, we chose to use JaVers.
 JaVers is an audit log framework that helps to track changes of entities in the application.
 
-The usage of this tool is not limited to debugging and auditing only. It can be successfully applied to perform analysis, force security policies and maintaining the event log.
+The usage of this tool is not limited to debugging and auditing only. It can be successfully applied to perform analysis and force security policies.
 
 # Spring Boot Integration and Setup
 JaVers provide a spring boot starter that integrate all the required JaVers beans with default configuration.
