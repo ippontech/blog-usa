@@ -22,7 +22,7 @@ The data contained in PHI can be used to generate identities, obtain health serv
 
 On the application layer, the two main tools for data auditing are Envers and JaVers.
 - Envers is a core Hibernate module. It provides an easy auditing solution when using Hibernate or JPA. Envers is not an option if you are using a NoSQL database.
-- JaVers is a lightweight java library for auditing changes in your data. it can be used with any kind of database and any kind of persistence framework since the audit data is decoupled from live data; we can choose where to store them.
+- JaVers is a lightweight java library for auditing changes in your data. It can be used with any kind of database and any kind of persistence framework since the audit data is easily decoupled from live data; we can choose where to store it.
 
 
 # Audit trail with JaVers
@@ -46,7 +46,7 @@ pom.xml
 
 # JaVers repository configuration
 JaVers [Spring Boot starter](https://javers.org/documentation/spring-boot-integration/) is configured to reuse the application's persistent data store.  This is managed by Spring Data.
-Alternatively, we can choose to store JaVers data in a separate database as shown bellow:
+Alternatively, we can choose to store JaVers data in a separate database as shown below:
 
 ```yaml
 javers:
@@ -169,13 +169,13 @@ class MongoStoredEntity {
 }
 ```
 
-# Retrieve the change
-As mentioned earlier, we stored all our auditing data in a separate Mongo collection from client-facing data. However, we needed to find a way to display back the information collected. JaVers provides its' own JaVers Query Language (JQL), which can be used to query the Javers Repository for changes on a given class, object or property.
+# Retrieving Audit Information from JaVers datastore
+As mentioned earlier, we stored all our auditing data in a separate Mongo collection from client-facing data. However, we needed to find a way to display back the information collected. JaVers provides its' own [JaVers Query Language (JQL)](https://javers.org/documentation/jql-examples/), which can be used to query the JaVers Repository for changes on a given class, object, or property.
 
-Data can be retrieved from JaVers in 3 possible ways: Shadows, Changes and Snapshots.
+Data can be retrieved from JaVers in 3 possible ways: Shadows, Changes, and Snapshots.
   * *Shadows* are historical versions of objects
-  * *Change* shows the difference between two objects
-  * *Snapshots* show the state of an object at a point in times
+  * *Changes* show the difference between two objects
+  * *Snapshots* show the state of an object at a point in time
 
 JaVers uses the primary key on the table or collection in order to compile this information.
 
@@ -200,7 +200,7 @@ Shadows shadows = javers.findShadows(QueryBuilder.byInstance(bob).build());
 Shadows, as provided here is a wrapper object containing all the distinct instances of the Employee object bob.
 
 ##Snapshots
-Snapshots are the historical state of a domain object captured as the property-value map. Snapshots are raw data stored in the JaversRepository. When an object is committed, JaVers makes a Snapshot of its state and persists it. JaVers reuses Snapshots and creates a new one only when a given object is changed. This mechanism allows the user to save Repository space. In addition, you can use the snapshot version to retrieve the snapshot for an object version. The snapshot version is local for each object stored in the JaversRepository. When an object is committed for the first time, it has version 1. In the next commit it gets version 2 and so on.
+Snapshots are the historical state of a domain object captured as the property-value map. Snapshots are raw data stored in the 'JaversRepository'. When an object is committed, JaVers makes a snapshot of its state and persists it. JaVers reuses napshots and creates a new one only when a given object is changed. This mechanism allows the user to save repository space. In addition, you can use the snapshot version to retrieve the snapshot for an object version. The snapshot version is local for each object stored in the 'JaversRepository'. When an object is committed for the first time, it has version 1. In the next commit it gets version 2 and so on.
 
 JaVers fetches snapshots in reverse chronological order.
 
@@ -226,7 +226,7 @@ Changes:
 Commit 2.0 done by author at 13 Apr 2018, 23:27:38 :
 * changes on Employee/bob :
   - 'primaryAddress.city' changed from 'London' to 'Paris'
-  - 'salary' changed from '1000' to '1200
+  - 'salary' changed from '1000' to '1200'
 ```
 
 # Conclusion
