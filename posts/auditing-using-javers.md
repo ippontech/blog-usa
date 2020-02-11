@@ -99,7 +99,7 @@ class UserRepository {
 }
 ```
 
-For a fine-grained control, the JaVers spring bean can be used:
+For fine-grained control, the JaVers Spring bean can be used:
 
 ```java
 @Service
