@@ -126,7 +126,7 @@ class PersonService {
 In this example the auditing is only recorded on Fridays.
 
 # Domain model annotations
-One of the challenges faced in our client is to keep the size of the audited data reasonable. JaVers provide a good domain model configuration, and we were able to use the @ValueObject annotation at the class level to audit on our embedded objects
+One of the challenges our client faced was keeping the size of the audited data reasonable. JaVers provides a good domain model configuration. We were able to use the `@ValueObject` annotation at the class level to audit our embedded objects.
 
 Example :
 
