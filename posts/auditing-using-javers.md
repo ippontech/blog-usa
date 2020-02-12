@@ -170,7 +170,7 @@ class MongoStoredEntity {
 ```
 
 # Retrieving Audit Information from JaVers datastore
-As mentioned earlier, we stored all our auditing data in a separate Mongo collection from client-facing data. However, we needed to find a way to display the information collected. JaVers provides it' own [JaVers Query Language (JQL)](https://javers.org/documentation/jql-examples/), which can be used to query the JaVers Repository for changes on a given class, object, or property.
+As mentioned earlier, we stored all our auditing data in a separate Mongo collection from client-facing data. However, we needed to find a way to display the information collected. JaVers provides its own [JaVers Query Language (JQL)](https://javers.org/documentation/jql-examples/), which can be used to query the JaVers Repository for changes on a given class, object, or property.
 
 Data can be retrieved from JaVers in three possible ways: Shadows, Changes, and Snapshots.
   * *Shadows* are historical versions of objects
