@@ -71,7 +71,7 @@ javers:
 Auditing specific entities can be done quickly without additional code. Simply add the `@JaversSpringDataAuditable` annotation on the corresponding Spring Data repositories.
 
 Example on MongoRepository
-```
+```java
 import org.javers.spring.annotation.JaversSpringDataAuditable
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.javers.organization.structure.domain.Person;
@@ -178,7 +178,7 @@ Data can be retrieved from JaVers in three possible ways: Shadows, Changes, and 
 
 JaVers uses the primary key on the table or collection in order to compile this information.
 
-##Shadows
+## Shadows
 Shadows easily offer a view of data history. Shadows are instances of your object from different points in time. Since Shadows are instances of your domain classes, they can be easily used.
 
 Example:
@@ -198,8 +198,8 @@ Shadows shadows = javers.findShadows(QueryBuilder.byInstance(bob).build());
 ```
 Shadows, as provided here is a wrapper object containing all the distinct instances of the Employee object Bob.
 
-##Snapshots
-Snapshots are the historical state of a domain object captured as the property-value map. Snapshots are raw data stored in the 'JaversRepository'. When an object is committed, JaVers makes a snapshot of its state and persists it. JaVers reuses snapshots and creates a new one only when a given object is changed. This mechanism allows the user to save repository space. In addition, you can use the snapshot version to retrieve the snapshot for an object version. The snapshot version is local for each object stored in the 'JaversRepository'. When an object is committed for the first time, it has version 1. In the next commit it gets version 2 and so on.
+## Snapshots
+Snapshots are the historical state of a domain object captured as the property-value map. Snapshots are raw data stored in the 'JaversRepository'. When an object is committed, JaVers makes a snapshot of its state and persists it. JaVers reuses snapshots and creates a new one only when a given object is changed. This mechanism allows the user to save repository space. In addition, you can use the snapshot version to retrieve the snapshot for an object version. The snapshot version is local for each object stored in the `JaversRepository`. When an object is committed for the first time, it has version 1. In the next commit, it gets version 2 and so on.
 
 JaVers fetches snapshots in reverse chronological order.
 
@@ -209,7 +209,7 @@ List<CdoSnapshot> snapshots = javers.findSnapshots( QueryBuilder.byInstance(bob)
 ```
 CdoSnapshot, is a wrapper object containing the historical state of an object at a point in time.
 
-##Changes
+## Changes
 The Changes view of JaVers provides the list of differences between versions of a domain object. Changes are calculated as the difference between snapshots loaded from the 'JaVers Repository'. As per our client requirements, we needed to display the changes for an object from creation. As such we decided to use the **findChanges** method to do so. There are three types of changes tracked by JaVers: 'NewObject', 'ObjectRemoved', and 'PropertyChange'.
 
 Let us revisit the example of Bob. When we query the following and print the changes,
