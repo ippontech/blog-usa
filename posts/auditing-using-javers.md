@@ -71,7 +71,7 @@ javers:
 Auditing specific entities can be done quickly without additional code. Simply add the `@JaversSpringDataAuditable` annotation on the corresponding Spring Data repositories.
 
 Example on MongoRepository
-```
+```java
 import org.javers.spring.annotation.JaversSpringDataAuditable
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.javers.organization.structure.domain.Person;
