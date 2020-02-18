@@ -179,7 +179,7 @@ Data can be retrieved from JaVers in three possible ways: Shadows, Changes, and 
 
 JaVers uses the primary key on the table or collection in order to compile this information.
 
-##Shadows
+## Shadows
 Shadows easily offer a view of data history. Shadows are instances of your object from different points in time. Since Shadows are instances of your domain classes, they can be easily used.
 
 Example:
