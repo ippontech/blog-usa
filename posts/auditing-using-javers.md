@@ -113,8 +113,7 @@ class PersonService {
         this.personRepository = personRepository;
     }
 
-    public void fire(Person person) {
-        person.fire();
+    public void save(Person person) {
         personRepository.save(person);
 
         if (LocalDate.now().getDayOfWeek() == DayOfWeek.FRIDAY){
