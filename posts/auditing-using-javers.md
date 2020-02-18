@@ -200,7 +200,7 @@ Shadows shadows = javers.findShadows(QueryBuilder.byInstance(bob).build());
 Shadows, as provided here is a wrapper object containing all the distinct instances of the Employee object Bob.
 
 ## Snapshots
-Snapshots are the historical state of a domain object captured as the property-value map. Snapshots are raw data stored in the 'JaversRepository'. When an object is committed, JaVers makes a snapshot of its state and persists it. JaVers reuses snapshots and creates a new one only when a given object is changed. This mechanism allows the user to save repository space. In addition, you can use the snapshot version to retrieve the snapshot for an object version. The snapshot version is local for each object stored in the 'JaversRepository'. When an object is committed for the first time, it has version 1. In the next commit it gets version 2 and so on.
+Snapshots are the historical state of a domain object captured as the property-value map. Snapshots are raw data stored in the 'JaversRepository'. When an object is committed, JaVers makes a snapshot of its state and persists it. JaVers reuses snapshots and creates a new one only when a given object is changed. This mechanism allows the user to save repository space. In addition, you can use the snapshot version to retrieve the snapshot for an object version. The snapshot version is local for each object stored in the `JaversRepository`. When an object is committed for the first time, it has version 1. In the next commit, it gets version 2 and so on.
 
 JaVers fetches snapshots in reverse chronological order.
 
