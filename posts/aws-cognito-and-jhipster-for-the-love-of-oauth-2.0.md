@@ -8,10 +8,10 @@ tags:
 - OAuth2
 date: 2020-02-05T14:50:55.000Z
 title: "AWS Cognito and JHipster for the love of OAuth 2.0"
-image: 
+image: https://raw.githubusercontent.com/Falydoor/blog-usa/cognito-jhipster/images/2020/02/cognito-logo.png
 ---
 
-OAuth 2.0 is a stateful security mechanism and OpenID Connect (OIDC) is an authentication layer on top of OAuth 2.0. Spring Security provides excellent OAuth 2.0 and OIDC support, and this is leveraged by JHipster. If you’re not sure what OAuth and OpenID Connect (OIDC) are, please see [What the Heck is OAuth?](https://developer.okta.com/blog/2017/06/21/what-the-heck-is-oauth). JHipster lets you use two OpenID Connect server: Keycloak (default) and Okta. If Keycloak is used, you will have to make sure that it is always up and running or it will be impossible to login into your JHipster application. Okta takes care of the hosting part so you don't have to worry on the availability of your OpenID Connect server.
+OAuth 2.0 is a stateful security mechanism and OpenID Connect (OIDC) is an authentication layer on top of OAuth 2.0. Spring Security provides excellent OAuth 2.0 and OIDC support, and this is leveraged by JHipster. If you’re not sure what OAuth and OpenID Connect (OIDC) are, please see [What the Heck is OAuth?](https://developer.okta.com/blog/2017/06/21/what-the-heck-is-oauth). JHipster lets you use two OpenID Connect server: Keycloak (default) and Okta. If [Keycloak](https://www.keycloak.org/) is used, you will have to make sure that it is always up and running or it will be impossible to login into your JHipster application. Okta takes care of the hosting part so you don't have to worry on the availability of your OpenID Connect server.
 
 An alternative to [Okta](https://www.okta.com/) is to use [AWS Cognito](https://aws.amazon.com/cognito/), especially if your whole architecture is running on AWS. Other features are the possibility to trigger Lambdas on specific events (ex: when a user is confirmed) or to link a user's group with an IAM role. In this blog, I will explain how a JHipster application can be configured to use AWS Cognito instead of Okta/Keycloak. All the working code is accessible at this [GitHub repository](https://github.com/Falydoor/cognito-jhipster).
 
@@ -25,7 +25,7 @@ This [.yo-rc.json](https://raw.githubusercontent.com/Falydoor/cognito-jhipster/m
 
 # User pool creation
 
-After login into the [AWS Management Console](), browse to the [Cognito service](https://console.aws.amazon.com/cognito/users/?region=us-east-1) and click on `Create a user pool`. A user pool with the default configuration like below is required:
+After login into the [AWS Management Console](https://console.aws.amazon.com/console/home), browse to the [Cognito service](https://console.aws.amazon.com/cognito/users/?region=us-east-1) and click on `Create a user pool`. A user pool with the default configuration like below is required:
 
 ![](https://raw.githubusercontent.com/Falydoor/blog-usa/cognito-jhipster/images/2020/02/cognito-user-pool.png)
 
@@ -69,14 +69,18 @@ Then the `issuer-uri` must be updated with the correct URI: `https://cognito-idp
 
 ## Roles
 
-The way JHipster extracts the roles from the token doesn't work for Cognito since they stored in the `cognito:groups` attribute. The [commit](https://github.com/Falydoor/cognito-jhipster/commit/e2cceba1f5e9844cb0ab4ca6f7601b1c3a8b96a4) contains the changes that will make the roles extraction works.
+The way JHipster extracts the roles from the token doesn't work for Cognito since they are stored in the `cognito:groups` attribute. This [commit](https://github.com/Falydoor/cognito-jhipster/commit/e2cceba1f5e9844cb0ab4ca6f7601b1c3a8b96a4) contains the changes that will make the roles extraction works.
 
 ## Login and logout fixes
 
 The method `getUser` in `UserService.java` extracts the information from the Cognito's token and save it to the local database. The login value is not set correctly and uses the `id` of the user instead of the email. A simple override with the email value fixes the issues, more details can be found on this [commit](https://github.com/Falydoor/cognito-jhipster/commit/69eae0a890de8401174214e8db3381e21f8e9789).
 
-The last fix is related to the logout since JHipster generates the logout URL for Okta/Keycloak but not for Cognito. The correct URL is formatted like this: `https://DOMAIN.auth.REGION.amazoncognito.com/logout`, this [commit](https://github.com/Falydoor/cognito-jhipster/commit/53acb5c2c53873eafc6a9631ee0fad9630d3ea05) changes how the URL is retrieved (don't forget to replace `DOMAIN` and `REGION`).
+The last fix is related to the logout since JHipster generates the logout URL for Okta/Keycloak but not for Cognito. The correct URL is formatted like this: `https://DOMAIN.auth.REGION.amazoncognito.com/logout`, this [commit](https://github.com/Falydoor/cognito-jhipster/commit/53acb5c2c53873eafc6a9631ee0fad9630d3ea05) changes how the URL is retrieved (don't forget to replace `DOMAIN` and `REGION` in `src/main/java/com/mycompany/myapp/web/rest/LogoutResource.java`).
 
 # Conclusion
+
+Finally, run your application with `./mvnw` and you should see the Cognito login screen after clicking on `sign in` (make sure the logout flow works as well):
+
+![](https://raw.githubusercontent.com/Falydoor/blog-usa/cognito-jhipster/images/2020/02/cognito-login.png)
 
 To resume, the AWS Cognito integration with JHipster is very easy and doesn't require a lot of changes. It is a good alternative to Keycloak, especially if you don't want to take care of hosting your own identity management solution. I used both Okta and AWS Cognito, I don't recommend one specifically since it depends of your needs and architecture. Hovewer, if your architecture is fully hosted on AWS, Cognito will be probably a better pick.
