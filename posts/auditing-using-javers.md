@@ -210,7 +210,7 @@ List<CdoSnapshot> snapshots = javers.findSnapshots( QueryBuilder.byInstance(bob)
 ```
 CdoSnapshot, is a wrapper object containing the historical state of an object at a point in time.
 
-##Changes
+## Changes
 The Changes view of JaVers provides the list of differences between versions of a domain object. Changes are calculated as the difference between snapshots loaded from the 'JaVers Repository'. As per our client requirements, we needed to display the changes for an object from creation. As such we decided to use the **findChanges** method to do so. There are three types of changes tracked by JaVers: 'NewObject', 'ObjectRemoved', and 'PropertyChange'.
 
 Let us revisit the example of Bob. When we query the following and print the changes,
