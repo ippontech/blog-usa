@@ -66,7 +66,7 @@ javers:
     uri: mongodb://javers:password@localhost:27017/javers-audit&authSource=admin
 ```
 
-# Auto audit annotations
+# Auto-audit annotations
 
 Auditing specific entities can be done quickly without additional code. Simply add the `@JaversSpringDataAuditable` annotation on the corresponding Spring Data repositories.
 
