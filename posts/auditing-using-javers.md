@@ -56,7 +56,7 @@ javers:
     database: javers-audit
     authentication-database: admin
     username: javers
-    password: password
+    password: encryptedPassword
 ```
 Or
 
