@@ -16,7 +16,7 @@ title: "Audit your data with JaVers"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/01/Ippon_Javers.jpg
 ---
 
-As an IT consultant, the first requirement that comes to mind when you are working in the Healthcare Industry is the Health Insurance Portability and Accountability Act (HIPAA). The technology plays a significant role in ensuring data remains secure and HIPAA-compliant. According to cybercrime experts and the [FBI](http://www.illuminweb.com/wp-content/uploads/ill-mo-uploads/103/2418/health-systems-cyber-intrusions.pdf), stolen Protected Health Information (PHI) is ten times more valuable than credit card information.
+As an IT consultant, the first requirement that comes to mind when you are working in the healthcare industry is the [Health Insurance Portability and Accountability Act (HIPAA)](https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html). Technology plays a significant role in ensuring data remains secure and HIPAA-compliant. According to cybercrime experts and the [FBI](http://www.illuminweb.com/wp-content/uploads/ill-mo-uploads/103/2418/health-systems-cyber-intrusions.pdf), stolen Protected Health Information (PHI) is ten times more valuable than credit card information.
 
 The data contained in PHI can be used to generate identities, obtain health services, submit false insurance claims, order pharmaceuticals, and perform other illegal acts. That is why auditing PHI is critical: the ability to show who, when, and how the data is used.
 
