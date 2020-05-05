@@ -13,7 +13,7 @@ image: https://raw.githubusercontent.com/Falydoor/blog-usa/event-sourcing/images
 
 Event sourcing is a very popular pattern and can be used in a modern microservices architecture. The pattern's goal is to have a reliable way of updating the database while being able to publish messages on a queue/topic. A good explanation of the pattern can be found [here](https://microservices.io/patterns/data/event-sourcing.html).
 
-In this blog, I will explain how to design and deploy an event sourcing solution on Amazon Web Services (AWS). The principal AWS services used will be [Amazon DynamoDB](https://aws.amazon.com/dynamodb/), [AWS Lambda](https://aws.amazon.com/lambda/) and [AWS Cloud Development Kit](https://aws.amazon.com/cdk/). The solution will simply track the requests made by the gateway to the other services and persist them. It is very useful to have that kind of feature because it will let you identify which service can be faulty.
+In this blog, I will explain how to design and deploy an event sourcing solution on [Amazon Web Services (AWS)](https://aws.amazon.com/). The principal AWS services used will be [Amazon DynamoDB](https://aws.amazon.com/dynamodb/), [AWS Lambda](https://aws.amazon.com/lambda/) and [AWS Cloud Development Kit](https://aws.amazon.com/cdk/). The solution will simply track the requests made by a gateway to other services and persist them. It is very useful to have that kind of feature because it will let you have a big picture while being able to identify which service is faulty.
 
 # AWS Architecture
 
@@ -25,9 +25,9 @@ The architecture will be composed of 4 main components:
 
 The queue system is necessary in order to decouple, scale and avoid blocking the event producers. In our case, only the gateway will produce events but other producers can be plug-in later for other use cases.
 
-The gateway will produce a lot of events and we need a datastore that is very performant and scalable. There is a lot of different NoSQL databases available (MongoDB, Cassandra, DynamoDB, etc) but because this blog is focused on AWS, I decided to go for the full managed solution: DynamoDB.
+The gateway will produce a lot of events and we need a datastore that is very performant and scalable. There is a lot of different NoSQL databases available (MongoDB, Cassandra, DynamoDB, etc) but because this blog is focused on AWS, I decided to go for the full managed solution: [DynamoDB](https://aws.amazon.com/dynamodb/).
 
-Finally, the remaining piece is which service will be in charge of persisting the events. [AWS Lambda](https://aws.amazon.com/lambda/) is the perfect service for that and will let you benefit of all the features of the serverless world.
+Finally, the remaining piece is the service that will be in charge of persisting the events. [AWS Lambda](https://aws.amazon.com/lambda/) is the perfect service for that and will let you benefit of all the features of the serverless world.
 
 Overall, the architecture is pretty simple and here is a diagram to summarize it:
 
@@ -35,7 +35,7 @@ Overall, the architecture is pretty simple and here is a diagram to summarize it
 
 # DynamoDB table modeling
 
-I recomend using [NoSQL Workbench for Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html) to help you modeling the DynamoDB table. It is a very useful tool that will help you and will provide data visualization, and query development features. I recommend reading [the best practices](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html) from the AWS developer guide and also [this blog](https://www.trek10.com/blog/the-ten-rules-for-data-modeling-with-dynamodb) that I found pretty useful.
+I recomend using [NoSQL Workbench for Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html) to help you modeling the DynamoDB table. It is a very useful tool that will provide data visualization and query development features. I recommend reading [the best practices](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html) from the AWS developer guide and also [this blog](https://www.trek10.com/blog/the-ten-rules-for-data-modeling-with-dynamodb) that I found pretty useful.
 
 Here is how I decided to design my event table:
 - Id
@@ -53,7 +53,7 @@ Here is how I decided to design my event table:
 
 ![Table](https://raw.githubusercontent.com/Falydoor/blog-usa/event-sourcing/images/2020/05/event-sourcing-table.png)
 
-Two GSI (Global Secondary Indexes) are also created on `Type` and `Source` in order to handle access patterns like getting events of from one type or source.
+Two GSI (Global Secondary Indexes) are also created on `Type` and `Source` in order to handle access patterns like getting events from one type/source.
 
 Here is how the aggregate view of the table looks like with data:
 
@@ -174,7 +174,7 @@ export class EventSourcingDynamodbStack extends cdk.Stack {
 }
 ```
 
-The Lambda's code can be found on [the repository](https://github.com/Falydoor/event-sourcing-dynamodb/blob/master/lib/event-sourcing-dynamodb-stack.ts). CDK really simplifys your stack definition/deployment and saves you from getting a lot of headaches.
+The code can be found on [the repository](https://github.com/Falydoor/event-sourcing-dynamodb/blob/master/lib/event-sourcing-dynamodb-stack.ts). CDK really simplifys your stack definition/deployment and saves you from getting a lot of headaches.
 
 The commands below will deploy the whole stack, make sure to have your `AWS CLI` configured:
 
