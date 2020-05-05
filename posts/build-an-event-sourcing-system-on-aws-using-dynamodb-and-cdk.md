@@ -11,31 +11,31 @@ title: "Build an event sourcing system on AWS using DynamoDB and CDK"
 image: https://raw.githubusercontent.com/Falydoor/blog-usa/event-sourcing/images/2020/05/event-sourcing-logo.png
 ---
 
-Over the last couple years, event sourcing has been a very popular pattern used in modern microservices architecture. The pattern's goal is to provide a reliable way of updating the database, while being able to publish messages on a queue/topic. A full explanation of the entire pattern can be found [here](https://microservices.io/patterns/data/event-sourcing.html).
+Over the past few years, event sourcing has become a popular pattern used in modern microservices architecture. The pattern's goal is to provide a reliable way of updating the database, while being able to publish messages on a queue/topic. A full explanation of the entire pattern can be found [here](https://microservices.io/patterns/data/event-sourcing.html).
 
-In this blog post, I will explain how to design and deploy an event sourcing solution on [Amazon Web Services (AWS)](https://aws.amazon.com/). The principal AWS services used in our code will be [Amazon DynamoDB](https://aws.amazon.com/dynamodb/), [AWS Lambda](https://aws.amazon.com/lambda/) and [AWS Cloud Development Kit](https://aws.amazon.com/cdk/). The solution will simply track the requests made by a gateway to other services, and persist them. This feature is very useful to have because it allows you to see the big picture, while being able to identify which service is faulty.
+In this blog post, I will explain how to design and deploy an event sourcing solution on [Amazon Web Services (AWS)](https://aws.amazon.com/). The principal AWS services used in our code will be [Amazon DynamoDB](https://aws.amazon.com/dynamodb/), [AWS Lambda](https://aws.amazon.com/lambda/) and [AWS Cloud Development Kit](https://aws.amazon.com/cdk/). The solution will simply track the requests made by a gateway to other services and persist them. This feature is very useful to have because it allows you to see the big picture, while also being able to identify which service is faulty.
 
 # AWS Architecture
 
-The AWS architecture will be composed of 4 main components:
+The AWS architecture will be composed of the following:
 - Queue system
 - Event producer
 - Event consumer
 - Datastore
 
-The queue system is necessary in order to decouple, scale and avoid blocking the event producers. In our case, only the gateway will produce events, but other producers can be plugged-in later for other use cases.
+The queue system is necessary in order to decouple, scale, and avoid blocking the event producers. In our case, only the gateway will produce events, but other producers can be plugged in later for other use cases.
 
-The gateway will produce a lot of events and we will need a datastore that is very performant and scalable. There are a lot of different NoSQL databases available (MongoDB, Cassandra, DynamoDB, etc). Since this blog post is focused on AWS, we will use the full managed solution: [DynamoDB](https://aws.amazon.com/dynamodb/).
+The gateway will produce several events for which we will need a datastore that is highly performant and scalable. There are a lot of different NoSQL databases available (MongoDB, Cassandra, DynamoDB, etc). Since this blog post is focused on AWS, we will use the fully-managed solution: [DynamoDB](https://aws.amazon.com/dynamodb/).
 
 The final component is the service that will be in charge of persisting the events. [AWS Lambda](https://aws.amazon.com/lambda/) is the perfect service for that, and will allow you to benefit from all the features of the serverless world.
 
-Overall, the architecture is pretty straightforward, here is a diagram of the entire solution:
+Overall, the architecture is pretty straightforward. Here is a diagram of the entire solution:
 
 ![Diagram](https://raw.githubusercontent.com/Falydoor/blog-usa/event-sourcing/images/2020/05/event-sourcing-diagram.png)
 
 # DynamoDB table modeling
 
-For table modeling, I recomend using [NoSQL Workbench for Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html). It is a very useful tool that will provide data visualization and query development features. I also recommend reading [the best practices](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html) from the AWS developer guide, and [this blog post](https://www.trek10.com/blog/the-ten-rules-for-data-modeling-with-dynamodb) detailing 10 key rules of data modeling.
+For table modeling, I recommend using [NoSQL Workbench for Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html). It is useful in providing data visualization and query development features. I also recommend reading [the best practices](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html) from the AWS developer guide, and [this blog post](https://www.trek10.com/blog/the-ten-rules-for-data-modeling-with-dynamodb) detailing ten key rules of data modeling.
 
 Here is how I designed my event table:
 - ID
@@ -53,9 +53,9 @@ Here is how I designed my event table:
 
 ![Table](https://raw.githubusercontent.com/Falydoor/blog-usa/event-sourcing/images/2020/05/event-sourcing-table.png)
 
-Two GSI (Global Secondary Indexes) are also created on `Type` and `Source` in order to handle access patterns like getting events from one type/source.
+Two GSI (Global Secondary Indexes) are also created on `Type` and `Source` in order to handle access patterns, such as getting events from one type/source.
 
-Here is how the aggregate view of the table looks like with data:
+Here is how the aggregate view of the table looks with data:
 
 ![Data](https://raw.githubusercontent.com/Falydoor/blog-usa/event-sourcing/images/2020/05/event-sourcing-data.png)
 
@@ -117,7 +117,7 @@ exports.handler = (event, context, callback) => {
 
 ## Deployment using CDK
 
-[AWS Cloud Development Kit](https://aws.amazon.com/cdk/) is a very powerful framework that allows you to model and provision your cloud application resources using familiar programming languages. All our stack is configured/deployed using CDK. To keep it simple, we are using TypeScript as the programming language.
+[AWS Cloud Development Kit](https://aws.amazon.com/cdk/) is a powerful framework that allows you to model and provision your cloud application resources using familiar programming languages. Our entire stack is configured and deployed using CDK. To keep it simple, we are using TypeScript as the programming language.
 
 The CDK code below is fairly detailed and will create all the components for our stack:
 
@@ -199,11 +199,11 @@ Then check in the DynamoDB table to make sure the event was created correctly:
 
 ![Event](https://raw.githubusercontent.com/Falydoor/blog-usa/event-sourcing/images/2020/05/event-sourcing-event.png)
 
-If it was not - you will have to check the Lambda's logs on CloudWatch.
+If it was **not**, you will need to check the Lambda's logs on CloudWatch.
 
 # Conclusion
 
-Designing and deploying a whole event sourcing system on AWS is pretty straightforward using CDK and DynamoDB. By using AWS - the whole system is serverless, scalable, and enterprise ready! AWS CDK will not only save you a lot of time but also provide you more features than AWS Cloud​Formation. Also, the AWS CDK supports TypeScript, JavaScript, Python, Java, and C# allowing you to code in your preferred language.
+Designing and deploying an entire event sourcing system on AWS is fairly straightforward when combining CDK and DynamoDB. By using AWS, the whole system is serverless, scalable, and enterprise ready! AWS CDK not only saves you time, but also provides more functionality in this use case than AWS Cloud​Formation. In addition, the AWS CDK supports TypeScript, JavaScript, Python, Java, and C#, allowing you to code in your preferred language.
 
 All the working code featured in this blog post is available on [this GitHub repository](https://github.com/Falydoor/event-sourcing-dynamodb) for your reference.
 
