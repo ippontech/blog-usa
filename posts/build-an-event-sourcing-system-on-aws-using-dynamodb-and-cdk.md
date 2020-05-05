@@ -11,9 +11,9 @@ title: "Build an event sourcing system on AWS using DynamoDB and CDK"
 image: https://raw.githubusercontent.com/Falydoor/blog-usa/event-sourcing/images/2020/05/event-sourcing-logo.png
 ---
 
-In the last couple years, event sourcing is a very popular pattern that is used in modern microservices architecture. The pattern's goal is to provide a reliable way of updating the database, while being able to publish messages on a queue/topic. A full explanation of the entire pattern can be found [here](https://microservices.io/patterns/data/event-sourcing.html).
+Over the last couple years, event sourcing has been a very popular pattern used in modern microservices architecture. The pattern's goal is to provide a reliable way of updating the database, while being able to publish messages on a queue/topic. A full explanation of the entire pattern can be found [here](https://microservices.io/patterns/data/event-sourcing.html).
 
-In this blog, I will explain how to design and deploy an event sourcing solution on [Amazon Web Services (AWS)](https://aws.amazon.com/). The principal AWS services used will be [Amazon DynamoDB](https://aws.amazon.com/dynamodb/), [AWS Lambda](https://aws.amazon.com/lambda/) and [AWS Cloud Development Kit](https://aws.amazon.com/cdk/). The solution will simply track the requests made by a gateway to other services, and persist them. It is very useful to have this feature because it allows you to see the big picture, while being able to identify which service is faulty.
+In this blog post, I will explain how to design and deploy an event sourcing solution on [Amazon Web Services (AWS)](https://aws.amazon.com/). The principal AWS services used in our code will be [Amazon DynamoDB](https://aws.amazon.com/dynamodb/), [AWS Lambda](https://aws.amazon.com/lambda/) and [AWS Cloud Development Kit](https://aws.amazon.com/cdk/). The solution will simply track the requests made by a gateway to other services, and persist them. This feature is very useful to have because it allows you to see the big picture, while being able to identify which service is faulty.
 
 # AWS Architecture
 
@@ -25,9 +25,9 @@ The AWS architecture will be composed of 4 main components:
 
 The queue system is necessary in order to decouple, scale and avoid blocking the event producers. In our case, only the gateway will produce events, but other producers can be plugged-in later for other use cases.
 
-The gateway will produce a lot of events, and we will need a datastore that is very performant and scalable. There are a lot of different NoSQL databases available (MongoDB, Cassandra, DynamoDB, etc). Since this blog post is focused on AWS, we will use the full managed solution: [DynamoDB](https://aws.amazon.com/dynamodb/).
+The gateway will produce a lot of events and we will need a datastore that is very performant and scalable. There are a lot of different NoSQL databases available (MongoDB, Cassandra, DynamoDB, etc). Since this blog post is focused on AWS, we will use the full managed solution: [DynamoDB](https://aws.amazon.com/dynamodb/).
 
-Finally, the remaining piece is the service that will be in charge of persisting the events. [AWS Lambda](https://aws.amazon.com/lambda/) is the perfect service for that, and will allow you to benefit from all the features of the serverless world.
+The final component is the service that will be in charge of persisting the events. [AWS Lambda](https://aws.amazon.com/lambda/) is the perfect service for that, and will allow you to benefit from all the features of the serverless world.
 
 Overall, the architecture is pretty straightforward, here is a diagram of the entire solution:
 
@@ -35,9 +35,9 @@ Overall, the architecture is pretty straightforward, here is a diagram of the en
 
 # DynamoDB table modeling
 
-For table modeling, I recomend using [NoSQL Workbench for Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html) to help model the DynamoDB table. It is a very useful tool that will provide data visualization and query development features. I recommend reading [the best practices](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html) from the AWS developer guide, and also [this blog](https://www.trek10.com/blog/the-ten-rules-for-data-modeling-with-dynamodb) detailing key rules of data modeling.
+For table modeling, I recomend using [NoSQL Workbench for Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html). It is a very useful tool that will provide data visualization and query development features. I also recommend reading [the best practices](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html) from the AWS developer guide, and [this blog post](https://www.trek10.com/blog/the-ten-rules-for-data-modeling-with-dynamodb) detailing 10 key rules of data modeling.
 
-Here is how I decided to design my event table:
+Here is how I designed my event table:
 - ID
     - UUID of the event
 - RequestID
@@ -111,7 +111,7 @@ exports.handler = (event, context, callback) => {
 };
 ```
 
-(The Lambda's code can be found on [the repository](https://github.com/Falydoor/event-sourcing-dynamodb/blob/master/resources/lambda.js))
+(The code can be found on [the repository](https://github.com/Falydoor/event-sourcing-dynamodb/blob/master/resources/lambda.js))
 
 # Deployment and test
 
@@ -189,13 +189,13 @@ cdk deploy
 
 ## Testing
 
-In order to test the whole flow, we would need a Gateway that publishes a message to our SQS queue. For that, we will use `AWS CLI` to publish a message to the queue, the message's content can be edited [here](https://github.com/Falydoor/event-sourcing-dynamodb/blob/master/test/message.json).
+In order to test the whole flow, we would need a Gateway that publishes a message to our SQS queue. For that, we will use `AWS CLI` to publish a message to the queue. The message content can be edited [here](https://github.com/Falydoor/event-sourcing-dynamodb/blob/master/test/message.json).
 
 ```sh
 aws sqs send-message --queue-url ${QUEUE_URL} --message-body file://test/message.json
 ```
 
-Then check in the DynamoDB table to make sure the event was correctly created:
+Then check in the DynamoDB table to make sure the event was created correctly:
 
 ![Event](https://raw.githubusercontent.com/Falydoor/blog-usa/event-sourcing/images/2020/05/event-sourcing-event.png)
 
