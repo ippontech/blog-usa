@@ -8,7 +8,7 @@ tags:
 - Event Sourcing
 date: 2020-05-05T14:50:55.000Z
 title: "Build an event sourcing system on AWS using DynamoDB and CDK"
-image: https://raw.githubusercontent.com/Falydoor/blog-usa/event-sourcing/images/2020/05/event-sourcing-logo.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/05/event-sourcing-logo.png
 ---
 
 Over the past few years, event sourcing has become a popular pattern used in modern microservices architecture. The pattern's goal is to provide a reliable way of updating the database, while being able to publish messages on a queue/topic. A full explanation of the entire pattern can be found [here](https://microservices.io/patterns/data/event-sourcing.html).
@@ -31,7 +31,7 @@ The final component is the service that will be in charge of persisting the even
 
 Overall, the architecture is pretty straightforward. Here is a diagram of the entire solution:
 
-![Diagram](https://raw.githubusercontent.com/Falydoor/blog-usa/event-sourcing/images/2020/05/event-sourcing-diagram.png)
+![Diagram](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/05/event-sourcing-diagram.png)
 
 # DynamoDB table modeling
 
@@ -51,13 +51,13 @@ Here is how I designed my event table:
 - Data
     - Additional data as a nested Map: `{"Name":"Microservice A"}`
 
-![Table](https://raw.githubusercontent.com/Falydoor/blog-usa/event-sourcing/images/2020/05/event-sourcing-table.png)
+![Table](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/05/event-sourcing-table.png)
 
 Two GSI (Global Secondary Indexes) are also created on `Type` and `Source` in order to handle access patterns, such as getting events from one type/source.
 
 Here is how the aggregate view of the table looks with data:
 
-![Data](https://raw.githubusercontent.com/Falydoor/blog-usa/event-sourcing/images/2020/05/event-sourcing-data.png)
+![Data](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/05/event-sourcing-data.png)
 
 The events above describe requests made from the gateway to microservice A and B. They are all grouped by `RequestId` - that will allow us to inspect the whole flow.
 
@@ -197,7 +197,7 @@ aws sqs send-message --queue-url ${QUEUE_URL} --message-body file://test/message
 
 Then check in the DynamoDB table to make sure the event was created correctly:
 
-![Event](https://raw.githubusercontent.com/Falydoor/blog-usa/event-sourcing/images/2020/05/event-sourcing-event.png)
+![Event](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/05/event-sourcing-event.png)
 
 If it was **not**, you will need to check the Lambda's logs on CloudWatch.
 
