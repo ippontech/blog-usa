@@ -26,9 +26,9 @@ We are going to focus on this last element: the server.
 
 # A little of pure Wildfly configuration
 
-When you are configuring it, in fact, you are modifying the core of the underlying technology, which is nothing else than a WildFly server (formerly JBoss).
+When you are configuring Wildfly, you are modifying the core of the underlying technology, which is effectively a JBoss server.
 
-Even if some parts are specific to Keycloak (like cache definitions for example), it remains standard to the way you will configure an old JBoss.
+Even if some parts are specific to Keycloak (like cache definitions for example), it remains standard to the way you will configure an old JBoss system.
 
 The principle, apart from JDBC drivers files, is that all you will modify is gathered into one unique file: `.../standalone/configuration/standalone.xml`.
 
@@ -40,7 +40,7 @@ Even in HA mode, the server is supposed to work with only one node, so you can e
 
 **Editing those files directly will be a big mistake!**
 
-JBoss uses a CLI to edit them through their own formalism, it is a kind of Xpath notation that will modify the XML nodes without modifying the original installation bundled file. Thus, every time a new distribution version is available (Keycloak usually increases its version to be up to date to the last Wildfly one), if you decide to point to it, you will retrieve a new standalone-ha.xml file. If you are using the CLI, you will not need to compare what has been modified and report it manually on the new XML file each time you make an update (and with IAM products, it is mandatory to be always up to date). You will rarely get any conflict with the configuration you edited (it should not prevent you to ensure that new functionalities do not handle things that you have implemented in old versions).
+JBoss uses a CLI to edit configuration files through their own formalism, it is a kind of Xpath notation that will modify the XML nodes without modifying the original installation bundled file. Thus, every time a new distribution version is available (Keycloak usually increases its version to be up to date to the last Wildfly one), if you decide to point to it, you will retrieve a new standalone-ha.xml file. If you are using the CLI, you will not need to compare what has been modified and report it manually on the new XML file each time you make an update (and with IAM products, it is mandatory to be always up to date). You will rarely get any conflict with the configuration you edited (it should not prevent you to ensure that new functionalities do not handle things that you have implemented in old versions).
 
 The CLI will launch a very light embedded server based on the configuration file (standalone-ha.xml for instance) and the commands will be launched against this server. Example `my-simple-configuration.cli`:
 
