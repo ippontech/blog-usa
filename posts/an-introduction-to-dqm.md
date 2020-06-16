@@ -11,7 +11,7 @@ image:
 Data Quality Management (DQM) is a practice that aims to maintain a high quality of data. DQM extends from data acquisition to distribution of data. DQM is about employing processes, methods, and technologies to ensure the quality of the data meets specific business requirements. DQM is extensive, with far-reaching results if employed in a reliable, consistent, continual manner. Ultimately, DQM aims to deliver trusted data in a timely manner.
 
 #Why do you need Data Quality Management Processes in Place?
-Most of a company's operations and decisions rely heavily on data, so the emphasis on data quality is even higher. Data quality refers to the assessment of information collected relative to its purpose and its ability to serve that purpose. Low-quality data costs organizations daily. An estimate by IBM calculated that the annual cost of data quality related issues, amounted to [$3.1 trillion](https://www.ibmbigdatahub.com/infographic/four-vs-big-data).
+Most of a company's operations and decisions rely heavily on data, so the emphasis on data quality is even higher. Data quality refers to the assessment of information collected relative to its purpose and its ability to serve that purpose. Low-quality data costs organizations daily. An estimate by IBM calculated that the annual cost of data quality related issues amounted to around [$3.1 trillion](https://www.ibmbigdatahub.com/infographic/four-vs-big-data).
 
 In addition, good data quality increases the accuracy of analytics applications, which can lead to better business decision-making that boosts sales and improves internal processes. High-quality data can help expand the use of BI dashboards and analytics tools, as well. If analytics data is seen as trustworthy, business users are more likely to rely on it instead of basing decisions on gut feelings or their own spreadsheets.
 
@@ -21,7 +21,7 @@ There are five categories of metrics that you can use to measure data quality. T
 ##Accuracy
 Accuracy tracks the amount of known errors, such as missing, incomplete or redundant entry. Accuracy is typically measured as a ratio of data to errors. This ratio should increase over time, indicating that the quality of your data is improving.
 
-Consider NASA's Mars Climate Orbiter. On September 23rd, 1999 [NASA's Mars Climate Orbiter](https://www.wired.com/2010/11/1110mars-climate-observer-report/) lost communication with mission control as it approached orbit around the planet. It burned up in the Martian atmosphere as it descended towards the planet's surface. An investigation revealed the two software applications which controlled the orbiter's thrusters had miscommunicated the amount of force needed to reach the right altitude. One application calculated the force in *pounds*, while the other assumed the force was in *newtons*. Nobody was harmed as a result of this mistake, other than the 125 million dollar spacecraft, but it does highlight the impact that data accuracy issues can have. 
+Consider NASA's Mars Climate Orbiter. On September 23rd, 1999 [NASA's Mars Climate Orbiter](https://www.wired.com/2010/11/1110mars-climate-observer-report/) lost communication with mission control as it approached orbit around the planet. It burned up in the Martian atmosphere as it descended towards the planet's surface. An investigation revealed the two software applications which controlled the orbiter's thrusters had miscommunicated the amount of force needed to reach the right altitude. One application calculated the force in *pounds*, while the other assumed the force was in *newtons*. Nobody was harmed as a result of this mistake, other than the 125 million dollar spacecraft, but it does highlight the impact that data accuracy issues can have.
 
 How do you ensure Accuracy? Ask yourself:
 *Do data objects accurately represent the values they will be modeling?*
@@ -66,7 +66,9 @@ How can you ensure Integrity? Ask yourself:
 *Is there any data that is missing important relationship linkages?*
 
 ##Timeliness
-Timeliness references whether information is available when expected and needed. Timeliness depends on user expectation.
+Timeliness references whether information is available when expected and needed. Timeliness means different things for different systems. A hotel booking website requires to the second updates so prospective customers can see what rooms are available or unavailable in a hotel. For a billing or transaction management system, however, nightly processing could suffice.
+
+
 
 [Explore working with large datasets here]
 
