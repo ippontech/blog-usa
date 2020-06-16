@@ -31,7 +31,7 @@ How do you ensure Accuracy? Ask yourself:
 *Do the various transformations your ETL pipelines incur create inaccurate data?*
 
 ##Consistency
-Consistency means ensuring that data across all systems reflects the same information and is in synch with each other across the enterprise.  
+Consistency means ensuring that data across all systems reflects the same information and is in synch with each other across the enterprise. This may seem easy enough at first, but consider the case where two systems have a field named customer_id. Customer_Id for each system means something different in each system. How does this fit in with the concept of consistency? This is, after all, a common scenario when looking at 
 [Consider the case where two fields in 2 systems are named the same thing, but means something different. Introduce the data dictionary and data lineage here]
 
 How do you ensure consistency? Ask yourself:
