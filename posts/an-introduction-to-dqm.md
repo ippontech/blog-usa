@@ -60,4 +60,4 @@ For large systems that rely on stream processing, timeliness is even more import
 
 ---
 
-How do you go about ensuring your data is accurate, consistent, complete and timely? There are many ways to do so, dependent on your use case and particular needs. One way is to use the Audit, Balance, and Control (ABC) Framework. 
+How do you go about ensuring your data is accurate, consistent, complete and timely? There are many ways to do so, dependent on your use case and particular needs. One way is to use the Audit, Balance, and Control (ABC) Framework.
