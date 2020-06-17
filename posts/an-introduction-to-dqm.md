@@ -49,7 +49,7 @@ In a healthcare dataset, completeness would be defined as containing personal de
 ## Integrity
 Integrity measures the accuracy and consistency of your data over its lifecycle.  Each time data is replicated or transferred, it should remain unaltered between operations.
 
-Maintaining data integrity is important for several reasons. Data Integrity ensures recoverability and searchability, traceability  origin and connectivity. Improving the integrity of a dataset will increase the stability and performance of your system while simultaneously improving reusability and maintainability.
+Maintaining data integrity is important for several reasons. Data Integrity ensures recoverability, search-ability, traceability to the origin origin and connectivity. Improving the integrity of a dataset will increase the stability and performance of your system while simultaneously improving reusability and maintainability.
 
 Data security is one of many measures that can be employed to maintain data integrity.  If changes made to data are a result of unauthorized access, this is a failure to both your data integrity efforts and your data security measures. Depending on the dataset, an integrity violation could result in the loss of a critical datastore or even loss of life due to the failure of a life-critical system.
 
@@ -60,4 +60,4 @@ For large systems that rely on stream processing, timeliness is even more import
 
 ---
 
-How do you go about ensuring your data is accurate, consistent, complete and timely? There are many ways to do so, dependent on your use case and particular needs. One way is to use the Audit, Balance, and Control (ABC) Framework.
+How do you go about ensuring your data is accurate, consistent, complete and timely? There are many ways to do so, dependent on your use case and particular needs. One way is to use the Audit, Balance, and Control (ABC) Framework. We'll be addressing this framework and how the three components ensure accuracy, consistency, completeness, timeliness and integrity in a following blog.
