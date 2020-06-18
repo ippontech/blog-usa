@@ -61,3 +61,5 @@ For large systems that rely on stream processing, timeliness is even more critic
 ---
 
 How do you go about ensuring your data is accurate, consistent, complete, and timely? There are many ways to do so, dependent on your use case and particular needs. One way is to use the Audit, Balance, and Control (ABC) Framework. We'll be addressing this framework and how the three components ensure accuracy, consistency, completeness, timeliness, and integrity in an upcoming blog post.
+
+If something in this article piqued your interest or you would like to learn how to leverage and gain insights on your data, Ippon USA would love to hear from you! Please contact us at contact@ippon.tech with your questions and inquiries.
