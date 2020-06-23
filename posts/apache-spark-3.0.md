@@ -51,4 +51,4 @@ More details about this release can be found on [the release notes here](https:/
 
 In order to test out this new release, you will have to use Databricks since this version is currently not available on the main cloud providers (like AWS EMR). You can sign up for a [14 day trial account here](https://databricks.com/try-databricks). You can also install Spark locally (with [Homebrew](https://brew.sh/) and `brew install apache-spark` on a Mac) and play with the Spark Shell.
 
-To conclude, Apache Spark 3.0 is a pretty important release that will make every Python developer happy while improving the performance of your workloads. This release, once again, proves the strength and benefits of the open-source community by successfully involving a very high number of contributors.
+To conclude, Apache Spark 3.0 is a pretty important release that will make all Python developer happy while improving the performance of your workloads. This release, once again, proves the strength and benefits of the open-source community by successfully involving a very high number of contributors.
