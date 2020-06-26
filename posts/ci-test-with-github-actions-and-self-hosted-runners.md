@@ -10,7 +10,7 @@ tags:
 - Linux
 date: 2020-06-23T12:21:50.000Z
 title: "CI Test unusual projects with GitHub actions and self-hosted runners"
-image:
+image: 2020/06/github-actions-self-hosted-runners-0.png
 ---
 I contribute to [Armbian](https://armbian.com), a Linux distribution for 120+ bespoke ARM-based Single Board Computers (SBCs) such as the [Odroid XU4](https://wiki.odroid.com/odroid-xu4/odroid-xu4), [Libre Computer Le Potato](https://libre.computer/products/boards/aml-s905x-cc/) and the [Orange Pi 3](http://www.orangepi.org/Orange%20Pi%203/). 
 
@@ -322,7 +322,7 @@ jobs:
 
 ## A workflow must exist before a worker can be added
 
-The Github Runner ansible role was unable to a runner to a repo that had no actions configured. First create a simple github actions workflow and commit to repo.  Once a basic workflow exist, a runner can be added.
+The Github Runner ansible role was unable register to a repo that had no actions configured. First create a simple github actions workflow and commit to repo.  Once a basic workflow exist, a runner can be added.
 
 ## Git >= 1.18 required
 
@@ -338,6 +338,6 @@ Access control does not seem very robust. Large organizations may want to stick 
 
 # Future Plans
 
-It's been great to get quick feedback on Pull Requests without performing manual testing.  The improved upime with GitHub actions has also been beneficial to giving our CI testing credibility.
+It's been great to get quick feedback on Pull Requests without performing manual testing.  The improved uptime with GitHub actions has also been beneficial to giving our CI testing credibility.
 
 We look forward to enhancing our CI system, with more distrubted image builds, testing running images against actual SBC hardware, and creating dashboards to track the trends of our challenges and successes.
