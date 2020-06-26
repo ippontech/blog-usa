@@ -14,7 +14,7 @@ image: 2020/06/github-actions-self-hosted-runners-0.png
 ---
 I contribute to [Armbian](https://armbian.com), a Linux distribution for 120+ bespoke ARM-based Single Board Computers (SBCs) such as the [Odroid XU4](https://wiki.odroid.com/odroid-xu4/odroid-xu4), [Libre Computer Le Potato](https://libre.computer/products/boards/aml-s905x-cc/) and the [Orange Pi 3](http://www.orangepi.org/Orange%20Pi%203/). 
 
-Early this year, we introduced rudimentary CI testing with some basic integration between Jenkins and Github. Recently we chose to switch to our CI to Github Actions.
+Early this year, we introduced rudimentary CI testing with some basic integration between Jenkins and Github. Recently we chose to switch our Jenkins CI to Github Actions.
 
 # The Scope of Testing is a Challenge
 
