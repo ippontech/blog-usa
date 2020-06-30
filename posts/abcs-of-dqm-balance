@@ -1,0 +1,21 @@
+---
+authors:
+- Pooja Krishnan
+tags:
+date: 2020-06-15T14:50:55.000Z
+title: "The ABCs of DQM: Balance"
+image:
+---
+
+This post is a part of a series of posts on Data Quality Management. The focus of this series is on strategies for acquiring data that can be used to ensure the quality of data. The five aspects of Data Quality Management are:
+1. Accuracy
+2. Consistency
+3. Completeness
+4. Integrity
+5. timeliness
+
+In this article, we will expand on the definition of the ABC Framework as [mentioned in this article](https://blog.ippon.tech/abcs-of-dqm-audit/), written by my colleague [Daniel Ferguson](https://www.linkedin.com/in/daniel-ferguson-985b7048/). There he introduces the ABC Framework of Data Quality Management, particularly focusing on how the Audit process lays the groundwork for high quality data.
+
+In this blog, we will look at the B in The ABC's of DQM, Balance, and how the Balance pipeline on an ETL pipeline can confirm the accuracy and consistency of your data.
+
+#Balance 
