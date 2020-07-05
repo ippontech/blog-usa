@@ -2,11 +2,13 @@
 authors:
 - Pooja Krishnan
 tags:
+- Data
+- DQM
+-ETL
 date: 2020-06-15T14:50:55.000Z
 title: "The ABCs of DQM: Balance"
 image:
 ---
-
 This post is a part of a series of posts on Data Quality Management. The focus of this series is on strategies for acquiring data that can be used to ensure the quality of data. The five aspects of Data Quality Management are:
 1. Accuracy
 2. Consistency
@@ -16,10 +18,15 @@ This post is a part of a series of posts on Data Quality Management. The focus o
 
 In this article, we will expand on the definition of the ABC Framework as [mentioned in this article](https://blog.ippon.tech/abcs-of-dqm-audit/), written by my colleague [Daniel Ferguson](https://www.linkedin.com/in/daniel-ferguson-985b7048/). There he introduces the ABC Framework of Data Quality Management, particularly focusing on how the Audit process lays the groundwork for high quality data.
 
-In this blog, we will look at the B in The ABC's of DQM, Balance, and how the Balance pipeline on an ETL pipeline can confirm the accuracy and consistency of your data.
-
-# Balance
+In this blog, we will look at the B in The ABC's of DQM, Balance, and how the Balance process on an ETL pipeline can confirm the accuracy and consistency of your data.
 
 # How do you Balance your Data?
+Balance, to put it simply, is how you can confirm if your ETL processes are operating with the correct data. Consider a situation where you have an ETL process that reads data from a source table's partition (from another system) and writes that partition to a target table within your system. How can you tell that all the data from your source partition made it to your target partition? If you already have an audit process that captures metadata, you can use those metrics to balance your data. Consider the below sample data model for an Audit table:
 
-#
+![](images/2020/06/abcs-dqm-balance-1.png)
+
+With this model, we know how each job ran and we know where those job's records came from and were stored to. This will form the basis for our balance process.
+
+The first step to
+
+# A Decoupled Approach to Balance
