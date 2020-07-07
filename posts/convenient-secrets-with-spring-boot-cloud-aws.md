@@ -12,7 +12,7 @@ title: "Secret Management w/ Spring Cloud and AWS Parameter Store"
 image: 2020/07/screen-web-design-developing-codes-1936299.jpg
 ---
 
-Today's applications are broken into smaller and smaller pieces.  We've been slowly transitioning away from managing our own infrastructure, from using virtual instances, to deploying to clusters.  Your environment may have one or more clusters.  Those clusters have many services.  Those services have many tasks.  Each task is an application running in its own container.  And more than likely, that application requires **configuration**.   
+Today's applications are broken into smaller and smaller pieces.  We've been slowly transitioning away from managing our own infrastructure; from using virtual instances to deploying to clusters.  Your environment may have one or more clusters.  Those clusters have many services.  Those services have many tasks.  Each task is an application running in its own container.  And more than likely, that application requires **configuration**.   
 
 I want to share with you a simple way to store your sensitive configuration and to inject that configuration into your application.  This solution is appealing because there's no infrastructure to manage, is very low maintenance, and scales beautifully.  So let's get started.
 
@@ -38,6 +38,8 @@ Open up AWS Systems Manager then go to Parameter Store under Application Managem
 - Select `SecureString` from the *type* field.  Accept the default KMS key source.
 - In the *text* field, enter `ABC123`.  
 - Click `Create Parameter` to save it.
+
+![Create Parameter Screenshot](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/07/aws-param-store-create-parameter.png)
 
 A few things to note, for the *type* field we could of used a String but instead I chose SecureString to keep the value encrypted at rest.  You can do either and it will be transparently decrypted when it is retrieved.  For the `name` field, the prefix `/config/application/` is important but everything else is just made up.  I'll go into why the prefix is important in just a bit.
 
