@@ -14,11 +14,11 @@ image: 2020/07/screen-web-design-developing-codes-1936299.jpg
 
 Today's applications are broken into smaller and smaller pieces.  We've been slowly transitioning away from managing our own infrastructure; from using virtual instances to deploying to clusters.  Your environment may have one or more clusters.  Those clusters have many services.  Those services have many tasks.  Each task is an application running in its own container.  And more than likely, that application requires **configuration**.   
 
-I want to share with you a simple way to store your sensitive configuration and to inject that configuration into your application.  This solution is appealing because there's no infrastructure to manage, has little maintenance, and scales beautifully.  So let's get started.
+I want to share with you a simple way to store your sensitive configuration and to have your application retrieve it at startup.  This solution is appealing because there's no infrastructure to manage, has little maintenance, and scales beautifully.  So let's get started.
 
 # Storing your configuration
 
-For a contrived example, we'll store a *GitHub Token* in AWS Parameter Store and make it available to our Spring Boot application that is deployed to ECS Fargate.
+For a contrived example, I'll store a *GitHub Token* in AWS Parameter Store and make it available to our Spring Boot application.
 
 ## Pre-reqs
 
@@ -26,7 +26,6 @@ What you need to get started, or most likely, what you already have in place:
 
 - A **Spring Boot** application 
 - Deployed on **AWS**
-
 
 ## Store your secrets in AWS Parameter Store
 
@@ -41,8 +40,7 @@ Open up **AWS Systems Manager** then go to **Parameter Store** under **Applicati
 
 ![Create Parameter Screenshot](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/07/aws-param-store-create-parameter.png)
 
-A few things to note, for the *type* field we could have used a String but instead I chose **SecureString** to keep the value encrypted at rest.  You can do either, and it will be transparently decrypted when it is retrieved.  For the `name` field, the prefix `/config/application/` is important but everything else is just made up.  I'll go into why the prefix is important in just a bit.
-
+A few things to note, for the *type* field I could have used a String but instead I chose **SecureString** to keep the value encrypted at rest.  You can do either, and it will be transparently decrypted when it is retrieved.  For the *name* field, the prefix `/config/application/` is important but everything else is just made up.  I'll go into why the prefix is important in just a bit.
 
 ## Retrieving Secrets
 
@@ -59,7 +57,7 @@ In your application's pom.xml, add:
 </dependency>
 ```
 
-Additionally, if Spring Cloud isn't setup in the project yet, add this to the pom.xml as well:
+Additionally, if Spring Cloud isn't set up in the project yet, add the following to the pom.xml as well:
 
 ```xml
 <project>
@@ -94,8 +92,8 @@ Deploy your application to AWS and Spring Cloud will access the Parameter Store 
 
 - `/config/application/` - applies to all applications 
 - `/config/application_dev/` - applies to all applications with an active `dev` profile 
-- `/config/my-api/` -  applies to only the `my-api` application (defined by `spring.application.name`)
-- `/config/my-api_dev` -  applies to only the `my-api` application with an active `dev` profile  
+- `/config/my-api/` -  applies to only the `my-api` application (defined by `spring.application.name` in your application properties)
+- `/config/my-api_dev/` -  applies to only the `my-api` application with an active `dev` profile  
 
 These conventions provide the flexibility to define global, application-specific, and environment-specific parameters.  An added benefit is that parameters can be added/changed/removed in AWS Parameter Store and will sync on application restart.  There's no middle layers or task definitions to update.
 
