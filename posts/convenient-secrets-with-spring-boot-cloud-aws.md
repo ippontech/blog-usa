@@ -14,7 +14,7 @@ image: 2020/07/screen-web-design-developing-codes-1936299.jpg
 
 Today's applications are broken into smaller and smaller pieces.  We've been slowly transitioning away from managing our own infrastructure; from using virtual instances to deploying to clusters.  Your environment may have one or more clusters.  Those clusters have many services.  Those services have many tasks.  Each task is an application running in its own container.  And more than likely, that application requires **configuration**.   
 
-I want to share with you a simple way to store your sensitive configuration and to inject that configuration into your application.  This solution is appealing because there's no infrastructure to manage, is very low maintenance, and scales beautifully.  So let's get started.
+I want to share with you a simple way to store your sensitive configuration and to inject that configuration into your application.  This solution is appealing because there's no infrastructure to manage, has little maintenance, and scales beautifully.  So let's get started.
 
 # Storing your configuration
 
@@ -30,7 +30,7 @@ What you need to get started, or most likely, what you already have in place:
 
 ## Store your secrets in AWS Parameter Store
 
-Open up AWS Systems Manager then go to Parameter Store under Application Management.
+Open up **AWS Systems Manager** then go to **Parameter Store** under **Application Management**.
 
 - Click `Create Parameter`.
 - In the *name* field, enter `/config/application/github.token`.  
@@ -41,12 +41,12 @@ Open up AWS Systems Manager then go to Parameter Store under Application Managem
 
 ![Create Parameter Screenshot](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/07/aws-param-store-create-parameter.png)
 
-A few things to note, for the *type* field we could of used a String but instead I chose SecureString to keep the value encrypted at rest.  You can do either and it will be transparently decrypted when it is retrieved.  For the `name` field, the prefix `/config/application/` is important but everything else is just made up.  I'll go into why the prefix is important in just a bit.
+A few things to note, for the *type* field we could have used a String but instead I chose **SecureString** to keep the value encrypted at rest.  You can do either, and it will be transparently decrypted when it is retrieved.  For the `name` field, the prefix `/config/application/` is important but everything else is just made up.  I'll go into why the prefix is important in just a bit.
 
 
 ## Retrieving Secrets
 
-The "secret" sauce of this solution is in the integration.  Now that your configuration is securely stored in AWS, you need a good way to retrieve it.  A poor way to integrate would be to specifiy each property in the ECS task definition using ValueFrom mappings.  That's just more configuration and more to maintain.  Unsurprisingly, there's a great Spring integration that can help us out called **Spring Cloud Starter AWS Parameter Store Config**.  
+The "secret" sauce of this solution is in the integration.  Now that your configuration is securely stored in AWS, you need a reliable way to retrieve it.  A poor way to integrate would be to specifiy each property in the ECS task definition using ValueFrom mappings.  That ends up requiring more configuration with more to maintain.  Unsurprisingly, there's a great Spring integration that can help us out called **Spring Cloud Starter AWS Parameter Store Config**.  
 
 ### Add the Spring Boot starter dependency
 
@@ -88,7 +88,7 @@ Additionally, if Spring Cloud isn't setup in the project yet, add this to the po
 
 ### Deploy
 
-That is it.  And now, there is some magic happening as is the case with most Spring integrations.
+**That's it!**  And now, there is some magic happening as is the case with most Spring integrations.
 
 Deploy your application to AWS and Spring Cloud will access the Parameter Store on AWS.  Properties are retrieved and injected based on the following **prefix** conventions:
 
@@ -105,7 +105,7 @@ The `github.token` property should now be retrieved at application startup from 
 
 # Wrapping Up
 
-It's that easy.  Spring Boot's starter packages tend to do a good job out of the box with minimal to no configuration.  
+If this seems simple, it's because it is!  Spring Boot's starter packages tend to do a good job out-of-the-box with little to no configuration.  
 
 I hope you found this to be easy to follow and beneficial.  And remember, keep your secrets out of your source code!
 
