@@ -48,7 +48,7 @@ A few things to note, for the *type* field we could of used a String but instead
 
 The "secret" sauce of this solution is in the integration.  Now that your configuration is securely stored in AWS, you need a good way to retrieve it.  A poor way to integrate would be to specifiy each property in the ECS task definition using ValueFrom mappings.  That's just more configuration and more to maintain.  Unsurprisingly, there's a great Spring integration that can help us out called **Spring Cloud Starter AWS Parameter Store Config**.  
 
-### Step 1 - Add the dependency
+### Add the Spring Boot starter dependency
 
 In your application's pom.xml, add:
 
@@ -86,8 +86,7 @@ Additionally, if Spring Cloud isn't setup in the project yet, add this to the po
 </project>
 ```
 
-
-### Step 2 - Deploy!
+### Deploy
 
 That is it.  And now, there is some magic happening as is the case with most Spring integrations.
 
@@ -100,9 +99,13 @@ Deploy your application to AWS and Spring Cloud will access the Parameter Store 
 
 These conventions provide the flexibility to define global, application-specific, and environment-specific parameters.  An added benefit is that parameters can be added/changed/removed in AWS Parameter Store and will sync on application restart.  There's no middle layers or task definitions to update.
 
+### Access the injected property 
+
+The `github.token` property should now be retrieved at application startup from Parameter Store.  The parameter's full key is `/config/application/github.token`.  The prefix, `/config/application`, is omitted and what is left is our application property key.  The value, `ABC123`, is transparently decrypted and provided to the application at runtime.
+
 # Wrapping Up
 
-If this seems simple, it's because it is.  Spring Boot's starter packages tend to do a good job of the box with minimal to no configuration.  
+It's that easy.  Spring Boot's starter packages tend to do a good job out of the box with minimal to no configuration.  
 
 I hope you found this to be easy to follow and beneficial.  And remember, keep your secrets out of your source code!
 
