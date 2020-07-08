@@ -9,7 +9,7 @@ tags:
 - Elastic Container Service
 date: 2020-07-07T00:00:00.000Z
 title: "Secret Management w/ Spring Cloud and AWS Parameter Store"
-image: 2020/07/screen-web-design-developing-codes-1936299.jpg
+image: 2020/07/aws-param-store-splash.png
 ---
 
 Today's applications are broken into smaller and smaller pieces.  We've been slowly transitioning away from managing our own infrastructure; from using virtual instances to deploying to clusters.  Your environment may have one or more clusters.  Those clusters have many services.  Those services have many tasks.  Each task is an application running in its own container.  And more than likely, that application requires **configuration**.   
