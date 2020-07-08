@@ -14,20 +14,20 @@ title: "FEEDBACK: Keycloak High Availability in Cloud environment (AWS) - PART 3
 image: https://raw.githubusercontent.com/smazade/blog-usa/master/images/2020/05/feedback-keycloak-high-availability-in-cloud-environment-aws-part-3-img1.jpg
 ---
 
-In [previous part](https://blog.ippon.tech/feedback-keycloak-high-availability-in-cloud-environment-aws-part-2-4/), we have explained our context and how to configure our infrastructure and Keycloak server. From now on, we will focus on the load test environment set up, in order to be able to launch the tests at the destination of our cloud Keycloak cluster and interpret them.
+In [previous part](https://blog.ippon.tech/feedback-keycloak-high-availability-in-cloud-environment-aws-part-2-4/), we have explained our context and how to configure our infrastructure and our Keycloak servers. From now on, we will focus on the load test environment set up, in order to be able to launch tests on our Keycloak cloud cluster and interpret them.
 
 # How to ensure our HA configuration is reliable and effective?
 
-Once your infrastructure is ready to host our HA Keycloak servers, it is necessary to check a couple of things (even if we are dealing with an IAM, security concerns are out-of-scope here):
+Once the infrastructure is ready to host our HA Keycloak servers, it is necessary to check a couple of things (the list is not exhaustive, we are focusing here on performance aspects):
 *   Memory consumption:
 
-    Bad cache configuration or too low instance types, can lead to memory leaks or overrun the JVM garbage collection that would impact performance.
+    Bad cache configuration or too small instance types can lead to memory leaks or overrun the JVM garbage collection which could end up impacting performance.
     
- > <img style="float: left;padding-right: 0.7em;width: 2.2em;" alt="Information" src="https://raw.githubusercontent.com/smazade/blog-usa/master/images/2020/05/2139.png"> Note that in AWS this metric is absent, it is mandatory to add an agent into the EC2 instance.
+ > <img style="float: left;padding-right: 0.7em;width: 2.2em;" alt="Information" src="https://raw.githubusercontent.com/smazade/blog-usa/master/images/2020/05/2139.png"> Note that in AWS, this metric is absent, it is mandatory to install an agent on the EC2 instance.
 
 *   CPU usage:
 
-    In Keycloak, we have seen that CPU is the first thing to monitor. It is interesting to see how the CPU reacts to the load and also unloads.
+    In Keycloak, we have seen that the CPU is the first thing to monitor. It is interesting to see how the CPU reacts to the load as well as the unload.
 
 *   Response time:
 
@@ -35,11 +35,11 @@ Once your infrastructure is ready to host our HA Keycloak servers, it is necessa
 
 *   Number of errors:
 
-    IAM session availability is not of the highest criticity, losing some could be annoying but it will only force the customer to login again, this would not really impact the business. I think it is more important to prefer performance to errors here.
+    0% is very hard to reach and in our use case losing a session is very annoying but not blocking. Nevertheless, bests efforts should be made to keep the count at the lowest while keeping a balance with a good performance level.
 
 *   Caches are well ‘sharded’ between nodes:
 
-    We could prove as an example that sessions are not closed when scaling-in. We can benefit from our load tests to verify that we do not have request errors on refreshed sessions during the scale-in.
+    We could prove as an example that sessions are not closed when scaling-in. We can benefit from our load tests to verify that we do not have request errors on refreshed sessions during a scale-in.
 
 *   ...
 
@@ -47,17 +47,20 @@ Once your infrastructure is ready to host our HA Keycloak servers, it is necessa
 
 It is necessary to find the best suited tool that will be able to inject a relatively big amount of requests: the main open source ones that do not need to prove themselves are JMeter, The grinder and Gatling.
 
-We will not do a comparison here, each of them have their cons and pros. We have picked Gatling for 3 reasons:
-*   its community and we are used to it,
+We will not do a comparison here, each of them have their cons and pros. We have picked Gatling for 4 reasons:
+
+*   its community,
+*   we are used to it,
 *   beautiful reports,
-*   ability to scale many clients without purchasing the distributed mode enterprise offer (the main criteria).
+*   ability to scale the client injectors.
 
-Indeed, while setting up your test and testing it locally, you would not encounter any problem, but when you will begin to add more and more users (i.e. requests) you will soon reach a limit with sockets for opening files such as css/js inferred resources and with the number of users. Thus, we need to use several clients.
+Concerning the last point, it is important to be aware that a significative test will probably hit a single client resource limit. Taken from the Gatling documentation: 
+*“You have to understand that Gatling’s default behavior is to mimic human users with browsers so, each virtual user has its own connections. If you have a high creation rate of users with a short lifespan, you’ll end up opening and closing tons of connections every second. As a consequence, you might run out of resources (such as ephemeral ports, because your OS can’t recycle them fast enough). This behavior makes perfect sense when the load you’re modeling is internet traffic. You then might consider scaling out, for example with FrontLine, our Enterprise product.”*
 
-Few people know that it is possible to launch Gatling with a specific mode that will write only logs without reports. When it is over, it is possible to concatenate them in a merged report.
+Indeed, our main criteria was to be able to scale out our clients but without buying an enterprise product. In this chapter, we will see how to achieve that with our own simple scaled out architecture.
 
-If we take a look to the Gatling command usage:
-
+Few people know that it is possible to launch Gatling with a specific mode, that will write logs without the reports. When it is over, it is possible to concatenate them in a merged report.
+If we take a look at the Gatling command usage:
 ```
 Usage: gatling [options]
 
@@ -81,8 +84,8 @@ Usage: gatling [options]
 
 You would notice the `-nr` option that prevents report generation, and the `-ro` that generates only the reports.
 
-Thus, we will use for example the following kind of commands:
-*   For running the test with ‘n’ Gatling clients:
+Here are a few examples of commands we often use:
+*   For running tests with N Gatling clients:
 
     ```shell
     gatling -rf $RESULT_CONTAINER_DIR/$(uuid) -rd '$DESC ### $JAVA_OPTS' -s keycloak.ha.ScalabilityRecordedSimulation -nr
@@ -90,11 +93,11 @@ Thus, we will use for example the following kind of commands:
 
     _where:_
 
-1. `$RESULT_CONTAINER_DIR` represent the name of a repository which will be the same for every client that are related to the same run,
-2. `$(uuid)` generate a unique sub repository to avoid writing the same file,
-3. `$DESC` is the description of the scenario and of what we want to test (for instance: T3A.small - shard 2 - start 3 EC2 - upscale 39p - no affinity etc…), try to be exhaustive here it will be mandatory to understand well all the context of the test later,
+1. `$RESULT_CONTAINER_DIR` is the name of the result directory which will be the same for every client that are related to the same run,
+2. `$(uuid)` generates a unique sub repository to avoid writing the same file,
+3. `$DESC` is the description of the scenario and of what we want to test (for instance: T3A.small - shard 2 - start 3 EC2 - upscale 39p - no affinity etc…), it’s important to be as exhaustive as possible here because it will help to understand better the whole context of the test in the future,
 4. the `$JAVA_OPTS` will contain all the parameters used by your Scala script if any (for instance you can parameterize the number of users, duration, protocols, domain name, pause duration etc.)
-*   For the reporting command that will generate our report index.html:
+*   For generating our index.html report:
 
     ```shell
     gatling -ro $RESULT_CONTAINER_DIR
@@ -102,27 +105,25 @@ Thus, we will use for example the following kind of commands:
 
 ## Scaling Gatling clients with AWS ECS
 
-The use of containers was prohibited in our context on production environments, but nothing keeps us from using it for our tests, even if it will be deployed on our AWS VPCs.
+The use of containers was prohibited in our context on production environments, but nothing keeps us from using them in our test environments.
 
-The easiest way to scale our containers that contains the Gatling client, was to use the orchestrator managed service supplied by AWS: ECS (Elastic Container Service).
+The easiest way to scale our containers that contains the Gatling client, was to use the container managed service supplied by AWS: ECS (Elastic Container Service).
 
-> <img style="float: left;padding-right: 0.7em;width: 2.2em;" alt="Pushpin" src="https://raw.githubusercontent.com/smazade/blog-usa/master/images/2020/05/1f4cc.png">  The ECS configuration would not be provided here, as there are no real difficulties with all the resources that you will find on the Internet.
+> <img style="float: left;padding-right: 0.7em;width: 2.2em;" alt="Pushpin" src="https://raw.githubusercontent.com/smazade/blog-usa/master/images/2020/05/1f4cc.png">  The ECS configuration is not provided here as there are many examples on the Internet.
 
 Here is the load test architecture diagram:
 
 ![gatling ecs architecture](https://raw.githubusercontent.com/smazade/blog-usa/master/images/2020/05/feedback-keycloak-high-availability-in-cloud-environment-aws-part-3-img2.png)
 
-This diagram melt applicative and infrastructure notions but this way, it is easier to describe the overall picture of what is at stake.
-
-Before entering into the details of the Gatling scenario, it is still interesting to notice that the same ALB (our only Keycloak public door) will be requested using 2 different domain aliases:
-*   the one used for getting access to the console, is defined onto our company DNS server,
-*   the internal one, the route53 alias (we could have used the public frontal one but we should have opened an additional port and requested internet access to reach it from our ECS VPC and everyone knows the difficulty in big companies to make it pass the security team agreement).
+Before entering into the details of the Gatling scenario, it is important  to note that the same ALB (our only Keycloak public door) will be requested using 2 different domain aliases:
+*   the one used for getting access to the console, it is defined in our company DNS server,
+*   the internal one, the route53 alias (we could have used the public frontal one, but we would have needed to open an additional port and request Internet access to reach it from our ECS VPC, but everyone knows the difficulty in big companies to make it pass the security team agreement).
 
 Why these 2 domains? 
-*   The first one (Domain A) will only be used for the requests done without cookies (otherwise, the affinity session cookie would bias our tests results). In our case, it concerns only the `/userinfo` endpoint requests. It would have been too complex for our tests, to add another proxy simulating the API management layer (or as well any backend security checking layer) and as well, we did not want to measure this layer overheads.
+*   The first one (Domain A) will only be used for the requests done without cookies (otherwise, the affinity session cookie would bias our tests results). In our case, it concerns only the `/userinfo` endpoint requests. It would have been too complex for our tests to add another proxy simulating the API management layer (or any other backend security checking layer). On top of that, we did not want to measure this layer overheads.
 *   The second one (Domain B) is used for all requests that the browser will execute.
 
-<img style="float: left;padding-right: 0.7em;width: 2.2em;" alt="Warning" src="https://raw.githubusercontent.com/smazade/blog-usa/master/images/2020/05/26a0.png">  The generated files are stored into S3, thus, do not forget to set the required AWS permissions policy to the container:
+<img style="float: left;padding-right: 0.7em;width: 2.2em;" alt="Warning" src="https://raw.githubusercontent.com/smazade/blog-usa/master/images/2020/05/26a0.png">  The generated files are stored into S3, thus, do not forget to set the required AWS permissions policy on the container:
 ```json
 {
  "Version": "2012-10-17",
@@ -143,15 +144,13 @@ Why these 2 domains?
 }
 ```
 
-## Preparation is the key: the least details can bias the interpretations...
+## Preparation is the key: the smallest detail can bias the interpretations...
 
-On previous lines, we have seen that we have highly complexified the tests, just to be able to remove the affinity session cookie on the single `/userinfo` endpoint. If this had not been done, the results would not have represented exactly the reality, and we would not have been able to witness which behavior Keycloak would have had when the cluster grows and when requests would have fallen onto the wrong node.
+We have seen that we can highly complexify the tests just to be able to remove the affinity session cookie on the single `/userinfo` endpoint. If this had not been done, the results would not have represented exactly the reality, and we would not have been able to witness which behavior Keycloak would have had when the cluster had grown or when requests had fallen onto the wrong node.
 
-Thus, you should not simply focus on the endpoints you will interrogate, but on the whole final architecture. Be careful, it does not mean that we need to have a full test scope with the true backend APIs etc. Here, the goal remains to test Keycloak, not the network nor the global DNS calls etc.
+The approach is not to simply record the network activity (I mean the API calls) respecting the pause, but to really understand what is at stake by taking a step back on the overall architecture and measuring Keycloak performance, not other infrastructure element ones nor the network latency.
 
-For this we have thought about a scenario that will reproduce all of our OAuth grant type steps which was an IFramed Implicit Grant (I see you coming, another article will soon talk about this choice), that includes login, silent refreshes and token checks (`/userinfo`). The results with an authorization code grant type scenario would probably not have been very far.
-
-Then we have extrapolated the injectors parameters to go a little above the expected volumes.
+Thus, we thought about a scenario that could reproduce all of our OAuth grant type steps with an IFramed Implicit Grant (yes, Implicit Grant can still be secured if all the required actions are taken, but it will not be explained here). This scenario includes login, silent refreshes and token checks (`/userinfo`). The results with an authorization code grant and PKCE type scenario would probably not have been very far. Then, we extrapolated the injectors parameters to go a little above the expected volumes.
 
 Here are the different steps:
  > * For each user in a random feeder ({random number}_{default mail})
@@ -168,27 +167,23 @@ Here are the different steps:
  >   *  call **logout**: `/openid-connect/logout` endpoint X% of the time
 
 You may have noticed some tiny details that have their importance here:
-*   We start with a customer feeder -- using only one user would have also worked with Keycloak as it separates the user data from his context session (i.e. you can login many times with the same user). The problem is that you would not see the memory consumption if the target is to have more than 100K users. Additionally, it can show others things that we do not have in mind yet.
-*   We retrieve the `expires_in` duration in order to call the silent refresh just before the token will expire to avoid unnecessary `401` (of course the real browser app should have the same behavior).
+*   We start with a customer feeder -- using only one user would also work with Keycloak as it would separate the user data from his context session (i.e. you could login many times with the same user). Nevertheless, you would not see the memory consumption if the target was to have more than 100K users. Additionally, it would have shown others things that we had not in mind at that time.
+*   We retrieve the `expires_in` duration in order to call the silent refresh just before the token expires to avoid unnecessary `401` (of course the real browser app would have the same behavior).
 *   Random number of silent refresh loop: this will simulate different scenario durations.
-*   Call logout X% of the time: in reality most users don’t call the logout endpoint (on e-commerce sites it is very seldom, on company internal tools it is more often)...
+*   Call logout X% of the time: in the real world, most users do not call the logout endpoint (on e-commerce sites, it is very rare; on company internal tools, it is more common).
 
-We do not see it here, but it is also important to respect realistic pause durations, right number of `/userinfo` endpoint calls (i. e. each time a backend API call is made _-- it can be substantial_) etc.
+We do not see it here, but it is also important to respect realistic pause durations as well as a realistic number of calls on the `/userinfo` endpoint (each time a backend API call is made; the amount of calls can be very huge).
 
-Then, you may not always be able to simulate every whit of the reality, but you should be aware that some weird behaviors can happen, example:
+You may not always be able to simulate the exact reality, but you should be aware that some unexpected behaviors can happen. For example:
 
-_“Our scenarios begins with 2 login step requests (the second one is costly), if the load test increase too much the CPU, some responses will fail (even the tiny ones like `/userinfo`), thus, the user scenario will stop and if you use a constant rate injector like us, as soon as the user ends, it will be replaced with another one which will start again from the login steps.”_
+_“As our scenario begins with the login requests, if the load test makes the CPU increase too much, requests may fail. Thus, the entire user scenario will be in a failed state too and as we use a [‘closed model’](https://gatling.io/docs/current/general/simulation_setup#closed-model) (capped number of concurrent users), it will be immediately replaced with another one which will start again the login steps and emphasize the phenomenon.”_
 
-You could easily imagine that the logins spread over time and the other requests, will soon be replaced by only login requests that will increase exponentially the load and I cannot tell which of the Keycloak server or the Gatling client will crash first!
+Consequently, with this kind of model we should try to reproduce the reality by trying to login only 2 or 3 times in a row and then wait several minutes instead of letting a new user scenario starts instantly.
 
-So it is mandatory to not start another scenario without a significant pause. In real life, if all the users are disconnected, they will try to login again 2 or 3 times and then wait many minutes before trying another attempt, so, always try to think of what will probably happen in real life and try to reproduce it.
+One thing left to handle, which is not natively possible with Gatling, is to suppress all client request cookies of the Domain A.
+As the session is unique for the Gatling scenario that calls the 2 domains, the trick is to save all the cookies and then restore them, except the ones on domain A, before executing the call.
 
-One thing left to handle and that is not natively possible with Gatling, is to suppress all client request cookies of the Domain A.
-
-As the session is unique for the Gatling scenario that calls the 2 domains, the trick is to save all the cookies and then restore all of them, except the ones on domain A before executing the call.
-
-Here is a little helping Scala code for this:
-
+Here is a little bonus Scala code for this:
 ```scala
    val KC_COOKIES_PATH = "/auth/realms/" + REALM_NAME + "/"
    // Put here all cookies used by keycloak
@@ -230,4 +225,4 @@ Then in our scenario:
     .exec(callToUserInfo)
 ```
 
-Now that you are aware of what and how to launch the load tests with Gatling using an orchestrator, we will gather the results and strive to analyze them in the [last part](https://blog.ippon.tech/feedback-keycloak-high-availability-in-cloud-environment-aws-part-4-4/) of our article.
+Now that you are aware of how to launch the load tests with Gatling using an orchestrator, we are going to gather the results and try to analyze them in the [last part](https://blog.ippon.tech/feedback-keycloak-high-availability-in-cloud-environment-aws-part-4-4/) of our article.
