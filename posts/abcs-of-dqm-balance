@@ -23,6 +23,8 @@ In this blog, we will look at the B in The ABC's of DQM, Balance, and how the Ba
 
 Balance, to put it simply, is how you can confirm if your ETL processes are operating with the correct data. Consider a situation where you have an ETL process that reads data from a source table's partition (from another system) and writes that partition to a target table within your system. How can you tell that all the data from your source partition made it to your target partition? If you already have an audit process that captures metadata, you can use those metrics to balance your data. Consider the below sample data model for an Audit table: ![Audit Schema Example](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/07/abcs-dqm-balance-1.png) With this model, we know how each job ran and we know where those job's records came from and were stored to. This will form the basis for our balance process.
 
-The first step to balancing your data in the scenario above would be to look at the
+The first step to balancing your data in the scenario above would be to look at the `records_written` and `records_read` from the Audit table. If they match, all the records you wanted to insert were inserted. This only works if you are inserting every record from your source table to your target. What do you do if there are multiple tables you pull in your source? What if it is difficult to distinguish between a job and a task?
 
-# A Decoupled Approach to Balance
+# A Decoupled Approach to ETL and Balance
+
+Consider an event based ETL and DQM pipeline in AWS. Events allow you to asynchronously transmit data from one application to another. Your data quality jobs can be triggered by notification or event upon completion of your ETL job or jobs. One of these would ideally be your balance job.
