@@ -10,7 +10,7 @@ tags:
 - Amazon ECS
 - Gatling
 date: 2020-05-14T14:00:00.000Z
-title: "FEEDBACK: Keycloak High Availability in Cloud environment (AWS) - PART 3/4"
+title: "Keycloak High Availability in Cloud environment (AWS) - PART 3/4"
 image: https://raw.githubusercontent.com/smazade/blog-usa/master/images/2020/05/feedback-keycloak-high-availability-in-cloud-environment-aws-part-3-img1.jpg
 ---
 

@@ -9,7 +9,7 @@ tags:
 - Cloud
 - AWS
 date: 2020-05-14T14:00:00.000Z
-title: "FEEDBACK: Keycloak High Availability in Cloud environment (AWS) - PART 2/4"
+title: "Keycloak High Availability in Cloud environment (AWS) - PART 2/4"
 image: https://raw.githubusercontent.com/smazade/blog-usa/master/images/2020/05/feedback-keycloak-high-availability-in-cloud-environment-aws-part-2-img1.jpg
 ---
 
