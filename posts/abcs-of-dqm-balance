@@ -21,9 +21,24 @@ In this blog, we will look at the B in the ABC framework, Balance, and how the B
 
 # How do you Balance your Data?
 
-Balance, to put it simply, is how you can confirm if your ETL processes are operating with the correct data. Consider a situation where you have an ETL process that reads data from a source table's partition (from another system) and writes that partition to a target table within your system. How can you tell that all the data from your source partition made it to your target partition? If you already have an audit process that captures metadata, you can use those metrics to balance your data. Consider the below sample data model for an Audit table: ![Audit Schema Example](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/07/abcs-dqm-balance-1.png) With this model, we know how each job ran and we know where those job's records came from and were stored to. This will form the basis for our balance process.
+Balance, to put it simply, is how you can confirm if your ETL processes are operating with the correct data. Consider a situation where you have an ETL process that reads data from a source table's partition (from another system) and writes that partition to a target table within your system. How can you tell that all the data from your source partition made it to your target partition? If you already have an audit process that captures metadata, you can use those metrics to balance your data. Consider the below sample data model for an Audit table created using [SQLDBM](https://app.sqldbm.com/) ![Audit Schema Example](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/07/abcs-dqm-balance-1.png)
 
-The first step to balancing your data in the scenario above would be to look at the `records_written` and `records_read` fields from the Audit table. If they match, all the records you wanted to insert were inserted. This only works if you are inserting every record from your source table to your target. What do you do if there are multiple tables you pull in your source? What if it is difficult to distinguish between a job and a task?
+With this model, we know how each job ran and we know where those job's records came from and were stored to. This will form the basis for our balance process.
+
+The first step to balancing your data in this scenario might be to look at the `records_written` and `records_read` fields from the Audit table. If they match, all the records you wanted to insert were inserted. This only works if you are inserting every record from your source table to your target. What do you do if there are multiple tables you pull from your source? What if it is difficult to distinguish between a job and a task? Lets look at a sample balance framework to examine what you can do.
+
+## Balancing in Practice
+
+![Balance 1](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/07/abcs-dqm-balance-2.png)
+
+Consider the above balance framework for an ETL job that retrieves data from a source table (from another system) to a target table in your database. In order to balance your data, you would need to ensure the following:
+
+1. That your data in your source table is as expected.
+2. After job completion, the data in your target table is as expected.
+
+Seems simple right? But how do you ensure the data in your source table is as expected?
+
+``
 
 # A Decoupled Approach to ETL and Balance
 
