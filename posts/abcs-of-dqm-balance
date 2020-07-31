@@ -34,7 +34,7 @@ The first step to balancing your data in this scenario might be to look at the `
 Consider the above balance framework for an ETL job that retrieves data from a source table (from another system) to a target table in your database. In order to balance your data, you would need to ensure the following:
 
 1. That your data in your source table is as expected.
-2. After job completion, the data in your target table is as expected.
+2. The data in your target table is as expected.
 
 Seems simple right? But how do you ensure the data in your source table is as expected?
 
