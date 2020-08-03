@@ -29,17 +29,28 @@ The first step to balancing your data in this scenario might be to look at the `
 
 ## Balancing in Practice
 
-![Balance 1](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/07/abcs-dqm-balance-2.png)
-
-Consider the above balance framework for an ETL job that retrieves data from a source table (from another system) to a target table in your database. In order to balance your data, you would need to ensure the following:
+In order to balance your data, you would need to ensure the following:
 
 1. That your data in your source table is as expected.
 2. The data in your target table is as expected.
 
-Seems simple right? But how do you ensure the data in your source table is as expected?
+![Balance Diagram](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/07/abcs-dqm-balance-2.png)
 
-``
+Consider the above balance framework for an ETL job that retrieves data from a source table (from another system) to a target table in your database. At its simplest form, your balance job could take the form of loading two queries (one against the source dataset and one against the target) and executing them against your two tables. Depending on the ETL process, these queries could be derived from the inputs to the ETL process themselves. Ideally, the queries would capture the following two types of information about your source and target tables:
+
+- Count of Records
+- Checks against aggregated values such as amounts
+
+Upon execution of the queries, you would be able to compare the results from the source table to that from the target table. If they match, your data is balanced. If there are discrepancies, however, any errors need to feed directly into the Control Process. After all, it is in the Control Process, that our ABC framework can make corrections to the data to ensure consistency from the start of ETL execution to its completion.
+
+> What I describe above would occur **only** after successful execution of your ETL job. If the ETL job fails partway or encounters an exception, however, it would be the Balance job that reverts any changes and returns both environments to their prior state.
 
 # A Decoupled Approach to ETL and Balance
 
-Consider an event based ETL and DQM pipeline in AWS. Events allow you to asynchronously transmit data from one application to another. Your data quality jobs can be triggered by notification or event upon completion of your ETL job or jobs. One of these would ideally be your balance job.
+Events allow you to asynchronously transmit data from one application to another. Your data quality jobs can be triggered by notification or event upon completion of your ETL job or jobs. One of these would ideally be your balance job. In an event-driven ETL process, balancing your data is a little trickier than a traditional ETL process, as it is more difficult to distinguish between a job and a task. A platform that processes credit card transactions, for example, would be processing each transaction as a separate event. There are usually a series of processes a bank or credit card company use to verify transactions and eventually post them to your account. How would you balance such a system?
+
+## An Aside on Orchestration in Event-Driven ETL
+
+In the [Balancing in Practice](#balancing-in-practice) section above, we looked at a balance architecture that ran serially; upon completion of our ETL Job, we ran the balance process, followed by control. In an event-driven ETL pipeline, the entire ETL execution could mean processing thousands or millions of events. Thus we would have to run balance and control while we are completing ETL Job execution. ![Orchestration of DQM](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/07/abcs-dqm-balance-3.png)
+
+## Balancing the Event-Driven Way
