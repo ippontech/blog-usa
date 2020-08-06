@@ -73,3 +73,7 @@ With this understanding of what an event looks like, we can now examine what bal
 ![Event-Driven Balance](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/07/abcs-dqm-balance-4.png)
 
 In the diagram above, I've simplified the event, which would be the input to the balance process, to three specific types of metadata: primary keys, queries to be executed, and row counts. For each event, you would want to check that all primary key constraints have been upheld to ensure data integrity. You would also want to check the row counts and execute any queries for balancing data. If all the constraints and row counts match up, much like the case discussed above, your data is balanced. However, if there are any discrepancies, the response would be different as part of the balance job. For an event-driven balance process, for each event that encounters inconsistencies as a part of the balance process, the results and even specific rows from the dataset could be sent to the control process. From here, it would again be the realm of the control process, which will be addressed in an upcoming post, to correct the data.
+
+--------------------------------------------------------------------------------
+
+If something in this article piqued your interest or you would like to learn how to leverage and gain insights on your data, Ippon USA would love to hear from you! Please contact us at contact@ippon.tech with your questions and inquiries.
