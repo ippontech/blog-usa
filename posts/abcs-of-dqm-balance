@@ -29,7 +29,7 @@ The first step to balancing your data in this scenario might be to look at the `
 
 ## Balancing in Practice
 
-In order to balance your data, you would need to ensure the following:
+In order to balance your data, you would need to ensure at minimum, the following:
 
 1. That your data in your source table is as expected.
 2. The data in your target table is as expected.
@@ -54,3 +54,14 @@ Events allow you to asynchronously transmit data from one application to another
 In the [Balancing in Practice](#balancing-in-practice) section above, we looked at a balance architecture that ran serially; upon completion of our ETL Job, we ran the balance process, followed by control. In an event-driven ETL pipeline, the entire ETL execution could mean processing thousands or millions of events. Thus we would have to run balance and control while we are completing ETL Job execution. ![Orchestration of DQM](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/07/abcs-dqm-balance-3.png)
 
 ## Balancing the Event-Driven Way
+
+When balancing the event-driven way, we first need to define what an event looks like for the ABC Process as a whole. Events for your DQM Process will mainly be capturing the metadata created by your ETL Job. Some of the metadata that can be included in the event are:
+
+- Primary Keys
+- Data Types
+- Row Counts
+- Fields to audit for quality
+- Fields to balance for quality
+- Queries to be executed for auditing or balancing your data
+
+With this understanding of what an event looks like, we can now examine what balancing could look like. ![Event-Driven Balance](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/07/abcs-dqm-balance-4.png) In the diagram above, I've simplified the event which would be the input to the balance process to three specific types of metadata: primary keys, queries to be executed and row counts. For each event you would want to check that all primary key constraints have been upheld to ensure data integrity. You would also want to check the row counts and execute any queries for balancing data. If all the constraints match up, much like the case we discussed above, your data is balanced. However, if there are any discrepancies, as a part of the balance job, the response would be different. In the balance process for a batch ETL job, all the results are generated at once and can be fed into the control process. For an event-driven balance process, however, for each event that encounters discrepancies as a part of the balance process, the results and even specific rows from the dataset could be sent to the control process. From here, it would again be the realm of the control process, which will be addressed in an upcoming post, to correct the data.
