@@ -14,7 +14,7 @@ image:
 
 With more than 300 million active users, Twitter is still the best platform to provide efficient and accurate real time news. The SMS of the Internet is also one of the best social network and is particularly used a lot by all kind of developers which makes it a very good source of tech information.
 
-Which #Hashtags, Twitter found a way to let the users group posts together and follow specific topics in order to get immediate updates. My favorite tool to give you the best Twitter experience is [TweetDeck](https://tweetdeck.twitter.com/), you can define your own custom dashboard in order to fulfill all your needs. My favorite "column" is the `Trending` one and my guilty pleasure is to check it multiple times a day to always be aware of what is happening (even if sometimes I am quite surprised of what is currently trending...).
+With #Hashtags, Twitter found a way to let the users group posts together and follow specific topics in order to get immediate updates. My favorite tool to give you the best Twitter experience is [TweetDeck](https://tweetdeck.twitter.com/), you can define your own custom dashboard in order to fulfill all your needs. My favorite "column" is the `Trending` one and my guilty pleasure is to check it multiple times a day to always be aware of what is happening (even if sometimes I am quite surprised of what is currently trending...).
 
 The goal of this blog is to explain how cheap and easy it is to save and analyze what is trending on Twitter using services provided by AWS. There are a lot of neat use cases that can be done once you have this architecture up and running. One for example would be to notify you if a specific topic is trending in order to not miss important news.
 
@@ -30,7 +30,7 @@ A future feature that could be added would be to add a notification system that 
 
 # Deployment using AWS CDK
 
-[AWS Cloud Development Kit](https://aws.amazon.com/cdk/) is THE framework that you need to use to define your AWS cloud infrastructure in code. You can pick your favorite language out of the 5 supported languages (JavaScript, TypeScript, Python, Java or .NET) and its simplicity will save you a lot of time. I recommend using TypeScript since the CDK team priorities it and you will also have more examples available on this [GitHub repository](https://github.com/aws-samples/aws-cdk-examples).
+[AWS Cloud Development Kit](https://aws.amazon.com/cdk/) is THE framework that you need to use to define your AWS cloud infrastructure in code. You can pick your favorite language out of the 5 supported languages (JavaScript, TypeScript, Python, Java or .NET) and its simplicity will save you a lot of time. I recommend using TypeScript since the CDK team prioritizes it and you will also have more examples available on this [GitHub repository](https://github.com/aws-samples/aws-cdk-examples).
 
 For this blog, I decided to use Python since I'm more familiar with it and tend to prefer it over TypeScript. I recommend reading this [CDK tutorial](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html) in order to have all the necessary tools installed.
 
