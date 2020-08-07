@@ -16,15 +16,17 @@ With more than 300 million active users, Twitter is still the best platform to p
 
 Which #Hashtags, Twitter found a way to let the users group posts together and follow specific topics in order to get immediate updates. My favorite tool to give you the best Twitter experience is [TweetDeck](https://tweetdeck.twitter.com/), you can define your own custom dashboard in order to fulfill all your needs. My favorite "column" is the `Trending` one and my guilty pleasure is to check it multiple times a day to always be aware of what is happening (even if sometimes I am quite surprised of what is currently trending...).
 
-The goal of this blog is to explain how cheap and easy it is to save and analyze what is trending on Twitter using services provided by AWS. There are a lot of neat use cases that can be done once you have this simple architecture up and running. One for example would be to notify you if a specific topic is trending in order to not miss important news.
+The goal of this blog is to explain how cheap and easy it is to save and analyze what is trending on Twitter using services provided by AWS. There are a lot of neat use cases that can be done once you have this architecture up and running. One for example would be to notify you if a specific topic is trending in order to not miss important news.
 
 # AWS Services and Architecture
 
-The beauty of AWS is that it provides us all the services that we need in order to build our Twitter analytics platform. That saves us a lot of time and headaches since we can focus on the fun parts of this project instead of less fun parts like hosting and configuration. The architecture leverages mature AWS services and the flow is pretty simple, here is a diagram to summarize:
+The beauty of AWS is that it provides us all the services that we need in order to build our Twitter analytics platform. That saves us a lot of time and headaches since we can focus on the fun parts of this project instead of less fun parts like hosting and configuration.
 
-![Diagram]((https://raw.githubusercontent.com/falydoor/blog-usa/twitter-trends/images/2020/08/twitter-trends-diagram.png)
+The architecture leverages mature AWS services and the flow is pretty simple, here is a diagram to summarize:
 
-A future feature that could be aded would be to add a notification system that will notify other components if a specific topic is trending. You could for example receive a notification on your phone, a text or simply an email when a defined topic is trending in your location. The lambda will be in charge of checking if one of the trending topic is part of a user defined list and then push a message to AWS SNS for example.
+![Diagram](https://raw.githubusercontent.com/falydoor/blog-usa/twitter-trends/images/2020/08/twitter-trends-diagram.png)
+
+A future feature that could be added would be to add a notification system that will notify other components if a specific topic is trending. You could for example receive a notification on your phone, a text or simply an email when a defined topic is trending in your location. The lambda will be in charge of checking if one of the trending topic is part of a user defined list and then push a message to AWS SNS for example.
 
 # Deployment using AWS CDK
 
@@ -160,7 +162,7 @@ WHERE tweet_volume > 0
 ORDER BY date DESC;
 ```
 
-![Diagram]((https://raw.githubusercontent.com/falydoor/blog-usa/twitter-trends/images/2020/08/twitter-trends-latest.png)
+![Diagram](https://raw.githubusercontent.com/falydoor/blog-usa/twitter-trends/images/2020/08/twitter-trends-latest.png)
 
 ### Select trends with highest volume
 
@@ -173,7 +175,7 @@ GROUP BY name
 ORDER BY MAX(tweet_volume) DESC;
 ```
 
-![Diagram]((https://raw.githubusercontent.com/falydoor/blog-usa/twitter-trends/images/2020/08/twitter-trends-volume.png)
+![Diagram](https://raw.githubusercontent.com/falydoor/blog-usa/twitter-trends/images/2020/08/twitter-trends-volume.png)
 
 ### Select trends with highest occurrence
 
@@ -185,10 +187,12 @@ FROM (SELECT name, COUNT(name) as count
 ORDER BY count desc;
 ```
 
-![Diagram]((https://raw.githubusercontent.com/falydoor/blog-usa/twitter-trends/images/2020/08/twitter-trends-count.png)
+![Diagram](https://raw.githubusercontent.com/falydoor/blog-usa/twitter-trends/images/2020/08/twitter-trends-count.png)
 
 If you want more details about AWS Glue and Athena, I recommend reading [this blog](https://blog.ippon.tech/aws-glue-and-athena-pt1/) that gives more details on how to get started with these two services.
 
 # Conclusion
+
+Creating a project that uses the Twitter API and analyze the results was pretty easy using the available AWS services. CDK really lets you focus on the architecture design instead of wasting time on trivial things like configurations and permissions.
 
 Companies like [Dataminr](https://www.dataminr.com/) are built on Twitter and provide provides real-time information alerts which are really powerful, especially when they are received before major news organizations. Ippon also developed an internal tool that collects tweets: Customer Oriented Sentiment Analysis (COSA), more details can be found on this [blog](https://blog.ippon.tech/five-interns-walk-into-an-office/).
