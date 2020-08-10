@@ -5,7 +5,7 @@ tags:
   - Data
 date: 2020-06-15T14:50:55.000Z
 title: 'The ABCs of DQM: Balance'
-image: null
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/07/abcs-dqm-logo.png
 ---
 
 This post is a part of a series of posts on Data Quality Management. The focus of this series is on strategies for acquiring data that can be used to ensure the quality of data. The five aspects of Data Quality Management are:
