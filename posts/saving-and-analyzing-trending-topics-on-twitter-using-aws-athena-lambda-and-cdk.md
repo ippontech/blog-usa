@@ -7,6 +7,7 @@ tags:
 - AWS Lambda
 - AWS Athena
 - AWS CDK
+- Cloud
 date: 2020-08-03T14:50:55.000Z
 title: "Saving and Analyzing Trending Topics on Twitter using AWS Athena, Lambda, and CDK"
 image: https://raw.githubusercontent.com/falydoor/blog-usa/twitter-trends/images/2020/08/twitter-trends-logo.png
