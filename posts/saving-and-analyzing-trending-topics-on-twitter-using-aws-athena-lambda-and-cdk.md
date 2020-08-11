@@ -10,7 +10,7 @@ tags:
 - Cloud
 date: 2020-08-03T14:50:55.000Z
 title: "Saving and Analyzing Trending Topics on Twitter using AWS Athena, Lambda, and CDK"
-image: https://raw.githubusercontent.com/falydoor/blog-usa/twitter-trends/images/2020/08/twitter-trends-logo.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/08/twitter-trends-logo.png
 ---
 
 With more than 300 million active users, Twitter is still one of the more optimal platforms to provide efficient and accurate real-time news. The SMS of the Internet is also one of the best social networks and is used by a plethora of developers, which makes it a prime source of tech information.
@@ -25,7 +25,7 @@ The beauty of AWS is that it provides us all the services that we need in order 
 
 The architecture leverages mature AWS services and the flow is pretty simple, here is a diagram to summarize:
 
-![Diagram](https://raw.githubusercontent.com/falydoor/blog-usa/twitter-trends/images/2020/08/twitter-trends-diagram.png)
+![Diagram](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/08/twitter-trends-diagram.png)
 
 A future feature that could be added would be the ability to implement an event-driven system that will notify other components if a specific topic is trending. You could, for example, receive a notification on your phone via text or an email when a defined topic is trending in your location. The Lambda would be in charge of checking if one of the trending topics is part of a user-defined list and then push a message to AWS SNS.
 
@@ -163,7 +163,7 @@ WHERE tweet_volume > 0
 ORDER BY date DESC;
 ```
 
-![Diagram](https://raw.githubusercontent.com/falydoor/blog-usa/twitter-trends/images/2020/08/twitter-trends-latest.png)
+![Diagram](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/08/twitter-trends-latest.png)
 
 ### Select trends with highest volume
 
@@ -176,7 +176,7 @@ GROUP BY name
 ORDER BY MAX(tweet_volume) DESC;
 ```
 
-![Diagram](https://raw.githubusercontent.com/falydoor/blog-usa/twitter-trends/images/2020/08/twitter-trends-volume.png)
+![Diagram](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/08/twitter-trends-volume.png)
 
 ### Select trends with highest occurrence
 
@@ -188,7 +188,7 @@ FROM (SELECT name, COUNT(name) as count
 ORDER BY count desc;
 ```
 
-![Diagram](https://raw.githubusercontent.com/falydoor/blog-usa/twitter-trends/images/2020/08/twitter-trends-count.png)
+![Diagram](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/08/twitter-trends-count.png)
 
 If you want more details about AWS Glue and Athena, I recommend reading [this blog](https://blog.ippon.tech/aws-glue-and-athena-pt1/) that gives more details on how to get started with these two services.
 
