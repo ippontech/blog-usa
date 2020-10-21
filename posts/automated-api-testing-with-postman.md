@@ -13,15 +13,6 @@ title: "Automated API testing with Postman"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/01/Ippon_Javers.jpg
 ---
 
-Introduction:
-Postman breef introduction
-Postman is used by all the developers to develop and test api
-let's automate
-Cucumber comparaison ?
-What is automated testing?
-Why automate your API tests?
-Consumer-Driven contract tests
-
 # What is wrong with Cucumber?
 
 In short, nothing is wrong with Cucumber. For a long time now many of us have been productively using Cucumber or one of its variations for Acceptance Test Driven Development (ATDD). The English-written tests are the gates to our applications which keep breaking changes out of the codebase. This approach of bridging the business and development sides is going to continue even after this blog. Yet, hardly every Product Owner is actively writing and maintaining these tests on their projects. Only the high-level test results come up anyway when the CI/CD pipeline runs, so developers are often needed to investigate no matter what.
@@ -112,7 +103,7 @@ It's time to integrate them with your CI/CD pipeline using Newman.
 Newman is a command line runner for Postman that allows you to run and test a Postman Collection directly from the command line which will facilitate the integration with a CI/CD server.
 For the purpose of this blog we will use Jenkins as CI/CD server.
 
-## Newmman instalation
+## Newmman installation
 Newman is written in Node.js, make sure [Node.js is already installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) on your Jenkins server.
 Install Newman globally on your system using NPM, which will allow you to run it from anywhere
 '''
