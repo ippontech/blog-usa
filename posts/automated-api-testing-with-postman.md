@@ -123,7 +123,7 @@ stage('Deploy API') {
         }
     }
 
-stage('Test API Rest') {
+stage('Test API') {
         steps {
             sh 'newman run tests/our.postman_collection.json -e tests/env/test.postman_environment.json'
         }
@@ -133,15 +133,12 @@ stage('Test API Rest') {
 Seen above, to invoke the run command of Newman it requires the path of a collection and test environment file as parameters.
 
 ### Results
-Show a screenshot for a successful test
-
-
-
-
-
+This an example of a failing collection test
+![Newman result](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/10/newman_result.png)
 
 # Conclusion
-Exploratory Testing
+Practicing continuous integration and delivery requires automated scenarios that run quickly and reliably, for developers, having quick feedback is crucial, it enables them to detect issues as soon as they are introduced in the code which will reduce the cost of fixing.
+Automation testing can be complicated, it comes with the same issues as software development, it's essential then to treat your automated code just like any development code in your project.
 
 
 
