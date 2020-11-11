@@ -13,13 +13,13 @@ title: "Start Automating API Tests with Postman"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/10/postman_logo.png
 ---
 
-## What is Wrong with Cucumber
+## What is Wrong with Cucumber?
 
-In short, nothing is wrong with Cucumber. For a long time now many of us have been productively using Cucumber or one of its variations for Acceptance Test Driven Development (ATDD). The English-written tests are the gates to our applications that keep breaking changes out of the codebase. This approach of bridging the business and development sides is going to continue even after this blog. Yet, hardly every Product Owner is actively writing and maintaining these tests on their projects. Only the high-level test results come up anyway when the CI/CD pipeline runs, so developers are often needed to investigate no matter what.
+For a long time now many of us have been productively using Cucumber or one of its variations for Acceptance Test Driven Development (ATDD). The English-written tests are the gates to our applications that keep breaking changes out of the codebase. This approach of bridging the business and development sides is going to continue even after this blog. Yet hardly every Product Owner is actively writing and maintaining these tests on their projects. Only the high-level test results come up anyway when the CI/CD pipeline runs, so developers are often needed to investigate no matter what.
 
 Why does there need to be such a syntactically complex system in place for a group that looks at the feature file only every few months?
 
-Well, good news everyone! There is another way to write integration tests already built into the common development testing tool, [Postman](https://www.guru99.com/postman-tutorial.html). It is simple to get started and, as will be shown, they can be easily integrated with [Newman](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/) to run automatically within a CI/CD pipeline. Soon you will wonder if Cucumber is necessary for your project, and may even choose to forget it altogether.
+Well, good news everyone! There is another way to write integration tests already built into a familiar engineering tool. [Postman](https://www.postman.com/) is touted as a comprehensive platform with a variety of features to make API development and collaboration easier. Many have used Postman in local verification, but its capabilities go further than that. As will be shown, tests are written and integrated with a CLI called [Newman](https://www.postman.com/automated-testing/) to run automatically within a CI/CD pipeline. Soon, one might wonder if Cucumber is necessary on their project and may even choose to forget it altogether.
 
 ## Postman's Structure
 
@@ -149,7 +149,7 @@ The following is an example of a failing set of collection tests. The handy outp
 
 ![Newman result](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/10/newman_result.png)
 
-## Is It Truly That Easy
+## Is It Truly That Easy?
 
 Yes! As we seek better continuous-integration and delivery practices, developing automated scenarios should be straightforward for everyone involved. Having the ability to write functional tests within Postman means more engineers will use procedures like BDD/TDD because quick feedback is crucial in these development strategies. Business-minded individuals will celebrate running tests quickly and reliably because it enables the detection of issues as soon as they arise in the codebase. Ultimately, it reduces the overall number of bugs (and their significant costs to fix) in production-level code.
 
@@ -158,7 +158,7 @@ Introducing automation testing to any project has the potential to make its deve
 ### Sources
 
 * [Cucumber Testing Tool](https://cucumber.io/)
-* [Postman Official Website](https://www.postman.com/automated-testing/)
+* [Postman + Newman Official Website](https://www.postman.com/automated-testing/)
 * [Postman Test Scripts Docs](https://learning.postman.com/docs/writing-scripts/test-scripts/)
 * ["Getting Started With Tests"](https://learning.postman.com/docs/writing-scripts/script-references/test-examples/#getting-started-with-tests)
 * ["Using the Collection Runner"](https://learning.postman.com/docs/running-collections/intro-to-collection-runs/)
@@ -167,3 +167,4 @@ Introducing automation testing to any project has the potential to make its deve
 * [T.LY URL Shortening Docs](https://t.ly/docs/)
 * [Installing Node.js](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 * [Creating a Jenkins Pipeline](https://blog.ippon.tech/continuous-delivery-with-jenkins-pipeline/)
+* [Newman Further Explained](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/)
