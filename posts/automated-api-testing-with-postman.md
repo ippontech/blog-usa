@@ -9,7 +9,7 @@ tags:
 - Postman
 
 date: 2020-09-26T20:16:10.000Z
-title: "Start Automating API Integration Tests with Postman"
+title: "Start Automating API Tests with Postman"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/10/postman_logo.png
 ---
 
