@@ -23,21 +23,21 @@ Scale a single (non-global) table
 - Explicitly call the SDK to set the RCU/WCU on the table
 - Initialize
 ```java
-    private ClientConfiguration clientConfiguration() {
-        final ClientConfiguration clientConfiguration = new ClientConfiguration();
-        clientConfiguration.setProxyHost(AWS_PROXY_HOST);
-        clientConfiguration.setProxyPort(Integer.valueOf(AWS_PROXY_PORT));
-        clientConfiguration.setClientExecutionTimeout(CLIENT_TIMEOUT);
-        clientConfiguration.setProtocol(Protocol.HTTP);
-        return clientConfiguration;
-    }
+private ClientConfiguration clientConfiguration() {
+    final ClientConfiguration clientConfiguration = new ClientConfiguration();
+    clientConfiguration.setProxyHost(AWS_PROXY_HOST);
+    clientConfiguration.setProxyPort(Integer.valueOf(AWS_PROXY_PORT));
+    clientConfiguration.setClientExecutionTimeout(CLIENT_TIMEOUT);
+    clientConfiguration.setProtocol(Protocol.HTTP);
+    return clientConfiguration;
+}
 
-    private AmazonDynamoDB getClient() {
-        return AmazonDynamoDBClientBuilder.standard()
-                .withClientConfiguration(clientConfiguration())
-                .withRegion(Regions.valueOf(REGION))
-                .build();
-    }
+private AmazonDynamoDB getClient() {
+    return AmazonDynamoDBClientBuilder.standard()
+            .withClientConfiguration(clientConfiguration())
+            .withRegion(Regions.valueOf(REGION))
+            .build();
+}
 ```
 - Call the SDK
 ```java
@@ -61,60 +61,60 @@ Scale a global table
 - Set the minimum RCU/WCU on the auto-scaler instead
 - Initialize
 ```java
-    private DynamoDbClient getClient() {
-        ApacheHttpClient.Builder httpClientBuilder = ApacheHttpClient.builder()
-                .connectionTimeout(CONNECTION_TIMEOUT)
-                .socketTimeout(SOCKET_TIMEOUT);
-        RetryPolicy.Builder retryBuilder = RetryPolicy.builder()
-                .numRetries(RETRY_LIMIT);
-        ClientOverrideConfiguration.Builder clientOverrideBuilder =
-                ClientOverrideConfiguration.builder()
-                        .apiCallAttemptTimeout(API_CALL_ATTEMPT_TIMEOUT)
-                        .apiCallTimeout(API_CALL_TIMEOUT)
-                        .retryPolicy(retryBuilder.build());
+private DynamoDbClient getClient() {
+    ApacheHttpClient.Builder httpClientBuilder = ApacheHttpClient.builder()
+            .connectionTimeout(CONNECTION_TIMEOUT)
+            .socketTimeout(SOCKET_TIMEOUT);
+    RetryPolicy.Builder retryBuilder = RetryPolicy.builder()
+            .numRetries(RETRY_LIMIT);
+    ClientOverrideConfiguration.Builder clientOverrideBuilder =
+            ClientOverrideConfiguration.builder()
+                    .apiCallAttemptTimeout(API_CALL_ATTEMPT_TIMEOUT)
+                    .apiCallTimeout(API_CALL_TIMEOUT)
+                    .retryPolicy(retryBuilder.build());
 
-        return DynamoDbClient.builder()
-                .httpClientBuilder(httpClientBuilder)
-                .overrideConfiguration(clientOverrideBuilder.build())
-                .build();
-    }
+    return DynamoDbClient.builder()
+            .httpClientBuilder(httpClientBuilder)
+            .overrideConfiguration(clientOverrideBuilder.build())
+            .build();
+}
 ```
 - Call the SDK
 ```java
-        AutoScalingTargetTrackingScalingPolicyConfigurationUpdate policyConfigurationUpdate =
-                AutoScalingTargetTrackingScalingPolicyConfigurationUpdate.builder()
-                        .targetValue(SCALING_POLICY_TARGET_VALUE)
-                        .build();
-        AutoScalingPolicyUpdate policyUpdate = AutoScalingPolicyUpdate.builder()
-                .targetTrackingScalingPolicyConfiguration(policyConfigurationUpdate)
+AutoScalingTargetTrackingScalingPolicyConfigurationUpdate policyConfigurationUpdate =
+        AutoScalingTargetTrackingScalingPolicyConfigurationUpdate.builder()
+                .targetValue(SCALING_POLICY_TARGET_VALUE)
                 .build();
-        AutoScalingSettingsUpdate.Builder updateBuilder = AutoScalingSettingsUpdate.builder()
-                .maximumUnits(MAX_AUTOSCALE_CAPACITY)
-                .scalingPolicyUpdate(policyUpdate);
+AutoScalingPolicyUpdate policyUpdate = AutoScalingPolicyUpdate.builder()
+        .targetTrackingScalingPolicyConfiguration(policyConfigurationUpdate)
+        .build();
+AutoScalingSettingsUpdate.Builder updateBuilder = AutoScalingSettingsUpdate.builder()
+        .maximumUnits(MAX_AUTOSCALE_CAPACITY)
+        .scalingPolicyUpdate(policyUpdate);
 
-        AutoScalingSettingsUpdate rcuUpdate = updateBuilder.minimumUnits(HIGH_READ_CAPACITY_UNITS).build();
-        AutoScalingSettingsUpdate wcuUpdate = updateBuilder.minimumUnits(HIGH_WRITE_CAPACITY_UNITS).build();
+AutoScalingSettingsUpdate rcuUpdate = updateBuilder.minimumUnits(HIGH_READ_CAPACITY_UNITS).build();
+AutoScalingSettingsUpdate wcuUpdate = updateBuilder.minimumUnits(HIGH_WRITE_CAPACITY_UNITS).build();
 
-        ReplicaAutoScalingUpdate eastReplicaUpdate = ReplicaAutoScalingUpdate.builder()
-                .regionName("us-east-1")
-                .replicaProvisionedReadCapacityAutoScalingUpdate(rcuUpdate)
-                .build();
-        ReplicaAutoScalingUpdate westReplicaUpdate = ReplicaAutoScalingUpdate.builder()
-                .regionName("us-west-2")
-                .replicaProvisionedReadCapacityAutoScalingUpdate(rcuUpdate)
-                .build();
-        UpdateTableReplicaAutoScalingRequest autoScalingRequest = UpdateTableReplicaAutoScalingRequest.builder()
-                .tableName(TABLE_NAME)
-                .replicaUpdates(eastReplicaUpdate, westReplicaUpdate)
-                .provisionedWriteCapacityAutoScalingUpdate(wcuUpdate)
-                .build();
+ReplicaAutoScalingUpdate eastReplicaUpdate = ReplicaAutoScalingUpdate.builder()
+        .regionName("us-east-1")
+        .replicaProvisionedReadCapacityAutoScalingUpdate(rcuUpdate)
+        .build();
+ReplicaAutoScalingUpdate westReplicaUpdate = ReplicaAutoScalingUpdate.builder()
+        .regionName("us-west-2")
+        .replicaProvisionedReadCapacityAutoScalingUpdate(rcuUpdate)
+        .build();
+UpdateTableReplicaAutoScalingRequest autoScalingRequest = UpdateTableReplicaAutoScalingRequest.builder()
+        .tableName(TABLE_NAME)
+        .replicaUpdates(eastReplicaUpdate, westReplicaUpdate)
+        .provisionedWriteCapacityAutoScalingUpdate(wcuUpdate)
+        .build();
 
-        try {
-            getClient().updateTableReplicaAutoScaling(autoScalingRequest);
-        } catch (AmazonServiceException e) {
-            System.err.println(e.getErrorMessage());
-            System.exit(1);
-        }
+try {
+    getClient().updateTableReplicaAutoScaling(autoScalingRequest);
+} catch (AmazonServiceException e) {
+    System.err.println(e.getErrorMessage());
+    System.exit(1);
+}
 ```
 
 # Issues
