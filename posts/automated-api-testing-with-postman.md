@@ -89,7 +89,7 @@ Hit the blue "Run" button to start running the tests. The outcome should be all 
 
 ### Test Suite Passing
 
-![Test Suite Passing](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/10/tests_suite_passing.png)
+![Test Suite Passing](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/10/test_suite_passing.png)
 
 If the tests fail here, there is a good likelihood that they will not pass in the pipeline either. This is the place to debug/modify any failing tests and can be returned to later on. For more, visit ["Using the Collection Runner"](https://learning.postman.com/docs/running-collections/intro-to-collection-runs/) within the Postman docs.
 
