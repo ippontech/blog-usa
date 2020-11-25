@@ -45,7 +45,13 @@ Groups have Policies that they must adhere to. These could be organizations or t
 
 It is worth specifying that Roles are **not** typically Users in AWS. Instead, think of these entities like robots filling in for actors in a Broadway play. As robots, they do not improvise. They are permitted to perform only the set of directions they are told so that the play can proceed. In this way, they adhere to Policies similar to Groups.
 
-### A Concrete Example
+### Locks, Keys, and Secrets
+
+Just as much as IAM is about letting others in, it is equally about keeping others out. It was previously mentioned that users authenticate themselves in AWS by a name and password. This is because they (and only they) should be trusted to access the services/resources outlined in their group's policies. Anything that is not in these policies should be off-limits.
+
+Think of it as a bank vault with smaller vaults locked away inside. The account owner should ultimately only have access to their money. But the bank's teller needs accesses to the main and underlying vaults in order to withdraw/deposit the funds for any account. Both are authenticated in the system with different levels of authorization.
+
+### A Concrete Example in AWS
 
 Imagine someone hires a cat sitting service while they are out on vacation. The company agrees to keep cats healthy and maintain a clean environment during your departure through feeding, administering any medications needed, and scooping the litter box. They will send a sitter, either Bob or Mary, for the job.
 
@@ -68,8 +74,6 @@ What happens if Mary or Bob forgets their passcode?
 Roles
 
 Hopefully employees at any reputable cat service would have been instructed by the company's policy not to eat the cat food or use the cat's facilities themselves. But perhaps they are a little forgetful in the moment, Roles can be assigned to the cats so only they are permitted to use the food bowl or litter box.
-
-### Locks, Keys, and Secrets
 
 ### Sources
 
