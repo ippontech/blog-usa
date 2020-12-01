@@ -8,7 +8,7 @@ tags:
 - Java
 date: 2020-11-16T15:52:00.000Z
 title: "Tips and Tricks for Manually Scaling a Global DynamoDB Table from an AWS Lambda"
-image:
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/11/mountain_climber.png
 ---
 # Objective
 Write an AWS Lambda that manually scales a global DynamoDB table
