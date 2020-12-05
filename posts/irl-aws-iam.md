@@ -4,7 +4,7 @@ authors:
 tags:
 - AWS
 - IAM
-date: 2020-11-24T00:00:00.000Z
+date: 2020-12-04T00:00:00.000Z
 title: "In Real Life - Amazon Web Services: Identity Access Management"
 image: 
 ---
@@ -26,11 +26,11 @@ It is a bit of a complicated explanation for a fundamental concept everyone lear
 
 ### Resources In Real Life vs Amazon Web Services
 
-"Resources" could mean anything that a person contractually buys. In real life, people might own or lease things such as land, houses, cars, books, food, furniture, clothes, etc. Whereas in AWS, someone would pay for various technological services that can be utilized for making websites or crunching numbers behind the scenes.
+"Resources" could mean anything that a person contractually buys. In real life, people might own or lease things such as land, houses, cars, books, food, furniture, clothes, etc. Whereas in AWS, someone would pay for various technological services utilized in making websites or crunching numbers behind the scenes.
 
 ### Letting Others In
 
-Sharing can be a hard concept to grasp. Many questions exist not just about how much to share but also with whom and for how long. This is why permissions are given to guests entering a home for a dinner party, children when they want to stay up past their bedtime on New Years Eve, or soldiers when they need to speak freely to their superior. This system of people and permissions is intuitively understood.
+Sharing can be a hard concept to grasp. Many questions exist not just about how much to share but also with whom and for how long. This is why permissions are given to guests entering a home for a dinner party, children when they want to stay up past their bedtime on New Year's Eve, or soldiers when they need to speak freely to their superior. This system of people and permissions is intuitively understood.
 
 But when translating this to the digital space, it is not as straightforward. AWS attempts to establish a sharing system by defining 4 key terms:
 
@@ -49,33 +49,75 @@ It is worth specifying that Roles are **not** typically Users in AWS. Instead, t
 
 Just as much as IAM is about letting others in, it is equally about keeping others out. It was previously mentioned that users authenticate themselves in AWS by a name and password. This is because they (and only they) should be trusted to access the services/resources outlined in their group's policies. Anything that is not in these policies should be off-limits.
 
-Think of it as a bank vault with smaller vaults locked away inside. The account owner should ultimately only have access to their money. But the bank's teller needs accesses to the main and underlying vaults in order to withdraw/deposit the funds for any account. Both are authenticated in the system with different levels of authorization.
+Think of it like a bank vault with smaller vaults locked away inside. The account owner should ultimately only have access to their money. But the bank's teller needs access to the main and underlying vaults in order to withdraw/deposit the funds for any person's account. Both are authenticated in the system with different levels of authorization.
 
-### A Concrete Example in AWS
+### Flip it and Reverse It
 
-Imagine someone hires a cat sitting service while they are out on vacation. The company agrees to keep cats healthy and maintain a clean environment during your departure through feeding, administering any medications needed, and scooping the litter box. They will send a sitter, either Bob or Mary, for the job.
+Instead of just talking about AWS in the real-world, the following will bring a real world example into AWS. While this will not really work, it should help to outline the kind of mindset necessary to develop a robust solution. Ignore the warnings displayed in the screenshots below for what IAM does not recognize.
 
-Policies
+Imagine someone hires a cat sitting service while he or she is out on vacation. The company agrees to keep cats healthy and maintain a clean environment during their departure through feeding, give any medications necessary, and change the litter box. They will send a sitter, either Bob or Mary, for the job. How do the Users, Groups, Policies, and Roles need to be configured to ensure success and security?
 
-What if only one of the cats needs a particular medication?
+#### Start with the Policies
 
-What if only one of the cats is friendly towards strangers and others should be ignored by the sitter?
+The company had agreed to scoop out the cat food into their bowl, administer medications, and perform waste management by cleaning the litter box. So what policies can be created around these services, actions, and resources?
 
-Groups
+1. Feeding -> Scooping -> Food Bowl
+1. Medication -> Administering -> All Cats
+1. Waste Management -> Cleaning -> Litter Box
 
-What if Mary or Bob gets sick and a replacement is called in by the cat sitting service? Groups easily allow for a flexibility of new Users and decommissioning inactive ones.
+The Medication Policy might look like this in AWS:
 
-Users
+![AWS Medication Policy](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_medication_policy.png)
 
-The sitter is generated a passcode for the garage so she can enter and feed the cat.
+What if only one of the cats needs a particular medication? A specific cat can be addressed in the policy (referred to in AWS as an [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html). Here the `Fluffy_Tabby` is the targeted resource:
 
-What happens if Mary or Bob forgets their passcode?
+![AWS Medication Policy for Fluffy](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_medication_policy_for_fluffy.png)
 
-Roles
+Before creating the policy, there will be an opportunity for review and to name it. Here is what that looks like for the `FeedingScoopingFoodBowl` policy:
 
-Hopefully employees at any reputable cat service would have been instructed by the company's policy not to eat the cat food or use the cat's facilities themselves. But perhaps they are a little forgetful in the moment, Roles can be assigned to the cats so only they are permitted to use the food bowl or litter box.
+![AWS Feeding Policy](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_feeding_policy.png)
+
+It might be worth mentioning multiple policies can be imported to create a new, all-encompassing policy.
+
+![AWS Importing Policy](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_importing_policy.png)
+![AWS All Encompassing Policy](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_all_encompassing_policy.png)
+
+But be aware if any underlying/imported policies are changed, it will **not** change this new policy. This is important for the next section because even though it may be easier to just attach a single policy to a group, it will be harder to maintain these various policies.
+
+#### Creating A Group With Policies
+
+What if the scheduled sitter gets sick and a replacement is called in by the company? Groups allow for greater flexibility when adding new Users and decommissioning inactive ones. The following shows the summary for a group of `CatSitters` in AWS including the attached policies:
+
+![AWS CatSitters Group](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_catsitters_group.png)
+
+#### Users and their Accesses
+
+Careful observers might have noticed the `CatSitters` group already contained a couple of users. Sitters "Bob" and "Mary" were first created then added to the group:
+
+![AWS CatSitter Users](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_catsitter_users.png)
+![AWS CatSitter Users Added to Group](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_catsitter_users_added_to_group.png)
+
+If the "AWS access type" seems confusing, "Programmatic access" is basically giving Bob and Mary the door keys. "AWS Management Console access" would be akin to a keyless-entry door where the passcode is either a custom passcode or an autogenerated one. Upon generation, the passcode must be written down and sent to Bob and Mary later so that he/she can successfully enter the home. The advantage is passcodes are easier to rotate than keys. Bob and Mary may change their passcodes once they key-in to something more memorable.
+
+The obvious question is what happens if Mary or Bob forgets their passcode altogether? It is easy to create a new one for them as is seen here:
+
+![AWS CatSitter Users Manage Console Access](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_catsitter_users_manage_console_access.png)
+
+#### Roles for Cats
+
+To ensure the cats have access to their food bowl and litter box, the cats can be assigned to a role. Before a role can be created, though, a new policy is necessary:  Feeding -> Eating -> Food Bowl
+
+![AWS Feeding Eating Policy](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_feeding_eating_policy.png)
+![AWS Create Role](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_create_role.png)
+![AWS Create Role Attach Policies](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_create_role_attach_policy.png)
+![AWS Create Role Review](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_create_review.png)
+
+### Wrapping Up Cat's Cradle
+
+Hopefully, the employees at any reputable cat service would know what they are doing and not to eat the cat food or use the cat's facilities themselves... While this example conceptually outlines how Identity Access Management in AWS could be utilized to assure a cat owner their beloved pets are taken care of, it extends further. A person or organization using AWS should feel more confident and comfortable allowing groups of strangers to perform very specific tasks within their digital workspaces.
 
 ### Sources
 
 * [Getting started with AWS IAM](https://aws.amazon.com/iam/getting-started/)
 * [IAM FAQs](https://aws.amazon.com/iam/faqs/)
+* [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
