@@ -6,7 +6,7 @@ tags:
 - IAM
 date: 2020-12-04T00:00:00.000Z
 title: "In Real Life - Amazon Web Services: Identity Access Management"
-image: 
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/iam_kitten.png
 ---
 
 ## A Quick Note about In Real Life
@@ -75,7 +75,7 @@ What if only one of the cats needs a particular medication? A specific cat can b
 
 Before creating the policy, there will be an opportunity for review and to name it. Here is what that looks like for the `FeedingScoopingFoodBowl` policy:
 
-![AWS Feeding Policy](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_feeding_policy.png)
+![AWS Feeding Policy Review](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_feeding_policy_review.png)
 
 It might be worth mentioning multiple policies can be imported to create a new, all-encompassing policy.
 
@@ -101,6 +101,7 @@ If the "AWS access type" seems confusing, "Programmatic access" is basically giv
 
 The obvious question is what happens if Mary or Bob forgets their passcode altogether? It is easy to create a new one for them as is seen here:
 
+![AWS CatSitter Users Summary](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_catsitter_users_summary.png)
 ![AWS CatSitter Users Manage Console Access](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_catsitter_users_manage_console_access.png)
 
 #### Roles for Cats
@@ -109,8 +110,8 @@ To ensure the cats have access to their food bowl and litter box, the cats can b
 
 ![AWS Feeding Eating Policy](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_feeding_eating_policy.png)
 ![AWS Create Role](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_create_role.png)
-![AWS Create Role Attach Policies](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_create_role_attach_policy.png)
-![AWS Create Role Review](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_create_review.png)
+![AWS Create Role Attach Policies](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_create_role_attach_policies.png)
+![AWS Create Role Review](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/12/aws_create_role_review.png)
 
 ### Wrapping Up Cat's Cradle
 
