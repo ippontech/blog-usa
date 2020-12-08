@@ -11,18 +11,13 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/1
 
 ## A Quick Note about In Real Life
 
-For some reason, non-physical concepts have always confused a lot of people unfamiliar with the digital realm. Even those who do work in the IT-services industry can get tripped up by subtle trivialities. This is an attempt to distill the complexities down into more digestible ideas for everyone.
+Digital concepts can get confusing for a lot of people. Even those who work in the software industry can get tripped up. This is an attempt to reduce the complexities and turn them into fun ideas for everyone.
 
 ## Identity Access Management a.k.a. Sharing is Caring
 
-To begin, someone who has never heard of [Identity Access Management (IAM)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) might be unsure about what it should do in the first place. The questions to ask here are:
-
-1. What is being worked on?
-1. Who is working on it?
-
-Answers will range widely here; yet, a commonality amongst all the answers will require the ability to divide up and allocate the work. In the [getting started page](https://aws.amazon.com/iam/getting-started/), AWS states this about the service:
+Someone who has never heard of [Identity Access Management (IAM)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) might be unsure about what it should even do in the first place. When working on any project, there needs to be a way to divide up and allocate the team. In the [getting started page](https://aws.amazon.com/iam/getting-started/), AWS states this about the service:
     "AWS IAM helps you manage access to your AWS resources. Using IAM, you can manage who can use your AWS resources (authentication) and what resources they can use and in what ways (authorization)."
-It is a bit of a complicated explanation for a fundamental concept everyone learned when growing up: How to share properly with others. At its core, IAM is a tool for allowing other people to use one's AWS resources.
+That is a complicated explanation for what everyone has learned when growing up: How to share with others. At its core, IAM is a tool for sharing a project's AWS resources.
 
 ### Resources In Real Life vs Amazon Web Services
 
@@ -30,30 +25,30 @@ It is a bit of a complicated explanation for a fundamental concept everyone lear
 
 ### Letting Others In
 
-Sharing can be a hard concept to grasp. Many questions exist not just about how much to share but also with whom and for how long. This is why permissions are given to guests entering a home for a dinner party, children when they want to stay up past their bedtime on New Year's Eve, or soldiers when they need to speak freely to their superior. This system of people and permissions is intuitively understood.
+Sharing can be a hard concept to grasp. Many questions exist not just about how much to share but also with whom and for how long. This is why permissions are given to guests entering a home for a dinner party, children when they want to stay up past their bedtime on New Year's Eve, or soldiers when they need to speak freely to their superior. These systems of people and permissions are intuitively understood.
 
-But when translating this to the digital space, it is not as straightforward. AWS attempts to establish a sharing system by defining 4 key terms:
+But when translating them to the digital space, it is not as straightforward. AWS's solution to this establishes its own sharing system. There are four, key terms that need to be defined:
 
-1. Users - people
-1. Groups - a collection of users
-1. Policies - a contract of permissions
-1. Roles - entities assumed to operate under certain permissions
+1. User - a person who needs access to AWS resources
+1. Group - a collection of one or more users who *all* need the *same* access to AWS resources
+1. Policy - a contract of permissions that will allow or restrict actions
+1. Role - an entity (usually an AWS service) that operates under a policy
 
-Here, what is best to keep in mind is Policies are paramount. They delineate the permitted actions a service can take on one or more resources (i.e. A maid service may enter the home). Everything else cascades from these Policies.
+In AWS, Policy is paramount. It delineates the permitted actions a Group or service can take on AWS resources (i.e. A maid service may enter the home). Policies should be created first because Groups and Roles will use these next.
 
-Groups have Policies that they must adhere to. These could be organizations or teams, but everyone is designated to act under the same Policy restrictions. These Users are identified by a name and given a password. It is a best practice to assign Users to a Group so that they only have certain job functions.
+Groups have Policies that they must adhere to. These could be organizations or teams, but everyone acts under the same Policy restrictions. These Users are identified by a name and given a password. It is a best practice to assign Users to a Group so that they only have certain job functions.
 
-It is worth specifying that Roles are **not** typically Users in AWS. Instead, think of these entities like robots filling in for actors in a Broadway play. As robots, they do not improvise. They are permitted to perform only the set of directions they are told so that the play can proceed. In this way, they adhere to Policies similar to Groups.
+It is worth specifying that Roles are **not** typically people in AWS. Instead, think of these entities like robots filling in for actors in a Broadway play. As robots, they do not improvise. They are permitted to perform only the set of directions they are told so that the play can proceed. In this way, a Role adheres to a Policy similar to how a Group would.
 
 ### Locks, Keys, and Secrets
 
-Just as much as IAM is about letting others in, it is equally about keeping others out. It was previously mentioned that users authenticate themselves in AWS by a name and password. This is because they (and only they) should be trusted to access the services/resources outlined in their group's policies. Anything that is not in these policies should be off-limits.
+IAM is about letting others in just as much as it is about keeping others out. Users authenticate themselves in AWS by a name and password. This is because they (and only they) should be trusted to access the services/resources outlined in their Group's Policies. Anything that is not in these Policies should be off-limits.
 
-Think of it like a bank vault with smaller vaults locked away inside. The account owner should ultimately only have access to their money. But the bank's teller needs access to the main and underlying vaults in order to withdraw/deposit the funds for any person's account. Both are authenticated in the system with different levels of authorization.
+At a bank, the account owner only has access to their money. The bank's teller, though, needs access to all the vaults to withdraw/deposit the funds for any person's account. Both authenticate themselves in the system but with different levels of authorization.
 
-### Flip it and Reverse It
+### Going Through An Example
 
-Instead of just talking about AWS in the real-world, the following will bring a real world example into AWS. While this will not really work, it should help to outline the kind of mindset necessary to develop a robust solution. Ignore the warnings displayed in the screenshots below for what IAM does not recognize.
+Instead of just talking about AWS in the real world, the following brings a real-world example into AWS. While this will not really work, it should help to organize the concepts discussed so far. Ignore the warnings displayed in the screenshots below for what IAM does not recognize.
 
 Imagine someone hires a cat sitting service while he or she is out on vacation. The company agrees to keep cats healthy and maintain a clean environment during their departure through feeding, give any medications necessary, and change the litter box. They will send a sitter, either Bob or Mary, for the job. How do the Users, Groups, Policies, and Roles need to be configured to ensure success and security?
 
@@ -119,6 +114,7 @@ Hopefully, the employees at any reputable cat service would know what they are d
 
 ### Sources
 
+* [Identity Access Management (IAM)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html)
 * [Getting started with AWS IAM](https://aws.amazon.com/iam/getting-started/)
 * [IAM FAQs](https://aws.amazon.com/iam/faqs/)
 * [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
