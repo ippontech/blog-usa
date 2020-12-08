@@ -15,7 +15,7 @@ For some reason, non-physical concepts have always confused a lot of people unfa
 
 ## Identity Access Management a.k.a. Sharing is Caring
 
-To begin, someone who has never heard of "Identity Access Management" (or IAM for short) might be unsure about what it should do in the first place. The questions to ask here are:
+To begin, someone who has never heard of [Identity Access Management (IAM)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) might be unsure about what it should do in the first place. The questions to ask here are:
 
 1. What is being worked on?
 1. Who is working on it?
