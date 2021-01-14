@@ -5,7 +5,7 @@ tags:
 - Cassandra
 - Big Data
 date: 2021-01-14T14:50:55.000Z
-title: "Apache Spark 3.0"
+title: "Store and query any data effortlessly using Stargate"
 image:
 ---
 
@@ -30,23 +30,23 @@ docker run --name stargate \
   stargateio/stargate-3_11:v1.0.0
 ```
 
-The flag `DEVELOPER_MODE` tells Stargate to use its own Cassandra cluster but you can also use your own cluster. In order to provide your own cluster, you can just follow the [official documentation](https://stargate.io/docs/stargate/1.0/developers-guide/install/install_existing_cstar.html).
+The flag `DEVELOPER_MODE` tells Stargate to use its own Cassandra cluster but you can also use your own cluster. In order to provide your own cluster, you can follow the [official documentation](https://stargate.io/docs/stargate/1.0/developers-guide/install/install_existing_cstar.html).
 
 The Stargate container exposes 4 different services:
-- GraphQL interface for CRUD (port 8080)
-- REST authorization service for generating tokens (port 8081)
-- REST interface for CRUD (port 8082)
-- CQL service (port 9042)
+- GraphQL interface for CRUD (**8080**)
+- REST authorization service for generating tokens (**8081**)
+- REST interface for CRUD (**8082**)
+- CQL service (**9042**)
 
 Make sure that the container was started without any errors before continuing this blog.
 
 ![Output](https://raw.githubusercontent.com/Falydoor/blog-usa/stargate/images/2021/01/stargate-3.png)
 
-# Inserting data easily using the REST API
+# Inserting data using the REST API
 
 ## Overview
 
-The rest API is secured using a classic token stored in the header `X-Cassandra-Token`. The curl request below will generate a token and then you can just store it in an environment variable `AUTH_TOKEN`:
+The rest API is secured using a classic token stored in the header `X-Cassandra-Token`. The curl request below will generate a token and then you just have to store it in the environment variable `AUTH_TOKEN`:
 
 ```bash
 curl -L -X POST 'http://localhost:8081/v1/auth' \
@@ -135,11 +135,13 @@ Here is the table definition of `vehicle`:
 }
 ```
 
+The partition key is `manufacturer` and the clustering key is `type` so we can get all vehicles by manufacturer and sort them by type.
+
 # Querying the data
 
 ## GraphQL API
 
-Stargate will provide a GraphQL playground available at http://localhost:8080/playground, don't forget to set the header `x-cassandra-token` with the correct value on the bottom.
+Stargate will provide a GraphQL playground available at http://localhost:8080/playground, don't forget to set the header `x-cassandra-token` with the correct value at the bottom of the UI.
 
 Data can be queried by opening a new tab and then using `http://localhost:8080/graphql/blog` for the schema.
 
@@ -159,11 +161,13 @@ query vehicles {
 }
 ```
 
+The query should output something like below:
+
 ![Output](https://raw.githubusercontent.com/Falydoor/blog-usa/stargate/images/2021/01/stargate-2.png)
 
-What makes GraphQL shine is that you can define which fields to retrieve directly in your query which simplify things a lot when querying complex APIs.
+What makes GraphQL great is that you can define which fields to retrieve directly in your query to simplifies things a lot when querying complex APIs.
 
-More details on how to use the GraphQL API can be found on the [documentation](https://stargate.io/docs/stargate/1.0/developers-guide/graphql-using.html).
+More details on how to use the GraphQL API can be found [here](https://stargate.io/docs/stargate/1.0/developers-guide/graphql-using.html).
 
 ## REST API
 
@@ -177,13 +181,13 @@ curl -L -X GET 'http://localhost:8082/v2/keyspaces/blog/vehicle?where=\{"manufac
 -H 'Content-Type: application/json'
 ```
 
-More details on how to use the REST API can be found on the [documentation](https://stargate.io/docs/stargate/1.0/developers-guide/rest-using.html).
+More details on how to use the REST API can be found [here](https://stargate.io/docs/stargate/1.0/developers-guide/rest-using.html).
 
 ## Document API
 
-This API is a bit different from the others because it will let you insert unstructured JSON documents. This is pretty useful when you don't want to spend time defining the columns of your table.
+This API is a bit different from the others because it will let you save unstructured JSON documents. This is pretty useful when you don't want to spend time defining the columns of your table.
 
-Let's insert a vehicle with the below curl command:
+Let's insert a vehicle with the curl command below:
 
 ```bash
 curl --location \
@@ -208,7 +212,7 @@ curl --location \
 --header 'Content-Type: application/json'
 ```
 
-But what makes Stargate awesome is that I can also use GraphQL to retrieve my document with a query:
+But what makes Stargate awesome is that I can also use GraphQL to retrieve my document:
 
 ```
 query vehicles {
@@ -223,16 +227,20 @@ query vehicles {
 
 The query output might be confusing because the document is flattened but a condition can be added to only retrieve the needed field.
 
-More details on how to use the Document API can be found on the [documentation](https://stargate.io/docs/stargate/1.0/developers-guide/document-using.html).
+More details on how to use the Document API can be found [here](https://stargate.io/docs/stargate/1.0/developers-guide/document-using.html).
 
 ## CQL API
 
 Finally, the CQL API will let you access the data using your favorite native language drivers like you would normally do with a regular Cassandra cluster.
 
-In our case, after being connected to our Stargate container follow the [instructions here](https://stargate.io/docs/stargate/1.0/developers-guide/cql-using.html), we can run the following query to get all our vehicles:
+In our case, after being connected to our Stargate container following the [instructions here](https://stargate.io/docs/stargate/1.0/developers-guide/cql-using.html), we can run the following query to get all our vehicles:
 
 ```sql
 SELECT * FROM blog.vehicle;
 ```
 
-To conclude, Stargate is a very powerful data gateway that will save you a lot of time by avoiding having to create and support APIs for your developers. You will also not have to worry about scalability and availability since Stargate uses Cassandra for its datastore. Feel free to connect Stargate on your existing Cassandra cluster or start using [DataStax Astra](https://astra.datastax.com/register) for a Cassandra-as-a-Service experience.
+# DataStax Astra
+
+To conclude, Stargate is a very powerful data gateway that will save you a lot of time by avoiding having to create and support APIs for your developers. You will also not have to worry about scalability and availability since Stargate uses Cassandra for its datastore.
+
+Feel free to connect Stargate on your existing Cassandra cluster or start using [DataStax Astra](https://astra.datastax.com/register) for a Cassandra-as-a-Service experience.
