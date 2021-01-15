@@ -9,9 +9,9 @@ title: "Store and query any data effortlessly using Stargate"
 image:
 ---
 
-[Stargate](https://stargate.io/) is one of the latest shiny tools from [DataStax](https://www.datastax.com/) that will act as a data gateway to abtract Cassandra-specific concepts and remove barriers of entry for new software developers!
+[Stargate](https://stargate.io/) is one of the latest shiny tools from [DataStax](https://www.datastax.com/) that will act as a data gateway to abstract Cassandra-specific concepts and remove barriers of entry for new software developers!
 
-Stargate is a full open source project ([GitHub repository](https://github.com/stargate/stargate)) that supports the most popular way of querying data (REST, GraphQL, Document and CQL API). By chosing their favorite way of querying data, developers will spend less time learning the API and more time on implementing new features.
+Stargate is a full open source project ([GitHub repository](https://github.com/stargate/stargate)) that supports the most popular ways of querying data (REST, GraphQL, Document and CQL API). By choosing their favorite way of querying data, developers will spend less time learning the API and more time on implementing new features.
 
 # Docker and Stargate for an easy setup
 
@@ -38,7 +38,7 @@ The Stargate container exposes 4 different services:
 - REST interface for CRUD (**8082**)
 - CQL service (**9042**)
 
-Make sure that the container was started without any errors before continuing this blog.
+Make sure that the container was started without any errors before continuing.
 
 ![Output](https://raw.githubusercontent.com/Falydoor/blog-usa/stargate/images/2021/01/stargate-3.png)
 
@@ -141,7 +141,7 @@ The partition key is `manufacturer` and the clustering key is `type` so we can g
 
 ## GraphQL API
 
-Stargate will provide a GraphQL playground available at http://localhost:8080/playground, don't forget to set the header `x-cassandra-token` with the correct value at the bottom of the UI.
+Stargate will provide a GraphQL playground available at http://localhost:8080/playground and don't forget to set the header `x-cassandra-token` with the correct value at the bottom of the UI.
 
 Data can be queried by opening a new tab and then using `http://localhost:8080/graphql/blog` for the schema.
 
@@ -165,13 +165,13 @@ The query should output something like below:
 
 ![Output](https://raw.githubusercontent.com/Falydoor/blog-usa/stargate/images/2021/01/stargate-2.png)
 
-What makes GraphQL great is that you can define which fields to retrieve directly in your query to simplifies things a lot when querying complex APIs.
+What makes GraphQL great is that you can define which fields to retrieve directly in your query to simplify things a lot when querying complex APIs.
 
 More details on how to use the GraphQL API can be found [here](https://stargate.io/docs/stargate/1.0/developers-guide/graphql-using.html).
 
 ## REST API
 
-The query below can also be done using a more traditional way with the REST API and using predefined search terms.
+The query below can also be done in a more traditional way with the REST API and using predefined search terms.
 
 The curl command below will return the same result as above:
 
@@ -233,7 +233,7 @@ More details on how to use the Document API can be found [here](https://stargate
 
 Finally, the CQL API will let you access the data using your favorite native language drivers like you would normally do with a regular Cassandra cluster.
 
-In our case, after being connected to our Stargate container following the [instructions here](https://stargate.io/docs/stargate/1.0/developers-guide/cql-using.html), we can run the following query to get all our vehicles:
+In our case, after being connected to our Stargate container using the [instructions here](https://stargate.io/docs/stargate/1.0/developers-guide/cql-using.html), we can run the following query to get all our vehicles:
 
 ```sql
 SELECT * FROM blog.vehicle;
