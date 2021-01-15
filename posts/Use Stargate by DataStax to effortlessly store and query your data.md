@@ -5,8 +5,8 @@ tags:
 - Cassandra
 - Big Data
 date: 2021-01-14T14:50:55.000Z
-title: "Store and query any data effortlessly using Stargate"
-image:
+title: "Use Stargate by DataStax to effortlessly store and query your data"
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/01/stargate-main.png
 ---
 
 [Stargate](https://stargate.io/) is one of the latest shiny tools from [DataStax](https://www.datastax.com/) that will act as a data gateway to abstract Cassandra-specific concepts and remove barriers of entry for new software developers!
@@ -40,7 +40,7 @@ The Stargate container exposes 4 different services:
 
 Make sure that the container was started without any errors before continuing.
 
-![Output](https://raw.githubusercontent.com/Falydoor/blog-usa/stargate/images/2021/01/stargate-3.png)
+![Output](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/01/stargate-3.png)
 
 # Inserting data using the REST API
 
@@ -78,7 +78,7 @@ Start by cloning my [repository](https://github.com/Falydoor/blog-stargate) and 
 
 Run the script with `node server.js` to create a keyspace `blog` and insert 50 different vehicles in the table `vehicle`. Your console should output the type and manufacturer of all inserted vehicles:
 
-![Output](https://raw.githubusercontent.com/Falydoor/blog-usa/stargate/images/2021/01/stargate-1.png)
+![Output](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/01/stargate-1.png)
 
 Here is the table definition of `vehicle`:
 
@@ -163,7 +163,7 @@ query vehicles {
 
 The query should output something like below:
 
-![Output](https://raw.githubusercontent.com/Falydoor/blog-usa/stargate/images/2021/01/stargate-2.png)
+![Output](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/01/stargate-2.png)
 
 What makes GraphQL great is that you can define which fields to retrieve directly in your query to simplify things a lot when querying complex APIs.
 
