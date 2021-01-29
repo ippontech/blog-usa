@@ -8,7 +8,7 @@ tags:
 - Java
 date: 2021-01-29T15:52:00.000Z
 title: "Comparing Quarkus to Spring Through the Eyes of JHipster"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/01/.quarkus-main.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/01/quarkus-main.png
 ---
 # Approach
 According to the website, ![Quarkus](https://quarkus.io/) is “A Kubernetes Native Java stack tailored for OpenJDK HotSpot and GraalVM, crafted from the best of breed Java libraries and standards.” I wanted to explore the differences between a typical Spring Boot/Data application and a Quarkus application from a code perspective. (as opposed to performance) 
