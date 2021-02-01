@@ -62,7 +62,7 @@ With Spring Data, implement the `PagingAndSortingRepository` and a paginated `fi
 ```java
 Page<T> findAll(Pageable pageable);
 ```
-###Quarkus
+### Quarkus
 In Quarkus, the finder methods return a `PanacheQuery` object that can be operated on to provide pagination.
 ```java
 // create a query for all living persons
