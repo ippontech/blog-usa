@@ -31,7 +31,7 @@ kubectl create -f k8s
 
 I recommand using [k9s](https://k9scli.io/) to monitor your Kubernetes pods and make sure that everything is running fine.
 
-![Cluster](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-flink/images/2021/01/flink-1.png)
+![Cluster](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/01/flink-1.png)
 
 The last step is to grab the full name of the `job manager` pod and then forward the port `8081`:
 
@@ -158,11 +158,11 @@ Now we can compile and start our JHipster application:
 
 Browse to [http://localhost:8080](http://localhost:8080) and then login using the credentials `admin/admin`. Using the top menu, navigate to `Administration -> API` and you should see the resource `covid-resource`:
 
-![API](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-flink/images/2021/01/flink-2.png)
+![API](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/01/flink-2.png)
 
 After clicking on `Execute`, the job will be triggered and you will see the result after few seconds:
 
-![Result](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-flink/images/2021/01/flink-3.png)
+![Result](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/01/flink-3.png)
 
 Future work would be to build a small UI to show the results in a chart rather than just json. Also, it should be possible to pick the date and the field to sort on.
 
@@ -170,7 +170,7 @@ Future work would be to build a small UI to show the results in a chart rather t
 
 What is pretty cool about Flink is that you have access to a pretty [neat dashboard](http://localhost:8081/). The screenshot below shows all the different stages on the job we just ran:
 
-![Dashboard](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-flink/images/2021/01/flink-4.png)
+![Dashboard](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/01/flink-4.png)
 
 We can see all the tasks executed and their duration. Also, the diagram is all interactive which makes things very easy to navigate in case of a complex job.
 
