@@ -5,7 +5,7 @@ tags:
   - Data
 date: 2021-02-10T14:50:55.000Z
 title: 'Data Hackathon Recap'
-image:
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/02/hackathon_header.png
 ---
 Is the Holiday Spirit Contagious? During Ippon's first Data Hackathon in Dec 2020, the Data Practice set out to find the effect of holidays on COVID-19 case count after typically large gatherings on holidays like 4th of July or non-official ones like Black Friday and as a function of geo-location, voter registration, local preventative measures.
 
