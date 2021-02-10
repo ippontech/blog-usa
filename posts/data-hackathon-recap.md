@@ -35,5 +35,5 @@ Comparing across states over time, we also notice the difference in the curve ba
 
 During the Data Hackathon, we got the opportunity to spend the entire day learning new technologies, sharpening our skills, working together with colleagues from different projects as a team and with lessons learnt and ideas to improve, we are all so excited for the next one. Stay tuned!
 
-!(https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/02/hackathon_data_practice_group_pic.jpeg)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/02/hackathon_data_practice_group_pic.jpeg)
 
