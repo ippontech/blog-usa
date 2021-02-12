@@ -23,7 +23,7 @@ S3 was the very first service launched as part of Amazon Web Services in March 2
 
 ## Buckets and Objects
 
-_Buckets_ are storage containers for your _objects_. A bucket is the highest level of organization within S3 and is a convenient boundary for billing aggregation and access control. You can choose a single [AWS Region(https://aws.amazon.com/about-aws/global-infrastructure/regions_az/)] for any bucket you create. Within that region, S3 will replicate your objects across multiple datacenters to ensure durability and reliability.
+_Buckets_ are storage containers for your _objects_. A bucket is the highest level of organization within S3 and is a convenient boundary for billing aggregation and access control. You can choose a single [AWS Region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) for any bucket you create. Within that region, S3 will replicate your objects across multiple datacenters to ensure durability and reliability.
 
 Objects are your data. These can be documents, photos, videos, or whatever - S3 does not care. Every object contains your bits of data along with a bunch of metadata (information about your data). We will examine that metadata below and in subsequent posts. One critical piece of metadata is your object's _key_.
 
