@@ -170,3 +170,10 @@ bucket.delete()
 So far, so simple? I hope you enjoyed this quick summary of S3 and some of the basics of working with AWS's storage solution. Each subsequent post in this series will introduce another layer of functionality in S3. Please come back for the next post on sharing your S3 data with the world.
 
 _Cover photo by [Courtney Moore](https://unsplash.com/@courtneyam98?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/bucket?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText)_
+
+# Sources
+
+- [Amazon Simple Storage Service User Guide](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html)
+- [Amazon S3 Product Information](https://aws.amazon.com/s3)
+- [Simple Storage Service - Basics](https://www.aws.training/Details/eLearning?id=54609) (free e-course)
+- [Coursera AWS S3 Basics](https://www.coursera.org/projects/aws-s3-basics) (free hands-on project)
