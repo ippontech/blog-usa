@@ -60,7 +60,7 @@ response = client.create_bucket(
 
 ![A Bucket is Created](https://raw.githubusercontent.com/brianknight10/blog-usa/master/images/2021/02/trusty-bucket-1-2.png)
 
-## Checking out the bucket
+## Checking out the bucket settings
 
 Now that we have a bucket, we can check out its settings. Our bucket has the least amount of configuration possible; we are using all of the defaults.
 
