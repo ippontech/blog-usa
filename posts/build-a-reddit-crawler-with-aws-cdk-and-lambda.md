@@ -2,6 +2,7 @@
 authors:
 - Theo Lebrun
 tags:
+- Cloud
 - AWS
 - AWS Lambda
 - AWS CDK
