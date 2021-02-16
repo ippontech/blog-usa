@@ -30,7 +30,9 @@ Here is the AWS services that we gonna use for this blog:
 
 # Lambda
 
-The goal of the lambda is to fetch the latest 100 posts on the subreddit [wallstreetbets](https://www.reddit.com/r/wallstreetbets/) and then filter the posts based on a custom condition. I decided to keep the posts with more than `100` comments or containing the word `GME` in the title. The idea behind this filtering is to be notified of posts having a lot of comments which usually means they are worth reading. The other condition on the word `GME` is simply to showcase that you can also filter on the post's title which is perfect if you're interested into specific content.
+The goal of the lambda is to fetch the latest 100 posts on the subreddit [wallstreetbets](https://www.reddit.com/r/wallstreetbets/) and then filter the posts based on a custom condition. I decided to keep the posts with more than `100` comments or containing the word `GME` in the title. The idea behind this filtering is to be notified of posts having a lot of comments which usually means they are popular and worth taking a look. The other condition is to have the word `GME` in the post's title, this is to showcase that you can filter posts on their title which is perfect if you're interested in a specific subject.
+
+The Lambda below is using [Typescript](https://www.typescriptlang.org/), which is a more modern version of Javascript, to fetch the most recent 100 posts using the public API from Reddit. The posts are then filtered using the method `filterPosts` and the result is formatted in a readable message before being sent to SNS.
 
 ```typescript
 const https = require('https')
@@ -85,13 +87,13 @@ function filterPosts(posts: any) {
 }
 ```
 
-The lambda is using the environment variable `TOPIC_ARN` to know where to publish the SNS message, and we will see later how this variable is populated by AWS CDK.
+The lambda uses the environment variable `TOPIC_ARN` to publish a message to the correct SNS topic, and we will see later how this variable is populated by AWS CDK.
 
 # Deployment and test
 
-AWS CDK makes the whole infrastructure deployment super easy, especially when you don't have to worry about configuring permissions to allow the components to interact between them.
+AWS CDK makes the whole infrastructure deployment super easy, especially when you don't have to worry about configuring permissions to allow the components to interact between eachother.
 
-Below the code that defines our infrastructure and, as you can see, it is almost the same number of lines as our Lambda code:
+Below, the code that defines our infrastructure and, as you can see, it is even shorter than the Lambda code!
 
 ```typescript
 import * as cdk from '@aws-cdk/core';
@@ -136,12 +138,12 @@ export class BlogRedditCrawlerStack extends cdk.Stack {
 
 The stack code is pretty straightforward, don't forget to replace `MY_EMAIL` with your real email (you will have to verify your email and also confirm subscribing to the SNS topic).
 
-The SNS topic is the first component of our stack since the Lambda requires the variable `TOPIC_ARN` in order to be able to publish to it. The rest of the stack definition is pretty simple as we just have to use the correct function to grant permissions.
+The SNS topic is the first component of the stack to be defined since the Lambda requires the variable `TOPIC_ARN` to be able to publish. The rest of the stack definition is pretty simple as we just have to use the correct functions to grant permissions between each components.
 
-The project is available at this [GitHub repository](https://github.com/Falydoor/blog-reddit-crawler) in case you want to clone it. You can follow those instructions to compile and deploy the stack:
+The project is available at this [GitHub repository](https://github.com/Falydoor/blog-reddit-crawler) in case you want to clone it. You can follow the instructions to compile/deploy/destroy the stack:
 
 ```bash
-# compile typescript
+# compile typescript to javascript
 npm run build
 
 # deploy the stack
@@ -157,12 +159,14 @@ Your console should output something similar once the stack is successfully depl
 
 After few minutes, you should receive an email looking like below:
 
+![Email](https://raw.githubusercontent.com/Falydoor/blog-usa/reddit-crawler/images/2021/02/reddit-crawler-email.png)
+
 Feel free to change the SNS message content in the Lambda to show more details about each post.
 
 # Future ideas
 
-The goal of this blog was to show how easy it is to set up a simple Reddit crawler on AWS that will alert you based on your own conditions. There are multiple improvements that can be done in order to have more accurate results. For example the crawler retrieves the latest 100 posts which means that some posts can be missed if more than 100 posts were created in the last 30 minutes.
+The goal of this blog post was to show how easy it is to set up a simple Reddit crawler on AWS that will alert you based on your own conditions. There are multiple improvements that can be done in order to have more accurate results. For example the crawler retrieves the latest 100 posts which means that some posts can be missed when more than 100 posts were created in the last 30 minutes.
 
-Also a more advanced approach would be to count which stock ticker is present in each post's title and then measure its popularity. You could have for example a daily report telling you which stock starts to be "popular" in a given subreddit so you can "buy the rumor and sell the news".
+Also a more advanced approach would be to count which stock ticker is present in each post's title and then measure its popularity. You could have for example a daily report telling you which stock starts to be "popular" in a given subreddit in order to **buy the rumor and sell the news**.
 
 Need help using the latest AWS technologies? Need help modernizing your legacy systems to implement these new tools? Ippon can help! Send us a line at [contact@ippon.tech](mailto:contact@ippon.tech).
