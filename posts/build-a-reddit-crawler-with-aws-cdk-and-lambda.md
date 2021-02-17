@@ -91,7 +91,7 @@ The lambda uses the environment variable `TOPIC_ARN` to publish a message to the
 
 # Deployment and test
 
-AWS CDK makes the whole infrastructure deployment super easy, especially when you don't have to worry about configuring permissions to allow the components to interact between eachother.
+AWS CDK makes the whole infrastructure deployment super easy, especially when you don't have to worry about configuring permissions to allow the components to interact with each other.
 
 Below, the code that defines our infrastructure and, as you can see, it is even shorter than the Lambda code!
 
@@ -128,9 +128,9 @@ export class BlogRedditCrawlerStack extends cdk.Stack {
     // Add an email subscription to the topic
     topic.addSubscription(new subscriptions.EmailSubscription('MY_EMAIL'));
 
-    // Trigger lambda every X minutes
+    // Trigger lambda every 30 minutes
     new events.Rule(this, 'Rule', {
-      schedule: events.Schedule.rate(cdk.Duration.minutes(5)),
+      schedule: events.Schedule.rate(cdk.Duration.minutes(30)),
       targets: [new targets.LambdaFunction(fn)]
     });
   }
@@ -139,7 +139,7 @@ export class BlogRedditCrawlerStack extends cdk.Stack {
 
 The stack code is pretty straightforward, don't forget to replace `MY_EMAIL` with your real email (you will have to verify your email and also confirm subscribing to the SNS topic).
 
-The SNS topic is the first component of the stack to be defined since the Lambda requires the variable `TOPIC_ARN` to be able to publish. The rest of the stack definition is pretty simple as we just have to use the correct functions to grant permissions between each components.
+The SNS topic is the first component of the stack to be defined since the Lambda requires the variable `TOPIC_ARN` to be able to publish. The rest of the stack definition is pretty simple as we just have to use the correct functions to grant permissions between each component.
 
 The project is available at this [GitHub repository](https://github.com/Falydoor/blog-reddit-crawler) in case you want to clone it. You can follow the instructions to compile/deploy/destroy the stack:
 
@@ -166,7 +166,7 @@ Feel free to change the SNS message content in the Lambda to show more details a
 
 # Pricing
 
-Only the Lambda and SNS are billable and our volume is very low because the Lambda runs every 30 minutes which is less than 1500 requests per month. Also, the Lambda runs with only 128MB of memory and each request take less than 5 seconds on average. Here is an estimation of how much this crawler will cost:
+Only the Lambda and SNS are billable, and our volume is very low because the Lambda runs every 30 minutes which is less than 1500 requests per month. Also, the Lambda runs with only 128MB of memory and each request takes less than 5 seconds on average. Here is an estimation of how much this crawler will cost:
 
 ![Pricing](https://raw.githubusercontent.com/Falydoor/blog-usa/reddit-crawler/images/2021/02/reddit-crawler-pricing.png)
 
@@ -174,8 +174,8 @@ For less than a cup a coffee, you will be able to have an automated crawler that
 
 # Future ideas
 
-The goal of this blog post is to show how easy it is to set up a simple Reddit crawler on AWS that will alert you based on your own conditions. There are multiple improvements that can be done in order to have more accurate results. For example the crawler retrieves the latest 100 posts which means that some posts can be missed when more than 100 posts were created in the last 30 minutes.
+The goal of this blog post is to show how easy it is to set up a simple Reddit crawler on AWS that will alert you based on your own conditions. There are multiple improvements that can be done in order to have more accurate results. For example, the crawler retrieves the latest 100 posts which means that some posts can be missed when more than 100 posts were created in the last 30 minutes.
 
-Also a more advanced approach would be to count which stock ticker is present in each post's title and then measure its popularity. You could have for example a daily report telling you which stock starts to be "popular" in a given subreddit in order to **buy the rumor and sell the news**. This blog post is in no way giving financial advices and the opinions shared are stricly my own. Investing in stocks involves risk of loss so please invest at your own risk.
+Also, a more advanced approach would be to count which stock ticker is present in each post's title and then measure its popularity. You could have for example a daily report telling you which stock starts to be "popular" in a given subreddit in order to **buy the rumor and sell the news**. This blog post is in no way giving financial advice and the opinions shared are strictly my own. Investing in stocks involves risk of loss so please invest at your own risk.
 
 Need help using the latest AWS technologies? Need help modernizing your legacy systems to implement these new tools? Ippon can help! Send us a line at [contact@ippon.tech](mailto:contact@ippon.tech).
