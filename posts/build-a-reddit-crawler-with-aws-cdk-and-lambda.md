@@ -176,6 +176,6 @@ For less than a cup a coffee, you will be able to have an automated crawler that
 
 The goal of this blog post is to show how easy it is to set up a simple Reddit crawler on AWS that will alert you based on your own conditions. There are multiple improvements that can be done in order to have more accurate results. For example the crawler retrieves the latest 100 posts which means that some posts can be missed when more than 100 posts were created in the last 30 minutes.
 
-Also a more advanced approach would be to count which stock ticker is present in each post's title and then measure its popularity. You could have for example a daily report telling you which stock starts to be "popular" in a given subreddit in order to **buy the rumor and sell the news**.
+Also a more advanced approach would be to count which stock ticker is present in each post's title and then measure its popularity. You could have for example a daily report telling you which stock starts to be "popular" in a given subreddit in order to **buy the rumor and sell the news**. This blog post is in no way giving financial advices and the opinions shared are stricly my own. Investing in stocks involves risk of loss so please invest at your own risk.
 
 Need help using the latest AWS technologies? Need help modernizing your legacy systems to implement these new tools? Ippon can help! Send us a line at [contact@ippon.tech](mailto:contact@ippon.tech).
