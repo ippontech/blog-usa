@@ -9,7 +9,7 @@ tags:
 - Data
 date: 2021-02-16T14:50:55.000Z
 title: "Crawl Reddit and predict the next popular stock using AWS Lambda and CDK"
-image: 
+image: https://raw.githubusercontent.com/Falydoor/blog-usa/reddit-crawler/images/2021/02/reddit-crawler-logo.png
 ---
 
 You probably heard of the recent news about Reddit and the Stock market, more precisely on what is called the [GameStop Short Squeeze](https://en.wikipedia.org/wiki/GameStop_short_squeeze). You probably asked yourself this question: "I could have made a lot of money if I predicted this price surge!" and some people actually did by being able to hop on the hype train before it was too late. Predicting the market is hard. However, you can always try to "increase" your luck by using external tools that will give you extra information.
