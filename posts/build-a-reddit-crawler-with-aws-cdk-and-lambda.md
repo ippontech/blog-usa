@@ -12,7 +12,7 @@ title: "Crawl Reddit and predict the next popular stock using AWS Lambda and CDK
 image: 
 ---
 
-You probably heard of the recent news about Reddit and the Stock market, more precisely on what is called the [GameStop Short Squeeze](https://en.wikipedia.org/wiki/GameStop_short_squeeze). You probably asked yourself this question: "I could have made a lot of money if I predicted this price surge!" and some people actually did by being able to hop on the hype train before it was too late. Predicting the market is hard however you can always try to "increase" your luck by using external tools that will give you extra information.
+You probably heard of the recent news about Reddit and the Stock market, more precisely on what is called the [GameStop Short Squeeze](https://en.wikipedia.org/wiki/GameStop_short_squeeze). You probably asked yourself this question: "I could have made a lot of money if I predicted this price surge!" and some people actually did by being able to hop on the hype train before it was too late. Predicting the market is hard. However, you can always try to "increase" your luck by using external tools that will give you extra information.
 
 The goal of this blog post is to deploy a crawler for a specific [Subreddit](https://reddit.com/) that will alert you when some custom requirements are met. It might sound a bit complex at first but I will show you how simple it is by using [Amazon Web Services](https://aws.amazon.com/).
 
@@ -20,7 +20,7 @@ The goal of this blog post is to deploy a crawler for a specific [Subreddit](htt
 
 The architecture must be capable of running the crawler every 30 minutes and notify you (ex: by email) with all the Reddit's posts that match our custom filter.
 
-Here is the AWS services that we gonna use for this blog:
+Here is the AWS services that we are using for this blog:
 
 - [AWS Lambda](https://aws.amazon.com/lambda/): serverless service to run the crawler
 - [AWS SNS](https://aws.amazon.com/sns/): notification service to send emails (or text, push notifications, etc)
@@ -118,7 +118,8 @@ export class BlogRedditCrawlerStack extends cdk.Stack {
       functionName: 'reddit-crawler',
       environment: {
         TOPIC_ARN: topic.topicArn
-      }
+      },
+      timeout: cdk.Duration.seconds(30)
     });
 
     // Allow the lambda to publish to the topic
@@ -163,9 +164,17 @@ After few minutes, you should receive an email looking like below:
 
 Feel free to change the SNS message content in the Lambda to show more details about each post.
 
+# Pricing
+
+Only the Lambda and SNS are billable and our volume is very low because the Lambda runs every 30 minutes which is less than 1500 requests per month. Also, the Lambda runs with only 128MB of memory and each request take less than 5 seconds on average. Here is an estimation of how much this crawler will cost:
+
+![Pricing](https://raw.githubusercontent.com/Falydoor/blog-usa/reddit-crawler/images/2021/02/reddit-crawler-pricing.png)
+
+For less than a cup a coffee, you will be able to have an automated crawler that will send you alerts without having to worry about servers!
+
 # Future ideas
 
-The goal of this blog post was to show how easy it is to set up a simple Reddit crawler on AWS that will alert you based on your own conditions. There are multiple improvements that can be done in order to have more accurate results. For example the crawler retrieves the latest 100 posts which means that some posts can be missed when more than 100 posts were created in the last 30 minutes.
+The goal of this blog post is to show how easy it is to set up a simple Reddit crawler on AWS that will alert you based on your own conditions. There are multiple improvements that can be done in order to have more accurate results. For example the crawler retrieves the latest 100 posts which means that some posts can be missed when more than 100 posts were created in the last 30 minutes.
 
 Also a more advanced approach would be to count which stock ticker is present in each post's title and then measure its popularity. You could have for example a daily report telling you which stock starts to be "popular" in a given subreddit in order to **buy the rumor and sell the news**.
 
