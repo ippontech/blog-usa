@@ -9,7 +9,7 @@ tags:
 - Data
 date: 2021-02-16T14:50:55.000Z
 title: "Crawl Reddit and predict the next popular stock using AWS Lambda and CDK"
-image: https://raw.githubusercontent.com/Falydoor/blog-usa/reddit-crawler/images/2021/02/reddit-crawler-logo.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/02/reddit-crawler-logo.png
 ---
 
 You probably heard of the recent news about Reddit and the Stock market, more precisely on what is called the [GameStop Short Squeeze](https://en.wikipedia.org/wiki/GameStop_short_squeeze). You probably asked yourself this question: "I could have made a lot of money if I predicted this price surge!" and some people actually did by being able to hop on the hype train before it was too late. Predicting the market is hard. However, you can always try to "increase" your luck by using external tools that will give you extra information.
@@ -26,7 +26,7 @@ Here is the AWS services that we are using for this blog:
 - [AWS SNS](https://aws.amazon.com/sns/): notification service to send emails (or text, push notifications, etc)
 - [AWS CDK](https://aws.amazon.com/cdk/): framework to define/deploy our cloud components using familiar programming languages
 
-![Diagram](https://raw.githubusercontent.com/Falydoor/blog-usa/reddit-crawler/images/2021/02/reddit-crawler-diagram.png)
+![Diagram](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/02/reddit-crawler-diagram.png)
 
 # Lambda
 
@@ -156,11 +156,11 @@ cdk destroy
 
 Your console should output something similar once the stack is successfully deployed:
 
-![Deploy](https://raw.githubusercontent.com/Falydoor/blog-usa/reddit-crawler/images/2021/02/reddit-crawler-deploy.png)
+![Deploy](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/02/reddit-crawler-deploy.png)
 
 After few minutes, you should receive an email looking like below:
 
-![Email](https://raw.githubusercontent.com/Falydoor/blog-usa/reddit-crawler/images/2021/02/reddit-crawler-email.png)
+![Email](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/02/reddit-crawler-email.png)
 
 Feel free to change the SNS message content in the Lambda to show more details about each post.
 
@@ -168,7 +168,7 @@ Feel free to change the SNS message content in the Lambda to show more details a
 
 Only the Lambda and SNS are billable, and our volume is very low because the Lambda runs every 30 minutes which is less than 1500 requests per month. Also, the Lambda runs with only 128MB of memory and each request takes less than 5 seconds on average. Here is an estimation of how much this crawler will cost:
 
-![Pricing](https://raw.githubusercontent.com/Falydoor/blog-usa/reddit-crawler/images/2021/02/reddit-crawler-pricing.png)
+![Pricing](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/02/reddit-crawler-pricing.png)
 
 For less than a cup a coffee, you will be able to have an automated crawler that will send you alerts without having to worry about servers!
 
