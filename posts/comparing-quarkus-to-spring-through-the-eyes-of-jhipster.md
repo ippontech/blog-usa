@@ -11,11 +11,11 @@ title: "Comparing Quarkus to Spring Through the Eyes of JHipster"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/01/quarkus-main.png
 ---
 # Approach
-According to the website, [Quarkus](https://quarkus.io/) is “A Kubernetes Native Java stack tailored for OpenJDK HotSpot and GraalVM, crafted from the best of breed Java libraries and standards.” I wanted to explore the differences between a typical Spring Boot/Data application and a Quarkus application from a code perspective. (as opposed to performance) 
+According to the [Quarkus](https://quarkus.io/) product page it is “A Kubernetes Native Java stack tailored for OpenJDK HotSpot and GraalVM, crafted from the best of breed Java libraries and standards.” I wanted to explore the differences between a typical Spring Boot/Data application and a Quarkus application through a code comparison.
 
 
 # Generate an Application
-Since JHipster generates an application that is more real than Hello World, I fired up the Quarkus JHipster blueprint. I would like to thank this [post](https://medium.com/quarkify/generate-quarkus-project-with-jhipster-bff4edecb815) for providing step-by-step instructions on how to install the Quarkus blueprint and generate an application.
+Since JHipster generates an actual runnable application out of the box, I fired up the Quarkus JHipster blueprint. I would like to thank this [post](https://medium.com/quarkify/generate-quarkus-project-with-jhipster-bff4edecb815) for providing step-by-step instructions on how to install the Quarkus blueprint and generate an application.
 
 
 # What’s different?
@@ -113,8 +113,7 @@ public CompletionStage<Response> registerAccount(@Valid ManagedUserVM managedUse
 ```
 
 # Conclusion
-It is clear that Spring is the more mature platform and has had many more years to provide some of the niceties that developers have grown used to having. More code is definitely required to use Quarkus at this point. There are plenty of resources online that talk about performance gains from using Quarkus so that very well could drive the decision to try it out. Based on this introductory analysis, the learning curve does not look too steep for Quarkus. I think the next step could be to investigate how Quarkus handles security and other details.
+It is clear that Spring is the more mature platform and has had many more years to provide some of the ergonomics that developers have grown used to having. More code is definitely required to use Quarkus at this point. There are plenty of resources online that talk about performance gains from using Quarkus so that very well could drive the decision to try it out. Based on this introductory analysis, the learning curve does not look too steep for Quarkus. A future blog post will investigate how Quarkus handles security and other developer concerns.
 
 # Postscript
 My understanding is that much of the performance gains provided by Quarkus are directly tied to using the [GraalVM](https://www.graalvm.org/). Fairly recently, Spring has introduced [Spring Native for GraalVM](https://github.com/spring-projects-experimental/spring-native/releases/tag/0.8.3) that may end up making the performance gains less of a factor for choosing Quarkus.
-
