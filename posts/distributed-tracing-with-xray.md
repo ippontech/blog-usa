@@ -13,7 +13,7 @@ tags:
 - Architecture
 date: 2021-02-01T20:16:10.000Z
 title: "Distributed Tracing using AWS X-Ray"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/07/container-2539942_1920.jpg
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/02/Distributed-Tracing-using-AWS-X-Ray.png
 ---
 
 As monoliths have been replaced by microservice applications, growing in size and complexity, 
@@ -36,7 +36,7 @@ This is how it works:
 We need first to add the AWS X-Ray Java SDK to our pom.xml
 
 ```xml
-<dependency>
+    <dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-xray-recorder-sdk-core</artifactId>
 			<version>2.8.0</version>
@@ -233,7 +233,7 @@ We also need to give the task role permission to contact the AWS X-Ray API.
 
     ```
     
-Please checkout this [blog](https://blog.ippon.tech/deploytoecswithgithubaction/) on how to deploy your spring boot microservice on Amazon ECS using Github Actions
+Please checkout this [blog](https://blog.ippon.tech/deploytoecswithgithubaction/) on how to deploy a spring boot microservice on Amazon ECS using Github Actions
 
 
 # View and Analyse the tracing data on AWS X-Ray Console
