@@ -18,16 +18,16 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/0
 
 As monoliths have been replaced by microservice applications, growing in size and complexity, 
 the challenge of troubleshooting and identifying performance issues has increased.
-In addition, extensive usage of cloud platforms such as AWS to deploy microservice architectures make the code execution points highly elastic and dynamic. Traditional tools to capture and analyse information in a monolithic world become powerless in this new environment.
-Architects, IT Ops analysts now require operational visibility into their entire architecture.
+In addition, extensive usage of cloud platforms such as AWS to deploy microservice architectures make the code execution points highly elastic and dynamic. Traditional tools to capture and analyze information in a monolithic world become powerless in this new environment.
+Architects and IT operations now require operational visibility into their entire architecture.
 
-On AWS, we can use distributed tracing services, such as [AWS X-Ray](https://aws.amazon.com/xray/), to collect and record traces as requests travel through the application, generate maps to see how requests flow across services, gain insight on the relationships between components, as well as identify and analyze issues in real time.
+On AWS we can use distributed tracing services, such as [AWS X-Ray](https://aws.amazon.com/xray/), to collect and record traces as requests travel through the application, generate maps to see how requests flow across services, gain insight on the relationships between components, as well as identify and analyze issues in real time.
 
 
 # Integrate X-Ray to a Spring Boot application
 In this article we will see how we can setup distributed tracing for a sample application written in Spring Boot.
 This is how it works:
-  - The application need to implement the X-Ray Java SDK which generates and sends the tracing data to a X-Ray daemon service.
+  - The application need to implement the X-Ray Java SDK which generates and sends the tracing data to a X-Ray daemon service
   - The X-Ray daemon service will then send the data to the AWS X-Ray API
   - Tracing data is available on the AWS X-Ray Service Console
 
@@ -74,7 +74,7 @@ We need first to add the AWS X-Ray Java SDK to our pom.xml.
 ```
 ## Tracing incoming requests
 
-To trace all incoming requests to our microservice, first we configure a Servlet Filter provided by the SDK. Then we add the servlet to our Spring configuration.
+To trace all incoming requests to our microservice, first we configure a Servlet Filter provided by the SDK. Then we add the Servlet to our Spring configuration.
 
       ``` java
       @Configuration
@@ -119,7 +119,7 @@ The X-Ray SDK offers a non-invasive Spring integration way of tracing our Spring
     }
     ```
 
- - Let's annotate the spring components that we want to trace
+ - Let's annotate the spring components that we want to trace:
 
     ``` java
     @Component
@@ -171,7 +171,7 @@ Our ECS task will have then two container definitions when the application conta
 
   ![01](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/02/X-Ray-container.jpg)
 
-We also need to give the `task` role permission to contact the AWS X-Ray API.
+We also need to give the `task` role permission to contact the AWS X-Ray API:
 
     ```json
       {
@@ -233,7 +233,7 @@ We also need to give the `task` role permission to contact the AWS X-Ray API.
 
     ```
     
-Please checkout this [blog](https://blog.ippon.tech/deploytoecswithgithubaction/) on how to deploy a Spring Boot microservice on Amazon ECS using Github Actions.
+Please checkout this article on [how to deploy a Spring Boot microservice on Amazon ECS using Github Actions](https://blog.ippon.tech/deploytoecswithgithubaction/).
 
 
 # View and Analyse the tracing data on AWS X-Ray Console
