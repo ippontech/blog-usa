@@ -264,6 +264,8 @@ AWS X-Ray integrates natively with other AWS Services to increase the visibility
 
 AWS X-Ray always encrypts traces at rest, and can also be configured to use AWS Key Management Service (AWS KMS) for compliance requirement like PCI and HIPAA.
 
+Want to implement Distributed Tracing to monitor your architecture? Feel free to [contact us](https://en.ippon.tech/contact/). It would be a pleasure to help and work with you!
+
 
 ### Sources
 * [AWS X-Ray developer guide](https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html)
