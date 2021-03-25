@@ -33,7 +33,7 @@ There are multiple ways to build your own layer but in our case, since we gonna 
 
 ## Lambda
 
-I decided to use Python to write the Lambda as the sync process is pretty straightforward. The while loop makes sure that the output from the CLI is correctly forwared to CloudWatch.
+I decided to use Python to write the Lambda as the sync process is pretty straightforward. The `while` loop makes sure that the output from the CLI is correctly forwared to CloudWatch.
 
 ```python
 import logging
@@ -60,7 +60,7 @@ def sync(event, context):
     s3_sync.poll()
 ```
 
-The two environment variables `SOURCE` and `DESTINATION` contain the name of the buckets to sync. The two variables are populated by CDK when the stack is deployed.
+The two environment variables `SOURCE` and `DESTINATION` contain the name of the buckets to sync and are populated by CDK when the stack is deployed.
 
 # Deployment and test
 
@@ -146,7 +146,7 @@ Your console should output something similar once the stack is successfully depl
 
 ![Deployment](https://raw.githubusercontent.com/falydoor/blog-usa/blog-lambda-awscli/images/2021/03/lambda-awscli-deployment.png)
 
-You can manually trigger the Lambda in order to test and then check the CloudWatch logs:
+You can manually trigger the Lambda in order to test and then check the CloudWatch logs (we can see the progress of the sync):
 
 ![CloudWatch](https://raw.githubusercontent.com/falydoor/blog-usa/blog-lambda-awscli/images/2021/03/lambda-awscli-cloudwatch.png)
 
