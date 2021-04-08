@@ -13,27 +13,27 @@ title: "Sync two S3 buckets using CDK and a Lamdba layer containing the AWS CLI"
 image: 
 ---
 
-The [AWS Command Line Interface (CLI)](https://aws.amazon.com/cli/) is a great tool that can be used in your scripts to manage all your AWS infrastructure. There is a lot of useful commands, my favorite one is [aws s3 sync](https://docs.aws.amazon.com/cli/latest/reference/s3/sync.html) which will synchronize two S3 buckets. This is pretty useful when for example you want to copy a bucket from a different AWS account.
+The [AWS Command Line Interface (CLI)](https://aws.amazon.com/cli/) is a great tool that can be used in your scripts to manage all your AWS infrastructure. There is a lot of useful commands, my favorite one is [AWS S3 Sync](https://docs.aws.amazon.com/cli/latest/reference/s3/sync.html) which will synchronize two S3 buckets. This is pretty useful when for example you want to copy a bucket from a different AWS account.
 
 Depending on your use case, you might want to synchronize the two buckets based on an event or on a daily basis. In order to do that, the easiest option is just to go serverless and have a Lambda that will take care of the syncing process.
 
-# Lambda layer to the rescue
+# Lambda Layer to the Rescue
 
 ## AWS CLI in a Lambda?
 
 By default, the Lambda runtime includes additional libraries like the AWS SDK so you can interact with your AWS infrastructure. For more details about the Lambda runtimes and which libraries are included, check the [official page here](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html).
 
-The problem with the AWS SDK and Boto3 is that the `s3 sync` command is not available which mean that you will have to write some custom code. Reinventing the wheel is not really something recommended in software development because it might take a while to write something stable and reliable. Also the `sync` command from the CLI includes a lot of handy options like `include` and `exclude` so let's just step back a little and figure out a better solution.
+The problem with the AWS SDK and Boto3 is that the `s3 sync` command is not available, which means that you *will* have to write some custom code. Reinventing the wheel is not really something recommended in software development because it might take a while to write something stable and reliable. In addition, the `sync` command from the CLI includes several handy options, such as `include` and `exclude,` so let's just step back a little and figure out a better solution.
 
-## Lambda layers
+## Lambda Layers
 
-To have additional features and libraries available to your Lambda, you just have to build a [Lambda layer](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) and have your Lambda use it. By having a layer that includes the AWS CLI, your Lambda will be able to call the CLI and then run the sync process like you would do from your terminal.
+To have additional features and libraries available for your Lambda, you simply have to build a [Lambda layer](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) and have your Lambda use it. By having a layer that includes the AWS CLI, your Lambda will be able to call the CLI and then run the sync process like you would do from your terminal.
 
-There are multiple ways to build your own layer but in our case, since we gonna use [AWS CDK](https://aws.amazon.com/cdk/) to deploy our Lambda, we can directly use the module [lambda-layer-awscli](https://docs.aws.amazon.com/cdk/api/latest/docs/lambda-layer-awscli-readme.html). This module is very easy to use and installs the CLI under `/opt/awscli/aws` in the Lambda.
+There are multiple ways to build your own layer but in our case.  Since we are going to use [AWS CDK](https://aws.amazon.com/cdk/) to deploy our Lambda, we can use the [lambda-layer-awscli](https://docs.aws.amazon.com/cdk/api/latest/docs/lambda-layer-awscli-readme.html) module. This module is easy to use and installs the CLI under `/opt/awscli/aws` in the Lambda.
 
 ## Lambda
 
-I decided to use Python to write the Lambda as the sync process is pretty straightforward. The `while` loop stream the outputs from the sync command to CloudWatch.
+I decided to use Python to write the Lambda as the sync process is pretty straightforward. The `while` loop streams the outputs from the sync command to CloudWatch.
 
 ```python
 import logging
@@ -60,21 +60,21 @@ def sync(event, context):
     s3_sync.poll()
 ```
 
-The two environment variables `SOURCE` and `DESTINATION` contain the buckets name and are populated by CDK during the stack deployment.
+The two environment variables `SOURCE` and `DESTINATION` contain the buckets' name and are populated by CDK during the stack deployment.
 
-# Deployment and test
+# Deployment and Test
 
-## Architecture and diagram
+## Architecture and Diagram
 
-The architecture must be capable of running the syncing process every day by using the Lambda:
+The architecture *must* be capable of running the syncing process daily by using the Lambda:
 
 ![Diagram](https://raw.githubusercontent.com/falydoor/blog-usa/blog-lambda-awscli/images/2021/03/lambda-awscli-diagram.png)
 
 ## AWS CDK
 
-I have been a huge fan and advocate of AWS CDK since its first release as it abstracts concepts like permissions and service interactions. Writing code with your favorite language that ends up deploying components on the Cloud can be very addictive!
+I have been a huge fan and advocate of AWS CDK since its first release, as it abstracts concepts like permissions and service interactions. Writing code with your favorite language that ends up deploying components on the Cloud can be quite addictive!
 
-Below, the code that defines our infrastructure:
+Below is the code that defines our infrastructure:
 
 ```python
 from aws_cdk import (
@@ -128,11 +128,11 @@ class BlogLambdaAwscliStack(cdk.Stack):
         rule.add_target(targets_.LambdaFunction(fn))
 ```
 
-I decided to use the [official COVID-19 Data Lake](https://registry.opendata.aws/aws-covid19-lake/) and the folder `static-datasets` for the source bucket. CDK will take care of uploading the data folder to the source bucket using `BucketDeployment`.
+I decided to use the [Official COVID-19 Data Lake](https://registry.opendata.aws/aws-covid19-lake/) and the folder `static-datasets` for the source bucket. CDK will take care of uploading the data folder to the source bucket using `BucketDeployment.`
 
 ## Testing
 
-The project is available at this [GitHub repository](https://github.com/Falydoor/blog-lambda-awscli) in case you want to clone it. You can follow the instructions to deploy/destroy the stack:
+The project is available at this [GitHub Repository](https://github.com/Falydoor/blog-lambda-awscli) in case you want to clone it. You can follow the instructions to deploy / destroy the stack:
 
 ```bash
 # deploy the stack
@@ -150,14 +150,14 @@ You can manually trigger the Lambda in order to test and then check the CloudWat
 
 ![CloudWatch](https://raw.githubusercontent.com/falydoor/blog-usa/blog-lambda-awscli/images/2021/03/lambda-awscli-cloudwatch.png)
 
-Check the destination bucket to make sure that the COVID data were correctly synced:
+Check the destination bucket to make sure that the COVID data was correctly synced:
 
 ![Destination Bucket](https://raw.githubusercontent.com/falydoor/blog-usa/blog-lambda-awscli/images/2021/03/lambda-awscli-destination-bucket.png)
 
 # Caveats
 
-The main "issue" with AWS Lambda is the 15 minutes timeout which mean that the Lambda can timeout before the end of the syncing process in case of a large bucket. The good news is that the Lambda can just rerun and continue the syncing process until it's over because files are created on the fly. It might be a good idea to do the first sync manually as a large amount of data will take multiple hours. Then depending on your use case, you can just reduce the schedule to run the Lambda every 30 minutes for example.
+The main "issue" with AWS Lambda is the "15-minute timeout," which essentially means that the Lambda can timeout before the end of the syncing process in case of a large bucket. The good news is that the Lambda can just re-run and continue the syncing process until it's over because files are created on the fly. 
 
-For now, the layer use the AWS CLI V1 and Python 2.7, but I am positive that the Lambda layer will be updated to package more recent versions. Also, for the timeout issue, take a look at [AWS Step Functions](https://aws.amazon.com/step-functions/) and automatic retries.
+It might be a good idea to do the first sync **manually**, as a large amount of data will take multiple hours. Then, depending on your use case, you can just reduce the schedule to run the Lambda every 30 minutes, for example.
 
 Need help using the latest AWS technologies? Need help modernizing your legacy systems to implement these new tools? Ippon can help! Send us a line at [contact@ippon.tech](mailto:contact@ippon.tech).
