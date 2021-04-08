@@ -68,7 +68,7 @@ The two environment variables `SOURCE` and `DESTINATION` contain the buckets' na
 
 The architecture *must* be capable of running the syncing process daily by using the Lambda:
 
-![Diagram](https://raw.githubusercontent.com/falydoor/blog-usa/blog-lambda-awscli/images/2021/03/lambda-awscli-diagram.png)
+![Diagram](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/03/lambda-awscli-diagram.png)
 
 ## AWS CDK
 
@@ -144,15 +144,15 @@ cdk destroy
 
 Your console should output something similar once the stack is successfully deployed:
 
-![Deployment](https://raw.githubusercontent.com/falydoor/blog-usa/blog-lambda-awscli/images/2021/03/lambda-awscli-deployment.png)
+![Deployment](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/03/lambda-awscli-deployment.png)
 
 You can manually trigger the Lambda in order to test and then check the CloudWatch logs (we can see the progress of the sync):
 
-![CloudWatch](https://raw.githubusercontent.com/falydoor/blog-usa/blog-lambda-awscli/images/2021/03/lambda-awscli-cloudwatch.png)
+![CloudWatch](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/03/lambda-awscli-cloudwatch.png)
 
 Check the destination bucket to make sure that the COVID data was correctly synced:
 
-![Destination Bucket](https://raw.githubusercontent.com/falydoor/blog-usa/blog-lambda-awscli/images/2021/03/lambda-awscli-destination-bucket.png)
+![Destination Bucket](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/03/lambda-awscli-destination-bucket.png)
 
 # Caveats
 
