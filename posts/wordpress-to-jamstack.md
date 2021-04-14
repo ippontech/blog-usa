@@ -143,4 +143,10 @@ export default async (_req, res) => {
 
 Overall this was a pretty fun and sometimes challenging side project. I was able to explore some new technologies while also saving my parents church some yearly expenses by getting rid of their old Wordpress site. During all of this they also decided to do some re-branding and got a new logo for the church and color scheme. It was fun to be apart of this transformation and see everything come together. My biggest concern when doing this was not to accrue any expenses for the church if at all possible. I was able to accomplish this because most of the services I chose offer free tiers that this website fit in or offered credits like DataStax does. So instead of paying someone around $200/year to maintain their old website they will just now have to pay for their domain renewal every couple years.
 
-![Before and After of the Church Website](https://raw.githubusercontent.com/blandfried/blog-usa/master/images/2021/04/wp-to-jamstck-before-after.png)
+# Before
+
+![Before of the Church Website](https://raw.githubusercontent.com/blandfried/blog-usa/master/images/2021/04/wp-to-jamstack-before.png)
+
+# After
+
+![Before of the Church Website](https://raw.githubusercontent.com/blandfried/blog-usa/master/images/2021/04/wp-to-jamstack-after.png)
