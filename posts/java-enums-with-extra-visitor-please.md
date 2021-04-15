@@ -11,7 +11,7 @@ image:
 ---
 
 Enums can be seen as a group of strongly typed constants. Their several use cases include: attributing strong semantics to values, limiting and validating available values for data, and enhancing code readability.
-However, using enums can be tricky when it comes to making decisions according to its values. As the enum evolves, each part of the code where it has been used as a condition must be checked. If many decisions have been based on an enum's values, maintaining the code base can be a nightmare; one forgotten verification can lead to corruption of the whole system.
+Using enums can be tricky when it comes to making decisions according to its values. As the enum evolves, each part of the code where it has been used as a condition must be checked. If many decisions have been based on an enum's values, maintaining the code base can be a nightmare. A single missed verification can lead to corruption of the entire system.
 
 But is there a way to reduce the impact of enums' evolutions on the code base?
 
