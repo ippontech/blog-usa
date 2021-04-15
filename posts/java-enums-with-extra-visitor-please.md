@@ -46,14 +46,14 @@ The method `getAutomatedTradingStrategy()` returns a behavior according to the v
 
 Even though each enum value should have a handler adding a default handler here ensures that there is some way to handle an arbitrary `AssetClass`.  This is helpful when an enum value has been added but is missed in other parts of the codebase.
 
-The last problem is probably the least obvious. Using the switch-case statement generates a strong coupling between the business logic and the enum's values, breaking the open/close principle.
+The last problem is probably the least obvious. Using the switch-case statement generates a strong coupling between the business logic and the enum's values, breaking the (open-closed principle)[https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle].
 Yet, the switch-case statement has no interest in knowing if the asset class is an enum, object, or anything else. Only the semantic matters.
 For instance, metals could be split into two sub assets: base metals and precious metals. Any already existing code based on `AssetClass.METAL` will have to be reworked to take this change into account. No business value has been added where the rework was necessary while it exposed a working implementation to the risk of regressions.
 
 
 # Visitor pattern to the rescue
 
-How can we break this coupling while offering the ability to contextualize the decision making to the enum's values? The answer is in the title: let's use the Visitor pattern.
+How can we break this coupling while offering the ability to contextualize the decision making to the enum's values? The answer is in the title: let's use the (Visitor pattern)[https://en.wikipedia.org/wiki/Visitor_pattern].
 
 First off, we need to create an interface which will be used as a contract between the enum and the code relying on its values.
 
@@ -198,6 +198,6 @@ public AutomatedTradingStrategy getAutomatedTradingStrategy(AssetClass assetClas
  
 # In a nutshell
 
-During one of my missions, the team was dealing with a large number of enums and there was business logic based upon their values. The visitor pattern was our shield against unpredicted edge cases. It became our standard way to deal with enums in the code base.
+During one of my projects, the team was dealing with a large number of enums and there was business logic based upon their values. The visitor pattern was our shield against unpredicted edge cases. It became our standard way to deal with enums in the code base.
 
 Using this pattern is not necessary if your enums are purely descriptive. However, bringing the heavy artillery is definitively worth the extra cost. Breaking the coupling between enum's values and the business logic offers flexibility while the compiler provides an instantaneous feedback about potential oversight and edge cases.
