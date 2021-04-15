@@ -29,7 +29,7 @@ Since this was a project aimed at improving the current experience without a lot
 
 # Where To Start?
 
-I started by going through the existing site categorizing and mapping content, images, and other stylistic details for each page. Pretty early on it became apparent that there was a lot of duplicate content and that I could trim down the number of pages. Once I determined what pages I would use I ended up creating my Next.js app with TinaCMS using their [guide](https://tina.io/guides/nextjs/github/initial-setup/) to get a basic framework setup.
+I started by going through the existing site categorizing and mapping content, images, and other stylistic details for each page. Pretty early on it became apparent that there was a lot of duplicate content and that I could trim down the number of pages. Once I determined which pages I would use I ended up creating my Next.js app with TinaCMS using their [guide](https://tina.io/guides/nextjs/github/initial-setup/) to get a basic framework setup.
 
 TinaCMS allows for real-time editing of your site and gives you the ability to use Markdown or JSON to drive the static content on your pages. The static content for your site is then stored in Github and when you make a change it is just a commit to your repo. It allows for users to create branches from within the browser so changes can go to a branch and be reviewed before being published.
 
@@ -66,7 +66,7 @@ This allows you to use `file.data` in your component along with the TinaCMS form
 
 # Automating Sermon Videos
 
-On the Wordpress site the church had to manually update the sermon video page every Monday with the latest sermon recording. I determined that this should be an automated task; one less thing for them to worry about. I accomplished this automation by using the serverless function capabilities that come with using Next.js and hosting it using Vercel. I wrote a Node.js function that calls the YouTube API to retrieve the five latest uploads. To save on API call quotas, I stored the response data in a database since new sermons are uploaded on Sundays and only change weekly. I figured there was no need to call the YouTube API anytime someone visited the site.
+On the Wordpress site, the church had to manually update the sermon video page every Monday with the latest sermon recording. I determined that this should be an automated task; one less thing for them to worry about. I accomplished this automation by using the serverless function capabilities that come with using Next.js and hosting it using Vercel. I wrote a Node.js function that calls the YouTube API to retrieve the five latest uploads. To save on API call quotas, I stored the response data in a database. Since new sermons are uploaded on Sundays and only change weekly, I figured there was no need to call the YouTube API anytime someone visited the site.
 
 I set up a cron job using [EasyCron](https://www.easycron.com/) that runs on Sunday mornings when the sermons begin, and calls the YouTube API that I created to fetch the latest videos. Since they have a live stream, I display the live stream on their watch page and give an snackbar alert that a they can "Watch Live" so members do not have to go to YouTube to view the sermons and can watch on the website directly.
 
@@ -74,7 +74,7 @@ I originally went with [Github Actions](https://docs.github.com/en/actions/refer
 
 # Database
 
-I wanted to learn about Cassandra and document style databases so I signed up for the new [DataStax Astra Serveless](https://www.datastax.com/blog/2021/03/astra-serverless-heres-what-you-should-know) database. This is probably overkill and could have gone with something simpler, but I wanted to learn from this experience so I chose something unfamiliar and interesting. With this approach when someone visits the website it makes a call to the database and retrieves the video data from there instead of YouTube API.
+I wanted to learn about Cassandra and document style databases so I signed up for the new [DataStax Astra Serveless](https://www.datastax.com/blog/2021/03/astra-serverless-heres-what-you-should-know) database. This is probably overkill and I could have gone with something simpler, but I wanted to learn from this experience so I chose something unfamiliar and interesting. With this approach, when someone visits the website it makes a call to the database and retrieves the video data from there instead of YouTube API.
 
 ## Node.js API
 
@@ -98,13 +98,13 @@ export default async (_req, res) => {
 };
 ```
 
-With the new serverless database that they offer it allows me to have a database for the Church's website and costs nothing. DataStax gives you $25 monthly credit and since the storage and read/writes are so low right now that the monthly credit covers it.
+With the new serverless database that they offer it allows me to have a database for the church's website and costs nothing. DataStax gives you $25 monthly credit and since the storage and read/writes are so low right now that the monthly credit covers it.
 
 # Contact Us
 
 On the old site, their "Contact Us" form was no longer working, and they wanted to have that feature functioning. I created a simple form and added a Google Captcha to it in an attempt to cut down on spam. I was unsure how to send the form responses. If this had been hosted on a traditional hosting platform, I would have just used PHP to send the responses.
 
-Since I am using serverless functions and Node.js I had to take a different approach. I signed up for an account on SendGrid because they have a very generous free tier and I then used [nodemailer](https://nodemailer.com/about/) to send the emails. Once I signed up on SendGrid and got the SMTP settings it was pretty straightforward. The contact form calls the API I created and then that creates the email based on the template I defined and sends it to the Church's inbox.
+Since I am using serverless functions and Node.js I had to take a different approach. I signed up for an account on SendGrid because they have a very generous free tier and I then used [nodemailer](https://nodemailer.com/about/) to send the emails. Once I signed up on SendGrid and got the SMTP settings it was pretty straightforward. The contact form calls the API I created and then that creates the email based on the template I defined and sends it to the church's inbox.
 
 ## Mail API
 
