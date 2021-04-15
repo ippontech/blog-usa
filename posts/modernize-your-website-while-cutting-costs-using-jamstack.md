@@ -62,7 +62,7 @@ export const getStaticProps = async ({ preview, previewData }) => {
 
 This allows you to use `file.data` in your component along with the TinaCMS form React hook to link your static content with the TinaCMS editor which looks like the image below.
 
-![TinaCMS on website](https://raw.githubusercontent.com/blandfried/blog-usa/master/images/2021/04/tinacms.png)
+![TinaCMS on website](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/04/tinacms.png)
 
 # Automating Sermon Videos
 
@@ -152,8 +152,8 @@ Check out some before and after screenshots below of the home page.
 
 ## Before
 
-![Before of the Church Website](https://raw.githubusercontent.com/blandfried/blog-usa/master/images/2021/04/wp-to-jamstack-before.png)
+![Before of the Church Website](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/04/wp-to-jamstack-before.png)
 
 ## After
 
-![Before of the Church Website](https://raw.githubusercontent.com/blandfried/blog-usa/master/images/2021/04/wp-to-jamstack-after.png)
+![Before of the Church Website](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/04/wp-to-jamstack-after.png)
