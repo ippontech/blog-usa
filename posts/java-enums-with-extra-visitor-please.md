@@ -17,7 +17,7 @@ Is there a way to reduce the impact of enums' impact on the code base?
 
 # The switch-case approach
 
-Consider the `AssetClass` enum which represents the different group of tradable commodities:
+Consider the `AssetClass` enum which represents distinct groups of tradable commodities:
 
 ```java
 public enum AssetClass {
