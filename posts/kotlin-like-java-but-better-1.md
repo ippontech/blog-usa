@@ -151,9 +151,28 @@ code.
 
 # How to Get Started
 If you're ready to get started with Kotlin, there are tons of great resources 
-to learn Kotlin from a Java background.
-- [Kotlin Koans]()
-- b
-- c
-- d
+to begin learning Kotlin.
+- [Getting Started With Kotlin](https://kotlinlang.org/docs/getting-started.html)
+- [Kotlin Koans](https://play.kotlinlang.org/koans/overview) - A set of 
+exercises to introduce someone familiar with Java to Kotlin syntax and
+patterns  
+- [Spring Boot Kotlin Tutorial](https://spring.io/guides/tutorials/spring-boot-kotlin/) - Get started creating a Spring Boot project completely in Kotlin.
+
+JetBrains describes Kotlin as "a modern but already mature programming
+language aimed to make developers happier", and I completely agree with this
+assessment. As someone with a Java background, Kotlin provides me with
+a very similar coding experience to Java, but with changes that consistently
+improve the development experience and allow me to focus on solving problems.
+
+Spend an hour or two going through the Kotlin Koans, and I guarentee you will 
+also begin noticing these small differences. Once you're ready to begin working
+with Kotlin, you can write projects from scratch in Kotlin, or utilize Kotlin's
+deep interoperatabiliy with Java. As long as you're working with Java 6 or 
+higher, it's as simple as adding the Kotlin complier to your project and 
+beginning to write Kotlin classes. 
+
+Check out part two of this blog coming soon to walk through converting an 
+existing Spring Boot application written in Java to Kotlin!
+
+
 
