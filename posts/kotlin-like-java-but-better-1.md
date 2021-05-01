@@ -10,16 +10,16 @@ title: "Kotlin: Like Java, But Better (Part 1)"
 image: #TODO
 ---
 
-Kotlin has quickly risen to popularity as an alternative language to Java. In 
-this blog series, we will first get a Kotlin crash-course examining some of the
-design between Kotlin and Java, and then add some Kotlin code to an existing
-Java Spring Boot microservice in part two.
+Kotlin has quickly risen to popularity as an alternative language to Java.
+This blog series will first provide a crash-course in Kotlin examining some of 
+the design differences between Kotlin and Java, and then add some Kotlin code 
+to an existing Java Spring Boot microservice in part two.
 
 # Kotlin 101
 <!-- TODO ADD IMAGE HERE. Maybe school blackboard with 'kotlin 101' on it or something-->
 Kotlin was introduced by JetBrains in 2011 as a new language for the JVM. It
 was designed to be fully interoperable with Java, and in several cases, has 
-replaced it. In 2019, Google announced that Kotlin was now the offical 
+replaced it. In 2019, Google announced that Kotlin was now the official 
 language for Android development. Tools such as Spring Boot and 
 [JHipster](https://www.jhipster.tech/) allow you to start from scratch with
 Kotlin, but you can also seamlessly add Kotlin to an existing Java codebase!
@@ -28,17 +28,17 @@ Kotlin, but you can also seamlessly add Kotlin to an existing Java codebase!
 ## Variable Declaration
 There are two keywords to declare a variable: `var` and `val`. 
 
-`var` is used 
-to declare a variable that behaves just as you would expect a normal Java 
-variable to act. The type of the variable is declared after the variable name,
-and declaring the type is optional if the variable is instantiated. 
+`var` is used to declare a variable that behaves just as you would expect an
+ordinary Java variable to act. The type of the variable is declared after the
+variable name, and declaring the type is optional if the variable is 
+instantiated. 
 ```
 var num = 12
 var name: String
 name = "Jane Doe"
 ```
 
-`val` is used to declare variables as read only, similar to declaring a 
+`val` is used to declare variables as read-only, similar to declaring a 
 variable final in Java. Attempting to change the reference of a val will result
 in a compilation error.
 ```
@@ -62,12 +62,13 @@ bar = Null // compilation error
 ```
 As a result of this feature, NullPointerExceptions will never be thrown in 
 pure Kotlin code unless you explicitly throw one. They won't be missed! Kotlin
-also provides some additonal syntax to help working with these new null 
-constraints easier. 
+also provides some additional syntax to enable working with these new null 
+constraints. 
 
 Inline null-checks can be used to access methods or fields of an object that
-may or may not be null. If the object is null, then expression is evaluated as
-null. If the object is not null, then the expression is evaluated as normal.
+may or may not be null. If the object is null, then the expression is 
+evaluated as null. If the object is not null, then the expression is evaluated
+as normal.
 ```
 var name: String? = null
 var length: Int? = name?.length()
@@ -79,9 +80,9 @@ length = name?.length()
 ```
 
 My favorite null safety feature is the Elvis operator `?:`. This operator has 
-earned such a phenominal name because if you tilt your head sideways, it kind 
+earned such a phenomenal name because if you tilt your head sideways, it kind 
 of looks like an emoticon of Elvis with his rock-star hair! It is the 
-null-coalescing operator availible in Kotlin, and makes working with nullable
+null-coalescing operator available in Kotlin and makes working with nullable
 variables even easier. The Elvis operator allows for you to return an 
 alternative value if a statement is null.
 ```
@@ -98,13 +99,13 @@ length = name?.length() ?: 0
 ## Data Classes
 Kotlin provides the 
 [data class](https://kotlinlang.org/docs/data-classes.html) syntax to make 
-declaring POJOs (Plain Old Java Objects) a one line affair.
+declaring POJOs (Plain Old Java Objects) a one-line affair.
 ```
 data class Person(var firstName: String, var lastName: String, var age: Int)
 ```
 The data class syntax creates a new class with a default constructor, getters 
 and setters, and commonly used methods such as equals(), toString(), 
-hashCode(), and copy(). All of these defaults can be overridden if neccessary,
+hashCode(), and copy(). All of these defaults can be overridden if necessary,
 but are completely fine for most use cases.
 
 ## Class Extensions
@@ -130,7 +131,7 @@ list.swap(0, 2)
 
 Kotlin has introduced a robust 
 [coroutine](https://kotlinlang.org/docs/coroutines-overview.html) system to 
-support asynchronous programming. Coroutines are basically lightweight virtual 
+support asynchronous programming. Coroutines are lightweight virtual 
 threads that all run on the main thread.  
 
 ```
@@ -145,7 +146,7 @@ fun main() {
 ```
 
 An in-depth look at all of what coroutines have to offer would probably turn
-this blog post into a short book, but they are one of the primary featuress 
+this blog post into a short book, but they are one of the primary features 
 that allow you to utilize more modern programming principles in your Kotlin 
 code.
 
@@ -164,15 +165,15 @@ assessment. As someone with a Java background, Kotlin provides me with
 a very similar coding experience to Java, but with changes that consistently
 improve the development experience and allow me to focus on solving problems.
 
-Spend an hour or two going through the Kotlin Koans, and I guarentee you will 
+Spend an hour or two going through the Kotlin Koans, and I guarantee you will 
 also begin noticing these small differences. Once you're ready to begin working
 with Kotlin, you can write projects from scratch in Kotlin, or utilize Kotlin's
-deep interoperatabiliy with Java. As long as you're working with Java 6 or 
-higher, it's as simple as adding the Kotlin complier to your project and 
+deep interoperability with Java. As long as you're working with Java 6 or 
+higher, it's as simple as adding the Kotlin compiler to your project and 
 beginning to write Kotlin classes. 
 
 Check out part two of this blog coming soon to walk through converting an 
-existing Spring Boot application written in Java to Kotlin!
+existing Spring Boot application from Java to Kotlin!
 
 
 
