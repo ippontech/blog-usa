@@ -16,7 +16,8 @@ the design differences between Kotlin and Java, and then add some Kotlin code
 to an existing Java Spring Boot microservice in part two.
 
 # Kotlin 101
-<!-- TODO ADD IMAGE HERE. Maybe school blackboard with 'kotlin 101' on it or something-->
+![Kotlin 101](https://github.com/davismohar/blog-usa/blob/master/images/2021/05/kotlin-like-java-but-better-2.png)
+
 Kotlin was introduced by JetBrains in 2011 as a new language for the JVM. It
 was designed to be fully interoperable with Java, and in several cases, has 
 replaced it. In 2019, Google announced that Kotlin was now the official 
