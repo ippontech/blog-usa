@@ -7,7 +7,7 @@ tags:
 - Spring Boot
 date: 2015-04-23T12:21:50.000Z
 title: "Kotlin: Like Java, But Better (Part 1)"
-image: #TODO
+image: https://github.com/davismohar/blog-usa/blob/master/images/2021/05/kotlin-like-java-but-better-1.png
 ---
 
 Kotlin has quickly risen to popularity as an alternative language to Java.
