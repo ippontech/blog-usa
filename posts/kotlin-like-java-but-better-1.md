@@ -11,9 +11,9 @@ image: https://github.com/davismohar/blog-usa/blob/master/images/2021/05/kotlin-
 ---
 
 Kotlin has quickly risen to popularity as an alternative language to Java.
-This blog series will first provide a crash-course in Kotlin examining some of 
-the design differences between Kotlin and Java, and then add some Kotlin code 
-to an existing Java Spring Boot microservice in part two.
+In this blog series, I will will first provide a crash-course in Kotlin 
+examining some of the design differences between Kotlin and Java, and then add
+some Kotlin code to an existing Java Spring Boot microservice in part two.
 
 # Kotlin 101
 ![Kotlin 101](https://github.com/davismohar/blog-usa/blob/master/images/2021/05/kotlin-like-java-but-better-2.png)
@@ -33,7 +33,7 @@ There are two keywords to declare a variable: `var` and `val`.
 ordinary Java variable to act. The type of the variable is declared after the
 variable name, and declaring the type is optional if the variable is 
 instantiated. 
-```
+```kotlin
 var num = 12
 var name: String
 name = "Jane Doe"
@@ -42,7 +42,7 @@ name = "Jane Doe"
 `val` is used to declare variables as read-only, similar to declaring a 
 variable final in Java. Attempting to change the reference of a val will result
 in a compilation error.
-```
+```kotlin
 val num = 12 
 num = 13 //compilation error
 ```
@@ -55,7 +55,7 @@ compiler will infer your statement endings.
 One of the key design decisions that the Kotlin team made was to enforce 
 [null safety](https://kotlinlang.org/docs/null-safety.html) at compile-time.
 All variables must explicitly be declared as either nullable or non-nullable. 
-```
+```kotlin
 var foo: Int? // nullable Int variable
 var bar: Int // non-nullable Int
 
@@ -70,7 +70,7 @@ Inline null-checks can be used to access methods or fields of an object that
 may or may not be null. If the object is null, then the expression is 
 evaluated as null. If the object is not null, then the expression is evaluated
 as normal.
-```
+```kotlin
 var name: String? = null
 var length: Int? = name?.length()
 // length is null
@@ -86,7 +86,7 @@ of looks like an emoticon of Elvis with his rock-star hair! It is the
 null-coalescing operator available in Kotlin and makes working with nullable
 variables even easier. The Elvis operator allows for you to return an 
 alternative value if a statement is null.
-```
+```kotlin
 var name: String? = null
 var length: Int // length is a non-nullable Int
 length = name?.length() ?: 0 
@@ -101,7 +101,7 @@ length = name?.length() ?: 0
 Kotlin provides the 
 [data class](https://kotlinlang.org/docs/data-classes.html) syntax to make 
 declaring POJOs (Plain Old Java Objects) a one-line affair.
-```
+```kotlin
 data class Person(var firstName: String, var lastName: String, var age: Int)
 ```
 The data class syntax creates a new class with a default constructor, getters 
@@ -116,7 +116,7 @@ defining new methods for that class outside of the class definition. These
 extremely useful when working with classes that are imported from a library or 
 if you want to install some new logic onto a built-in class.
 
-```
+```kotlin
 // MutableList is Kotlin's built-in version of ArrayList
 fun MutableList<Int>.swap(index1: Int, index2: Int) {
     val tmp = this[index1]
@@ -125,7 +125,7 @@ fun MutableList<Int>.swap(index1: Int, index2: Int) {
 }
 
 val list = mutableListOf(1, 2, 3)
-list.swap(0, 2)
+list.swap(0, 2) /// list is now [3, 2, 1]
 ```
 
 ## Coroutines
@@ -135,7 +135,7 @@ Kotlin has introduced a robust
 support asynchronous programming. Coroutines are lightweight virtual 
 threads that all run on the main thread.  
 
-```
+```kotlin
 fun main() {
     GlobalScope.launch { // launch a new coroutine in background and continue
         delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
@@ -150,6 +150,10 @@ An in-depth look at all of what coroutines have to offer would probably turn
 this blog post into a short book, but they are one of the primary features 
 that allow you to utilize more modern programming principles in your Kotlin 
 code.
+
+You may also notice that Kotlin has a println() method. This is another example
+of the quality of life improvements that Kotlin provides to make the syntax 
+eaiser- no more `System.out.println()`!
 
 # How to Get Started
 If you're ready to get started with Kotlin, there are tons of great resources 
