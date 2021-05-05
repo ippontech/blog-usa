@@ -11,8 +11,8 @@ image: https://github.com/davismohar/blog-usa/blob/master/images/2021/05/kotlin-
 ---
 
 Kotlin has quickly risen to popularity as an alternative language to Java.
-In this blog series, I will will first provide a crash-course in Kotlin 
-examining some of the design differences between Kotlin and Java, and then add
+In this blog series, I will first provide a crash-course in Kotlin to
+examine some of the design differences between Kotlin and Java, and then add
 some Kotlin code to an existing Java Spring Boot microservice in part two.
 
 # Kotlin 101
@@ -47,9 +47,9 @@ val num = 12
 num = 13 //compilation error
 ```
 
-You also may notice the lack of semicolons. Fear not- I haven't made a mistake!
-Semicolons are optional in Kotlin, and you shouldn't ever need them. The 
-compiler will infer your statement endings.
+You also may notice the lack of semicolons. Fear not -- I did not make a 
+mistake! Semicolons are optional in Kotlin, and you shouldn't ever need them.
+The compiler will infer your statement endings.
 
 ## Null Safety
 One of the key design decisions that the Kotlin team made was to enforce 
@@ -68,8 +68,8 @@ constraints.
 
 Inline null-checks can be used to access methods or fields of an object that
 may or may not be null. If the object is null, then the expression is 
-evaluated as null. If the object is not null, then the expression is evaluated
-as normal.
+evaluated as `null`. If the object is not null, then the expression is 
+evaluated as normal.
 ```kotlin
 var name: String? = null
 var length: Int? = name?.length()
@@ -81,10 +81,10 @@ length = name?.length()
 ```
 
 My favorite null safety feature is the Elvis operator `?:`. This operator has 
-earned such a phenomenal name because if you tilt your head sideways, it kind 
+earned such a prestigious name because if you tilt your head sideways, it kind
 of looks like an emoticon of Elvis with his rock-star hair! It is the 
 null-coalescing operator available in Kotlin and makes working with nullable
-variables even easier. The Elvis operator allows for you to return an 
+variables even eaiser. The Elvis operator allows for you to return an 
 alternative value if a statement is null.
 ```kotlin
 var name: String? = null
@@ -164,21 +164,21 @@ exercises to introduce someone familiar with Java to Kotlin syntax and
 patterns  
 - [Spring Boot Kotlin Tutorial](https://spring.io/guides/tutorials/spring-boot-kotlin/) - Get started creating a Spring Boot project completely in Kotlin.
 
-JetBrains describes Kotlin as "a modern but already mature programming
-language aimed to make developers happier", and I completely agree with this
+JetBrains describes Kotlin as, "a modern but already mature programming
+language aimed to make developers happier," and I completely agree with this
 assessment. As someone with a Java background, Kotlin provides me with
-a very similar coding experience to Java, but with changes that consistently
-improve the development experience and allow me to focus on solving problems.
+a similar coding experience to Java, but with changes that consistently
+improve the development experience and allow me to focus on problem solving
+instead.
 
 Spend an hour or two going through the Kotlin Koans, and I guarantee you will 
-also begin noticing these small differences. Once you're ready to begin working
+begin to notice these small differences. Once you're ready to begin working
 with Kotlin, you can write projects from scratch in Kotlin, or utilize Kotlin's
 deep interoperability with Java. As long as you're working with Java 6 or 
-higher, it's as simple as adding the Kotlin compiler to your project and 
+newer, it's as simple as adding the Kotlin compiler to your project and 
 beginning to write Kotlin classes. 
 
-Check out part two of this blog coming soon to walk through converting an 
-existing Spring Boot application from Java to Kotlin!
-
+Part of two of this blog will walk through converting an existing Spring Boot
+application from Java to Kotlin. Stay tuned!
 
 
