@@ -20,7 +20,7 @@ I cannot express enough gratitude to the many mentors who have taught me over th
 
 <h1>Interning with Ippon (Summer 2020) </h1>
 
-During my internship with Ippon, I had my first introduction to a number of software engineering concepts and tooling, which, to the average software engineer, are run-of-the-mill household names. I learned about and gained experience with agile development, version control, layered architectures, and continuous integration/continuous development processes. If that wasn’t enough, I was also introduced to numerous technologies such as AWS cloud resources, React, Redux, Spring Boot, PostgreSQL, and most importantly, Ippon's in-house JHipster platform.
+During my internship with Ippon, I had my first introduction to several software engineering concepts and tooling, which, to the average software engineer, are run-of-the-mill household names. I learned about and gained experience with Agile software development, version control, layered architectures, and continuous integration/continuous development (CI/CD) processes. If that wasn’t enough, I was also introduced to numerous technologies such as AWS cloud resources, React, Redux, Spring Boot, PostgreSQL, and most importantly, Ippon's in-house platform, [JHipster](https://www.jhipster.tech/).
 
 I spent the summer working alongside a team of three other interns developing an in-house application to collect results on clients’ assessments of their design, CI/CD, and testing processes, among other areas of software development workflow. While we each set out working on our own stories in our relative comfort zones (front-end versus back-end), we had all stepped into full-stack development roles and even began designing new components for the application within a few weeks.
 
