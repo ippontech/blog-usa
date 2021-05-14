@@ -17,7 +17,7 @@ When we commit ourselves to learning, we are promising to always seek self-impro
 
 In fact, it was around this time last year that I accepted an offer to intern over the summer with Ippon in the Richmond, VA office. Thrilled to return to my hometown for the summer, I also marveled at the idea of finally getting hands-on experience in the software industry with talented folks whose values aligned with mine. However, as was the case with the rest of the world, the global pandemic quickly uprooted my plans for the future. Faced with growing uncertainty about the year ahead, I decided to delay my senior year of college, and I was extremely fortunate to extend my remote internship with Ippon into a full-time student software engineer position.
 
-I cannot express enough gratitude to the many mentors who have taught me over the past nine months, especially my managers Ben Scott and Amine Ouali Alami, whose humility and leadership I can only hope to emulate one day. This blog post chronicles my nine-month deep-dive into the industry and reflects on the challenges I’ve encountered, as well as the lessons I’ve learned.
+I cannot express enough gratitude to the many mentors who have taught me over the past nine months, especially my managers [Ben Scott](https://www.linkedin.com/in/benscott-agile-coach/) and [Amine Ouali Alami](https://www.linkedin.com/in/amine-ouali/), whose humility and leadership I can only hope to emulate one day. This blog post chronicles my nine-month deep-dive into the industry and reflects on the challenges I’ve encountered, as well as the lessons I’ve learned.
 
 
 <h1>Interning with Ippon (Summer 2020) </h1>
