@@ -29,7 +29,7 @@ As you might expect, there are many different tools out there to enable Infrastr
 
 ##Automation
 
-Now that we can create scripts to build infrastructure, we can automate the complete setup of the environment. That came in handy when we needed to build the production environment similarly to the staging environment. The scripts can even be triggered by a pipeline just like application development code. But who builds the pipeline infrastructure? You need a bootstrap script or two to get the environment working that will build your environment. ;)
+Now that we can create scripts to build infrastructure, we can automate the complete setup of the environment. That came in handy when we needed to build the production environment similarly to the staging environment. The scripts can even be triggered by a pipeline just like application development code. Who builds the pipeline infrastructure? You need a bootstrap script or two to get the environment working that will build your environment 😉
 
 ##Drift
 
