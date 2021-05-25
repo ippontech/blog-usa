@@ -21,7 +21,7 @@ From an application perspective, code needed to be changed to interface with the
 
 ##Freight Train
 
-The challenge here definitely hit me like a freight train. Challenge #1 was to basically set up the network. My first thought was, “What? The network was always already there when I did my work. _We_ have to set this up?” I am being a bit facetious, but I am definitely used to worrying much more about my application architecture than network architecture. Luckily, I was on a great team with talented engineers ready to build the network.
+The challenge here definitely hit me like a freight train. The first one was to set up the network. My first thought was, “What? The network was always already there when I did my work. _We_ have to set this up?” I am being a bit facetious, but I am used to worrying much more about my application architecture than network architecture. Luckily, I was on an effective team with talented engineers ready to build the network.
 
 ##Tools
 
