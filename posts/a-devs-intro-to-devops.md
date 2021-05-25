@@ -39,7 +39,7 @@ It is much easier to modify production infrastructure using, for example, the AW
 
 ##Complexity
 
-A big eye-opener for me was the level of complexity involved in getting everything setup properly. If I had to name one of the biggest challenges, it would be handling all the certificates. It seemed every step of the way, we were fighting having the right certificates in the right places. For a project like this, you better have someone who knows how certificates work inside and out, or you are going to be in trouble. Of course there were plenty of other challenges related to backups, patching, pipelines, security, and more. Be prepared to spend a lot of time learning and don’t expect to become an expert overnight.
+A big revelation for me was the level of complexity involved in getting everything setup properly. If I had to name one of the biggest challenges, it would be handling all the certificates. It seemed every step of the way, we were fighting having the right certificates in the right places. For a project like this, you better have someone who knows how certificates work inside and out, or you are going to be in trouble. Of course, there were plenty of other challenges related to backups, patching, pipelines, security, and more. Be prepared to spend a lot of time learning and don’t expect to become an expert overnight.
 
 ##How Does It End?
 
