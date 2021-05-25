@@ -11,11 +11,11 @@ date: 2015-04-23T12:21:50.000Z
 title: "A Dev's Intro to DevOps"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/05/a-devs-intro-to-devops.png
 ---
-I have recently been sucked into the field known as "DevOps" and I thought it would be fun to share my story. Having spent most of my career in application development, I am curious to see if others have had a similar experience to mine.
+I have recently been sucked into the field known as [DevOps](https://en.wikipedia.org/wiki/DevOps) and I thought it would be fun to share my story. Having spent most of my career in application development, I am curious to see if others have had a similar experience to mine.
 
 ##The Project
 
-The project started with a web application that was running on OKD (open source OpenShift) with many open-source libraries. The objective was to deploy this application in the AWS GovCloud with FedRAMP High compliance. This required _a lot_ of work. We had to move to several commercial products versus open source (i.e. OpenShift) and move to AWS native services wherever possible.
+The project started with a web application that was running on [OKD](https://www.okd.io/) (open source [OpenShift](https://www.openshift.com/)) with many open-source libraries. The objective was to deploy this application in the [AWS GovCloud](https://aws.amazon.com/govcloud-us/?whats-new-ess.sort-by=item.additionalFields.postDateTime&whats-new-ess.sort-order=desc) with FedRAMP High compliance. This required _a lot_ of work. We had to move to several commercial products versus open source (i.e. OpenShift) and move to AWS native services wherever possible.
 
 From an application perspective, code needed to be changed to interface with the new services. From a platform perspective, the whole environment needed to be built out from scratch in the GovCloud.
 
