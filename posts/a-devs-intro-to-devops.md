@@ -25,7 +25,7 @@ The challenge here definitely hit me like a freight train. The first one was to 
 
 ##Tools
 
-As you might expect, there are so many different tools out there to enable Infrastructure as Code (IaC). I relied on my teammates to make selections based on their experience. The primary tools we used were Terraform, Packer, and Ansible. I have written applications in a variety of languages so learning these “languages” should be no sweat, right? Well, these tools/languages reminded me more of elaborate configuration files than a programming language. I hope you like YAML, because it is _everywhere_ in IaC.
+As you might expect, there are many different tools out there to enable Infrastructure as Code (IaC). I relied on my teammates to make selections based on their experience. The primary tools we used were [Terraform](https://www.terraform.io/), [Packer](https://www.packer.io/), and [Ansible](https://www.ansible.com/). I have written applications in a variety of languages so learning these “languages” should be no sweat, right? Well, these tools and languages reminded me more of elaborate configuration files than a programming language. I hope you like [YAML](https://en.wikipedia.org/wiki/YAML), because it is _everywhere_ in IaC.
 
 ##Automation
 
