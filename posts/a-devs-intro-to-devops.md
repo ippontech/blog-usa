@@ -43,4 +43,4 @@ A big revelation for me was the level of complexity involved in getting everythi
 
 ##How Does It End?
 
-Truthfully, the project is still going. But we have conquered most of the major hurdles. Not to date myself, but I remember when DevOps was more like uploading a WAR file to WebLogic and watching it go. The field has come a very long way since then and it requires a whole new set of skills and expertise to master.
+Truthfully, the project is still going. But we have conquered most of the major hurdles. Not to date myself, but I remember when DevOps was more like uploading a WAR file to WebLogic and watching it go. The field has come a long way since then and it requires a whole new set of skills and expertise to master.
