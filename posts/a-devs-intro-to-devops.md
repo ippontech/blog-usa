@@ -15,7 +15,7 @@ I have recently been sucked into the field known as "DevOps" and I thought it wo
 
 ##The Project
 
-The project started with a web application that was running on OKD (open source OpenShift) with tons of open source libraries. The objective was to deploy this application in the AWS GovCloud with FedRAMP High compliance. Just in case you are wondering, this required _a lot_ of work. We had to move to several commercial products versus open source (i.e. OpenShift) and move to AWS native services wherever possible.
+The project started with a web application that was running on OKD (open source OpenShift) with many open-source libraries. The objective was to deploy this application in the AWS GovCloud with FedRAMP High compliance. This required _a lot_ of work. We had to move to several commercial products versus open source (i.e. OpenShift) and move to AWS native services wherever possible.
 
 From an application perspective, code needed to be changed to interface with the new services. From a platform perspective, the whole environment needed to be built out from scratch in the GovCloud.
 
