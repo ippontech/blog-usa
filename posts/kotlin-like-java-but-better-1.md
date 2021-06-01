@@ -7,7 +7,7 @@ tags:
 - Spring Boot
 date: 2015-04-23T12:21:50.000Z
 title: "Kotlin: Like Java, But Better (Part 1)"
-image: https://github.com/davismohar/blog-usa/blob/master/images/2021/05/kotlin-like-java-but-better-1.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/05/kotlin-like-java-but-better-1.png
 ---
 
 Kotlin has quickly risen to popularity as an alternative language to Java.
@@ -16,7 +16,7 @@ examine some of the design differences between Kotlin and Java, and then add
 some Kotlin code to an existing Java Spring Boot microservice in part two.
 
 # Kotlin 101
-![Kotlin 101](https://github.com/davismohar/blog-usa/blob/master/images/2021/05/kotlin-like-java-but-better-2.png)
+![Kotlin 101](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/05/kotlin-like-java-but-better-2.png)
 
 Kotlin was introduced by JetBrains in 2011 as a new language for the JVM. It
 was designed to be fully interoperable with Java, and in several cases, has 
