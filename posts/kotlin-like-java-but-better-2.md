@@ -74,9 +74,7 @@ Now that we have explored the general behavior of the application, let's take a 
 There is also a test suite included with this repo that we will be using to ensure that the behavior and functionality of the application does not change as we convert our application.
 
 ## Person.Java
-```Kotlin
-package com.example.kotlinspringbootdemo.model;
-
+```Java
 public class Person {
     private String firstName;
     private String lastName;
@@ -115,8 +113,48 @@ public class Person {
     public String toString() {
         return this.firstName + " " + this.lastName;
     }
-
 }
 ```
-This class represents the Person model that our service works with. This is a great use case for Kotlin's [Data Classes](https://kotlinlang.org/docs/data-classes.html), as there are lots of boilerplate getter and setter functions. 
+This class represents the Person model that our service works with. This is a fairly basic Plain Old Java Object (POJO) that includes several of boilerplate getter and setter functions. As we are rewriting this class in Kotlin, this is a great opprotunity to utilize [Data Classes](https://kotlinlang.org/docs/data-classes.html), which already have default getter and setter functions, as well as defaults for other common functions such as `toString()`. We can delete the old Person.Java file, and create a new Person.kt Kotlin file that looks like this:
+```Kotlin
+/**
+ * Class constructor declaration, which declares the properties for the class, 
+ * as well as getters and setters for these properties.
+ **/
+data class Person(
+    var firstName: String,
+    var lastName: String,
+    var age: Int
+) {
+    /**
+     * Override of the default toString() function to match the functionality
+     * of the Java class. Notice the 
+     **/
+    override fun toString(): String {
+        return "$firstName $lastName"
+    }
+}
+```
+We can verify that our applicaiton functionality hasn't changed by running our test suite with a `mvn test`. Once we're sure that our code is still working as expected, we can move on to converting our next class! 
 
+## PersonService.Java
+```Java
+@Service
+public class PersonService {
+    private ArrayList<Person> people;
+
+    public JavaPersonService() {
+        people = new ArrayList<>();
+    }
+
+    public ArrayList<Person> getPeople() {
+        return this.people;
+    }
+
+    public Person addPerson(Person person) {
+        this.people.add(person);
+        return person;
+    }
+}
+```
+The PersonService handles the logic for maintaining our Person list. 
