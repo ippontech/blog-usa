@@ -87,12 +87,14 @@ public class Person {
     private String lastName;
     private int age;
 
-    public Person(String firstName, String lastName, int age) {
+    public Person(
+            @JsonProperty("firstName") String firstName,
+            @JsonProperty("lastName") String lastName,
+            @JsonProperty("age") int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
     }
-
     public String getFirstName() {
         return this.firstName;
     }
@@ -122,7 +124,7 @@ public class Person {
     }
 }
 ```
-This class represents the Person model that our service works with. This is a fairly basic Plain Old Java Object (POJO) that includes several boilerplate getter and setter functions. As we are rewriting this class in Kotlin, this is a great opportunity to utilize [Data Classes](https://kotlinlang.org/docs/data-classes.html), which already have default getter and setter functions, as well as defaults for other common functions such as `toString()`. We can delete the old Person.Java file, and create a new Person.kt Kotlin file that looks like this:
+This class represents the Person model that our service works with. This is a fairly basic Plain Old Java Object (POJO) that includes several boilerplate getter and setter functions, as well as `@JsonProperty` annotations to assist in JSON Serialization. As we are rewriting this class in Kotlin, this is a great opportunity to utilize [Data Classes](https://kotlinlang.org/docs/data-classes.html), which already have default getter and setter functions, as well as defaults for other common functions such as `toString()`. We can delete the old Person.Java file, and create a new Person.kt Kotlin file that looks like this:
 ### Person.kt
 ```Kotlin
 /**
@@ -130,9 +132,9 @@ This class represents the Person model that our service works with. This is a fa
  * as well as getters and setters for these properties.
  **/
 data class Person(
-    var firstName: String,
-    var lastName: String,
-    var age: Int
+    @JsonProperty("firstName") var firstName : String,
+    @JsonProperty("lastName") var lastName: String,
+    @JsonProperty("age") var age: Int
 ) {
     /**
      * Override of the default toString() function to match the functionality
