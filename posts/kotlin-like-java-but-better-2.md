@@ -13,14 +13,14 @@ image: https://github.com/davismohar/blog-usa/blob/master/images/2021/05/kotlin-
 If you haven't already read part one of this blog series, then check out '[Kotlin: Like Java, But Better Part 1](https://blog.ippon.tech/kotlin-like-java-but-better-part-1/)' to learn about Kotlin's background and features!
 
 # Introduction
-One of Kotlin's greatest strengths is the full interoperability with Java. This enables developers to write Kotlin code in existing Java projects, which makes it much easier to get started with Kotlin. In this blog post, we will put this interoperability to the test by converting an existing Java Spring Boot microservice into Kotlin!
+One of Kotlin's greatest strengths is the full interoperability with Java. This enables developers to write Kotlin code in existing Java projects, which makes it much easier to get started with Kotlin. In this blog post, we will put this interoperability to the test by converting an existing Java Spring Boot microservice into Kotlin.
 
 If you're following along at home, you can clone the [source code from github](https://github.com/davismohar/kotlin-spring-boot-demo). The 'main' branch has the starting Java code, and the 'kotlin' branch contains the final app that has been converted to Kotlin. 
 
 It is highly recommend to use [IntelliJ IDEA](https://www.jetbrains.com/idea/) as your IDE when working with Kotlin files. 
 
 # Our Microservice
-First, lets take a tour of the Spring application we will be working with! This is a very basic app that has a few REST endpoints that allow us to manipulate a list of people. The endpoints are:
+First, lets take a tour of the Spring application we will be working with. This is a basic app that has a few REST endpoints that allow us to manipulate a list of people. The endpoints are:
 - `/api/ping`
   - Basic health check endpoint. Can be used to verify the application is up.
 - `/api/people/add`
@@ -30,13 +30,13 @@ First, lets take a tour of the Spring application we will be working with! This 
   - A `GET` request to this endpoint will return the current list of people.
 
 ### /api/ping
-Start up the app and test these endpoints out! First, we can hit the `/ping` endpoint to double check that our service is running and accepting connections. We expect a simple `pong` response from this request.
+Start up the app and test these endpoints out. First, we can hit the `/ping` endpoint to double check that our service is running and accepting connections. We expect a simple `pong` response from this request.
 ```
 curl --request GET --url http://localhost:8080/api/ping
 ```
 
 ### /api/people/add
-We can then add a new person to the service using the `/people/add` endpoint. Feel free to edit this command to add several people! We expect the first and last name of the person we added to be returned.
+We can then add a new person to the service using the `/people/add` endpoint. Feel free to edit this command to add several people. We expect the first and last name of the person we added to be returned.
 ```
 curl --request POST \
   --url http://localhost:8080/api/people/add \
@@ -122,7 +122,7 @@ public class Person {
     }
 }
 ```
-This class represents the Person model that our service works with. This is a fairly basic Plain Old Java Object (POJO) that includes several of boilerplate getter and setter functions. As we are rewriting this class in Kotlin, this is a great opportunity to utilize [Data Classes](https://kotlinlang.org/docs/data-classes.html), which already have default getter and setter functions, as well as defaults for other common functions such as `toString()`. We can delete the old Person.Java file, and create a new Person.kt Kotlin file that looks like this:
+This class represents the Person model that our service works with. This is a fairly basic Plain Old Java Object (POJO) that includes several boilerplate getter and setter functions. As we are rewriting this class in Kotlin, this is a great opportunity to utilize [Data Classes](https://kotlinlang.org/docs/data-classes.html), which already have default getter and setter functions, as well as defaults for other common functions such as `toString()`. We can delete the old Person.Java file, and create a new Person.kt Kotlin file that looks like this:
 ### Person.kt
 ```Kotlin
 /**
@@ -136,14 +136,15 @@ data class Person(
 ) {
     /**
      * Override of the default toString() function to match the functionality
-     * of the Java class. Notice the use of string templates!
+     * of the Java class. Notice the use of string templates to dynamically 
+     * insert the variables into the string
      **/
     override fun toString(): String {
         return "$firstName $lastName"
     }
 }
 ```
-We can verify that our application functionality hasn't changed by running our test suite with a `mvn test`. Once we're sure that our code is still working as expected, we can move on to converting our next class! 
+We can verify that our application functionality hasn't changed by running our test suite with a `mvn test`. Once we're sure that our code is still working as expected, we can move on to converting our next class. 
 
 ## The `PersonService` Class
 ### PersonService.java
@@ -184,7 +185,7 @@ class PersonService {
 }
 ```
 
-Once again, we can run a `mvn test` to verify that our functionality hasn't changed. Let's move on to our third and final class to convert!
+Once again, we can run a `mvn test` to verify that our functionality hasn't changed. Let's move on to our third and final class to convert.
 
 ## The `PersonController` class
 ### PersonController.java
@@ -247,7 +248,7 @@ class PersonController {
 We can run our tests one last time to ensure that our app still works as expected, and then we can sit back and admire our work!
 
 # Wrap up
-By converting our app from Java to Kotlin, we have been able to see some of the features Kotlin that kotlin offers, such as: Data Classes, Java interoperability, and Spring compatibility. We were also able to make the code in our app easier to read by reducing boilerplate code while maintaining a very similar structure. 
+By converting our app from Java to Kotlin, we have been able to see some of the features that Kotlin offers, such as: Data Classes, Java interoperability, and Spring compatibility. We were also able to make the code in our app easier to read by reducing boilerplate code while maintaining a similar structure.
 
 Want to learn more about Kotlin? Check out these resources:
 - [Getting Started With Kotlin](https://kotlinlang.org/docs/getting-started.html)
