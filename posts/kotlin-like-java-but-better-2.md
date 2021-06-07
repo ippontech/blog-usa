@@ -209,15 +209,11 @@ public class PersonController {
         return new ResponseEntity<>(personService.getPeople(), HttpStatus.OK);
     }
 
-    @PostMapping("/people/add")
-    public ResponseEntity<String> addPerson(
-            @RequestBody Person person
-    ) {
-        try {
-            return new ResponseEntity<>(personService.addPerson(person).toString(), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Not a valid person object", HttpStatus.BAD_REQUEST);
-        }
+     @PostMapping("/people/add")
+    fun addPerson(
+        @RequestBody person: Person
+    ): ResponseEntity<String> {
+        return ResponseEntity(personService.addPerson(person).toString(), HttpStatus.OK)
     }
 }
 ```
