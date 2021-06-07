@@ -13,11 +13,11 @@ image: https://github.com/davismohar/blog-usa/blob/master/images/2021/05/kotlin-
 If you haven't already read part one of this blog series, then check out '[Kotlin: Like Java, But Better Part 1](https://blog.ippon.tech/kotlin-like-java-but-better-part-1/)' to learn about Kotlin's background and features!
 
 # Introduction
-One of Kotlin's greatest strengths is the full interoperability with Java. This enables developers to write Kotlin code in existing Java projects, which makes it much easier to get started with Kotlin. In this blog post, we will put this interoperability to the test by converting an existing Java Spring Boot microservice into Kotlin.
+One of Kotlin's greatest strengths is the full interoperability with Java. This enables developers to write Kotlin code in existing Java projects, which makes it much easier to get started with Kotlin. In this blog post, we will put this interoperability to the test by converting an existing Java Spring Boot microservice into Kotlin. We will assume the reader's familiarity with Java and Spring Boot for this exercise. 
 
 If you're following along at home, you can clone the [source code from github](https://github.com/davismohar/kotlin-spring-boot-demo). The 'main' branch has the starting Java code, and the 'kotlin' branch contains the final app that has been converted to Kotlin. 
 
-It is highly recommend to use [IntelliJ IDEA](https://www.jetbrains.com/idea/) as your IDE when working with Kotlin files. 
+It is highly recommended to use [IntelliJ IDEA](https://www.jetbrains.com/idea/) as your IDE when working with Kotlin files. 
 
 # Our Microservice
 First, lets take a tour of the Spring application we will be working with. This is a basic app that has a few REST endpoints that allow us to manipulate a list of people. The endpoints are:
@@ -30,13 +30,13 @@ First, lets take a tour of the Spring application we will be working with. This 
   - A `GET` request to this endpoint will return the current list of people.
 
 ### /api/ping
-Start up the app and test these endpoints out. First, we can hit the `/ping` endpoint to double check that our service is running and accepting connections. We expect a simple `pong` response from this request.
+Start up the app in IntelliJ (or with `mvn spring-boot:run`) and test these endpoints out. First, we can hit the `/ping` endpoint to double check that our service is running and accepting connections. We expect a simple `pong` response from this request.
 ```
 curl --request GET --url http://localhost:8080/api/ping
 ```
 
 ### /api/people/add
-We can then add a new person to the service using the `/people/add` endpoint. Feel free to edit this command to add several people. We expect the first and last name of the person we added to be returned.
+We can then add a new person to the service using the `/people/add` endpoint. You can run this command several times to add multiple people to our service. We expect the first and last name of the person we added to be returned.
 ```
 curl --request POST \
   --url http://localhost:8080/api/people/add \
