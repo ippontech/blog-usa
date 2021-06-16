@@ -8,7 +8,7 @@ title: "A Beginner’s Guide to InfluxDB - A Time-Series Database"
 image: 
 ---
 
-A time series database (TSDB) is specifically made for data that can be evaluated as a "time-series," which includes sensor outputs, market trends, CPU utilization, and application performance metrics. Most popular types of databases (both SQL and NoSQL) are *not* optimized for handling large-scale scans, or summarization or aggregation of time-series data.Time-series databases have built-in functionality to work with aggregation, down-sampling, data lifecycle management, summarization, etc. Let’s look at one of the popular time-series databases, InfluxDB. InfluxDB uses line protocol for sending and storing data.
+A time series database (TSDB) is specifically made for data that can be evaluated as a "time-series," which includes sensor outputs, market trends, CPU utilization, and application performance metrics. Most popular types of databases (both SQL and NoSQL) are *not* optimized for handling large-scale scans, or summarization or aggregation of time-series data.Time-series databases have built-in functionality to work with aggregation, down-sampling, data lifecycle management and summarization. Let’s look at one of the popular time-series databases, [InfluxDB](https://www.influxdata.com/products/influxdb/). InfluxDB uses the [line protocol](https://docs.influxdata.com/influxdb/cloud/reference/syntax/line-protocol/) for sending and storing data.
 
 # Line Protocol
 The line protocol is the text-based format that uses the syntax below to write points to InfluxDB.
@@ -19,13 +19,15 @@ The above syntax is used to insert a single point to an InfluxDB database. Since
 
 The first component, **Measurement** for an InfluxDB, is similar to a Table for a SQL database. Measurement holds all the tags, fields and time values. It makes sense to name the measurement such that it describes the data contained in it.
 
-The two components **tag set** and **field set** in the line protocol are sets, meaning a key-value pair. **Tag Key** and **Tag Value** are both stored in InfluxDB as strings. In contrast, only **Field Key** can be a string but the **Field Value** can contain strings, integers, floats and booleans too.  The field value is the actual data that we want to save to a database and it is always accompanied by a timestamp, which makes sense since we are inserting a record to a time-series database. As you have guessed by now, the field value, which is the actual data or the field set in general, as well as a timestamp, are essential components without which we can not save a point to the database. Although tag set is an optional component, it is a good practice to use, since it is indexed and would be useful in faster querying of data, as opposed to the field set, which is *not* indexed.
+The two components **tag set** and **field set** in the line protocol are sets, meaning a key-value pair. **Tag Key** and **Tag Value** are both stored in InfluxDB as strings. In contrast, only **Field Key** can be a string but the **Field Value** can contain strings, integers, floats and Booleans too.  The field value is the actual data that we want to save to a database and it is always accompanied by a timestamp, which makes sense since we are inserting a record to a time-series database. 
 
-The last, and likely most important component of the line protocol is **time**, which is a **timestamp** in the RFC3339 UTC format. The timestamp precision can be in seconds, milliseconds, microseconds or nanoseconds. 
+As you have guessed by now, the field value, which is the actual data or the field set in general, as well as a timestamp, are essential components without which we can not save a point to the database. Although tag set is an optional component, it is a good practice to use, since it is indexed and would be useful in faster querying of data, as opposed to the field set, which is *not* indexed.
+
+The last, and most critical component of the line protocol is **time**, which is a **timestamp** in the [RFC3339 UTC format](https://datatracker.ietf.org/doc/html/rfc3339). The timestamp precision can be in seconds, milliseconds, microseconds or nanoseconds. 
 
 
 # Writing Data to InfluxDB
-Data can be written to InfluxDB using a Command Line Interface(CLI) using InfluxDB API or client libraries. A simple curl(command line tool) can be used to create and write to a database. InfluxDB provides client libraries for most popular languages like Java, PHP, Python, C++, Go etc. I chose to used Python influxdb-client. Below is an example of how to write the data using it!
+Data can be written to InfluxDB using a command line interface(CLI) using InfluxDB API or client libraries. A basic CLI tool like [curl](https://curl.se/) can be used to create and write to a database. InfluxDB provides client libraries for most popular languages like Java, PHP, Python, C++ and Go. I chose to use the [Python influxdb-client](https://github.com/influxdata/influxdb-client-python). Below is an example of how to write the data using it.
 
  * Start with importing the required modules in your program
 
@@ -106,4 +108,4 @@ For more information on Influx query language, please refer to its [documentatio
 # Grafana with InfluxDB
 Since InfluxDB is a time-series database, wouldn’t it be cool to actually be able to see the data like an actual graph? Grafana can be used with InfluxDB for this exact purpose! You can follow the integration of Grafana with the InfluxDB [here](https://docs.influxdata.com/influxdb/v1.8/tools/grafana/). Pretty dashboards can be created using Grafana that actually show how your data changes over time.
 
-There is a lot more you can do with time-series data, such as checking metrics, tracking errors, keeping up with market trends, and much, much more! Grafana integration provides visual data for analysis. In addition, there are more ways you can use and query InfluxDB to make it work for your use case. I hope this post has provided an easy start to using InfluxDB!
+There is a lot more you can do with time-series data, such as checking metrics, tracking errors, keeping up with market trends, and much, much more! Grafana integration provides visual data for analysis. In addition, there are more ways you can use and query InfluxDB to make it work for your use case. I hope this post has provided an easy start to using InfluxDB.
