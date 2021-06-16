@@ -7,7 +7,7 @@ tags:
 - Spring Boot
 date: 2015-05-17T12:21:50.000Z
 title: "Kotlin: Like Java, But Better (Part 2)"
-image: https://github.com/davismohar/blog-usa/blob/master/images/2021/05/kotlin-like-java-but-better-1.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/05/kotlin-like-java-but-better-1.png
 ---
 
 If you haven't already read part one of this blog series, then check out '[Kotlin: Like Java, But Better Part 1](https://blog.ippon.tech/kotlin-like-java-but-better-part-1/)' to learn about Kotlin's background and features!
