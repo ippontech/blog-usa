@@ -80,6 +80,6 @@ Until next time, happy QR scanning and good luck!
 
 ### References
 
-*Zxing Project: https://github.com/zxing/zxing
-*ZXing JS library: https://github.com/zxing-js/library
-*React Skylight: http://marcio.github.io/react-skylight/
+* Zxing Project: https://github.com/zxing/zxing
+* ZXing JS library: https://github.com/zxing-js/library
+* React Skylight: http://marcio.github.io/react-skylight/
