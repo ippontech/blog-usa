@@ -10,13 +10,13 @@ image:
 ---
 In these interesting times we live in, QR has made quite the comeback (or is this where it took off?). Everywhere we go now in Australiaaus is splattered with QR codes from check-in, dining and information scanning. It is the way to go now to avoid extra human contact;. Iit It'sit’is an introvert's dream. 
 
-It is through this lens we ran into a small problem - an up-coming event was to require some form of QR code to allow the event participants to scan event codes to exchange information. The challenge here, we thought, was how to create an app to allow this to happen. We wanted to avoid having to create a mobile app (and thus avoid having to submit it to the gods at Aapple and Ggoogle to approve - are we pitiful mortals worthy?) and also allow the users to use their own phone (and thus avoid having to loan / share devices in these covid days). 
+It is through this lens we ran into a small problem - an up-coming event was to require some form of QR code to allow the event participants to scan event codes to exchange information. The challenge here, we thought, was how to create an app to allow this to happen. We wanted to avoid having to create a mobile app (and thus avoid having to submit it to the gods at Apple and Google to approve - are we pitiful mortals worthy?) and also allow the users to use their own phone (and thus avoid having to loan / share devices in these covid days). 
 
 Ideally creating a small web app would be perfect - easy to implement, deploy and host. But could you create a QR scanner in web form? Surely not? Turns out it is far easier than you probably expect. Thanks to some helpful open source libraries it is rather achievable.
 
 The below is going to demonstrate a small working example of a QR scanner in web form. To follow along you can use the steps. Please keep in mind that the below is a BASIC example and obviously if you want to use it in a full application it would require some more thought. Our fully working application links the QR data back via AWS Amplify as an example.
 
-##QR Scanning Demo
+## QR Scanning Demo
 
 For the purposes of this blog I will assume you have npm installed. The below steps will walk through the setting up the example and then how it works.
 
@@ -57,7 +57,8 @@ You may be prompted to allow camera access on your device. Once accepted you sho
 Now you have the above QR code or one you have found on the internet, hold it up to your laptop camera whilst you have the app up and running - Like magic it should scan and display the information in a popup on screen. You now have a working example of a QR scanner in web form!
 
 
-##How does it work?
+## How does it work?
+
 The demo is based off the [ZXing library](https://github.com/zxing-js/library) provided by Google. The libraries themselves have been setup for multiple different scanning options, allowing for video scanning, image scanning, decode scanning,  etc. We are using the decode video option in our case. When the app starts it grabs the device of an available camera and starts scanning actively. When you provide it a QR code, it then registers that it has found a result and provides the QR data.
 
 For the demo we have setup the app to work in React. React is a decent choice to use as it lets you react to all the scanning results (GET IT … REACT … I’ll leave now). The react states are super useful to control what is happening on screen. When a QR code is found by the decode mechanism we have setup a simple popup (react-skylight - a simple popup tool for react apps) to display the result back to the user.
@@ -70,7 +71,7 @@ One thing of note to pass on is that whilst the libraries do work on the major O
 >Me after realising that iOS was going to be annoying to deal with
 <br/>
 
-##Get your QR on!
+## Get your QR on!
 As you can see it’s fairly easy to start using a QR scanner with your device. The ZXing libraries are quite robust and shockingy responsive (maybe it is just me but I fully expected some crazy delay). From our own experience we have found using the above libraries to work really well in an app context, so much so that I would absolutely use them again to solve a QR scanning problem. In particular it made the implementation of a web application where QR scanning was a main function quite easy to develop.
 
 Below are the various links to references in this blog.
