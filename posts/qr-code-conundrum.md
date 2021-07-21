@@ -8,7 +8,7 @@ date: 2021-07-21T12:21:50.000Z
 title: "QR Code Conumdrum"
 image: 
 ---
-In these interesting times we live in, QR has made quite the comeback (or is this where it took off?). Everywhere we go now in Australiaaus is splattered with QR codes from check-in, dining and information scanning. It is the way to go now to avoid extra human contact;. Iit It'sit’is an introvert's dream. 
+In these interesting times we live in, QR has made quite the comeback (or is this where it took off?). Everywhere we go now in Australia is splattered with QR codes from check-in, dining and information scanning. It is the way to go now to avoid extra human contact; an introvert's dream. 
 
 It is through this lens we ran into a small problem - an up-coming event was to require some form of QR code to allow the event participants to scan event codes to exchange information. The challenge here, we thought, was how to create an app to allow this to happen. We wanted to avoid having to create a mobile app (and thus avoid having to submit it to the gods at Apple and Google to approve - are we pitiful mortals worthy?) and also allow the users to use their own phone (and thus avoid having to loan / share devices in these covid days). 
 
@@ -59,7 +59,7 @@ Now you have the above QR code or one you have found on the internet, hold it up
 
 ## How does it work?
 
-The demo is based off the [ZXing library](https://github.com/zxing-js/library) provided by Google. The libraries themselves have been setup for multiple different scanning options, allowing for video scanning, image scanning, decode scanning,  etc. We are using the decode video option in our case. When the app starts it grabs the device of an available camera and starts scanning actively. When you provide it a QR code, it then registers that it has found a result and provides the QR data.
+The demo is based off the open source [ZXing library](https://github.com/zxing-js/library) provided by Google. The libraries themselves have been setup for multiple different scanning options, allowing for video scanning, image scanning, decode scanning,  etc. We are using the decode video option in our case. When the app starts it grabs the device of an available camera and starts scanning actively. When you provide it a QR code, it then registers that it has found a result and provides the QR data.
 
 For the demo we have setup the app to work in React. React is a decent choice to use as it lets you react to all the scanning results (GET IT … REACT … I’ll leave now). The react states are super useful to control what is happening on screen. When a QR code is found by the decode mechanism we have setup a simple popup (react-skylight - a simple popup tool for react apps) to display the result back to the user.
 
@@ -80,6 +80,6 @@ Until next time, happy QR scanning and good luck!
 
 ### References
 
-* Zxing Project: https://github.com/zxing/zxing
+* ZXing Project: https://github.com/zxing/zxing
 * ZXing JS library: https://github.com/zxing-js/library
 * React Skylight: http://marcio.github.io/react-skylight/
