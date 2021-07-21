@@ -78,6 +78,8 @@ Below are the various links to references in this blog.
 
 Until next time, happy QR scanning and good luck!
 
-Zxing Project: https://github.com/zxing/zxing
+### References
 
-ZXing JS library: https://github.com/zxing-js/library
+*Zxing Project: https://github.com/zxing/zxing
+*ZXing JS library: https://github.com/zxing-js/library
+*React Skylight: http://marcio.github.io/react-skylight/
