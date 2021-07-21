@@ -41,13 +41,18 @@ npm start
 Once compiled the app should open up in a browser and if not should be available on http://localhost:3000
 
 ![QR Scanner Open](https://github.com/bradooles/blog-usa/blob/master/images/2021/07/qr-code-conumdrum-1.png)
+>Hopefully see yourself and not me
+<br/>
 
 You may be prompted to allow camera access on your device. Once accepted you should see a handsome individual staring back at you (assuming you do this on your laptop). Now grab your phone / tablet and browse to this blog and find the QR code below. If you are feeling particularly dangerous you can also use Dr. Google to find one to test with as well - the wikipedia one works fairly well.
 
 ![Dr evil I presume](https://github.com/bradooles/blog-usa/blob/master/images/2021/07/qr-code-conumdrum-2.gif)
 >Me using random QR codes to test this app with
+<br/>
 
 ![QR code](https://github.com/bradooles/blog-usa/blob/master/images/2021/07/qr-code-conumdrum-3.png)
+>A fancy QR code
+<br/>
 
 Now you have the above QR code or one you have found on the internet, hold it up to your laptop camera whilst you have the app up and running - Like magic it should scan and display the information in a popup on screen. You now have a working example of a QR scanner in web form!
 
@@ -63,6 +68,7 @@ One thing of note to pass on is that whilst the libraries do work on the major O
 
 ![Sadness](https://github.com/bradooles/blog-usa/blob/master/images/2021/07/qr-code-conumdrum-4.gif)
 >Me after realising that iOS was going to be annoying to deal with
+<br/>
 
 ##Get your QR on!
 As you can see it’s fairly easy to start using a QR scanner with your device. The ZXing libraries are quite robust and shockingy responsive (maybe it is just me but I fully expected some crazy delay). From our own experience we have found using the above libraries to work really well in an app context, so much so that I would absolutely use them again to solve a QR scanning problem. In particular it made the implementation of a web application where QR scanning was a main function quite easy to develop.
