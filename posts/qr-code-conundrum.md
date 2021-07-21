@@ -45,7 +45,7 @@ Once compiled the app should open up in a browser and if not should be available
 You may be prompted to allow camera access on your device. Once accepted you should see a handsome individual staring back at you (assuming you do this on your laptop). Now grab your phone / tablet and browse to this blog and find the QR code below. If you are feeling particularly dangerous you can also use Dr. Google to find one to test with as well - the wikipedia one works fairly well.
 
 ![Dr evil I presume](https://github.com/bradooles/blog-usa/blob/master/images/2021/07/qr-code-conumdrum-2.gif)
-<Me using random QR codes to test this app with>
+>Me using random QR codes to test this app with
 
 ![QR code](https://github.com/bradooles/blog-usa/blob/master/images/2021/07/qr-code-conumdrum-3.png)
 
@@ -62,7 +62,7 @@ We have left in the option to change camera in the demo - whilst it is not reall
 One thing of note to pass on is that whilst the libraries do work on the major OSs, iOS is a bit more prickly about using its hardware - it will force users to accept the use of the camera in the app - despite it being used in the browser. It doesn’t break anything HOWEVER you will need to account for the fact that some users (let’s be real here, by some users I mean most users) will need to agree to the camera being used - and until they do so the app will not recognise any available cameras on the device. From the app's point of view there will be no registered cameras until the user agrees. You will need some functionality in your app to deal with this. We found react was helpful here to allow the page to “reload” upon state changing.
 
 ![Sadness](https://github.com/bradooles/blog-usa/blob/master/images/2021/07/qr-code-conumdrum-4.gif)
-<Me after realising that iOS was going to be annoying to deal with>
+>Me after realising that iOS was going to be annoying to deal with
 
 ##Get your QR on!
 As you can see it’s fairly easy to start using a QR scanner with your device. The ZXing libraries are quite robust and shockingy responsive (maybe it is just me but I fully expected some crazy delay). From our own experience we have found using the above libraries to work really well in an app context, so much so that I would absolutely use them again to solve a QR scanning problem. In particular it made the implementation of a web application where QR scanning was a main function quite easy to develop.
@@ -71,5 +71,6 @@ Below are the various links to references in this blog.
 
 Until next time, happy QR scanning and good luck!
 
-Zxing Project: https://github.com/zxing/zxing 
+Zxing Project: https://github.com/zxing/zxing
+
 ZXing JS library: https://github.com/zxing-js/library
