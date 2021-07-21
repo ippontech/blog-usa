@@ -5,7 +5,7 @@ tags:
 - QR
 - React
 date: 2021-07-21T12:21:50.000Z
-title: "QR Code Conumdrum"
+title: "QR Code Conundrum"
 image: 
 ---
 In these interesting times we live in, QR has made quite the comeback (or is this where it took off?). Everywhere we go now in Australia is splattered with QR codes from check-in, dining and information scanning. It is the way to go now to avoid extra human contact; an introvert's dream. 
@@ -40,17 +40,17 @@ npm start
 
 Once compiled the app should open up in a browser and if not should be available on http://localhost:3000
 
-![QR Scanner Open](https://github.com/bradooles/blog-usa/blob/master/images/2021/07/qr-code-conumdrum-1.png)
+![QR Scanner Open](https://github.com/bradooles/blog-usa/blob/master/images/2021/07/qr-code-conundrum-1.png)
 >Hopefully see yourself and not me
 <br/>
 
 You may be prompted to allow camera access on your device. Once accepted you should see a handsome individual staring back at you (assuming you do this on your laptop). Now grab your phone / tablet and browse to this blog and find the QR code below. If you are feeling particularly dangerous you can also use Dr. Google to find one to test with as well - the wikipedia one works fairly well.
 
-![Dr evil I presume](https://github.com/bradooles/blog-usa/blob/master/images/2021/07/qr-code-conumdrum-2.gif)
+![Dr evil I presume](https://github.com/bradooles/blog-usa/blob/master/images/2021/07/qr-code-conundrum-2.gif)
 >Me using random QR codes to test this app with
 <br/>
 
-![QR code](https://github.com/bradooles/blog-usa/blob/master/images/2021/07/qr-code-conumdrum-3.png)
+![QR code](https://github.com/bradooles/blog-usa/blob/master/images/2021/07/qr-code-conundrum-3.png)
 >A fancy QR code
 <br/>
 
@@ -67,7 +67,7 @@ We have left in the option to change camera in the demo - whilst it is not reall
 
 One thing of note to pass on is that whilst the libraries do work on the major OSs, iOS is a bit more prickly about using its hardware - it will force users to accept the use of the camera in the app - despite it being used in the browser. It doesn’t break anything HOWEVER you will need to account for the fact that some users (let’s be real here, by some users I mean most users) will need to agree to the camera being used - and until they do so the app will not recognise any available cameras on the device. From the app's point of view there will be no registered cameras until the user agrees. You will need some functionality in your app to deal with this. We found react was helpful here to allow the page to “reload” upon state changing.
 
-![Sadness](https://github.com/bradooles/blog-usa/blob/master/images/2021/07/qr-code-conumdrum-4.gif)
+![Sadness](https://github.com/bradooles/blog-usa/blob/master/images/2021/07/qr-code-conundrum-4.gif)
 >Me after realising that iOS was going to be annoying to deal with
 <br/>
 
