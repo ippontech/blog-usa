@@ -21,7 +21,7 @@ The first thing you should do is enable [reuse recorded resolution](https://git-
 
 This can solve your issue, but if it doesn't you may just want to squash your commits before updating from `develop`. You could use [interactive rebase](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) if you prefer to do everything in your terminal, however I have found that the easiest way to squash your branch to keep working on it is to use your git provider's squash feature. 
 
-Here are the steps to do that:
+Here are the steps:
 
 * Find the parent commit of your feature branch
 * Create a new feature branch off that commit `feature-squashing`
@@ -45,7 +45,7 @@ It's important to note that start isn't inclusive and end is. To make things sim
 
 ```
 $ git checkout 0
-$ git checkout -b `merge-fix`
+$ git checkout -b merge-fix
 $ git cherry-pick 1^..2
 $ git cherry-pick 4^..5
 ```
