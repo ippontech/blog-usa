@@ -38,7 +38,7 @@ You should ready to run the app locally:
 npm start
 ```
 
-Once compiled the app should open up in a browser and if not should be available on http://localhost:3000
+Once compiled the app should open up in a browser and if not should be available on [http://localhost:3000](http://localhost:3000)
 
 ![QR Scanner Open](https://github.com/bradooles/blog-usa/blob/master/images/2021/07/qr-code-conundrum-1.png)
 >Hopefully see yourself and not me
