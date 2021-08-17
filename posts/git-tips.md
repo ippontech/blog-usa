@@ -13,7 +13,7 @@ Software Engineers are constantly working with Pull Requests(PR). Most organizat
 
 If you're in an organization that prefers to rebase their feature branches prior to merging them upstream, and your PR starts to have many commits than you've probably suffered from rebase hell (when conflicts just seem to go on forever). 
 
-For example, let's say you branched off `develop` with your `feature` branch. Your branches have diverged and develop now has 10 new commits, and your feature branch has 100 commits. You've tried rebasing, but you end up in an endless loops of conflicts.
+For example, let's say you branched off `develop` with your `feature` branch. Your branches have diverged and develop now has 10 new commits, and your feature branch has 100 commits. You've tried rebasing, but you end up in an endless loop of conflicts.
 
 The first thing you should do is enable [reuse recorded resolution](https://git-scm.com/docs/git-rerere) . This will cause git to apply the same resolution when it finds the same conflict. To enable it by default for all your repos:
 
