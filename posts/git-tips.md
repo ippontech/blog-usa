@@ -41,7 +41,7 @@ Create a new branch `merge-fix` from the same parent branch. It can be the same 
 
 ```$ git cherry-pick start..end```
 
-It's important to note that start isn't inclusive and end is. To make things simpler I've just decided to use a notation that will change it to both sides being inclusive. The `^` symbol refers to the parent of a commit, thus:
+It's important to note that start isn't inclusive and end is. To make things simpler I've decided to use a notation that will change it to both sides being inclusive. The `^` symbol refers to the parent of a commit, thus:
 
 ```
 $ git checkout 0
