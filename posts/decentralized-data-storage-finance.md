@@ -26,7 +26,7 @@ The W3C Verified Credentials works with the Solid Platform to provide a decentra
 ## Use Cases
 To date, distributed stores have seen a few use cases implemented within finance. The primary use cases implemented thus far fall into two categories.  1) customer convenience and 2) personalized customer experience.  Both these categories of use case are enabled by the concept of interoperability.  [explain concept]. Presumably this same interoperability is what would enable what  And the same interoperability that will enable "(improving their [the customer] experiences access the digital context)[https://canada-ca.github.io/PCTF-CCP/docs/RelatedPolicies/WEF_Digital_Identity.pdf]" as described in a World Economic Forum paper from Janurary 2020. 
  
-in 2020 the Solid Platform was used by the NatWest Bank to provide more a personalized experiences for customers [(source: Inrupt.com](https://inrupt.com/solid-enterprise-natwest-bbc). The NatWest integration 
+in 2020 the Solid Platform was used by the NatWest Bank to provide more personalized experiences for customers [(source: Inrupt.com](https://inrupt.com/solid-enterprise-natwest-bbc). The NatWest integration 
 > .. demonstrated how a customer could use Solid-powered applications from  different organizations to change their name or register a business. Since all the apps write data to the user’s NatWest Pod, changes only need to be made once. And they could even receive new offers based on their newly recorded “life moment”.
 
 [An example of using decentralized customer information to improve customer convenience](https://hbr.org/2020/01/why-companies-make-it-so-hard-for-users-to-control-their-data) comes from India.
