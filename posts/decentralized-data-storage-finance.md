@@ -1,5 +1,5 @@
 ## Summary 
-In this article we will explore the possible impacts and benefits of personal data ownership ( aka personal data stores) and decentralized digital identity ( aka verified credentials ) within banking and finance.  We'll explore what if any are the benefits to customers if banks integrate with these personal data stores?  Are there benefits to banks themselves if they undertake these integrations?  We'll also take a look at how likely  these distributed data stores are to reach a tipping point of adoption? 
+In this article we will explore the possible impacts and benefits of personal data ownership ( aka personal data stores) and decentralized digital identity ( aka verified credentials ) within banking and finance.  We'll explore what if any are the benefits to customers if banks integrate with these personal data stores?  Are there benefits to banks themselves if they undertake these integrations?  We'll also take a look at how likely these distributed data stores are to reach a tipping point of adoption? 
 
 # Distrubuted Personal Data Stores and Verified Credentials: Potential Opportunities in Finance?
 
