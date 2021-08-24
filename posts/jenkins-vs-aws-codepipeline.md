@@ -11,7 +11,7 @@ title: "Jenkins vs AWS CodePipeline"
 image: 
 ---
 
-If you have worked with CI/CD, chances are you have used Jenkins,GitLab, or GitHub Actions, but one service I don’t often hear folks talk about is AWS CodePipeline. In this blog, we will make some comparisons between Jenkins and AWS CodePipeline, and see if maybe it’s time for your projects to make the switch.
+If you have worked with CI/CD, chances are you have used Jenkins, GitLab, or GitHub Actions, but one service I don’t often hear folks talk about is AWS CodePipeline. In this blog, we will make some comparisons between Jenkins and AWS CodePipeline, and see if maybe it’s time for your projects to make the switch.
 
 
 # What is Jenkins?
@@ -21,7 +21,7 @@ Jenkins seems like the place to start. As of writing this blog, Jenkins is by fa
 
 # What is AWS CodePipeline?
 
-AWS CodePipeline is a fully managed CI/CD service, and is actually the orchestration of a few other AWS services including CodeCommit, CodeBuild, and CodeDeploy. While being an AWS service you can use CodePipeline to deploy to other servers running the agent. Since these are all managed services, there is no underlying infrastructure you will have to maintain. But managed services come with a cost. There is a cost for having an active pipeline, as well as the compute time required for build and some deployment operations. 
+AWS CodePipeline is a fully managed CI/CD service, and is actually the orchestration of a few other AWS services including CodeCommit, CodeBuild, and CodeDeploy. Because it is an AWS service, you can use CodePipeline to deploy to other servers running the agent. Since these are all managed services, there is no underlying infrastructure you will have to maintain. But managed services come with a cost. There is a cost for having an active pipeline, as well as the compute time required for building and some deployment operations. 
 
 
 # Price comparison
@@ -31,7 +31,7 @@ We mentioned earlier that Jenkins is free and open source and that there are cos
 
 # Scalability
 
-When using CodePipeline, each pipeline run executes independently and in parallel of each other. Since CodePipeline is a managed service, you can run many pipelines in parallel without having to deal with additional infrastructure. Jenkins on the other hand is limited by the number of executors you have. While there are ways to have the Jenkins executor be a docker container that spins up on demand, you will still be limited by your hardware. Jenkins also only allows a single instance of a pipeline to be running at once, so you must wait until your deployment is complete before starting your next build
+When using CodePipeline, each pipeline run executes independently and in parallel with each other. Since CodePipeline is a managed service, you can run many pipelines in parallel without having to deal with additional infrastructure. Jenkins on the other hand is limited by the number of executors you have. While there are ways to have the Jenkins executor be a docker container that spins up on demand, you will still be limited by your hardware. Jenkins also only allows a single instance of a pipeline to be running at once, so you must wait until your deployment is complete before starting your next build.
 
 
 # Multibranch pipelines
