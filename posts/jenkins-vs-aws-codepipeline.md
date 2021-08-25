@@ -6,6 +6,7 @@ tags:
 - CodePipeline
 - AWS
 - CICD
+- DevOps
 date: 2021-08-24T12:21:50.000Z
 title: "Jenkins vs. AWS CodePipeline"
 image: https://raw.githubusercontent.com/jscharf-ippon/blog-usa/master/images/2021/08/Jenkins-vs-AWS-CodePipeline.png
