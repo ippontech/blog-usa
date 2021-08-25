@@ -9,7 +9,7 @@ tags:
 - DevOps
 date: 2021-08-24T12:21:50.000Z
 title: "Jenkins vs. AWS CodePipeline"
-image: https://raw.githubusercontent.com/jscharf-ippon/blog-usa/master/images/2021/08/Jenkins-vs-AWS-CodePipeline.png
+image: 
 ---
 
 If you have worked with CI/CD, chances are you have used the likes of Jenkins, GitLab, GitHub Actions, etc. One service I don’t often hear folks talk about is AWS CodePipeline. In this blog, we will make some comparisons between Jenkins and AWS CodePipeline, and see if perhaps it’s time for you to make the switch on your projects.
