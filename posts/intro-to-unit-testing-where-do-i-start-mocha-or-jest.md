@@ -215,7 +215,7 @@ This test should pass because both strings are equal.
 
 ## Conclusion
 
-Let’s recap, by comparing 'apples' to 'apples' with what we learned in this blog. We learned that the process of getting started with both Mocha and Jest is very similar. Then, when we began the actual testing process, things started to differ slightly.
+Let’s recap by comparing 'apples' to 'apples' with what we learned in this blog. We learned that the process of getting started with both Mocha and Jest is similar. Then, when we began the actual testing _process_, things started to differ slightly.
 
 ### The Key Differences Between Mocha and Jest
 
