@@ -3,7 +3,7 @@ authors:
 - Cory Walker
 tags:
 - Unit Testing
-- jest
+- Jest
 - mocha
 - testing
 date: 
