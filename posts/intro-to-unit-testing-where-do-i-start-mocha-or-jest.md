@@ -225,7 +225,7 @@ Let’s recap by comparing 'apples' to 'apples' with what we learned in this blo
 
   2. The “IT” function
 
-* **Jest uses one function to run test.** 
+* **Jest uses one function to run a test.** 
 
   1. The “Test” function
 
