@@ -7,7 +7,7 @@ tags:
 - Mocha
 - Testing
 date: 
-title: "Intro to Unit Testing: Where Do I Start -- Mocha Or Jest?"
+title: "Intro to Unit Testing: Where Do I Start -- Mocha or Jest?"
 image: 
 ---
 
