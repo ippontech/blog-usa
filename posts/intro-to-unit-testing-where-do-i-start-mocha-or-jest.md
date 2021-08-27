@@ -219,7 +219,7 @@ Let’s recap by comparing 'apples' to 'apples' with what we learned in this blo
 
 ### The Key Differences Between Mocha and Jest
 
-* **Mocha uses 2 functions to run test.**
+* **Mocha uses two functions to run test.**
 
   1. The “Describe” function
 
