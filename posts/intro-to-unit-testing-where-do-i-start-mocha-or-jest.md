@@ -233,4 +233,4 @@ Let’s recap by comparing 'apples' to 'apples' with what we learned in this blo
 
 * **Jest has built-in testing functionality.**
 
-I must admit, we barely scratched the surface with unit testing in Mocha & Jest. But hopefully you got a decent foundation or at least the concepts of unit testing with both frameworks. Which one would you choose to get started unit testing with?
+I must admit, we barely scratched the surface with unit testing in Mocha and Jest. Hopefully you now have a decent foundation, or at least the concepts of unit testing with both frameworks. Which one would you choose to get started unit testing with? Let me know why!
