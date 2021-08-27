@@ -196,7 +196,7 @@ test('string that describes the test', () => {
 });
 ```
 
-Below we create variables to hold the expected result and the actual result. We name one variable `‘expected’` and name another variable `‘result’`. Here we use the `(expect)` and the `(.toBe)` function that takes the two variables and test if they are equal.
+Below we create variables to hold the expected result and the actual result. We name one variable `‘expected’` and name another variable `‘result’.` Here we use the `(expect)` and the `(.toBe)` function that takes the two variables and tests if they are equal.
 
 ```javascript       
 test('string that describes the test', () => {
