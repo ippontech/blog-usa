@@ -2,7 +2,7 @@
 authors:
 - Cory Walker
 tags:
-- unit testing
+- Unit Testing
 - jest
 - mocha
 - testing
