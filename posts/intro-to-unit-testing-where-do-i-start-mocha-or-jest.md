@@ -8,7 +8,7 @@ tags:
 - Testing
 date: 
 title: "Intro to Unit Testing: Where Do I Start -- Mocha or Jest?"
-image: 
+image: https://github.com/GospelBeats/ippontech/blog-usa/master/images/2021/08/Intro-to-Unit-Testing-Where-Do-I-Start-Mocha-Or-Jest.png
 ---
 
 # Intro To Unit Testing, Where Do I Start, Mocha Or Jest?
