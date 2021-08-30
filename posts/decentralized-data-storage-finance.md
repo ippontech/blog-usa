@@ -1,7 +1,21 @@
+---
+authors:
+- Greg Kontos
+tags:
+- Verified Credentials
+- Personal Data Stores
+- Solid
+- Decentralized Internet
+- Distributed Internet
+date: 2021-08-30T11:00:13.000Z
+title: "Distrubuted Personal Data Stores and Verified Credentials: Potential Opportunities in Finance"
+image: 
+---
+
 ## Summary 
 In this article we will explore the possible impacts and benefits of personal data ownership ( aka personal data stores) and decentralized digital identity ( aka verified credentials ) within banking and finance.  We'll explore what if any are the benefits to customers if banks integrate with these personal data stores?  Are there benefits to banks themselves if they undertake these integrations?  We'll also take a look at how likely these distributed data stores are to reach a tipping point of adoption? 
 
-# Distrubuted Personal Data Stores and Verified Credentials: Potential Opportunities in Finance?
+# Distrubuted Personal Data Stores and Verified Credentials: Potential Opportunities in Finance
 
 Various corners of the internet envision a future in which users own and control the content they create online.  These visions go by a variety of names such as Personal Data Stores, Trusted Digital Web, Self-Sovereign Identity, Verified Credentials, and more.  Here we will indelicately lump all of these concepts under the general umbrella of 'distributed personal data stores' to indicate both that 1) the data is user owned and that 2) the data is architecturally distributed across many locations.  There are a variety of projects that implement some version of this user controlled data paradigm.  These solutions are variously built using peer-to-peer technologies, assorted cryptography, and blockchain to provide access control and immutability.  To achieve an internet where this user owned data can be securely accessed and used by multiple online applications will require standards.  Those standards are beginning to take shape and an ecosystem is in the early stages of development.  As the ecosystem develops they may offer opportunities to address financial customer's privacy concerns and create more personalized banking experiences.
 
@@ -24,9 +38,9 @@ The W3C Verified Credentials works with the Solid Platform to provide a decentra
 
 
 ## Use Cases
-To date, distributed stores have seen a few use cases implemented within finance. The primary use cases implemented thus far fall into two categories.  1) customer convenience and 2) personalized customer experience.  Both these categories of use case are enabled by the concept of interoperability.  [explain concept]. Presumably this same interoperability is what would enable what  And the same interoperability that will enable "(improving their [the customer] experiences access the digital context)[https://canada-ca.github.io/PCTF-CCP/docs/RelatedPolicies/WEF_Digital_Identity.pdf]" as described in a World Economic Forum paper from Janurary 2020. 
+To date, distributed stores have seen a few use cases implemented within finance. The primary use cases implemented thus far fall into two categories.  1) customer convenience and 2) personalized customer experience. 
  
-in 2020 the Solid Platform was used by the NatWest Bank to provide more personalized experiences for customers [(source: Inrupt.com](https://inrupt.com/solid-enterprise-natwest-bbc). The NatWest integration 
+In 2020 the Solid Platform was used by the NatWest Bank to provide more personalized experiences for customers [(source: Inrupt.com](https://inrupt.com/solid-enterprise-natwest-bbc). The NatWest integration 
 > .. demonstrated how a customer could use Solid-powered applications from  different organizations to change their name or register a business. Since all the apps write data to the user’s NatWest Pod, changes only need to be made once. And they could even receive new offers based on their newly recorded “life moment”.
 
 [An example of using decentralized customer information to improve customer convenience](https://hbr.org/2020/01/why-companies-make-it-so-hard-for-users-to-control-their-data) comes from India.
@@ -38,14 +52,13 @@ The hype and hope is that these implementations are just the tip of the iceberg.
 
 ## Ecosystem and Conflict
 
-With anything new there will always be stumbling blocks.  One of which in this case is that there aren't many engineers working on the projects.  
-The solid server project has around 70 github contributors.  Other projects which are listed as in the early adopter or early majority phase on ThoughtWorks or The Cloud Native Computing Foundataion have between 100 and 300 contributors in a sample of about 20 projects.  As far as the adoption curve is concerned, this places the work in the innovators phase of the adoption curve.  ![the technology adoption curve](../images/2021/08/innovation-curve-chasm.png)
-
-The W3C site for Verified Credentials lists [13 different implementations of the specification](https://w3c.github.io/vc-test-suite/implementations/), while some are close none are fully compliant with the specification.  Several of these are private groups, but the public groups have only one or two engineers working on them.  Although [Microsoft also has an implementation of the specification](https://docs.microsoft.com/en-us/azure/active-directory/verifiable-credentials/decentralized-identifier-overview) that they independently claim is fully compliant.
+With anything new there will always be stumbling blocks.  One of which is that there aren't many engineers working on the decentralized credentials or storage projects.  The solid server project has around 70 github contributors.  Other projects which are listed as in the early adopter or early majority phase on ThoughtWorks or The Cloud Native Computing Foundataion have between 100 and 300 contributors in a sample of about 20 projects.  [Microsoft also has an implementation of the specification](https://docs.microsoft.com/en-us/azure/active-directory/verifiable-credentials/decentralized-identifier-overview) that they independently claim is fully compliant.  However, the W3C site for Verified Credentials lists [13 different implementations of the specification](https://w3c.github.io/vc-test-suite/implementations/), while some are close none are fully compliant with the specification.  Several of these are private groups, but the public groups have only a handful engineers working on them.  As far as the adoption curve is concerned, verified credentials and decentralized storage appears to be in the innovators phase of the adoption curve.  ![the technology adoption curve](../images/2021/08/innovation-curve-chasm.png)
 
 Perhaps a larger potential stumbling block is that there are clear disagreements over the Verified Credentials protocol.  
 [Mozilla, the EFF, and the ACLU of California](https://blog.mozilla.org/netpolicy/2020/08/06/by-embracing-blockchain-a-california-bill-takes-the-wrong-step-forward/) in 2020 listed concerns over the use of the W3C Verified Credentials in a pilot program to communicate COVID-19 test results and 'other medical information'.   
 
+Given the W3C use cases, a pivitol dependency appears to be involvement of government at various levels.  The use cases for finance could seem like they would primarily use data from other banks as trusted data.  But foundational verifications like confirmation of a national ID or driver certifications would be best done via government involvement to record data to individual pod storage. This level of software development lift would require a massive undertaking within the government space.  
+
 ## Conclusion
 
-The personal data store and verified credentials ecosystem is just beginning to take it's first steps.  With the direction of the W3C specifications to promote interoperability there are a few open projects and companies which are gaining the capability to address the issues of data use transparecy, data security, and customer experience.  At the moment VC and personal data stores are not ready for wide scale adoption, but worth familiarizing with, investigating use cases, and monitoring the growth of implementations.  These technologies appear to be a solution which will continue to develop over the next 2-4 years and provide opportunities for banks to reduce duplication, improve their customer's experience, and also improve data privacy.
+The personal data store and verified credentials ecosystem is just beginning to take it's first steps.  With the direction of the W3C specifications to promote interoperability there are a few open projects and companies which are gaining the capability to address the issues of data use transparecy, data security, and customer experience.  At the moment VC and personal data stores are not ready for wide scale adoption.  But these solutions are blooming in an online environment with serious concerns around data security, the toxification of personal data as an organizational asset, and the lack of alternate solutions.  Given that, Verified Credentials specifically and Personal Data Stores generally appear to be worth familiarizing with, investigating use cases, monitoring implementations, and monitoring development of goverment initiatives in the space.  Overall these technologies appear to be a solution which will continue to develop over the next 2-4 years and provide opportunities for banks to reduce duplication, improve their customer's experience, and also improve data privacy.
