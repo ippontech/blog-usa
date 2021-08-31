@@ -44,6 +44,9 @@ Running builds from multiple branches is important when working on a feature to 
 
 Both services are great for deploying to AWS services, CodePipeline natively, and Jenkins through plugins. While it is nice having a native connection within your AWS account, setting up plugins are usually straightforward. With the 1,800+ plugins available for Jenkins, there are existing integrations for most tools you would use in your pipeline. You can utilize non-AWS integrations in your CodePipeline as well, but this typically involves writing custom scripts or API calls. 
 
+# Portability
+
+One of the things I didn't consider until this blog was portability of your pipeline. When using CodePipeline, you are using AWS services for build and deploy orchestration. This locks you in to AWS as a public cloud provider in some capacity to continue to use your pipeline. With AWS currently being the market leader in public cloud, and if you are looking to use CodePipeline chances are you are already using AWS, this does not seem like as big of an issue, but as companies move towards multi-cloud implementations, this may not always be the case. Jenkins can run on many different operating systems. It can run on most Linux systems, including in a Docker container, as well on Windows and Mac. This allows you to run Jenkins on any public cloud, or on your own servers regardless of what the future of cloud looks like.
 
 # So which should you use?
 
