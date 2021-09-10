@@ -19,13 +19,13 @@ Kubernetes is an open source project on [github](https://github.com/kubernetes/k
 
 To understand K8s, I believe it's helpful to look at and compare how we deployed production applications in the past and what k8s brings to the table. First lets consider the our first old school setup. At company ABC there is a couple of servers in the basement for hosting our applications. Lets say we size our production servers to match our expected user base and concurrent usage. In our example we have four business applications (Green,Orange,Teal,Blue). Lets say all these applications share a network, database and load balancer with each other. We also have a couple of spare servers allocated in the event of a disaster recovery.
 
-![onprem-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/onprem.png>)
+![onprem-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/onprem.png)
 
 ## Simulating a Disaster
 
 Lets say the IT get alerted about an outage of application Blue. An electrical storm has come by that night and shorted the hardware on the server. During the outage IT determines that they will need to move the application to one of the spare servers. 
 
-![onprem-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/onprem2.png>)
+![onprem-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/onprem2.png)
 
 During the outage IT will be scrambling to bring one of the spare servers online. Configure access the shared database, network load balancer and allowing firewall rules for the application to run on the new server. Each of these task can be time consuming if not planned for. 
 
@@ -47,19 +47,19 @@ The way K8s operates is to have a pool of machines ready for any application to 
 
 Back to Company ABC with four application deployments. We convert our production deployment operations to k8s. First by installing a Kubelet onto all of our agent nodes. 
 
-![k8s-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/k8s.png>)
+![k8s-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/k8s.png)
 
 Next we segment three machines to be controllers that will be in-charge of maintaining communications with all the agent nodes and checking health of the cluster configuration. 
 
-![k8s-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/k8s2.png>)
+![k8s-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/k8s2.png)
 
 We then define our application deployments as "Plans". The plans are defined by k8s configuration yaml files. These config files can configure many different aspects like resource sizes, network settings and health checks. These plans get communicated to our agent nodes for deployment on all active machines. 
 
-![k8s-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/k8s3.png>)
+![k8s-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/k8s3.png)
 
 Lastly, if we repeat our disaster scenario from before and one of our machines in our agent pool is taken offline. Our controllers now can assess the health of this application automatically and redeploy our application on the next available node. 
 
-![k8s-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/k8s4.png>)
+![k8s-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/k8s4.png)
 
 
 ## Summary
