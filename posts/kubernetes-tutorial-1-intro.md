@@ -8,6 +8,8 @@ title: "Kubernetes Tutorial #1: Intro"
 image: 
 ---
 
+![Banner](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/Kubernetes_Tutorial_1_Intro.png.png)
+
 ## Intro 
 
 DevOps engineers have moved from on-premise, monolithic applications to large-scale application systems in the cloud. One of the most popular orchestration systems currently being used in production across the board is Kubernetes (K8s, for short) under the covers. I want to share some knowledge I have gathered over the years and break down what K8s does at its core. An understanding of the K8s core construction will allow you to understand how new features are constructed for K8s and how these basic functions ensure a more stable operating environment. 
@@ -41,7 +43,7 @@ In order to achieve this, Kubernetes changes the way we deploy applications. Ins
 
 ## Cluster Communication
 
-The way Kubernetes operates is to have a pool of machines ready for any application to be deployed onto them. The machines communicate by having the same Kubelet application installed on all said machines. The Kubelet can manage the node it is installed on by running application containers, while also having a communication endpoint for controllers nodes to send operations. 
+The way Kubernetes operates is to have a pool of machines ready for any application to be deployed onto them. The machines communicate by having the same Kubelet application installed on all said machines. The Kubelet has the responsibility of managing the node its installed on and communicating to the controller nodes. It has the system permissions to start and stop containers, mount and unmount volumes, and open and close ports etc. Essentially it is in charge of listening for commands sent from the controller nodes and executing the commands sent. This enables each node in the cluster to be orchestrated as a group of machines, otherwise known as a cluster.
 
 ## Visualizing Kubernetes
 
