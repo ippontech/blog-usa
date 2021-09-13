@@ -8,7 +8,7 @@ title: "Kubernetes Tutorial #1: Intro"
 image: 
 ---
 
-![Banner](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/Kubernetes_Tutorial_1_Intro.png.png)
+![Banner](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/Kubernetes_Tutorial_1_Intro.png)
 
 ## Intro 
 
