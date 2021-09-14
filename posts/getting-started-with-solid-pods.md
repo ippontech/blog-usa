@@ -120,7 +120,7 @@ Now we run the application according to the tutorial instructions.  You will be 
         <http://www.w3.org/ns/solid/terms#account>  <https://pod.inrupt.com/<yourprofilename>/> ;
         <http://www.w3.org/ns/pim/space#storage>  <https://pod.inrupt.com/<yourprofilename>/> ;
         rdf:type   <http://schema.org/Person> ;
-        vcard:fn   "<REAL NAME>" ;
+        vcard:fn   "REAL NAME" ;
         <http://www.w3.org/ns/pim/space#preferencesFile>  <https://pod.inrupt.com/<yourprofilename>/settings/prefs.ttl> .
 
 <https://pod.inrupt.com/<yourprofilename>/profile/card>
@@ -128,7 +128,7 @@ Now we run the application according to the tutorial instructions.  You will be 
 ```
 
 The line
-> vcard:fn   "<REAL NAME>" ;
+> vcard:fn   "REAL NAME" ;
 
 was added to the profile.
 
