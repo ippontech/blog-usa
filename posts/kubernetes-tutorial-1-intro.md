@@ -68,4 +68,6 @@ If we repeat our disaster scenario from before and one of our machines in our ag
 
 Using Kubernetes enables many exciting new features for us DevOps Engineers. These functionalities are enabled by how we form our operational environment like I demonstrated above. By using a cluster of machines, we can achieve high availability. This change in deployment method allows our application deployments to withstand x-number of machine failures where "y" is the size of your cluster.
 
-This high level overview of how clusters are formed and maintained should contribute to your understanding of complexities within larger orchestration systems.
+This high level overview of how clusters are formed and maintained should contribute to your understanding of complexities within larger orchestration systems. 
+
+Here at IPPON we have experience with designing resilient large-scale application architectures. We do this by following the tech communities newest open-source tools and best practices. If you are designing your next system or in charge of a Kubernetes cluster, and in need of professional guidance, feel free to [contact me on LinkedIn](https://www.linkedin.com/in/daengr/) or [send us over a message](mailto:contact@ipponusa.com).
