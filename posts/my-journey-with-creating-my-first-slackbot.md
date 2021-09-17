@@ -191,7 +191,7 @@ Based on the above error message, I took a new path to create an integer to the 
 
 ## Wrap Up
 
-Of course, I am not convinced that this is the only solution, or if the Slack API documentation has been updated since the writing of this blog. I am also not sure if this is an issue when using other programming languages or tools. All I know for sure is that I was happy to get **_a_** solution working. In the meantime, you can create a JavaScript function that takes in parameters to calculate the amount of seconds from January 1, 1970 to the current or future date and time. In a nut shell, that was my journey when creating my first Slackbot with the Slack API.
+Of course, I am not convinced that this is the only solution, or if the Slack API documentation has been updated since the writing of this blog. I am also not sure if this is an issue when using other programming languages or tools. All I know for sure is that I was happy to get **_a_** solution working. In the meantime, you can create a JavaScript function that takes in parameters to calculate the number of seconds from January 1, 1970 to the current or future date and time. Briefly, that was my journey when creating my first Slackbot with the Slack API.
 
 
 
