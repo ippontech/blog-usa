@@ -164,7 +164,7 @@ I was able to achieve three of the tasks above with my Slackbot. I was able to p
 `Error: An API error occurred: invalid_arguments`
 
 
-So, I decided to use my friend Google and see if anyone else may have had this same issue. I was able to locate a small hand full of websites of others who had the same issue but, their solutions didn’t quite work for me. The unusual thing about the issue is the fact that I copied the exact documentation code snippet from the website and placed it in my code, and it still didn’t work.
+So, I decided to use my friend Google and see if anyone else may have had this same issue. I was able to locate a few websites of others who had the same issue, but their solutions didn’t quite work for me. The unusual thing about the issue is the fact that I copied the exact documentation code snippet from the website and placed it in my code, and it still didn’t work.
 
 During my online research, I read an article of someone that appeared to be a Slack API employee or partner that said they are aware of the issue and will update the documentation on their website. However, that didn’t help me at the time, therefore, I concluded, I wasn’t going to get anywhere by just googling the error message.
 
