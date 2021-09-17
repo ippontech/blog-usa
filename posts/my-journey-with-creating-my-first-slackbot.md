@@ -12,7 +12,7 @@ image:
 
 # My Journey With Creating My First Slackbot
 
-My first approach when attempting to develop any type of software project is to locate the owner of the software's documentation that I will be using. As this is probably the ‘go to’ approach for most software developers. What better way to learn about a software product than from the people who actually created it. Even though, in some cases, the software owner’s documentation may be more complex then some other websites explanations, instructions, or use cases. 
+My first approach when attempting to develop any type of software project is to locate the owner of the software's documentation that I will be using. This is likely the ‘go to’ approach for most software developers. I mean, what better way to learn about a software product than from the people who actually created it. Even then in some cases, the software owner’s documentation may be more complex than some other websites' explanations, instructions, or use cases. 
 
 However, in the case of creating my first Slackbot, step one for me was to google the keywords "Slack API". After I conducted my google search, I landed on the [SlackApi.com](https://api.slack.com) website. I was pleased to see clear instructions on creating a Slackbot and even a getting started [instructional video](https://youtu.be/Rufh3MjJz9g). After watching and following along with the brief instructional video, I was able to easily connect my Slackbot with my company's Slack App within a few minutes. Then I moved along to the code snippets in the documentation on some of the common things you can do with your Slackbot. 
 
