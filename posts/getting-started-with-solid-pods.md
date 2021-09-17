@@ -13,7 +13,7 @@ date: 2021-09-13T13:59:40-04:00
 
 ## Summary 
 
-In this post we look at getting started with implementing an application that uses decentralized identity and data storage.  In particular we will look at using the Solid Project for our application.
+This post is a follow up from '' in which we looked at the potential opportunities for distributed data storage and verified credentials in the finance industry.  In this post we look at the technical feasibility and production readiness of the current ecosystem for distributed data storage using the Solid Project.  In order to do that we will look at getting started with implementing an application that uses decentralized identity and data storage.  In particular we will look at using the Solid Project for our application.
 
 # Beginning Decentralized Identity Applications with Solid
 
@@ -131,6 +131,10 @@ The line
 > vcard:fn   "REAL NAME" ;
 
 was added to the profile.
+
+## Conclusion
+
+The demo application for Solid was very easy to setup and does a good job of showing the basic functionality of a Solid Application.  And with the existence of a React component it should be relatively straight forward to bring Solid into a modern web application.  One thing that was noted in the setup is that very few of the resources are production ready.  The Inrupt Pod storage itself is marked as being for Beta usage due to outstanding security concerns.  While the specifications for Verified Credentials have been agreed upon, the specifications around the Solid Project are currently unsettled.  Solid at the moment looks like the most complete and open method of building applications around Verified Credentials, but until the solution is more technically complete implementations will continue to address more fringe use cases. 
 
 ## Resources
 
