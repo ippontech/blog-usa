@@ -68,7 +68,7 @@ Individual [resources (aka pieces of data) in the Solid Specification are identi
 
 ## Example 
 
-Let's take solid for a quick spin and see what it's like.  The Solid Project has a [helpful tutorial to get us started](https://solidproject.org/developers/tutorials/first-app).  This project sets us a very basic webpage that will ask for authorization to a user's profile in their pod, write some data, and read that data back.  It's simple javascript and html, but it uses NPM to pull in some client libraries to handle the authorization and some tasks with Pod data.  [Inrupt also has a React SDK](https://github.com/inrupt/solid-ui-react) which is probably where you want to start if you're building out an actual POC.
+Let's take Solid for a quick spin and see what it's like.  The Solid Project has a [helpful tutorial to get us started](https://solidproject.org/developers/tutorials/first-app).  This project sets us a basic webpage that will ask for authorization to a user's profile in their pod, write some data, and read that data back.  It's simple JavaScript and html, but it uses NPM to pull in some client libraries to handle the authorization and some tasks with Pod data.  [Inrupt also has a React SDK](https://github.com/inrupt/solid-ui-react) which is probably where you want to start if you're building out an actual POC.
 
 The first thing to do is to setup a Pod account.  I used the [one available from Inrupt](https://signup.pod.inrupt.com/), which at the time of the writing is the only listed as compliant with the specifications.  
 
