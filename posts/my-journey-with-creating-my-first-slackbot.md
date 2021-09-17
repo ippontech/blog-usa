@@ -171,7 +171,7 @@ During my online research, I read an article of someone that appeared to be a Sl
 
 ### How I Was Able To Solve The Scheduling A Future Post Bug Issue
 
-I chose to go another route and do some research and digging into the Javascript date and time function. After my research, I came up with an idea to use an integer for the `post_at:` value, and replace the `tomorrow.getTime() / 1000` in the code snippet below.
+I chose to go another route and do some research and digging into the JavaScript date and time function. After some digging, I came up with an idea to use an integer for the `post_at:` value, and replace the `tomorrow.getTime() / 1000` in the code snippet below.
 
 ``` javascript
 // Time to post message, in Unix Epoch timestamp format
