@@ -4,7 +4,7 @@ authors:
 tags:
 - Slackbot
 - Slack API
-- Node JS
+- Node.js
 date: 
 title: "My Journey With Creating My First Slackbot"
 image: 
