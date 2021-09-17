@@ -28,7 +28,7 @@ However, in the case of creating my first [Slackbot,](https://slack.com/help/art
 **Retrieve an individual message within your Slack App.**
 
 
-I decided to keep it simple and only stick to conguering these four task. There are a few different programming languages or tools you can use to configure your Slackbot such as Java, JavaScript, Python, or HTTP. I chose JavaScript and Node JS as my programming language of choice with VS Code as my IDE. I must admit, the documentation was clear and easy to follow.
+I decided to keep it simple and only stick to conguering these four tasks. There are a few different programming languages or tools you can use to configure your Slackbot, such as Java, JavaScript, Python, or HTTP. I chose JavaScript and Node.js as my programming languages of choice with VS Code as my IDE. I must admit, the documentation was clear and easy to follow.
 
 Before getting started with the code, I needed to request the following permissions below to accomplish the four tasks above:
 
