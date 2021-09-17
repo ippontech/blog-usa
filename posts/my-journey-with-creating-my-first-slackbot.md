@@ -178,7 +178,7 @@ I chose to go another route and do some research and digging into the JavaScript
     post_at: tomorrow.getTime() / 1000
 ```
 
-Ah ha, I had a new error message now (see below); one that gave me more details and information than before. Based on the new error message `time_in_past`, this was an indicator for me that I was on the right track, or at least in the ball park. 
+Ah ha, I had a new error message now (see below); one that gave me more details and information than before. Based on the new error message `time_in_past`, this was an indicator for me that I was on the right track, or at least in the ballpark. 
 
 `Error: An API error occurred: time_in_past`
 
