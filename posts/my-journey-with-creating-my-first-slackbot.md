@@ -159,7 +159,7 @@ fetchMessage("C12345", "15712345.001500");
 
 ## My ‘Scheduling A Future Post’ Bug Issue Encounter
 
-I was able to achieve three of the task above with my Slackbot. I was able to post a message, retrieve conversation history, retrieve an individual message from the Slack channel. However, I ran into an issue when it came to scheduling a post at a later date and time. When I attempted to schedule a post, I kept getting an error message. One of the lines of the error message, I deemed important, is below.
+I was able to achieve three of the tasks above with my Slackbot. I was able to post a message, retrieve conversation history, retrieve an individual message from the Slack channel. I ran into an issue when it came to scheduling a post at a later date and time. When I attempted to schedule a post, I kept getting an error message. One of the lines of the error message is below:
 
 `Error: An API error occurred: invalid_arguments`
 
