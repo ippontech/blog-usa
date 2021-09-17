@@ -13,7 +13,7 @@ date: 2021-09-13T13:59:40-04:00
 
 ## Summary 
 
-This post is a follow up from ["Distributed Personal Data Stores and Verified Credentials: Potential Opportunities in Finance"](decentralized-data-storage-finance.md) in which we looked at the potential opportunities for distributed data storage and verified credentials in the finance industry.  In this post we look at the technical feasibility and production readiness of the current ecosystem for distributed data storage using the Solid Project.  In order to do that we will look at getting started with implementing an application that uses decentralized identity and data storage.  In particular we will look at using the Solid Project for our application.
+This post is a follow up from ["Distributed Personal Data Stores and Verified Credentials: Potential Opportunities in Finance"](decentralized-data-storage-finance.md) in which we looked at the potential opportunities for distributed data storage and verified credentials in the finance industry.  In this post we look at the technical feasibility and production readiness of the current ecosystem for distributed data storage using the Solid Project.  In order to do that we will look at getting started with implementing an application that uses decentralized identity and data storage.  We will look at using the Solid Project for our application.
 
 # Beginning Decentralized Identity Applications with Solid
 
@@ -68,7 +68,7 @@ Individual [resources (aka pieces of data) in the Solid Specification are identi
 
 ## Example 
 
-Let's take solid for a quick spin and see what it's like.  The Solid Project has a [helpful tutorial to get us started](https://solidproject.org/developers/tutorials/first-app).  This project sets us a very basic webpage that will ask for authorization to a user's profile in their pod, write some data, and read that data back.  It's simple javascript and html, but it uses NPM to pull in some client libraries to handle the authorization and some tasks with Pod data.  [Inrupt also has a React SDK](https://github.com/inrupt/solid-ui-react) which is probably where you want to start if you're building out an actual POC.
+Let's take Solid for a quick spin and see what it's like.  The Solid Project has a [helpful tutorial to get us started](https://solidproject.org/developers/tutorials/first-app).  This project sets us a very basic webpage that will ask for authorization to a user's profile in their pod, write some data, and read that data back.  It's simple javascript and html, but it uses NPM to pull in some client libraries to handle the authorization and some tasks with Pod data.  [Inrupt also has a React SDK](https://github.com/inrupt/solid-ui-react) which is probably where you want to start if you're building out an actual POC.
 
 The first thing to do is to setup a Pod account.  I used the [one available from Inrupt](https://signup.pod.inrupt.com/), which at the time of the writing is the only listed as compliant with the specifications.  
 
