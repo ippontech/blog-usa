@@ -9,6 +9,7 @@ tags:
 - Distributed Internet
 title: "Beginning Decentralized Identity Applications with Solid"
 date: 2021-09-13T13:59:40-04:00
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/09/beginning-applications-with-solid.png
 ---
 
 ## Summary 
