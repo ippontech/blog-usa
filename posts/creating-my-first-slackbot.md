@@ -6,11 +6,11 @@ tags:
 - Slack API
 - Node.js
 date: 
-title: "My Journey With Creating My First Slackbot"
+title: "Creating My First Slackbot"
 image: 
 ---
 
-# My Journey With Creating My First Slackbot
+# Creating My First Slackbot
 
 One of the first things I do when onboarding to a new software project is to locate the owner of the software's documentation that I will be using. This is probably the most common approach for most software developers. What better way to learn about a software product than from the people who actually created it? In some cases, the software owner’s documentation may be more complex than some other websites' explanations, instructions, or use cases. 
 
