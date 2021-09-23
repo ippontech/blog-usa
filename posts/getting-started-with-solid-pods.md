@@ -30,21 +30,21 @@ This post is a follow up from ["Distributed Personal Data Stores and Verified Cr
 > To store and access data in your Pod, applications use standard, open, and interoperable data formats and protocols.
 
 This specification allows for transparency in how a user's data is used and permits a 'decentralized' architecture for web applications.  A pod can store any kind of data.  That data can be accessed by any authorized user or application using an [agreed upon and common vocabulary](https://solidproject.org/developers/vocabularies/well-known).  These functionalities allow applications to use data stored across distributed servers. 
-| ![Application Ecosystem on Solid Pods](../images/2021/09/solid-apps-as-views.svg) |
+| ![Application Ecosystem on Solid Pods](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/09/solid-apps-as-views.svg) |
 |:--:|
 | *Decentralized applications using Solid Pods as datastores* |
 
 
 ## How Does it Work?
 When a user loads an application in their browser, the browser requests permission from a user's pod to use specific resources within that person's pod. 
-| ![Application Ecosystem on Solid Pods](../images/2021/09/solid-application-auth-request.png) |
+| ![Application Ecosystem on Solid Pods](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/09/solid-application-auth-request.png) |
 |:--:|
 | *Authorization request from Inrupt's pod browser application* |
 
 Once the application has been authorized to read and/or write data within the pod, the application will read the data and perform whatever tasks are necessary.  Authorization is setup such that the application can access only selected resources from the user's storage pod.  
 
 In practice this means that a user can choose to partially share information with an application.  For instance, if someone wants to use a health and wellness application, they may choose to share information on their medications and allergies but not their exercise habits.
-| ![Application Ecosystem on Solid Pods](../images/2021/09/solid-basic.png) |
+| ![Application Ecosystem on Solid Pods](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/09/solid-basic.png) |
 |:--:|
 | *Partial authorization of data sharing* |
 
@@ -62,7 +62,7 @@ This DPoP token is then used to make an authorization request to the Pod provide
 
 Individual [resources (aka pieces of data) in the Solid Specification are identified using 'vocabularies' ( aka ontologies )](https://solidproject.org/developers/vocabularies) which are written using RDF (Resource Description Framework) turtle syntax.  This creates a unique URL for each piece of information within a users Pod to which ACL's can be associated.  For a more thorough explanation of the work flow check out [this primer](https://solid.github.io/solid-oidc/primer/).
 
-| ![Application Ecosystem on Solid Pods](../images/2021/09/Solid-architecture.jpeg) |
+| ![Application Ecosystem on Solid Pods](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/09/Solid-architecture.jpeg) |
 |:--:|
 | *Pod and Authentication architecture* |
 
