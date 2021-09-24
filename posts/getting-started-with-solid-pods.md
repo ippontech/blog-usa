@@ -14,7 +14,7 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2020/0
 
 ## Summary 
 
-This post is a follow up from ["Distributed Personal Data Stores and Verified Credentials: Potential Opportunities in Finance"](decentralized-data-storage-finance.md) in which we looked at the potential opportunities for distributed data storage and verified credentials in the finance industry.  In this post we look at the technical feasibility and production readiness of the current ecosystem for distributed data storage using the Solid Project.  In order to do that we will look at getting started with implementing an application that uses decentralized identity and data storage.  We will look at using the Solid Project for our application.
+This post is a follow up from ["Distributed Personal Data Stores and Verified Credentials: Potential Opportunities in Finance"](https://blog.ippon.tech/distributed-personal-data-stores-and-verified-credentials-potential-opportunities-in-finance) in which we looked at the potential opportunities for distributed data storage and verified credentials in the finance industry.  In this post we look at the technical feasibility and production readiness of the current ecosystem for distributed data storage using the Solid Project.  In order to do that we will look at getting started with implementing an application that uses decentralized identity and data storage.  We will look at using the Solid Project for our application.
 
 # Beginning Decentralized Identity Applications with Solid
 
