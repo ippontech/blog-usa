@@ -5,10 +5,8 @@ tags:
 - Kubernetes
 date: 2021-09-07T12:21:50.000Z
 title: "Kubernetes Tutorial #1: Intro"
-image: 
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/09/Kubernetes_Tutorial_1_Intro.png
 ---
-
-![Banner](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/Kubernetes_Tutorial_1_Intro.png)
 
 ## Intro 
 
@@ -21,13 +19,13 @@ DevOps engineers have moved from on-premise, monolithic applications to large-sc
 
 To understand Kubernetes, I believe it is helpful to look at and compare how production applications have been deployed in the past and compare that what K8s brings to the table in the present. First, let's consider our first legacy setup. At company "ABC," there are a couple of servers in a physical data center on the company's real estate somewhere to host our applications. Let's say we size our production servers to match our expected user base and concurrent usage. In our example, we have four discrete business applications: Green, Orange, Teal, and Blue. Now let's say all of these applications share a network, database, and load balancer with each other. We also have a couple of spare servers allocated in the event of a disaster recovery.
 
-![onprem-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/onprem.png)
+![onprem-deployment](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/09/onprem.png)
 
 ## Simulating a Disaster
 
 We have a scenario where IT network operations center gets alerted about an outage in application "Blue." An electrical storm came through the night before and shorted the hardware on the server. Because of the outage, IT determines that they will need to move the application to one of the spare servers.
 
-![onprem-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/onprem2.png)
+![onprem-deployment](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/09/onprem2.png)
 
 During this outage, IT will be scrambling to bring one of the spare servers online. In addition, they will have to configure access to the shared database and network load balancer, and allow firewall rules for the application to run on the new server. Each of these tasks can be time-consuming if not planned for ahead of time or have had repeated dry runs to ensure that they can be done issue-free. 
 
@@ -49,19 +47,19 @@ The way Kubernetes operates is to have a pool of machines ready for any applicat
 
 Let's go back to company "ABC" with their four application deployments. We convert our production deployment operations to Kubernetes -- first by installing a Kubelet onto all of our agent nodes.
 
-![k8s-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/k8s.png)
+![k8s-deployment](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/09/k8s.png)
 
 Next, we segment three machines to be controllers that will be in charge of maintaining communications with all the agent nodes and checking the health of the cluster configuration. 
 
-![k8s-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/k8s2.png)
+![k8s-deployment](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/09/k8s2.png)
 
 We then define our application deployments as "plans". The "Plans" are defined by Kubenetes configuration YAML files. These configuration files can configure many different aspects like resource sizes, network settings, and health checks. These plans get communicated to our agent nodes for deployment on _all_ active machines. 
 
-![k8s-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/k8s3.png)
+![k8s-deployment](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/09/k8s3.png)
 
 If we repeat our disaster scenario from before and one of our machines in our agent pool is taken offline, our controllers can now assess the health of this application automatically and redeploy our application onto the next available node.
 
-![k8s-deployment](https://github.com/David-Elizondo/blog-usa/blob/master/images/2021/09/k8s4.png)
+![k8s-deployment](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/09/k8s4.png)
 
 
 ## Summary
