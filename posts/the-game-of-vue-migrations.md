@@ -33,9 +33,19 @@ As is typical of most projects, there are often many ways to proceed when updati
 1. Vue 3 -> TypeScript -> Tests
 1. Vue 3 -> Tests -> TypeScript
 
-Luckily, we have the help of our trusty [Vue CLI](https://cli.vuejs.org/) to get the job done for two out of the three steps. It has plugins for adding [Jest](https://cli.vuejs.org/core-plugins/unit-jest.html#vue-cli-plugin-unit-jest) and [TypeScript](https://cli.vuejs.org/core-plugins/typescript.html) which are relatively painless (though require some manual intervention). Upgrading to Vue 3 has [helpful docs that provide guidance](https://v3.vuejs.org/guide/migration/migration-build.html) but is certainly the most complex step.
+Luckily, we have the help of our trusty [Vue CLI](https://cli.vuejs.org/) to get the job done for two out of the three steps. It has plugins for adding [Jest](https://cli.vuejs.org/core-plugins/unit-jest.html#vue-cli-plugin-unit-jest) and [TypeScript](https://cli.vuejs.org/core-plugins/typescript.html) which are relatively painless (though require some manual intervention). Upgrading to Vue 3 has [helpful docs that provide guidance](https://v3.vuejs.org/guide/migration/migration-build.html) but is seemingly the most complex step.
 
-So what is the best way to proceed? This is best answered by first understanding the state where this app is currently.
+So what is the best way to proceed? This is best answered by, first, understanding the state of where this app is currently and, second, testing out the transitions via git history and branches.
+
+### State of the Vue-nion
+
+A quick way to get a project overview is through the [Vue CLI GUI](https://cli.vuejs.org/dev-guide/plugin-dev.html#installing-plugin-locally). This can be opened by running the command:
+
+```bash
+vue ui
+```
+
+Import the project by navigating to it in your file system.
 
 ## Keep On Changing
 
