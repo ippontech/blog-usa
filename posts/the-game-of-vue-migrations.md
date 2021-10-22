@@ -9,18 +9,20 @@ tags:
   - Test-Driven Development
 date: 2021-10-19T00:00:00.000Z
 title: 'The Game of Vue Migrations'
-image:
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueLogo.png
 ---
 
 ## A Word on Transformation and Migration
 
 Our lives are made up of transitions. We move from place A to place B. Our own feelings can bounce from happy to sad without much of a reason. World events seem to escalate and evolve before our very eyes. The constant is that change is inevitable.
 
-In the following post you will read about my attempts at transforming and migrating a simple [Vue 2](https://vuejs.org/) App implementation of [The Game of Life](https://codingdojo.org/kata/GameOfLife/) that has no tests. The objective is to take this bare-bones and badly-designed application through a metamorphic process that will include:
+In the following post you will read about my attempts at transforming and migrating a simple [Vue 2](https://vuejs.org/) App implementation of [The Game of Life](https://codingdojo.org/kata/GameOfLife/) that has no tests. The objective is to take [this bare-bones and badly-designed application](https://github.com/matthewreed26/game-of-life) through a metamorphic process that will include:
 
 1. Bringing up test coverage with a focus on Test-Driven Development
 1. Removing complexity through refactoring and types in TypeScript
 1. A full version upgrade to the newer [Vue 3](https://v3.vuejs.org/) framework
+
+It might be ambitious to tackle in a single post but hopefully the thought process used will make an impact.
 
 ## Handling Multiple Migratory Objectives
 
@@ -45,7 +47,13 @@ A quick way to get a project overview is through the [Vue CLI GUI](https://cli.v
 vue ui
 ```
 
-Import the project by navigating to it in your file system.
+Import the project by navigating to it in your file system. Now it is easy to observe existing plugins, dependencies, configurations, and package manager tasks of the project. Possible plugins might include the [Vue router](https://router.vuejs.org/installation.html#vue-cli) or [Vuex for state management](https://vuex.vuejs.org/) whereas dependencies could include [Axios for network calls](https://axios-http.com/) or [Vee-Validate forms](https://vee-validate.logaretm.com/v3).
+
+It is also possible to add new plugins and dependencies graphically via the dashboard here. It is one way to add testing and TypeScript plugins, but more on this later.
+
+![Vue Plugin UI Dashboard](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VuePluginUI.png)
+
+Depending on the size of the project there could be a long list of plugins and dependencies to consider when exploring migration feasibility. Does a 3rd party library like Vee-Validate have native TypeScript support, or will a custom solution/alternative need to be considered? Is the Vue router integrated differently in Vue 2 versus 3? The coupling degree of app to dependencies will play a large role in level of effort.
 
 ## Keep On Changing
 
