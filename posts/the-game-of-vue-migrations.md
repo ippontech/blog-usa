@@ -53,12 +53,62 @@ It is also possible to add new plugins and dependencies graphically via the dash
 
 ![Vue Plugin UI Dashboard](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VuePluginUI.png)
 
-Depending on the size of the project there could be a long list of plugins and dependencies to consider when exploring migration feasibility. Does a 3rd party library like Vee-Validate have native TypeScript support, or will a custom solution/alternative need to be considered? Is the Vue router integrated differently in Vue 2 versus 3? The coupling degree of app to dependencies will play a large role in level of effort.
+Depending on the size of the project there could be a long list of plugins and dependencies to consider when exploring migration feasibility. Does a 3rd party library like Vee-Validate have native TypeScript support, or will a custom solution/alternative need to be considered? Is the Vue router integrated differently in Vue 2 versus 3? The coupling degree of app to dependencies will be a large factor in level of effort.
+
+### Test the Waters
+
+The first step in our migration will be to add tests. While it does add the [Jest](https://cli.vuejs.org/core-plugins/unit-jest.html#vue-cli-plugin-unit-jest) plugin (and thus complexity during the version upgrade), this is the best first step as a good testing suites are crucial to our confidence everything works as expected. These tests will ensure functionality without having to manually check every part of the application not just right now, but as the app evolves.
+
+Add this [Jest](https://cli.vuejs.org/core-plugins/unit-jest.html#vue-cli-plugin-unit-jest) plugin via the Vue CLI GUI or by running the following command in the root of the project:
+
+```bash
+vue add unit-jest
+```
+
+As well as modifying the `package.json`, it adds a `jest.config.js` file to the root and `example.spec.js` file under a `tests` folder. Running the new unit testing command:
+
+```bash
+npm run test:unit
+```
+
+Yields pretty minimal output:
+
+![Fresh Unit Testing Output](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueFreshUnitTestingOutput.png)
+
+There is no information on the `GameOfLife.vue` or `GameOfLife.component.js` files right out of the box. It only runs the `example.spec.js` for testing `HelloWorld.vue`. Adding a `GameOfLife.spec.js` with a basic evaluation is picked up when we run the unit testing command again:
+
+![Basic GameOfLife Test](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueBasicGameOfLifeTest.png)
+
+![Unit Testing Output with Basic GameOfLife Test](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueUnitTestingOutputBasicGameOfLifeTest.png)
+
+Despite the shown "<span style="color:green">PASS</span>", clearly it is not enough to ensure proper functionality. Introducing the concept of [Code Coverage](https://en.wikipedia.org/wiki/Code_coverage) should help direct attention towards the lines which require more testing. This can be done by modifying the `jest.config.js` from earlier with the following configuration which will tell Jest to collect coverage reports and display them in the console:
+
+```js
+module.exports = {
+  preset: '@vue/cli-plugin-unit-jest',
+  transform: {
+    '^.+\\.vue$': 'vue-jest',
+  },
+  coverageDirectory: '<rootDir>/coverage',
+  collectCoverageFrom: [
+    'src/**/*.{js,ts,vue}',
+    '!src/**/*.component.{js,ts}',
+    '!src/main.{js,ts}',
+    '!**/*.d.ts',
+  ],
+  coverageReporters: ['html', 'json', 'text', 'lcov', 'clover'],
+  collectCoverage: true,
+};
+```
+
+Removing the useless `example.spec.js` and `HelloWorld.vue` files and adding a basic test for `App.js`, the output is now much more helpful:
+
+![Unit Testing Output with Code Coverage](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueUnitTestingOutputCodeCoverage.png)
 
 ## Keep On Changing
 
-This blog may not stand the test of time as individuals/companies/teams perform their inherent migratory efforts. We know Vue 2 will become outdated just as Struts has in front-end programming, and Python 2 has made way for Python 3, and various other technologies that have come before these. What makes software engineering especially hard is the rate of change.
+This blog may not stand the test of time as individuals/companies/teams move on from Vue 2. We know Vue 2 will become outdated just as Struts has in front-end programming, and Python 2 has made way for Python 3, and various other technologies that have come before these. What makes software engineering especially hard is this fast rate of change.
 
-Life is our ability to cope with these shifting constructs and being ready for whatever is next. And a large part of that is recognizing where the winds of change are blowing from/to. So maybe this blog reaches an audience somewhere that needs this information now. Then it has served its purpose in facilitating a transformation.
+Life is our ability to cope with these shifting constructs and being ready for whatever is next. And a large part of that is recognizing where the winds of change are blowing from/to. So maybe this blog reaches an audience somewhere that needs the information now. Then it has served its purpose in facilitating a transformation.
 
-This is the positive mindset that Ippon tries to teach all its consultants. This is what we call the "Ippon Way". Be sure to get in contact with us if we may help guide you or your company's transformation.
+This is the "Positive Technology" mindset that Ippon tries to teach all its consultants. If you resonated with the article you just read, get in contact with us so we may help guide you or your company's transformation.
