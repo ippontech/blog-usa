@@ -55,7 +55,7 @@ It is also possible to add new plugins and dependencies graphically via the dash
 
 Depending on the size of the project there could be a long list of plugins and dependencies to consider when exploring migration feasibility. Does a 3rd party library like Vee-Validate have native TypeScript support, or will a custom solution/alternative need to be considered? Is the Vue router integrated differently in Vue 2 versus 3? The coupling degree of app to dependencies will be a large factor in level of effort.
 
-### Test the Waters
+### Testing the Waters
 
 The first step in our migration will be to add tests. While it does add the [Jest](https://cli.vuejs.org/core-plugins/unit-jest.html#vue-cli-plugin-unit-jest) plugin (and thus complexity during the version upgrade), this is the best first step as a good testing suites are crucial to our confidence everything works as expected. These tests will ensure functionality without having to manually check every part of the application not just right now, but as the app evolves.
 
@@ -81,7 +81,7 @@ There is no information on the `GameOfLife.vue` or `GameOfLife.component.js` fil
 
 ![Unit Testing Output with Basic GameOfLife Test](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueUnitTestingOutputBasicGameOfLifeTest.png)
 
-Despite the shown "<span style="color:green">PASS</span>", clearly it is not enough to ensure proper functionality. Introducing the concept of [Code Coverage](https://en.wikipedia.org/wiki/Code_coverage) should help direct attention towards the lines which require more testing. This can be done by modifying the `jest.config.js` from earlier with the following configuration which will tell Jest to collect coverage reports and display them in the console:
+Despite the shown "<span style="color:green">PASS</span>", clearly it is not enough to ensure proper functionality. Introducing the concept of [Code Coverage](https://en.wikipedia.org/wiki/Code_coverage) should help direct attention towards the lines which require more testing. This can be done by modifying the `jest.config.js` from earlier. With the intent that this app will utilize TypeScript in a future step, the following configuration will tell Jest to collect coverage reports and display them in the console:
 
 ```js
 module.exports = {
@@ -104,6 +104,35 @@ module.exports = {
 Removing the useless `example.spec.js` and `HelloWorld.vue` files and adding a basic test for `App.js`, the output is now much more helpful:
 
 ![Unit Testing Output with Code Coverage](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueUnitTestingOutputCodeCoverage.png)
+
+One last tip before it is time to bring up the Code Coverage. To run the tests continuously, a command can be added to the `"scripts"` section of the `package.json`:
+
+```json
+"test:unit:watch": "vue-cli-service test:unit --watch --coverage"
+```
+
+### Test-Driven Development vs. Testing as an Afterthought
+
+When testing is the core first step of an application's development cycle, this is known as [Test-Driven Development (TDD)](https://en.wikipedia.org/wiki/Test-driven_development). This is a different mindset than when tests are written after the application code. In this case, testing is more of an afterthought than a designing methodology. The good news is once there are tests then the power of TDD can take hold.
+
+Once enough tests have been written to bring the coverage reports up to compliant levels (generally think >80% but be sure to hit any edge cases!), the console output may look something more like this:
+
+![Unit Testing Output with Full Code Coverage](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueUnitTestingOutputFullCodeCoverage.png)
+
+Thinking ahead while writing the tests to the refactoring/TypeScript step, here are a few opportunities for improvements:
+
+1. The default `grid` value of `[[false]]` within `data()` is an incorrect placeholder.
+1. There are variable name typos, inconsistent function names, and confusing function responsibilities.
+1. The displayed grid could look nicer.
+1. It might have been found the `checkNeighbors` method requires more intricate tests. Due to this, and as the [SonarLint extension](https://www.sonarlint.org/vscode) suggested, it is apparent that the method's complexity needs to be reduced.
+
+![CheckNeighbors Method Complexity](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueCheckNeighborsComplexity.png)
+
+So what is the next step? Is it to refactor/add TypeScript or upgrade to Vue 3? Well, considering that Vue 3 is natively in TypeScript, it might be best to perform the transition to TypeScript first. That way might make an upgrade to Vue 3 even easier. It could allow for more options like following [the aforementioned guidance](https://v3.vuejs.org/guide/migration/migration-build.html) or perhaps generating a new Vue 3 project then copying over the existing Vue components.
+
+### The New Vue Upgraded
+
+The guidance previously shared did highlight some [limitations](https://v3.vuejs.org/guide/migration/migration-build.html#known-limitations) and [preparations](https://v3.vuejs.org/guide/migration/migration-build.html#preparations) before [installation of an intermediary build](https://v3.vuejs.org/guide/migration/migration-build.html#installation). While that is probably the preferred method for large-scale applications, perhaps for smaller ones another way could be to generate a new Vue 3 project via the Vue CLI then copy over the existing Vue components.
 
 ## Keep On Changing
 
