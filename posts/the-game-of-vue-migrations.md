@@ -19,23 +19,14 @@ Our lives are made up of transitions. We move from place A to place B. Our own f
 In the following post you will read about my attempts at transforming and migrating a simple [Vue 2](https://vuejs.org/) App implementation of [The Game of Life](https://codingdojo.org/kata/GameOfLife/) that has no tests. The objective is to take [this bare-bones and badly-designed application](https://github.com/matthewreed26/game-of-life) through a metamorphic process that will include:
 
 1. Bringing up test coverage with a focus on Test-Driven Development
-1. Removing complexity through refactoring and types in TypeScript
+1. Improving readability via types in TypeScript and removing complexity through refactoring
 1. A full version upgrade to the newer [Vue 3](https://v3.vuejs.org/) framework
 
 It might be ambitious to tackle in a single post but hopefully the thought process used will make an impact.
 
 ## Handling Multiple Migratory Objectives
 
-As is typical of most projects, there are often many ways to proceed when updating multiple aspects. In this case, there are 3 factorial ways:
-
-1. Tests -> TypeScript -> Vue 3
-1. Tests -> Vue 3 -> TypeScript
-1. TypeScript -> Tests -> Vue 3
-1. TypeScript -> Vue 3 -> Tests
-1. Vue 3 -> TypeScript -> Tests
-1. Vue 3 -> Tests -> TypeScript
-
-Luckily, we have the help of our trusty [Vue CLI](https://cli.vuejs.org/) to get the job done for two out of the three steps. It has plugins for adding [Jest](https://cli.vuejs.org/core-plugins/unit-jest.html#vue-cli-plugin-unit-jest) and [TypeScript](https://cli.vuejs.org/core-plugins/typescript.html) which are relatively painless (though require some manual intervention). Upgrading to Vue 3 has [helpful docs that provide guidance](https://v3.vuejs.org/guide/migration/migration-build.html) but is seemingly the most complex step.
+As is typical of most projects, there are often many ways to proceed when updating multiple aspects. Luckily, we have the help of our trusty [Vue CLI](https://cli.vuejs.org/) to get the job done for two out of the three steps. It has plugins for adding [Jest](https://cli.vuejs.org/core-plugins/unit-jest.html#vue-cli-plugin-unit-jest) and [TypeScript](https://cli.vuejs.org/core-plugins/typescript.html) which are relatively painless (though require some manual intervention). Upgrading to Vue 3 has [helpful docs that provide guidance](https://v3.vuejs.org/guide/migration/migration-build.html) but is seemingly the most complex step.
 
 So what is the best way to proceed? This is best answered by, first, understanding the state of where this app is currently and, second, testing out the transitions via git history and branches.
 
@@ -55,7 +46,7 @@ It is also possible to add new plugins and dependencies graphically via the dash
 
 Depending on the size of the project there could be a long list of plugins and dependencies to consider when exploring migration feasibility. Does a 3rd party library like Vee-Validate have native TypeScript support, or will a custom solution/alternative need to be considered? Is the Vue router integrated differently in Vue 2 versus 3? The coupling degree of app to dependencies will be a large factor in level of effort.
 
-### Testing the Waters
+## Testing the Waters
 
 The first step in our migration will be to add tests. While it does add the [Jest](https://cli.vuejs.org/core-plugins/unit-jest.html#vue-cli-plugin-unit-jest) plugin (and thus complexity during the version upgrade), this is the best first step as a good testing suites are crucial to our confidence everything works as expected. These tests will ensure functionality without having to manually check every part of the application not just right now, but as the app evolves.
 
@@ -81,35 +72,13 @@ There is no information on the `GameOfLife.vue` or `GameOfLife.component.js` fil
 
 ![Unit Testing Output with Basic GameOfLife Test](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueUnitTestingOutputBasicGameOfLifeTest.png)
 
-Despite the shown "<span style="color:green">PASS</span>", clearly it is not enough to ensure proper functionality. Introducing the concept of [Code Coverage](https://en.wikipedia.org/wiki/Code_coverage) should help direct attention towards the lines which require more testing. This can be done by modifying the `jest.config.js` from earlier. With the intent that this app will utilize TypeScript in a future step, the following configuration will tell Jest to collect coverage reports and display them in the console:
-
-```js
-module.exports = {
-  preset: '@vue/cli-plugin-unit-jest',
-  transform: {
-    '^.+\\.vue$': 'vue-jest',
-  },
-  coverageDirectory: '<rootDir>/coverage',
-  collectCoverageFrom: [
-    'src/**/*.{js,ts,vue}',
-    '!src/**/*.component.{js,ts}',
-    '!src/main.{js,ts}',
-    '!**/*.d.ts',
-  ],
-  coverageReporters: ['html', 'json', 'text', 'lcov', 'clover'],
-  collectCoverage: true,
-};
-```
+Despite the shown "<span style="color:green">PASS</span>", clearly it is not enough to ensure proper functionality. Introducing the concept of [Code Coverage](https://en.wikipedia.org/wiki/Code_coverage) should help direct attention towards the lines which require more testing. This can be done by modifying the `jest.config.js` from earlier. With the intent that this app will utilize TypeScript in a future step, [this configuration](https://github.com/matthewreed26/game-of-life/blob/unit-jest/jest.config.js) will tell Jest to collect coverage reports and display them in the console.
 
 Removing the useless `example.spec.js` and `HelloWorld.vue` files and adding a basic test for `App.js`, the output is now much more helpful:
 
 ![Unit Testing Output with Code Coverage](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueUnitTestingOutputCodeCoverage.png)
 
-One last tip before it is time to bring up the Code Coverage. To run the tests continuously, a command can be added to the `"scripts"` section of the `package.json`:
-
-```json
-"test:unit:watch": "vue-cli-service test:unit --watch --coverage"
-```
+One last tip before it is time to bring up the Code Coverage. To run the tests continuously, [a command](https://github.com/matthewreed26/game-of-life/blob/unit-jest/package.json#L9) can be added to the `"scripts"` section of the `package.json`:
 
 ### Test-Driven Development vs. Testing as an Afterthought
 
@@ -130,7 +99,25 @@ Thinking ahead while writing the tests to the refactoring/TypeScript step, here 
 
 So what is the next step? Is it to refactor/add TypeScript or upgrade to Vue 3? Well, considering that Vue 3 is natively in TypeScript, it might be best to perform the transition to TypeScript first. That way might make an upgrade to Vue 3 even easier. It could allow for more options like following [the aforementioned guidance](https://v3.vuejs.org/guide/migration/migration-build.html) or perhaps generating a new Vue 3 project then copying over the existing Vue components.
 
-### The New Vue Upgraded
+## Reading the Room
+
+What does everyone do at networking events or parties when they initially enter into the space? They scan the room looking for their friends, groups who are dressed/acting similarly, or easy congregation areas like water coolers. The reason? The ability to gain familiarity on the ins-and-outs of the event can allow the individual to thrive. Based on the known capabilities of the event, the individual can network with people more efficiently.
+
+An analogous behavior can be seen when joining a project for the first time. To be a high-functioning contributor, a new individual will parse through the various aspects of an application which can provide them information on its various functionalities. Are there tests that exist to show distinctions in functionality? What is the folder or component structure of [parent-to-child relationships](https://vuejs.org/v2/guide/instance.html)? How are the methods and variables named? The idea is this new individual should be able to answer these questions as seamlessly as possible.
+
+Strongly-typed languages such as TypeScript allow for better readability because methods and objects require intentional type definitions. It is yet another way besides tests to get real-time feedback about the working code. Perhaps even more valuable is how these types can prevent exceptions from occurring during runtime too.
+
+### Adding TypeScript Intentionality
+
+Add [TypeScript](https://cli.vuejs.org/core-plugins/typescript.html) to the existing project via the Vue CLI by running the command:
+
+```bash
+vue add typescript
+```
+
+Important note, the first prompt of "`Use class-style component syntax?`" should be answered "`no`". While in Vue 2 it is a popular style for writing TypeScript components, it is not fully supported in Vue 3 (because of [reasons](https://github.com/vuejs/rfcs/pull/17#issuecomment-494242121)). Without getting too ahead, answering "`no`" will make the [Options API](https://v3.vuejs.org/guide/typescript-support.html#using-with-options-api) and [Composition API](https://v3.vuejs.org/guide/typescript-support.html#using-with-composition-api) implementations easier later on.
+
+## The New Vue
 
 The guidance previously shared did highlight some [limitations](https://v3.vuejs.org/guide/migration/migration-build.html#known-limitations) and [preparations](https://v3.vuejs.org/guide/migration/migration-build.html#preparations) before [installation of an intermediary build](https://v3.vuejs.org/guide/migration/migration-build.html#installation). While that is probably the preferred method for large-scale applications, perhaps for smaller ones another way could be to generate a new Vue 3 project via the Vue CLI then copy over the existing Vue components.
 
