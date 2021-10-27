@@ -115,9 +115,17 @@ Add [TypeScript](https://cli.vuejs.org/core-plugins/typescript.html) to the exis
 vue add typescript
 ```
 
-Important note, the first prompt of "`Use class-style component syntax?`" should be answered "`no`". While in Vue 2 it is a popular style for writing TypeScript components, it is not fully supported in Vue 3 (because of [reasons](https://github.com/vuejs/rfcs/pull/17#issuecomment-494242121)). Without getting too ahead, answering "`no`" will make the [Options API](https://v3.vuejs.org/guide/typescript-support.html#using-with-options-api) and [Composition API](https://v3.vuejs.org/guide/typescript-support.html#using-with-composition-api) implementations easier later on.
+Important note, the first prompt of "`Use class-style component syntax?`" should be answered "`no`". While in Vue 2 it is a popular style for writing [TypeScript components](https://vuejs.org/v2/guide/typescript.html), it is not fully supported in Vue 3 (because of [reasons](https://github.com/vuejs/rfcs/pull/17#issuecomment-494242121)). Without getting too ahead, answering "`no`" will make the [Options API](https://v3.vuejs.org/guide/typescript-support.html#using-with-options-api) and [Composition API](https://v3.vuejs.org/guide/typescript-support.html#using-with-composition-api) implementations easier later on.
 
-## The New Vue
+Deleting the `HelloWorld.vue` and reverting back the `App.vue`, one of the first observations in `GameOfLife.vue` is how the `generateEmptyGrid` method shows a problem when adding the constructed row to the grid. This comes from the incorrect declaration within `data()` for the `grid` value of `[[false]]`.
+
+![Incorrect Grid Declaration](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueIncorrectGridDeclaration.png)
+
+Instead the initial value for `grid` should have been `[[{id:-1, alive:false}]]`. Once that is changed the inconsistency is resolved. But, this is only seen now with TypeScript despite it being there the whole time.
+
+After adding types to all various the methods' outputs and its inputs like is requested for `toggleCell` above, it is time to fix the tests. Fortunately, the Vue CLI already changed the file types but the `GameOfLife` import is now broken due to the [use of `Vue.extend`](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript/src/components/game-of-life/GameOfLife.component.ts#L3). Unfortunately, there is no easy solution other than [this quick fix](https://github.com/vuejs/vue-test-utils/issues/255) on the [`shallowMount` return type](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript/tests/unit/components/game-of-life/GameOfLife.spec.ts#L144). With the addition of that, all tests pass and coverage is restored.
+
+## Say Hello to The New Vue
 
 The guidance previously shared did highlight some [limitations](https://v3.vuejs.org/guide/migration/migration-build.html#known-limitations) and [preparations](https://v3.vuejs.org/guide/migration/migration-build.html#preparations) before [installation of an intermediary build](https://v3.vuejs.org/guide/migration/migration-build.html#installation). While that is probably the preferred method for large-scale applications, perhaps for smaller ones another way could be to generate a new Vue 3 project via the Vue CLI then copy over the existing Vue components.
 
