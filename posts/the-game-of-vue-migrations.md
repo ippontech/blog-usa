@@ -6,7 +6,9 @@ tags:
   - Front-End
   - JavaScript
   - TypeScript
+  - Software Migration
   - Test-Driven Development
+  - Software Craft
 date: 2021-10-19T00:00:00.000Z
 title: 'The Game of Vue Migrations'
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueLogo.png
@@ -18,7 +20,7 @@ Our lives are made up of transitions. We move from place A to place B. Our own f
 
 In the following post you will read about my attempts to transform a [Vue 2](https://vuejs.org/) App implementation of [The Game of Life](https://codingdojo.org/kata/GameOfLife/). The objective is to take [this simple application with no tests](https://github.com/matthewreed26/game-of-life) through a metamorphic process that will include:
 
-1. Bringing up test coverage with a focus on Test-Driven Development
+1. Bringing up unit test coverage with a focus on Test-Driven Development
 1. Improving readability via types in TypeScript and removing complexity through refactoring
 1. A full version upgrade to the newer [Vue 3](https://v3.vuejs.org/) framework
 
@@ -89,7 +91,7 @@ With enough tests to bring the coverage reports up to compliant levels (generall
 Thinking ahead while writing the tests to the refactoring/TypeScript step, here are a few opportunities for improvement:
 
 1. The default `grid` value of `[[false]]` within `data()` is an incorrect placeholder.
-1. There are variable name typos, inconsistent function names, and confusing function responsibilities.
+1. There are variable name typos, inconsistent function names, and [confusing function responsibilities](https://en.wikipedia.org/wiki/Single-responsibility_principle).
 1. The `checkNeighbors` method requires more intricate tests. Due to this, and as the [SonarLint extension](https://www.sonarlint.org/vscode) suggested, the method's complexity needs to be reduced.
 
 ![CheckNeighbors Method Complexity](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueCheckNeighborsComplexity.png)
@@ -120,9 +122,15 @@ Deleting the `HelloWorld.vue` and reverting back the `App.vue`, one of the first
 
 Instead, the initial value for `grid` should have been `[[{id:-1, alive:false}]]`. The inconsistency is resolved once that is changed. Confusion is avoided thanks to TypeScript.
 
-After adding to all various methods' outputs and inputs like is requested for `toggleCell` above, the app runs as expected! Now to fix the `GameOfLife.spec.ts`. The `GameOfLife` import is now broken due to the [use of `Vue.extend`](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript/src/components/game-of-life/GameOfLife.component.ts#L3). There is no easy solution other than [this quick fix](https://github.com/vuejs/vue-test-utils/issues/255) on the [`shallowMount` return type](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript/tests/unit/components/game-of-life/GameOfLife.spec.ts#L144). But, with the addition of that, all tests pass and coverage is restored.
+After adding to all various methods' outputs and inputs like is requested for `toggleCell` above, the app runs as expected! Now to fix the `GameOfLife.spec.ts`. The `GameOfLife` import is now broken due to the [use of `Vue.extend`](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript/src/components/game-of-life/GameOfLife.component.ts#L3). There is no easy solution other than [this quick fix](https://github.com/vuejs/vue-test-utils/issues/255) on the [`shallowMount` Wrapper type](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript/tests/unit/components/game-of-life/GameOfLife.spec.ts#L145). But, with the addition of that, all tests pass and coverage is restored.
 
-### Increasing Intentionality
+### Increasing Intentionality and Separating Concerns
+
+Having passing tests means that the other two opportunities for improvement can be addressed. Making sure to adhere to TDD by modifying the tests before the working code, change any variables or methods that could be more aptly named. All tests must pass before continuing.
+
+Breaking down existing, complex methods in a codebase is an example of [code refactoring](https://en.wikipedia.org/wiki/Code_refactoring) and necessary when their [responsibilities are ambiguous](https://en.wikipedia.org/wiki/Single-responsibility_principle). Look at `checkNeighbors` for example. Are diagonal neighbors considered and does it handle grid boundary cells? How do existing neighbors determine the next generation's grid of cell lives? Despite renaming `checkNeighbors` to a more descriptive name, this method's functionality remains vague so more must be done.
+
+Though the Vue template only calls `generateNextGenerationGrid`, overall scoping smaller methods in and outside a component is better for a project's longevity. Of course, utilizing TypeScript's [`enum`](https://www.typescriptlang.org/docs/handbook/enums.html) and [`type`/`interface`](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces) features can help too. Consolidating [similar lines of code](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript/src/components/game-of-life/GameOfLife.component.ts#L53) is a good place to start. Extracting these lines into anonymous functions and externalizing them to [separate files](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript-intentionality/src/components/game-of-life/NeighborCell.ts) allows for [easy testing](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript-intentionality/tests/unit/components/game-of-life/NeighborCell.spec.ts). Not to mention extracting code [decouples](<https://en.wikipedia.org/wiki/Coupling_(computer_programming)>) the dependency on the `this` context of the Vue component.
 
 ## Say Hello to The New Vue
 
