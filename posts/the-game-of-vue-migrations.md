@@ -24,6 +24,8 @@ In the following post, you will read about my attempts to transform a [Vue 2](ht
 1. Improving readability via types in TypeScript and removing complexity through refactoring
 1. A version upgrade to the newer [Vue 3](https://v3.vuejs.org/) framework
 
+![Vue Game of Life Screenshot](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueGameOfLifeScreenshot.png)
+
 It might be ambitious to tackle in a single post; but, I promise it will be rewarding to understand the thought process.
 
 ## Handling Multiple Objectives
