@@ -46,7 +46,7 @@ Import the project by file system navigation. Now it is easy to observe existing
 
 ![Vue Plugin UI Dashboard](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VuePluginUI.png)
 
-Depending on project size, the list of plugins and dependencies might be extensive when exploring migration feasibility. Does a 3rd party library like Vee-Validate have native TypeScript support, or will a custom solution/alternative need to be considered? Is the Vue router integrated differently in Vue 2 versus 3? The coupling degree of app-to-dependencies is a sizeable factor in the level of effort.
+Depending on project size, the list of plugins and dependencies might be extensive when exploring migration feasibility. Does a 3rd party library like Vee-Validate have native TypeScript support, or will a custom solution need to be considered? Is the Vue router integrated differently in Vue 2 versus 3? The coupling degree of app-to-dependencies is a sizeable factor in the level of effort.
 
 ## Testing the Waters
 
@@ -80,7 +80,11 @@ Removing the useless `example.spec.js` and `HelloWorld.vue` files and adding a b
 
 ![Unit Testing Output with Code Coverage](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueUnitTestingOutputCodeCoverage.png)
 
-One last tip before bringing up the code coverage, [add this command](https://github.com/matthewreed26/game-of-life/blob/unit-jest/package.json#L9) to the `"scripts"` section of the `package.json` to run the tests continuously.
+One last tip before bringing up the code coverage, add this command to the `"scripts"` section of the `package.json` to run the tests continuously:
+
+```json
+"test:unit:watch": "vue-cli-service test:unit --watch --coverage"
+```
 
 ### Test-Driven Development vs. Testing as an Afterthought
 
@@ -116,7 +120,7 @@ Add [TypeScript](https://cli.vuejs.org/core-plugins/typescript.html) via the Vue
 vue add typescript
 ```
 
-**Important note:** The first prompt, "`Use class-style component syntax?`" should be answered "`no`". While it is a popular style for writing [TypeScript components](https://vuejs.org/v2/guide/typescript.html) in Vue 2, it is not fully supported in Vue 3 (because of [reasons](https://github.com/vuejs/rfcs/pull/17#issuecomment-494242121)). Without getting too ahead, answering "`no`" will make the [Options API](https://v3.vuejs.org/guide/typescript-support.html#using-with-options-api) and [Composition API](https://v3.vuejs.org/guide/typescript-support.html#using-with-composition-api) implementations easier later on.
+**Important note:** The first prompt, "`Use class-style component syntax?`" should be answered "`no`". While it is a popular style for writing [TypeScript components](https://vuejs.org/v2/guide/typescript.html) in Vue 2, it is not fully supported in Vue 3 (for a few [reasons](https://github.com/vuejs/rfcs/pull/17#issuecomment-494242121)). Without getting too ahead, answering "`no`" will make the [Options API](https://v3.vuejs.org/guide/typescript-support.html#using-with-options-api) and [Composition API](https://v3.vuejs.org/guide/typescript-support.html#using-with-composition-api) implementations easier later on.
 
 Deleting `HelloWorld.vue` and reverting `App.vue`, one of the first observations in `GameOfLife.vue` is how the "`generateEmptyGrid`" method shows a problem when adding the constructed row to the grid. This comes from the incorrect declaration within "`data()`" for the "`grid`" value of "`[[false]]`".
 
@@ -124,7 +128,7 @@ Deleting `HelloWorld.vue` and reverting `App.vue`, one of the first observations
 
 Instead, the initial value for "`grid`" should have been "`[[{id:-1, alive:false}]]`". Changing it resolves the problematic inconsistency. There is no more confusion, thanks to TypeScript.
 
-As is seen requested for "`toggleCell`" above, adding method outputs and inputs is required in TypeScript. Once done, the app runs as expected! But the tests do not run. Checking `GameOfLife.spec.ts`, it seems the [use of `Vue.extend`](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript/src/components/game-of-life/GameOfLife.component.ts#L3) has broken the `GameOfLife` import. Unfortunately, in Vue 2, there is no easy solution other than [this quick fix](https://github.com/vuejs/vue-test-utils/issues/255) on the [`shallowMount` Wrapper type](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript/tests/unit/components/game-of-life/GameOfLife.spec.ts#L145). The addition of that means a new tradeoff. For Visual Studio Code users, the IDE's [IntelliSense](https://code.visualstudio.com/docs/editor/intellisense) now cannot help write new tests. In turn, though, it restores functionality to the existing test suite (modifying an "`expect`" will confirm). The good news is an upgrade to Vue 3 will correct this IDE type-checking problem.
+As is seen requested for "`toggleCell`" above, adding method outputs and inputs is required in TypeScript because [`strict` checking](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript/tsconfig.json#L5) is enabled in the `tsconfig.json`. Once done, the app runs as expected! But the tests do not run. Checking `GameOfLife.spec.ts`, it seems the [use of `Vue.extend`](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript/src/components/game-of-life/GameOfLife.component.ts#L3) has broken the `GameOfLife` import. Unfortunately, in Vue 2, there is no easy solution other than [this quick fix](https://github.com/vuejs/vue-test-utils/issues/255) on the [`shallowMount` Wrapper type](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript/tests/unit/components/game-of-life/GameOfLife.spec.ts#L145). The addition of that means a new tradeoff. For Visual Studio Code users, the IDE's [IntelliSense](https://code.visualstudio.com/docs/editor/intellisense) now cannot help write new tests. In turn, though, it restores functionality to the existing test suite (modifying an "`expect`" will confirm). The good news is an upgrade to Vue 3 will correct this IDE type-checking problem.
 
 ### Increasing Intentionality and Separating Concerns
 
