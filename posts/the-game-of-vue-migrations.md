@@ -6,8 +6,9 @@ tags:
   - Front-End
   - JavaScript
   - TypeScript
+  - Refactoring
+  - Clean code
   - Software Migration
-  - Test-Driven Development
   - Software Craft
 date: 2021-10-19T00:00:00.000Z
 title: 'The Game of Vue Migrations'
@@ -20,7 +21,7 @@ Our lives consist of transitions. We move from place A to place B. Our feelings 
 
 In the following post, you will read about my attempts to transform a [Vue 2](https://vuejs.org/) App implementation of [The Game of Life](https://codingdojo.org/kata/GameOfLife/). The objective is to take [this simple application with no tests](https://github.com/matthewreed26/game-of-life) through a metamorphic process that will include:
 
-1. Bringing up unit test coverage with a focus on Test-Driven Development
+1. Bringing up unit test coverage with reports
 1. Improving readability via types in TypeScript and removing complexity through refactoring
 1. A version upgrade to the newer [Vue 3](https://v3.vuejs.org/) framework
 
@@ -74,6 +75,8 @@ There is no information on the `GameOfLife.vue` or `GameOfLife.component.js` fil
 
 ![Unit Testing Output with Basic GameOfLife Test](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueUnitTestingOutputBasicGameOfLifeTest.png)
 
+### Coverage Reports in Jest
+
 Despite showing "PASS", it is not enough to ensure proper functionality. Introducing the concept of [Code Coverage](https://en.wikipedia.org/wiki/Code_coverage) should direct attention towards the untested lines. With the intent that this app will utilize TypeScript soon, [this configuration to the `jest.config.js`](https://github.com/matthewreed26/game-of-life/blob/unit-jest/jest.config.js) will tell Jest to collect coverage reports and display them in the console.
 
 Removing the useless `example.spec.js` and `HelloWorld.vue` files and adding a basic test for `App.js`, the output is now much more helpful:
@@ -86,15 +89,13 @@ One last tip before bringing up the code coverage, add this command to the `"scr
 "test:unit:watch": "vue-cli-service test:unit --watch --coverage"
 ```
 
-### Test-Driven Development vs. Testing as an Afterthought
-
-When testing is at the core of an application's development cycle, this is known as [Test-Driven Development (TDD)](https://en.wikipedia.org/wiki/Test-driven_development). Writing tests first is a different mindset than writing tests after the application code. Writing tests before changing the codebase requires exceptional discipline. Unless it is well-practiced, testing will always be more an afterthought than a designing methodology. The good news is once there are written tests, then the shift in mindset can begin to occur, and the power of TDD can begin to take hold.
-
 With enough tests to bring the coverage reports up to compliant levels (generally think >80% but be sure to hit any edge cases!), the console output may look more like this:
 
 ![Unit Testing Output with Full Code Coverage](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/10/VueUnitTestingOutputFullCodeCoverage.png)
 
-Thinking ahead while writing the tests to the refactoring/TypeScript step, here are a few opportunities for improvement:
+### Awareness of Where We are Headed
+
+Thinking ahead while writing the tests to the TypeScript and refactoring steps, here are a few opportunities for improvement:
 
 1. The default "`grid`" value of "`[[false]]`" within "`data()`" is an incorrect placeholder.
 1. There are variable name typos, inconsistent function names, and [confusing function responsibilities](https://en.wikipedia.org/wiki/Single-responsibility_principle).
@@ -120,7 +121,7 @@ Add [TypeScript](https://cli.vuejs.org/core-plugins/typescript.html) via the Vue
 vue add typescript
 ```
 
-**Important note:** The first prompt, "`Use class-style component syntax?`" should be answered "`no`". While it is a popular style for writing [TypeScript components](https://vuejs.org/v2/guide/typescript.html) in Vue 2, it is not fully supported in Vue 3 (for a few [reasons](https://github.com/vuejs/rfcs/pull/17#issuecomment-494242121)). Without getting too ahead, answering "`no`" will make the [Options API](https://v3.vuejs.org/guide/typescript-support.html#using-with-options-api) and [Composition API](https://v3.vuejs.org/guide/typescript-support.html#using-with-composition-api) implementations easier later.
+**Important note:** The first prompt, "`Use class-style component syntax?`" should be answered "`no`". While it is a popular style for writing [TypeScript components](https://vuejs.org/v2/guide/typescript.html) in Vue 2, it is not fully supported in Vue 3 (for many [reasons](https://github.com/vuejs/rfcs/pull/17#issuecomment-494242121)). Without getting too ahead, answering "`no`" will make the [Options API](https://v3.vuejs.org/guide/typescript-support.html#using-with-options-api) and [Composition API](https://v3.vuejs.org/guide/typescript-support.html#using-with-composition-api) implementations easier later.
 
 Deleting `HelloWorld.vue` and reverting `App.vue`, one of the first observations in `GameOfLife.vue` is how the "`generateEmptyGrid`" method shows a problem when adding the constructed row to the grid. This comes from the incorrect declaration within "`data()`" for the "`grid`" value of "`[[false]]`".
 
@@ -132,9 +133,9 @@ As is seen requested for "`toggleCell`" above, adding method outputs and inputs 
 
 ### Increasing Intentionality and Separating Concerns
 
-Addressing the other two opportunities for improvement is possible with a passing test suite. Adhering to TDD by modifying the tests before the working code, change any variables or methods that could be more aptly named. All tests must pass again before continuing.
+Addressing the other two opportunities for improvement is possible with a passing test suite. Modifying the tests and the working code, change any variables or methods that could be more aptly named. All tests must pass again before continuing.
 
-Breaking down existing, complex methods in a codebase is an example of [code refactoring](https://en.wikipedia.org/wiki/Code_refactoring) and necessary when their [responsibilities are ambiguous](https://en.wikipedia.org/wiki/Single-responsibility_principle). Look at "`checkNeighbors`", for example. Are diagonal neighbors considered? Does it handle grid boundary cells? How do existing neighbors determine the next generation's grid of cell lives? Despite renaming "`checkNeighbors`" to a more descriptive name, this method's functionality remains vague. More work is necessary for further clarity.
+[Code refactoring](https://en.wikipedia.org/wiki/Code_refactoring) is a necessary part of software development [for a few reasons](https://refactoring.guru/refactoring/when). It is crucial when striving for a [cleaner codebase](https://refactoring.guru/refactoring/what-is-refactoring) to break down complex methods, especially if their [responsibilities are ambiguous](https://en.wikipedia.org/wiki/Single-responsibility_principle). Look at "`checkNeighbors`", for example. Are diagonal neighbors considered? Does it handle grid boundary cells? How do existing neighbors determine the next generation's grid of cell lives? Despite renaming "`checkNeighbors`" to a more descriptive name, this method's functionality remains vague. More work is necessary for further clarity.
 
 Though the Vue template only calls "`generateNextGenerationGrid`", overall scoping smaller methods in and outside a component is better for a project's longevity. Of course, utilizing TypeScript's [`enum`](https://www.typescriptlang.org/docs/handbook/enums.html) and [`type`/`interface`](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces) features can help too. Consolidating [similar lines of code](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript/src/components/game-of-life/GameOfLife.component.ts#L53) is a worthwhile place to start. Extracting these lines into anonymous functions and externalizing them to [separate files](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript-intentionality/src/components/game-of-life/NeighborCell.ts) allows [direct testing without going through the Vue Testing Utils](https://github.com/matthewreed26/game-of-life/blob/unit-jest-typescript-intentionality/tests/unit/components/game-of-life/NeighborCell.spec.ts). Not to mention abstracting out code [decouples](<https://en.wikipedia.org/wiki/Coupling_(computer_programming)>) the dependency on the "`this`" context of the Vue component.
 
@@ -150,7 +151,7 @@ The most extensive differences are in the [`package.json`](https://github.com/ma
 
 ## Keep On Changing
 
-In this blog, we explored a transformational journey of the digital kind. Starting with a primitive Vue 2 app lacking any test suite or proper design principles, we converted it to a Vue 3 application written in TypeScript that can further employ Test-Driven Development. Change is hard to wrangle with, but it is happening all around us in the software industry. What makes software engineering especially difficult is keeping up with this fast pace of change.
+In this blog, we explored a transformational journey of the digital kind. Starting with a primitive Vue 2 app lacking any test suite or proper design principles, we converted it to a Vue 3 application written in TypeScript with reassuring code coverage. Change is hard to wrangle with, but it is happening all around us in the software industry. What makes software engineering especially difficult is keeping up with this fast pace of change.
 
 We know Vue 2 will become outdated just as Struts has in front-end programming, Python 2 has made way for Python 3, and various other technologies that have come before now. This blog may not stand the test of time as individuals/companies/teams move on from Vue 2; hopefully, this blog reaches an audience somewhere that needs the information now to take more steps forward.
 
