@@ -106,7 +106,7 @@ export class AccountListComponent implements OnInit {
   }
 
   editAccount(id: string, account: string) {
-    this.accountService.editAccount({ id, account });
+    this.accountService.editAccount( id, account);
   }
 
   deleteAccount(id: string) {
