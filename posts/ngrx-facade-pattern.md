@@ -136,6 +136,6 @@ After implementing the facade pattern what did we actually gain?
    - [NgRx DevTools](https://blog.angular-university.io/angular-ngrx-devtools/) has an action log that may be less useful for debugging with generic actions.
 
 ### Conclusion
-While this may violate some of the standards and recommendations of the redux pattern, I don't think the gains your team can have in development speed are outweighed. If you need to move fast there is an upside to using facades, but I would make sure the developers on the team have a solid understanding of NgRx. However, if you only want to use a facade to mask the complexity of NgRx; I would consider using something else for managing state instead of taking the upfront cost of implementing redux.
+While this may violate some of the standards and recommendations of the redux pattern, I don't think the gains your team can have in development speed are outweighed. If you need to move fast there is a clear upside to using facades, but I would make sure the developers on the team also gain a solid understanding of NgRx. By understanding NgRx and the potential issues that using a facade may bring, you can write better code as a team and avoid those problems.
 
 
