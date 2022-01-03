@@ -1,4 +1,17 @@
-# Facade Pattern with NgRx
+---
+authors:
+- Cody Frenzel
+tags:
+- Angular
+- Javascript
+- NgRx
+- State Management
+- Software Craft
+- Facade Pattern
+date: 2022-01-03T00:00:00.000Z
+title: Facade Pattern with NgRx
+---
+
 Over the last few years, I have seen many developers struggle with state management and understanding the [Redux Pattern](https://redux.js.org/understanding/thinking-in-redux/three-principles). By implementing the Facade Pattern, you can add a layer of abstraction over your state management and decouple the knowledge of stores from your component. In this blog, we will discuss the Facade Pattern with NgRx and the benefits of implementing them together.
 
 ## What is NgRx?
