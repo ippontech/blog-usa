@@ -17,7 +17,9 @@ Having recently made the switch from Software Engineering to Data Engineering I�
 Now from a very high level view a Data Lake can be considered a repository for raw, unreformed data whereas a Data Warehouse is a repository for processed, ready for production data. In the diagram below we can see that the Data Lake can receive data from a number of sources - in this case, databases - which will then be available for Data Engineers to study, analyze and manipulate (more on that in a bit). 
 
 <br>
+
 ![model_1](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/data_basics_1.png)
+
 <br><br>
 
 Near the tail end of the process we see the Data Warehouse which houses data ready to be used by real world users, not just Data Engineers. As we can see, end users utilizing tools like Excel and Power BI can use this data in their work. But how do we get there? That’s where Data Modeling comes in.
@@ -32,7 +34,9 @@ Suppose you’ve been tasked with analyzing school data with the end user wantin
 <br><br>
 Within the database we find an Assessments table with seems to have some information that will be useful to the end user:
 <br><br>
+
 ![model_2](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/data_basics_2.png)
+
 <br><br>
 
 In looking at this data we notice there is a subject_id which appears to correlate with the id within the Subjects table:
