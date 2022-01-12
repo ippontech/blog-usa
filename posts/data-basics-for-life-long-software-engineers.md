@@ -18,7 +18,7 @@ Now from a very high level view a Data Lake can be considered a repository for r
 
 <br>
 
-![model_1](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/data_basics_1.png)
+![model_1](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/01/data_basics_1.png)
 
 <br><br>
 
@@ -35,20 +35,20 @@ Suppose you’ve been tasked with analyzing school data with the end user wantin
 Within the database we find an Assessments table with seems to have some information that will be useful to the end user:
 <br><br>
 
-![model_2](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/data_basics_2.png)
+![model_2](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/01/data_basics_2.png)
 
 <br><br>
 
 In looking at this data we notice there is a subject_id which appears to correlate with the id within the Subjects table:
 <br><br>
 
-![model_3](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/data_basics_3.png)
+![model_3](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/01/data_basics_3.png)
 <br><br>
 
 It appears we found a useful relationship between these individual tables! This association can be seen below: 
 <br><br>
 
-![model_4](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/data_basics_4.png)
+![model_4](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/01/data_basics_4.png)
 <br><br>
 
 Finding these relationships is at the heart of Data Modeling. What we have done is made the data more useful, valuable and meaningful to the end user who will be using this in their daily reporting. We can use this same methodology to continue to find meaningful relationships within the data to further enhance it but for the sake of simplicity we will leave our Data Modeling here. 
@@ -57,7 +57,7 @@ Finding these relationships is at the heart of Data Modeling. What we have done 
 At the end of this process we now have a new table that we can call ready for production and will live in our Data Warehouse. 
 <br><br>
 
-![model_5](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/data_basics_5.png)
+![model_5](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/01/data_basics_5.png)
 <br><br>
 
 ### Conclusion
