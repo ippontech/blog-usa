@@ -19,7 +19,6 @@ Now from a very high level view a Data Lake can be considered a repository for r
 ![model_1](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/01/data_basics_1.png)
 
 Near the tail end of the process we see the Data Warehouse which houses data ready to be used by real world users, not just Data Engineers. As we can see, end users utilizing tools like Excel and Power BI can use this data in their work. But how do we get there? That’s where Data Modeling comes in.
-<br><br>
 
 ### Data Modeling
 At its most basic Data Modeling is the process we use to visualize and represent data that will be stored within our Data Warehouse. This will include studying and understanding the data we will be working with and discovering the relationships between this data all while working towards creating data models that will be useful to the end user. 
