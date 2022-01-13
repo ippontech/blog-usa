@@ -6,7 +6,7 @@ tags:
 - big-data
 - data-engineering
 date: 2022-01-07T12:21:50.000Z
-title: "Avoid server-side timeouts when copying data from Azure Data Factory"
+title: "Copy Data Using Azure Data Factory to Avoid Server-Side Timeouts"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/01/adf-timeouts-cover.png
 ---
 
