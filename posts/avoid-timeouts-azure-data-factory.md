@@ -7,7 +7,7 @@ tags:
 - data-engineering
 date: 2022-01-07T12:21:50.000Z
 title: "Copy Data Using Azure Data Factory to Avoid Server-Side Timeouts"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/01/adf-timeouts-cover.png
+image: https://raw.githubusercontent.com/portillosc/blog-usa/master/images/2022/01/adf-timeouts-cover.png
 ---
 
 ## Introduction
@@ -34,14 +34,14 @@ The example in this article uses a small table but there are results provided at
 
 Refer to Figure 2 for a sample of adf_main.users (mock data generated from mockaroo.com).
 
-![model_1](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/adf-timeouts-1.png)
+![model_1](https://raw.githubusercontent.com/portillosc/blog-usa/master/images/2022/01/adf-timeouts-1.png)
 
 <p align = "center">
 Figure 1: Screenshot of datasets
 </p>
 
 
-![model_2](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/adf-timeouts-2.png)
+![model_2](https://raw.githubusercontent.com/portillosc/blog-usa/master/images/2022/01/adf-timeouts-2.png)
 
 <p align = "center">
 Figure 2: First 10 rows and metadata of adf_main.users
@@ -50,7 +50,7 @@ Figure 2: First 10 rows and metadata of adf_main.users
 
 1. Create a new pipeline.
 
-![model_3](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/adf-timeouts-3.png)
+![model_3](https://raw.githubusercontent.com/portillosc/blog-usa/master/images/2022/01/adf-timeouts-3.png)
 
 <p align = "center">
 Figure 3: Creating a pipeline in the ADF studio
@@ -59,7 +59,7 @@ Figure 3: Creating a pipeline in the ADF studio
 
 1. Add an "Until" function.
 
-![model_4](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/adf-timeouts-4.png)
+![model_4](https://raw.githubusercontent.com/portillosc/blog-usa/master/images/2022/01/adf-timeouts-4.png)
 
 <p align = "center">
 Figure 4: Adding an "Until" function
@@ -68,7 +68,7 @@ Figure 4: Adding an "Until" function
 
 1. Initialize the limit and offset variables. These will be used within the "Until" function to keep track of the current index while copying the data chunk by chunk.
 
-![model_5](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/adf-timeouts-5.png)
+![model_5](https://raw.githubusercontent.com/portillosc/blog-usa/master/images/2022/01/adf-timeouts-5.png)
 
 <p align = "center">
 Figure 5: Initializing the limit and offset variables
@@ -99,7 +99,7 @@ where id > @{variables('offset_start')}
 limit @{variables('limit')}
 ```
 
-![model_6](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/adf-timeouts-6.png)
+![model_6](https://raw.githubusercontent.com/portillosc/blog-usa/master/images/2022/01/adf-timeouts-6.png)
 
 <p align = "center">
 Figure 6: Adding a recurring "Copy data" activity
@@ -126,7 +126,7 @@ from (
 ) as t;
 ```
 
-![model_7](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/adf-timeouts-7.png)
+![model_7](https://raw.githubusercontent.com/portillosc/blog-usa/master/images/2022/01/adf-timeouts-7.png)
 
 <p align = "center">
 Figure 7: A lookup activity to retrieve the last ID from the results
@@ -143,7 +143,7 @@ Here's the value used in Figure 8:
 
 This is taking the output from the "Lookup" activity and setting it directly to the "offset_start" variable.
 
-![model_8](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/adf-timeouts-8.png)
+![model_8](https://raw.githubusercontent.com/portillosc/blog-usa/master/images/2022/01/adf-timeouts-8.png)
 
 <p align = "center">
 Figure 8: "Set variable" activity to update the offset_start variable
@@ -158,7 +158,7 @@ This is the value in Figure 9:
 @less(activity('copy users range').output.rowsCopied, 100)
 ```
 
-![model_9](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/adf-timeouts-9.png)
+![model_9](https://raw.githubusercontent.com/portillosc/blog-usa/master/images/2022/01/adf-timeouts-9.png)
 
 <p align = "center">
 Figure 9: Setting the end condition for the "Until" function
@@ -175,7 +175,7 @@ Otherwise, the "Until" function will end.
 ## Results and performance
 This is the result in Azure Storage of copying the adf_main.users table by 100 records at a time.
 
-![model_10](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/adf-timeouts-10.png)
+![model_10](https://raw.githubusercontent.com/portillosc/blog-usa/master/images/2022/01/adf-timeouts-10.png)
 
 <p align = "center">
 Figure 10: Azure Storage output from the ADF iterative range copy
@@ -187,7 +187,7 @@ Despite the fact that each iterative copy results in its own Parquet file, **thi
 
 Here is a table of results that contains performance per copy iteration (not the full duration of copying the table) for the workload in this article's example as well as the aforementioned production workload on hundreds of millions of records:
 
-![model_11](https://github.com/portillosc/blog-usa/blob/master/images/2022/01/adf-timeouts-11.png)
+![model_11](https://raw.githubusercontent.com/portillosc/blog-usa/master/images/2022/01/adf-timeouts-11.png)
 
 <p align = "center">
 Table 1: Results from sample and production workloads
