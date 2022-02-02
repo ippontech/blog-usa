@@ -17,7 +17,7 @@ title: "How to Choose Between React Angular or Vue?"
 image: 
 ---
 
-# How to Choose Between React Angular or Vue for Your Next Project?
+# How should you choose Between React, Angular, or Vue for your next project?
 
 
 It can be a difficult deciding whether to use [React.js](https://reactjs.org), [Angular.js](https://angular.io), or [Vue.js](https://vuejs.org) as your user interface or UI for your next project. Here we will discuss some ways to simplify the process when deciding between React, Angular, or Vue. There are a few things to consider before you make your selection. First, we will briefly look at React, Angular, & Vue at a high level overview. Then, we will compare and contrast a few key features and see how they stack up against one another. Next, we will discuss how to decide which framework or library to use. Then, we will finally wrap up with some final thoughts. 
