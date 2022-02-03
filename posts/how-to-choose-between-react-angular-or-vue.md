@@ -93,7 +93,7 @@ export class myAppComponent implements OnInit {
 ```
 
 
-### Vue Overview
+### Vue.js: A Brief Overview
 
 Vue may be considered the least in popularity due to it being the newer of the frameworks and many developers or businesses haven't had the opportunity to explore the possibilities. This may have an effect on it's smallar [community](https://dev.to/t/vue) size as well. There is also a factor that Vue is built by a community of people versus an actual company like Facebook and Google, but that's open for discussion. Hence, they do have a community [forum](https://forum.vuejs.org/) as a resource link on their website.
 
