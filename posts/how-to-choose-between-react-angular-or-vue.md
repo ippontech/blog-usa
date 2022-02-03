@@ -30,7 +30,7 @@ The [React](https://reactjs.org) website states that the platform (created by Fa
 
 ## Key Similarities Between Frameworks
 
-### Single Page Applications or SPA
+### Single Page Applications (or SPA)
 
 Now, with that out the way, I believe that the real challenge of selecting which framework to use, stems from all three javascript frameworks being very similar in many ways. They're all considered “Single Page Applications” or “SPA”, which are designed to have a fast dynamic end user experience. Single Page Applications make this possible by allowing end users to interact with websites without loading whole new pages from the server, which can enhance performance. According to the [Mozilla](https://developer.mozilla.org/en-US/docs/Glossary/SPA) website, an SPA is a web app implementation that loads only a single web document, and then updates the body content of that single document via JavaScript APIs. 
 
