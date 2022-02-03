@@ -68,7 +68,7 @@ export default App
 ```
 
 
-### Angular Brief Overview
+### Angular: A Brief Overview
 
 Angular is more of a heavy-weight framework being that, out of the box, it includes many built-in features you will more than likely need for a large enterprise type application. Funtionality such as routing, form validation, and testing are all included with Angular. One of it's features is it's [Command Line Interface](https://angular.io/cli) or CLI, which is a very useful tool when developing Angular projects. As a result of Angular's many included features, it has a reputation of having a steep learning curve. Angular also uses [Typescript](https://www.typescriptlang.org/) out of the box, which is known to make your code more robust and less prone to bugs. However, there's still no JSX to learn, being that Angular uses an html template which is normally in a separate file away from the core JS logic. Lastly, according to Angular's website during the time of this article publication, there aren't as many resource links for [community, forums](https://dev.to/t/angular), and [support](https://stackoverflow.com/questions/tagged/angular) on the website compared to React's website. 
 
