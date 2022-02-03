@@ -138,7 +138,7 @@ Let’s step away from code for a moment, and let’s look at a real world or ph
 
 Therefore, the first thing you should consider when choosing React, Angular, or Vue is, what type of project you want to build? You should consider things like, what are your project overall needs, main features, and main objective? Then, go back and determine which framework or library match closest to your project needs right out the box.
 
-For example, if you are looking to build a simple application and speed is a priority, then you probably would want to go with a light weight tool, that’s probably fast. Also, if you don’t need a lot of bells and whistles, then you should go with something like React. On the opposite end of the spectrum, if you are looking to build a more robust, heavy featured enterprise application, Angular may be your tool that you go for in your toolbox. Then, there’s the case where you may need an application that’s not really light weight, nor large and heavy featured either, hence somewhere in between. Vue can be a great tool to use from your toolbox that kind of meet your needs somewhere in the middle.
+Another example -- you are looking to build a simple application and speed is a priority.  You probably want to go with a lightweight tool that is, well, fast! Also, if you do not need a lot of bells and whistles, then go with React. On the opposite end of the spectrum, if you are looking to build a more robust, heavy-featured enterprise application, Angular may be your go-to. If it becomes a case where you may need an application that is not really lightweight, but not overly-featured either, Vue can be a great tool to meet your needs somewhere in that middle ground.
 
 
 ## Other Things To Consider
