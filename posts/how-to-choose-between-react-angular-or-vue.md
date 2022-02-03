@@ -129,7 +129,7 @@ export default {
 | Out of the Box | Small | Large | Medium |
 | Learning Curve | Medium | Large | Small |
 | Project Size | Small | Large | Medium |
-| HTML Syntax | Jsx | html template | html template |
+| HTML Syntax | JSX | HTML Template | HTML Template |
 
 
 ## Your Project Needs
