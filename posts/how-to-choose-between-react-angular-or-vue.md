@@ -40,7 +40,7 @@ With that out the way, I believe that the real challenge of selecting which fram
 All of these frameworks are component-based driven. [Component-based development](https://en.wikipedia.org/wiki/Component-based_software_engineering) is what fuels single page applications and make them so fast, where only the component reloads as opposed to the entire web page. Components are also reusable, which can reduce the amount of development code. Components are also easy to test and maintain as each component is self-maintained and independent.
 
 
-## Some Key Differences Between Frameworks
+## Key Differences Between Frameworks
 
 My disclaimer going forward is that, some of the key points about each framework can be subjective depending on a person's experience, background, or independent research. However, the goal is to get you somewhere in the ball park of the things you should be considering or looking into when deciding between which framework to use.
 
