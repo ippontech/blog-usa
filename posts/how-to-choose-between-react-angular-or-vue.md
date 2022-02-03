@@ -147,7 +147,7 @@ As you have seen earlier, each framework or library has it’s pros and cons. Yo
 
 When considering support or the size of community, determine if your developers rely heavily on support and outreach. How often does your team lean on help from the community to solve problems? Is using support a pivotal part of your production process? At this point, React and Angular have larger communities than Vue.
 
-Also, are your developers more senior or mid to junior level? Which framework or library does your developers currently have the most knowledge with? Will the complexity of learning the framework or library make a significant impact on the development time or robustness of the application? Moreover, do you have the funds to outsource the development of your application to experienced developers? If the complexity of the framework a major factor, Vue maybe a good choice.
+In addition, are your developers on the more senior end? Which framework or library do your developers currently have the most knowledge with? Will the complexity of learning a framework or library make a significant impact on development time or robustness of the application? Do you have the funds to outsource the development of your application to more experienced developers? If the complexity of the framework becomes a factor, Vue just might be your safe bet.
 
 
 ## Wrap Up
