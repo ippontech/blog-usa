@@ -28,7 +28,7 @@ It can be a difficult deciding whether to use [React.js](https://reactjs.org), [
 The [React](https://reactjs.org) website states, that React, (created by Facebook) is a JavaScript library for building user interfaces. On the other hand, the [Angular](https://angular.io) website states, that Angular, (created by Google) is an application design framework and development platform for creating efficient and sophisticated single-page apps. Lastly, the [Vue](https://vuejs.org) website says that Vue, (developed by the community) is a progressive framework for building user interfaces. Right off the bat, we notice that one key difference between the three in their respective definitions is that React is considered a library and Angular and Vue are considered frameworks. Even though, the terms framework and library are very similar with some slight technical differences between the two, for the sake of this article, we are going to try to make things as simple as possible and use the labels framework and library interchangeably going forward. If you would like to learn more about the differences between frameworks verses libraries, it's a great article about it at [freecodecamp.org](https://www.freecodecamp.org/news/the-difference-between-a-framework-and-a-library-bd133054023f/). 
 
 
-## Some Key Similarities Between Frameworks
+## Key Similarities Between Frameworks
 
 ### Single Page Applications or SPA
 
