@@ -45,7 +45,7 @@ All of these frameworks are component-based driven. [Component-based development
 My disclaimer going forward is that some of the key points about each framework can be subjective depending on a person's experience, background, or independent research. However, the goal is to get you somewhere in the ball park of the things you should be considering or looking into when deciding between which framework to use.
 
 
-### React Brief Overview
+### ReactJS: A Brief Overview
 
 React is considered a light-weight library being that, out of the box, it doesn't come with many pre-installed features or tools, such as routing and form management. However, React has tons of packages you can install to add additional functionality to your application. Therefore, as a developer, you will have more control over your application toolset, by installing only the tools you need, as you need them. 
 
