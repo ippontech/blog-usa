@@ -6,71 +6,177 @@ tags:
 - Golang
 - CLI
 date: 	2021-12-01T13:50:040Z
-title: "10 Tips and tricks for Cassandra"
-image: 
+title: "A No Framework Approach to Building A CLI"
+image:
 ---
 ```
 
-# CLI From Scratch (No Framework Needed)
+# A No Framework Approach to Building A CLI with Go
 
-## Intro
+---
 
-As Engineers Command Line Tools are all around us with several as a part of our daily habits. There's OS specific CLI's, crossplatform ones, Enterprise CLI's etc. Do you ever wonder those are built? A few I've used on a daily basis in the past couple years have been:
+1) I want to understand how to build useful intuitive APIs by looking at existing examples. Understanding what some of the key feature/aspects are. (Good developers build they're own tools). You can build CLIs in any language some these aspects should stay the same.
+2) I want to understand and replicate a well known frameowork by stripping it down and building a version back up.
+3) A well used version is Hashicorp CEO's personal command line library used in all their CLI products.
 
-* KubeCTL
-* Docker
-* Terraform
-* JHipster
-* AWS CLI
-* Git
+**Why use them**
+**What makes it useful**
+**Why build your own**
 
-Out of the 6 I mentioned 3 happen to be written in Go. Go is great for building CLIs since it can easily be cross compiled into single binaries. The other thing I want to mention is most "Build from scratch" blogs include a popular 3rd party dependency or framework. We're building literally from scratch albeit this inspired by a CLI Framework. The one I have in mind is Cobra which is probably the most popular CLI Framework for Go. Most major Go CLIs use Cobra in some capacity and for good reason its well written, well tested, has a great community, and provides a simple abstraction. 
+---
+
+How many CLIs do you use on a daily basis? I'm guessing more than a hands worth not including os specific tools. Which ones came to mind?
+- Git
+- Docker
+- Kubectl
+- AWS
+- JHipster
+- Terraform
+- PSQL/MSSQL
+- etc
+
+Ever wonder how Enterprise grade CLIs are made? How the Docker, Kubectl, and Terraforms of the world are built? ~~What if I told you you too could a build powerful, multifunctional, crossplatform CLI with just a few lines of Go~~.
+
+That's what I'll be covering in this article and along the way we'll build our own CLI **Gupi**:
+
+![[help_screen.png]]
+ In this blog post, I'll touch on what those 3 Enterprise CLIs have in common, what they do well, how frameworks that power them functions, and walk through how to build our own using only the Go Std Library.
+
+## A brief look at popular CLIs
+- CLIs are a daily part of an engineers daily life -> Integral part
+- Docker, Kubectl, Terraform -> Every stack has its essentials tools
+- Readable CLIs with good documentation always win -> Most used
+- Insert your essential custom project-specific CLI -> Hashicorp diy framework
+
+Command Line Interfaces (CLIs) are an integral part of our daily routines. Most of us have macros, aliases, and cheats sheets filled with commands we use daily and a few one-offs we'd rather not lose. In the mix are CLIs that are a pleasure to use along with plenty of project specific scripts with little to no documentation. Sad thing is that those unfriendly scripts are often critical to the project.
+~~*^ More of a a transition paragraph ^* ~~
+
+Every language or stack has its own set of essential CLIs, of coarse there's a few that seem to be included in every project like ***git***. And if your project has anything to do with infrastruce you've probably run into the likes of Docker, Terraform, and/or Kubectl. Not to mention any cloud specific CLIs such as AWS CLI, Azure CLI, or GCP CLI.
+
+Kubectl and Docker are crowd favorites for a reason, they both walk you through how to use them. And when you make a mistake they don't give you a cryptic message you need to decipher instead they usually have suggestions of what likely went wrong and how to fix them. On top of that the commands when read sound like a normal commands, not only human readable but could be commands to another person.
+
+Just like any other popular Open Source Tool, projects with more documentation often most loved and used. Popular CLIs ad here to the same rules and on top of usually having external documentation they more often than not provide all the info you need right in the inline *help* documention.
+
+I point out Kubectl and Docker in particular since they are both written using Go and the CLI Framework Cobra. We won't be using Cobra for our CLI but we'll be using it as reference. Also want to point out Terraform and the other CLIs from Hashicorp since they're good example using a custom CLI framework after understanding your needs and building what fits your use case. Essentially want we will be doing for our CLI.
+~~I'd like to walk through a few examples of CLIs that are a pleasure to use.~~
+
+
+Go is a fantastic language especially for CLI development for a reasons mentioned [here]()
+
+Terraform, I checked before writting has moved away the framework in favor of whats looks to be minimal built by the founder.
+
+Most popular CLI framework for Go thats used by most major Go command line tools.
+
+![[kubectl_help 1.png]]
+What Cobra is and how it works is one of the main topics I will cover but more on that later.
+
+For now lets take a peek at the look and feel of some the CLIs I mentioned.
 
 Its so good I want to understand how it works
 
-## What makes the others good?
+## What makes them so useful?
+- Bundles up functionallity into a single commands
+- Using flags allows for simplified customization
+- Allows for easier automation
+- Readable CLIs allows anyone to understand the logic including new engineers
+- Args + subcommands + flags
 
-In my opinion what makes a CLI great is how intuitive it is to use. Does the api makes sense? How friendly is it when I envitably make a mistake? How helpful are the error messages? Are the commands and flags easy to understand and use? Those are just a few that come to mind first.
+If you're reading this you probably don't need to be convinced CLIs are great but for anyone on the fence I'll outline a few key features.
 
-Above all it should work as intended/expected no more / no less. What I've come to expect after using Git, Docker, Kubectl, or AWS is the options for subcommands. Most classic even most new linux commands don't support... better yet they don't need subcommands (ls, grep, find, etc...). Newer CLIs support various functions so subcommands make sense but it becomes more important that they make sense. This one feature I want to support in our CLI. 
+When it comes to CLIs, first and foremost is functionallity, any good CLI will save time. That could be as little as skipping a webpage to get the info you need to bundling up serveral API calls into one command and beyond. A quick example is Kubectl, the interface for Kubenetes, strictly speaking its not nessesary since K8s comes with an awesome API. You could curl or use your favorite API Client to sends requests all day but whats often the case is you're dealing with large payloads or many calls and ti quicly become unreasonable.
 
-
-
-Sure CLIs are often used for automations but the main users are still developers, people might be thte ones struggling to find an issue or use the correct options. If there's too much confusion or poor documentation dev might run to next available option (head for the hills), thats why being friendly is so important. Another requirement is to support friendly prompts, messaging, and instructions. 
-
-**Docker**
-
-```shell
-$ docker wait
-"docker wait" requires at least 1 argument.
-See 'docker wait --help'.
-
-Usage:  docker wait CONTAINER [CONTAINER...]
-
-Block until one or more containers stop, then print their exit codes
-```
-
-
-
-**Kubectl**
+~~the key feature is that they save time bundling here's an example using Kubernetes and Docker. Neither service neccessarily needs a dedicated CLI since they each have powerful APIs (these are what powers many modern CLIs). Many of you may have experience sending requests to the Kubernetes API-Server for example:~~
 
 ```shell
-$ kubectl
-kubectl controls the Kubernetes cluster manager.
-
- Find more information at: https://kubernetes.io/docs/reference/kubectl/overview/
-Basic Commands (Beginner):
-  create        Create a resource from a file or from stdin
-  expose        Take a replication controller, service, deployment or pod and expose it as a new Kubernetes service
-  run           Run a particular image on the cluster
-  set           Set specific features on objects
+curl -X POST /api/namespaces/default/pods/...
 ```
 
+This is a simple example but in reality anything useful could take several API calls, where as single command could bundle up multiple calls.
+
+If CLIs save you time then the time saved gets multiplied if you doing automation
+Well written CLIs allow for simplified automation.
+
+Readable CLIs allow new users to get started quickly.
+
+Configurable CLIs allow for easy customization using flags and feature experementation with feature flags.
 
 
-## What are we building
+~~The power of a CLI comes how it can be configured, extended, functional from what it allows by bundeling functionallity, how can be extened or automated. the functionallity it allows and how it could be extended or automaFunctionallity First and foremost is that they help accomplish tasks that otherwise would take more effort. In my opinion what makes a CLI great is how intuitive it is to use. Does the api makes sense? How friendly is it when I envitably make a mistake? How helpful are the error messages? Are the commands and flags easy to understand and use? Those are just a few that come to mind first.~~
 
-What this CLI is doing doesn't matter as much as how were building it but for this purpose we'll be building a CLI that can store templates, edit them, list them, delete and create them. We will be focusing on using Go Std library and mainly focusing on the `flag` library as the core of our CLI toolset. 
+~~Above all it should work as intended/expected no more / no less. What I've come to expect after using Git, Docker, Kubectl, or AWS is the options for subcommands. Most classic even most new linux commands don't support... better yet they don't need subcommands (ls, grep, find, etc...). Newer CLIs support various functions so subcommands make sense but it becomes more important that they make sense. This one feature I want to support in our CLI. ~~
+
+
+
+~~Sure CLIs are often used for automations but the main users are still developers, people might be thte ones struggling to find an issue or use the correct options. If there's too much confusion or poor documentation dev might run to next available option (head for the hills), thats why being friendly is so important. Another requirement is to support friendly prompts, messaging, and instructions. ~~
+
+## Why build and understand your tools
+Well its good to understand your tool set. You know what to add how to extend, what to remove. A great is example of building simplified toolset is the CLI library from the founder of Hashicorp, [CLI](https://github.com/mitchellh/cli)
+
+## 30 second explainer how Cobra works
+There is two sides to [Cobra](https://cobra.dev/), a CLI framework and a CLI generator. The generator helps to rapidly create a CLI by instantiating the skaffolding using code generation. The framework is the core of Cobra, this is how you define commands, subcommands, function logic and flags. The generator side could be its own full blown article diving into code generationone but that will have to wait. The rest of this post will be focusing on the actual framework side.
+
+![[cobra_logo.png]]
+The framework is built around around the concept of building commands that read like sentances. Lets take a look at a Kubectl example:
+
+```shell
+$ kubectl get pods --namespace=cobra
+```
+
+Whether or not you're familair with Kubectl you can read the command and reason about what it is supposed to do.  We are telling Kubectl to *get* **pods** in the `namespace` cobra, where pods refers to containers running in Kubernetes.
+
+The pattern you will begin noticing from any human readable CLI, is as follows:
+
+```shell
+$ app verb noun --adjective
+```
+
+or in command line terms:
+
+```shell
+$ app command arg --flag
+```
+
+This behavior is built into the core [Command](https://github.com/spf13/cobra/blob/master/command.go) struct in the framework, structs are roughly the Class equivalent in Go. How you define your Commands and how you chain them together is how readable commands come to be.
+
+This highly truncated version of the Command struct is where we will be focusing when building our CLI.
+
+```go
+type Command struct {
+	...
+	// Short is the short description...
+	Short string
+	// Run: Typically the actual work function...
+	Run func(cmd *Command, args []string)
+	// args is actual args parsed from flags.
+	args []string
+	// flags is full set of flags.
+	flags *flag.FlagSet
+	// usageFunc is usage func defined by user.
+	usageFunc func(*Command) error
+	...
+}
+```
+
+## How to build your own CLI
+You can find the complete application in this [repository]()
+
+### *Agenda*
+- [[#What makes them so useful|Defining the functionallity]]
+- [[#Initialize a new project]]
+- [[#Create a Command Struct]]
+- [[#Add our Version Command]]
+- [[#Add our Add Command]]
+- [[#Add our List Command]]
+- [[#Add Edit Command]]
+- [[#Add Delete Command]]
+- [[#Add Create Command]]
+- [[#Bonus Makefile with LDFlags]]
+
+### What are we building
+
+What we are building does not matter as much as *how* we are building it. It could easily be adapted to do whatever you need.
+
+The CLI we are building can store, edit, list, delete and instantiate templates. We will be focusing on the Go Standard library and keep 3rd party dependencies to a minimum. The commands or features will be defined as follows:
 
 1. *Add*: Adds an existing template to the collection via a local file
 
@@ -91,7 +197,7 @@ Template 'TEMPLATE_NAME' was edited
 ```shell
 $ gupi list
 NAME               CREATED       SIZE
-todo-list			     2 weeks ago   482
+todo-list	       2 weeks ago   482
 design-doc         3 days ago    300
 ```
 
@@ -116,37 +222,35 @@ $ gupi version
 gupi version: v0.1, build: 893b04957563cd7120f817dd654ba745075cfe6b
 ```
 
-
-
-### Prerequiesites
-
-1. Make sure Go is installed
+If yo do not already have Go installed, here is the [official installation doc](https://go.dev/doc/install).
 
 ### Initialize a new project
 
 First thing we need to do is create the project directory and initialize it as a Git repository. I'll call this project `gupi`:
 
 ```shell
-mkdir gupi
-cd gupi
-git init
+$ mkdir gupi
+$ cd gupi
+$ git init
 ```
 
 Go has its own way to manage dependencies by using a `go.mod` file, you can easily enable this on a new project by running:
 
 ```shell
-go mod init github.com/USERNAME/gupi
+$ go mod init github.com/USERNAME/gupi
 ```
 
-The Github USERNAME portion is required if ever intend to package and distribute this module, it also helps with importing local subfolders. 
+The full path `github.com/USERNAME/gupi` is what others would use to download if you packaged and distributed this module. Also helpful for importing local files from subfolders.
 
 ### Create a Main
 
-Next lets create our entry point the `main.go`:
+Next lets create our main entry point called: `main.go`
 
+```shell
+$ touch main.go
 ```
-touch main.go
-```
+
+Add a basic print statement make sure the environment is working:
 
 ```go
 package main
@@ -158,14 +262,14 @@ func main() {
 }
 ```
 
-We test this app by running:
+We can test this app by running:
 
 ```shell
 $ go run main.go
 Working CLI!
 ```
 
-We just confirmed we have a working Go project but no time to celebrate just yet since it this doesn't feel like a CLI tool just yet. 
+We just confirmed we have a working Go project but no time to celebrate just yet since it this doesn't feel like a CLI tool just yet.
 
 One thing that quickly stands from CLIs like Docker and Kubectl is the informative and friendly user manuals that are displayed by calling the base command.
 
@@ -181,7 +285,7 @@ Commands:
 	* Practical Feature 3 - The daily driver of features
 ```
 
-New users should be understand what the tool does and how to actually use. We already clearly defined the main features of our tool so putting together this usage text will be easy.
+New users should be able to understand what the tool does and how to actually use. We already clearly defined the main features of our tool so putting together this usage text will be easy.
 
 So based on the features defined above I came up with this, feel free to modify as you see fit:
 
@@ -202,7 +306,7 @@ Commands:
 `
 ```
 
-Now that we have a base usage message we update our main function print this to get a feel for the CLI.
+Now that we have a base usage message we can update our main function print this to get a feel for the CLI.
 
 ```
 func main() {
@@ -218,7 +322,7 @@ $ go run main.go
 
 We need to add one more thing before moving one. One important aspect of any CLI tool is exit/status codes. Any CLI needs to return **0** when successfull and anything greater when an error occured.
 
-We'll create this `usageAndExit` method prints the usage message and an optional status message. 
+We'll create this `usageAndExit` method prints the usage message and an optional status message.
 
 ```go
 func usageAndExit(msg string) {
@@ -266,12 +370,9 @@ You can confirm by running:
 ```shell
 $ echo $?
 0
-# if using fish shell
-$ echo $status
-0
 ```
 
-Regardless of the shell you use the exit code will be the same. 
+Regardless of the shell you use the exit code will be the same.
 
 Now that we defined our commands we work on actually creating them.å
 
@@ -330,7 +431,7 @@ So now we have enough to define our first command **Version**.
 
 ### Add our Version Command
 
-What we need to do first is define a usage message for version. 
+What we need to do first is define a usage message for version.
 
 NOTE: I didn't mention this before but the Version command will accept a single flag `--short`, if added the short version of the build info will be printed.
 
@@ -359,17 +460,22 @@ var (
 As for the meat of the Version command, we'll be using the Command Struct we defined above and we'll go ahead and include the logic to print the build info:
 
 ```go
-func NewVersionCommand() *Command {
-	cmd := &Command{
-		flags: flag.NewFlagSet("version", flag.ExitOnError),
-		Execute: func(cmd *Command, args []string) {
+func(cmd *Command, args []string) {
 			if short {
 				fmt.Printf("brief version: v%s", version)
 			} else {
 				fmt.Printf("brief version: v%s, build: %s", version, build)
 			}
 			os.Exit(0)
-		},
+		}
+```
+
+
+```go
+func NewVersionCommand() *Command {
+	cmd := &Command{
+		flags: flag.NewFlagSet("version", flag.ExitOnError),
+		Execute: version_func,
 	}
 
 	cmd.flags.BoolVar(&short, "short", false, "")
@@ -396,7 +502,7 @@ func main() {
 	flag.Usage = func() {
 		fmt.Fprint(os.Stderr, fmt.Sprint(usage))
 	}
-  
+
   flag.Parse()
 	if flag.NArg() < 1 {
 		usageAndExit("")
@@ -595,16 +701,6 @@ $ go run main.go list
 ### Add Edit Command
 
 ```go
-package command
-
-import (
-	"flag"
-	"fmt"
-	"os"
-	"os/exec"
-	"path/filepath"
-)
-
 var editUsage = `Edits an existing template.
 
 Usage: brief edit TEMPLATE
@@ -616,12 +712,7 @@ func NewEditCommand() *Command {
 	cmd := &Command{
 		flags: flag.NewFlagSet("edit", flag.ExitOnError),
 		Execute: func(cmd *Command, args []string) {
-			if len(args) == 0 {
-				errAndExit("Template name required")
-			}
-			file_name := args[0]
-			file_path := filepath.Join("/Users/rodrigomoran/Workspace/gupi/template", file_name)
-
+			...
 			if _, err := os.Stat(file_path); err == nil {
 				command := exec.Command("vim", file_path)
 				command.Stdout = os.Stdout
@@ -635,11 +726,7 @@ func NewEditCommand() *Command {
 			fmt.Printf("gupi: Template '%s' was edited", file_name)
 		},
 	}
-
-	cmd.flags.Usage = func() {
-		fmt.Fprint(os.Stderr, editUsage)
-	}
-
+	...
 	return cmd
 }
 
@@ -653,22 +740,6 @@ brief: Template 'test' was edited⏎
 ### Add Delete Command
 
 ```go
-package command
-
-import (
-	"flag"
-	"fmt"
-	"os"
-	"path/filepath"
-)
-
-var deleteUsage = `Removes a specific templates from the saved directory.
-
-Usage: brief delete TEMPLATE
-
-Options:
-`
-
 func NewDeleteCommand() *Command {
 	cmd := &Command{
 		flags: flag.NewFlagSet("delete", flag.ExitOnError),
@@ -685,11 +756,7 @@ func NewDeleteCommand() *Command {
 			}
 		},
 	}
-
-	cmd.flags.Usage = func() {
-		fmt.Fprintln(os.Stderr, deleteUsage)
-	}
-
+	...
 	return cmd
 }
 
@@ -700,30 +767,6 @@ func NewDeleteCommand() *Command {
 ### Add Create Command
 
 ```go
-package command
-
-import (
-	"flag"
-	"fmt"
-	"os"
-	"path/filepath"
-	"text/template"
-	"time"
-)
-
-var createUsage = `Usage: brief create [options...]
-Examples:
-  # Generate a report for the week containing Feb 2, 2021
-	brief create --date 02/17/2021
-
-Options:
-  --template	Path to custom template file for weekly report.
-  --date	Date used to generate weekly report. Default is current date.
-  --output 	Output directory for newly created report. Default is current directory.
-`
-
-var dest string
-
 func NewCreateCommand() *Command {
 	cmd := &Command{
 		flags: flag.NewFlagSet("create", flag.PanicOnError),
@@ -758,56 +801,8 @@ func NewCreateCommand() *Command {
 			fmt.Print("What happened?")
 		},
 	}
-
-	cmd.flags.StringVar(&dest, "dest", ".", "destination")
-
-	cmd.flags.Usage = func() {
-		fmt.Fprintln(os.Stderr, createUsage)
-	}
-
+	...
 	return cmd
-}
-
-type weekYear struct {
-	Week int
-	Year int
-	Mon  string
-	Tue  string
-	Wed  string
-	Thu  string
-	Fri  string
-}
-
-var days = map[int]int{
-	0: -1,
-	1: 0,
-	2: 1,
-	3: 2,
-	4: 3,
-	5: 4,
-	6: -2,
-}
-
-func getDates(start time.Time) *weekYear {
-	year, week := start.ISOWeek()
-
-	firstDayOfWeek := start.AddDate(0, 0, -days[int(start.Weekday())])
-	_, m, d := firstDayOfWeek.Date()
-	monday := fmt.Sprintf("%d.%d", m, d)
-
-	_, m, d = firstDayOfWeek.AddDate(0, 0, 1).Date()
-	tuesday := fmt.Sprintf("%d.%d", m, d)
-
-	_, m, d = firstDayOfWeek.AddDate(0, 0, 2).Date()
-	wednesday := fmt.Sprintf("%d.%d", m, d)
-
-	_, m, d = firstDayOfWeek.AddDate(0, 0, 3).Date()
-	thursday := fmt.Sprintf("%d.%d", m, d)
-
-	_, m, d = firstDayOfWeek.AddDate(0, 0, 4).Date()
-	friday := fmt.Sprintf("%d.%d", m, d)
-
-	return &weekYear{week, year, monday, tuesday, wednesday, thursday, friday}
 }
 ```
 
@@ -840,7 +835,17 @@ clean:
 ### Put it All Together
 
 ## Next Steps
-
+- Extra our custom framework into seperate package that can be imported
+- Enhance the custom framework to do some simple code generation or boiler plating for new commands
+- Add a simple config management with a struct or include [Viper]()
+- Enhance how storage mechanism for templates
+- Add flags and options for importing templates from various sources (url,  git, etc)
 ## Conclusion
 
+That's it, hope you found this useful hopefully at least interesting. You can find the full code in this [repository]().
 ## CTA
+
+## Resources & extra reading
+CLI Development Guild -> [CLIG:Guidelines](https://clig.dev/)
+Go Modules -> https://go.dev/blog/using-go-modules
+Go By Example ->
