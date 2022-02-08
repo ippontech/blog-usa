@@ -15,7 +15,7 @@ _"We believe that every industrial company will become a software company."_ - J
 
 As technology becomes increasingly central to core business operations and services, bridging the gap between senior leadership and software development initiatives will prove to be a harbinger of a company's long-term success. 
 
-How do we bridge the gap between technologists and business leaders with limited technical expertise to help them better understand and evaluate how technological initiatives meet business needs? Why is this important?
+How do we bridge the gap between technologists and business leaders with limited technical expertise to help them better understand and evaluate how technological initiatives meet business needs? **Why** is this important?
 
 This problem often arises in larger companies, where a data, cloud, and software strategy is often determined three to five layers down the hierarchy. This makes companies vulnerable to tech-based disruption, subpar user experience resulting in churn, and higher costs with lower margins.
 
