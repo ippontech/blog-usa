@@ -3,7 +3,7 @@ authors:
 - Ibrahim Alkhalaf
 tags:
 - Cloud Migration
-- big data
+- Big Data
 - data engineering
 - Leadership
 - Communication
