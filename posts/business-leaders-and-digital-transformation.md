@@ -19,7 +19,7 @@ How do we bridge the gap between technologists and business leaders with limited
 
 This problem often arises in larger companies, where data, cloud, and software strategies are often determined several layers down the hierarchy. This makes companies vulnerable to tech-based disruption, subpar user experience resulting in churn, and higher costs with lower margins.
 
-In order to make technology an advantage, executives need to be fluent in leading software-development practices and in carefully determining how software is integrated into the organization. Most important for executives to get right from the start is making software development a strategic priority, not an afterthought. Making it strategic does not necessarily mean technology is the goal, but it does mean that executives are able to evaluate what technologies are needed to meet the needs of the business, and assess how these technologies help accomplish the business's goals.
+In order to make technology an advantage, executives need to be fluent in leading software development practices and carefully determine how software is integrated into the organization. Perhaps one of the most important things for executives to get right from the start is making software development a _strategic_ priority, not an afterthought. Making it strategic does not necessarily mean technology is the goal, but it does mean that executives are able to evaluate what technologies are needed to meet the needs of the business, and assess how these technologies help accomplish the business' goals.
 
 Now that we know the problem, how do we solve it? By Integrating decision making across technical and business leadership through effective communication. 
 
