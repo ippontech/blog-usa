@@ -29,7 +29,7 @@ There are five stages of software development that should be communicated throug
 1. When developing a new product or extending an existing solution, business leaders have a vested interest in the tools and architecture used. The benefits of communicating the technical advantages of each approach early on are:
     * Allowing for business stakeholders to negotiate existing partnerships or explore new ones with technology providers to create strategic business advantages that would further the success of the initiative.
 
-## Product-management practices
+## Product Management
 1. In order to communicate business value behind software development initiatives, effective product management practices must be deployed. This includes communication to business executives throughout the product development lifecycle, a process that consists of several steps from numerous teams:
     * Storyboards, customer feedback, market analysis, success metrics or benchmarks (such as KPIs or OKRs), and team performance updates.
     * Leadership needs to have a firm understanding of what works and what doesn't. By creating that transparency, executives can support the management styles that are most effective at lower levels of the organization, allow the teams to pivot and iterate quickly, leverage team member's skill sets, enable the team to become thought leaders and ultimately enrich management at every level.
