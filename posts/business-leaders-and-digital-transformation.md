@@ -40,7 +40,7 @@ There are five stages of software development that should be communicated throug
     * Testing provides insight into how development is progressing.
     * Application interfaces allow them to think ahead in terms of strategy and growth. 
 
-## Product-delivery practices
+## Product Delivery
 1. In cloud-based development, the use of tools to gather data-driven insights, polling customer engagement through the use of selective feature releases, and leveraging open-source tools to reduce development time and the cost of maintenance. 
     * "Show me the data" - Data driven business insights have become a prerequisite when justifying decisions at the executive level. Integrating business analytics tools is a critical investment so a business can react quickly to changing market trends. Agility and responsiveness can differentiate a successful business. 
     * A/B testing: When mapping paths for development, leadership often encounters uncertainty - a fork in the road if you will - where existing data is not sufficient to determine the best path forward. Running experiments with real users allows leaders to gauge customer engagement. This method is critical to reducing ambiguity and in making data driven-decisions. 
