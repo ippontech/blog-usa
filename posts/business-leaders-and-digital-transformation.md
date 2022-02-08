@@ -8,7 +8,7 @@ tags:
 - Leadership
 - Communication
 date: 2022-01-26T12:21:50.000Z
-title: "Bridging the gap between business leaders and digital transformation"
+title: "Bridging the Gap Between Business Leaders and Digital Transformation"
 ---
 
 "We believe that every industrial company will become a software company." - GE CEO Jeffrey R. Immelt, 2013. 
