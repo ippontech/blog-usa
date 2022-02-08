@@ -48,7 +48,7 @@ There are five stages of software development that should be communicated throug
 
 ## Enablers
 1. In a business setting, understanding the strategic advantages of how and where your technology fits into the market is critical. The same principles classically applied to portfolio management can now be applied to software development:
-    * Market attractiveness and strategic positioning - what is the value proposition of the technology being adopted, and how does this position the business for short- and long-term success?
+    * Market attractiveness and strategic positioning: What is the value proposition of the technology being adopted and how does this position the business for short and long-term success?
     * Investment analysis and allocation: When deciding on the what and how and assessing which technology initiative to pursue or between technologies to help meet that goal, what is the cost benefit of choosing one over the other? In large enterprises, that decision can be costly, especially if ends up being the wrong one.
     * Risk assessment: How does a business mitigate risk? Whether it is distributing risk by using multiple computing services, meeting uptime commitments, quickly catching and fixing bugs, or deterring bad actors, maintaining a reputation for dependability and security can make or break companies.
 
