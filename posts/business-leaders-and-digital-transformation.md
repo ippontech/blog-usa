@@ -34,7 +34,7 @@ There are five stages of software development that should be communicated throug
     * Storyboards, customer feedback, market analysis, success metrics or benchmarks (such as KPIs or OKRs), and team performance updates.
     * Leadership needs to have a firm understanding of what works and what does not. By creating that transparency, executives can support management styles that are most effective at lower levels of the organization, allow the teams to pivot and iterate quickly, leverage team members' skill sets, enable the team to become thought leaders, and ultimately enrich management at every level.
 
-## Product-development practices
+## Product Development
 1. Metrics around release schedules, testing and the extensibility of application interfaces allow business leaders to get insights into the entire lifecycle of a software development initiative. These include:
     * Schedules allow them to have a baseline to measure progress against.
     * Testing provides insight into how the development is progressing.
