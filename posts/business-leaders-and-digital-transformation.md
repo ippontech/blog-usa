@@ -9,6 +9,7 @@ tags:
 - Communication
 date: 2022-01-26T12:21:50.000Z
 title: "Bridging the Gap Between Business Leaders and Digital Transformation"
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/01/business-leaders-cover.png
 ---
 
 _"We believe that every industrial company will become a software company."_ - Jeffrey R. Immelt, Former CEO of General Electric (2013). 
@@ -41,7 +42,7 @@ There are five stages of software development that should be communicated throug
     * Application interfaces allow them to think ahead in terms of strategy and growth. 
 
 ## Product Delivery
-1. In cloud-based development, the use of tools to gather data-driven insights, polling customer engagement through the use of selective feature releases, and leveraging open-source tools to reduce development time and the cost of maintenance. 
+1. In cloud-based development, the use of tools to gather data-driven insights, polling customer engagement through the use of selective feature releases, and leveraging open-source tools to reduce development time and the cost of maintenance is critical. Below are some core principles leaders should consider: 
     * _"Show me the data"_: Data-driven business insights have become a prerequisite when justifying decisions at the executive level. Integrating business analytics tools is a critical investment so a business can react quickly to ever-changing market trends. Agility and responsiveness can be differentiators for a successful business. 
     * A/B testing: When mapping paths for development, leadership often encounters uncertainty - a fork in the road if you will - where existing data is not sufficient to determine the best path forward. Running experiments with real users allows leaders to gauge customer engagement. This method is critical to reducing ambiguity and in making data driven-decisions. 
     * Community-driven development: The utilization of open-source software. _"Why reinvent the wheel?"_ There are no extra points in business for building out a solution that already exists. By leveraging open-source software, businesses can benefit on multiple fronts. The first being that the software is tried and tested with robust documentation. The second being that costs for development can be significantly reduced by leveraging crowd-sourcing for maintenance and feature development. By focusing on differentiating features, rather than the development and maintenance of a custom codebase, companies can move faster and do more for less.
