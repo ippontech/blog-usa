@@ -56,4 +56,4 @@ There are five stages of software development that should be communicated throug
 
 ## Conclusion
 
-Leveraging technology has become critical across numerous sectors and will inevitably make its way into every industry, but few companies are able to leverage it to their best ability and it can even become a roadblock in reaching their full potential. By ensuring technology becomes a core element of strategy development at the very top, companies will be able to effectively use many more of the tools at their disposal and make smarter, data-driven decisions.
+Leveraging technology has become critical across numerous sectors and will inevitably make its way into every industry, but few companies are able to leverage it to the best of their ability. It can even become a roadblock in reaching their full potential. By ensuring technology becomes a core element of strategy development at the very top, companies will be able to effectively use many more of the tools at their disposal and make smarter, data-driven decisions.
