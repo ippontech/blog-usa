@@ -37,7 +37,7 @@ There are five stages of software development that should be communicated throug
 ## Product Development
 1. Metrics around release schedules, testing, and the extensibility of application interfaces allow business leaders to get insights into the entire lifecycle of a software development initiative. These include:
     * Scheduling allows them to have a baseline to measure progress against.
-    * Testing provides insight into how the development is progressing.
+    * Testing provides insight into how development is progressing.
     * Application interfaces allow them to think ahead in terms of strategy and growth. 
 
 ## Product-delivery practices
