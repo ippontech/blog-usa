@@ -52,7 +52,7 @@ There are five stages of software development that should be communicated throug
     * Investment analysis and allocation: When deciding on the what and how and assessing which technology initiative to pursue or between technologies to help meet that goal, what is the cost benefit of choosing one over the other? In large enterprises, that decision can be costly, especially if ends up being the wrong one.
     * Risk assessment: How does a business mitigate risk? Whether it is distributing risk by using multiple computing services, meeting uptime commitments, quickly catching and fixing bugs, or deterring bad actors, maintaining a reputation for dependability and security can make or break companies.
 
-2. Talent and governance - Agility, ownership and accountability are critical to business success. By using smaller teams with clear ownership and accountability, the development of large technology initiatives can be more agile, performance measured more clearly, and problems addressed more quickly.  
+2. Talent and governance: Agility, ownership and accountability are critical to business success. By using smaller teams with clear ownership and accountability, the development of large technology initiatives can be more agile with performance measured more clearly and problems addressed at a faster rate.  
 
 ## Conclusion
 
