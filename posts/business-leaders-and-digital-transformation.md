@@ -17,7 +17,7 @@ As technology becomes increasingly central to core business operations and servi
 
 How do we bridge the gap between technologists and business leaders with limited technical expertise to help them better understand and evaluate how technological initiatives meet business needs? **Why** is this important?
 
-This problem often arises in larger companies, where a data, cloud, and software strategy is often determined three to five layers down the hierarchy. This makes companies vulnerable to tech-based disruption, subpar user experience resulting in churn, and higher costs with lower margins.
+This problem often arises in larger companies, where data, cloud, and software strategies are often determined several layers down the hierarchy. This makes companies vulnerable to tech-based disruption, subpar user experience resulting in churn, and higher costs with lower margins.
 
 In order to make technology an advantage, executives need to be fluent in leading software-development practices and in carefully determining how software is integrated into the organization. Most important for executives to get right from the start is making software development a strategic priority, not an afterthought. Making it strategic does not necessarily mean technology is the goal, but it does mean that executives are able to evaluate what technologies are needed to meet the needs of the business, and assess how these technologies help accomplish the business's goals.
 
