@@ -11,7 +11,7 @@ date: 2022-01-26T12:21:50.000Z
 title: "Bridging the Gap Between Business Leaders and Digital Transformation"
 ---
 
-"We believe that every industrial company will become a software company." - GE CEO Jeffrey R. Immelt, 2013. 
+_"We believe that every industrial company will become a software company."_ - Jeffrey R. Immelt, Former CEO of General Electric (2013). 
 
 As technology becomes increasingly central to core business operations and services, bridging the gap between senior leadership and software development initiatives will prove to be a harbinger of a company's long-term success. 
 
