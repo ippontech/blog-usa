@@ -23,7 +23,7 @@ In order to make technology an advantage, executives need to be fluent in leadin
 
 Now that we know the problem, how do we solve it? By integrating decision-making across technical and business leadership through effective communication. 
 
-There are five stages of software development that should be communicated throughout the software development cycle. Setup decisions, Product-management practices, Product-development practices, Product-delivery practices, and Enablers. Below, we will describe what each stage means and why it's important. 
+There are five stages of software development that should be communicated throughout the software development cycle. Setup, product management, product development, product delivery, and enablers. Below, we will describe what each stage means and its significance.
 
 ## Setup decisions
 1. When developing a new product, or extending an existing solution, business leaders have a vested interest in the tools and architecture used. The benefits of communicating the technical advantages of each approach early on are:
