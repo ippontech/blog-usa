@@ -21,7 +21,7 @@ This problem often arises in larger companies, where data, cloud, and software s
 
 In order to make technology an advantage, executives need to be fluent in leading software development practices and carefully determine how software is integrated into the organization. Perhaps one of the most important things for executives to get right from the start is making software development a _strategic_ priority, not an afterthought. Making it strategic does not necessarily mean technology is the goal, but it does mean that executives are able to evaluate what technologies are needed to meet the needs of the business, and assess how these technologies help accomplish the business' goals.
 
-Now that we know the problem, how do we solve it? By Integrating decision making across technical and business leadership through effective communication. 
+Now that we know the problem, how do we solve it? By integrating decision-making across technical and business leadership through effective communication. 
 
 There are five stages of software development that should be communicated throughout the software development cycle. Setup decisions, Product-management practices, Product-development practices, Product-delivery practices, and Enablers. Below, we will describe what each stage means and why it's important. 
 
