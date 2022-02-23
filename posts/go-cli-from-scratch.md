@@ -64,7 +64,7 @@ $ gupi delete TEMPLATE_NAME
 Template 'TEMPLATE_NAME' was deleted
 ```
 
-- *Version*: Prints version info to console
+- *Version*: Prints version info to the console
 
 ```shell
 $ gupi version
@@ -73,7 +73,7 @@ gupi version: v0.1, build: 893b04957563cd7120f817dd654ba745075cfe6b
 
 ### Initializing the CLI
 
-First thing we need to do is create the project directory and initialize it as a Git repository. I'll call this project `gupi`:
+The first thing we need to do is create the project directory and initialize it as a Git repository. I'll call this project `gupi`:
 
 ```shell
 $ mkdir gupi
@@ -89,13 +89,13 @@ $ go mod init github.com/USERNAME/gupi
 
 The full path `github.com/USERNAME/gupi` is what others would use to download if you packaged and distributed this module. Also helpful for importing local files from subfolders.
 
-Next lets create our main entry point called: `main.go`
+Next let's create our main entry point called: `main.go`
 
 ```shell
 $ touch main.go
 ```
 
-Add a basic print statement make sure the environment is working:
+Add a basic print statement to make sure the environment is working:
 
 ```go
 // main.go
@@ -119,7 +119,7 @@ We just confirmed we have a working Go project but no time to celebrate just yet
 
 One thing that quickly stands from CLIs like Docker and Kubectl is the informative and friendly user manuals that are displayed by calling the base command.
 
-Essentialy what I want is:
+Essentially what I want is:
 
 ```shell
 $ gupi
@@ -131,7 +131,7 @@ Commands:
 	* Practical Feature 3 - The daily driver of features
 ```
 
-New users should be able to understand what the tool does and how to actually use. We already clearly defined the main features of our tool so putting together this usage text will be easy.
+New users should be able to understand what the tool does and how to actually use it. We already clearly defined the main features of our tool so putting together this usage text will be easy.
 
 So based on the features defined above I came up with this, feel free to modify as you see fit:
 
@@ -166,7 +166,7 @@ If we test this app again it will slowly start feeling like a real CLI.
 $ go run main.go
 ```
 
-We need to add one more thing before moving one. One important aspect of any CLI tool is exit/status codes. Any CLI needs to return **0** when successfull and anything greater when an error occured.
+We need to add one more thing before moving one. One important aspect of any CLI tool is exit/status codes. Any CLI needs to return **0** when successful and anything greater when an error occurred.
 
 We'll create this `usageAndExit` method prints the usage message and an optional status message.
 
@@ -233,7 +233,7 @@ type Command struct {
 }
 ```
 
-The `flag.Flagset` is just what is sounds like its a collection of flags, these will be defined for each individual subcommand. And `Execute` is an anonymous function which accepts a `Command` and a array of arguemnts. Note, Go treats functions as first class citizens so we can pass functions as parameters or when defining an instance of a struct. Next we need a few functions on the Command struct, it needs to:
+The `flag.Flagset` is just what it sounds like its a collection of flags, these will be defined for each individual subcommand. And Execute is an anonymous function that accepts a Command and an array of arguments. Note, Go treats functions as first-class citizens so we can pass functions as parameters or when defining an instance of a struct. Next, we need a few functions on the Command struct, it needs to:
 
 * Parse and assign flags to its flagset
 * Tell if flags have been parsed
@@ -276,9 +276,9 @@ func (c *Command) Run() {
 This way each new subcommand we add will just be of type Command. This will simplify things for the next step as we modify our main method to allow subcommands to be easily added.
 
 ## Wiring up components
-The main method will be entry point for all subcommands. We'll achieve this by leveraging to parts: subcommands are Command types and a switch statment.
+The main method will be the entry point for all subcommands. We'll achieve this by leveraging to parts: subcommands are Command types and a switch statement.
 
-We need to initialize an empty Command object this we'll be the container for incoming subcommands. New subcommands will be initalized based on the case statement. After the command is initialized we parse the flags and execute the function using the methods we defined earlier. What that begins to look like is this:
+We need to initialize an empty Command object this we'll be the container for incoming subcommands. New subcommands will be initialized based on the case statement. After the command is initialized we parse the flags and execute the function using the methods we defined earlier. What that begins to look like is this:
 
 ```go
 // main.go
@@ -298,7 +298,7 @@ func main() {
 }
 ```
 
-Our subcommands haven't be defined yet but this essentially what it'll look like, each new command will just get its own case statement.
+Our subcommands haven't been defined yet but this is essentially what it'll look like, each new command will just get its own case statement.
 
 So now we're at a good point to start building out our subcommands.
 
@@ -310,10 +310,10 @@ We have six subcommands to add but it'll go quickly since each command will foll
 3. Build out the core logic for the function
 4. Add a new case statement
 
-We already added the `version` case to the main method so lets start there.
+We already added the `version` case to the main method so let's start there.
 
 ### Add Version command
-First we need to define what the usage message should be, based on the requirements I put this together:
+First, we need to define what the usage message should be, based on the requirements I put this together:
 
 NOTE: I didn't mention this before but the Version command will accept a single flag `--short`, if added the short version of the build info will be printed.
 
@@ -367,11 +367,11 @@ var versionFunc = func(cmd *Command, args []string) {
 }
 ```
 
-Nothing surprising about the `versionFunc` it prints a message and exits with an all clear exit code. What might've caught your eye is the `???` for the build and version variables. Those are meant as placeholder variables which will be overwritten during the build process. This is allows us to specify version numbers in a config or dynamically include commit hashes on each build. We'll be using `ldflags` to do this, I'll go over this near the end. For now if you want to read more check out [using ldflags to set version flags](https://www.digitalocean.com/community/tutorials/using-ldflags-to-set-version-information-for-go-applications).
+Nothing surprising about the `versionFunc` it prints a message and exits with an all-clear exit code. What might've caught your eye is the ??? for the build and version variables. Those are meant as placeholder variables that will be overwritten during the build process. This allows us to specify version numbers in a config or dynamically include commit hashes on each build. We'll be using ldflags to do this, I'll go over this near the end. For now, if you want to read more check out [using ldflags to set version flags](https://www.digitalocean.com/community/tutorials/using-ldflags-to-set-version-information-for-go-applications).
 
-One point I glanced over is the `func(cmd *Command, args []string)` type for the `Execute` field. That means `Execute` is anonymous function which can be passed in at any time or extracted into a separate variable like we did for `versionFunc`. Extracting is not nessecary but is helpful for building readable code.
+One point I glanced over is the `func(cmd *Command, args []string)` type for the `Execute` field. That means `Execute` is an anonymous function that can be passed in at any time or extracted into a separate variable as we did for `versionFunc`. Extracting is not necessary but is helpful for building readable code.
 
-The final step would be adding a case statement to our main method but since we already took care of that we're ready to this command.
+The final step would be adding a case statement to our main method but since we already took care of that we're ready for this command.
 
 Now we can accept subcommands and start testing with and without the `--short` flag:
 
@@ -388,15 +388,15 @@ For now the `???` is fine we'll replace those during the build process later on.
 * Friendly messaging and instructions
 * Adding new subcommands
 * Adding subcommand specific flags
-* Wiring up a subcommands together
+* Wiring up subcommands together
 
-The next few steps will move faster since we're just repeating the same steps to add more functionallity to our CLI.
+The next few steps will move faster since we're just repeating the same steps to add more functionality to our CLI.
 
 ### Add our Add Command
 
-Next we'll introduce the functionallity to store templates for use. To keep this simple we'll just be keeping a copy of a given template in a specific folder.
+Next, we'll introduce the functionality to store templates for use. To keep this simple we'll just be keeping a copy of a given template in a specific folder.
 
-As I mentioned we'll just repeat a few similar steps for each new function. I'll start focusing on the repetitive and steps and more on the differences. We'll start by defining the usage messaging:
+As I mentioned we'll just repeat a few similar steps for each new function. I'll start focusing on the repetitive steps and more on the differences. We'll start by defining the usage messaging:
 
 ```go
 // add.go
@@ -427,7 +427,9 @@ func NewAddCommand() *Command {
 }
 ```
 
-Now we can focus on the functionallity. First thing we need to do some error handling and validation. We need to confirm the file we're using as a template actually exists. We also need to confirm the directory for saved templates exists, if not we'll go ahead and create it.
+Now we can focus on the functionality. The first thing we need to do is some error handling and validation. We need to confirm the file we're using as a template actually exists. We also need to confirm the directory for saved templates exists, if not we'll go ahead and create it.
+
+The os package has several useful methods for handling files, paths, and folders. We'll use os.Stat() to determine if a file/folder exists.
 
 The `os` package has several use methods for handling files, paths and folders. We'll use `os.Stat()` to determine if a file/folder exists. Then we'll use the `os.UserHomeDir()` to get the home directory, this will be the base path for our saved templates, the full path will be `USER_HOME/.gupi/templates/`.
 
@@ -492,10 +494,10 @@ Now you save the template using this subcommand:
 $ go run main.go add --file test.md test
 ```
 
-We should now be able to save templates but how can we confirm its actually saved.  This where the next command `list` comes into play.
+We should now be able to save templates but how can we confirm it's actually saved. This is where the next command `list` comes into play.
 
 ### Add List Command
-This command will list all the available templates in the template folder. With this we can validate the `test.md` template was added successfully. Similar to the add command we'll be relying on the `os` package to manage files and folder paths.
+This command will list all the available templates in the template folder. With this, we can validate the `test.md` template was added successfully. Similar to the add command we'll be relying on the `os` package to manage files and folder paths.
 
 Jumping back to our steps, we'll first define the usage message:
 
@@ -522,9 +524,9 @@ func NewListCommand() *Command {
 
 So this command needs to list all templates in the specific folder in the user home directory.
 
-We'll use `os.UserHomeDir()` to grab the user specific home directory then look for the template folder in the app subdirectory.
+We'll use `os.UserHomeDir()` to grab the user-specific home directory then look for the template folder in the app subdirectory.
 
-Finally we use some basic string formatting for a friendly output.
+Finally, we use some basic string formatting for a friendly output.
 
 ```go
 // list.go
@@ -566,11 +568,11 @@ The next command will allow us to edit any existing templates in terminal.
 
 ### Add Edit Command
 
-This next command is fun to use and suprisingly simple to put together. We'll add the ability to edit our saved templates directly from the terminal using your editor of choice. I'll be using Vim as my editor but this could easily be modified into flag or config variable to be passed in.
+This next command is fun to use and surprisingly simple to put together. We'll add the ability to edit our saved templates directly from the terminal using your editor of choice. I'll be using Vim as my editor but this could easily be modified into a flag or config variable to be passed in.
 
-First thing to do is more familiar error handling, we know where templates live and this command requires a template name so we just have to make sure it all exists as expected.
+The first thing to do is more familiar with error handling, we know where templates live and this command requires a template name so we just have to make sure it all exists as expected.
 
-Then we will define what command will be executed to start the editor, in this case we will run  `vim FILE_NAME`. Before we actually execute the command we need to configure the IO to be sent to our terminal. Along with that some simple error handling incase anything goes wrong along the way.
+Then we will define what command will be executed to start the editor, in this case, we will run `vim FILE_NAME`. Before we actually execute the command we need to configure the IO to be sent to our terminal. Along with that some simple error handling in case anything goes wrong along the way.
 
 ```go
 // edit.go
@@ -603,7 +605,7 @@ Now lets try to create an instance of this template.
 
 This is the most important step everything has been leading up to this command. Several parts will look familiar especially around file manipulation. One new addition is the the use of the `template` package, this enables us to parse templates and inject data into the template. If you've used any sort of templating framework such as Handlebars, Mustache, or Jinja you'll feel right at home.
 
-We first need to do some error handling to make sure all files exist as expected. If it all checks out then we'll use `template.ParseFiles(FILE)` to create a Template object from the actual file. Then create the empty file with same name. Finally we use `template.Execute()` to write the data to the newly created open file.
+We first need to do some error handling to make sure all files exist as expected. If it all checks out then we'll use `template.ParseFiles(FILE)` to create a Template object from the actual file. Then create the empty file with the same name. Finally, we use `template.Execute()` to write the data to the newly created open file.
 
 ```go
 // create.go
@@ -641,7 +643,7 @@ $ go run main.go create test.md
 Created 'test.md' in '/Users/rodrigomoran/Workspace/gupi/test.md'
 ```
 
-As final command we'll include the ability to delete existing templates.
+A final command we'll include is the ability to delete existing templates.
 
 ### Add Delete Command
 Similar to a few other commands we need to validate the template we plan to remove actually exists. If it checks out then we'll use `os.Remove()` to delete the file from the folder.
@@ -673,7 +675,7 @@ gupi: Template 'test.md' was deleted
 ```
 
 ## Putting it all together
-Now that we have all the subcommands we can put it all together into a standalone binary. For that we'll use the Makefile, if not familiar with them they were initially used simplify compiling C programs but they can be used for any language.
+Now that we have all the subcommands we can put it all together into a standalone binary. For that we'll use the Makefile, if not familiar with them they were initially used to simplify compiling C programs but they can be used for any language.
 
 The Makefile below includes commands to build, test, and clean.
 
@@ -698,7 +700,7 @@ clean:
 	rm -rf $(binary) c.out coverage.html
 ```
 
-Before building the binary make sure to update user variable for your github username.
+Before building the binary make sure to update the user variable for your GitHub username.
 
 To build the binary run: `$ make`
 
