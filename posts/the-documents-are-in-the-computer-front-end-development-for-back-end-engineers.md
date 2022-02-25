@@ -17,7 +17,7 @@ I think part of my struggle is that the way that I learn is concept-oriented -- 
 
 I also came to programming from a different direction compared to many of my peers. While many of my classmates were creating themes for their Xanga sites with HTML and CSS, I remember being _super_ intimidated. I was a kid and I really didn't need a website, anyway, so I gave up and chalked up programming as something that wasn't for me. In college, though, I encountered opportunities to use a computer in the context of domains I was already interested in -- agent-based modeling of population growth, and "Why bother to do the integral when Mathematica can do it for me?", and so on. The problems I was trying to solve normally didn't include a graphical user interface, and never required me to create a web-based front-end. 
 
-All of that to say: I'm writing this blog post as a way of summing up what I've learned about the "somethings" of front-end development, including naming and defining some of the concepts I had no idea existed. I'll also give some examples of what the concepts look like applied in a simple application we'll build along the way. 
+All of that to say: I'm writing this short series of blog posts as a way of summing up some of what I've learned about the "somethings" of front-end development, including naming and defining some of the concepts I had no idea existed. I'll also give some examples of what the concepts look like applied in a simple application we'll build along the way. 
 
 # Setting the Stage
 
@@ -285,7 +285,7 @@ Well. That took the wind out of our sails a bit. Our custom element seems not to
 
 It turns out that the styling we see is due to style encapsulation provided by the shadow DOM. (Remember that `attachShadow` we said we'd get back to?) Let's look at the shadow DOM and style encapsulation with the help of our little monster from earlier. 
 
-Basically, a shadow DOM is a piece of the document that our little monster treats as a black box. The piece of the document that is in the shadow may be only one element, or several nested together under a common root element. The little monster generally acts like it can't see what's inside the shadow DOM. 
+Basically, a shadow DOM is a piece of the document that our little monster who controls the DOM treats as a black box. The piece of the document that is in the shadow may be only one element, or several nested together under a common root element. The little monster generally acts like it can't see what's inside the shadow DOM. 
 
 Now, let's look at what happened to our example app to understand the style encapsulation of the shadow DOM. The styling for the class `weather-card` was not applied to any elements which were contained within the `weather-card-component` element, even though our `div` element has the `weather-card` class. This is the meat of style encapsulation -- any styling for elements selected based on the class that we defined doesn't leak into the custom element's shadow DOM.
 
@@ -314,4 +314,4 @@ At this point, our component is in great shape.
 
 ![Page output after adding styling to the web component itself - view is as expected, matching the starting point of plain HTML and CSS.](../images/2022/02/fed4bees1-component-restored.png)
 
-Of course, we can only use it to show outdated information about weather in Richmond. The more impressive outcome we've achieved, though, is an excellent foundation of understanding on which to build. 
+Of course, we can only use it to show outdated information about weather in Richmond. The more impressive outcome we've achieved, though, is an excellent foundation of understanding on which to build. In the next post in our series, we'll have a bit of an easier ride through some things that are more familiar for those with back-end experience. I can't wait!
