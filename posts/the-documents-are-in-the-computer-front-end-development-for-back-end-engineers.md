@@ -310,4 +310,8 @@ shadowRoot.appendChild(divElement);
 
 In the constructor of our weather card component, we create elements, manipulate them, and append them to our shadow root. Construction, connection, and disconnection are examples of events in an element's _lifecycle_. In much the same way as our constructor provides the code to be run when the object is created, we can implement additional callback functions that provide the code to be run when the object is added or removed for the DOM. Our custom element inherits these functions because it is an `HTMLElement`. As their names make obvious, the `connectedCallback` is invoked when the object is attached to the DOM and the `disconnectedCallback` is invoked when the object is removed. Another notable example is `attributeChangedCallback`, which we will cover in more depth later. 
 
-At this point, our component is in great shape. Of course, we can only use it to show outdated information about weather in Richmond. The more impressive outcome we've achieved, though, is an excellent foundation of understanding on which to build. 
+At this point, our component is in great shape. 
+
+![Page output after adding styling to the web component itself - view is as expected, matching the starting point of plain HTML and CSS.](../images/2022/02/fed4bees1-component-restored.png)
+
+Of course, we can only use it to show outdated information about weather in Richmond. The more impressive outcome we've achieved, though, is an excellent foundation of understanding on which to build. 
