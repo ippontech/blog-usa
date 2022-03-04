@@ -20,7 +20,7 @@ It's the moment we've all been waiting for -- let's use current data! If you're 
 
 ## Our API
 
-We'll be getting our data from a API at `http://api.weatherapi.com`, which requires an free API key. Instructions for getting your own API key are in the README in the GitHub repo we've been using. However, so that you don't have to request one in order to follow along, we'll use a straightforward little Node.js server as a bit of middleware between our front end and that API. Our server looks for a `WEATHER_API_KEY` environment variable and will use it to call the API if present, but otherwise will pull data from some cached responses for each of our four cities. It also tries the cached data in case the API call fails. I've copied a few details in the listing below, but left some bits out so we can focus on a couple of aspects at play.
+We'll be getting our data from an API at `http://api.weatherapi.com`, which requires a free API key. We'll use a straightforward little Node.js server as a bit of middleware between our front end and that API. Our server looks for a `WEATHER_API_KEY` environment variable and will use it to call the API if present. Don't worry, though -- you can still follow along if you don't want to request an API key. Our server accounts for this by pulling data from some cached responses for each of our four cities if API key is not present or if the API call fails. I've copied a few details in the listing below, but left some bits out so we can focus on a couple of aspects at play.
 
 ``` js weather-server.js
 const requestListener = async function(req, res) {
