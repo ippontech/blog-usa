@@ -352,7 +352,7 @@ Hooray!
 
 ## Exercises Left to the Reader
 
-I hope that you've enjoyed our journey together as much as I have. We've accomplished a lot; you're ready to flap your wings and fly on your own! There are a few more things along the line of this project that I'd recommend tinkering with, but solving them will be "an exercise left to the reader," as math textbooks always say.
+I hope that you've enjoyed our journey together as much as I have. We've learned a lot, and you're ready to flap your wings and fly on your own! There are a few more things along the line of this project that I'd recommend tinkering with, but solving them will be "an exercise left to the reader," as math textbooks always say.
 
 ### Inputs
 
@@ -364,4 +364,8 @@ Even better would be a new list component that contains the searching functional
 
 ### Why Not Both? 
 
-Once you have the Ippon list and the new custom list, consider making a homepage that can navigate back and forth between the two lists. This will introduce the concept of a "single-page" application. React, Angular, and Vue all provide for this -- changing the contents of the page without refreshing the page. Watch out for considerations you'll need to take when connecting and disconnecting components from the DOM!
+Once you have the Ippon list and the new custom list, consider making a homepage that can navigate back and forth between the two lists. Watch out for considerations you'll need to take when connecting and disconnecting components from the DOM! This will introduce the concept of a "single-page" application. React, Angular, and Vue all provide for this -- changing the contents of the page without refreshing the page. 
+
+### Do It All Again
+
+Speaking of [React](reactjs.org), [Angular](angular.io), and [Vue](vuejs.org), we've learned a lot about what happens behind the scenes of these frameworks. With all of this context, you could test your understanding of the concepts by trying to replicate what we've built using a framework. They are widely-used for a reason! Pick a framework -- perhaps consult [this blog post](https://blog.ippon.tech/how-to-choose-between-react-angular-and-vue/) to decide which one -- and try your hand at rebuilding what we've done!
