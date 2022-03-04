@@ -12,7 +12,7 @@ title: "Hey, This Looks Familiar: Front-End Development for Back-End Engineers"
 
 Hey, welcome back! We learned a _ton_ in the last post. A lot of what this post will cover will be familiar to those with a strong foundation in the back-end, so this will be a bit more of an easy ride. As a reminder, there is an accompanying [GitHub repository](https://github.com/christinaannas/weather-at-the-office) to follow along with this series. 
 
-![Page output from the end of the last post - a heading and four cards with weather conditions for Richmond, VA, Washington, DC, New York, NY, and Atlanta, GA.](../images/2022/02/fed4bees2-from-last-time.png)
+![Page output from the end of the last post - a heading and four cards with weather conditions for Richmond, VA, Washington, DC, New York, NY, and Atlanta, GA.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/hey-this-looks-familiar/images/2022/02/fed4bees2-from-last-time.png)
 
 When we left off, we had created a custom element and incorporated it into our overall page, but we could still only use the component to show outdated information about weather in Richmond. Let's fix that!
 
@@ -63,7 +63,7 @@ This is our first timeout, so let's check it out. We effectively schedule an arr
 
 After refreshing the page and waiting five seconds, we do see the messages in the console but do not see the location name changed on the webpage. Because we changed the data but the view was not updated automatically, we have shown that our app does not have data binding. 
 
-![Page and console output with the timeout - messages are printed in the console, but the location name is not changed.](../images/2022/02/fed4bees2-no-data-binding.png)
+![Page and console output with the timeout - messages are printed in the console, but the location name is not changed.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/hey-this-looks-familiar/images/2022/02/fed4bees2-no-data-binding.png)
 
 In order to update the view, we will need to explicitly update the innerHTML whenever we change the data in the state, as we do in the following snippet. We continue to use `that` as an alias for `this`.
 
@@ -90,7 +90,7 @@ connectedCallback() {
 
 With this change made, we see that the location does update to "Somewhere Else, USA" in the output view. 
 
-![Page and console output with the additional timeout - messages are printed in the console, and the location name is changed.](../images/2022/02/fed4bees2-explicitly-update.png)
+![Page and console output with the additional timeout - messages are printed in the console, and the location name is changed.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/hey-this-looks-familiar/images/2022/02/fed4bees2-explicitly-update.png)
 
 As it turns out, we don't need this component to update its own data right now. So while there are ways to implement data binding within a component, we won't consider them here. Instead, we'll move on to making our weather card components customizable, so they are able to represent the weather at Ippon's other offices.
 
@@ -189,7 +189,7 @@ Now, we're ready to pass in values for these attributes from our `index.html` do
 
 We see that we have two identical "cards" for DC, which is what we expected.
 
-![Page output after adding the web component for Washington DC, with identical cards created by the web component and previously-existing HTML.](../images/2022/02/fed4bees2-wdc-component.png)
+![Page output after adding the web component for Washington DC, with identical cards created by the web component and previously-existing HTML.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/hey-this-looks-familiar/images/2022/02/fed4bees2-wdc-component.png)
 
 Notice that we did't need to pass in any attributes for the Richmond office, because the model in our constructor provides those values as defaults. While that's fine for this current page, it's not what someone might expect from an "empty" component outisde of our context. Let's provide some default text to display when information is missing.
 
@@ -205,7 +205,7 @@ that.model = {
 
 In our `index.html` document, we'll update our Richmond card to pass in the data using attribute binding and add a custom element with no attributes set. 
 
-![Page output after adding the default text to show when no attribute is passed in. The no-attribute card has a white background, and the sentence describing the weather for that card is "In an unknown location, it is currently an unknown temperature°F and unknown conditions.". ](../images/2022/02/fed4bees2-default-text.png)
+![Page output after adding the default text to show when no attribute is passed in. The no-attribute card has a white background, and the sentence describing the weather for that card is "In an unknown location, it is currently an unknown temperature°F and unknown conditions.". ](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/hey-this-looks-familiar/images/2022/02/fed4bees2-default-text.png)
 
 We've reached something that is _almost_ reasonable for an "empty" component. It would be better to not have the `°F` if we don't know the temperature. We'll get to that, but first, let's take a look at how we wrote `attributeChangedCallback` and how we might refactor it.
 
@@ -346,7 +346,7 @@ Because the falsy value `0` is a perfectly reasonable value for our temperature,
 
 As it turns out, passing the value `0` to an attribute will not cause us any trouble. The reason for this is that attribute binding passes the attribute values as strings -- by the time the `newValue` arrives in our `attributeChangedCallback`, it is the string `"0"` and not the number `0`. The card that we add with temperature 0 specified as an attribute correctly displays `0°F`.
 
-![Page output after adding a card with temp specified as the numnber 0. ](../images/2022/02/fed4bees2-number-zero-attribute.png)
+![Page output after adding a card with temp specified as the numnber 0. ](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/hey-this-looks-familiar/images/2022/02/fed4bees2-number-zero-attribute.png)
 
 If we were sharing this component with others, we might choose to code more defensively by doing a check on the incoming `newValue` and only updating our state data value if we can parse a number from the string we receive. Alternatively, we could enforce a type on our state data by using TypeScript. For now, though, we don't need to worry about that. 
 
@@ -412,7 +412,7 @@ window.customElements.define('ippon-weather-list-component', IpponWeatherListCom
 
 Now we can replace the entire contents of the `body` in our `index.html` with a single `ippon-weather-list-component`. Notice that in the inner HTML, we've changed the `h2` to a larger `h1` for our new component. 
 
-![Page output after incorporating the list component.](../images/2022/02/fed4bees2-list-component.png)
+![Page output after incorporating the list component.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/hey-this-looks-familiar/images/2022/02/fed4bees2-list-component.png)
 
 We've confirmed that our example app still looks as expected after  creating a new component and using its custom element, but besides that we haven't added much value. The next step is to pull out the attribute values into the component's state data and programmatically generate the inner HTML. 
 
@@ -454,7 +454,7 @@ constructor() {
 
 The result of our `getInnerHTML` function is still the same as it was before, and therefore our rendered output is still the same as before. 
 
-![Page output after generating the inner HTML programmatically.](../images/2022/02/fed4bees2-list-component.png)
+![Page output after generating the inner HTML programmatically.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/hey-this-looks-familiar/images/2022/02/fed4bees2-list-component.png)
 
 Because we're setting `divElement.innerHTML` to the same value in both previous examples, our interaction with the DOM is identical, although we've generated our value differently. The next step to take in our refactor is to create the internally contained HTML elements by interacting with the shadow DOM of our component directly, rather than generating a snippet of HTML. 
 
@@ -478,7 +478,7 @@ shadowRoot.appendChild(containerElement);
 
 In our constructor, we programmatically create a `weather-card-component` element for each office object, and set attributes for each of the name/value pairs in the objects. Note that this assumes that the names of the fields in the `officeObject` are the same as the attribute names that the card component expects. Our rendered output is again the same, but now we have achieved it by interacting directly with the DOM rather than giving some HTML to the little monster we imagined in the last post and asking the monster to add it to the DOM. Note that we still use attributes of our generated HTML elements to pass the data to render.
 
-![Page output after manipulating the DOM in the list component.](../images/2022/02/fed4bees2-list-component.png)
+![Page output after manipulating the DOM in the list component.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/hey-this-looks-familiar/images/2022/02/fed4bees2-list-component.png)
 
 <!-- todo: link to little-monster discussion in previous post -->
 
@@ -488,7 +488,7 @@ As we have seen, attribute binding has enabled us to create a `weather-card-comp
 
 In a demonstrative commit in [the repo for these posts](https://github.com/christinaannas/weather-at-the-office), I've added some `console.log` statements throughout the component files. The statements indicate that constructors, `connectedCallback`s, and `attributeChangedCallback`s are invoked. 
 
-![Page and console output to track order of function calls.](../images/2022/02/fed4bees2-lifecycle-console-logs.png)
+![Page and console output to track order of function calls.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/hey-this-looks-familiar/images/2022/02/fed4bees2-lifecycle-console-logs.png)
 
 Most of this order makes sense -- we enter the list constructor, iterate over offices including entering the card constructor and `attributeChangedCallback`, then we exit the list constructor. The last steps, however, are first the _card_ `connectedCallback` and then the list `connectedCallback`. Looking back at the constructor for the `IpponWeatherListComponent`, we see that for each office object we first create the card element, then append it as a child to the container element, then set its attributes. Append first, then attribute updates. So why do all the `attributeChangedCallback` calls happen before any `connectedCallback` calls?
 
@@ -539,7 +539,7 @@ set props(props) {
 
 We handle each name-value pair in the `props` object, checking to see whether the new value is different than the current one in our model. Let's check our output. 
 
-![Page output passing information through properties. The second card, expected to show 0 degrees, instead shows unknown temperature.](../images/2022/02/fed4bees2-props-zero-unknown.png)
+![Page output passing information through properties. The second card, expected to show 0 degrees, instead shows unknown temperature.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/hey-this-looks-familiar/images/2022/02/fed4bees2-props-zero-unknown.png)
 
 We see that our `0°F` temperature is missing, instead shown as `an unknown temperature`. Good thing we kept our "test cases" around to keep us honest! Recall our earlier discussion, when we first set up our conditional rendering, about type coercion in JavaScript. We were concerned about the `0` value we were passing as an attribute, but we illustrated that all attributes are passed as strings. There is no such transformation for properties, so we do need to be careful about our special case. The property is getting updated properly, but our rendering logic assumes that we can simply coerce our `this.model.temp` value to a boolean. Let's update our conditional rendering logic. 
 
@@ -566,6 +566,6 @@ getInnerHTML() {
 
 We don't need to put `getTemperatureString` within `getInnerHTML` for any reason having to do with scope; I've simply placed it there because it isn't needed elsewhere. With our special handling in our `getTemperatureString` function, we now see what we expect for the special case value of `0` for temperature. 
 
-![Page output with updated conditional logic, with the zero-degree card rendering as expected.](../images/2022/02/fed4bees2-updated-conditional-logic.png)
+![Page output with updated conditional logic, with the zero-degree card rendering as expected.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/hey-this-looks-familiar/images/2022/02/fed4bees2-updated-conditional-logic.png)
 
 Nice! It's gratifying to be able to predict what will happen with some JavaScript code, but it's even more exciting to be able to understand _why_ when our predictions are wrong. I think this high note is a decent stopping point. In our next installment, we'll _finally_ get some dynamic weather data incorporated into this! 
