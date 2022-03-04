@@ -37,7 +37,7 @@ The main structure of a web page is written in HTML (HyperText Markup Language).
 
 In this example, we have a heading element, opened and closed with `h3` tags, with some text enclosed in it and a `class` attribute with value `"lorem"` applied to the opening tag, as well as a paragraph `p` element. Notice that in the rendered output below, there's nothing about the attributes -- no `class` or `id` or `lorem` or `ipsum` -- we see only the text enclosed in each element, with the heading element having a big, bold style that HTML gives us for free.
 
-![Classic HTML rendering with no stylistic changes.](../images/2022/02/fed4bees1-plain-html.png)
+![Classic HTML rendering with no stylistic changes.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/the-documents-are-in-the-computer/images/2022/02/fed4bees1-plain-html.png)
 
 Although they don't show up directly in the output, attributes are useful ways of providing extra information to or about an element. Elements' tags, classes, and ids may be used in CSS selectors, which we'll talk about in the next section. 
 
@@ -66,7 +66,7 @@ CSS (Cascading Style Sheets) is used to define "style" or presentational differe
 
 We've added a `style` section to our HTML document, but we could alternatively place our styles in an external `.css` document and import them. Let's talk about the CSS selectors we've used in this sample. To apply a style to every element with a certain tag type, we simply put the tag name before the style definition, as shown here with `h3`. To select by class, we put a `.` in front of the class name as shown with `.lorem`; similarly, to select by id, we put a `#` in front of the id as shown with `#ipsum`. 
 
-![HTML rendering with styles applied.](../images/2022/02/fed4bees1-html-css.png)
+![HTML rendering with styles applied.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/the-documents-are-in-the-computer/images/2022/02/fed4bees1-html-css.png)
 
 The rendered output shows the color changes applied to the heading element and the font change applied to the paragraph element. The styles defined here will only be applied to elements that match the selectors, and we can also add styling directly to an element via its `style` attribute, although this approach is likely to get unmaintainable quickly. Let's add a few elements to our HTML to demonstrate: 
 
@@ -76,7 +76,7 @@ The rendered output shows the color changes applied to the heading element and t
   <p style="font-family: cursive">Some cursive text</p>
 ```
 
-![HTML rendering with inline styles applied.](../images/2022/02/fed4bees1-inline-css.png)
+![HTML rendering with inline styles applied.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/the-documents-are-in-the-computer/images/2022/02/fed4bees1-inline-css.png)
 
 Because the new heading does not have a class, it doesn't have the benefit of the darker background color, but still has the pink text color because it is a `h3` tag. The plain paragraph has no styling applied, and the paragraph with the in-line styling appears as cursive. One question we might have is: what happens when two conflicting styles are applied to the same element? 
 
@@ -109,7 +109,7 @@ Let's demonstrate what happens in this case by setting up different `font-family
 
 So, how has this turned out? We see our first element, to which none of the selectors apply, has our default serif font. The second element, which has the `p` tag, has the cursive font. These first two make sense -- there is no conflict of what style might apply. For the next four, we see either the class or id style in the output. It might have seemed obvious that this would be the case, because the class and id are, intuitively, more _specific_ selectors than the tag. Extending this intuition, we can understand that id is "more" specific than class, since the final two lines have the sans-serif styling specified for the `#ipsum` selector rather than the monospace styling specified for the `.lorem` selector. 
 
-![HTML rendering illustrating relative specificity of tags, classes, and ids.](../images/2022/02/fed4bees1-css-specificity.png)
+![HTML rendering illustrating relative specificity of tags, classes, and ids.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/the-documents-are-in-the-computer/images/2022/02/fed4bees1-css-specificity.png)
 
 CSS makes it easy to apply styling rules based on different types of selectors, so it also makes it easy to apply conflicting styling. What we've just seen is an application of CSS specificity, or how the browser decides which of the potentially conflicting rules applied to an element. In some cases, one type of selector is more specific than another (like an id is more specific than a class); in other cases, two types of selector are equally specific, and the last one applied wins. If you ever find yourself wondering why your styling isn't showing up, specificity might be a good first thing to check. 
 
@@ -206,7 +206,7 @@ Okay, you're right, I've already made the decision for us. We're going to build 
 
 We have an overall heading and a card-like `div` element for each office, showing the weather conditions at the time I was putting this example together. We use the class selector `.weather-card` to apply styling to every weather card element, and combine the class name with tag names to make more specific selectors which apply only to parts of the cards. This allows us to change the alignment of the smaller text with time the information was last updated separately from the alignment of the main text in the card. We also use a set of classes to add some off-white colors to the cards, to keep me from getting too bored of a blank page. Note that your browser may use Trebuchet MS or its default sans-serif font instead of JetBrains Mono, so your output may look a bit different than the images I'll include here.
 
-![Initial page output - a heading and four cards with weather conditions for Richmond, VA, Washington, DC, New York, NY, and Atlanta, GA.](../images/2022/02/fed4bees1-starting-point.png)
+![Initial page output - a heading and four cards with weather conditions for Richmond, VA, Washington, DC, New York, NY, and Atlanta, GA.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/the-documents-are-in-the-computer/images/2022/02/fed4bees1-starting-point.png)
 
 From this starting point, we'll incrementally refactor, introducing new concepts as we go. Our aim is to get to a point where we can call an external API to get up-to-date weather conditions for each office. I'll include relevant code snippets within this text, but each step is available in its entirety as a commit in [this GitHub repository](https://github.com/christinaannas/weather-at-the-office). Instructions for local setup are available in the README of that repository so that you can follow along and play around. 
 
@@ -277,7 +277,7 @@ Now that our custom element's tag is available to the window, the last step is t
 
 We did it!! Let's take a look at the rendered output.
 
-![Page output after incorporating the web component - the Richmond office card made with the custom element has the correct font and text alignment, but does not have the color and border we specified in the style block for the weather-card class.](../images/2022/02/fed4bees1-component-broken.png)
+![Page output after incorporating the web component - the Richmond office card made with the custom element has the correct font and text alignment, but does not have the color and border we specified in the style block for the weather-card class.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/the-documents-are-in-the-computer/images/2022/02/fed4bees1-component-broken.png)
 
 Well. That took the wind out of our sails a bit. Our custom element seems not to be styled as expected. But if we can understand it, then we can fix it. Let's get started.
 
@@ -312,6 +312,6 @@ In the constructor of our weather card component, we create elements, manipulate
 
 At this point, our component is in great shape. 
 
-![Page output after adding styling to the web component itself - view is as expected, matching the starting point of plain HTML and CSS.](../images/2022/02/fed4bees1-component-restored.png)
+![Page output after adding styling to the web component itself - view is as expected, matching the starting point of plain HTML and CSS.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/the-documents-are-in-the-computer/images/2022/02/fed4bees1-component-restored.png)
 
 Of course, we can only use it to show outdated information about weather in Richmond. The more impressive outcome we've achieved, though, is an excellent foundation of understanding on which to build. In the next post in our series, we'll have a bit of an easier ride through some things that are more familiar for those with back-end experience. I can't wait!
