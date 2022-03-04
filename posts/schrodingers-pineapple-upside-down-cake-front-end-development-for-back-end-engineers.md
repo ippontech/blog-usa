@@ -12,7 +12,7 @@ title: "Schrödinger's Pineapple Upside Down Cake: Front-End Development for Bac
 
 Hey, good to see you again! Let's start by reviewing where we left off. We have a webpage that displays weather information for each of the Ippon offices in the US. However, although our page is created in a much more dynamic way than how it started out, we are still displaying out-of-date information. 
 
-![Page output from the end of the last post - test cards and one for each Ippon office in the US.](../images/2022/02/fed4bees3-from-last-time.png)
+![Page output from the end of the last post - test cards and one for each Ippon office in the US.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/schrodingers-pineapple-upside-down-cake/images/2022/02/fed4bees3-from-last-time.png)
 
 It's the moment we've all been waiting for -- let's use current data! If you're coming to front-end development from a back-end perspective, like I did, you may already know that we'll be fetching the current weather data by making an HTTP request to an API endpoint. As a reminder, there is an accompanying [GitHub repository](https://github.com/christinaannas/weather-at-the-office) to follow along with this series. 
 
@@ -121,7 +121,7 @@ async connectedCallback() {
 
 And this _mostly_ works. We end up with the page looking how we expect, but if we look closely, it's obvious that the cards are being updated one at a time, and the small delays to get responses back for each request add up, since we are waiting for the first one to finish before even sending the next one. I was able to grab a screenshot of an intermediate state of the page, when one card had up-to-date weather data, but the others have the default text. 
 
-![Page output using an asynchronous, iterative connectedCallback function - the first card has up-to-date weather data, but the others have "unknown" data.](../images/2022/02/fed4bees3-iterative-loading.png)
+![Page output using an asynchronous, iterative connectedCallback function - the first card has up-to-date weather data, but the others have "unknown" data.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/schrodingers-pineapple-upside-down-cake/images/2022/02/fed4bees3-iterative-loading.png)
 
 Because we examined Promises closely earlier, we know that in this case it is perhaps preferable to use a callback construct rather than `await`-ing in the loop. We explicitly provide a callback for the `rejected` case here, although it does nothing; we could also have simply left it out. And, because we won't be using the `await` keyboard anymore, we can move this back into a non-async function -- namely, our constructor. 
 
@@ -157,7 +157,7 @@ if (! location) {
 }
 ```
 
-![Page output with a no-information office at the top - the first card has location "Harts Location, New Hampshire" and current weather data, where we expected it to show the defaults.](../images/2022/02/fed4bees3-unexpected-location.png)
+![Page output with a no-information office at the top - the first card has location "Harts Location, New Hampshire" and current weather data, where we expected it to show the defaults.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/schrodingers-pineapple-upside-down-cake/images/2022/02/fed4bees3-unexpected-location.png)
 
 Oh, drat. One glance at our `WeatherCardComponent` shows us what we forgot: the default location is the string `"an unknown location"`, so even though we aren't passing a value from the `IpponWeatherListComponent`, there is a value in `weatherCard.props.location` that evaluates to `true` when coerced to a boolean. This can easily be fixed by setting the value to null in the constructor and adding a ternary operator in `getInnerHTML`, and in fact it might be best to follow suit with the other properties as well. 
 
@@ -182,7 +182,7 @@ getInnerHTML() {
 }
 ```
 
-![Page output with a no-information office at the top - the first card now properly displays our default text.](../images/2022/02/fed4bees3-fixed-unknowns.png)
+![Page output with a no-information office at the top - the first card now properly displays our default text.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/schrodingers-pineapple-upside-down-cake/images/2022/02/fed4bees3-fixed-unknowns.png)
 
 It might be even better for the `IpponWeatherListComponent` to delegate getting the location and updating the properties to the `WeatherCardComponent` itself, to avoid one from relying too much on implementation details of the other. In fact, adding some functionality to our weather card component so that it can update its own data would be a good next step. I'm sure you're also itching to make our webpage respond to some kind of user interaction. Let's feed both those birds with our next scone.
 
@@ -220,11 +220,11 @@ buttonElement.addEventListener('click', that.printButtonClick);
 
 The button is created in `updateInnerHTML`, so we after that's done, we can grab the `button` element and add an event listener -- namely, our simple `printButtonClick` function. Looking at the page, our buttons are present; I think they look rather nice placed where they are in the cards! Let's try them out. 
 
-![Page output with the buttons present on each card.](../images/2022/02/fed4bees3-buttons-present.png)
+![Page output with the buttons present on each card.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/schrodingers-pineapple-upside-down-cake/images/2022/02/fed4bees3-buttons-present.png)
 
 If we open the console and press a few buttons, we see... nothing good. Pressing the button in the no-information card logs an `Uncaught TypeError` to the console, and pressing the button in the Richmond card does absolutely nothing. 
 
-![Page and console output after pressing buttons on the no-information and Richmond cards.](../images/2022/02/fed4bees3-button-console-output.png)
+![Page and console output after pressing buttons on the no-information and Richmond cards.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/schrodingers-pineapple-upside-down-cake/images/2022/02/fed4bees3-button-console-output.png)
 
 It seems that although what we're trying to do is simple, it isn't as straightforward as we might have thought. We'll have to do some debugging. (Fun!) We have a couple of problems here, since our no-information and Richmond cards are both acting unexpectedly, but in different ways. We'll see that one problem has a quick fix but couldn't have been anticipated based on what we've covered so far, while the other is understandable but a smidge more involved to fix. Let's start with the quick fix. 
 
@@ -232,13 +232,13 @@ It seems that although what we're trying to do is simple, it isn't as straightfo
 
 We can fix the error caused by clicking on the no-information card's button by updating our event listener ever so slightly, from `buttonElement.addEventListener('click', that.printButtonClick);` to `buttonElement.addEventListener('click', that.printButtonClick.bind(that));`. 
 
-![Page and console output with binding in place, after pressing buttons on the no-information and Richmond cards.](../images/2022/02/fed4bees3-function-binding.png)
+![Page and console output with binding in place, after pressing buttons on the no-information and Richmond cards.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/schrodingers-pineapple-upside-down-cake/images/2022/02/fed4bees3-function-binding.png)
 
 Okay, fine. But _why_? 
 
 We'll start by demonstrating what's going on. We can update the `printButtonClick` to first log `this` to the console, and add both versions of the function (the regular one and the one bound to `that`) as event listeners. 
 
-![Page and console output demonstrating that `this` is the button element when not bound, whereas it is the whole card component element when bound.](../images/2022/02/fed4bees3-demonstrating-what-this-means.png)
+![Page and console output demonstrating that `this` is the button element when not bound, whereas it is the whole card component element when bound.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/schrodingers-pineapple-upside-down-cake/images/2022/02/fed4bees3-demonstrating-what-this-means.png)
 
 We see that within the unbound function, `this` refers to the `button` element itself, whereas within the bound function, `this` refers to the `weather-card-component` element, which was what we wanted. Indeed, it's more than what we wanted; that's what we expected based on experience with Java. In Java, a method within a class is an instance method (unless it's static), and calling the method on an instance means that `this` always refers to that instance. Instance methods couple together two slightly different concerns: where to find the method and what object to operate them on. 
 
@@ -269,7 +269,7 @@ that.divElement.appendChild(buttonElement);
 shadowRoot.appendChild(that.divElement);
 ```
 
-![Page and console output demonstrating that the buttons we add to the divElement via DOM interaction do disappear when the divElement's innerHTML is set.](../images/2022/02/fed4bees3-disappearing-buttons.png)
+![Page and console output demonstrating that the buttons we add to the divElement via DOM interaction do disappear when the divElement's innerHTML is set.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/schrodingers-pineapple-upside-down-cake/images/2022/02/fed4bees3-disappearing-buttons.png)
 
 Let's try instead adding the button to the `shadowRoot` directly.
 
@@ -280,7 +280,7 @@ buttonElement.addEventListener('click', that.printButtonClick.bind(that));
 shadowRoot.appendChild(buttonElement);
 ```
 
-![Page and console output demonstrating that the buttons we add to the shadowRoot via DOM interaction do not disappear when the divElement's innerHTML is set.](../images/2022/02/fed4bees3-shadowRoot-button.png)
+![Page and console output demonstrating that the buttons we add to the shadowRoot via DOM interaction do not disappear when the divElement's innerHTML is set.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/schrodingers-pineapple-upside-down-cake/images/2022/02/fed4bees3-shadowRoot-button.png)
 
 With this change, the button is not wiped out. It functions for each card! But... it's ugly. We really want the button to be within the card, on the same line as the "Last updated" text.
 
@@ -325,7 +325,7 @@ getUpdatedString() {
 }
 ```
 
-![Page and console output with buttons where we want them, and working.](../images/2022/02/fed4bees3-pretty-working.png)
+![Page and console output with buttons where we want them, and working.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/schrodingers-pineapple-upside-down-cake/images/2022/02/fed4bees3-pretty-working.png)
 
 Oh, I almost forgot! Our buttons are working in that they're logging statements to the console, but we intended for them to refresh the data on the card. Let's make that quick change, then call it a day!
 
@@ -344,7 +344,7 @@ handleButtonClick() {
 
 In order to see this in action, we'll also comment out the logic in the `ippon-weather-list` component's constructor where it calls `getWeatherData` for each card. 
 
-![Page and console output with buttons updating the weather data.](../images/2022/02/fed4bees3-demonstrating-fetch.png)
+![Page and console output with buttons updating the weather data.](https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/schrodingers-pineapple-upside-down-cake/images/2022/02/fed4bees3-demonstrating-fetch.png)
 
 Hooray!
 
