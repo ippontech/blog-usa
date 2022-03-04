@@ -46,7 +46,7 @@ We've used object literal notation to create a model to hold our data, and strin
 
 ## Data Binding
 
-if we're storing data in a component with the intent of rendering it, then we normally want to update the view whenever that data changes. When it happens automatically, this update of the view triggered by an change of the linked data is called _data binding_. We have not explicitly added anything to our app to enable data binding between our state `model` and our innerHTML, and it is not something we get for free from `HTMLElement`. We can demonstrate that we don't have data binding by programmatically changing the state and observing the results. Recall that the `connectedCallback` can be used to add code that we want to run when our custom element is attached to the DOM. Let's use that method to add a timeout:
+if we're storing data in a component with the intent of rendering it, then we normally want to update the view whenever that data changes. When it happens automatically, this update of the view triggered by an change of the linked data is called _data binding_. We have not explicitly added anything to our app to enable data binding between our state `model` and our innerHTML, and it is not something we get for free from `HTMLElement`. We can demonstrate that we don't have data binding by programmatically changing the state and observing the results. Recall that the `connectedCallback` can be used to add code that we want to run when our custom element is attached to the DOM. Let's use that function to add a timeout:
 
 ``` js
 connectedCallback() {
@@ -71,7 +71,7 @@ In order to update the view, we will need to explicitly update the innerHTML whe
 constructor() {
   var that = super();
   // save divElement as part of our object 
-  // so we can manipulate it outside of this method
+  // so we can manipulate it outside of this function
   that.divElement = document.createElement('div');
   // ...
 }
@@ -267,7 +267,7 @@ constructor() {
     updated: "unknown",
     color_class: "transparent"
   };
-  // also -- update methods to use the updated field names
+  // also -- update functions to use the updated field names
   // ...
 }
 
@@ -301,7 +301,7 @@ While "readability" is context-dependent, we have no reason not to refactor in t
 
 The next couple of concepts we'll cover are not necessarily new -- conditional ("if") and iterative ("for") processing are familiar for a back-end engineer. The syntax we'll use will also be familiar in our "vanilla" JavaScript approach.
 
-We've reached a point where we want to display something differently or not display something at all given a certain situation. Basically, introducing an `if` structure into our rendered output -- rendering conditionally. Let's look at our current `getInnerHTML` method. 
+We've reached a point where we want to display something differently or not display something at all given a certain situation. Basically, introducing an `if` structure into our rendered output -- rendering conditionally. Let's look at our current `getInnerHTML` function. 
 
 ``` js
 getInnerHTML() {
@@ -452,7 +452,7 @@ constructor() {
   }
 ```
 
-The result of our `getInnerHTML` method is still the same as it was before, and therefore our rendered output is still the same as before. 
+The result of our `getInnerHTML` function is still the same as it was before, and therefore our rendered output is still the same as before. 
 
 ![Page output after generating the inner HTML programmatically.](../images/2022/02/fed4bees2-list-component.png)
 
@@ -488,17 +488,17 @@ As we have seen, attribute binding has enabled us to create a `weather-card-comp
 
 In a demonstrative commit in [the repo for these posts](https://github.com/christinaannas/weather-at-the-office), I've added some `console.log` statements throughout the component files. The statements indicate that constructors, `connectedCallback`s, and `attributeChangedCallback`s are invoked. 
 
-![Page and console output to track order of method calls.](../images/2022/02/fed4bees2-lifecycle-console-logs.png)
+![Page and console output to track order of function calls.](../images/2022/02/fed4bees2-lifecycle-console-logs.png)
 
-Most of this order makes sense -- we enter the list constructor, iterate over offices including entering the card constructor and `attributeChangedCallback`, then we exit the list constructor. The last steps, however, are first the _card_ `connectedCallback` and then the list `connectedCallback`. Looking back at the constructor for the `IpponWeatherListComponent`, we see that for each office object we first create the card element, then append it as a child to the continer element, then set its attributes. Append first, then attribute updates. So why do all the `attributeChangedCallback` calls happen before any `connectedCallback` calls?
+Most of this order makes sense -- we enter the list constructor, iterate over offices including entering the card constructor and `attributeChangedCallback`, then we exit the list constructor. The last steps, however, are first the _card_ `connectedCallback` and then the list `connectedCallback`. Looking back at the constructor for the `IpponWeatherListComponent`, we see that for each office object we first create the card element, then append it as a child to the container element, then set its attributes. Append first, then attribute updates. So why do all the `attributeChangedCallback` calls happen before any `connectedCallback` calls?
 
-It turns out that _appending_ an HTML element as a child of another HTML element is not quite the same as attaching or _connecting_ that child element's object representation to the DOM. Put this way, we see that what we call appending is an HTML operation, while connecting is an DOM operation. Indeed -- if we think of the DOM as a tree that the little monster assembles from an HTML blueprint, it wouldn't make sense to attach a leaf to the tree before we are done attaching the branch from which the leaf grows, even if the monster already knows the leaf will be there.
+It turns out that _appending_ an HTML element as a child of another HTML element is not quite the same as attaching or _connecting_ that child element's object representation to the DOM. Put this way, we see that what we call appending is an HTML operation, while connecting is a DOM operation. Indeed -- if we think of the DOM as a tree that the little monster assembles from an HTML blueprint, it wouldn't make sense to attach a leaf to the tree before we are done attaching the branch from which the leaf grows, even if the monster already knows the leaf will be there.
 
-Thinking carefully about the order of these method calls has helped us continue to firm up our understanding of the DOM. Next, let's focus on the sheer number of method calls - can we refactor in such a way that we can pass a component five pieces of data without having to re-render it for each additional piece?
+Thinking carefully about the order of these function calls has helped us continue to firm up our understanding of the DOM. Next, let's focus on the sheer number of function calls - can we refactor in such a way that we can pass a component five pieces of data without having to re-render it for each additional piece?
 
 ## Passing Information Through Properties
 
-We have been passing data to our components using the `setAttribute` method that they inherit due to being `Element`s. Another way to pass data to them is by setting properties -- this bypasses interacting with the component as a representation of an HTML element and interacts with it simply as a JavaScript object. It would be nice to be able to send all of the relevant data with one value assignment from our `IpponWeatherListComponent`, passing the entire `officeObject`. 
+We have been passing data to our components using the `setAttribute` function that they inherit due to being `Element`s. Another way to pass data to them is by setting properties -- this bypasses interacting with the component as a representation of an HTML element and interacts with it simply as a JavaScript object. It would be nice to be able to send all of the relevant data with one value assignment from our `IpponWeatherListComponent`, passing the entire `officeObject`. 
 
 ``` js
 for (const officeObject of that.offices) {
@@ -508,7 +508,7 @@ for (const officeObject of that.offices) {
 }
 ```
 
-In order to receive this information on the side of the child component, we write a setter method to accept values from an input object and update our model data, updating the rendering as needed. Here, we're taking advantage of the fact that the names of the properties passed in the `props` object are the same as the names of the corresponding model fields on this component.
+In order to receive this information on the side of the child component, we write a setter function to accept values from an input object and update our model data, updating the rendering as needed. Here, we're taking advantage of the fact that the names of the properties passed in the `props` object are the same as the names of the corresponding model fields on this component.
 
 ``` js
 set props(props) {
@@ -551,7 +551,7 @@ getInnerHTML() {
   `;
 
   function getTemperatureString(temperatureValue) {
-    // guard caluse: catch valid 0 values explicitly
+    // guard clause: catch valid 0 values explicitly
     if (temperatureValue === 0) {
       return "0&deg;F";
     }
@@ -564,7 +564,7 @@ getInnerHTML() {
 }
 ```
 
-We don't need to put `getTemperatureString` within `getInnerHTML` for any reason having to do with scope; I've simply placed it there because it isn't needed elsewhere. With our special handling in our `getTemperatureString` method, we now see what we expect for the special case value of `0` for temperature. 
+We don't need to put `getTemperatureString` within `getInnerHTML` for any reason having to do with scope; I've simply placed it there because it isn't needed elsewhere. With our special handling in our `getTemperatureString` function, we now see what we expect for the special case value of `0` for temperature. 
 
 ![Page output with updated conditional logic, with the zero-degree card rendering as expected.](../images/2022/02/fed4bees2-updated-conditional-logic.png)
 
