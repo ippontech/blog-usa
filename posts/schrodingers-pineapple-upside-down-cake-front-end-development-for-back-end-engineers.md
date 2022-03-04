@@ -12,9 +12,7 @@ title: "Schrödinger's Pineapple Upside Down Cake: Front-End Development for Bac
 
 Hey, good to see you again! Let's start by reviewing where we left off. We have a webpage that displays weather information for each of the Ippon offices in the US. However, although our page is created in a much more dynamic way than how it started out, we are still displaying out-of-date information. 
 
-```
-todo: add in from-last-time screenshot here.
-```
+![Page output from the end of the last post - test cards and one for each Ippon office in the US.](../images/2022/02/fed4bees3-from-last-time.png)
 
 It's the moment we've all been waiting for -- let's use current data! If you're coming to front-end development from a back-end perspective, like I did, you may already know that we'll be fetching the current weather data by making an HTTP request to an API endpoint. As a reminder, there is an accompanying [GitHub repository](https://github.com/christinaannas/weather-at-the-office) to follow along with this series. 
 
