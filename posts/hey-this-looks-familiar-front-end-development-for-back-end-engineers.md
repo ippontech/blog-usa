@@ -105,19 +105,7 @@ We know that we will want to pass the information to populate our model to the c
 </div>
 ```
 
-We know we'll need to use the tags for our custom element, `<weather-card-component></weather-card-component>`, somehow incorporating the additional information into or around the tag. The title of this section gives away that we'll eventually bind data to attributes of the element. (Recall that `class` on the `div` element in our HTML snippet is an example of an attribute.) Before we get to the details of attribute binding, I want to briefly present an alternative we won't use in this example and explain why I chose not to use it in this case.
-
-### Templates and Slots
-
-<!-- todo: get more feedback on whether this is a useless diversion (: -->
-
-One way to approach inserting information into a custom element is by using `templates` and `slots`. Essentially, you define a template in HTML that is the common bits of the inner HTML you want to end up with, and provide slots within that template to insert more HTML. When we think of this from the DOM perspective, the template has some nodes defined and some nodes awaiting content - and that content can be a little "tree" in itself. This approach is useful when you want to create a custom element with a flexible or complex structure. 
- 
- The structure of our weather card is simple and rigid; we will always want a `div` element containing only an `h3` element and a `p` element. While we could pass our information as pieces of HTML, we have no need to do so. Our information is better represented as strings, and we can easily pass strings into our element as attributes.
-
-### Attribute Binding, For Real This Time
-
-Now that we've completed our side quest to evaluate templates and slots as an alternative approach, let's remember what we're trying to do in our example app. Our goal right now is to pass simple information like location and temperature into our component. Our only option right now is to pass the information from our `index.html` file, and I've told you that we'll _bind_ data to _attributes_ of our custom element. This is such a common use case that it is built in to the Web Components API. We can list the attributes that we want to watch for changes as `observedAttributes` and provide an `attributeChangedCallback` lifecycle callback function to handle updating the text or appearance of our component based on updated attributes. 
+We know we'll need to use the tags for our custom element, `<weather-card-component></weather-card-component>`, somehow incorporating the additional information into or around the tag. To do this, we'll _bind_ data to _attributes_ of our custom element. This is such a common use case that it is built in to the Web Components API. We can list the attributes that we want to watch for changes as `observedAttributes` and provide an `attributeChangedCallback` lifecycle callback function to handle updating the text or appearance of our component based on updated attributes. 
 
 ``` js
 static get observedAttributes() {
