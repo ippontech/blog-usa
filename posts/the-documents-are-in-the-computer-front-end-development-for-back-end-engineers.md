@@ -8,7 +8,7 @@ tags:
 - javascript
 date: 2022-02-23T12:21:50.000Z
 title: "The Documents Are In The Computer: Front-End Development for Back-End Engineers"
-image: 
+image: https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/the-documents-are-in-the-computer/images/2022/02/fed4bees1-cover.png
 ---
 
 I'm a back-end Java engineer, mostly, but I've been breaking out of that. Historically, whenever I've tried to sift through front-end code, I felt like there was something I was missing. Several somethings. About as many somethings as Owen Wilson and Ben Stiller were missing when they tried to break open a Mac with some animal's thigh bone to get to the documents "in the computer." But I digress.
