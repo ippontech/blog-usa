@@ -8,6 +8,7 @@ tags:
 -javascript
 date: 2022-02-24T22:00:00.000Z
 title: "Hey, This Looks Familiar: Front-End Development for Back-End Engineers"
+image: https://raw.githubusercontent.com/christinaannas/blog-usa/cannas/hey-this-looks-familiar/images/2022/02/fed4bees2-cover.png
 ---
 
 Hey, welcome back! We learned a _ton_ in the last post. A lot of what this post will cover will be familiar to those with a strong foundation in the back-end, so this will be a bit more of an easy ride. As a reminder, there is an accompanying [GitHub repository](https://github.com/christinaannas/weather-at-the-office) to follow along with this series. 
