@@ -12,7 +12,7 @@ tags:
 title: "Winning Migrations with Good Delimiters"
 date: 2022-03-04T13:59:40-04:00
 ---
-# Winning Migrations with Good Delimiters
+# Winning Migrations with Epic Delimiters
 
 On a recent project we have been helping a customer develop an approach to migrate ETL pipelines from Snaplogic to AWS Glue.  Among all of the refactoring and replatforming decisions, we noticed that some Snaplogic pipelines use the tsv file delimiter of `\u001`.  In Snaplogic this delimiter outputs a "start of heading" or "SOH" character.  However, `\u001` is [not a valid character](https://www.charset.org/utf-8) and will not parse in python.  This kicked off some discussion around delimiter best practices and unicode characters.  
 
