@@ -4,7 +4,7 @@ authors:
 tags:
 - csv
 - tsv
-- file delimiters
+- File Delimiters
 - snaplogic
 - unicode
 - aws glue
