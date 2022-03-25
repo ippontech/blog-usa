@@ -6,7 +6,7 @@ tags:
 - tsv
 - File Delimiters
 - SnapLogic
-- unicode
+- Unicode
 - aws glue
 - python
 title: "Winning Migrations with Good Delimiters"
