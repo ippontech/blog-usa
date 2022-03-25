@@ -5,7 +5,7 @@ tags:
 - csv
 - tsv
 - File Delimiters
-- snaplogic
+- SnapLogic
 - unicode
 - aws glue
 - python
