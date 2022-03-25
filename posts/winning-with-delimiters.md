@@ -8,7 +8,7 @@ tags:
 - SnapLogic
 - Unicode
 - AWS Glue
-- python
+- Python
 title: "Winning Migrations with Good Delimiters"
 date: 2022-03-04T13:59:40-04:00
 ---
