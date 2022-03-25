@@ -7,7 +7,7 @@ tags:
 - File Delimiters
 - SnapLogic
 - Unicode
-- aws glue
+- AWS Glue
 - python
 title: "Winning Migrations with Good Delimiters"
 date: 2022-03-04T13:59:40-04:00
