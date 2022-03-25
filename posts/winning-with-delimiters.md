@@ -18,7 +18,7 @@ On a recent project, we have been helping a customer develop an approach to migr
 
 In python you must use either `\u0001` (unicode ) or `\001` (octal) to get the same SOH character.  The good news is that the Snaplogic `\u001` and the python characters `\u0001` or `\001` will all output the same character, so there is a good 1 to 1 path for mirroring the existing delimiters.  But the `\u001` character is [not a character](https://donsnotes.com/tech/charsets/ascii.html) in [unicode](https://en.wikipedia.org/wiki/List_of_Unicode_characters) ( `\u0001` or `U+0001`), UTF-8 (01), octal (`\001`), or hexidecimal (`\x01`).  This started a question of why was a the non-character `\u001` used as a field delimiter and should it be used?
 
-The simplest answer as to why it was used is that the `\u001` character is referenced in the Snaplogic documentation.  From the docs:
+The simplest answer as to why it was used is that the `\u001` character is referenced in the SnapLogic documentation.  From the docs:
 ```
 The Delimiter property specifies the character to be used as a delimiter in parsing the CSV data. In case that tab is used as a delimiter, enter "\t" instead of pressing the Tab key. Any Unicode character is also supported.  As of 4.3.2, this property can be an expression, which is evaluated with the values from the pipeline parameters.
 Example: \t, \u001
