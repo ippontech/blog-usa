@@ -21,6 +21,10 @@ Popular CLI frameworks exist for every language, for most cases you're better of
 5. [Adding subcommands](#Adding subcommands): Add, Edit, List, Delete, Create, Version
 6. [Putting it all together](#Putting it all together)
 
+
+![[https://raw.githubusercontent.com/ippontech/blog-usa/master/images/images/2022/03/help_screen.png]]
+
+
 ### Defining the requirements
 
 What we are building does not matter as much as *how* we are building it. It could easily be adapted to do whatever you need.
@@ -30,7 +34,7 @@ The CLI we are building can store, edit, list, delete and create templates. The 
 - *Add*: Adds an existing template to the collection via a local file
 
 ```shell
-$ gupi add TEMPLATE_NAME -f /path/to/template.md
+$ gupi add -f /path/to/template.md TEMPLATE_NAME
 Template 'TEMPLATE_NAME' was added
 ```
 
@@ -117,7 +121,7 @@ Working CLI!
 
 We just confirmed we have a working Go project but no time to celebrate just yet since it this doesn't feel like a CLI tool just yet.
 
-One thing that quickly stands from CLIs like Docker and Kubectl is the informative and friendly user manuals that are displayed by calling the base command.
+One thing that stands out from CLIs like Docker and Kubectl is the informative and friendly user manuals that are displayed by calling the base command.
 
 Essentially what I want is:
 
@@ -367,7 +371,7 @@ var versionFunc = func(cmd *Command, args []string) {
 }
 ```
 
-Nothing surprising about the `versionFunc` it prints a message and exits with an all-clear exit code. What might've caught your eye is the ??? for the build and version variables. Those are meant as placeholder variables that will be overwritten during the build process. This allows us to specify version numbers in a config or dynamically include commit hashes on each build. We'll be using ldflags to do this, I'll go over this near the end. For now, if you want to read more check out [using ldflags to set version flags](https://www.digitalocean.com/community/tutorials/using-ldflags-to-set-version-information-for-go-applications).
+Nothing surprising about the `versionFunc`, it prints a message and exits with an all-clear exit code. What might've caught your eye is the ??? for the build and version variables. Those are meant as placeholder variables that will be overwritten during the build process. This allows us to specify version numbers in a config or dynamically include commit hashes on each build. We'll be using ldflags to do this, I'll go over this near the end. For now, if you want to read more check out [using ldflags to set version flags](https://www.digitalocean.com/community/tutorials/using-ldflags-to-set-version-information-for-go-applications).
 
 One point I glanced over is the `func(cmd *Command, args []string)` type for the `Execute` field. That means `Execute` is an anonymous function that can be passed in at any time or extracted into a separate variable as we did for `versionFunc`. Extracting is not necessary but is helpful for building readable code.
 
@@ -491,7 +495,7 @@ this is a test template
 
 Now you save the template using this subcommand:
 ```shell
-$ go run main.go add --file test.md test
+$ go run main.go add --file test.md
 ```
 
 We should now be able to save templates but how can we confirm it's actually saved. This is where the next command `list` comes into play.
@@ -615,7 +619,7 @@ var createFunc = func(cmd *Command, args []string) {
 	homeDir, err := os.UserHomeDir()
 	... // file error handling
 
-	path := filepath.Join(homeDir, ".gupi", "template", file_name)
+	path := filepath.Join(homeDir, ".gupi", "template", tmp)
 	if _, err := os.Stat(path); err == nil {
 		date := time.Now()
 		data := getDates(date)
