@@ -21,7 +21,7 @@ Here's a taste of what we're building: **:fish: gupi**
 | :zap: Disclaimer: Popular CLI frameworks exist for every language, for most cases you're better off picking your favorite flavor and going with that. |
 | ------------------------------------------------------------ |
 
-Although if you've ever wondered how CLI Frameworks do what they do then read on. There are plenty of reasonable use cases to DIY tools, for a practical example look at Hashicorp (*Terraform, Nomad*). Most if not all their CLI products use Command a Go CLI Framework developed by the founder.
+Although if you've ever wondered how CLI Frameworks do what they do then read on. There are plenty of reasonable use cases for DIY tools, for a practical example look at Hashicorp (*Terraform, Nomad*). Most if not all their CLI products use Command a Go CLI Framework developed by the founder.
 
 Cobra which I briefly name dropped above is argubably the best and most popular CLI Framework for Go. It is trusted by the Kubernetes and Docker community (**Kubectl** & **Docker CLI**) among many more notable projects: *Helm, Etcd, Istio...*
 
@@ -111,7 +111,7 @@ Go has its own way to manage dependencies by using a `go.mod` file, you can easi
 $ go mod init github.com/USERNAME/gupi
 ```
 
-The full path `github.com/USERNAME/gupi` is what others would use to download if you packaged and distributed this module. Also helpful for importing local files from subfolders.
+The full path `github.com/USERNAME/gupi` is what others would use to download if you packaged and distributed this module. This is also helpful for importing local files from subfolders.
 
 Next let's create our main entry point called: `main.go`
 
@@ -139,7 +139,7 @@ $ go run main.go
 Working CLI!
 ```
 
-We just confirmed we have a working Go project but no time to celebrate just yet since it this doesn't feel like a CLI tool just yet.
+We just confirmed we have a working Go project but have no time to celebrate since this doesn't feel like a CLI tool.
 
 One thing that stands out from CLIs like Docker and Kubectl is the informative and friendly user manuals that are displayed by calling the base command.
 
@@ -246,7 +246,7 @@ $ echo $?
 0
 ```
 
-Now that we defined our commands we work on actually creating them.
+Now that we have defined our commands, we can work on actually creating them.
 
 ### Creating the Command struct
 
@@ -260,7 +260,7 @@ type Command struct {
 }
 ```
 
-The `flag.Flagset` is just what it sounds like its a collection of flags, these will be defined for each individual subcommand. And Execute is an anonymous function that accepts a Command and an array of arguments. Note, Go treats functions as first-class citizens so we can pass functions as parameters or when defining an instance of a struct. Next, we need a few functions on the Command struct, it needs to:
+The `flag.Flagset` is just what it sounds like, a collection of flags. These will be defined for each subcommand. Execute is an anonymous function that accepts a Command and an array of arguments. Note: Go treats functions as first-class citizens so we can pass functions as parameters or when defining an instance of a struct. Next, we need a few functions on the Command struct. It needs to:
 
 * Parse and assign flags to its flagset
 * Tell if flags have been parsed
@@ -604,7 +604,7 @@ This next command is fun to use and surprisingly simple to put together. We'll a
 
 The first thing to do is more familiar with error handling, we know where templates live and this command requires a template name so we just have to make sure it all exists as expected.
 
-Then we will define what command will be executed to start the editor, in this case, we will run `vim FILE_NAME`. Before we actually execute the command we need to configure the IO to be sent to our terminal. Along with that some simple error handling in case anything goes wrong along the way.
+Then we will define what command will be executed to start the editor. In this case, we will run `vim FILE_NAME`. Before we actually execute the command we need to configure the IO to be sent to our terminal. Along with that some simple error handling in case anything goes wrong along the way.
 
 ```go
 // edit.go
@@ -635,9 +635,9 @@ Now lets try to create an instance of this template.
 
 ### Add Create Command
 
-This is the most important step everything has been leading up to this command. Several parts will look familiar especially around file manipulation. One new addition is the the use of the `template` package, this enables us to parse templates and inject data into the template. If you've used any sort of templating framework such as Handlebars, Mustache, or Jinja you'll feel right at home.
+This is the most important step. Everything we have done so far has been leading up to this command. Several parts will look familiar especially around file manipulation. One new addition is the use of the `template` package, which enables us to parse templates and inject data into the template. If you've used any sort of templating framework such as Handlebars, Mustache, or Jinja you'll feel right at home.
 
-We first need to do some error handling to make sure all files exist as expected. If it all checks out then we'll use `template.ParseFiles(FILE)` to create a Template object from the actual file. Then create the empty file with the same name. Finally, we use `template.Execute()` to write the data to the newly created open file.
+As before, we first need to do some error handling to make sure all files exist as expected. If it all checks out then we'll use `template.ParseFiles(FILE)` to create a Template object from the actual file. Then, we'll create an empty file with the same name. Finally, we'll use `template.Execute()` to write the data to the newly created open file.
 
 ```go
 // create.go
@@ -679,7 +679,7 @@ A final command we'll include is the ability to delete existing templates.
 
 ### Add Delete Command
 
-Similar to a few other commands we need to validate the template we plan to remove actually exists. If it checks out then we'll use `os.Remove()` to delete the file from the folder.
+Similar to a few other commands we need to validate that the template we plan to remove actually exists. If it checks out then we'll use `os.Remove()` to delete the file from the folder.
 
 ```go
 // delete.go
@@ -709,7 +709,7 @@ gupi: Template 'test.md' was deleted
 
 ## Putting it all together
 
-Now that we have all the subcommands we can put it all together into a standalone binary. For that we'll use the Makefile, if not familiar with them they were initially used to simplify compiling C programs but they can be used for any language.
+Now that we have all the subcommands, we can put them all together into a standalone binary. For that, we'll use the Makefile. If you're not familiar with them, Makefiles were initially used to simplify compiling C programs but they can be used for any language.
 
 The Makefile below includes commands to build, test, and clean.
 
