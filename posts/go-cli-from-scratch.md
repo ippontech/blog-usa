@@ -10,26 +10,46 @@ title: "A No Framework Approach to Building A CLI"
 image:
 ---
 ```
-
 # No Framework Approach to Building A CLI with Go
-Popular CLI frameworks exist for every language, for most cases you're better off picking your favorite and going with that. A popular choice for Go is Cobra, it is so popular Docker and Kubectl depend on it under the hood. You can find the complete application in this [repository]()
+
+In this guide we will be building a CLI tool from scratch. No fancy frameworks or libraries instead we are building own highly minimal framework *loosely* based on [Cobra](https://cobra.dev/).
+
+Here's a taste of what we're building: **:fish: gupi**
+
+![Gupi Help Screen](/Users/rodrigomoran/Desktop/help_screen.png "Gupi Help Screen")
+
+| :zap: Disclaimer: Popular CLI frameworks exist for every language, for most cases you're better off picking your favorite flavor and going with that. |
+| ------------------------------------------------------------ |
+
+Although if you've ever wondered how CLI Frameworks do what they do then read on. There are plenty of reasonable use cases to DIY tools, for a practical example look at Hashicorp (*Terraform, Nomad*). Most if not all their CLI products use Command a Go CLI Framework developed by the founder.
+
+Cobra which I briefly name dropped above is argubably the best and most popular CLI Framework for Go. It is trusted by the Kubernetes and Docker community (**Kubectl** & **Docker CLI**) among many more notable projects: *Helm, Etcd, Istio...*
+
+Cobra has a deceptively simple API, for example here is a snippet directly from it's developer page:
+
+<img src="/Users/rodrigomoran/Desktop/cobra_demo.png" alt="cobra_demo"  />
+
+This defines a single command *hello*, accepts a list of strings as arguments, and defines the logic to execute the command. The goal for this guide is to create a CLI with a similar look and feel.
+
+Here is the agenda for building **:fish: Gupi**:
 
 1. [Defining the requirements](#Defining the requirements)
 2. [Initializing the CLI](#Initializing the CLI)
-2. [Creating the Command struct](#Creating the Command struct)
-3. [Wiring up components](#Wiring up components)
+3. [Creating the Command struct](#Creating the Command struct)
+4. [Wiring up components](#Wiring up components)
 5. [Adding subcommands](#Adding subcommands): Add, Edit, List, Delete, Create, Version
 6. [Putting it all together](#Putting it all together)
 
+Step 0: Make sure to have Go installed, see the official docs for the latest install instructions - [Go Install](https://go.dev/doc/install).
 
-![[https://raw.githubusercontent.com/ippontech/blog-usa/master/images/images/2022/03/help_screen.png]]
+You view the full source while following along at [Gupi](https://github.com/phantompunk/gupi).
 
 
 ### Defining the requirements
 
-What we are building does not matter as much as *how* we are building it. It could easily be adapted to do whatever you need.
+Keep in mind what we are building does not matter as much as *how* we are building it. It could easily be adapted to do whatever you need.
 
-The CLI we are building can store, edit, list, delete and create templates. The commands or features will be defined as follows:
+**:fish: Gupi** will be able to add, edit, list, delete and create templates. The commands or features will be defined as follows:
 
 - *Add*: Adds an existing template to the collection via a local file
 
@@ -50,8 +70,8 @@ Template 'TEMPLATE_NAME' was edited
 ```shell
 $ gupi list
 NAME               CREATED       SIZE
-todo-list	       2 weeks ago   482
-design-doc         3 days ago    300
+todo-list	      	2 weeks ago   482
+design-doc        3 days ago    300
 ```
 
 - *Create*: Generates an instance of a template in the current directory
@@ -158,7 +178,8 @@ Commands:
 
 Now that we have a base usage message we can update our main function print this to get a feel for the CLI.
 
-```
+```go
+// main.go
 func main() {
 	fmt.Println(usage)
 }
@@ -175,6 +196,7 @@ We need to add one more thing before moving one. One important aspect of any CLI
 We'll create this `usageAndExit` method prints the usage message and an optional status message.
 
 ```go
+// main.go
 func usageAndExit(msg string) {
 	if msg != "" {
 		fmt.Fprint(os.Stderr, msg)
@@ -189,6 +211,7 @@ func usageAndExit(msg string) {
 If we update our main method as follows, then test:
 
 ```go
+// main.go
 func main() {
 	usageAndExit("")
 }
@@ -245,9 +268,9 @@ The `flag.Flagset` is just what it sounds like its a collection of flags, these 
 
 What those turn into is:
 
-1. Init()
-2. Called()
-3. Run()
+1.  Init()
+2.  Called()
+3.  Run()
 
 So the full version will look like this:
 
@@ -280,6 +303,7 @@ func (c *Command) Run() {
 This way each new subcommand we add will just be of type Command. This will simplify things for the next step as we modify our main method to allow subcommands to be easily added.
 
 ## Wiring up components
+
 The main method will be the entry point for all subcommands. We'll achieve this by leveraging to parts: subcommands are Command types and a switch statement.
 
 We need to initialize an empty Command object this we'll be the container for incoming subcommands. New subcommands will be initialized based on the case statement. After the command is initialized we parse the flags and execute the function using the methods we defined earlier. What that begins to look like is this:
@@ -307,6 +331,7 @@ Our subcommands haven't been defined yet but this is essentially what it'll look
 So now we're at a good point to start building out our subcommands.
 
 ## Adding subcommands
+
 We have six subcommands to add but it'll go quickly since each command will follow the same steps:
 
 1. Define a friendly usage message
@@ -317,6 +342,7 @@ We have six subcommands to add but it'll go quickly since each command will foll
 We already added the `version` case to the main method so let's start there.
 
 ### Add Version command
+
 First, we need to define what the usage message should be, based on the requirements I put this together:
 
 NOTE: I didn't mention this before but the Version command will accept a single flag `--short`, if added the short version of the build info will be printed.
@@ -494,6 +520,7 @@ this is a test template
 ```
 
 Now you save the template using this subcommand:
+
 ```shell
 $ go run main.go add --file test.md
 ```
@@ -501,6 +528,7 @@ $ go run main.go add --file test.md
 We should now be able to save templates but how can we confirm it's actually saved. This is where the next command `list` comes into play.
 
 ### Add List Command
+
 This command will list all the available templates in the template folder. With this, we can validate the `test.md` template was added successfully. Similar to the add command we'll be relying on the `os` package to manage files and folder paths.
 
 Jumping back to our steps, we'll first define the usage message:
@@ -650,6 +678,7 @@ Created 'test.md' in '/Users/rodrigomoran/Workspace/gupi/test.md'
 A final command we'll include is the ability to delete existing templates.
 
 ### Add Delete Command
+
 Similar to a few other commands we need to validate the template we plan to remove actually exists. If it checks out then we'll use `os.Remove()` to delete the file from the folder.
 
 ```go
@@ -679,6 +708,7 @@ gupi: Template 'test.md' was deleted
 ```
 
 ## Putting it all together
+
 Now that we have all the subcommands we can put it all together into a standalone binary. For that we'll use the Makefile, if not familiar with them they were initially used to simplify compiling C programs but they can be used for any language.
 
 The Makefile below includes commands to build, test, and clean.
@@ -714,18 +744,25 @@ go build -o gupi -ldflags "-X 'github.com/phantompunk/gupi/command.version=0.0.1
 ```
 
 To add the binary to your path run:
+
 ```shell
 $ go install
 ```
 
 Make sure you're `$GOPATH` is added to your. `$PATH`
 
-You should just be able to run
+You should then just be able to run:
 
 ```shell
 $ gupi
 ```
 
-Full source code: [here]()
+## :tada: Congrats
 
-## Conclusion
+You just built a CLI from scratch and hopefully learned a few things along the way.
+
+Here is a brief walkthrough of what you can do with **:fish: Gupi**
+
+![demo](/Users/rodrigomoran/Workspace/blog-usa/images/2022/03/gupi_demo.gif)
+
+Full source code: [here](https://github.com/phantompunk/gupi)
