@@ -16,7 +16,7 @@ In this guide we will be building a CLI tool from scratch. No fancy frameworks o
 
 Here's a taste of what we're building: **:fish: gupi**
 
-![Gupi Help Screen](https://github.com/ippontech/blog-usa/raw/e9e91797f3a52a29a6fdb4b84903694ceaaac6a2/images/2022/03/help_screen.png "Gupi Help Screen")
+![Gupi Help Screen](../images/2022/03/help_screen.png "Gupi Help Screen")
 
 | :zap: Disclaimer: Popular CLI frameworks exist for every language, for most cases you're better off picking your favorite flavor and going with that. |
 | ------------------------------------------------------------ |
@@ -27,7 +27,7 @@ Cobra which I briefly name dropped above is argubably the best and most popular 
 
 Cobra has a deceptively simple API, for example here is a snippet directly from it's developer page:
 
-<img src="https://github.com/ippontech/blog-usa/raw/e9e91797f3a52a29a6fdb4b84903694ceaaac6a2/images/2022/03/cobra_demo.png" alt="cobra_demo"  />
+<img src="../images/2022/03/cobra_demo.png" alt="cobra_demo"  />
 
 This defines a single command *hello*, accepts a list of strings as arguments, and defines the logic to execute the command. The goal for this guide is to create a CLI with a similar look and feel.
 
@@ -763,6 +763,6 @@ You just built a CLI from scratch and hopefully learned a few things along the w
 
 Here is a brief walkthrough of what you can do with **:fish: Gupi**
 
-![demo](https://github.com/ippontech/blog-usa/raw/e9e91797f3a52a29a6fdb4b84903694ceaaac6a2/images/2022/03/gupi_demo.gif)
+![demo](../images/2022/03/gupi_demo.gif)
 
 Full source code: [here](https://github.com/phantompunk/gupi)
