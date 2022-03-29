@@ -21,7 +21,7 @@ Here's a taste of what we're building: **:fish: gupi**
 | :zap: Disclaimer: Popular CLI frameworks exist for every language, for most cases you're better off picking your favorite flavor and going with that. |
 | ------------------------------------------------------------ |
 
-Although if you've ever wondered how CLI Frameworks do what they do then read on. There are plenty of reasonable use cases for DIY tools, for a practical example look at Hashicorp (*Terraform, Nomad*). Most if not all their CLI products use Command a Go CLI Framework developed by the founder.
+Although if you've ever wondered how CLI Frameworks do what they do then read on. There are plenty of reasonable use cases for DIY tools, for a practical example look at Hashicorp (*Terraform, Nomad*). Most if not all their CLI products use [cli](https://github.com/mitchellh/cli) a Go CLI Framework developed by the founder.
 
 Cobra which I briefly name dropped above is argubably the best and most popular CLI Framework for Go. It is trusted by the Kubernetes and Docker community (**Kubectl** & **Docker CLI**) among many more notable projects: *Helm, Etcd, Istio...*
 
@@ -33,12 +33,12 @@ This defines a single command *hello*, accepts a list of strings as arguments, a
 
 Here is the agenda for building **:fish: Gupi**:
 
-1. [Defining the requirements](#Defining the requirements)
-2. [Initializing the CLI](#Initializing the CLI)
-3. [Creating the Command struct](#Creating the Command struct)
-4. [Wiring up components](#Wiring up components)
-5. [Adding subcommands](#Adding subcommands): Add, Edit, List, Delete, Create, Version
-6. [Putting it all together](#Putting it all together)
+1. [Defining the requirements](#Defining-the-requirements)
+2. [Initializing the CLI](#Initializing-the-CLI)
+3. [Creating the Command struct](#Creating-the-Command-struct)
+4. [Wiring up components](#Wiring-up-components)
+5. [Adding subcommands](#Adding-subcommands): Add, Edit, List, Delete, Create, Version
+6. [Putting it all together](#Putting-it-all-together)
 
 Step 0: Make sure to have Go installed, see the official docs for the latest install instructions - [Go Install](https://go.dev/doc/install).
 
