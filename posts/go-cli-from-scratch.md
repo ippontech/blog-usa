@@ -542,7 +542,7 @@ Options:
 `
 ```
 
-Then create the new list command, this will be simpler than others since it does not use any specific flags.
+Then create the new list command. This will be simpler than others since it does not use any specific flags.
 
 ```go
 // list.go
@@ -600,7 +600,7 @@ The next command will allow us to edit any existing templates in terminal.
 
 ### Add Edit Command
 
-This next command is fun to use and surprisingly simple to put together. We'll add the ability to edit our saved templates directly from the terminal using your editor of choice. I'll be using Vim as my editor but this could easily be modified into a flag or config variable to be passed in.
+This next command is fun to use and surprisingly simple to put together. We'll add the ability to edit our saved templates directly from the terminal using your editor of choice. I'll be using Vim as my editor, but this could easily be modified into a flag or config variable to be passed in.
 
 The first thing to do is more familiar with error handling, we know where templates live and this command requires a template name so we just have to make sure it all exists as expected.
 
@@ -631,13 +631,13 @@ $ go run main.go edit test.md
 gupi: Template 'test.md' was edited
 ```
 
-Now lets try to create an instance of this template.
+Now let's try to create an instance of this template.
 
 ### Add Create Command
 
-This is the most important step. Everything we have done so far has been leading up to this command. Several parts will look familiar especially around file manipulation. One new addition is the use of the `template` package, which enables us to parse templates and inject data into the template. If you've used any sort of templating framework such as Handlebars, Mustache, or Jinja you'll feel right at home.
+This is the **most important** step. Everything we have done so far has been leading up to this command. Several parts will look familiar, especially around file manipulation. One new addition is the use of the `template` package, which enables us to parse templates and inject data into the template. If you've used any sort of templating framework such as Handlebars, Mustache, or Jinja, you'll feel right at home.
 
-As before, we first need to do some error handling to make sure all files exist as expected. If it all checks out then we'll use `template.ParseFiles(FILE)` to create a Template object from the actual file. Then, we'll create an empty file with the same name. Finally, we'll use `template.Execute()` to write the data to the newly created open file.
+As before, we first need to do some error handling to make sure all files exist as expected. If it all checks out we will use `template.ParseFiles(FILE)` to create a Template object from the actual file. Then, we'll create an empty file with the same name. Finally, we'll use `template.Execute()` to write the data to the newly created open file.
 
 ```go
 // create.go
@@ -679,7 +679,7 @@ A final command we'll include is the ability to delete existing templates.
 
 ### Add Delete Command
 
-Similar to a few other commands we need to validate that the template we plan to remove actually exists. If it checks out then we'll use `os.Remove()` to delete the file from the folder.
+Similar to a few other commands, we need to validate that the template we plan to remove _actually_ exists. If it checks out, then we'll use `os.Remove()` to delete the file from the folder.
 
 ```go
 // delete.go
@@ -757,7 +757,7 @@ You should then just be able to run:
 $ gupi
 ```
 
-## :tada: Congrats
+## :tada: Congrats!
 
 You just built a CLI from scratch and hopefully learned a few things along the way.
 
