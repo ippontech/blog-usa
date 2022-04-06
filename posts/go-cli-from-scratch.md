@@ -21,11 +21,11 @@ Here's a taste of what we're building: **:fish: gupi**
 | :zap: Disclaimer: Popular CLI frameworks exist for every language. In most cases, you're better off picking your favorite flavor and going with that. |
 | ------------------------------------------------------------ |
 
-Although if you've ever wondered how CLI Frameworks do what they do then read on. There are plenty of reasonable use cases for DIY tools, for a practical example look at Hashicorp (*Terraform, Nomad*). Most if not all their CLI products use [cli](https://github.com/mitchellh/cli) a Go CLI Framework developed by the founder.
+If you have ever wondered how CLI frameworks do what they do, then read on. There are plenty of reasonable use cases for DIY tools. For a practical example, look at Hashicorp (*Terraform, Nomad*). Most, if not all their CLI products use [cli](https://github.com/mitchellh/cli), a Go CLI Framework developed by the founder.
 
-Cobra which I briefly name dropped above is argubably the best and most popular CLI Framework for Go. It is trusted by the Kubernetes and Docker community (**Kubectl** & **Docker CLI**) among many more notable projects: *Helm, Etcd, Istio...*
+Cobra, which I briefly name dropped above, is arguably the best and most popular CLI framework for Go. It is trusted by the Kubernetes and Docker community (**Kubectl** & **Docker CLI**), among many more notable projects: *Helm, Etcd, Istio...*
 
-Cobra has a deceptively simple API, for example here is a snippet directly from it's developer page:
+Cobra has a deceptively simple API. For example, here is a snippet directly from its developer page:
 
 <img src="../images/2022/03/cobra_demo.png" alt="cobra_demo"  />
 
@@ -40,16 +40,16 @@ Here is the agenda for building **:fish: Gupi**:
 5. [Adding subcommands](#Adding-subcommands): Add, Edit, List, Delete, Create, Version
 6. [Putting it all together](#Putting-it-all-together)
 
-Step 0: Make sure to have Go installed, see the official docs for the latest install instructions - [Go Install](https://go.dev/doc/install).
+Step 0: Make sure you have Go installed. See the official docs for the latest install instructions - [Go Install](https://go.dev/doc/install).
 
 You view the full source while following along at [Gupi](https://github.com/phantompunk/gupi).
 
 
 ### Defining the requirements
 
-Keep in mind what we are building does not matter as much as *how* we are building it. It could easily be adapted to do whatever you need.
+Keep in mind that _what_ we are building does not matter as much as *_how_* we are building it. It could easily be adapted to do whatever you need.
 
-**:fish: Gupi** will be able to add, edit, list, delete and create templates. The commands or features will be defined as follows:
+**:fish: Gupi** will be able to add, edit, list, delete, and create templates. The commands or features will be defined as follows:
 
 - *Add*: Adds an existing template to the collection via a local file
 
@@ -105,7 +105,7 @@ $ cd gupi
 $ git init
 ```
 
-Go has its own way to manage dependencies by using a `go.mod` file, you can easily enable this on a new project by running:
+Go has its own way to manage dependencies by using a `go.mod` file. You can easily enable this on a new project by running:
 
 ```shell
 $ go mod init github.com/USERNAME/gupi
@@ -113,7 +113,7 @@ $ go mod init github.com/USERNAME/gupi
 
 The full path `github.com/USERNAME/gupi` is what others would use to download if you packaged and distributed this module. This is also helpful for importing local files from subfolders.
 
-Next let's create our main entry point called: `main.go`
+Next, let's create our main entry point called: `main.go`
 
 ```shell
 $ touch main.go
@@ -139,7 +139,7 @@ $ go run main.go
 Working CLI!
 ```
 
-We just confirmed we have a working Go project but have no time to celebrate since this doesn't feel like a CLI tool.
+We just confirmed we have a working Go project but have no time to celebrate since this doesn't _feel_ like a CLI tool.
 
 One thing that stands out from CLIs like Docker and Kubectl is the informative and friendly user manuals that are displayed by calling the base command.
 
@@ -155,9 +155,9 @@ Commands:
 	* Practical Feature 3 - The daily driver of features
 ```
 
-New users should be able to understand what the tool does and how to actually use it. We already clearly defined the main features of our tool so putting together this usage text will be easy.
+New users should be able to understand what the tool does and how to actually use it. We already clearly defined the main features of our tool, so putting together this usage text will be easy.
 
-So based on the features defined above I came up with this, feel free to modify as you see fit:
+Based on the features defined above, I came up with this; feel free to modify as you see fit:
 
 ```go
 var usage = `Usage: gupi command [options]
@@ -176,7 +176,7 @@ Commands:
 `
 ```
 
-Now that we have a base usage message we can update our main function print this to get a feel for the CLI.
+Now that we have a base usage message, we can update our main function print this to get a feel for the CLI.
 
 ```go
 // main.go
@@ -185,15 +185,15 @@ func main() {
 }
 ```
 
-If we test this app again it will slowly start feeling like a real CLI.
+If we test this app again, it will slowly start feeling like a real CLI.
 
 ```shell
 $ go run main.go
 ```
 
-We need to add one more thing before moving one. One important aspect of any CLI tool is exit/status codes. Any CLI needs to return **0** when successful and anything greater when an error occurred.
+We need to add one more thing before moving another. An important aspect of any CLI tool is exit/status codes. Any CLI needs to return **0** when successful and anything greater when an error occurs.
 
-We'll create this `usageAndExit` method prints the usage message and an optional status message.
+We'll create a method called `usageAndExit` which prints the top level usage message along with an optional status message.
 
 ```go
 // main.go
@@ -224,7 +224,7 @@ $ go run main.go
 Usage of /var/folders/47/jlb0vvyx0px72mykl96x41xm0000gp/T/go-build235122164/b001/exe/main:
 ```
 
-Not to worry this just means we are trying to access `flag.Usage()` before setting a usage message. If we update the main method again:
+Not to worry, as this just means we are trying to access `flag.Usage()` before setting a usage message. If we update the main method again:
 
 ```go
 // main.go
@@ -260,7 +260,7 @@ type Command struct {
 }
 ```
 
-The `flag.Flagset` is just what it sounds like, a collection of flags. These will be defined for each subcommand. Execute is an anonymous function that accepts a Command and an array of arguments. Note: Go treats functions as first-class citizens so we can pass functions as parameters or when defining an instance of a struct. Next, we need a few functions on the Command struct. It needs to:
+The `flag.Flagset` is just what it sounds like: a collection of flags. These will be defined for each subcommand. `Execute` is an anonymous function that accepts a Command and an array of arguments. Note: Go treats functions as first class citizens, so we can pass functions as parameters or when defining an instance of a struct. Next, we need a few functions on the Command struct. It needs to:
 
 * Parse and assign flags to its flagset
 * Tell if flags have been parsed
@@ -272,7 +272,7 @@ What those turn into is:
 2.  Called()
 3.  Run()
 
-So the full version will look like this:
+The full version will look like this:
 
 ```go
 // command.go
@@ -306,7 +306,7 @@ This way each new subcommand we add will just be of type Command. This will simp
 
 The main method will be the entry point for all subcommands. We'll achieve this by leveraging to parts: subcommands are Command types and a switch statement.
 
-We need to initialize an empty Command object this we'll be the container for incoming subcommands. New subcommands will be initialized based on the case statement. After the command is initialized we parse the flags and execute the function using the methods we defined earlier. What that begins to look like is this:
+We need to initialize an empty command object, as this will be the container for incoming subcommands. New subcommands will be initialized based on the case statement. After the command is initialized, we parse the flags and execute the function using the same methods defined earlier. What that begins to look like is this:
 
 ```go
 // main.go
@@ -326,26 +326,26 @@ func main() {
 }
 ```
 
-Our subcommands haven't been defined yet but this is essentially what it'll look like, each new command will just get its own case statement.
+Our subcommands haven't been defined yet, but this is essentially what it'll look like, however, each new command will get its own case statement.
 
-So now we're at a good point to start building out our subcommands.
+We are now at a good point to start building out our subcommands.
 
 ## Adding subcommands
 
-We have six subcommands to add but it'll go quickly since each command will follow the same steps:
+We have six subcommands to add, but it'll go quickly since each command will follow the same steps:
 
 1. Define a friendly usage message
 2. Create the specific new command method
 3. Build out the core logic for the function
 4. Add a new case statement
 
-We already added the `version` case to the main method so let's start there.
+We already added the `version` case to the main method, so let's start there.
 
 ### Add Version command
 
-First, we need to define what the usage message should be, based on the requirements I put this together:
+First, we need to define what the usage message should be. Based on the requirements, I put this together:
 
-NOTE: I didn't mention this before but the Version command will accept a single flag `--short`, if added the short version of the build info will be printed.
+NOTE: I didn't mention this before, but the Version command will accept a single flag `--short`, if added the short version of the build info will be printed.
 
 ```go
 // version.go
@@ -358,7 +358,7 @@ Options:
 `
 ```
 
-Next we need to create the `NewVersionCommand()` which will return a pointer to a Command object.  This is where we will attach the usage message, define the flags, and specify the core logic:
+Next we need to create the `NewVersionCommand()`, which will return a pointer to a Command object.  This is where we will attach the usage message, define the flags, and specify the core logic:
 
 ```go
 // version.go
@@ -377,7 +377,7 @@ func NewVersionCommand() *Command {
 }
 ```
 
-As defined in the usage message this command should print the version number, build info and accept a `-short` flag.
+As defined in the usage message, this command should print the version number, build info, and accept a `-short` flag.
 
 ```go
 // version.go
@@ -399,9 +399,9 @@ var versionFunc = func(cmd *Command, args []string) {
 
 Nothing surprising about the `versionFunc`, it prints a message and exits with an all-clear exit code. What might've caught your eye is the ??? for the build and version variables. Those are meant as placeholder variables that will be overwritten during the build process. This allows us to specify version numbers in a config or dynamically include commit hashes on each build. We'll be using ldflags to do this, I'll go over this near the end. For now, if you want to read more check out [using ldflags to set version flags](https://www.digitalocean.com/community/tutorials/using-ldflags-to-set-version-information-for-go-applications).
 
-One point I glanced over is the `func(cmd *Command, args []string)` type for the `Execute` field. That means `Execute` is an anonymous function that can be passed in at any time or extracted into a separate variable as we did for `versionFunc`. Extracting is not necessary but is helpful for building readable code.
+One point I glanced over is the `func(cmd *Command, args []string)` type for the `Execute` field. That means `Execute` is an anonymous function that can be passed in at any time or extracted into a separate variable as we did for `versionFunc`. Extracting is not necessary, but is helpful for building readable code.
 
-The final step would be adding a case statement to our main method but since we already took care of that we're ready for this command.
+The final step would be adding a case statement to our main method. Since we already took care of that, we're ready for this command.
 
 Now we can accept subcommands and start testing with and without the `--short` flag:
 
@@ -413,7 +413,7 @@ $ go run main.go version
 brief version: v???, build: ???
 ```
 
-For now the `???` is fine we'll replace those during the build process later on. At this point we've touched on all the core components of creating a CLI
+For now the `???` is fine. We will replace those during the build process later on. At this point, we've touched on all the core components of creating a CLI
 
 * Friendly messaging and instructions
 * Adding new subcommands
@@ -457,11 +457,11 @@ func NewAddCommand() *Command {
 }
 ```
 
-Now we can focus on the functionality. The first thing we need to do is some error handling and validation. We need to confirm the file we're using as a template actually exists. We also need to confirm the directory for saved templates exists, if not we'll go ahead and create it.
+Now we can focus on the functionality. The first thing we need to do is some error handling and validation. We need to confirm the file we're using as a template actually exists. We also need to confirm if the directory for saved templates exists, otherwise, we'll go ahead and create it.
 
 The os package has several useful methods for handling files, paths, and folders. We'll use os.Stat() to determine if a file/folder exists.
 
-The `os` package has several use methods for handling files, paths and folders. We'll use `os.Stat()` to determine if a file/folder exists. Then we'll use the `os.UserHomeDir()` to get the home directory, this will be the base path for our saved templates, the full path will be `USER_HOME/.gupi/templates/`.
+The `os` package has several use methods for handling files, paths and folders. We'll use `os.Stat()` to determine if a file/folder exists. Then we'll use the `os.UserHomeDir()` to get the home directory. This will be the base path for our saved templates. The full path will be `USER_HOME/.gupi/templates/`.
 
 ```go
 // add.go
@@ -493,7 +493,7 @@ var addFunc = func(cmd *Command, args []string) {
 }
 ```
 
-And we'll use the method `errAndExit()` to handle any errors and return a helpful error message.
+We will use the method `errAndExit()` to handle any errors and return a helpful error message.
 
 ```go
 // command.go
@@ -503,7 +503,7 @@ func errAndExit(msg string) {
 }
 ```
 
-Then the final step is to add an `add` case to the switch statement
+The final step is to add an `add` case to the switch statement
 
 ```go
 // main.go
@@ -513,7 +513,7 @@ case "add":
 ...
 ```
 
-Now you'll need to create a simple template file to test this subcommand, I'll create `test.md`:
+You will need to create a simple template file to test this subcommand.  I'll create `test.md`:
 
 ```markdown
 this is a test template
@@ -525,11 +525,11 @@ Now you save the template using this subcommand:
 $ go run main.go add --file test.md
 ```
 
-We should now be able to save templates but how can we confirm it's actually saved. This is where the next command `list` comes into play.
+We should now be able to save templates. But how can we confirm it's actually saved? This is where the next command `list` comes into play.
 
 ### Add List Command
 
-This command will list all the available templates in the template folder. With this, we can validate the `test.md` template was added successfully. Similar to the add command we'll be relying on the `os` package to manage files and folder paths.
+This command will list all the available templates in the template folder. With this, we can validate that the `test.md` template was added successfully. Similar to the add command, we are relying on the `os` package to manage files and folder paths.
 
 Jumping back to our steps, we'll first define the usage message:
 
@@ -767,4 +767,5 @@ Here is a brief walkthrough of what you can do with **:fish: Gupi**
 
 Full source code: [here](https://github.com/phantompunk/gupi)
 
+### Call To Action
 
