@@ -5,20 +5,20 @@ authors:
 tags:
 - Golang
 - CLI
+- Go
 date: 	2021-12-01T13:50:040Z
-title: "A No Framework Approach to Building A CLI"
+title: "No-Framework Approach to Building a CLI with Go"
 image:
 ---
 ```
-# No Framework Approach to Building A CLI with Go
 
-In this guide we will be building a CLI tool from scratch. No fancy frameworks or libraries instead we are building own highly minimal framework *loosely* based on [Cobra](https://cobra.dev/).
+In this guide, we will be building a CLI tool from scratch. No fancy frameworks or libraries -- instead, we are building our own highly minimal framework *loosely* based on [Cobra](https://cobra.dev/).
 
 Here's a taste of what we're building: **:fish: gupi**
 
 ![Gupi Help Screen](../images/2022/03/help_screen.png "Gupi Help Screen")
 
-| :zap: Disclaimer: Popular CLI frameworks exist for every language, for most cases you're better off picking your favorite flavor and going with that. |
+| :zap: Disclaimer: Popular CLI frameworks exist for every language. In most cases, you're better off picking your favorite flavor and going with that. |
 | ------------------------------------------------------------ |
 
 Although if you've ever wondered how CLI Frameworks do what they do then read on. There are plenty of reasonable use cases for DIY tools, for a practical example look at Hashicorp (*Terraform, Nomad*). Most if not all their CLI products use [cli](https://github.com/mitchellh/cli) a Go CLI Framework developed by the founder.
@@ -734,7 +734,7 @@ clean:
 	rm -rf $(binary) c.out coverage.html
 ```
 
-Before building the binary make sure to update the user variable for your GitHub username.
+Before building the binary, be sure to update the user variable for your GitHub username.
 
 To build the binary run: `$ make`
 
@@ -743,13 +743,13 @@ $ make
 go build -o gupi -ldflags "-X 'github.com/phantompunk/gupi/command.version=0.0.1' -X 'github.com/phantompunk/gupi/command.build=98b2bf861904efb87b59422f5279735667f65093'"
 ```
 
-To add the binary to your path run:
+To add the binary to your path, run:
 
 ```shell
 $ go install
 ```
 
-Make sure you're `$GOPATH` is added to your. `$PATH`
+Make sure your `$GOPATH` is added to your. `$PATH`
 
 You should then just be able to run:
 
@@ -766,3 +766,5 @@ Here is a brief walkthrough of what you can do with **:fish: Gupi**
 ![demo](../images/2022/03/gupi_demo.gif)
 
 Full source code: [here](https://github.com/phantompunk/gupi)
+
+
