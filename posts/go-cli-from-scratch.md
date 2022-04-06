@@ -8,7 +8,7 @@ tags:
 - Go
 date: 	2021-12-01T13:50:040Z
 title: "No-Framework Approach to Building a CLI with Go"
-image:
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/03/A-No-Framework-Approach-to-Building-a-CLI-with-Go.png
 ---
 ```
 
