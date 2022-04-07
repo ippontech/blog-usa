@@ -1,18 +1,4 @@
----
-authors:
-- Theo Lebrun
-tags:
-- Big Data
-- AWS
-- Airflow
-- DBT
-- Redshift
-date: 2022-04-03T14:50:55.000Z
-title: "Transform data in your warehouse using DBT, Airflow and Redshift"
-image: 
----
-
-[DBT](https://www.getdbt.com/) (Data Build Tool) is a fantastic tool that will help you a lot on making your transform processes very easy. DBT fits nicely into the modern Business Intelligence stack, coupling with products like Redshift, Snowflake, Databricks or BigQuery. DBT's main function is to take your custom code, compile it to SQL, and then run it against your warehouse. DBT code is a combination of SQL and [Jinja](https://palletsprojects.com/p/jinja/ (a templating language used in Python).
+[DBT](https://www.getdbt.com/) (Data Build Tool) is a fantastic tool that will help you a lot on making your transform processes very easy. DBT fits nicely into the modern Business Intelligence stack, coupling with products like Redshift, Snowflake, Databricks or BigQuery. DBT's main function is to take your custom code, compile it to SQL, and then run it against your warehouse. DBT code is a combination of SQL and [Jinja](https://palletsprojects.com/p/jinja/) (a templating language used in Python).
 
 You might already use [Apache Airflow](https://airflow.apache.org/) in your stack to orchestrate your data pipelines but if it is not the case, I strongly recommend using Airflow. AWS provides a [managed version of Airflow](https://aws.amazon.com/managed-workflows-for-apache-airflow/) that you can create in few minutes and it will be fully integrated with other AWS services like Lambda or Redshift.
 
@@ -24,7 +10,7 @@ The beauty of AWS is that it provides us all the services that we need in order 
 
 The architecture leverages mature AWS services and the flow is pretty simple, here is a diagram to summarize:
 
-![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/04/dbt-airflow-diagram.png)
+![](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-dbt-airflow/images/2022/04/dbt-airflow-diagram.png)
 
 # Airflow DAG
 
@@ -45,7 +31,7 @@ import pandas as pd
 
 def save_quote():
     # Set headers
-    url = "https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=BTC"
+    url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=BTC"
     headers = {
         "Accepts": "application/json",
         "X-CMC_PRO_API_KEY": Variable.get('API_KEY')
@@ -86,7 +72,7 @@ with DAG("bitcoin-price", schedule_interval="*/5 * * * *", start_date=datetime(2
     save_quote_task >> dbt_task
 ```
 
-Running DBT directly on Airflow is possible using the operators from [this GitHub project](https://github.com/gocardless/airflow-dbt), in this case, we will simply use the `DbtRunOperator` and specify where dbt is installed. The MarketCoinCap API Key is stored as an Airflow variable to avoid having it hard-coded.
+Running DBT directly on Airflow is possible using the operators from [this GitHub project](https://github.com/gocardless/airflow-dbt), in this case, we will simply use the `DbtRunOperator` and specify where dbt is installed. The CoinMarketCap API Key is stored as an Airflow variable to avoid having it hard-coded.
 
 # DBT Model
 
@@ -122,6 +108,12 @@ Stack's components:
 - Airflow
 
 Feel free to clone my [GitHub repository](https://github.com/Falydoor/blog-dbt-airflow) that has the stack already configured.
+
+Once the whole stack is deployed and the Airflow instance running, the DAG can be turned on and it will start collecting data and transforming it.
+
+You can see the DBT logs directly on the Airflow UI:
+
+![](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-dbt-airflow/images/2022/04/dbt-airflow-logs.png)
 
 # Conclusion
 
