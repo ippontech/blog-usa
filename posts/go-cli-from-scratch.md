@@ -21,7 +21,7 @@ Here's a taste of what we're building: **:fish: gupi**
 | :zap: Disclaimer: Popular CLI frameworks exist for every language. In most cases, you're better off picking your favorite flavor and going with that. |
 | ------------------------------------------------------------ |
 
-If you have ever wondered how CLI frameworks do what they do, then read on. There are plenty of reasonable use cases for DIY tools. For a practical example, look at Hashicorp (*Terraform, Nomad*). Most, if not all their CLI products use [cli](https://github.com/mitchellh/cli), a Go CLI Framework developed by the founder.
+If you have ever wondered how CLI frameworks do what they do, then read on. There are plenty of reasonable use cases for DIY tools. For a practical example, look at Hashicorp (*Terraform, Nomad*). Most, if not all their CLI products use [github.com/mitchellh/cli](https://github.com/mitchellh/cli), a Go CLI Framework developed by the founder.
 
 Cobra, which I briefly name dropped above, is arguably the best and most popular CLI framework for Go. It is trusted by the Kubernetes and Docker community (**Kubectl** & **Docker CLI**), among many more notable projects: *Helm, Etcd, Istio...*
 
@@ -765,7 +765,12 @@ Here is a brief walkthrough of what you can do with **:fish: Gupi**
 
 ![demo](../images/2022/03/gupi_demo.gif)
 
-Full source code: [here](https://github.com/phantompunk/gupi)
+Full source code: [https://github.com/phantompunk/gupi](https://github.com/phantompunk/gupi)
 
-### Call To Action
+### Where to go from here
 
+At this point we have a fully functioning CLI but its far from perfect or complete. Feel free to improve and experiment by customizing or extending functionality.  A few ideas to get you going could be to:
+
+- allow importing templates from a URL based on a flag
+- allow for configurable settings from a configuration file
+- support more functions in templates
