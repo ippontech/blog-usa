@@ -1,3 +1,17 @@
+---
+authors:
+- Theo Lebrun
+tags:
+- Big Data
+- AWS
+- Airflow
+- DBT
+- Redshift
+date: 2022-04-03T14:50:55.000Z
+title: "Transform data in your warehouse using DBT, Airflow and Redshift"
+image: 
+---
+
 [DBT](https://www.getdbt.com/) (Data Build Tool) is a fantastic tool that will help you a lot on making your transform processes very easy. DBT fits nicely into the modern Business Intelligence stack, coupling with products like Redshift, Snowflake, Databricks or BigQuery. DBT's main function is to take your custom code, compile it to SQL, and then run it against your warehouse. DBT code is a combination of SQL and [Jinja](https://palletsprojects.com/p/jinja/) (a templating language used in Python).
 
 You might already use [Apache Airflow](https://airflow.apache.org/) in your stack to orchestrate your data pipelines but if it is not the case, I strongly recommend using Airflow. AWS provides a [managed version of Airflow](https://aws.amazon.com/managed-workflows-for-apache-airflow/) that you can create in few minutes and it will be fully integrated with other AWS services like Lambda or Redshift.
