@@ -24,7 +24,7 @@ The beauty of AWS is that it provides us all of the services that we need in ord
 
 The architecture leverages mature AWS services and the flow is pretty simple. Here is a diagram to summarize:
 
-![](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-dbt-airflow/images/2022/04/dbt-airflow-diagram.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/04/dbt-airflow-diagram.png)
 
 # Airflow DAG
 
@@ -127,7 +127,7 @@ Once the whole stack is deployed and the Airflow instance is running, the DAG ca
 
 You can see the dbt logs directly on the Airflow UI:
 
-![](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-dbt-airflow/images/2022/04/dbt-airflow-logs.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/04/dbt-airflow-logs.png)
 
 # Conclusion
 
