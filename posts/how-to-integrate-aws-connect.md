@@ -44,8 +44,68 @@ The first step is create your AWS Connect instance.  If you're experimenting the
 1. Data storage
   - Keep defaults
 1. Review and click "Create instance"
+1. After the instance has been created, click the Alias name
+1. Select "Approved origins' from the left-side navigation menu
+1. Add the base URL where your UI exist.
+   - Example - `http://localhost:4200` for local testing on a UI running on port 4200
+   - Example - `https://my-dev-url` if you are integrating with a specific url on a deployed environment
 
-### Configuring yuor AWS Connect Instance
+It'll take a few minutes to create the instance.  After its complete, select the instance by clicking the Alias name . This should bring up a new menu of options.  Select 
 
-Log in to your newly created Connect instance using the credentials that you set up above in step three.  The first time that you log in you will be presented a Dashboard page with a step-by-step tutorial on configuring and tuning your Cloud contact center.  In this blog, we'll do just the configuration that is necessary to integrate the CCP to your application. 
+## UI Integration with Contact Control Panel
 
+The [Amazon Connect Streams library](https://github.com/amazon-connect/amazon-connect-streams) makes it possible to integrate your web applications with AWS Connect.  It allows for the embedding of a Contact Control Panel ("CCP") enabling you to handle events and access information in real time.
+
+1. Install the Connect Streams library using NPM/YARN.
+
+    ```js
+    npm install amazon-connect-streams
+    ```
+1. Import the Connect Streams library in your application.  
+
+    ```js
+    // import this one time in your app
+    // it makes the "connect" global variable available
+    import "amazon-connect-streams";
+    ```
+1. Create a placeholder tag to add to your page.  
+
+    ```html
+    <!-- Create a placeholder tag -->
+    <div id="ccp"></div>
+    ```
+1. Initialize the control panel
+    
+    ```js
+    /* initialize the control panel and bind to an element on your page */
+    connect.core.initCCP(document.getElementById('ccp'), {
+        ccpUrl: 'https://uqwbruudhd7834.my.connect.aws/connect/ccp-v2',
+        region: 'us-east-1',
+        loginPopup: true,
+        loginPopupAutoClose: true,
+        softphone: {
+            allowFramedSoftphone: true
+        },
+        pageOptions: {
+            enableAudioDeviceSettings: true,
+            enablePhoneTypeSettings: true
+        }
+    })
+    ```
+1. Hook in to [Connect events](https://github.com/amazon-connect/amazon-connect-streams/blob/master/Documentation.md).
+
+    ```js
+    // When an agent is logs in
+    connect.agent(agent => {
+        console.log(agent)
+    })
+
+    // On incoming calls or chats
+    connect.contact(contact => {
+        console.log(contact)
+    })
+    ```
+
+## Configuring your AWS Connect Instance
+
+Log in to your newly created Connect instance using the credentials that you set up above in step three.  The first time that you log in you will be presented a Dashboard page with a step-by-step tutorial on configuring and tuning your Cloud contact center. 
