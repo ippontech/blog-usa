@@ -9,7 +9,7 @@ date: 2022-04-29T00:00:00.000Z
 title: "How To Integrate AWS Connect"
 image: 
 ---
-
+<!-- 
 Log in as an agent
 Turn on/off availability
 Receive live chats
@@ -19,14 +19,9 @@ Integrates directly into your UI
 No separate applications to manage.
 Simple, Scalable, Managed.
 
-Leverage AWS Connect's Admin backend and workflows.
+Leverage AWS Connect's Admin backend and workflows. -->
 
-If you're looking to add omnichannel communcation from your customers to your call center agents then look no further.  [AWS Connect](https://aws.amazon.com/connect) is a cloud contact center that can be seamlessly integrated to any existing agent servicing application.  In this post, I demonstrate how to get started with AWS Connect and how to integrate the contact control panel ("CCP") directly into a web-based application so that your agents can receive calls, chat with connects and manage interactions from a single user interface.
-
-The implementation is divided in to two phases:
-
-- Setting up the AWS Connect instance on your AWS Account
-- Integrating the CCP to your application using [Amazon Connect Stream](https://github.com/amazon-connect/amazon-connect-streams)
+[AWS Connect](https://aws.amazon.com/connect) provides omnichannel communication capabilities directly to customer service agents.  It enables agents to receive calls, chat with contacts and manage interactions from a single user interface.  Connect is developer friendly, easy to integrate and highly customizable.  In this post, I demonstrate how to create and configure an AWS Connect instance and how to integrate it directly to your new or existing web application.
 
 ## Creating and configuring the AWS Connect instance
 
