@@ -10,7 +10,7 @@ title: "How To Integrate AWS Connect"
 image: 
 ---
 
-In this post, I demonstrate how to easily integrate [AWS Connect](https://aws.amazon.com/connect) ("Connect") to any new or existing web application.  If you're at all intimiated by this, don't be.  AWS has done a fantastic job in making Connect easy to get started with by providing a step-by-step setup process with a healthy set of defaults.  They built it to be highly configurable and developer friendly by providing maintained development kits (SDKs) and a robust administrative portal.
+In this post, I demonstrate how to easily integrate [AWS Connect](https://aws.amazon.com/connect) ("Connect") to any new or existing web application.  If you're at all intimiated by this, don't be.  AWS has done a fantastic job in making Connect easy to get started with by providing a step-by-step setup process with a healthy set of defaults.  They built it to be highly configurable and developer friendly by providing Connect-specific SDKs, APIs, and a robust administrator portal that enables no-code workflows and drag-and-drop configuration.
 
 So what exactly is Connect?  In short, it's a managed solution that provides omnichannel communication capabilities.  It includes capabilities such as receiving calls, making calls, real-time chats and the ability to fully handle human interactions from a single user interface.  
 
