@@ -21,11 +21,19 @@ Simple, Scalable, Managed.
 
 Leverage AWS Connect's Admin backend and workflows. -->
 
-[AWS Connect](https://aws.amazon.com/connect) provides omnichannel communication capabilities directly to customer service agents.  It enables agents to receive calls, chat with contacts and manage interactions from a single user interface.  Connect is developer friendly, easy to integrate and highly customizable.  In this post, I demonstrate how to create and configure an AWS Connect instance and how to integrate it directly to your new or existing web application.
+In this post, I demonstrate how easy it is to integrate AWS Connect to any existing or new web application.  If you're at all intimiated by this, don't be.  AWS has done a fantastic job to making AWS Connect accessible, manageable and developer friendly.
+
+So what is [AWS Connect](https://aws.amazon.com/connect)?  It's a managed solution by AWS that provides omnichannel communication capabilities.  It includes capabilities such as receiving calls, making calls, real-time chats and the ability to fully manage interactions from a single user interface.  
+
+If you're experimenting then you'll be glad to hear that AWS Connect is covered by AWS's [free tier](https://aws.amazon.com/connect/pricing#AWS_Free_Tier).  There's a good amount that is covered so you shouldn't incur any charges unless there is heavy usage.  But as always, keep a close watch on usage.
 
 ## Creating and configuring the AWS Connect instance
 
-The first step is create your AWS Connect instance.  If you're experimenting then you'll be glad to hear that AWS Connect is covered by AWS's free tier.  You can check out all that is covered for this service [here](https://aws.amazon.com/connect/pricing#AWS_Free_Tier).   Follow these steps to set up your Connect instance:
+I'm going to assume you have an AWS account already.  So the first step is create your AWS Connect instance.  Log in, head to AWS Connect, and click Create instance.  This will bring up a setup wizard.  The defaults are good enough to get you started but adjust to your needs accordingly.  The most important part is to save the administrator **username** and **password** because you will be using it later to configure your instance.
+
+![](https://raw.githubusercontent.com/johnstrickler/blog-usa/aws-connect/images/2022/05/connect-instance-creation.png)
+
+ Follow these steps to set up your Connect instance:
 
 1. Go to "AWS Connect" in your account and click "Create Instance"
 1. Identity Management
@@ -71,12 +79,12 @@ The [Amazon Connect Streams library](https://github.com/amazon-connect/amazon-co
     <div id="ccp"></div>
     ```
 
-1. Initialize the control panel
+1. Initialize the control panel.  Use your Connect instance identifier where it says `instance-id` below.
 
     ```js
     /* initialize the control panel and bind to an element on your page */
     connect.core.initCCP(document.getElementById('ccp'), {
-        ccpUrl: 'https://uqwbruudhd7834.my.connect.aws/connect/ccp-v2',
+        ccpUrl: 'https://instance-id.my.connect.aws/connect/ccp-v2',
         region: 'us-east-1',
         loginPopup: true,
         loginPopupAutoClose: true,
