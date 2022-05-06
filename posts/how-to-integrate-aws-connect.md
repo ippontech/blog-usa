@@ -31,7 +31,7 @@ If you're experimenting then you'll be glad to hear that AWS Connect is covered 
 
 I'm going to assume you have an AWS account already.  So the first step is create your AWS Connect instance.  Log in, head to AWS Connect, and click Create instance.  This will bring up a setup wizard.  The defaults are good enough to get you started but adjust to your needs accordingly.  The most important part is to save the administrator **username** and **password** because you will be using it later to configure your instance.
 
-![](https://raw.githubusercontent.com/johnstrickler/blog-usa/aws-connect/images/2022/05/connect-instance-creation.png)
+![AWS Connect Instance Creation](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-instance-creation.png)
 
  Follow these steps to set up your Connect instance:
 
