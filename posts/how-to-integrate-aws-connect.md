@@ -9,23 +9,12 @@ date: 2022-04-29T00:00:00.000Z
 title: "How To Integrate AWS Connect"
 image: 
 ---
-<!-- 
-Log in as an agent
-Turn on/off availability
-Receive live chats
-Receive phone calls
-All through a single interface
-Integrates directly into your UI
-No separate applications to manage.
-Simple, Scalable, Managed.
 
-Leverage AWS Connect's Admin backend and workflows. -->
+In this post, I demonstrate how to easily integrate [AWS Connect](https://aws.amazon.com/connect) ("Connect") to any new or existing web application.  If you're at all intimiated by this, don't be.  AWS has done a fantastic job in making Connect easy to get started with by providing a step-by-step setup process with a healthy set of defaults.  They built it to be highly configurable and developer friendly by providing maintained development kits (SDKs) and a robust administrative portal.
 
-In this post, I demonstrate how easy it is to integrate AWS Connect to any existing or new web application.  If you're at all intimiated by this, don't be.  AWS has done a fantastic job to making AWS Connect accessible, manageable and developer friendly.
+So what exactly is Connect?  In short, it's a managed solution that provides omnichannel communication capabilities.  It includes capabilities such as receiving calls, making calls, real-time chats and the ability to fully handle human interactions from a single user interface.  
 
-So what is [AWS Connect](https://aws.amazon.com/connect)?  It's a managed solution by AWS that provides omnichannel communication capabilities.  It includes capabilities such as receiving calls, making calls, real-time chats and the ability to fully manage interactions from a single user interface.  
-
-If you're experimenting then you'll be glad to hear that AWS Connect is covered by AWS's [free tier](https://aws.amazon.com/connect/pricing#AWS_Free_Tier).  There's a good amount that is covered so you shouldn't incur any charges unless there is heavy usage.  But as always, keep a close watch on usage.
+If you're experimenting then you'll be glad to hear that Connect is covered by the [AWS free tier](https://aws.amazon.com/connect/pricing#AWS_Free_Tier).  There's a good amount of free coverage for Connect services.  You shouldn't receive any charges by just experimenting, but as always, keep a close watch on usage so you can manage any incurred costs.
 
 ## Creating and configuring the AWS Connect instance
 
