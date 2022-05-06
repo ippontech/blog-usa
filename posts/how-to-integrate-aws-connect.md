@@ -33,24 +33,11 @@ I'm going to assume you have an AWS account already.  So the first step is creat
 
 ![AWS Connect Instance Creation](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-instance-creation.png)
 
- Follow these steps to set up your Connect instance:
+You should have an instance created now with the settings that you specified through the setup process.  The next step is to specify an **approved origin**.  This is base URL, and hence application(s), that you are giving permission to integrate with your newly created Connect instance.  Follow the below steps to specify one or more approved origins:
 
-1. Go to "AWS Connect" in your account and click "Create Instance"
-1. Identity Management
-   - Select "Store users in Amazon Connect" as your identity management option
-   - Enter a name (alias) for your instance
-1. Add administrator
-   - Select "Specify an administrator".  This is a separate login from your AWS account.  It will be used to log in to and manage your Connect instance.
-   - Fill in the remaining fields
-1. Telephone Options
-   - Allow incoming calls
-   - Allow outgoing calls
-1. Data storage
-   - Keep defaults
-1. Review and click "Create instance"
-1. After the instance has been created, click the Alias name
-1. Select "Approved origins' from the left-side navigation menu
-1. Add the base URL where your UI exist.
+1. Go to the Account overview page for your instance by clicking the `Instance alias` name from the Instances table
+1. Select `Approved origins` from the left-side navigation menu
+1. Add the base URL for your web application
    - Example - `http://localhost:4200` for local testing on a UI running on port 4200
    - Example - `https://my-dev-url` if you are integrating with a specific url on a deployed environment
 
