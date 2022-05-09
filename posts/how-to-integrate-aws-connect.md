@@ -10,9 +10,12 @@ title: "How To Integrate AWS Connect"
 image: 
 ---
 
-In this post, I demonstrate how to easily integrate [AWS Connect](https://aws.amazon.com/connect) ("Connect") to any new or existing web application.  If you're at all intimiated by this, don't be.  AWS has done a fantastic job in making Connect easy to get started with by providing a step-by-step setup process with a healthy set of defaults.  They built it to be highly configurable and developer friendly by providing Connect-specific SDKs, APIs, and a robust administrator portal that enables no-code workflows and drag-and-drop configuration.
 
-So what exactly is Connect?  In short, it's a managed solution that provides omnichannel communication capabilities.  It includes capabilities such as receiving calls, making calls, real-time chats and the ability to fully handle human interactions from a single user interface.  
+
+In this post, I demonstrate how to easily integrate [AWS Connect](https://aws.amazon.com/connect) ("Connect") to any new or existing web application. Connect is AWS's managed solution for enabling omnichannel communication capabilities to your organization.  It provides the ability to fully handle human interactions from a single, streamling user interface including features such as receiving inbound calls, making outbound calls, and having real-time chats.  
+
+If you're at all intimiated by this, don't be.  AWS has done a fantastic job in making Connect easy to get started with by providing a step-by-step setup process with a healthy set of defaults.  They built it to be highly configurable and developer friendly by providing Connect-specific SDKs, APIs, and a robust administrator portal that enables no-code workflows and drag-and-drop configuration.
+
 
 If you're experimenting then you'll be glad to hear that Connect is covered by the [AWS free tier](https://aws.amazon.com/connect/pricing#AWS_Free_Tier).  There's a good amount of free coverage for Connect services.  You shouldn't receive any charges by just experimenting, but as always, keep a close watch on usage so you can manage any incurred costs.
 
