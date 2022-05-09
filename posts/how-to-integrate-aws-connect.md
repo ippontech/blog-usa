@@ -24,9 +24,15 @@ I'm going to assume you have an AWS account already.  So the first step is to cr
 
 ![AWS Connect Instance Creation](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-instance-creation.png)
 
-You should now have an instance created with the settings that you specified through the setup process.  Once the instance has launched, you can launch the Contact Control Panel ("CCP") using the following URL `https://<instance_name>.my.connect.aws/ccp-v2/`, replacing `instance_name` with your instance's name.
+You should now have an instance created with the settings that you specified through the setup process.  Once the instance has launched, you can launch the Contact Control Panel ("CCP") using the following URL `https://<instance_name>.my.connect.aws/ccp-v2/`, replacing `instance_name` with your Connect instance's name.  
 
 ![Contact Control Panel](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-initial-ccp.png)
+
+The CCP (shown above) represents the managed portion of the interface provided by AWS that allows for online communication.  It is a small but critical piece for building robust and streamlined interactions.  
+
+However, loading the CCP in its own window has a couple drawbacks.  For starters, it's another window that has to be juggled in addition to any existing applications in use by the agent.  In addition, we lose real time event information that we could be leveraging to aid the agent in servicing requests.  
+
+Fortunately, AWS allows for the CCP to be seamlessly integrated into new or existing applications.  The rest of this blog post focuses on how to integrate the CCP and how to leverage real-time events.
 
 ## UI Integration with Contact Control Panel
 
