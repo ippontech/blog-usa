@@ -36,7 +36,7 @@ The CCP as a standalone UI has a couple drawbacks. For starters, it's another wi
 
 The [Amazon Connect Streams library](https://github.com/amazon-connect/amazon-connect-streams) makes it possible to integrate your web applications with AWS Connect. It enables the direct embedding of the CCP to a web application and the ability access events in real time.
 
-For demonstration purposes, I've chosen to create a new UI using Vue and then integrate the CCP to it.  However, the example should be generic enough that you can use any web framework of your choosing such as React or Angular.
+For demonstration purposes, I created a Vue app and then fully integated the CCP to my newly created application.  The end result is a [locally-runnable demo](https://gitlab.ippon.fr/jstrickler/aws-connect-demo). The relevant pieces of the demo application are generic enough so that they can be repurposed to fit any web framework (React, Angular, etc).
 
 1. Install the Connect Streams library using npm or yarn.
 
@@ -44,7 +44,7 @@ For demonstration purposes, I've chosen to create a new UI using Vue and then in
     yarn add amazon-connect-streams
     ```
 
-1. Import the Connect Streams library in your application.
+2. Import the Connect Streams library in your application.
 
     ```js
     // import this one time in your app
@@ -52,14 +52,14 @@ For demonstration purposes, I've chosen to create a new UI using Vue and then in
     import "amazon-connect-streams";
     ```
 
-1. Create a placeholder tag to add to your page. 
+3. Create a placeholder tag to add to your page. 
 
     ```html
     <!-- Create a placeholder tag -->
     <div id="ccp"></div>
     ```
 
-1. Initialize the control panel. Use your Connect instance identifier where it says `instance-id` below.
+4. Initialize the control panel. Use your Connect instance identifier where it says `instance-id` below.
 
     ```js
     /* initialize the control panel and bind to an element on your page */
@@ -78,7 +78,7 @@ For demonstration purposes, I've chosen to create a new UI using Vue and then in
     })
     ```
 
-1. Hook in to [Connect events](https://github.com/amazon-connect/amazon-connect-streams/blob/master/Documentation.md).
+5. Hook in to [Connect events](https://github.com/amazon-connect/amazon-connect-streams/blob/master/Documentation.md).
 
     ```js
     // When an agent is logs in
@@ -94,7 +94,7 @@ For demonstration purposes, I've chosen to create a new UI using Vue and then in
 
 ## Configuring your AWS Connect Instance
 
-The next step is to specify an **approved origin**. This is base URL, and hence application(s), that you are giving permission to integrate with your newly created Connect instance. Follow the below steps to specify one or more approved origins based on your needs:
+The last step is to specify an **approved origin**. This is base URL, and hence application(s), that you are giving permission to integrate with your newly created Connect instance. Follow the below steps to specify one or more approved origins based on your needs:
 
 1. Go to the Account overview page for your instance by clicking the `Instance alias` name from the Instances table
 2. Select `Approved origins` from the left-side navigation menu
@@ -103,6 +103,4 @@ The next step is to specify an **approved origin**. This is base URL, and hence 
    - `https://development-url`
    - `http://localhost:4200`
 
-
-
-Log in to your newly created Connect instance using the credentials that you set up above in step three. The first time that you log in you will be presented a Dashboard page with a step-by-step tutorial on configuring and tuning your Cloud contact center. 
+Log in to your newly created Connect instance using the credentials that you set up above in step three. The first time that you log in you will be presented a Dashboard page with a step-by-step tutorial on configuring and tuning your Cloud contact center.
