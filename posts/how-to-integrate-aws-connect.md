@@ -92,6 +92,8 @@ For demonstration purposes, I created a Vue app and then fully integated the CCP
     })
     ```
 
+![Contact Control Panel](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-local-.png)
+
 ## Configuring your AWS Connect Instance
 
 The last step is to specify an **approved origin**. This is base URL, and hence application(s), that you are giving permission to integrate with your newly created Connect instance. Follow the below steps to specify one or more approved origins based on your needs:
