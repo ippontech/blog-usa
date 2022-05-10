@@ -83,16 +83,18 @@ For demonstration purposes, I created a Vue app and then fully integated the CCP
     ```js
     // When an agent is logs in
     connect.agent(agent => {
-        console.log(agent)
+        // gather information about the agent
+        const agentName = agent.getName()
+        const agentContacts = agent.getContacts()
+        const agentPermissions = agent.getPermissions()
     })
 
     // On incoming calls or chats
     connect.contact(contact => {
-        console.log(contact)
+        // contact information
+        const contactAttributes = contact.getAttributes()
     })
     ```
-
-![Contact Control Panel](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-local-.png)
 
 ## Configuring your AWS Connect Instance
 
@@ -106,3 +108,11 @@ The last step is to specify an **approved origin**. This is base URL, and hence 
    - `http://localhost:4200`
 
 Log in to your newly created Connect instance using the credentials that you set up above in step three. The first time that you log in you will be presented a Dashboard page with a step-by-step tutorial on configuring and tuning your Cloud contact center.
+
+You should now be able to run your application after setting your approved origins.  The image below shows a runnable demo (source available [here](https://gitlab.ippon.fr/jstrickler/aws-connect-demo)).
+
+![Local Demo](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-local-demo.png)
+
+## Wrapping up
+
+This is just the tip of the iceburg.  You now have full control over how to customize your agent and customer workflows by leveraging [all that Connect has to offer](https://docs.aws.amazon.com/connect/?id=docs_gateway).  Explore your channels of communication, set yours hours of operations, create queues to route contacts, build prompts to playback recorded audio, and utilize contact flows (IVR) to build your customers' experience.
