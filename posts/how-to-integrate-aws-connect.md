@@ -115,4 +115,4 @@ You should now be able to run your application after setting your approved origi
 
 ## Wrapping up
 
-This is just the tip of the iceburg.  You now have full control over how to customize your agent and customer workflows by leveraging [all that Connect has to offer](https://docs.aws.amazon.com/connect/?id=docs_gateway).  Explore your channels of communication, set yours hours of operations, create queues to route contacts, build prompts to playback recorded audio, and utilize contact flows (IVR) to build your customers' experience.
+This is just the tip of the iceburg.  You now have full control over how to customize your agent and customer workflows by leveraging [all that Connect has to offer](https://aws.amazon.com/connect/features).  Explore your channels of communication, set yours hours of operations, create queues to route contacts, utilize contact flows (IVR) to build your customers' experience, and [much more](https://docs.aws.amazon.com/connect/?id=docs_gateway).
