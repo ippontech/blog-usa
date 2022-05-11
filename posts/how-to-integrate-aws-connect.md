@@ -2,29 +2,27 @@
 authors:
 - John Strickler
 tags:
-- Javascript
 - AWS Connect
 - Agent Servicing
+- Javascript
 date: 2022-04-29T00:00:00.000Z
 title: "How To Integrate AWS Connect"
 image: 
 ---
 
-
-
 In this post, I demonstrate how to easily integrate [AWS Connect](https://aws.amazon.com/connect) ("Connect") to any new or existing web application. Connect is AWS's managed solution for enabling omnichannel communication capabilities to your organization. It provides the ability to fully handle human interactions from a single, streamling user interface including features such as receiving inbound calls, making outbound calls, and having real-time chats.
 
 If you're at all intimiated by this, don't be. AWS has done a fantastic job in making Connect easy to get started with by providing a step-by-step setup process with a healthy set of defaults. They built it to be highly configurable and developer friendly by providing Connect-specific SDKs, APIs, and a robust administrator portal that enables no-code workflows and drag-and-drop configuration.
 
-If you're experimenting then you'll be glad to hear that Connect is covered by the [AWS free tier](https://aws.amazon.com/connect/pricing#AWS_Free_Tier). There's a good amount of free coverage for Connect services. You shouldn't receive any charges by just experimenting, but as always, keep a close watch on usage so you can manage any incurred costs.
+If you're experimenting then you'll be glad to hear that Connect is covered by the [AWS free tier](https://aws.amazon.com/connect/pricing#AWS_Free_Tier). There's a good amount of free coverage for Connect services. You shouldn't receive any charges by using a baseline setup, but as always, keep a close watch on usage so you can manage any incurred costs.
 
 ## Creating and configuring the AWS Connect instance
 
-I'm going to assume you have an AWS account already. So the first step is to create an AWS Connect instance. Log in, head to AWS Connect, and click Create instance. This will bring up a setup wizard. The defaults are good enough to get you started but adjust to your needs accordingly. The most important part is to save the administrator **username** and **password** because you will be using it later to configure your instance.
+The first step is to create an AWS Connect instance. Log in to your AWS account, navigate to the AWS Connect service, and select "Create instance" from the button in the top-right corner. This will bring up a setup wizard. The default settings are good enough to get you started but adjust accordingly based on your needs. Just remember to save the administrator **username** and **password** that you configure because you will be using it later to configure your instance.
 
 ![AWS Connect Instance Creation](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-instance-creation.png)
 
-You should now have an instance created with the settings that you specified through the setup process. Once the instance has launched, you can launch the Contact Control Panel ("CCP") using the following URL `https://<instance_name>.my.connect.aws/ccp-v2/`, replacing `instance_name` with your Connect instance's name.
+You should now have an instance created and ready with the settings that you specified through the setup process.  Once the instance has launched, you can immediately preview the Contact Control Panel ("CCP") using the following URL `https://<instance_name>.my.connect.aws/ccp-v2/`, replacing `instance_name` with your Connect instance's name.  
 
 ![Contact Control Panel](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-initial-ccp.png)
 
@@ -37,6 +35,8 @@ The CCP as a standalone UI has a couple drawbacks. For starters, it's another wi
 The [Amazon Connect Streams library](https://github.com/amazon-connect/amazon-connect-streams) makes it possible to integrate your web applications with AWS Connect. It enables the direct embedding of the CCP to a web application and the ability access events in real time.
 
 For demonstration purposes, I created a Vue app and then fully integated the CCP to my newly created application.  The end result is a [locally-runnable demo](https://gitlab.ippon.fr/jstrickler/aws-connect-demo). The relevant pieces of the demo application are generic enough so that they can be repurposed to fit any web framework (React, Angular, etc).
+
+Follow these steps to integrate to any web application:
 
 1. Install the Connect Streams library using npm or yarn.
 
