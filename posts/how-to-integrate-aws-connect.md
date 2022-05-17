@@ -2,6 +2,7 @@
 authors:
 - John Strickler
 tags:
+- AWS
 - Amazon Connect
 - Agent Servicing
 - JavaScript
@@ -175,3 +176,5 @@ connect.contact(contact => {
 ## Wrapping Up
 
 This is just a fraction of what is possible with Amazon Connect.  By going all in with Connect, you now have full control over how to customize your agent and customer workflows by leveraging [all that Connect has to offer](https://aws.amazon.com/connect/features).  Explore your channels of communication, set yours hours of operations, create queues to route contacts, utilize contact flows (IVR) to build your customers' experience, and [much more](https://docs.aws.amazon.com/connect/?id=docs_gateway).
+
+At Ippon, we have extensive knowledge when it comes to agent servicing platforms and [a track record that proves it](https://us.ippon.tech/success-stories/accelerate/top-10-us-bank).  If you need expertise or guidance in this area, don't hesitate to [reach out](https://us.ippon.tech/contact) to us as your trusted partner.
