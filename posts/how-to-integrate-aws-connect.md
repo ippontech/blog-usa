@@ -6,7 +6,7 @@ tags:
 - Amazon Connect
 - Agent Servicing
 - JavaScript
-date: 2022-04-29T00:00:00.000Z
+date: 2022-05-17T00:00:00.000Z
 title: "Integrating Amazon Connect with a Web Application"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/05/Integrating-AWS-Connect-with-a-Web-Application.png
 ---
