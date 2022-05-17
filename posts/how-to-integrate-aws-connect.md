@@ -48,7 +48,7 @@ You can follow these steps to integrate the CCP to any web application:
 
     ```js
     // import this one time in your app
-    // it almost makes available the "connect" global variable 
+    // the "connect" singleton is available on the global scope
     import "amazon-connect-streams";
     ```
 
