@@ -36,7 +36,7 @@ The [Amazon Connect Streams library](https://github.com/amazon-connect/amazon-co
 
 For demonstration purposes, I created a Vue app and then fully integated the CCP to my newly created application.  The end result is a [locally-runnable demo](https://gitlab.ippon.fr/jstrickler/aws-connect-demo). The relevant pieces of the demo application are generic enough so that they can be repurposed to fit any web framework (React, Angular, etc).
 
-Follow these steps to integrate to any web application:
+You can follow these steps to integrate the CCP to any web application:
 
 1. Install the Connect Streams library using npm or yarn.
 
@@ -48,11 +48,11 @@ Follow these steps to integrate to any web application:
 
     ```js
     // import this one time in your app
-    // it makes the "connect" global variable available
+    // it almost makes available the "connect" global variable 
     import "amazon-connect-streams";
     ```
 
-3. Create a placeholder tag to add to your page. 
+3. Create a placeholder tag to add to your page.
 
     ```html
     <!-- Create a placeholder tag -->
@@ -98,7 +98,7 @@ Follow these steps to integrate to any web application:
 
 ## Configuring your AWS Connect Instance
 
-The last step is to specify an **approved origin**. This is base URL, and hence application(s), that you are giving permission to integrate with your newly created Connect instance. Follow the below steps to specify one or more approved origins based on your needs:
+The last step is to specify an **approved origin**. This is the base URL, and hence application(s), that you are giving permission to integrate with your newly created Connect instance. Follow the below steps to specify one or more approved origins based on your needs:
 
 1. Go to the Account overview page for your instance by clicking the `Instance alias` name from the Instances table
 2. Select `Approved origins` from the left-side navigation menu
@@ -107,9 +107,9 @@ The last step is to specify an **approved origin**. This is base URL, and hence 
    - `https://development-url`
    - `http://localhost:4200`
 
-Log in to your newly created Connect instance using the credentials that you set up above in step three. The first time that you log in you will be presented a Dashboard page with a step-by-step tutorial on configuring and tuning your Cloud contact center.
+Log in to your newly created Connect instance using the credentials that you set up above in step three. The first time that you log in you will be presented a Dashboard page with a step-by-step tutorial on how to configure and tune your new Cloud contact center.
 
-You should now be able to run your application after setting your approved origins.  The image below shows a runnable demo (source available [here](https://gitlab.ippon.fr/jstrickler/aws-connect-demo)).
+You should now be able to run your application after setting the approved origins.  The image below shows a runnable demo (source available [here](https://gitlab.ippon.fr/jstrickler/aws-connect-demo)).
 
 ![Local Demo](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/05/connect-local-demo.png)
 
@@ -141,7 +141,7 @@ Next, visit *https://YOUR_INSTANCE_ID.my.connect.aws/test-chat*.  This page will
 
 ![Receive a call](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/05/connect-chat-simulation.png)
 
-### Display contact information
+### Receive contact events
 
 One of the benefits of embedding the CCP to an application is being able to leverage the AWS Connect Streams library.  One example of this is simply reading information about the inbound contact.  This is demonstrated below:
 
