@@ -8,7 +8,7 @@ tags:
 - JavaScript
 date: 2022-04-29T00:00:00.000Z
 title: "Integrating Amazon Connect with a Web Application"
-image: 
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/05/Integrating-AWS-Connect-with-a-Web-Application.png
 ---
 
 In this post, I will demonstrate how to easily integrate [Amazon Connect](https://aws.amazon.com/connect) ("Connect") to any new or existing web application. Connect is AWS' managed solution for enabling omnichannel communication capabilities to your organization. It provides the ability to fully handle human interactions from a single, streaming user interface, including features such as receiving inbound calls, making outbound calls, and having real-time chats.
