@@ -128,7 +128,7 @@ In order to receive a phone call, you first need to **claim a phone number**:
 - Click "Claim a number" from the top left buttons
 - Create either a toll-free or a DID (direct inward dialing) phone number
 
-Now you have a phone number, you are ready to receive inbound calls.  Go to your application that you have integrated with the CCP and set yourself to **available** from the top-most dropdown menu.  Now call freshly-claimed phone number and it will appear as an inbound call!  
+Now that you have a phone number, you are ready to receive inbound calls.  Go to your application and set yourself as **available** in the CCP, then call your freshly-claimed number from another phone (e.g. your cellphone).  You should see it come through as an inbound call in the CCP!  
 
 ![Receive a call](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/05/connect-receive-call.png)
 
