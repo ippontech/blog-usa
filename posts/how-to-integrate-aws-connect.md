@@ -6,7 +6,7 @@ tags:
 - Agent Servicing
 - Javascript
 date: 2022-04-29T00:00:00.000Z
-title: "How To Integrate AWS Connect"
+title: "Integrating Amazon Connect with a Web Application"
 image: 
 ---
 
