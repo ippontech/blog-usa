@@ -20,11 +20,11 @@ If you're experimenting then you'll be glad to hear that Connect is covered by t
 
 The first step is to create an AWS Connect instance. Log in to your AWS account, navigate to the AWS Connect service, and select "Create instance" from the button in the top-right corner. This will bring up a setup wizard. The default settings are good enough to get you started but adjust accordingly based on your needs. Just remember to save the administrator **username** and **password** that you configure because you will be using it later to configure your instance.
 
-![AWS Connect Instance Creation](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-instance-creation.png)
+![AWS Connect Instance Creation](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/05/connect-instance-creation.png)
 
 You should now have an instance created and ready with the settings that you specified through the setup process.  Once the instance has launched, you can immediately preview the Contact Control Panel ("CCP") using the following URL `https://<instance_name>.my.connect.aws/ccp-v2/`, replacing `instance_name` with your Connect instance's name.  
 
-![Contact Control Panel](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-initial-ccp.png)
+![Contact Control Panel](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/05/connect-initial-ccp.png)
 
 The CCP (shown above) represents the managed portion of the interface provided by AWS that allows for online voice and chat. It is the cornerstone for building a streamline communications platform.
 
@@ -111,7 +111,7 @@ Log in to your newly created Connect instance using the credentials that you set
 
 You should now be able to run your application after setting your approved origins.  The image below shows a runnable demo (source available [here](https://gitlab.ippon.fr/jstrickler/aws-connect-demo)).
 
-![Local Demo](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-local-demo.png)
+![Local Demo](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/05/connect-local-demo.png)
 
 ## Experience your new functionality
 
@@ -129,7 +129,7 @@ In order to receive a phone call, you first need to **claim a phone number**:
 
 Now you have a phone number.  You're ready to receive inbound calls.  Go to your application that you've intregated with the CCP and set yourself to **available** from the top-most dropdown menu.  Now call freshly-claimed phone number and it will appear as an inbound call!  
 
-![Receive a call](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-receive-call.png)
+![Receive a call](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/05/connect-receive-call.png)
 
 ### Receive a chat
 
@@ -139,7 +139,7 @@ First step to receiving a chat is to mark yourself as **available** on the CCP. 
 
 Next, visit *https://YOUR_INSTANCE_ID.my.connect.aws/test-chat*.  This page will load a simulation to initiate a chat with an agent.  Simply click the chat widget (shown below) and you'll receive the inbound request on the CCP.
 
-![Receive a call](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-chat-simulation.png)
+![Receive a call](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/05/connect-chat-simulation.png)
 
 ### Display contact information
 
