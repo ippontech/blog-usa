@@ -129,11 +129,20 @@ In order to receive a phone call, you first need to **claim a phone number**:
 
 Now you have a phone number.  You're ready to receive inbound calls.  Go to your application that you've intregated with the CCP and set yourself to **available** from the top-most dropdown menu.  Now call freshly-claimed phone number and it will appear as an inbound call!  
 
-![Receive a call](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-local-.png)
+![Receive a call](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-receive-call.png)
 
 ### Receive a chat
 
-Make yourself available.
+AWS provides a test simulation page for receiving inbound chats.  This is great for our testing purposes.  However, if you want to engage customers through your website then you can do so by embedding [AWS's chat widget](https://docs.aws.amazon.com/connect/latest/adminguide/add-chat-to-website.html) directly to your public website.
+
+First step to receiving a chat is to mark yourself as **available** on the CCP.  By doing so, you're ready to receive inbound communication.
+
+Next, visit *https://YOUR_INSTANCE_ID.my.connect.aws/test-chat*.  This page will load a simulation to initiate a chat with an agent.  Simply click the chat widget and you'll receive the inbound request on the CCP.
+
+
+![Receive a call](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-receive-.png)
+
+
 Log in to AWS Connect
 Use the Chat tester.
 
