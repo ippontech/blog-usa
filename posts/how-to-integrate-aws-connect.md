@@ -26,13 +26,13 @@ You should now have an instance created and ready with the settings that you spe
 
 ![Contact Control Panel](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/05/connect-initial-ccp.png)
 
-The CCP (shown above) represents the managed portion of the interface provided by AWS that allows for online voice and chat. It is the cornerstone for building a streamline communications platform.
+The CCP (shown above) represents the managed portion of the interface provided by AWS that allows for online voice and chat. It is the cornerstone for building a streamlined communication platform.
 
-The CCP as a standalone UI has a couple drawbacks. For starters, it's another window that has to be juggled in addition to any existing applications in use by the agent. In addition, we lose real time event information that we could be leveraging to aid the agent in servicing requests.  The rest of this post focuses on how to integrate the CCP into a new or existing web application so that we gain the full benefits of the Connect platform.
+The CCP as a standalone UI has a couple drawbacks. For starters, it's another window that has to be juggled in addition to any existing applications in use by the agent. In addition, we lose real time event information that we could be leveraging to aid the agent in servicing requests.  The rest of this post focuses on how to integrate the CCP into a new or existing web application thereby gaining the full benefits of the Connect platform.
 
 ## Integrating the Contact Control Panel
 
-The [Amazon Connect Streams library](https://github.com/amazon-connect/amazon-connect-streams) makes it possible to integrate your web applications with AWS Connect. It enables the direct embedding of the CCP to a web application and the ability access events in real time.
+The [Amazon Connect Streams library](https://github.com/amazon-connect/amazon-connect-streams) makes it simple to integrate your web applications with AWS Connect. It provides the functionality to directly embed the CCP to an existing (or new) web application and a robust API for hooking in to real-time events.
 
 For demonstration purposes, I created a Vue app and then fully integated the CCP to my newly created application.  The end result is a [locally-runnable demo](https://gitlab.ippon.fr/jstrickler/aws-connect-demo). The relevant pieces of the demo application are generic enough so that they can be repurposed to fit any web framework (React, Angular, etc).
 
