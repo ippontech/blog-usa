@@ -89,7 +89,7 @@ Follow these steps to integrate to any web application:
         const agentPermissions = agent.getPermissions()
     })
 
-    // On incoming calls or chats
+    // On inbound communication
     connect.contact(contact => {
         // receive contact metadata
         const contactAttributes = contact.getAttributes()
@@ -137,21 +137,41 @@ AWS provides a test simulation page for receiving inbound chats.  This is great 
 
 First step to receiving a chat is to mark yourself as **available** on the CCP.  By doing so, you're ready to receive inbound communication.
 
-Next, visit *https://YOUR_INSTANCE_ID.my.connect.aws/test-chat*.  This page will load a simulation to initiate a chat with an agent.  Simply click the chat widget and you'll receive the inbound request on the CCP.
+Next, visit *https://YOUR_INSTANCE_ID.my.connect.aws/test-chat*.  This page will load a simulation to initiate a chat with an agent.  Simply click the chat widget (shown below) and you'll receive the inbound request on the CCP.
 
+![Receive a call](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-chat-simulation.png)
 
-![Receive a call](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-receive-.png)
+### Display contact information
 
+One of the benefits of embedding the CCP to an application is being able to leverage the AWS Connect Streams library.  One example of this is simply reading information about the inbound contact.  This is demonstrated below:
 
-Log in to AWS Connect
-Use the Chat tester.
+```js
+// On inbound communication
+// https://github.com/amazon-connect/amazon-connect-streams/blob/master/Documentation.md#connectcontact
+connect.contact(contact => {
 
+    // is it a chat or a call?
+    // ex. "chat" 
+    contactType = contact.getType();
 
-### Display contact information on incoming call or chat
+    // if its an active session, how long as it been open?
+    // ex. 120
+    contactDuration = contact.getContactDuration();
 
-Subscribe to the "contact" event.
-On 
+    // is the call unanswered, answered, ended (pending close)
+    // ex. { "type": "ended", "timestamp": "2022-05-17T13:23:33.462Z" }
+    contactStatus = contact.getStatus();
+
+    // which queue did this come from? i.e. was it a high-priority contact?
+    // ex. { "queueARN": "arn:aws:connect:us-east-1:xxxxxxxxxxxx:instance/463534cd-1ba4-44f0-acdf-dfec3bd69104/queue/12dd58f7-9772-4e6b-bcc4-cb05b8fdd28c", "name": "BasicQueue", "queueId": "arn:aws:connect:us-east-1:xxxxxxxxxxxx:instance/463534cd-1ba4-44f0-acdf-dfec3bd69104/queue/12dd58f7-9772-4e6b-bcc4-cb05b8fdd28c" }
+    contactQueue = contact.getQueue();
+
+    // get capability information.  ex. are file transfers enabled on the client's device?
+    // ex. { "attachmentsEnabled": false, "messagingMarkdownEnabled": false, "multiPartyConferenceEnabled": null }
+    contactFeatures = contact.getContactFeatures();
+})
+```
 
 ## Wrapping up
 
-This is just the tip of the iceburg.  You now have full control over how to customize your agent and customer workflows by leveraging [all that Connect has to offer](https://aws.amazon.com/connect/features).  Explore your channels of communication, set yours hours of operations, create queues to route contacts, utilize contact flows (IVR) to build your customers' experience, and [much more](https://docs.aws.amazon.com/connect/?id=docs_gateway).
+This is just a fraction of what is possible with Connect.  By going all in with Connect, you now have full control over how to customize your agent and customer workflows by leveraging [all that Connect has to offer](https://aws.amazon.com/connect/features).  Explore your channels of communication, set yours hours of operations, create queues to route contacts, utilize contact flows (IVR) to build your customers' experience, and [much more](https://docs.aws.amazon.com/connect/?id=docs_gateway).
