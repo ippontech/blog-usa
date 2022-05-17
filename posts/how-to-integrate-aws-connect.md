@@ -91,7 +91,7 @@ Follow these steps to integrate to any web application:
 
     // On incoming calls or chats
     connect.contact(contact => {
-        // contact information
+        // receive contact metadata
         const contactAttributes = contact.getAttributes()
     })
     ```
@@ -112,6 +112,36 @@ Log in to your newly created Connect instance using the credentials that you set
 You should now be able to run your application after setting your approved origins.  The image below shows a runnable demo (source available [here](https://gitlab.ippon.fr/jstrickler/aws-connect-demo)).
 
 ![Local Demo](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-local-demo.png)
+
+## Experience your new functionality
+
+Now that you're set up, let's do a brief run through of the functionality that you've just unlocked.
+
+### Receive a phone call
+
+In order to receive a phone call, you first need to **claim a phone number**:
+
+- Log in to your Connect admin console at *https://YOUR_INSTANCE_ID.my.connect.aws*
+  - Use the admin credentials from your Connect setup (not your AWS account creds)
+- On the left hand menu, navigate to Routing -> Phone Numbers
+- Click "Claim a number" from the top-left buttons
+- Create either a toll-free or a DID (direct inward dialing) phone number
+
+Now you have a phone number.  You're ready to receive inbound calls.  Go to your application that you've intregated with the CCP and set yourself to **available** from the top-most dropdown menu.  Now call freshly-claimed phone number and it will appear as an inbound call!  
+
+![Receive a call](https://github.com/johnstrickler/blog-usa/raw/aws-connect/images/2022/05/connect-local-.png)
+
+### Receive a chat
+
+Make yourself available.
+Log in to AWS Connect
+Use the Chat tester.
+
+
+### Display contact information on incoming call or chat
+
+Subscribe to the "contact" event.
+On 
 
 ## Wrapping up
 
