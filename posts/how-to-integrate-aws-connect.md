@@ -23,7 +23,7 @@ The first step is to create an Amazon Connect instance. Log in to your AWS accou
 
 ![Amazon Connect Instance Creation](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/05/connect-instance-creation.png)
 
-You should now have an instance created and ready with the settings that you specified through the setup process.  Once the instance has launched, you can immediately preview the Contact Control Panel ("CCP") using the following URL `https://<instance_name>.my.connect.aws/ccp-v2/`, replacing `instance_name` with your Connect instance's name.  
+You should now have an instance created and ready with the settings that you specified through the setup process.  Once the instance has launched, you can immediately preview the Contact Control Panel ("CCP", "control panel") using the following URL `https://<instance_name>.my.connect.aws/ccp-v2/`, replacing `instance_name` with your Connect instance's name.  
 
 ![Contact Control Panel](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/05/connect-initial-ccp.png)
 
@@ -35,7 +35,7 @@ The CCP as a standalone UI has a couple drawbacks. For starters, it is another w
 
 The [Amazon Connect Streams library](https://github.com/amazon-connect/amazon-connect-streams) makes it simple to integrate your web applications with Amazon Connect. It provides the functionality to directly embed the CCP to an existing (or new) web application and a robust API for hooking in to real-time events.
 
-For demonstration purposes, I created a Vue.js app and then fully integrated the CCP to my newly-created application.  The end result is a [locally-runnable demo](https://gitlab.ippon.fr/jstrickler/aws-connect-demo). The relevant pieces of the demo application are generic enough so that they can be repurposed to fit any web framework (ReactJS, Angular, etc.).
+For demonstration purposes, I created an application using the Vue CLI then fully integrated the CCP to my newly created application.  The end result is a [local, runnable demo](https://gitlab.ippon.fr/jstrickler/aws-connect-demo). The relevant pieces of the demo application are generic enough so that they can be repurposed to fit any web framework (React, Angular, etc.).
 
 You can follow these steps to integrate the CCP to any web application:
 
@@ -48,22 +48,22 @@ You can follow these steps to integrate the CCP to any web application:
 2. Import the Connect Streams library in your application.
 
     ```js
-    // import this one time in your app
+    // import this only one time in your application
     // the "connect" singleton is available on the global scope
     import "amazon-connect-streams";
     ```
 
-3. Create a placeholder tag to add to your page.
+3. Create a HTML placeholder tag on your page.
 
     ```html
-    <!-- Create a placeholder tag -->
+    <!-- Placeholder for embedding of the CCP -->
     <div id="ccp"></div>
     ```
 
-4. Initialize the control panel. Use your Connect instance identifier where it says `instance-id` below.
+4. [Initialize](https://github.com/amazon-connect/amazon-connect-streams/blob/master/Documentation.md#connectcoreinitccp) the control panel. Use your Connect instance identifier where it says `instance-id` below.
 
     ```js
-    /* initialize the control panel and bind to an element on your page */
+    /* initialize and bind to placeholder on your page */
     connect.core.initCCP(document.getElementById('ccp'), {
         ccpUrl: 'https://instance-id.my.connect.aws/connect/ccp-v2',
         region: 'us-east-1',
@@ -79,7 +79,7 @@ You can follow these steps to integrate the CCP to any web application:
     })
     ```
 
-5. Hook in to [Connect events](https://github.com/amazon-connect/amazon-connect-streams/blob/master/Documentation.md).
+5. (Optional) Hook in to [Connect events](https://github.com/amazon-connect/amazon-connect-streams/blob/master/Documentation.md).
 
     ```js
     // When an agent is logs in
@@ -99,7 +99,7 @@ You can follow these steps to integrate the CCP to any web application:
 
 ## Configuring your Amazon Connect Instance
 
-The last step is to specify an **approved origin**. This is the base URL, and hence application(s), that you are giving permission to integrate with your newly-created Connect instance. Follow the below steps to specify one or more approved origins based on your needs:
+The last step is to specify an **approved origin**. This is the base URL, and hence application(s), that you are giving permission to integrate with your new Connect instance. Follow the below steps to specify one or more approved origins based on your needs:
 
 1. Go to the Account overview page for your instance by clicking the `Instance alias` name from the Instances table
 2. Select `Approved origins` from the left-side navigation menu
@@ -108,7 +108,7 @@ The last step is to specify an **approved origin**. This is the base URL, and he
    - `https://development-url`
    - `http://localhost:4200`
 
-Log in to your newly-created Connect instance using the credentials that you set up above in step #3. The first time that you log in, you will be presented a **Dashboard** page with a step-by-step tutorial on how to configure and tune your new Cloud Contact Center.
+Log in to your Connect instance using the admin credentials that you set up when first creating the instance. The first time that you log in, you will be presented a **Dashboard** page with a step-by-step tutorial on how to configure and tune your new Cloud Contact Center.
 
 You should now be able to run your application after setting the approved origins.  The image below shows a runnable demo (source available [here](https://gitlab.ippon.fr/jstrickler/aws-connect-demo)).
 
