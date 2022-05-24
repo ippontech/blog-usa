@@ -87,7 +87,7 @@ A Caller's Rights Stored Procedure can see variables that were set by statements
 > | I was set inside the StProc. |
 > +------------------------------+
 
->> Although you can set a session variable inside a stored procedure and leave it set after the end of the procedure, Snowflake does **not** recommend doing this.
+Although you can set a session variable inside a stored procedure and leave it set after the end of the procedure, Snowflake does **not** recommend doing this.
 
 TL;DR:
 * The stored procedure can see the variable that was set by statements before the procedure was called.
@@ -109,11 +109,11 @@ Owner's Rights Stored Procedures:
 * Does not have access to SQL variables created outside the stored procedure ^[ If your stored procedure needs values that are stored in the current session's SQL variables, then the values in those variables should be passed as explicit arguments to the procedure]
 
 Owner's Rights Procedures have several additional restrictions which affect the following:
-* [Built-in functions called from inside a procedure](#####restrictions-on-built-in-functions)
-* [The execution of ALTER USER statements](#####alter-user)
-* [Monitoring of stored procedures at execution](#####monitoring-stored-procedures-at-execution) 
-* [SHOW and DESCRIBE commands](#####show-and-describe-commands)
-* [The types of SQL that can be called from inside a stored procedure](#####restrictions-on-sql-statements)
+* [Built-in functions called from inside a procedure](#restrictions-on-built-in-functions)
+* [The execution of ALTER USER statements](#alter-user)
+* [Monitoring of stored procedures at execution](#monitoring-stored-procedures-at-execution) 
+* [SHOW and DESCRIBE commands](#show-and-describe-commands)
+* [The types of SQL that can be called from inside a stored procedure](#restrictions-on-sql-statements)
 
 ##### Restrictions on Built-In Functions
 If a stored procedure is created as an owner's rights stored procedure, then callers (other than the owner), cannot call the following built-in functions:
@@ -133,18 +133,18 @@ A user with the WAREHOUSE MONITOR privilege can monitor execution of the individ
 An owner’s rights stored procedure does not have sufficient privileges to read information about users other than the caller. For example, running `SHOW USERS LIKE <current_user>` will show information about the current user, but the more general SHOW USERS does not work unless the current user is the only user.
 
 The following SHOW commands are permitted:
-*SHOW DATABASES.
-*SHOW SCHEMAS.
-*SHOW WAREHOUSES.
+* SHOW DATABASES.
+* SHOW SCHEMAS.
+* SHOW WAREHOUSES.
 
 ##### Restrictions on SQL Statements
 Caller's rights stored procedures can execute any SQL statement that the caller has sufficient privileges to execute outside of a stored procedure. Owner's rights stored procedures, however, can call only a subset of SQL statements. These are the SQL statements that can be called from inside an owner's rights stored procedure:
-* SELECT
-* DML
-* DDL (See the restrictions of Alter User above,)
-* GRANT/REVOKE
+* [SELECT](https://docs.snowflake.com/en/sql-reference/sql/select.html)
+* [DML](https://docs.snowflake.com/en/sql-reference/sql-dml.html)
+* [DDL](https://docs.snowflake.com/en/sql-reference/sql-ddl-summary.html) (See the restrictions of Alter User above,)
+* [GRANT](https://docs.snowflake.com/en/sql-reference/sql/grant-privilege.html)/[REVOKE](https://docs.snowflake.com/en/sql-reference/sql/revoke-privilege.html)
 * Variable assignment
-* DESCRIBE and SHOW (See limitations on describe and show above.)
+* [DESCRIBE](https://docs.snowflake.com/en/sql-reference/sql/desc.html) and [SHOW](https://docs.snowflake.com/en/sql-reference/sql/show.html) (See limitations on describe and show above.)
 
 All other SQL statements cannot be called from inside an owner's rights stored procedure.
 
@@ -194,7 +194,7 @@ y = stored_procedure1(x) --NOT ALLOWED
 We've discussed some of the benefits of stored procedures, how session state can be handled in stored procedures and examined the differences between User Defined Functions and Stored Procedures. Now we will begin our deep dive into Stored Procedures by creating a new stored procedure that will, given the type of animal, return the names of all the creatures of that type.
 
 ## Creating a Stored Procedure
-In Snowflake, Stored Procedures are First-Class Objects^[An entity that can be dynamically created, destroyed, passed to a function or returned as a value], and as such can use the following commands: CREATE PROCEDURE, ALTER PROCEDURE, DROP PROCEDURE, DESCRIBE PROCEDURE and SHOW PROCEDURES. Snowflake also provides the CALL command for executing Stored Procedures.
+In Snowflake, Stored Procedures are First-Class Objects^[An entity that can be dynamically created, destroyed, passed to a function or returned as a value], and as such can use the following commands: `CREATE PROCEDURE`, `ALTER PROCEDURE`, `DROP PROCEDURE`, `DESCRIBE PROCEDURE` and `SHOW PROCEDURES`. Snowflake also provides the CALL command for executing Stored Procedures.
 
 Let's walk through an example to view the different components of a Stored Procedure in Snowflake.
 ```plsql
@@ -233,9 +233,9 @@ The parameters of stproc1():
   * You must use string literal delimiters (`'` or `$$`) around the procedure definition if:
     * You are using a language other than Snowflake Scripting.
     * You are creating a Snowflake Scripting procedure in SnowSQL or the classic web interface.
-  * For languages other than Snowflake Scripting, Snowflake does not completely validate the code when you execute the CREATE PROCEDURE command. If the code is not valid, CREATE PROCEDURE will succeed, but errors will be returned when the stored procedure is called.
+  * For languages other than Snowflake Scripting, Snowflake does not completely validate the code when you execute the `CREATE PROCEDURE` command. If the code is not valid, `CREATE PROCEDURE` will succeed, but errors will be returned when the stored procedure is called.
 
-For Snowpark (Scala and Java)
+For Snowpark (Scala and Java):
 * ```RUNTIME_VERSION = '<scala_or_java_runtime_version>'```
   The runtime version of Scala or Jva to use. The only supported varsions are:
     * `2.12` - Scala
@@ -274,7 +274,7 @@ There are also optional parameters that can be specified in a CREATE PROCEDURE s
     If you execute ```CREATE PROCEDURE ... EXECUTE AS OWNER```, then the procedure will execute as an owner’s rights procedure.
     * By default, if neither is specified explicitly at procedure creation, the procedure runs as an owner’s rights stored procedure. Owner’s rights stored have less access to the caller’s environment (caller’s session variables, etc.), and Snowflake defaults to this higher level of privacy and security.
 
-For Snowpark (Scala and Java)
+For Snowpark (Scala and Java):
 * ```IMPORTS = ( '<stage_path_and_file_name_to_read>' [ '<stage_path_and_file_name_to_read>' ...] ) ```
   The location (stage), path, and name of the file(s) to import. You must set the `IMPORTS` clause to include any files that your stored procedure dependes on. This clause can be omitted for an in-line stored procedure unless your code depends on classes defined outside the stored procedure or resource files. If you are writing a pre-compiled store procedure, you must include the JAR file containing the definition of the stored procedure. Additionally, each file in the `IMPORTS` clause must have a unique name even if the files are in different subdirectories or different stages.
 
@@ -309,7 +309,7 @@ To finish off our discussion of Stored Procedures, I am going to delve a little 
 There are currently two privileges that can apply to stored procedures: USAGE and OWNERSHIP. For a role to use a stored procedure, it must either be the owner of the stored procedure or have been granted USAGE on the procedure ^[For a more in-depth view on Access Control in Snowflake, I refer you to [Access Control Considerations](https://docs.snowflake.net/manuals/user-guide/security-access-control-considerations.html) in the Snowflake Documentation.]. In addition, the roles executing the procedure must also have the USAGE privilege for all database objects accessed during the course of the procedure.
 
 ----
-During this blog, we've examined Snowflake Stored Procedures from Creation to Execution. We've also discussed some of the key differences between stored procedures and user-defined functions as well as examined session state and the two types of procedures Snowflake provides. To round out procedures, we briefly viewed access control in Snowflake and how privileges can affect procedure execution.
+During this blog, we've examined Snowflake Stored Procedures from creation to execution. We've also discussed some of the key differences between stored procedures and user-defined functions as well as examined session state and the two types of procedures Snowflake provides. To round out procedures, we briefly viewed access control in Snowflake and how privileges can affect procedure execution.
 
 ----
 For more information on how Ippon Technologies, a Snowflake partner, can help your organization utilize the benefits of Snowflake for a migration from a traditional Data Warehouse, Data Lake or POC, contact sales@ipponusa.com.
