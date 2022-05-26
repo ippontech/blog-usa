@@ -21,3 +21,12 @@ The Ethereum Name Service (ENS) is an open source decentralized internet naming 
 
 The native suffix of ENS is .eth but does support other Top Level Domains (TLDs) like .luxe, .abc, and .xyz with DNSSEC integration implementation.
 
+## Creating a Wallet
+
+Ethereum wallets are applications that let you interact with your Ethereum account. Think of it like an internet banking app – without the bank. Your wallet lets you read your balance, send transactions and connect to applications. You will need a wallet and some ethereum to register an ENS domain. You can create a metamask or coinbase wallet for free.
+
+- [Coinbase](https://www.coinbase.com/wallet)
+
+- [MetaMask](https://metamask.io/)
+
+
