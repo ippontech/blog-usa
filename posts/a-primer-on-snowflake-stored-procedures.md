@@ -4,7 +4,7 @@ authors:
 tags:
 - Cloud
 - Snowflake
-date: 2019-08-07T10:33:00.000Z
+date: 2022-05-24T10:33:00.000Z
 title: "A Primer on Snowflake Stored Procedures"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/08/Snowflake.png
 ---
