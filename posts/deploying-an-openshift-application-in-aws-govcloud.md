@@ -12,6 +12,8 @@ date: 2021-12-15T12:21:50.000Z
 title: "Deploying an OpenShift Application in AWS GovCloud"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2021/12/deploying-an-openshift-application-in-aws-govcloud.png
 ---
+
+- FedRAMP High Compliance
 # Context
 Our project entailed moving an existing web application from a commercial AWS account to AWS GovCloud. In addition to moving to GovCloud, we had to adhere to FedRAMP High security guidelines. The original application was never designed to run in GovCloud. We will offer some tips on how to make a move like this as smooth as possible.
 
@@ -24,9 +26,7 @@ The original application was built using the following technologies:
 - Kafka
 - Redis
 - OKD (Open Source RedHat OpenShift)
-
-The target environment required:
-- FedRAMP High Compliance
+  The target environment required:
 - RedHat OpenShift
 - AWS GovCloud
 
