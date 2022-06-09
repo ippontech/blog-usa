@@ -58,7 +58,7 @@ You can now attach the wallet to the ENS app using the browser extension.
 
 You can fund the wallet by buying ETH on MetaMask itself OR you can use an exchange like Coinbase, Kraken, Gemini or Binance (US) to buy the ETH there and then send it to your wallet's address.
 
-## Using ENS App
+## Exploring ENS App
 
 Link to --> [Ethereum Name Service App](https://app.ens.domains/)
 
@@ -88,3 +88,12 @@ Using Etherscan we can search the blockchain for the transactions belonging to t
 ![ippon.eth etherescan address](../images/2022/06/ippon.eth.etherscan.png)
 
 ![ippon.eth owner transactions](../images/2022/06/ippon.eth.etherscan.owner.png)
+
+![ippon.eth ENS transaction on Etherscan](../images/2022/06/ippon.eth.etherscan.transaction.png)
+We can observe a multitude of metadata regarding the ENS registration transaction for **ippon.eth**
+
+## Registering an ENS username
+
+To register your unique web3 domain/username you need to find an address that is still available and not registered to anyone else. Then you would need to have sufficient amount of ETH in your wallet to pay for ENS registration and Ethereum gas fees. The longer you wish to register a name for the more in ETH it is going to cost. Anything less than 5 characters is also more expensive. Here is an example for **ippontechnologies.eth**
+
+![ippontechnologies.eth ENS](../images/2022/06/ens.ippontechnologies.png)
