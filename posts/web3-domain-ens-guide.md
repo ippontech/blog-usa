@@ -44,8 +44,22 @@ Follow the instructions and make sure to save your secret seed phrase somewhere 
 
 ![MetaMask Wallet Registered](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/06/metamask.wallet.png)
 
-Once the wallet is setup, you can attach the wallet to the ENS app using the browser extension.
+You should be able to see your wallet after the setup is completed.
 
-## Linking the Wallet to ENS
+## Linking and funding a Wallet to ENS
+
+You can now attach the wallet to the ENS app using the browser extension.
 
 ![Connecting the MetaMask Wallet](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/06/metamask.ens.png)
+
+You can fund the wallet by buying ETH on MetaMask itself OR you can use an exchange like Coinbase, Kraken, Gemini or Binance (US) to buy the ETH there and then send it to your wallet's address.
+
+## Using ENS App
+
+In this example we search for "ippon.eth" 
+
+![ENS ippon.eth](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/06/ippon.eth.png)
+
+As you see, this ENS domain is already registered to an address :(
+
+![ippon.eth owner](../images/2022/06/ippon.eth.details.png)
