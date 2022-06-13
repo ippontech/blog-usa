@@ -105,7 +105,7 @@ Owner's Rights Stored Procedures:
 * Inherit the current warehouse of the caller.
 * Use the database and schema that the stored procedure is created in.
 * Cannot access most caller-specific information ^[This includes viewing, setting and unsetting session variables, calling functions such as CURRENT_USER() and querying INFORMATION_SCHEMA table functions that return results based on the current user.]
-* Can only read supported session parameters, and cannot set or unset any of the caller’s session parameters.
+* Can only read supported session parameters and cannot set or unset any of the caller’s session parameters.
 * Non-owners are not able to view information about the procedure from the PROCEDURES view.
 * Does not have access to SQL variables created outside the stored procedure ^[ If your stored procedure needs values that are stored in the current session's SQL variables, then the values in those variables should be passed as explicit arguments to the procedure]
 
@@ -130,7 +130,7 @@ Neither the owner nor the caller of an owner’s rights stored procedure necessa
 
 A user with the WAREHOUSE MONITOR privilege can monitor execution of the individual warehouse-related SQL statements within that stored procedure. Most queries and DML statements are warehouse-related statements. DDL statements, such as CREATE, ALTER, etc. do not use the warehouse and cannot be monitored as part of monitoring stored procedures.
 
-##### SHOW and DESCRIBE commands
+##### SHOW and DESCRIBE Commands
 An owner’s rights stored procedure does not have sufficient privileges to read information about users other than the caller. For example, running `SHOW USERS LIKE <current_user>` will show information about the current user, but the more general SHOW USERS does not work unless the current user is the only user.
 
 The following SHOW commands are permitted:
@@ -154,7 +154,7 @@ All other SQL statements cannot be called from inside an owner's rights stored p
 > * An owner’s rights stored procedure always behaves as an owner’s rights stored procedure, no matter where it was called from.
 > * Any stored procedure called directly or indirectly from an owner’s rights stored procedure behaves as an owner’s rights stored procedure.
 
-##### Choosing between Owner's Rights and Caller's Rights
+##### Choosing Between Owner's Rights and Caller's Rights
 Create a stored procedure as an owner's rights stored procedure if **all** of the following is true:
 * A task needs to be delegated to another user who will run with owner's privileges, not their own.
   * E.g., If you need a user without DELETE privilege on a table to be able to call a procedure to delete old data, without manipulating current data.
