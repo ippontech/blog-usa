@@ -6,14 +6,14 @@ tags:
 - Snowflake
 date: 2022-05-24T10:33:00.000Z
 title: "A Primer on Snowflake Stored Procedures"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2019/08/Snowflake.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/06A-Primer-on-Snowflake-Stored-Procedures.png
 ---
 
-Snowflake is a data warehouse as a service hosted completely in the cloud. For a Snowflake Primer, take a look at the [Introduction to Snowflake](https://blog.ippon.tech/introduction-to-snowflake/) post. For a look at some of Snowflake's Innovative Features, I refer you to [Snowflake's Architecture](https://blog.ippon.tech/innovative-snowflake-features-part-1-architecture/), which takes an in-depth look at Snowflake's Architecture and what its benefits are. In that blog, I briefly examine Snowflake Procedures and discuss when Procedures should be used versus User Defined Functions (UDF)s. In the following, I am going to examine Snowflake Procedures further.
+Snowflake is a data warehouse-as-a-service hosted completely in the cloud. For a Snowflake Primer, take a look at the [Introduction to Snowflake](https://blog.ippon.tech/introduction-to-snowflake/) post. For a look at some of Snowflake's innovative features, I refer you to [Snowflake's Architecture](https://blog.ippon.tech/innovative-snowflake-features-part-1-architecture/), which takes an in-depth look at Snowflake's architecture and what its benefits are. In that blog, I briefly examine Snowflake Procedures and discuss when Procedures should be used versus User Defined Functions (UDF)s. In the following, I am going to examine Snowflake Procedures further.
 
 ---
 # Stored Procedures
-Stored Procedures, much like functions, are created once and can be executed many times. They are created with the ```CREATE PROCEDURE``` command and are executed with the ```CALL``` command. It is important to note Stored Procedures in Snowflake always return a single value or nothing at all. So, while ```SELECT``` statements can be executed inside a procedure, their results must be utilized somewhere within the stored procedure or narrowed down to a single value to be returned.
+Stored Procedures, much like functions, are created once and can be executed many times. They are created with the ```CREATE PROCEDURE``` command and are executed with the ```CALL``` command. It is important to note that Stored Procedures in Snowflake always return a single value or nothing at all. So, while ```SELECT``` statements can be executed inside a procedure, their results must be utilized somewhere within the stored procedure or narrowed down to a single value to be returned.
 
 Stored Procedures can be written in one of the following languages:
 * JavaScript
@@ -33,7 +33,7 @@ Caller's rights stored procedures adhere to the following rules in a session:
 * Run with the privileges of the caller
 * Inherit the current warehouse of the caller
 * Uses the database and schema the caller is currently using
-* Can view, set and unset the caller's session variables and session parameters.
+* Can view, set, and unset the caller's session variables and session parameters.
 
 A Caller's Rights Stored Procedure can see variables that were set by statements before the procedure was called.  Statements executed after the stored procedure can see the variable(s) set inside the procedure. This is a little difficult to grasp, so I've included an example below to help.
 
@@ -96,7 +96,7 @@ TL;DR:
 In many cases, this is the desired behavior since we may want to inherit contextual information. In cases where the stored procedure should be more isolated, Snowflake provides a few pointers:
 * Avoid using session-level variables directly. Pass them as explicit parameters, as it forces the caller to think about exactly what values the stored procedure will use.
 * Clean up any session-level variables that you set inside the stored procedure and use names that are not likely to be used anywhere else.
-Above all, remember that unlike programming in languages such as C or Java, variables set inside a stored procedure will not be garbage collected once the function is finished. Isolating your stored procedure from its environment requires more effort in SQL than in C or Java.
+Above all, remember that unlike programming in languages such as C or Java, variables set inside a stored procedure will **not** be garbage collected once the function is finished. Isolating your stored procedure from its environment requires more effort in SQL than in C or Java.
 
 #### Owner's Rights Stored Procedures
 Owner's Rights Stored Procedures:
@@ -156,7 +156,7 @@ All other SQL statements cannot be called from inside an owner's rights stored p
 ##### Choosing between Owner's Rights and Caller's Rights
 Create a stored procedure as an owner's rights stored procedure if **all** of the following is true:
 * A task needs to be delegated to another user who will run with owner's privileges, not their own.
-  * Ex: If you need a user without DELETE privilege on a table to be able to call a procedure to delete old data, without manipulating current data.
+  * E.g., If you need a user without DELETE privilege on a table to be able to call a procedure to delete old data, without manipulating current data.
 
 Create a stored procedure as a caller's rights stored procedure if the following is true:
 * The stored procedure operates only on objects the caller owns or has required privileges on.
@@ -191,7 +191,7 @@ y = stored_procedure1(x) --NOT ALLOWED
 
 ---
 # Stored Procedures 101
-We've discussed some of the benefits of stored procedures, how session state can be handled in stored procedures and examined the differences between User Defined Functions and Stored Procedures. Now we will begin our deep dive into Stored Procedures by creating a new stored procedure that will, given the type of animal, return the names of all the creatures of that type.
+We have discussed some of the benefits of stored procedures, how session state can be handled in stored procedures, and examined the differences between User-Defined Functions and Stored Procedures. Now we will begin our deep dive into Stored Procedures by creating a new stored procedure that will, given the type of animal, return the names of all the creatures of that type.
 
 ## Creating a Stored Procedure
 In Snowflake, Stored Procedures are First-Class Objects^[An entity that can be dynamically created, destroyed, passed to a function or returned as a value], and as such can use the following commands: `CREATE PROCEDURE`, `ALTER PROCEDURE`, `DROP PROCEDURE`, `DESCRIBE PROCEDURE` and `SHOW PROCEDURES`. Snowflake also provides the CALL command for executing Stored Procedures.
@@ -223,7 +223,7 @@ The parameters of stproc1():
     * [SQL-Java Data Type Mappings for Parameters and Return Types](https://docs.snowflake.com/en/developer-guide/udf/java/udf-java-designing.html#label-sql-java-data-type-mappings).
 
 * ```LANGUAGE SQL```
-  Specifies what language the stored procedure is written in.  A procedure can currently be written in one of the following languages: JavaScript, Snowflake Scripting (SQL), Scala (using Snowpark) and Java (using Snowpark) 
+  Specifies the language in which the stored procedure is written.  A procedure can currently be written in one of the following languages: JavaScript, Snowflake Scripting (SQL), Scala (using Snowpark), and Java (using Snowpark)
 
 * ```AS $$ <procedure_logic> $$;```
   Defines the code executed by the stored procedure. The definition can consist of any valid code.
@@ -309,7 +309,7 @@ To finish off our discussion of Stored Procedures, I am going to delve a little 
 There are currently two privileges that can apply to stored procedures: USAGE and OWNERSHIP. For a role to use a stored procedure, it must either be the owner of the stored procedure or have been granted USAGE on the procedure ^[For a more in-depth view on Access Control in Snowflake, I refer you to [Access Control Considerations](https://docs.snowflake.net/manuals/user-guide/security-access-control-considerations.html) in the Snowflake Documentation.]. In addition, the roles executing the procedure must also have the USAGE privilege for all database objects accessed during the course of the procedure.
 
 ----
-During this blog, we've examined Snowflake Stored Procedures from creation to execution. We've also discussed some of the key differences between stored procedures and user-defined functions as well as examined session state and the two types of procedures Snowflake provides. To round out procedures, we briefly viewed access control in Snowflake and how privileges can affect procedure execution.
+During this blog, we have examined Snowflake Stored Procedures from creation to execution. We have also discussed some of the key differences between stored procedures and user-defined functions, as well as examined session state and the two types of procedures Snowflake provides. To round out procedures, we briefly viewed access control in Snowflake and how privileges can affect procedure execution.
 
 ----
-For more information on how Ippon Technologies, a Snowflake partner, can help your organization utilize the benefits of Snowflake for a migration from a traditional Data Warehouse, Data Lake or POC, contact sales@ipponusa.com.
+For more information on how Ippon Technologies, a Snowflake Services Partner, can help your organization utilize the benefits of Snowflake for a migration from a traditional data warehouse, data lake, or POC, contact sales@ipponusa.com.
