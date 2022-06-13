@@ -4,6 +4,7 @@ authors:
 tags:
 - Cloud
 - Snowflake
+- Data Warehousing
 date: 2022-05-24T10:33:00.000Z
 title: "A Primer on Snowflake Stored Procedures"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/06A-Primer-on-Snowflake-Stored-Procedures.png
