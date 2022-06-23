@@ -12,6 +12,8 @@ date: 2022-05-25T00:00:00.000Z
 
 title: "Guide to Web3 domains with ENS"
 
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/06/ens.logo.png
+
 ---
 
 #Guide to Web3 domains with ENS
@@ -94,6 +96,8 @@ We can observe a multitude of metadata regarding the ENS registration transactio
 
 ## Registering an ENS username
 
-To register your unique web3 domain/username you need to find an address that is still available and not registered to anyone else. Then you would need to have sufficient amount of ETH in your wallet to pay for ENS registration and Ethereum gas fees. The longer you wish to register a name for the more in ETH it is going to cost. Anything less than 5 characters is also more expensive. Here is an example for **ippontechnologies.eth**
+To register your unique web3 domain/username you need to find an address that is still available and not registered to anyone else. Then you would need to have sufficient amount of ETH in your wallet to pay for ENS registration and Ethereum gas fees. The longer you wish to register a name for, the more in ETH it is going to cost. Anything less than 5 characters is also more expensive. Here is an example for **ippontechnologies.eth**
 
 ![ippontechnologies.eth ENS](../images/2022/06/ens.ippontechnologies.png)
+
+You can use your ENS username to attach it to your wallet address and even set up an image or an NFT as your profile avatar. People can send you different cryptocurrencies by just using your web3 username instead of having to use an ETH or BTC hex string addresses.
