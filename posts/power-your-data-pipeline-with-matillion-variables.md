@@ -2,18 +2,18 @@
 authors:
 - Hector Sanchez
 tags:
-- matillion
+- Matillion
 - ETL
 - ELT
-- variables
-- data engineering
-- software engineering
+- Variables
+- Data Engineering
+- Software Engineering
 date: 2022-08-11T12:21:50.000Z
 title: "Power your Data Pipeline with Matillion Variables"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/matillion_variables_cover.png
 ---
 
-Matillion is a great ETL tool for bringing over data from disparate sources into one central location (Snowflake, for example). Matillion provides a number of tools and components that will help you in bringing in and transforming your data but one of the most valuable would have to be its concept of Job and Grid Variables. With these you will be able to add a level of dynamism that simply cannot be achieved any other way. Let’s take a look at an example.
+Matillion is a great ETL tool for bringing over data from disparate sources into one central location (Snowflake, for example). Matillion provides a number of tools and components that will help you ingest and transform your data, but one of the most valuable assets would have to be its concept of Job and Grid Variables. With these, you will be able to add a level of dynamism that simply cannot be achieved any other way. Let’s take a look at an example.
 
 ### Bring In a Set List Of Tables
 In this example we’ll have a set list of tables that we know we would like to bring into Snowflake. One option we could do is create a table on Snowflake that can hold these values for us to use within Matillion. 
