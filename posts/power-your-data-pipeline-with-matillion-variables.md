@@ -58,3 +58,5 @@ Here we’ll use ${table_name} to signify that we want to use the value found in
 
 ### Conclusion
 Matillion variables make it easy to create dynamically driven jobs that can rely on data found outside of Matillion itself. This can allow anyone to update jobs without having to go into Matillion at all, in this case adding new data to bring into Snowflake by simply updating a table that contains table names.
+
+Need help using Matillion? Need help designing and implementing your future Data Warehouse? Ippon can help! Send us a line at <a href="mailto:contact@ippon.tech">contact@ippon.tech</a>.
