@@ -2,7 +2,7 @@
 authors:
 - Hector Sanchez
 tags:
-- matillion
+- Matillion
 - ETL
 - ELT
 - variables
