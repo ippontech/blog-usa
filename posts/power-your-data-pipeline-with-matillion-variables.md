@@ -7,7 +7,7 @@ tags:
 - ELT
 - Variables
 - Data Engineering
-- software engineering
+- Software Engineering
 date: 2022-08-11T12:21:50.000Z
 title: "Power your Data Pipeline with Matillion Variables"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/matillion_variables_cover.png
