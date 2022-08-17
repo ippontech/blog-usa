@@ -50,7 +50,7 @@ This is great so far, but we need our job to actually do something over each ite
 
 ![model_6](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/matillion_variables_6.png)
 
-Now here is where our Job variable will tie everything together. Within our Database Query component we’ll enter the required info such as Connection URL, Username, Password, but we’ll also be using our Job Variable when we fill out the SQL Query and Target Table values.
+Now here is where our Job variable will tie everything together. Within our Database Query component, we’ll enter the required info such as Connection URL, Username, and Password, but we’ll also be using our Job Variable when we fill out the SQL Query and Target Table values.
 
 ![model_7](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/matillion_variables_7.png)
 
