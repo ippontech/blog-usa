@@ -5,7 +5,7 @@ tags:
 - Matillion
 - ETL
 - ELT
-- variables
+- Variables
 - data engineering
 - software engineering
 date: 2022-08-11T12:21:50.000Z
