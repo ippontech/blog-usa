@@ -44,7 +44,7 @@ Within our Matillion orchestration job we’re going to use a couple of componen
 
 Point the Table Iterator to the Snowflake table holding your list of table names by filling in the Database, Schema, and Target Table values. The Column Mapping entry is where we link the values in our table to the Job Variable we created earlier. Now on each iteration our table_name variable will be updated with a new table name from our list. 
 
-This is great but we need our job to actually do something over each iteration, namely load our tables into Snowflake. We’ll pull in a Database Query component and instead of only loading one table, we’ll connect it to our Table Iterator to load all tables on our list.
+This is great so far, but we need our job to actually do something over each iteration, namely load our tables into Snowflake. We’ll pull in a Database Query component and instead of only loading one table, we’ll connect it to our Table Iterator to load all tables on our list.
 
 ![model_5](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/matillion_variables_5.png)
 
