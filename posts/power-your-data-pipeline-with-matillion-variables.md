@@ -6,7 +6,7 @@ tags:
 - ETL
 - ELT
 - Variables
-- data engineering
+- Data Engineering
 - software engineering
 date: 2022-08-11T12:21:50.000Z
 title: "Power your Data Pipeline with Matillion Variables"
