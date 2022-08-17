@@ -31,7 +31,7 @@ Within our orchestration job, right-click and select 'Manage Job Variables:'
 
 ![model_2](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/matillion_variables_2.png)
 
-On the next screen click the + sign at the bottom to add a new variable. In this case we’ll name our new Job variable table_name.
+On the next screen, click the '+' sign at the bottom to add a new variable. In this case, we’ll name our new Job variable 'table_name'.
 
 ![model_3](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/matillion_variables_3.png)
 
