@@ -27,7 +27,7 @@ Now it’s time to set up our Matillion orchestration job and define a variable 
 ### Set up a Variable in Matillion
 There are two types of variables in Matillion - Job and Grid variables. A Job variable can hold a single value, whereas a Grid variable can be thought of as an array holding multiple values. For our example, we’ll be using a Job variable. 
 
-Within our orchestration job, right-click and select 'Manage Job Variables:'
+Within our orchestration job, right-click and select 'Manage Job Variables'.
 
 ![model_2](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/matillion_variables_2.png)
 
