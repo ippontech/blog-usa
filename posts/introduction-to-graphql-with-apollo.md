@@ -7,7 +7,7 @@ tags:
   - apollo
 date: 2022-08-18T17:47:50.000Z
 title: "Introduction to GraphQL with Apollo"
-image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/TODO.png
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.title.jpg
 ---
 
 GraphQL is a modern approach to client-server communication and aims to improve the way developers build applications on the web. As its name suggests (QL = Query Language), it is a data query language for API, strongly typed, and a runtime environment to process these requests.
@@ -20,25 +20,25 @@ Today, GraphQL is mentioned more and more frequently as THE alternative solution
 
 The REST formalism forces the client to bend to the existing server-side endpoints to retrieve the resources it needs, and so often call multiple endpoints to fetch whole data (or more data than required). With GraphQL, **one call is enough** to do the same: the client will make this single call to the GraphQL server, which will be responsible for retrieving all requested resources.
 
-![rest-vs-graphql](../images/2022/08/graphql.rest-vs-graphql.png)
+![rest-vs-graphql](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.rest-vs-graphql.png)
 
 Thanks to GraphQL, **we will be able to get many resources with only one request** (composite pattern), these resources can be stored in different ways (API, database, file, etc.). This prevents **over fetching** (too much data) and **under fetching** (not enough data). For this reason, calls between the client and the server are faster and lighter.
 
 GraphQL may also be used to implement other design patterns. For instance, we can **simplify the use of a complex API** by adding a GraphQL bloc between the client and this API (facade pattern). Similarly, it is possible to include a GraphQL layer **to enrich an old API with a new feature**, for example an authentication layer (proxy pattern).
 
-![proxy_and_facade_pattern](../images/2022/08/graphql.proxy_and_facade_pattern.png)
+![proxy_and_facade_pattern](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.proxy_and_facade_pattern.png)
 
 Here’s what a request and a response from the GraphQL server actually looks like:
 
-![request_response_example](../images/2022/08/graphql.request_response_example.png)
+![request_response_example](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.request_response_example.png)
 
 Every GraphQL response is a JSON map and represents a graph, where the objects are linked together. These links can be represented by the following graph:
 
-![graph](../images/2022/08/graphql.graph.png)
+![graph](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.graph.png)
 
 Below is a diagram summarizing how GraphQL works with these specific keywords, which we will look at in the rest of this article:
 
-![structure](../images/2022/08/graphql.structure.png)
+![structure](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.structure.png)
 
 # Interlude
 
@@ -214,7 +214,7 @@ Another point is that _resolvers_ define all possible operations that the server
 
 A _query_ is used **to fetch values from the GraphQL server**: it is therefore a data reading operation. The _payload_ return is in JSON format and different _queries_ can be executed in parallel. These _queries_ are defined in the schema and processed in the _resolver_.
 
-![query](../images/2022/08/graphql.query.png)
+![query](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.query.png)
 
 GraphQL links the client to the server via the name of the method you want to call (here, `books` highlighted in yellow). Once the request has been received, the server will check it exists in the schema under the `Query` type and it has the correct parameters and return type (here, no parameter but a list of `Book` in output).
 
@@ -261,7 +261,7 @@ How does the server know the difference between a `Book` and a `Movie`?
 
 Firstly, the _query_ must be declared in the schema and defined in the associate _resolver_ (such as the **books’** _query_). Next, the special function `__resolveType` provided by apollo-server will be included in the resolver of the `Media` object. This function will allow us to define the type of implementation that will be returned according to the fields available in the object: in the case of `author` field is present, then a `Book` will be returned; otherwise, if the object has a `director` field, a `Film` will be returned.
 
-![interface](../images/2022/08/graphql.interface.png)
+![interface](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.interface.png)
 
 At last, the client-side query will use the `… on Book` or `… on Movie` syntax to retrieve the specific fields to these objects. This notation is called an _inline fragment_.
 
@@ -269,7 +269,7 @@ At last, the client-side query will use the `… on Book` or `… on Movie` synt
 
 In addition to _inline fragments_, there are fragments that **allow sharing pieces of query in the client-side**. In the previous example, the `author` and `director` objects have the same _id_, _firstName_ and _lastName_ fields. These fields could be gathered in a `PersonFragment` fragment together:
 
-![fragment](../images/2022/08/graphql.fragment.png)
+![fragment](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.fragment.png)
 
 # Mutation
 
@@ -277,13 +277,13 @@ _Mutations_ **relate to all data changes: add, edit, delete**. In the same way a
 
 A book's addition looks like this:
 
-![mutation_add](../images/2022/08/graphql.mutation.add.png)
+![mutation_add](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.mutation.add.png)
 
 As in the example, _input_ items can be employed (`BookInput` and `PersonInput`), where each field stands for a parameter, which may be convenient if you want to modify a complex object (instead of modifying fields one by one).
 
 In the same way, this is the process of a book's modification:
 
-![mutation_edit](../images/2022/08/graphql.mutation.edit.png)
+![mutation_edit](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.mutation.edit.png)
 
 # Subscription
 
@@ -291,11 +291,11 @@ _Subscriptions_ are the third family of possible operations in GraphQL. Like _qu
 
 If we go back to our example, we could add a _subscription_ in a `MediasCounter` graphic component that would subscribe to the event of adding a book and then increment a counter. Here’s what would happen schematically:
 
-![subscription_schema](../images/2022/08/graphql.subscription_schema.png)
+![subscription_schema](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.subscription_schema.png)
 
 In the same manner as the definition of _queries_ and _mutations_, the _subscription_ must be declared in the schema via the `Subscription` type and the associate function must be defined in the _resolver_, into the `Subscription` object.
 
-![subscription](../images/2022/08/graphql.subscription.png)
+![subscription](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.subscription.png)
 
 The notable difference between _queries/mutations_ and _subscriptions_ is the use of a _publish/subscribe_ tool (here, `PubSub` included in graphql-subscriptions library). This kind of tool allow you to subscribe to an event (`pubsub.asyncIterator(['NOM_EVENT'])`) and to publish an event (`pubsub.publish('NOM_EVENT', {mediaAdded: newBook})`).
 
