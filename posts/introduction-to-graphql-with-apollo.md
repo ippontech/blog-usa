@@ -10,21 +10,21 @@ title: "Introduction to GraphQL with Apollo"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.title.jpg
 ---
 
-GraphQL is a modern approach to client-server communication and aims to improve the way developers build applications on the web. As its name suggests (QL = Query Language), it is a data query language for API, strongly typed, and a runtime environment to process these requests.
+GraphQL is a modern approach to client-server communication and aims to improve the way developers build web applications. According to its name (QL = Query Language), it is a data query language for API, strongly typed, and also a runtime environment that allows processing these requests.
 
-In 2012, Facebook designed the first version of the language and released it publicly in 2015. Many specifications are published, up to the last one dating from [October 2021](https://spec.graphql.org/), which include all its features. [Multiple implementations](https://graphql.org/code/) of this specification in many languages are available, both on the client side and on the server side.
+The first version of this language was designed by Facebook In 2021 and released publicly in 2015. Many specifications were published, up to the last one dating from [October 2021](https://spec.graphql.org/), which includes all its features. [Multiple implementations](https://graphql.org/code/) of this specification are available in several languages, both on the client side and on the server side.
 
-Today, GraphQL is mentioned more and more frequently as THE alternative solution to REST. But is this really the ideal solution? What are the main characteristics of the language? In this article, I am going to introduce its core features through Apollo, one of the libraries implementing GraphQL. But first let's look at the difference between the way REST and GraphQL works.
+Today, GraphQL is mentioned more and more frequently as THE alternative solution to REST. But is this really the ideal solution? What are the main characteristics of the language? In this article, I am going to introduce its core features through Apollo, one of the libraries implementing GraphQL. But first let us take a closer look at the difference between the way REST and GraphQL works.
 
-# Comparison with REST
+# Compared to REST
 
-The REST formalism forces the client to bend to the existing server-side endpoints to retrieve the resources it needs, and so often call multiple endpoints to fetch whole data (or more data than required). With GraphQL, **one call is enough** to do the same: the client will make this single call to the GraphQL server, which will be responsible for retrieving all requested resources.
+The REST formalism forces the client to bend to the existing server-side endpoints to retrieve the resources it needs, and so often calls multiple endpoints to fetch whole data (or more data than required). With GraphQL, **one call is enough** to do so: the client will make this single call to the GraphQL server, which will be in charge of retrieving all requested resources.
 
 ![rest-vs-graphql](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.rest-vs-graphql.png)
 
-Thanks to GraphQL, **we will be able to get many resources with only one request** (composite pattern), these resources can be stored in different ways (API, database, file, etc.). This prevents **over fetching** (too much data) and **under fetching** (not enough data). For this reason, calls between the client and the server are faster and lighter.
+Thanks to GraphQL, **you will be able to get many resources with only one request** (composite pattern), these resources can be stored in different ways (API, database, file, etc.). This prevents **over fetching** (seeking too much data) and **under fetching** (seeking less than enough data). For this reason, calls between the client and the server are faster and lighter.
 
-GraphQL may also be used to implement other design patterns. For instance, we can **simplify the use of a complex API** by adding a GraphQL bloc between the client and this API (facade pattern). Similarly, it is possible to include a GraphQL layer **to enrich an old API with a new feature**, for example an authentication layer (proxy pattern).
+Furthermore, GraphQL may also be used to implement other design patterns. For instance, we can **simplify the use of a complex API** by adding a GraphQL bloc between the client and this API (facade pattern). Similarly, it is possible to include a GraphQL layer **to enrich an old API with a new feature**, for example an authentication layer (proxy pattern).
 
 ![proxy_and_facade_pattern](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.proxy_and_facade_pattern.png)
 
@@ -36,13 +36,13 @@ Every GraphQL response is a JSON map and represents a graph, where the objects a
 
 ![graph](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.graph.png)
 
-Below is a diagram summarizing how GraphQL works with these specific keywords, which we will look at in the rest of this article:
+Below is a diagram summarizing how GraphQL works with these specific keywords, we will look into it closely in the rest of this article:
 
 ![structure](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.structure.png)
 
 # Interlude
 
-Before continuing this article, it is necessary to have an overview of the data sources on which the following examples will be based. By “data sources”, I mean all data that come from external APIs or databases. I will use a list of books and films that each refer to a person via its identifier (an author for a book, a director for a film). These lists are intended to simulate the response of external APIs (e.g., _media_ API and _people_ API).
+Before getting any further, it is necessary to have an overview of the data sources on which the following examples will be based. By “data sources”, I mean all data that come from external APIs or databases. I will use a list of books and films that each refer to a person via its identifier (an author for a book, a director for a film). These lists are intended to simulate the response of external APIs (e.g., _media_ API and _people_ API).
 
 ```js
 const bookData = [
@@ -158,7 +158,7 @@ enum Sex {
 }
 ```
 
-We can apply additional _type modifiers_ to objects in schema providing validation (define a mandatory field) or specifying lists. Let’s look to all the possible combinations with the String type for example:
+We can apply additional _type modifiers_ to objects in schema providing validation (define a mandatory field) or specifying lists. Let us have a look at all the possible combinations with the String type for example:
 
 - String : string can be null
 - String! : non null string
@@ -195,7 +195,7 @@ const resolvers = {
 
 In this example, we search for the corresponding `Person` object in the `personData` list using its id to get back the data of an author attached to a book.
 
-Also, through `age` resolver of the Person object, the input data (a birthdate, e.g. `1987-03-01T00:00:00.000Z`) is converted into years to match what we want on output (the person’s age, so 35 years old in this case).
+Also, through `age` resolver of the object `Person`, the input data (a birthdate, e.g. `1987-03-01T00:00:00.000Z`) is converted into years to match what we want on output (the person’s age, so 35 years old in this case).
 
 Note that the other fields of the `Book` (id, title, totalPages) or `Person` (id, firstName, lastName, sex) objects have no resolver. This is not a mistake. **There are indeed default resolvers** that automatically map the datasource with the same name as the field name defined in the schema. For instance, the JSON input returns a `title` field for the `Book` object, and the `Book` object schema has a `title` field, so GraphQL is able to do the mapping on its own. This would be the same as writing the following resolver:
 
@@ -208,7 +208,7 @@ Book: {
 },
 ```
 
-Another point is that _resolvers_ define all possible operations that the server may receive: _query_, _mutation_ and _subscription_.
+In addition, _resolvers_ define all possible operations that the server may receive: _query_, _mutation_ and _subscription_.
 
 # Query
 
@@ -216,13 +216,13 @@ A _query_ is used **to fetch values from the GraphQL server**: it is therefore a
 
 ![query](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.query.png)
 
-GraphQL links the client to the server via the name of the method you want to call (here, `books` highlighted in yellow). Once the request has been received, the server will check it exists in the schema under the `Query` type and it has the correct parameters and return type (here, no parameter but a list of `Book` in output).
+GraphQL links the client to the server via the name of the method you aim to call (here, `books` highlighted in yellow). Once the request has been received, the server will check if it exists in the schema under the `Query` type and if it has the correct parameters and return type (here, no parameter but a list of `Book` in output).
 
-Then, the server searches in the _resolver_ the associate function under the `Query` field (only if the request is valid). Finally, the resolver returns the data and reorders it to match exactly the fields of the query, in the requested order (here, the resolver directly returns `bookData`, the book’s list in JSON format).
+Then, the server searches in the _resolver_ the associate function under the `Query` field (only if the request is valid). Finally, the resolver returns the data and reorders it to match exactly the fields of the query, in the requested order (in our example, the resolver directly returns `bookData`, the book’s list in JSON format).
 
 # Interface
 
-Interfaces are abstract types **that allow fields to be shared between different objects**. Each object implementing an interface must have at least the same fields as this one, and others if necessary.
+Interfaces are abstract types **that allow fields to be shared between different objects**. Each object implementing an interface must at least have similar fields, and others if necessary.
 
 Let’s take the previous schema with the `Book` type. We could imagine adding a `Movie` type and a `Media` interface, so `Book` and `Movie` share common fields (`id` and `title`) through the implementation of the `Media` interface.
 
@@ -303,7 +303,7 @@ Then, the publication of a `MEDIA_ADDED` event is added into the `addBook` mutat
 
 # Conclusion
 
-This is the end of this introduction to GraphQL. I tried to address the most important features through code examples to give a more concrete overview of how GraphQL works.
+This introduction to GraphQL has reached the end. I have tried to address the most important features through code examples to give a more concrete overview of how GraphQL works.
 
 To sum up, GraphQL optimizes requests between the client and the server by requiring exactly the fields that we need, **which allows us to reduce the size of the network frame, ideal in a mobile environment for example**. Another important point is the **aggregation of multiple datasources**, which is useful in an architecture with a multitude of microservices. Also, thanks to its introspection system, the client can **easily discover the API and understand its modus operandi with the auto-generating documentation**.
 
