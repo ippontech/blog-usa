@@ -119,7 +119,7 @@ const personData = [...authors, ...directors];
 
 # Schema
 
-Schema is the core feature in GraphQL. The schema defines **a hierarchy of types with fields** that are populated from back-end data sources. This schema also specifies exactly which **queries** and **mutations** are available for clients to execute. Possible structures include:
+Schema is the core feature in GraphQL. The schema defines **a hierarchy of types with fields** that are populated from back end data sources. This schema also specifies exactly which **queries** and **mutations** are available for clients to execute. Possible structures include:
 
 - Scalar type
   - Int
