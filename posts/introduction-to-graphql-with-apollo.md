@@ -128,7 +128,7 @@ Schema is the core feature in GraphQL. The schema defines **a hierarchy of types
   - Boolean
   - ID (a unique string value, especially for cache management)
 - Object (Query, Mutation, Subscription)
-- Input (allows to pass complex objects as parameter of queries or mutations)
+- Input (enables complex objects to pass as parameter of queries or mutations)
 - Enum (defines a set of allowed values)
 - Union (represents several return’s types for an object)
 - Interface (shares a set of fields between multiples types)
