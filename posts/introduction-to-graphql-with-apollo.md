@@ -42,7 +42,7 @@ Below is a diagram summarizing how GraphQL works with these specific keywords. W
 
 # Interlude
 
-Before getting any further, it is necessary to have an overview of the data sources on which the following examples will be based. By “data sources”, I mean all data that come from external APIs or databases. I will use a list of books and films that each refer to a person via its identifier (an author for a book, a director for a film). These lists are intended to simulate the response of external APIs (e.g., _media_ API and _people_ API).
+Before going any further, it is necessary to have an overview of the data sources on which the following examples will be based. By “data sources”, I mean _all_ data that comes from external APIs or databases. I will use a list of books and films that each refer to a person via its identifier (an author for a book, a director for a film, etc.). These lists are intended to simulate the response of external APIs (e.g., _media_ API and _people_ API).
 
 ```js
 const bookData = [
@@ -218,7 +218,7 @@ A _query_ is used **to fetch values from the GraphQL server**: it is therefore a
 
 GraphQL links the client to the server via the name of the method you aim to call (here, `books` highlighted in yellow). Once the request has been received, the server will check if it exists in the schema under the `Query` type and if it has the correct parameters and return type (here, no parameter, but a list of `Books` in output).
 
-Then, the server searches in the _resolver_ the associate function under the `Query` field (only if the request is valid). Finally, the resolver returns the data and reorders it to match exactly the fields of the query, in the requested order (in our example, the resolver directly returns `bookData`, the book’s list in JSON format).
+The server then searches in the _resolver_ for the associate function under the `Query` field, but only if the request is valid. Finally, the resolver returns the data and reorders it to match exactly the fields of the query in the requested order. In our example, the resolver directly returns `bookData`, the book’s list in JSON format.
 
 # Interface
 
