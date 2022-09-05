@@ -3,7 +3,7 @@ authors:
   - Ludovic ROUCOUX
 tags:
   - GraphQL
-  - api
+  - API
   - apollo
 date: 2022-08-18T17:47:50.000Z
 title: "Introduction to GraphQL with Apollo"
