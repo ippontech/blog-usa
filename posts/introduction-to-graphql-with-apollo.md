@@ -133,7 +133,7 @@ Schema is the core feature in GraphQL. The schema defines **a hierarchy of types
 - Union (represents several return types for an object)
 - Interface (shares a set of fields between multiples types)
 
-This is how we can represent our business objects in GraphQL schema in comparison to our data sources:
+This is how we can represent our business objects in a GraphQL schema in comparison to our data sources:
 
 ```graphql
 type Book {
