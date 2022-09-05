@@ -307,7 +307,7 @@ This introduction to GraphQL has reached the end. I have tried to address the mo
 
 To sum up, GraphQL optimizes requests between the client and server by requiring the exact fields needed. **This allows us to reduce the size of the network frame, which can be ideal in a mobile environment, for example**. Another important point is the **aggregation of multiple datasources**, which is useful in an architecture with a multitude of microservices. Finally, thanks to its introspection system, the client can **easily discover the API and understand its modus operandi with the auto-generating documentation**.
 
-Nevertheless, the learning curve is difficult due to the new concepts and the multiplicity of files, both on the client side and on the server side.
+The learning curve can certainly be difficult due to the new concepts and the multiplicity of files, both on the client side and on the server side.
 
 All in all, GraphQL is a good alternative/complement to REST and occupies a growing place in architectures that communicate with APIs. To go further, other points remain to be addressed, such as cache management, error management, schema stitching or the various tools to debug.
 
