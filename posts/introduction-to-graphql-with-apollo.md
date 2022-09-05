@@ -36,7 +36,7 @@ Every GraphQL response is a JSON map and represents a graph, where the objects a
 
 ![graph](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.graph.png)
 
-Below is a diagram summarizing how GraphQL works with these specific keywords, we will look into it closely in the rest of this article:
+Below is a diagram summarizing how GraphQL works with these specific keywords. We will look into it closely throughout the rest of this article:
 
 ![structure](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.structure.png)
 
