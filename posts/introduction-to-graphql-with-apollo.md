@@ -4,7 +4,7 @@ authors:
 tags:
   - GraphQL
   - API
-  - apollo
+  - Apollo
 date: 2022-08-18T17:47:50.000Z
 title: "Introduction to GraphQL with Apollo"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.title.jpg
