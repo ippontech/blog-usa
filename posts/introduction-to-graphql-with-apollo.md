@@ -297,7 +297,7 @@ In the same manner as the definition of _queries_ and _mutations_, the _subscrip
 
 ![subscription](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.subscription.png)
 
-The notable difference between _queries/mutations_ and _subscriptions_ is the use of a _publish/subscribe_ tool (here, `PubSub` included in graphql-subscriptions library). This kind of tool allow you to subscribe to an event (`pubsub.asyncIterator(['NOM_EVENT'])`) and to publish an event (`pubsub.publish('NOM_EVENT', {mediaAdded: newBook})`).
+The notable difference between _queries/mutations_ and _subscriptions_ is the use of a _publish/subscribe_ tool (here, `PubSub` included in graphql-subscriptions library). This kind of tool allows you to subscribe to (`pubsub.asyncIterator(['NOM_EVENT'])`) and publish an event (`pubsub.publish('NOM_EVENT', {mediaAdded: newBook})`).
 
 Then, the publication of a `MEDIA_ADDED` event is added into the `addBook` mutation. A “notification” will be sent to all subscribers who will be able to respond, such as our `MediasCounter` component by incrementing a counter for the addition of books.
 
