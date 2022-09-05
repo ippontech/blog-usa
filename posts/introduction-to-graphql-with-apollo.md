@@ -163,7 +163,7 @@ We can apply additional _type modifiers_ to objects in schema by providing valid
 - String : string can be null
 - String! : non-null string
 - [String] : List can be null, containing strings that can be null
-- [String!] : List can be null, containing non null strings
+- [String!] : List can be null, containing non-null strings
 - [String!]! : non null List containing non null strings. An empty string is valid.
 
 These rules will be checked by the GraphQL server and it will trigger a validation error in case of non-compliance.
