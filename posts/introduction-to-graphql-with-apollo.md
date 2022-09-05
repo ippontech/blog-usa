@@ -164,11 +164,11 @@ We can apply additional _type modifiers_ to objects in schema by providing valid
 - String! : non-null string
 - [String] : List can be null, containing strings that can be null
 - [String!] : List can be null, containing non-null strings
-- [String!]! : non null List containing non null strings. An empty string is valid.
+- [String!]! : non-null List containing non null strings. An empty string is valid.
 
 These rules will be checked by the GraphQL server and it will trigger a validation error in case of non-compliance.
 
-Furthermore, GraphQL **has an [introspection](https://graphql.org/learn/introspection/) function**, querying the server to know information about its schema. This allows the client to have a description of all objects present on the server and all possible operations with the associated arguments. It is therefore a kind of automatic documentation that is sent back, which allows the client to easily discover the available features.
+In addition, GraphQL **has an [introspection](https://graphql.org/learn/introspection/) function**, querying the server to know information about its schema. This allows the client to have a description of all objects present on the server and all possible operations with associated arguments. It is therefore a type of automatic documentation that is sent back, which allows the client to easily discover the available features.
 
 # Resolver
 
@@ -195,7 +195,7 @@ const resolvers = {
 
 In this example, we search for the corresponding `Person` object in the `personData` list using its id to get back the data of an author attached to a book.
 
-Also, through `age` resolver of the object `Person`, the input data (a birthdate, e.g. `1987-03-01T00:00:00.000Z`) is converted into years to match what we want on output (the person’s age, so 35 years old in this case).
+Also, through `age` resolver of the object `Person`, the input data (a birthdate, e.g. `1987-03-01T00:00:00.000Z`) is converted into years to match what we want as an output (the person’s age, so 35 years old in this case).
 
 Note that the other fields of the `Book` (id, title, totalPages) or `Person` (id, firstName, lastName, sex) objects have no resolver. This is not a mistake. **There are indeed default resolvers** that automatically map the datasource with the same name as the field name defined in the schema. For instance, the JSON input returns a `title` field for the `Book` object, and the `Book` object schema has a `title` field, so GraphQL is able to do the mapping on its own. This would be the same as writing the following resolver:
 
@@ -216,15 +216,15 @@ A _query_ is used **to fetch values from the GraphQL server**: it is therefore a
 
 ![query](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.query.png)
 
-GraphQL links the client to the server via the name of the method you aim to call (here, `books` highlighted in yellow). Once the request has been received, the server will check if it exists in the schema under the `Query` type and if it has the correct parameters and return type (here, no parameter but a list of `Book` in output).
+GraphQL links the client to the server via the name of the method you aim to call (here, `books` highlighted in yellow). Once the request has been received, the server will check if it exists in the schema under the `Query` type and if it has the correct parameters and return type (here, no parameter, but a list of `Books` in output).
 
 Then, the server searches in the _resolver_ the associate function under the `Query` field (only if the request is valid). Finally, the resolver returns the data and reorders it to match exactly the fields of the query, in the requested order (in our example, the resolver directly returns `bookData`, the book’s list in JSON format).
 
 # Interface
 
-Interfaces are abstract types **that allow fields to be shared between different objects**. Each object implementing an interface must at least have similar fields, and others if necessary.
+Interfaces are abstract types **that allow fields to be shared between different objects**. Each object implementing an interface must have at least similar fields, and others if necessary.
 
-Let’s take the previous schema with the `Book` type. We could imagine adding a `Movie` type and a `Media` interface, so `Book` and `Movie` share common fields (`id` and `title`) through the implementation of the `Media` interface.
+Let’s take the previous schema with the `Book` type. We can add a `Movie` type and a `Media` interface, so `Book` and `Movie` share common fields (`id` and `title`) through the implementation of the `Media` interface.
 
 ```graphql
 interface Media {
@@ -259,7 +259,7 @@ Now imagine we wanted to fetch all the `Media` objects, by retrieving both commo
 
 How does the server know the difference between a `Book` and a `Movie`?
 
-Firstly, the _query_ must be declared in the schema and defined in the associate _resolver_ (such as the **books’** _query_). Next, the special function `__resolveType` provided by apollo-server will be included in the resolver of the `Media` object. This function will allow us to define the type of implementation that will be returned according to the fields available in the object: in the case of `author` field is present, then a `Book` will be returned; otherwise, if the object has a `director` field, a `Film` will be returned.
+Firstly, the _query_ must be declared in the schema and defined in the associate _resolver_ (such as the **books’** _query_). Next, the special function `__resolveType` provided by apollo-server will be included in the resolver of the `Media` object. This function will allow us to define the type of implementation that will be returned according to the fields available in the object. In the case of the `author` field being present, then a `Book` will be returned. Otherwise, if the object has a `director` field, a `Film` will be returned.
 
 ![interface](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.interface.png)
 
@@ -279,7 +279,7 @@ A book's addition looks like this:
 
 ![mutation_add](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.mutation.add.png)
 
-As in the example, _input_ items can be employed (`BookInput` and `PersonInput`), where each field stands for a parameter, which may be convenient if you want to modify a complex object (instead of modifying fields one by one).
+As in the example, _input_ items can be employed (`BookInput` and `PersonInput`), where each field stands for a parameter, which may be convenient if you want to modify a complex object instead of modifying fields one by one.
 
 In the same way, this is the process of a book's modification:
 
@@ -287,9 +287,9 @@ In the same way, this is the process of a book's modification:
 
 # Subscription
 
-_Subscriptions_ are the third family of possible operations in GraphQL. Like _query_, _subscriptions_ specify a set of fields to be delivered to the client but, instead of immediately returning an answer, **a result is sent every time an event happens on the server** after the client subscribes to it. Even though they are less common than _queries_ and _mutations_, they can be used to be notified in real time of a change in server-side data, such as the arrival of a new message on a chat application.
+_Subscriptions_ are the third family of possible operations in GraphQL. Like _query_, _subscriptions_ specify a set of fields to be delivered to the client. But instead of immediately returning an answer, **a result is sent every time an event happens on the server** after the client subscribes to it. Even though they are less common than _queries_ and _mutations_, they can be used to be notified in real time of a change in server-side data, such as the arrival of a new message in a chat application.
 
-If we go back to our example, we could add a _subscription_ in a `MediasCounter` graphic component that would subscribe to the event of adding a book and then increment a counter. Here’s what would happen schematically:
+If we go back to our example, we can add a _subscription_ in a `MediasCounter` graphic component that would subscribe to the event of adding a book and then increment a counter. Here’s what would happen schematically:
 
 ![subscription_schema](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.subscription_schema.png)
 
