@@ -305,7 +305,7 @@ The publication of a `MEDIA_ADDED` event is added into the `addBook` mutation. A
 
 This introduction to GraphQL has reached the end. I have tried to address the most important features through code examples to give a more concrete overview of how GraphQL works.
 
-To sum up, GraphQL optimizes requests between the client and the server by requiring exactly the fields that we need, **which allows us to reduce the size of the network frame, ideal in a mobile environment for example**. Another important point is the **aggregation of multiple datasources**, which is useful in an architecture with a multitude of microservices. Also, thanks to its introspection system, the client can **easily discover the API and understand its modus operandi with the auto-generating documentation**.
+To sum up, GraphQL optimizes requests between the client and server by requiring the exact fields needed. **This allows us to reduce the size of the network frame, which can be ideal in a mobile environment, for example**. Another important point is the **aggregation of multiple datasources**, which is useful in an architecture with a multitude of microservices. Finally, thanks to its introspection system, the client can **easily discover the API and understand its modus operandi with the auto-generating documentation**.
 
 Nevertheless, the learning curve is difficult due to the new concepts and the multiplicity of files, both on the client side and on the server side.
 
