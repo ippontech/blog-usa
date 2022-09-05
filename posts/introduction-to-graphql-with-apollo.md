@@ -10,7 +10,7 @@ title: "Introduction to GraphQL with Apollo"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.title.jpg
 ---
 
-GraphQL is a modern approach to client-server communication and aims to improve the way developers build web applications. According to its name (QL = Query Language), it is a data query language for API, strongly typed, and also a runtime environment that allows processing these requests.
+GraphQL is a modern approach to client-server communication and aims to improve the way developers build web applications. According to its name (QL = Query Language), it is a data query language for APIs, strongly typed, and a runtime environment that processes these requests.
 
 The first version of this language was designed by Facebook In 2021 and released publicly in 2015. Many specifications were published, up to the last one dating from [October 2021](https://spec.graphql.org/), which includes all its features. [Multiple implementations](https://graphql.org/code/) of this specification are available in several languages, both on the client side and on the server side.
 
