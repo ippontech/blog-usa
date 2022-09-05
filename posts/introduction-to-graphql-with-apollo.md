@@ -158,7 +158,7 @@ enum Sex {
 }
 ```
 
-We can apply additional _type modifiers_ to objects in schema providing validation (define a mandatory field) or specifying lists. Let us have a look at all the possible combinations with the String type for example:
+We can apply additional _type modifiers_ to objects in schema by providing validation (define a mandatory field) or specifying lists. Let us have a look at all the possible combinations with the String type, for example:
 
 - String : string can be null
 - String! : non null string
