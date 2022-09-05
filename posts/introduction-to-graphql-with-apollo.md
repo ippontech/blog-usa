@@ -2,7 +2,7 @@
 authors:
   - Ludovic ROUCOUX
 tags:
-  - graphql
+  - GraphQL
   - api
   - apollo
 date: 2022-08-18T17:47:50.000Z
