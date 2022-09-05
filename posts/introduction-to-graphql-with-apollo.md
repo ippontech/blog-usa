@@ -22,7 +22,7 @@ The REST formalism forces the client to bend to the existing server-side endpoin
 
 ![rest-vs-graphql](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/graphql.rest-vs-graphql.png)
 
-Thanks to GraphQL, **you will be able to get many resources with only one request** (composite pattern), these resources can be stored in different ways (API, database, file, etc.). This prevents **over fetching** (seeking too much data) and **under fetching** (seeking less than enough data). For this reason, calls between the client and the server are faster and lighter.
+Thanks to GraphQL, **you will be able to get many resources with only one request** (composite pattern), these resources can be stored in different ways (API, database, file, etc.). This prevents **over-fetching** (seeking too much data) and **under-fetching** (seeking less than enough data). For this reason, calls between the client and the server are faster and lighter.
 
 Furthermore, GraphQL may also be used to implement other design patterns. For instance, we can **simplify the use of a complex API** by adding a GraphQL bloc between the client and this API (facade pattern). Similarly, it is possible to include a GraphQL layer **to enrich an old API with a new feature**, for example an authentication layer (proxy pattern).
 
