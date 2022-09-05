@@ -309,7 +309,7 @@ To sum up, GraphQL optimizes requests between the client and server by requiring
 
 The learning curve can certainly be difficult due to the new concepts and the multiplicity of files, both on the client side and on the server side.
 
-All in all, GraphQL is a good alternative/complement to REST and occupies a growing place in architectures that communicate with APIs. To go further, other points remain to be addressed, such as cache management, error management, schema stitching or the various tools to debug.
+All in all, GraphQL is a solid alternative/complement to REST and occupies a growing place in architectures that communicate with APIs. Other points remain to be addressed, such as cache management, error management, schema stitching, or the various debugging tools
 
 # Webography
 
