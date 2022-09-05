@@ -14,7 +14,7 @@ GraphQL is a modern approach to client-server communication and aims to improve 
 
 The first version of this language was designed by Facebook in 2012 and released publicly in 2015. Many specifications were published, up to the last one dating from [October 2021](https://spec.graphql.org/), which includes all of its features. [Multiple implementations](https://graphql.org/code/) of this specification are available in several languages, both on the client and server sides.
 
-Today, GraphQL is mentioned more and more frequently as THE alternative solution to REST. But is this really the ideal solution? What are the main characteristics of the language? In this article, I am going to introduce its core features through Apollo, one of the libraries implementing GraphQL. But first let us take a closer look at the difference between the way REST and GraphQL works.
+Today, GraphQL is mentioned more and more frequently as **_the_** alternative solution to REST. But is this really the ideal solution? What are the main characteristics of the language? In this article, I am going to introduce its core features through Apollo, one of the libraries implementing GraphQL. But first, let us take a closer look at the difference between the way REST and GraphQL works.
 
 # Compared to REST
 
