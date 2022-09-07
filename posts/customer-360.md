@@ -6,7 +6,7 @@ tags:
 - Data Governance
 - Customer 360
 date: 2022-08-25
-title: "What is a Customer 360?"
+title: What is a "Customer 360"?
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/Customer360.png
 ---
 
