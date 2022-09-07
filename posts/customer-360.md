@@ -34,4 +34,4 @@ Integrating data introduces new and complex challenges that, similar to data qua
 
 ## Let’s go!
 This may sound like a good deal of work. And, well, _it is!_ However, it is highly **valuable** work with returns for many years to come. Knowing your customers is key to being competitive, and the ability to quickly glean insights and respond to market trends will be a major competitive advantage. This effort should be considered and prioritized now, as you should consider that the current volume of customer data in your organization is likely the smallest it will ever be again!
-With deep expertise in Data Architecture and Data Engineering, Ippon is prepared to assist your organization on your Customer 360 Journey!
+With deep expertise in Data Architecture and Data Engineering, Ippon is prepared to assist your organization on your Customer 360 Journey! Connect with me on LinkedIn (https://www.linkedin.com/in/steven-maclauchlan-baa55820/) or reach out to us at info@ippon.tech.
