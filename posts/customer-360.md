@@ -16,7 +16,7 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/0
 
 So what is a “Customer 360”? The term gets thrown around a lot, but at its core, it is the ability to know everything relevant about a customer: recent purchases, touch points with the organization, key attributes, contact information, preferences, etc. This is used for a variety of purposes, such as cross-selling, targeted marketing, relationship profitability analysis, identifying VIP customers, and many other benefits to the organization. Further, there are plenty of benefits for the customers themselves: seamless customer experience, more targeted and relevant marketing, etc. More foundationally, it provides a clean single source of truth for a customer’s attributes.
 
-Now, where do we start, and what are the steps we must take to successfully implement this?
+Now, where do we start, and what are the steps we must take to successfully implement such?
 
 ![Customer 360 Visual](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/08/Customer360.png)
 
