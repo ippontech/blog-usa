@@ -1,0 +1,166 @@
+---
+authors:
+- Lucas Ward
+tags:
+- python
+- api
+- devops
+title: "Python in Production Part 2 of 5"
+image: 
+---
+
+Welcome back to the Python in Production series.  In the previous first part of the series, we learned about Python virtual machines and why it is important to use them.  We also layed some initial ground work for our sample-python-project.
+
+In part 2 of this series (this part), we will learn how to create Python Modules and Packages, and how doing so will improve your path to production.  You will learn how, *and why,* to:
+* Create a python module.
+* Create a python package.
+* Further codify your dependencies.
+
+# Create a simple API
+
+In the last part of this series, we created a directory called ***sample-python-program***, created a virutal environment, added some files, and downloaded the FastAPI package from PyPi using pip.  To continue following this guide, make sure you are inside the sample-python-program directory and have acitvated your Python Virtual Environment.
+
+If you have written Python programs before, you probably appreciated the fact that you could just create a .py file and start adding code right away.  A single python file with just one print statement is a viable program that can be ran strait from the command line with no problems.  When ever you create larger projects though, the "single file" approach with "every thing in one directory" becomes a bit unmanageable.  Changing the structure of your project later on isn't too hard, but can be a point of stress if your program has gotten *huge.*
+
+To start, lets create a directory to house our source code, and setup file.
+```bash
+mkdir src
+cd src
+mkdir simple_api
+touch setup.py
+```
+
+At this point, we have simply created a src code directory inside of our project directory.  This is where all of our code for our project will live.  Inside of the src directory we have created a directory named simple_api.  This is the name of our Python program.  It's a good idea to go ahead and name this directory what ever your python package will be called.  There are some rules surrounding naming packages and modules that you cand find [here](https://visualgit.readthedocs.io/en/latest/pages/naming_convention.html).
+
+The setup.py is a crucial piece of the packaging puzzle.  Open up your favorite text editor and begin editing ***setup.py***.
+```python
+#!/usr/bin/env python
+
+from setuptools import setup, find_packages
+
+setup(name='simple_api',
+      version='1.0',
+      description='A Simple API',
+      author='Lucas Ward',
+      author_email='lward@ipponusa.com',
+      url='https://us.ippon.tech/',
+      packages=find_packages(),
+     )
+```
+## Why Package?
+
+Okay, I think an explanation is in order.  Why?   Why do this?  It can be hard to understand the benefit of this if you haven't created a package before.  I am willing to bet that you have used a package before though.  A simple example is the python datetime package.  Let's take a look, start your python interpreter by typing ***python***.
+```bash
+(venv) lucasward@Lucass-MacBook-Pro src % python
+Python 3.10.5 (v3.10.5:f377153967, Jun  6 2022, 12:36:10) [Clang 13.0.0 (clang-1300.0.29.30)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import datetime
+>>> print(datetime.datetime.now().timestamp())
+1665670371.765653
+>>>
+```
+
+When you call ***import datetime***, you are importing the datetime package.  The datetime package contains a bunch of different modules, one of which is also called datetime.  At the end of the day, packages are technically just modules that contain more modules, but it helps to think of a package as a collection of modules, or the folder that stores them.
+
+By creating a setup.py file, we are setting forth the intention to package our simple api program.  This has many benefits, from testing, to building, to extending and reusing our program.  Some of these benefits may not be totally clear until you get to later parts of the series.
+
+# Finally, Let's Write our Program
+
+Change directories into our program folder and create some more files.  We will be filling them with code soon enough!
+```bash
+cd simple_api
+touch __init__.py
+touch __main__.py
+touch api.py
+```
+
+Sanity check, your entire project should be *shaped* like this (some files inside of ***.git*** and ***venv*** have been hidden for brevity):
+```bash
+.
+├── .git
+├── .gitignore
+├── readme.md
+├── requirements.txt
+├── src
+│   ├── setup.py
+│   └── simple_api
+        ├── __init__.py
+        ├── __main__.py
+        └── api.py
+└── venv
+```
+
+The ***\_\_init\_\_.py*** file will remain empty.  Our ***api.py*** will contain our program, and out ***__main__.py*** file will be the entry point into our program.  Open ***api.py*** in your favorite text editor.  Let's code!
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+async def read_root():
+    return {"Hello": "World"}
+```
+
+This is a very simple program.  The source code is strait from the [FastAPI documentation](https://fastapi.tiangolo.com/), and will serve as a great example for us.  To test your api, use uvicorn to start the development server.  This is a command run from the command line.
+```bash
+uvicorn api:app --reload
+```
+
+Running the application like this is how most people run their python programs, as a script.  There is anoter way, using out other python files and our folder structure, we can turn this into a package.  Open up ***\_\_main\_\_.py*** and write the following code.
+```python
+import uvicorn
+from simple_api.api import app
+
+def main():
+    uvicorn.run(app)
+
+if __name__ == "__main__":
+    main()
+```
+
+This ***main*** file will serve as our packages entry point.  The ***init*** file makes our simple_api directory a python package.  How do you use packages?? Well, you have to install them with pip first!  Let's do that now.  From the command line, navigate to the src directory and install your *local* package.
+```bash
+cd ..
+python3 -m pip install .
+```
+
+You should see something familiar, like this...
+```bash
+Processing /Users/lucas/PersonalProjects/sample-python-project/src
+  Preparing metadata (setup.py) ... done
+Using legacy 'setup.py install' for simple-api, since package 'wheel' is not installed.
+Installing collected packages: simple-api
+  Running setup.py install for simple-api ... done
+Successfully installed simple-api-1.0
+```
+
+Congratulations!!! You have just created a python package!!! You should feel pretty cool right about now.  This package isn't available on PyPi or anything like that, but *it could be!*  The next step is to run our program and see it in action.
+
+From the src directory...
+```bash
+python3 simple_api
+INFO:     Started server process [4054]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+You should see the familiar FastAPI startup stuff, and be able to access your "hello world" endpoint served at the root location by clicking the URL.  **Notice** that we *did not* have to append "***.py***" to simple_api when we ran it.  That is because it is now a package.  Similarly to how when you import something, you do not write ***import datetime.py***.
+
+Another *cool trick* that has now been made possible, is running our program from the interpreter.  Try this in your terminal.
+```bash
+(venv) lucasward@Lucass-MacBook-Pro src % python3
+Python 3.10.5 (v3.10.5:f377153967, Jun  6 2022, 12:36:10) [Clang 13.0.0 (clang-1300.0.29.30)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from simple_api.api import app
+>>> import uvicorn
+>>> uvicorn.run(app)
+INFO:     Started server process [4087]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+WHOA! You just ran your newly packaged project straight from the interpreter, as if it was part of the standard library!
+
+One thing to note, at this point in time, you **do not** want to add your local package to the requirements.txt file.  Your package cannot be a dependency to itself!  If you are in the habit of running ***pip freeze > requirements.txt***, then you may need to go in and delete your package from this file.
