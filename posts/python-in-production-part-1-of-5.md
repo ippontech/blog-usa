@@ -22,10 +22,10 @@ For this series, I will be using a wonderful Python Web Framework called FastAPI
 
 This series is made up of 5 Parts:
 1. Introduction and Setup, Using a Virtual Environment to Manage Dependencies.
-3. Creating Python Modules and Packages.
-4. Turning a Python Program into a Runnable Binary with Shiv.
-5. Running Python in Production with Systemd.
-6. Putting it all into a Build Pipeline with Jenkins.
+2. Creating Python Modules and Packages.
+3. Turning a Python Program into a Runnable Binary with Shiv.
+4. Running Python in Production with Systemd.
+5. Putting it all into a Build Pipeline with Jenkins.
 
 # Creating a Virtual Environment for Python
 
