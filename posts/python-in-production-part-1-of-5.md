@@ -124,9 +124,9 @@ If you have been following along, you should be in a directory named *sample-pyt
 source venv/bin/activate
 ```
 
-As you are writing code for your project, you will eventually need to install some packages.  For the remainder of this series, we will be building out a simple API using FastAPI.  Lets go ahead and install FastAPI.
+As you are writing code for your project, you will eventually need to install some packages.  For the remainder of this series, we will be building out a simple API using FastAPI.  Lets go ahead and install FastAPI.  We also need uvicorn to run out API.
 ```bash
-python3 -m pip install fastapi
+python3 -m pip install fastapi uvicorn
 ```
 
 If you are new to python virtual environments and managing dependencies, this command may look a little different than what you are used to.  By running ***pip*** with the ***python3 -m*** command, we are ensuring that we are using the version of pip that is present inside of our virutal evironment.  The **-m** command simply means module.  By using this flag, we are telling our virtual python3 interpretter to use it's version of pip.  This becomes especially important if you have multiple projects all with different virtual environments. 
@@ -137,16 +137,19 @@ touch requirements.txt
 python3 -m pip freeze > requirements.txt
 ```
 
-This will create a file to hold your requirements, also known as **dependencies** or **packages**. The ***freeze*** command outputs all of the currently installed packages.  The '>' greater than symbol writes that output to our file.  If you take a look inside the file, you will see not only fastapi listed, but all of fastapi's dependencies as well.
+This will create a file to hold your requirements, also known as **dependencies** or **packages**. The ***freeze*** command outputs all of the currently installed packages.  The '>' greater than symbol writes that output to our file.  If you take a look inside the file, you will see not only fastapi and uvicorn listed, but all of their dependencies as well.
 ```bash
 (venv) lucas@Lucass-MacBook-Pro sample-python-project % cat requirements.txt
 anyio==3.6.1
+click==8.1.3
 fastapi==0.85.0
+h11==0.14.0
 idna==3.4
 pydantic==1.10.2
 sniffio==1.3.0
 starlette==0.20.4
 typing_extensions==4.4.0
+uvicorn==0.18.3
 ```
 
 It's good practice to frequently update this file with the latest requirements for your project, and to keep this file in source control as well.  Speaking of source control, since our python interpretter lives inside of our project directory, we want to be sure to *exclude* or *ignore* it from our source control.  We can do this with a .gitignore file for git.
