@@ -119,13 +119,13 @@ This ***main*** file will serve as our package's entry point.  The ***init*** fi
 
 # Installing Your Program as a Local Package
 
-How do you use packages?? Well, you have to install them with pip first!  Let's do that now.  From the command line, navigate to the src directory and install your *local* package.
+How do you use packages? Well, you have to install them with pip first!  Let's do that now.  From the command line, navigate to the src directory and install your *local* package.
 ```bash
 cd ..
 python3 -m pip install .
 ```
 
-**Note:** make sure you type the ' . ' after install.  This tells pip to install any packages it finds in current directory.  You should see something familiar, like this...
+**Note:** make sure you type the ' . ' after install.  This tells pip to install any packages it finds in the current directory.  You should see something familiar, like this...
 ```bash
 Processing /Users/lucas/PersonalProjects/sample-python-project/src
   Preparing metadata (setup.py) ... done
@@ -146,9 +146,9 @@ INFO:     Application startup complete.
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-You should see the familiar FastAPI startup text, and be able to access your "hello world" endpoint served at the root location by clicking the URL.  **Notice** that we *did not* have to append "***.py***" to simple_api when we ran it.  That is because it is now a package.  Similarly to how when you import something, you do not write ***import datetime.py***.
+You should see the familiar FastAPI startup text, and be able to access your "hello world" endpoint served at the root location by clicking the URL.  **Notice** that we did not have to append "***.py***" to simple_api when we ran it.  That is because it is now a package.  Similarly to how when you import something, you do not write ***import datetime.py***.
 
-Another *cool trick* that has now been made possible, is running our program from the interpreter.  Try this in your terminal.  Type ***python*** to start the interpreter.
+Another *cool trick* that has now been made possible, is running our program from the python interpreter.  Try this in your terminal.  Type ***python*** to start the interpreter.
 ```bash
 >>> from simple_api.api import app
 >>> import uvicorn
@@ -161,6 +161,6 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 WHOA! You just ran your newly packaged project straight from the interpreter, as if it was part of the standard library!
 
-One thing to note, at this point in time, you **do not** want to add your local package to the requirements.txt file.  Your package cannot be a dependency to itself!  If you are in the habit of running ***pip freeze > requirements.txt***, then you may need to go in and delete your package from this file.  In a later part of this series, we will create a separate ***requirements.txt*** file that will be used to run unit tests, integration tests, and build scripts.  Following the steps outlined here will make that future work much easier.
+One thing to note, at this point in time, you **do not** want to add your local package to the requirements.txt file.  Your package cannot be a dependency to itself!  If you are in the habit of running ***pip freeze > requirements.txt***, then you may need to go in and delete your package from this file.  In a later part of this series, we will create a separate virtual environment and ***requirements.txt*** file that will be used to run unit tests, integration tests, and build scripts.  Following the steps outlined here will make that future work much easier.
 
-In [part 3](https://temporarylink) of this series, we will turn our program into a single file, runnable binary using a program called Shiv.  Don't forget to commit your changes up to here into your source control repository, and to update your readme.md file with information about how to run your python package.
+In [part 3](https://temporarylink) of this series, we will turn our program into a single file. We can create a runnable binary using a program called Shiv.  Don't forget to commit your changes up to this point into your source control repository, and to update your readme.md file with information about how to run your python package.
