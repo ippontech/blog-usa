@@ -152,7 +152,7 @@ typing_extensions==4.4.0
 uvicorn==0.18.3
 ```
 
-It's good practice to frequently update this file with the latest requirements for your project, and to keep this file in source control as well.  Speaking of source control, since our python interpretter lives inside of our project directory, we want to be sure to *exclude* or *ignore* it from our source control.  We can do this with a .gitignore file for git.
+It's good practice to frequently update this file with the latest requirements for your project, and to keep this file in source control as well.  Speaking of source control, since our python interpreter lives inside of our project directory, we want to be sure to *exclude* or *ignore* it from our source control.  We can do this with a .gitignore file for git.
 ```bash
 touch .gitignore
 echo "venv/" >> .gitignore
