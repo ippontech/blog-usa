@@ -36,7 +36,7 @@ To check which version of python you are running, type
 python3 --version
 ```
 
-For this series, we will be using Python version 3.10, although I will include some notes on how to get things working on earlier versions.  If you want to create a program to run on a different version of Pyton, you will need to make sure that you have that version of python installed, and that you create the environment using that version.
+For this series, we will be using Python version 3.10, although I will include some notes on how to get things working on earlier versions.  If you want to create a program to run on a different version of Python, you will need to make sure that you have that version of python installed, and that you create the environment using that version.
 
 To install Python 3.10 on a Mac, simply run the following command:
 ```bash
