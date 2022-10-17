@@ -119,7 +119,7 @@ This nightmarish scenario can be avoided entirely by being intentional about you
 
 # Managing Dependencies with Pip and a Virtual Environment
 
-If you have been following along, you should be in a directory named *sample-python-project* and have a folder named *venv* that contains your virtual environment.  Go ahead an *activate* the environment by sourcing it.
+If you have been following along, you should be in a directory named *sample-python-project* and have a folder named *venv* that contains your virtual environment.  Go ahead and *activate* the environment by sourcing it.
 ```bash
 source venv/bin/activate
 ```
