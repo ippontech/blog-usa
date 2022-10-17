@@ -39,7 +39,7 @@ echo "shiv==1.0.2" >> build_requirements.txt
 echo "src/" >> build_requirements.txt
 ```
 
-Take **note** of the the ***src/*** line.  This tells pip to install a local package using the relative path.
+Take **note** of the the `src/` line.  This tells pip to install a local package using the relative path.
 
 Now let's create a **bash script** that will handle the build process.  You could just run the commands individually, but creating a build script will come in handy later when we put this process into a Jenkins Pipeline.  Running the process locally using a script is also beneficial because it reduces the chance of human error.
 ```bash
@@ -63,16 +63,16 @@ shiv --site-packages dist/venv/lib/python3.10/site-packages \
 	--upgrade
 ```
 Follows is an explanation of each line.
-* ***set -e*** tells bash to stop execution if an erro is encountered.
-* ***set -x*** tells bash to print the executed commands to shell for debugging.
-* ***python3 -m venv dist/venv*** creates a second python virtual environment inside a folder called *dist*.  This will serve as our build virtual environment.
-* ***source dist/venv/bin/activate*** activates the new virtual environment.
-* ***python3 -m pip install -r build_requirements.txt*** installs the additional dependencies required for building our program into an executable, including our programs package.
-* ***shiv --site-packages venv/lib/python3.10/site-packages*** shiv takes many different arguments, the site packages argument simply tells shiv where to find all of our dependencies.  Here's a hint, they live in our builder python virtual environment.
-* ***--compressed*** tells shiv to compress the files for the smallest possible binary.
-* ***-o simple_api*** tells shiv what to name our executable.
-* ***-e simple_api.\_\_main\_\_:main src*** tells shiv the entry point to our program and where to go looking for it.
-* ***--upgrade*** tells shiv to replace our binary if this is a subsequent run.
+* `set -e` tells bash to stop execution if an erro is encountered.
+* `set -x` tells bash to print the executed commands to shell for debugging.
+* `python3 -m venv dist/venv` creates a second python virtual environment inside a folder called `dist`.  This will serve as our build virtual environment.
+* `source dist/venv/bin/activate` activates the new virtual environment.
+* `python3 -m pip install -r build_requirements.txt` installs the additional dependencies required for building our program into an executable, including our programs package.
+* `shiv --site-packages venv/lib/python3.10/site-packages` shiv takes many different arguments, the site packages argument simply tells shiv where to find all of our dependencies.  Here's a hint, they live in our builder python virtual environment.
+* `--compressed` tells shiv to compress the files for the smallest possible binary.
+* `-o simple_api` tells shiv what to name our executable.
+* `-e simple_api.__main__:main src` tells shiv the entry point to our program and where to go looking for it.
+* `--upgrade` tells shiv to replace our binary if this is a subsequent run.
 
 ### Keep your Requirements Files Separate
 
