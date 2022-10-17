@@ -180,7 +180,7 @@ git remote add origin https://github.com/{{your_username}}/sample-python-project
 git push -u -f origin main
 ```
 
-If you have been following along, then your directory listing should look something like this.
+If you have been following along, then your directory listing should look something like this:
 ```bash
 .
 ├── .git
