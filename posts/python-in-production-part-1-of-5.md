@@ -78,7 +78,7 @@ After you have *activated* the virtual environment, you should see the name of y
 (venv) lucas@Lucass-MacBook-Pro sample-python-project %
 ```
 
-Inside the virtual environment, we no longer have to specify which version of python we are running.  Typing ***python --version*** (without the appended '3') should show us the same version that we used to create the virtual environment.  You can also still type the 3 if it is habit, I understand.  In order to *exit* the virtual environment, simply type deactivate.
+Inside the virtual environment, we no longer have to specify which version of python we are running.  Typing `python --version` (without the appended '3') should show us the same version that we used to create the virtual environment.  You can also still type the 3 if it is habit, I understand.  In order to *exit* the virtual environment, simply type deactivate.
 ```bash
 deactivate
 ```
@@ -119,7 +119,7 @@ This nightmarish scenario can be avoided entirely by being intentional about you
 
 # Managing Dependencies with Pip and a Virtual Environment
 
-If you have been following along, you should be in a directory named *sample-python-project* and have a folder named *venv* that contains your virtual environment.  Go ahead and *activate* the environment by sourcing it.
+If you have been following along, you should be in a directory named `sample-python-project` and have a folder named `venv` that contains your virtual environment.  Go ahead an *activate* the environment by sourcing it.
 ```bash
 source venv/bin/activate
 ```
@@ -129,15 +129,15 @@ As you are writing code for your project, you will eventually need to install so
 python3 -m pip install fastapi uvicorn
 ```
 
-If you are new to python virtual environments and managing dependencies, this command may look a little different than what you are used to.  By running ***pip*** with the ***python3 -m*** command, we are ensuring that we are using the version of pip that is present inside of our virutal evironment.  The **-m** command simply means module.  By using this flag, we are telling our virtual python3 interpretter to use it's version of pip.  This becomes especially important if you have multiple projects all with different virtual environments. 
+If you are new to python virtual environments and managing dependencies, this command may look a little different than what you are used to.  By running ***pip*** with the `python3 -m` command, we are ensuring that we are using the version of pip that is present inside of our virutal evironment.  The `-m` command simply means module.  By using this flag, we are telling our virtual python3 interpretter to use it's version of pip.  This becomes especially important if you have multiple projects all with different virtual environments. 
 
-It is helpful to keep a running list of packages installed for this project in a file called ***requirements.txt***. Let's create this file, and add our newly installed FastAPI package to this list.
+It is helpful to keep a running list of packages installed for this project in a file called `requirements.txt`. Let's create this file, and add our newly installed FastAPI package to this list.
 ```bash
 touch requirements.txt
 python3 -m pip freeze > requirements.txt
 ```
 
-This will create a file to hold your requirements, also known as **dependencies** or **packages**. The ***freeze*** command outputs all of the currently installed packages.  The '>' greater than symbol writes that output to our file.  If you take a look inside the file, you will see not only fastapi and uvicorn listed, but all of their dependencies as well.
+This will create a file to hold your requirements, also known as **dependencies** or **packages**. The `freeze` command outputs all of the currently installed packages.  The '>' greater than symbol writes that output to our file.  If you take a look inside the file, you will see not only fastapi and uvicorn listed, but all of their dependencies as well.
 ```bash
 (venv) lucas@Lucass-MacBook-Pro sample-python-project % cat requirements.txt
 anyio==3.6.1
@@ -171,7 +171,7 @@ python3.10 -m pip install -r requirements.txt
 EOT
 ```
 
-The command ***python3.10 -m pip install -r requirements.txt*** will install all of the requirements listed in that file.  To get our *boiler plate project* into git, simply go to github and create an empty repo named sample-python-project.  Once you have done that, we can get our local files into github by running a few simple commands.
+The command `python3.10 -m pip install -r requirements.txt` will install all of the requirements listed in that file.  To get our *boiler plate project* into git, simply go to github and create an empty repo named sample-python-project.  Once you have done that, we can get our local files into github by running a few simple commands.
 ```bash
 git init
 git add -A
