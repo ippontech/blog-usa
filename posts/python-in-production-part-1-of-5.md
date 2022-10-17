@@ -124,7 +124,7 @@ If you have been following along, you should be in a directory named *sample-pyt
 source venv/bin/activate
 ```
 
-As you are writing code for your project, you will eventually need to install some packages.  For the remainder of this series, we will be building out a simple API using FastAPI.  Lets go ahead and install FastAPI.  We also need uvicorn to run out API.
+As you are writing code for your project, you will eventually need to install some packages.  For the remainder of this series, we will be building out a simple API using FastAPI.  Let's go ahead and install FastAPI.  We also need uvicorn to run our API.
 ```bash
 python3 -m pip install fastapi uvicorn
 ```
