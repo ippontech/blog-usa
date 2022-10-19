@@ -63,7 +63,7 @@ By creating a setup.py file, we are setting forth the intention to package our s
 
 # Finally, Let's Write our Program
 
-Change directories into our program folder and create some more files.  We will be filling them with code soon enough!
+Change directories into our program folder (don't forget to exit the python interpreter by pressing `[ctrl]+d`) and create some more files.  We will be filling them with code soon enough!
 ```bash
 cd simple_api
 touch __init__.py
