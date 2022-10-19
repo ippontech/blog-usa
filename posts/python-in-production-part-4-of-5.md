@@ -116,10 +116,10 @@ lward@lward-0:~$ ls
 simple_api  simple_api.service
 ```
 
-Create a symlink for each file, connecting it to the locations specified in the previous parts.  Our simple_api file should be symlinked to `/usr/local/bin/simple_api`, and our unit file should be symlinked to `/etc/systemd/user/simple_api.service`.  In your server terminal, run this command, replacing the stuff in brackets with *your stuff*:
+Create a symlink for each file, connecting it to the locations specified in the previous parts.  Our simple_api file should be symlinked to `/usr/local/bin/simple_api`, and our unit file should be symlinked to `/home/{user}/.config/systemd/user/simple_api.service`.  In your server terminal, run this command, replacing the stuff in brackets with *your stuff*:
 ```bash
 sudo ln -s /home/{user}/simple_api /usr/local/bin/simple_api
-sudo ln -s /home/{user}/simple_api.service /etc/systemd/user/simple_api.service
+sudo ln -s /home/{user}/simple_api.service /home/{user}/.config/systemd/user/simple_api.service
 ```
 
 If you list the files in either one of those diretories, you should see your file there.
