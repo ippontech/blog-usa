@@ -20,17 +20,17 @@ Putting your python program into production can look different depending on your
 
 **SystemD** is a system and service manager.  The 'D' in SystemD stands for daemon.  A daemon is a common unix troupe.  Daemon's are utilities used to run things in the background and typically take care of a bunch of *subsystem* stuff.  
 
-We will be using systemd to handle several aspects of running a python program in production:
+We will be using systemd to handle several aspects of running our python program in production:
 * Start up management
 * Environment configuration
 * Crash Handling
 * Logging
 
-In the next section, we will create a systemd unit file.  This file is the main way that you interface with systemd.  The unit file will tell systemd what resources are required to *bootstrap the user space* and *manage our program as a linux process*.
+In the next section, we will create a systemd unit file.  This file is the main way that you interface with systemd.  The unit file will tell systemd what resources are required to *bootstrap the user space* and *manage our program as a linux process*.  In a later section, we will create an Environment File that we can use to configure certain aspects of our simple api program.
 
 # Create a Unit File
 
-Systemd unit files typically live on the file system of your linux server.  A commonly used place for *user application unit files* is `/etc/systemd/user/{file_name}.service`.  The `{file_name}` is usually the name of your program.  For our application, the full path plus the file name will be `/etc/systemd/user/simple_api.service`.  For now, we can create the file here in our local repo, and then *transfer* it to our linux server once we are finished editing it.
+Systemd unit files live on the file system of your linux server.  A commonly used place for *user application unit files* is `/etc/systemd/user/{file_name}.service`.  The `{file_name}` is usually the name of your program.  For our application, the full path plus the file name will be `/etc/systemd/user/simple_api.service`.  For now, we can create the file here in our local repo, and then *transfer* it to our linux server once we are finished editing it.
 
 You should be in the top level directory of your project.  For us, that is `sample-python-program/`.  With your terminal, create the unit file.
 
@@ -69,11 +69,11 @@ Now that we have our systemd unit file, we are ready to put it, along with our p
 
 **Note:** This section involves some pretty advanced Linux topics.  It's totally cool if you don't fully understand everything.  I will offer some minor explanations, but I highly encourage you to read up on any and all commands that you run on your machines.  Please don't *blindly run* linux commands that you find on the internet.
 
-If you have been following along since the beginning of the series, then you will have a *binary* file called `simple_api` and a *systemd unit file* called `simple_api.service` in your current working directory.  In order to get these files onto our linux server, we are going to use a program called ***scp***.
+If you have been following along since the beginning of the series, then you will have a *binary* file called `simple_api` and a *systemd unit file* called `simple_api.service` in your current working directory.  In order to get these files onto our linux server, we are going to use a utility called ***scp***.
 
 SCP stands for **S**ecure **C**opy.  It is a simple command line utility that transfers files from your local machine, to a remote server (or the other way around!).  If you are more comfortable with an ftp utility, or a program such as filezilla, feel free to use that instead.  
 
-### Copy the Binary File on to Your Linux Server
+### Copy the Binary File onto Your Linux Server
 
 If you are using an SSH key to access your server, then run this command on your local machine, replacing the stuff in brackets with *your stuff*:
 
@@ -98,7 +98,7 @@ An example (DON'T RUN THIS ONE!):
 scp simple_api lward@lward-0.alpha.lanecloud.wtf:/home/lward/simple_api
 ```
 
-### Copy the SystemD Unit File on to Your Linux Server
+### Copy the SystemD Unit File onto Your Linux Server
 
 Again, run this command from your local machine, replacing the stuff in brackets with *your stuff*:
 
@@ -134,14 +134,14 @@ By copying the files to our user space, and then creating symlinks, it keeps the
 
 ## Reload SystemD and Enable your Service
 
-Just having our files in place does not mean the systemd will just start running our application.  We have to reload the daemon to see our new unit file, and then enable and start our service.  Systemd includes `systemctl`, it is used to manage our system and user unit files.  While logged into your server, run these commands:
+Just having our files in place does not mean that systemd will just start running our application.  We have to reload the daemon to see our new unit file, and then enable and start our service.  Systemd includes `systemctl`, it is used to manage our system and user unit files.  While logged into your server, run these commands:
 ```bash
 systemctl --user daemon-reload
 systemctl --user enable simple_api.service
 systemctl --user start simple_api.service
 ```
 
-These three commands tell systemd to look for new unit files, add them to the list of things to start on boot, and then start the service.  To verify our service is indeed running, we will use another piece of software included with systemd, called `journald`.
+These three commands tell systemd to look for new unit files, add them to the list of things to start on boot, and then start the service.  To verify our service is indeed running, we will use another piece of software included with systemd, called `journald`.  In order to read the logs stored in `journald`, we use the command `journalctl`.  You may notice a patter emerging here! 
 ```bash
 journalctl --user-unit simple_api.service
 ```
@@ -155,13 +155,35 @@ Oct 18 14:49:01 lward-0 simple_api[24391]: INFO:     Application startup complet
 Oct 18 14:49:01 lward-0 simple_api[24391]: INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
+You can also check on the status of your service by using systemctl's `status` command.  Here is the my output.
+```bash
+lward@lward-0:~$ systemctl --user status simple_api
+● simple_api.service - Simple API Service
+     Loaded: loaded (/home/lward/simple_api.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2022-10-18 18:34:37 UTC; 14min ago
+   Main PID: 24875 (python3)
+      Tasks: 1 (limit: 18716)
+     Memory: 21.0M
+        CPU: 1.796s
+     CGroup: /user.slice/user-1001.slice/user@1001.service/app.slice/simple_api.service
+             └─24875 python3 /usr/local/bin/simple_api
+
+Oct 18 18:34:37 lward-0 systemd[24822]: Started Simple API Service.
+Oct 18 18:34:38 lward-0 simple_api[24875]: INFO:     Started server process [24875]
+Oct 18 18:34:38 lward-0 simple_api[24875]: INFO:     Waiting for application startup.
+Oct 18 18:34:38 lward-0 simple_api[24875]: INFO:     Application startup complete.
+Oct 18 18:34:38 lward-0 simple_api[24875]: INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+Oct 18 18:34:41 lward-0 simple_api[24875]: INFO:     127.0.0.1:40054 - "GET / HTTP/1.1" 200 OK
+Oct 18 18:35:23 lward-0 simple_api[24875]: INFO:     127.0.0.1:40056 - "GET / HTTP/1.1" 200 OK
+```
+
 Since our program is a locally running webserver, we can also use `curl` to verify it is up and running.
 ```bash
 lward@lward-0:~$ curl http://localhost:8000
 {"Hello":"World"}
 ```
 
-You won't be able to hit this endpoit from your local machine without some further configuration, which falls out of the scope of this article.  If you really want to go down that route, look into serving a FastAPI site with NGINX.
+You won't be able to hit this endpoit from your local machine without some further configuration, which falls outside of the scope of this series.  If you really want to go down that route, look into serving a FastAPI site with NGINX.
 
 # Configure Your Program With an Environment File
 
@@ -218,7 +240,7 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
-We simply added the line `EnvironmentFile=/etc/default/simple_api.conf` to our unit file.  This line tells systemd to go to this file location, and read the contents into Environment variables, making them available to our application.  Finally, we copy our new configuration file, our updated binary, and our updated service file to the server.   Then we create a new symlink for our config file. 
+We simply added the line `EnvironmentFile=/etc/default/simple_api.conf` to our unit file under the `[Service]` section.  This line tells systemd to go to this file location, and read the contents into Environment variables, making them available to our application.  Finally, we copy our new configuration file, our updated binary, and our updated service file to the server.   Then we create a new symlink for our config file. 
 
 ```bash
 scp -i {path_to_ssh_private_key_file} simple_api {user}@{server}:/home/{user}/simple_api
@@ -232,7 +254,7 @@ ssh -A {user}@{server}
 sudo ln -s /home/{user}/simple_api.conf /etc/default/simple_api.conf
 ```
 
-Reload the daemon to get the new changes, and then restart your service.
+Reload the daemon to get the update unit file, and then restart your service.
 ```bash
 systemctl --user daemon-reload
 systemctl --user restart simple_api.service
@@ -248,7 +270,7 @@ lward@lward-0:~$ curl http://localhost:8000
 
 If you have made it this far, then I salute you, dedicated reader.  This series consists of 5 parts, and you are nearing the end of part 4.  Each part builds upon the previous part, and each part offers more value as far as ***lessons learned***.  To illuminate this point, I will now tell you why you are creating this configuration file versus hard coding 'North Carolina' into the source code.
 
-Let's say that down the road, I move to Virgina.  If I had hardcoded my location into my source code, I would need to rebuild, and relaunch my appilication to reflect this change.  Using a environment file in our systemd unit file, enables us to change aspects of our program *without* having to rebuild it.  With a tiny application like this, rebuilding would not really be that big of a struggle, but things get complicated as they get bigger.  Let's update our location to Virgina and then call it a day.
+Let's say that down the road, I move to Virgina.  If I had hardcoded my location into my source code, I would need to rebuild, and relaunch my appilication to reflect this change.  Using an environment file in our systemd unit file, enables us to change aspects of our program *without* having to rebuild it.  With a tiny application like this, rebuilding would not really be that big of a struggle, but things get complicated as they get bigger.  Let's update our location to Virgina and then call it a day.
 
 Make sure you are logged into your remote server.  Run the following commands to update your Environment File.
 ```bash
