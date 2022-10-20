@@ -84,7 +84,7 @@ scp -i {path_to_ssh_private_key_file} simple_api {user}@{server}:/home/{user}/si
 My command looks like this (DON'T RUN THIS ONE!): 
 
 ```bash
-scp -i ~/.ssh/id_ed25519 simple_api lward@lward-0.alpha.lanecloud.wtf:/home/lward/simple_api
+scp -i ~/.ssh/id_ed25519 simple_api lward@python-blog.example.com:/home/lward/simple_api
 ```
 
 If you are accessing your server via username and password, simply run this command and follow the on screen prompts for your username and password:
@@ -95,7 +95,7 @@ scp simple_api {user}@{server}:/home/{user}/simple_api
 An example (DON'T RUN THIS ONE!):
 
 ```bash
-scp simple_api lward@lward-0.alpha.lanecloud.wtf:/home/lward/simple_api
+scp simple_api lward@python-blog.example.com:/home/lward/simple_api
 ```
 
 ### Copy the SystemD Unit File onto Your Linux Server
@@ -112,7 +112,7 @@ The next step after copying both files on to our server, is to log into our serv
 
 Log into your server using ssh.  Once you are in your home folder, verify your files are present.
 ```bash
-lward@lward-0:~$ ls
+lward@python-blog:~$ ls
 simple_api  simple_api.service
 ```
 
@@ -124,7 +124,7 @@ sudo ln -s /home/{user}/simple_api.service /home/{user}/.config/systemd/user/sim
 
 If you list the files in either one of those diretories, you should see your file there.
 ```bash
-lward@lward-0:~$ ls /usr/local/bin
+lward@python-blog:~$ ls /usr/local/bin
 simple_api
 ```
 
@@ -155,9 +155,14 @@ Oct 18 14:49:01 lward-0 simple_api[24391]: INFO:     Application startup complet
 Oct 18 14:49:01 lward-0 simple_api[24391]: INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-You can also check on the status of your service by using systemctl's `status` command.  Here is the my output.
+If you would like to *follow* the logs in a separate terminal, you can do so by passing the `-f` flag.
 ```bash
-lward@lward-0:~$ systemctl --user status simple_api
+journalctl --user-unit simple_api.service -f
+```
+
+Pressing `[ctrl]-[c]` will exit the logs. You can also check on the status of your service by using systemctl's `status` command.  Here is the my output.
+```bash
+lward@python:~$ systemctl --user status simple_api
 ● simple_api.service - Simple API Service
      Loaded: loaded (/home/lward/simple_api.service; enabled; vendor preset: enabled)
      Active: active (running) since Tue 2022-10-18 18:34:37 UTC; 14min ago
@@ -179,7 +184,7 @@ Oct 18 18:35:23 lward-0 simple_api[24875]: INFO:     127.0.0.1:40056 - "GET / HT
 
 Since our program is a locally running webserver, we can also use `curl` to verify it is up and running.
 ```bash
-lward@lward-0:~$ curl http://localhost:8000
+lward@python-blog:~$ curl http://localhost:8000
 {"Hello":"World"}
 ```
 
@@ -262,7 +267,7 @@ systemctl --user restart simple_api.service
 
 You should now see the updated message when using Curl.
 ```bash
-lward@lward-0:~$ curl http://localhost:8000
+lward@python-blog:~$ curl http://localhost:8000
 {"Message":"Hello, World! From North Carolina"}
 ```
 
