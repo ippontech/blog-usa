@@ -22,7 +22,7 @@ Angular implements MVC by asking you to split your app into MVC components, then
 
 <h3>Data Binding :</h3>
 
-In Angular, this is the coolest concept with two-way binding and we would like to introduce it as an eye candy feature. Using NgModel you can change the data in both way template to class or class to template.
+Data binding is a technique, where the data stays in sync between the component and the view. Whenever the user updates the data in the view, Angular updates the component. When the component gets new data, the Angular updates the view.
 
 
 ![two-way-binding](/images/2022/10/two-way-binding.png)
@@ -34,7 +34,7 @@ Angular Progressive Web Application (PWA) is a cost-friendly solution that allow
 
 Caching in PWA works capably and conserves bandwidth whenever possible. This minimizes the risks of serving outdated content. 
 
-Angular also facilitates the development of Single Page Applications (SPA) which provides server side rendering capabilities that boost SEO(Search engine optimization) rankings. A single page application is a website or web application that dynamically rewrites a current web page with new data from the web server, instead of the default method of a web browser loading entire new pages. It also helps load the first page quickly and improve website performance on mobile and low-powered devices.
+Angular also facilitates the development of Single Page Applications (SPA) which provides server side rendering capabilities that boost SEO(Search engine optimization) rankings. A single page application is a website or web application that dynamically rewrites a current web page with new data from the web server, instead of the default method of a web browser loading entire new pages. It also helps load the first page quickly and improves website performance on mobile and low-powered devices.
 
 <h3>TypeScript makes the development process simple :</h3>
 
@@ -46,8 +46,7 @@ You can also directly debug TypeScript code in the browser or an editor if you h
 
 <h3>Router :</h3>
 
-Angular Router takes care of the duties of a JavaScript router.
- It activates all required Angular components to compose a page when a user navigates to a certain URL.It lets users navigate from one page to another without page reload.It updates the browser’s history so the user can use the back and forward buttons when navigating back and forth between pages.
+Angular Router takes care of the duties of a JavaScript router. It activates all required Angular components to compose a page when a user navigates to a certain URL. It lets users navigate from one page to another without page reload. It updates the browser’s history so the user can use the back and forward buttons when navigating back and forth between pages.
 
 
 <h3>Declarative UI :</h3>
@@ -59,7 +58,7 @@ With its help, you don’t need to invest time in program flows and deciding wha
 <h3>Directives :</h3>
 
 Directives are classes that add new behavior or modify the existing behavior to the elements in the template.
-Basically directives are used to manipulate the DOM, for example adding/removing the element from DOM or changing the appearance of the DOM elements.
+Basically directives are used to manipulate the Document Object Model (DOM), for example adding/removing the element from DOM or changing the appearance of the DOM elements.
 
 You can give the following condition in your html tags:
 
@@ -87,15 +86,15 @@ You can render your DOM using loops
 
 <h3>Security :</h3> 
 
-For Security purpose, Angular has several built-in protections for things such as cross-site scripting attacks and sanitization.
+For Security purpose, Angular has several built-in protections for things such as cross-site scripting attacks and cross origin resource sharing. It also protects against remote code execution through the use of sanitization.
 
 <h3>Supported by Google :</h3>
 
-One of the significanth advantages of Angular is that it is supported by Google. Google offers its Long-Term Support (LTS) to Angular that sheds light on Google’s plan to stick with the framework and further scale the Angular ecosystem. Google apps also use Angular and their team is quite optimistic about its stability. 
+One of the significant advantages of Angular is that it is supported by Google. Google offers its Long-Term Support (LTS) to Angular that sheds light on Google’s plan to stick with the framework and further scale the Angular ecosystem. Google apps also use Angular and their team is quite optimistic about its stability. 
 
 <h3>Services :</h3>
 
-You can write your business logic in single time and access it all over in application it is also coolest feature of Angular.
+You can write your business logic a single time and access it all over the application, another really cool feature of Angular.
 
 <h3>Testing :</h3> 
 
@@ -105,7 +104,7 @@ Being independent of each other, the components make unit testing much easier. Y
 
 Coders need to spend less time in coding process as Angular requires less coding. Without a doubt it is a great deal for developers.
 
-Listed below are some other highly rated factors that make Angular a preferred framework among developers(I got it from Google).
+Listed below are some other highly rated factors that make Angular a preferred framework among developers (I got it from Google).
 
 ![angular2](/images/2022/10/angular2.png)
 
