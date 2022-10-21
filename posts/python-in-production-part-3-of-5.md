@@ -100,4 +100,8 @@ There are a few things worth mentioning that could cause you some errors along t
 
 Some packages that are architecture specific may include things like Audio Controllers, Systemd bindings, or SPI dev kits.  Mainly because these packages interact with the hardware of the computer and therefore are more architecture specific.
 
+# Update your .gitignore and  Push Your Changes
+
+Now that we are building an executable, we have lots of *artifacts* in our repo.  For instance `simple_api.egg-info` is not something we want in our source control repository.  There is a really awesome template `.gitignore` file [here](https://github.com/github/gitignore/blob/main/Python.gitignore).  This is what I will be using moving forward.
+
 In [part 4](https://temporarylink) of this series, we will load our binary onto a linux system and run it using systemd.  We will learn how to create a systemd unit file, pipe logging to journald, and how to use an Environment File to configure our program.
