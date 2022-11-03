@@ -1,9 +1,0 @@
-{
-    "grammarly.selectors": [
-        {
-            "language": "markdown",
-            "scheme": "file",
-            "include": "coalesce2022-a-recap.md"
-        }
-    ]
-}
