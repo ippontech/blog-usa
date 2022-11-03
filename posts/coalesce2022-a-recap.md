@@ -235,4 +235,4 @@ I'm cognizant that all of the above is a lot. Thanks so much for sticking with m
 Interested in all the talks that happened this year? Find the full Coalesce 2022 Session [playlist](https://www.youtube.com/playlist?list=PL0QYlrC86xQlj9UDGiEwhXQuSjuSyPJHl) here!
 
 ----
-For more information on how Ippon Technologies can help your organization utilize dbt, contact sales@ipponusa.com.
+For more information on how Ippon Technologies can help your organization utilize dbt for all of your data transformation needs, contact sales@ipponusa.com.
