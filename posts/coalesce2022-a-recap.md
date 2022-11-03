@@ -230,7 +230,9 @@ Neal Achord and John Rensberger from Red Pill Analytics walk us through their im
 You can follow along with the workshop by [watching their talk](https://www.youtube.com/watch?v=EKPi-T_nBio&t=80s), cloning the [repo](https://github.com/RedPillAnalytics/dbt_coalesce_workshop) on Github and referring to their [slides](https://docs.google.com/presentation/d/11Q9wwMfyz6xuxMXCPizFg4DKSY_zOIHPNOrsNI8oBn8/edit?usp=sharing).
 
 ___
-I'm cognizant that all of the above is a lot. Thanks so much for sticking with me as I condensed a jam-packed week of content into a short little blog like this. I had a ton of fun and while I felt like I was drinking from a firehose at times, Coalesce was the best experience I've had at a conference to date. I thoroughly enjoyed getting to chat with data professionals and commiserating over all of the common data problems we face daily.
+I'm cognizant that all of the above is a lot. Thanks so much for sticking with me as I condensed a jam-packed week of content into a short little blog like this. I had a ton of fun and while I felt like I was drinking from a firehose at times, Coalesce was the best experience I've had at a conference to date. I thoroughly enjoyed getting to chat with data professionals and commiserating over all of the common data problems we face daily. All of their sessions and workshops where immensely thought-provoking and interesting. I hope I'll get to attend again sometime soon!
+
+Interested in all the talks that happened this year? Find the full Coalesce 2022 Session [playlist](https://www.youtube.com/playlist?list=PL0QYlrC86xQlj9UDGiEwhXQuSjuSyPJHl) here!
 
 ----
-For more information on how Ippon Technologies, a Snowflake Services Partner, can help your organization utilize the benefits of Snowflake for a migration from a traditional data warehouse, data lake, or POC, contact sales@ipponusa.com.
+For more information on how Ippon Technologies can help your organization utilize dbt, contact sales@ipponusa.com.
