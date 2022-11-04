@@ -62,7 +62,7 @@ shiv --site-packages dist/venv/lib/python3.10/site-packages \
 	-e simple_api.__main__:main src/ \
 	--upgrade
 ```
-Follows is an explanation of each line.
+Here is an explanation of each command.
 * `set -e` tells bash to stop execution if an erro is encountered.
 * `set -x` tells bash to print the executed commands to shell for debugging.
 * `python3 -m venv dist/venv` creates a second python virtual environment inside a folder called `dist`.  This will serve as our build virtual environment.
@@ -76,7 +76,7 @@ Follows is an explanation of each line.
 
 ### Keep your Requirements Files Separate
 
-Keeping your requirements files for pip separate makes it easy to setup your environment for development mode vs. building.  This is especially true when cloning this project onto a new machine.  The steps in this series are to aid in the development and release of large python projects, we use a simple example here to give you the tools to build off of in the future.  
+Keeping your requirements files for pip separate makes it easy to setup your environment for development mode vs. building.  This is especially true when cloning this project onto a new machine.  The steps in this series are to aid in the development and release of large python projects. We use a simple example here to give you the tools to build on in the future.  
 
 ### Keep your Virtual Environments Separate
 
@@ -98,10 +98,10 @@ I encourage you to put this executable binary onto a different machine and run i
 
 There are a few things worth mentioning that could cause you some errors along the way, especially if your program is not *pure python*.  If you build this binary on a machine running an ARM processor, and then copy it to a machine running an AMD processor, you may run into some issues.  In a later part of the series, we will discuss building for different architectures in more depth.  Remember from part 1, I mentioned that it is good to know which version of python you are building for?  Well, it is also good to know which architecture you are building for too!  
 
-Some packages that are architecture specific may include things like Audio Controllers, Systemd bindings, or SPI dev kits.  Mainly because these packages interact with the hardware of the computer and therefore are more architecture specific.
+Some packages that are architecture specific may include things like Audio Controllers, Systemd bindings, or SPI dev kits.  These packages interact with the hardware of the computer and therefore are more architecture-specific.
 
 # Update your .gitignore and  Push Your Changes
 
 Now that we are building an executable, we have lots of *artifacts* in our repo.  For instance `simple_api.egg-info` is not something we want in our source control repository.  There is a really awesome template `.gitignore` file [here](https://github.com/github/gitignore/blob/main/Python.gitignore).  This is what I will be using moving forward.
 
-In [part 4](https://temporarylink) of this series, we will load our binary onto a linux system and run it using systemd.  We will learn how to create a systemd unit file, pipe logging to journald, and how to use an Environment File to configure our program.
+In [part 4](https://temporarylink) of this series, we will load our binary onto a linux system and run it using systemd.  We will learn how to create a systemd unit file, pipe logging to journald, and how to use an Environment File to configure our program.  For more information on how Ippon Technologies can help your organization utilize Python, contact sales@ipponusa.com.
