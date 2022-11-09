@@ -92,12 +92,12 @@ Let's get right into five of the real-life use cases mentioned in the title that
 > Problem: How do you speed up team onboarding and ramp-up?
 > Typically analysts spend 18 months on the job, and it takes them 6 months to onboard into an organization. 
 > 
-> Solution: By making assets (such as your data objects, metrics and queries) you can reduce this time astronomically.
+> Solution: By making assets (such as your data objects, metrics and queries) available, you can reduce this time astronomically.
 
 2. Speed up root-cause analysis
 > Problem: Finding the solution to `It doesn't seem like Metric X is right?` is far from easy
 > 
-> Solution: Establish an automatic lineage across all of your data assets so you can easily trace data's journey through your process.
+> Solution: Establish an automatic lineage across all of your data assets so you can easily trace the data's journey through your process.
 
 3. Active data trust management
 > Problem: How do you go from metadata as a knowledge repository to activating the metadata to create actions in your environment?
@@ -112,7 +112,7 @@ Let's get right into five of the real-life use cases mentioned in the title that
 > 
 > Solution: Make the metadata context available to tools used on a daily basis. Integrate your metadata into your IDE so you can see recent queries run on a table, whether a table is popular, who owns it, are there issues with the table, what a metric means, the column description and many other things.
 
-5. Optimize data stack spending?
+5. Optimize data stack spending
 > Problem: How can you identify the following:
 > - Which queries are taking too long to run?
 > - Which tables can we deprecate?
