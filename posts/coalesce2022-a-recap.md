@@ -14,7 +14,7 @@ image:
 Coalesce 2022 is dbt Labs' analytics engineering conference. For its third year, from October 17th to 21st, 2022, Coalesce was a whirlwind data extravaganza boasting speaker sessions and workshops in person in London, Sydney, and New Orleans and streamed online. Over 2500 people from all over the world attended in person, and over 20,000 individuals online. I had the pleasure of attending in-person in New Orleans over the week, and throughout this blog, I'll be presenting the Top Announcements of the week from dbt and some of my favorite sessions I attended while there.
 
 # Top Announcements:
-The Keynote Address started the week off, coinciding with the start of Coalesce+ London. Tristan Handy, CEO and Founder of dbt Labs, and Margaret Francis, Chief Product Officer at dbt Labs, discussed the modern data stack, changes therein, and changes coming to the data tooling ecosystem. Additionally, the following new dbt features were announced.
+The Keynote Address started the week off, coinciding with the start of Coalesce+ London. Tristan Handy, CEO and Founder of dbt Labs, and Margaret Francis, Chief Product Officer at dbt Labs, discussed the modern data stack, how it has changed, and upcoming additions to the data tooling ecosystem. Additionally, the following new dbt features were announced.
 
 ## Python Support in dbt
 
