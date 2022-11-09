@@ -121,6 +121,7 @@ Let's get right into five of the real-life use cases mentioned in the title that
 > - What are the most/least queried tables?
 > 
 > Solution: All of this should be generating metadata in your system. You can then leverage that metadata to better optimize usage.
+> ![Active Spend and Performance Optimizations](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/11/coalesce_20_metadata_active_spend_and_performance_optimizations.png)
 
 As mentioned in the title, Prukalpa blitzes through 20 such use cases in approximately 20 minutes. To learn about all 20 use cases, watch Prukalpa's full talk [here](https://www.youtube.com/watch?v=fxFxfKCZrhY&list=PL0QYlrC86xQlj9UDGiEwhXQuSjuSyPJHl&index=78). For more information on all that Atlan can offer, [look here](https://atlan.com/).
 
