@@ -126,7 +126,7 @@ export class OtelDemoStack extends cdk.Stack {
 }
 ```
 
-It's important to note, that X-ray currently requires a specific time based ID format, which Quarkus discuss in [this section](https://quarkus.io/guides/opentelemetry#id-generator). You effectively need to use the X-Ray IDGenerator, or nothing will appear in the X-ray console.
+It's important to note, that X-ray currently requires a specific time based ID format, which Quarkus discusses in [this section](https://quarkus.io/guides/opentelemetry#id-generator). You effectively need to use the X-Ray IDGenerator, or nothing will appear in the X-ray console.
 
 The X-ray console looks like the following. This example demonstrates hitting a sample `/hello` endpoint, via the deployed load-balancer, hitting the Quarkus application, and then making a `HTTP GET` call to a Star Wars test endpoint: `https://www.swapi.tech/api/starships/3`.
 
