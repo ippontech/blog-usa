@@ -134,3 +134,6 @@ The X-ray console looks like the following. This example demonstrates hitting a 
 
 # Why/When Would I Use It?
 It's a great way of integrating metric and trace monitoring into new applications, or applications that don't have existing solutions in this space. I've excluded logging for the moment as the specification is still in a [draft status](https://opentelemetry.io/docs/reference/specification/status/) at the time of writing, but it is certainly an exciting development. This is a pretty fast moving space, which will mature and solidify over time, but it will be the way of integrating vendor-agnostic tracing/metric/logging functionality into your application moving forward.
+
+# Conclusion
+If you're starting a new project, or retrofitting metric and tracing support to an existing application, defintiely look into OpenTelemetry. It provides a solid, standards compliant mechanism to surface application telemetry, and works well even if you haven't yet decided on your downstream vendors as yet. Stop waiting and start exporting!
