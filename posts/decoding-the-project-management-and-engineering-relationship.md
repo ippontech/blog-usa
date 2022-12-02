@@ -28,7 +28,7 @@ Well, as it turns out, your awesome team was set up with an awesome project mana
 
 These are just a handful of scenarios that can be misconstrued in the PM and engineering relationship. There are many ways in which we, as engineers, can better collaborate with our PMs to help create and maintain strong, productive working relationships. Here at Ippon, we believe in building strong, collaborative teams that work as a unit across our project and engineering goals. We focus on educating our teams about the values that various team members and disciplines bring to a team and how we can work together to deliver a project. 
  
-_If you have found it hard for various roles and departments to work together seamlessly across the project lifecycle, let Ippon model the way._
+_If you have found it hard for various roles and departments to work together seamlessly across the project lifecycle, let Ippon model the way. Send us a line at [contact@ippon.tech](mailto:contact@ippon.tech)._
 
 
 
