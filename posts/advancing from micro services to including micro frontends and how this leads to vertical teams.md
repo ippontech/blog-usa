@@ -41,7 +41,7 @@ Microservices also eliminate the issue of deploying the entire application for a
 
 Examples of microservices may include a shopping cart or an account component of an e-commerce website. As seen in the image below, four components could be microservices.
 
-![Microservices Architecture Diagram](https://github.com/GospelBeats/blog-usa/master/images/2022/12/microservices.png)
+![Microservices Architecture Diagram](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/12/microservices.png)
 - ***4 independently standalone components***
 
 Microservices have improved overall development and solved many issues or limitations surrounding monolith practices. Thus, we can benefit from microservices and enhance the development process even more. Until recent years, microservices have been mainly utilized in the backend. The next logical step is to extend this monolithic-to-microservices migration process to the frontend.
@@ -52,23 +52,23 @@ Microservices have improved overall development and solved many issues or limita
 
 A [micro frontend](https://micro-frontends.org) has all the same development, scaling, testing, and deployment features we explored earlier with microservices. The significant difference is that a micro frontend is a tiny, independent piece of user experience or functionality within the user interface. It is typically divided by steps in a customer journey but can also be even more granular down to the components within a page. This clear division makes the team's code base more manageable by isolating possible failures into a single component. Teams can also take advantage of reusability with micro frontend components. Examples of micro frontend components include a webpage header or footer used throughout multiple pages.
 
-![Micro frontend header footer](https://github.com/GospelBeats/blog-usa/master/images/2022/12/mfe-header-footer.png)
+![Micro frontend header footer](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/12/mfe-header-footer.png)
 
 In their production applications, many large enterprise organizations already use micro frontends such as Ikea, Spotify, and Zolando. Micro frontends provide the ability to take a design and deliver it in a modular way. As with microservices, micro frontends allow teams to update iteratively and release independently without risk. MFE's practices enable teams to exercise scalability easily by allowing more developers to work on the same project. Teams can also leverage framework diversity along with a customer focus environment where developers and non-technical managers can concentrate on one feature at a time.
 
 
-![Micro frontend](https://github.com/GospelBeats/blog-usa/master/images/2022/12/Microfrontend.png)
+![Micro frontend](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/12/Microfrontend.png)
 
 Micro frontends practices take the concept of microservices to the frontend of an application. It seems like a natural progression that microservices have migrated into the frontend arena utilizing all of their benefits instead of monolithic approaches in large applications. Types of frameworks or tools that use micro frontends are [Open Components](https://opencomponents.github.io), [Bit](https://bit.dev), [Luigi](https://luigi-project.io/), and [Entando](https://www.entando.com).
   
-![Entando](https://github.com/GospelBeats/blog-usa/master/images/2022/12/e-logo.png)
+![Entando](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/12/e-logo.png)
 - ***image resource [Entando Website](https://www.entando.com)***
 
 ### What is Entando?
 
 Entando can be used as a tool which has the capability to really bring [micro frontends](https://developer.entando.com/next/tutorials/create/mfe) to life by providing the ability to automatically create microservices and micro frontends that can be installed into an application. Entando is an open source application composition platform (ACP) designed for [Kubernetes](https://kubernetes.io). It's a set of technologies that enable teams to build, deploy, run, and manage applications. Entando utilizes the independent component concept, along with business capabilities, which are the building blocks of the platform. Components can be micro frontends, microservices, page templates, content, data widgets, UX, or UI elements. Moreover, Entando elimenates the need to code the same feature multiple times as they can be reused in other pages or applications. The business capabilities consists of software tools that enable developers, project managers, and business associates to collaborate through a 4 step process; create, curate, compose, and consume. ***See image below*** 
 
-![Entando Business Capabilities](https://github.com/GospelBeats/blog-usa/master/images/2022/12/4-step-process.png)
+![Entando Business Capabilities](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/12/4-step-process.png)
 - ***image resource [Entando Website](https://developer.entando.com/v7.1/docs)***
 
 Powered by Kubernetes, Entando provides customers with a fast and convenient user experience, simplifying deployments by abstracting the complexity of Kubernetes, thus accelerating app development.
@@ -85,7 +85,7 @@ Entando's business capabilities architecture allows teams to be more vertical in
 
 Microservices and micro frontends promote the health of vertical teams by carving out small pieces of functionality that layer the backend with the frontend. See the visualization below:
 
-![Vertical Teams](https://github.com/GospelBeats/blog-usa/master/images/2022/12/vertical-team.png)
+![Vertical Teams](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/12/vertical-team.png)
 
 Communication barriers are reduced drastically when it comes to the vertical team environment. Examining the image above, one vertical team is part of a feature development life cycle process from start to finish. This eliminates the need of communication between a divided frontend and backend team, or a backend and database team for example. Instead there is one team where every team member plays a part in the entire development process. In this type of team environment, knowledge is shared throughout the team where everyone has some experience and knowledge of each area of the application, whether it be the database, backend or the user interface. This style of team development promotes unity keeping every team member on the same page without confusion or misunderstandings. 
 
