@@ -8,15 +8,15 @@ title: "Why Companies are Moving their Applications to Modular Architecture"
 image:
 ---
 
- As applications become increasingly complex over time, engineering teams have sought to ease the process of creating scalable and malleable products. Many organizations have turned to microservices to help keep their products scalable. Today we will discuss why microservices & modular architecture have gained much attention and usage in the past few years.  
+As applications become increasingly complex, engineering teams have sought to ease the process of creating scalable and malleable products. Many organizations have turned to microservices to help keep their products scalable. Today we will discuss why microservices & modular architecture have gained much attention and usage in the past few years.
 
 ## Monolithic Architecture
 
 To understand microservice architecture better, let's take a look into what traditional application architecture looks like - the monolith. "A monolithic architecture is a singular, large computing network with one code base that couples all of the business concerns together. To make a change to this sort of application requires updating the entire stack by accessing the code base and building and deploying an updated version of the service-side interface." [Atlassian](https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith#:~:text=A%20monolithic%20architecture%20is%20a%20singular%2C%20large%20computing%20network%20with,of%20the%20service%2Dside%20interface.)
 
-Organizations and teams across the world have approached application development with an agile mindset, hardening the process of developing a monolith. Making a single change to the server side or client side of your application can turn into a large process with having to roll out the entire application again. This can make continuous development and continuous integration difficult, one reason why application architects and developers have leaned into a different type of architecture - microservice architecture. We'll first take a look at the Modular Monolith and how it differs from a traditional monolith before moving into microservices.
+Organizations and teams worldwide have approached application development with an agile mindset, hardening the process of developing a monolith. Making a single change to your application's server or client-side can become an extensive process, with having to roll out the entire application again. This resource-intensive activity can make CI/CD difficult, so application architects and developers have leaned into a different type of architecture - microservice architecture. We'll first take a look at the Modular Monolith and how it differs from a traditional monolith before moving into microservices.
 
-![Monolith Vs Microservice Architecture Diagram](../images/2022/12/mono-micro-diagram.png) ***Microservice vs Monolith Architecture***
+![Monolith Vs Microservice Architecture Diagram](../../2.%20Tag%20and%20Link%20to%20Orient%20Ideas/Resources/Files/mono-micro-diagram.png) ***Microservice vs Monolith Architecture***
 
 ## Modular Monolith
 
@@ -30,11 +30,11 @@ One of the notable disadvantages for both monoliths and modular monoliths is how
 
 While this architecture model has its advantages over a monolithic application, it proves to still be difficult to modernize. It takes a lot of time since the velocity for this model is slow and the release cycle is sluggish. This is something companies need to consider as many applications need to be modernized for several reasons (i.e. modern hardware, browser updates, network bandwidth, tech stack, etc.)
 
-![Monolith Vs Microservice Architecture Diagram](../images/2022/12/modular-monolith.png) ***Modular Monolith Architecture***
+![Monolith Vs Microservice Architecture Diagram](../../2.%20Tag%20and%20Link%20to%20Orient%20Ideas/Resources/Files/modular-monolith.png) ***Modular Monolith Architecture***
 
 ## Microservices
 
-What is no longer considered a new architecture model has proven to be successful and adopted in approximately [63%](https://dzone.com/articles/new-research-shows-63-percent-of-enterprises-are-a) of enterprises. Most companies who have made the move have mentioned that their new architecture has improved customer & end-to-end experience and cut costs on infrastructure and other development tools. 
+No longer considered a new architectural model, microservices have proven to be successful and adopted in approximately [63%](https://dzone.com/articles/new-research-shows-63-percent-of-enterprises-are-a) of enterprises. Most companies who have converted have mentioned that their new architecture has improved customer & end-to-end experience and cut costs on infrastructure and other development tools. 
 
 It is essential to recognize that breaking down a monolith and developing microservices can be expensive and time-consuming. Understanding the benefits of transitioning to microservices and why other organizations are doing the same is vital. Some reasons companies should leverage microservices may include the following: 
 
