@@ -13,7 +13,7 @@ image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/1
 ---
 # What is JHipster Lite?
 
-JHipster Lite is an application generator that generates step-by-step only what you need for a modern web application and/or microservice architecture. As you might imagine from the name, JHipster Lite is a different approach to application generation than its predecessor, [JHipster](https://www.jhipster.tech/).
+[JHipster Lite](https://www.jhipster.tech/jhipster-lite) is an [application generator](https://www.pcmag.com/encyclopedia/term/application-generator) that generates step-by-step only what you need for a modern web application and/or microservice architecture. As you might imagine from the name, JHipster Lite is a different approach to application generation than its predecessor, [JHipster](https://www.jhipster.tech/).
 
 Unlike JHipster, a front-end only or back-end only application can be generated. (JHipster does support just generating microservices) No questions are asked during generation; you decide which components you want as part of the generation process.
 
@@ -31,7 +31,7 @@ JHipster Lite also generates code that follows a [Hexagonal Architecture](https:
 
 ## Run JHipster Lite locally, if you want
 
-You can certainly go straight to the [JHipster Lite website](https://lite.jhipster.tech/landscape) and start generating there. But you can also run it locally if you have Docker. (or in my case, Rancher)
+You can certainly go straight to the [JHipster Lite website](https://lite.jhipster.tech/landscape) and start generating there. But you can also run it locally if you have [Docker](https://www.docker.com/). (or in my case, [Rancher](https://rancherdesktop.io/))
 
 This is the command I used to run JHipster Lite locally:
 ```bash
@@ -451,7 +451,7 @@ Either click the `I love beer` link or go to http://localhost:8080/beers and you
 
 # Conclusion
 
-As you can see, JHipster Lite helps you bootstrap a new application and hit the ground running. That leaves more time for the functionality and less time with boilerplate code. It can also keep you on the right track if you are just learning a front-end framework and want to work within some known best practices.
+As you can see, [JHipster Lite](https://www.jhipster.tech/jhipster-lite) helps you bootstrap a new application and hit the ground running. That leaves more time for the functionality and less time with boilerplate code. It can also keep you on the right track if you are just learning a front-end framework and want to work within some known best practices.
 
 Let us know if you would like a talk or demo on JHipster Lite. Or better yet, if you need something built quickly and correctly!
 
