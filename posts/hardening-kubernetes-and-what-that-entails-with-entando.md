@@ -54,7 +54,7 @@ Entando comes with a handy command line tool that will help you containerize you
 
 ### Entando Pipelines
 
-Having secure containers is excellent, but if the pipelines they move through aren't secure, it will make little difference.  Entando has well documented CI/CD process that provide a GitFlow-like workflow.  These pipeline recommendations align with the same ethos we have seen thus far.  Add opinionated architecture and guardrails to minimize the number of human errors through the reduction of guesswork. More information can be found about Entando's CI/CD processes can be found [here](https://developer.entando.com/next/tutorials/create/pb/github-actions-workflow.html#overview).
+Having secure containers is excellent, but if the pipelines they move through aren't secure, it will make little difference.  Entando has well documented CI/CD process that provide a GitFlow-like workflow.  These pipeline recommendations align with the same ethos we have seen thus far.  Add opinionated architecture and guardrails to minimize the number of human errors through the reduction of guesswork. More information can be found about Entando's CI/CD support [here](https://developer.entando.com/next/tutorials/create/pb/github-actions-workflow.html#overview) or Entando's own opinionated build pipelines [here](https://github.com/entando/entando-pipelines).
 
 ### Additional Security Considerations
 
