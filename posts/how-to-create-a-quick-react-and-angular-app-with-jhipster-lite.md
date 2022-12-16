@@ -128,12 +128,10 @@ export default function Beers() {
    useEffect(() => {getBeers({setBeers})}, []);
  
    return (
-       <main style={{ padding: "1rem 0" }}>
-           <h2>Beers</h2>
-           <ul>
-               {beers.length > 0 && beers.map(beer => (<li>{beer.name}: ${beer.unitPrice}</li>))}
-           </ul>
-       </main>
+     <h2>Beers</h2>
+     <ul>
+        {beers.length > 0 && beers.map(beer => (<li>{beer.name}: ${beer.unitPrice}</li>))}
+     </ul>
    );
 }
 ```
