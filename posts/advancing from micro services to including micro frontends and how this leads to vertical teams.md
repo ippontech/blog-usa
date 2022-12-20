@@ -14,7 +14,7 @@ image:
 
 # Advancing from microservices to including micro frontends and how this leads to vertical teams 
 
-The journey from a monolithic architecture to a more scalable one is more important than ever for larger companies. They need the flexibility to scale and keep up with market demands in this unpredictable, evolving market. As customers' needs change and grow, enterprise applications need to be designed around a loosely-coupled infrastructure. We will explore how microservices solve many issues arising from monolith architectures. Then, we will dive further into how micro frontends take the concept of microservices to the next level. Finally, we will touch on how an application composition platform called Entando opens up possibilities surrounding micro frontends and how they promote vertical-type teams.
+The journey from a monolithic architecture to a more scalable one is more important than ever for larger companies. They need the flexibility to scale and keep up with market demands in this unpredictable, evolving market. As customers' needs change and grow, enterprise applications need to be designed around a loosely-coupled infrastructure. We will explore how microservices solve many issues arising from monolithic architectures. Then, we will dive further into how micro frontends take the concept of microservices to the next level. Finally, we will touch on how an application composition platform called Entando opens up possibilities surrounding micro frontends and how they promote vertical-type teams.
 
 ## The Journey From Monolithic Type Architecture to Microservices
 
