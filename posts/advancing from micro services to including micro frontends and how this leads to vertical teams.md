@@ -44,7 +44,7 @@ Examples of microservices may include a shopping cart or an account component of
 ![Microservices Architecture Diagram](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/12/microservices.png)
 - ***4 independently standalone components***
 
-Microservices have improved overall development and solved many issues or limitations surrounding monolith practices. Thus, we can benefit from microservices and enhance the development process even more. Until recent years, microservices have been mainly utilized in the backend. The next logical step is to extend this monolithic-to-microservices migration process to the frontend.
+Microservices have improved overall development and solved many issues or limitations surrounding monolith practices. Thus, we can benefit from microservices and enhance the development process even more. Until recent years, microservices have been mainly utilized in the backend. The next logical step is to extend this monolithic-to-microservices migration pattern to the frontend.
 
 ## Micro FrontEnds (MFE)
 
