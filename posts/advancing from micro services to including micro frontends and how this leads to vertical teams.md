@@ -18,7 +18,7 @@ The journey from a monolithic architecture to a more scalable one is more import
 
 ## The Journey From Monolithic Type Architecture to Microservices
 
-### What is Monolithic Architecture?
+### What is a Monolithic Architecture?
 
 A [monolithic architecture](https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith) is where all application components are part of a single unit. All application components are developed, scaled, and deployed as one unit. Usually, one main technology stack or programming language is used for the entire application. This type of setup could be ideal for smaller applications, but the monolith approach can serve many drawbacks for large applications.
 
