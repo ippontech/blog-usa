@@ -50,7 +50,7 @@ Microservices have improved overall development and solved many issues or limita
 
 ### What are Micro FrontEnds?
 
-A [micro frontend](https://micro-frontends.org) has all the same development, scaling, testing, and deployment features we explored earlier with microservices. The significant difference is that a micro frontend is a tiny, independent piece of user experience or functionality within the user interface. It is typically divided by steps in a customer journey but can also be even more granular down to the components within a page. This clear division makes the team's code base more manageable by isolating possible failures into a single component. Teams can also take advantage of reusability with micro frontend components. Examples of micro frontend components include a webpage header or footer used throughout multiple pages.
+A [micro frontend (MFE)](https://micro-frontends.org) has all the same development, scaling, testing, and deployment features we explored earlier with microservices. The significant difference is that a MFE is a tiny, independent piece of user experience or functionality within the user interface. It is typically divided by steps in a customer journey but can also be even more granular down to the components within a page. This clear division makes the team's code base more manageable by isolating possible failures into a single component. Teams can also take advantage of reusability with MFE components. Examples of MFE components include a webpage header or footer used throughout multiple pages.
 
 ![Micro frontend header footer](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/12/mfe-header-footer.png)
 
