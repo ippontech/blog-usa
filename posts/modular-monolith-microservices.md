@@ -8,7 +8,7 @@ title: "Why Companies are Moving their Applications to Modular Architecture"
 image:
 ---
 
-As applications become increasingly complex, engineering teams have sought to ease the process of creating scalable and malleable products. Many organizations have turned to microservices to help keep their products scalable. Today we will discuss why microservices & modular architecture have gained much attention and usage in the past few years.
+As applications become increasingly complex, engineering teams have sought to ease the process of creating scalable and malleable products. Many organizations have turned to microservices to help keep their products scalable, cost-efficient, and easier to develop over time. Today we will discuss why microservices & modular architecture have gained much attention and usage in the past few years.
 
 ## Monolithic Architecture
 
@@ -16,21 +16,19 @@ To understand microservice architecture better, let's take a look into what trad
 
 Organizations and teams worldwide have approached application development with an agile mindset, hardening the process of developing a monolith. Making a single change to your application's server or client-side can become an extensive process, with having to roll out the entire application again. This resource-intensive activity can make CI/CD difficult, so application architects and developers have leaned into a different type of architecture - microservice architecture. We'll first take a look at the Modular Monolith and how it differs from a traditional monolith before moving into microservices.
 
-![Monolith Vs Microservice Architecture Diagram](../../2.%20Tag%20and%20Link%20to%20Orient%20Ideas/Resources/Files/mono-micro-diagram.png) ***Microservice vs Monolith Architecture***
+![Monolith Vs Microservice Architecture Diagram](../images/2022/12/mono-micro-diagram.png) ***Microservice vs Monolith Architecture***
 
 ## Modular Monolith
 
 A Modular Monolith consists of dividing logic into modules, as each module is independent and isolated. Every module is in charge of its own business logic, database or schema, etc. With this model of architecture, you can build and modify existing layers of each module while leaving the others unaffected.
 
-Modules should communicate through APIs, allowing access to the logic of each module through public methods, not internal functions & the logic of each one.
-
-This architecture model is less complex than microservices and more scalable and easier to maintain than traditional monolithic apps.  You can keep the entire project as a single unit without needing multiple servers for deployment.
+Modules should communicate through APIs, allowing access to the logic of each module through public methods, not internal functions & the logic of each one. This architecture model is less complex than microservices and more scalable and easier to maintain than traditional monolithic apps. 
 
 One of the notable disadvantages for both monoliths and modular monoliths is how slow the development velocity is. Adding new features is slow because there is a large cognitive load on the developer. Modules of monoliths are tightly coupled, which can significantly lengthen the release cycle of a monolith.
 
 While this architecture model has its advantages over a monolithic application, it proves to still be difficult to modernize. It takes a lot of time since the velocity for this model is slow and the release cycle is sluggish. This is something companies need to consider as many applications need to be modernized for several reasons (i.e. modern hardware, browser updates, network bandwidth, tech stack, etc.)
 
-![Monolith Vs Microservice Architecture Diagram](../../2.%20Tag%20and%20Link%20to%20Orient%20Ideas/Resources/Files/modular-monolith.png) ***Modular Monolith Architecture***
+![Monolith Vs Microservice Architecture Diagram](../images/2022/12/modular-monolith.png) ***Modular Monolith Architecture***
 
 ## Microservices
 
