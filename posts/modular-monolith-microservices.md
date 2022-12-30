@@ -20,7 +20,7 @@ Organizations and teams worldwide have approached application development with a
 
 ## Modular Monolith
 
-Modular Monolith consists of dividing logic into modules, as each module is independent and isolated. Every module is in charge of its own business logic, database or schema, etc. With this model of architecture, you can build and modify existing layers of each module while leaving the others unaffected.
+A Modular Monolith consists of dividing logic into modules, as each module is independent and isolated. Every module is in charge of its own business logic, database or schema, etc. With this model of architecture, you can build and modify existing layers of each module while leaving the others unaffected.
 
 Modules should communicate through APIs, allowing access to the logic of each module through public methods, not internal functions & the logic of each one.
 
