@@ -32,7 +32,7 @@ While this architecture model has its advantages over a monolithic application, 
 
 ## Microservices
 
-No longer considered a new architectural model, microservices have proven to be successful and adopted in approximately [63%](https://dzone.com/articles/new-research-shows-63-percent-of-enterprises-are-a) of enterprises. Most companies who have converted have mentioned that their new architecture has improved customer and end-to-end experience and cut costs on infrastructure and other development tools. 
+No longer considered a new architectural model, microservices have proven to be successful and adopted in approximately [63%](https://dzone.com/articles/new-research-shows-63-percent-of-enterprises-are-a) of enterprises. Most companies who have converted have mentioned that their new architecture has improved the customer's end-to-end experience and cut costs on infrastructure and other development tools. 
 
 It is essential to recognize that breaking down a monolith and developing microservices can be expensive and time-consuming. Understanding the benefits of transitioning to microservices and why other organizations are doing the same is vital. Some reasons companies should leverage microservices may include the following: 
 
