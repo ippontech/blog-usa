@@ -1,15 +1,13 @@
 ---
-
 authors:
-
 - Ford Hatfield
-
-tags: Entando, Micro-frontends, Microservices
-
-date: 2022-12-13T9:00:00:00.000Z
-
+tags: 
+- Entando
+- Micro-frontends
+- Microservices
+date: 2023-01-12T9:15:00:00.000Z
 title: "Entando Personas Make Modular Applications More Manageable"
-
+image: ![Multiple people working on a web application](https://github.com/fuhsaz/blog-usa/blob/master/images/2023/01/entndo_personas_blog_image.jpg)
 ---
 
 Over the past few years, it has become apparent that businesses need to adapt quickly to changing conditions to stay competitive. Pushing a new feature's time-to-market due to another application part's unpreparedness is unacceptable. Building with a modular architecture in mind can give development teams more independence and potentially improve overall throughput. Unfortunately, modularizing applications can quickly become very complicated and difficult to manage.
