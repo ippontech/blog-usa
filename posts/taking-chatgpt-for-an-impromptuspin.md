@@ -89,6 +89,14 @@ As an AI, this is rather expected, but still doesn't account for how alien it fe
 
 As [Microsoft continues to funnel money into the ChatGPT project](https://edition.cnn.com/2023/01/23/tech/microsoft-invests-chatgpt-openai/index.html) and [Google has its own version of "Deepmind Chat" coming soon](https://www.techradar.com/news/googles-deepmind-promises-chatgpt-rival-soon-and-it-could-be-better-in-one-key-way), it is clear the days of artificial intelligence are only just beginning. Many industries will not have seen automation like this before and will be [partly or solely phased out](https://80000hours.org/2015/02/which-careers-will-be-automated/) as a result.
 
+```console
+Hello Brave New World?
+
+---
+
+Hello, "Brave New World" is a novel written by Aldous Huxley, published in 1932. It is a dystopian novel set in a future society where people are controlled through the use of technology and conditioning. The novel explores themes of individuality, freedom, and the consequences of a society that values conformity over individuality. Is there something specific you would like to know about it?
+```
+
 ### Sources
 
 - [ChatGPT](http://chat.openai.com/)
