@@ -12,9 +12,13 @@ image: /images/2022/10/dms-banner.png
 
 # Utilization of AWS Data Migration Service (DMS) for CDC and Full load
 
-Recently we received the challenge of migrating a database while simultaneously improving the performance and architecture of the data. The ask was to split a microservice by isolating areas of business logic and developing a new automated process. In order to integrate the database, it was decided that we would create a new database with the necessary tables and synchronize them utilizing DMS. During this process, we also needed to improve the performance of some queries and the relationship of the new tables, which consisted of various composite primary keys. These keys would become a column primary key in the new data structure, thereby also introducing the need to create new foreign key relationships. 
+The AWS Database Migration Service (DMS) is a powerful tool for migrating relational databases, data warehouses, NoSQL databases, and other types of data stores. In this blog post, we will explore the use of DMS for both full load and continuous data replication (CDC) during a database migration.
 
-These requirements turned into research and development which we’ve decided to share in this post. Let's first start by taking an overview of what DMS is.
+Recently, we received the challenge of migrating a database while simultaneously improving the performance and architecture of the data. After analyzing application performance and comparing with internal similar services, a Postgres Database was suggested as part of the improvements and a review on tables, relationships and indexes. The project also consisted on splitting a microservice by isolating areas of business logic and developing a new automated process, but keeping the services depending on the original database during the entire duration of the project.  We ultimately decided that we would create a new database with the necessary tables and synchronize them utilizing DMS. 
+
+During this process, we also needed to improve the performance of some queries and the relationship of the new tables, which consisted of various composite primary keys. These keys would become a column primary key in the new data structure, thereby also introducing the need to create new foreign key relationships. 
+
+These requirements turned into research and development, which we’ve decided to share in this post. Let's first start with an overview of what DMS is.
 
 ## What is a DMS?
 
@@ -84,7 +88,7 @@ Primary keys can cause a headache when setting up DMS if not appropriately handl
 1.  **Identify the primary keys and their data types **
 2.  **Disable all primary key constraints on the target database **
     
-    If new primary keys exist that were not part of the source database don't include them in your table schematic on your destination prior to the full load.
+    If new primary keys exist that were not part of the source database, don’t include them in your table schematic on your destination prior to the full load.
 
 3.  **Execute the full load**
 
@@ -95,7 +99,7 @@ Primary keys can cause a headache when setting up DMS if not appropriately handl
 
 5.  **Update Foreign Keys**
 
-    This is the part where we had the most trouble solving. The new primary keys were generated on the target database, so we only had it after the record went from target to source and the target database generated that as a sequential value. That value was used on another table as the foreign key and we would only have it after the migration happens. We considered 2 approaches:
+    This is the part where we had the most trouble solving. In order to improve the performance, we added new Primary keys on the target database, that were also used as Foreign keys. Introducing a problem for CDC syncronization as the values for those Primary Keys were generated after the record went from target to source. Then those value were used on other tables as the foreign key and we would only have it after the migration happens. In order to solve that we considered 2 approaches:
 
     i.  After the load was done, use a script to generate the keys inside our service.
 
@@ -130,6 +134,6 @@ Once your ongoing replication starts, if for any reason you have a failure on so
     
 You can create subscriptions for other events. In this case, we decided to capture in case of a Failure.
 
-DMS is a useful tool for cases where we need to keep databases in sync and makes it easy to manage those integrations, as it's compatible with different types of databases. The most valuable feature in our project was the utilization of CDC for real time synchronization, allowing the team to develop the new microservice at the same time of maintaining the original databases in place. We couldn't explore this project, but DMS has integrations with Kinesis, which make it a useful tool for streaming data and data warehouse solutions. Overall that was a good solution for our case, but we miss more documentation, which is the main motivation for us to create this blog post, and a better logging solution, as in some cases we didn't have an indication of the problem generating the failure of the service. 
+DMS is a useful tool for cases where we need to keep databases in sync and makes it easy to manage those integrations, as it's compatible with different types of databases. The most valuable feature in our project was the utilization of CDC for real time synchronization, allowing the team to develop the new microservice at the same time of maintaining the original databases in place. Although our use case did not call for integrations with other services,  DMS also offers integrations with Kinesis, which makes it a useful tool for streaming data and data warehouse solutions. Overall DMS was a good solution for our case but lacks more documentation, which is the main motivation for us to create this blog post. DMS could also benefit from  a better logging solution, as in some cases we didn't have an indication of the problem generating the failure of the service. 
 
 If you want to know more about or are considering using DMS on your project, reach out to us at info@ippon.tech.
