@@ -5,12 +5,12 @@ authors:
 tags:
 - AWS DMS
 date: 2022-10-12
-title: "Utilization of AWS Data Migration Service (DMS) for CDC and Full load"
+title: "From MySQL to Postgres: A Successful Database Migration using AWS DMS"
 image: /images/2022/10/dms-banner.png
 ---
 
 
-# Utilization of AWS Data Migration Service (DMS) for CDC and Full load
+# From MySQL to Postgres: A Successful Database Migration using AWS DMS
 
 The AWS Database Migration Service (DMS) is a powerful tool for migrating relational databases, data warehouses, NoSQL databases, and other types of data stores. In this blog post, we will explore the use of DMS for both full load and continuous data replication (CDC) during a database migration.
 
@@ -134,6 +134,6 @@ Once your ongoing replication starts, if for any reason you have a failure on so
     
 You can create subscriptions for other events. In this case, we decided to capture in case of a Failure.
 
-DMS is a useful tool for cases where we need to keep databases in sync and makes it easy to manage those integrations, as it's compatible with different types of databases. The most valuable feature in our project was the utilization of CDC for real time synchronization, allowing the team to develop the new microservice at the same time of maintaining the original databases in place. Although our use case did not call for integrations with other services,  DMS also offers integrations with Kinesis, which makes it a useful tool for streaming data and data warehouse solutions. Overall DMS was a good solution for our case but lacks more documentation, which is the main motivation for us to create this blog post. DMS could also benefit from  a better logging solution, as in some cases we didn't have an indication of the problem generating the failure of the service. 
+Overall, DMS is a useful tool for cases where we need to keep databases in sync and makes it easy to manage those integrations, as it's compatible with different types of databases. The most valuable feature in our project was the utilization of CDC for real time synchronization, allowing the team to develop the new microservice at the same time of maintaining the original databases in place. Although our use case did not call for integrations with other services,  DMS also offers integrations with Kinesis, which makes it a useful tool for streaming data and data warehouse solutions. Overall DMS was a good solution for our case but lacks more documentation, which is the main motivation for us to create this blog post. DMS could also benefit from  a better logging solution, as in some cases we didn't have an indication of the problem generating the failure of the service. 
 
 If you want to know more about or are considering using DMS on your project, reach out to us at info@ippon.tech.
