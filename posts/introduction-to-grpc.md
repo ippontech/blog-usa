@@ -9,17 +9,28 @@ image:
 ---
 
 # What is gRPC?
-gRPC (remote procedure call) is used for communicating between distributed systems (micro services).
-Google created and originally used an RPC framework called stubby, which later was open sourced as gRPC. 
+gRPC (remote procedure call) is used for communicating between distributed systems (microservices).
+Google created and originally used an RPC framework called Stubby, which later was open sourced as gRPC. 
 While using protobuffers is not mandatory to use gRPC, it is generally the easiest approach (as it 
 works out of the box). You define a protobuf in a simple message format and use protoc (the protobuf
 compiler) to generate code to handle serializing and creating your domain objects. You can also create
 a service in the protobuf definition which allows generation of methods for the client to communicate
 with the server.
 
+## What are Protobufs?
+
+Protobufs, short for Protocol Buffers, are used to create a language and platform-agnostic method for serializing 
+structured data. Google has [this](https://developers.google.com/protocol-buffers/docs/overview) to say about them:
+
+> Protocol buffers provide a language-neutral, platform-neutral, extensible mechanism for serializing structured data in
+> a forward-compatible and backward-compatible way. It’s like JSON, except it's smaller and faster, and it generates 
+> native language bindings.
+
+Protocol buffers are a combination of the definition language (created in .proto files), the code that the proto compiler generates to interface with data, language-specific runtime libraries, and the serialization format for data that is written to a file (or sent across a network connection).
+
 The protobuf simply defines the contract between the services, and this allows us to be language agnostic. 
 Using libraries for specific language, you can generate language specific code and use a language specific
-client to call the server. The server doesn’t need to know what language (this is also true of REST) the 
+client to call the server. The server doesn't need to know what language (this is also true of REST) the 
 client is using, all it needs is the serialized message (which it knows how to deserialize).
 
 Now that we’ve discussed what gRPC is, let’s flesh out an example. We will create a simple example 
@@ -56,14 +67,28 @@ any parsing on our side. Something like
 
 ```java
 Message Polynomial {
-	repeated coefficients = 1;
-	repeated exponents = 2;
+	repeated int32 coefficients = 1;
+	repeated int32 exponents = 2;
 }
 ```
 
-Now that we have our message structure defined, we can compile to see the generated code. As expected, we
-will see POJOs generated with setters, getters, and builders. Now that we've configured our message structure,
-we can define our service method that will be called in order to actually make requests:
+Now that we have our message structure defined, we can compile to see the generated code. Compiling our protobuf can be 
+done by simply using the proto compile, or by using the `protobuf-maven-plugin` plugin, which is configured in our project
+pom file. If we didn't have this configured, we could still compile using protoc. To install this, we follow instructions
+[here](https://grpc.io/docs/protoc-installation/), and then simply type in our terminal
+
+```
+protoc --java_out=<output-directory> derivative.proto 
+```
+
+After doing this, we should see generated java files in our output directory. For the remainder of this article, when we
+compile our protobufs, we will be doing this using the protobuf maven plugin, and the command `mvn install`. For more 
+information on using the compiler, visit the docs on [protoc invocation](https://developers.google.com/protocol-buffers/docs/reference/java-generated#invocation)
+Similar documentation exists for other languages.
+
+Once we compile our protobufs, we will see POJOs generated with setters, getters, and builders. Now that we've 
+configured our message structure, we can define our service method that will be called in order to actually make 
+requests:
 ```java
 service DerivativeSolver {
   rpc findDerivative(Polynomial) returns (Polynomial) {}
@@ -140,11 +165,11 @@ file systems and sets up a bridge network where they will communicate. In an act
 likely have to use some sort of DNS to reference the host.
 
 
-Lots of code samples found in this article are snippets of our previously linked project which can be used as a 
-reference. The actual application made available has some other stuff built on top, following familiar spring patterns.
-Among other things, we have a `@Configuration` class which is used to configure our gRPC server to be running inside 
-our spring application. In this configuratioon, `DerivativeCalculatorService` houses our previously shown derivative 
-logic. 
+All of code samples from this article are snippets of our previously linked project which can be used as a 
+reference. You can find on the application available on repository, shared on this article, some additional configurations
+related to the familiar spring patterns. Among other things, we have a `@Configuration` class which is used to configure
+our gRPC server to be running inside our spring application. In this configuratioon, `DerivativeCalculatorService` 
+houses our previously shown derivative logic. 
 
 ```java
 @Configuration
@@ -171,8 +196,9 @@ public class GrpcServerConfiguration {
 }
 ```
 
-Now we can finally try our example out. First we will want to build our two applications with maven, using the common 
-`mvn clean install`, then we can start our two images with the command `docker-compose -f docker-compose.yml up —build`.
+Now we can finally start up our spring applications and see a message sent from our gRPC client to the gRPC server. 
+First we will want to build our two applications with maven, using the common `mvn clean install` (this will compile the
+protobuffer), then we can start our two images with the command `docker-compose -f docker-compose.yml up —build`.
 Each project in our GitHub has its own docker compose file, one in server/docker-compose, and one in client/docker-compose.
 With both up and running, we can send requests to our client (also a spring boot app), via a simple rest endpoint. 
 It takes a polynomial in the form of a string (which is cumbersome as we said before), converts to our protobuf format 
