@@ -23,7 +23,7 @@ Entando defines the Four C's of Application Composition as Create, Curate, Compo
 A single person or team may fit and act as more than one Persona at different times. Still, larger teams may wish to organize people by their technical or business specialties to parallelize the development process better. 
 
 ## Creators
-Front-end and back-end developers likely find a Creator role similar to their experience. Creators are responsible for creating and packaging business capabilities, such as a micro-frontend and its associated microservice or a logo widget that can be reused in several of a company's applications, which can then be pushed to a central hub. A Creator can be a single developer, but there is room for design and business people in this role too! An entire development team consisting of design, development, testing, and business people can keep internally-created components consistent and aligned with business goals. 
+Front-end and back-end developers likely find a Creator role similar to their experience. Creators are responsible for creating and packaging business capabilities, such as a micro-frontend and its associated microservice or a logo widget that can be reused in several of a company's applications, which can then be pushed to a central hub, which may be the official hub hosted by Entando or a internal hub shared throughout a company. A Creator can be a single developer, but there is room for design and business people in this role too! An entire development team consisting of design, development, testing, and business people can keep internally-created components consistent and aligned with business goals. 
 
 Creators can quickly use the Entando Component Generator to generate the base code for new microservices and micro-frontends. The generator leverages [JHipster](https://www.jhipster.tech/) with [JHipster Blueprints](https://www.jhipster.tech/modules/extending-and-customizing/) and aims to accelerate development and standardize technology by allowing developers to quickly spin up new components with a consistent tech stack.
 
@@ -33,7 +33,7 @@ There are a few things that Creators can keep in mind to allow the Application C
 3. Take advantage of automation wherever possible. CI/CD pipelines save time, of course, but the Entando CLI has numerous features, such as boilerplate code generation and environment profiles, that can speed of development. 
 
 ## Curators
-Created components can be pushed to a central hub, hosted by Entando or privately by a company. Here they can be accessed by all different arms of a company to keep branding, styling, and accessibility decisions consistent. Curators are responsible for managing this hub. They can set up categorization, log component inventory, and correct any gaps they find.
+Created components are pushed to a central hub, hosted by Entando or privately by a company. Here they can be accessed by all different arms of a company to keep branding, styling, and accessibility decisions consistent. Curators are responsible for managing this hub. They can set up categorization, log component inventory, and correct any gaps they find.
 
 Curators also ensure that components are ready for the Composers on the team to use. They test for bugs and validate any business requirements. 
 
