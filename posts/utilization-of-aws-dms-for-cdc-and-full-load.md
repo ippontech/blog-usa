@@ -24,19 +24,19 @@ These requirements turned into research and development, which we’ve decided t
 
 AWS DMS (Database Migration Service) is a service used to migrate relational databases, data warehouses, NoSQL databases, and other types of data stores. Enabling the continuous replication of your data with high availability, keeping two different heterogeneous databases in real-time synchronization. 
 
-![](/images/2022/10/dms.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/10/dms.png)
 
 ## Database Defitions
 
 For our example let's consider the database with the following entities to be migrated from a MySQL database to Postgres.
 
-![](/images/2022/10/dms-tables-no-fk.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/10/dms-tables-no-fk.png)
 
 First, we notice that this entity diagram does not have foreign keys and the relationship between the tables is "informal", as defined only on joins. On the new database, we are required to implement new relationships to improve the consistency and performance of our data.
 
 To improve the relationship between entities, we targeted the following database design.
 
-![](/images/2022/10/dms-tables.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/10/dms-tables.png)
 
 This requires the creation of a primary key on the target tables and the use of new primary and foreign keys. Consequently, each record will now have a unique id, as well as, a unique column for foreign keys. Improving the relationship between entities and increasing the performance for joins.
 
@@ -55,7 +55,7 @@ When setting up DMS, you must first complete the items listed below. As part of 
 
 1.  **Create the source database** (Example: MySQL)
 
-    Acts as your data source. This is the data that you intend to replicate in some manner. 
+    Acts as your data source. This is the data that you intend to replicate in some manner. 
 
 2.  **Create the target database** (Example: PostgreSQL)
 
@@ -63,13 +63,13 @@ When setting up DMS, you must first complete the items listed below. As part of 
 
 3.  **Populate data**
 
-    Validate that the source database contains all the required information you intend to replicate. If you'd like to alter the data, this can be achieved using a combination of mapping and transformation rules as part of the DMS task. 
+    Validate that the source database contains all the required information you intend to replicate. If you'd like to alter the data, this can be achieved using a combination of mapping and transformation rules as part of the DMS task. 
 
 4.  **Create Endpoints for your databases**
 
     Inside the AWS console (*AWS > Endpoints*) you will need to create an entry for your source and target database utilizing the corresponding connection details.
 
-5.  **Setup a Replication Instance** 
+5.  **Setup a Replication Instance** 
     
     Employed to connect your source database and format data for the consuming target data store. Most transactions happen in memory, but more significant transactions may be offloaded to the disk.
 
@@ -85,17 +85,17 @@ The full load is responsible for propagating all data from your source database 
 
 Primary keys can cause a headache when setting up DMS if not appropriately handled. Follow the steps listed below to ensure your migration process runs smoothly. 
 
-1.  **Identify the primary keys and their data types **
-2.  **Disable all primary key constraints on the target database **
+1.  **Identify the primary keys and their data types **
+2.  **Disable all primary key constraints on the target database **
     
     If new primary keys exist that were not part of the source database, don’t include them in your table schematic on your destination prior to the full load.
 
 3.  **Execute the full load**
 
 4.  **Create all new primary keys, indexes, and foreign keys in your target database**
-    This includes both the primary key column as well as the constraint. 
+    This includes both the primary key column as well as the constraint. 
     
-    If you intend to populate any of the columns with new data do so now. 
+    If you intend to populate any of the columns with new data do so now. 
 
 5.  **Update Foreign Keys**
 
