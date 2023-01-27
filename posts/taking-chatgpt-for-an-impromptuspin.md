@@ -11,7 +11,7 @@ image:
 
 ## Introduction
 
-[OpenAI](https://openai.com/blog/chatgpt/)'s brainchild, "[ChatGPT](https://chat.openai.com/)," is all the rage right now and is identified/poised to be a massive disrupter in the software engineering industry. Since its release on November 30th, people have been writing plenty of guides, blogs, and opinion pieces about it all over social media. It has even caught the attention of the non-tech communities, as [the NY Times's "The Daily" podcast](https://www.stitcher.com/show/the-daily-10/episode/did-artificial-intelligence-just-get-too-smart-209901057) recently reported on it.
+[OpenAI](https://openai.com/blog/chatgpt/)'s brainchild, "[ChatGPT](https://chat.openai.com/)," is all the rage right now and is poised to be a massive disrupter in the software engineering industry. Since its release on November 30th, people have been writing plenty of guides, blogs, and opinion pieces about it all over social media. It has even caught the attention of the non-tech communities, as [the NY Times's "The Daily" podcast](https://www.stitcher.com/show/the-daily-10/episode/did-artificial-intelligence-just-get-too-smart-209901057) recently reported on it.
 
 ## Sentience
 
@@ -87,7 +87,7 @@ We know ChatGPT generated the tale of its upbringing. We expect it to sound clun
 
 ## Conclusion
 
-As [Microsoft continues to funnel money into the ChatGPT project](https://edition.cnn.com/2023/01/23/tech/microsoft-invests-chatgpt-openai/index.html) and [Google has its version of "Deepmind Chat" coming soon](https://www.techradar.com/news/googles-deepmind-promises-chatgpt-rival-soon-and-it-could-be-better-in-one-key-way), it is clear the days of artificial intelligence are only just beginning. Many industries have yet to see automation like this before and will face a [partial or complete overhaul](https://80000hours.org/2015/02/which-careers-will-be-automated/) soon.
+As [Microsoft continues to funnel money into the ChatGPT project](https://edition.cnn.com/2023/01/23/tech/microsoft-invests-chatgpt-openai/index.html) and [Google has its version of "Deepmind Chat" coming soon](https://www.techradar.com/news/googles-deepmind-promises-chatgpt-rival-soon-and-it-could-be-better-in-one-key-way), everyone should sign up for a free account and try taking [ChatGPT](http://chat.openai.com/) for a spin. It is clear the days of artificial intelligence are only just beginning. Many industries have yet to see automation like this before and will face a [partial or complete overhaul](https://80000hours.org/2015/02/which-careers-will-be-automated/) soon.
 
 ```console
 Hello Brave New World?
