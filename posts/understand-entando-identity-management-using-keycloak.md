@@ -53,3 +53,7 @@ https://github.com/entando/entando-keycloak-plugin/wiki
 ### Entando Identity Management System
 
 https://developer.entando.com/v7.1/docs/consume/identity-management.html#logging-into-your-keycloak-instance
+
+### Conclusion
+
+For more information on how Ippon Technologies can help your organization utilize Entando for all of your application development needs, contact [sales@ipponusa.com](mailto:sales@ipponusa.com).
