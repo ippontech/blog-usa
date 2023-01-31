@@ -16,9 +16,9 @@ Identity and access management is a framework of policies and technologies to en
 
 The Keycloak service powers all authentication and authorization for Entando. Entando applications rely on a Keycloak instance that is either externally installed or specific to an application.
 
-## Using Keycloak for Entando Authentication
+## Authentication: Abstraction through Keycloak
 
-Entando implements Keycloak as a central authentication point to provide a unified view of identity. Keycloak acts as an abstraction layer to the underlying Identity Provider (IDP), allowing Entando to integrate into other IDPs without modifying the source. This schema increases portability, which is beneficial for configuring all authentication for an Entando application in one place.
+Entando implements Keycloak as a central authentication point to provide a unified view of identity. Keycloak acts as an abstraction layer to the underlying Identity Provider (IDP), allowing Entando to integrate into other IDPs without modifying the source. This approach increases portability, which is beneficial for configuring all authentication for an Entando application in one place.
 
 ## Authorization: Entando Microservices and Role-based Assignments
 
@@ -28,7 +28,7 @@ Keycloak achieves microservice authorization through clients and roles stored in
 
 See [here](https://developer.entando.com/v7.1/docs/consume/identity-management.html#authorization) for Role Assignment steps.
 
-## The Entando Core and Keycloak Plugin
+# The Entando Core and Keycloak Plugin
 
 Entando Core is the central repository for Entando based on a docker image. Authenticated users access the core via the Entando Keycloak Plugin, which enables SSO capabilities and has User Management for an Entando instance using Keycloak.
 
@@ -40,7 +40,11 @@ Let's get started with setting up Keycloak with Entando! Setting up an external 
 
 Next, follow these [steps](https://developer.entando.com/v7.1/tutorials/devops/external-id-management.html#purpose) to connect to your external Keycloak instance. Following these steps should result in a working Entando instance connected to an external Keycloak server!
 
-## Docs:
+# Summary
+
+Understanding identity management can be tricky, but Keycloak simplifies the process of establishing efficient user management for organizations. Entando, being the leading open source application composition platform, has done well to use Keycloak for their identity management. The Entando platform has even went the extra mile to create a Keycloak plugin! For more information on how Ippon Technologies can help your organization utilize Entando for all of your application development needs, contact [sales@ipponusa.com](mailto:sales@ipponusa.com).
+
+# Docs
 
 ### Entando Keycloak Plugin
 
@@ -53,7 +57,3 @@ https://github.com/entando/entando-keycloak-plugin/wiki
 ### Entando Identity Management System
 
 https://developer.entando.com/v7.1/docs/consume/identity-management.html#logging-into-your-keycloak-instance
-
-### Conclusion
-
-For more information on how Ippon Technologies can help your organization utilize Entando for all of your application development needs, contact [sales@ipponusa.com](mailto:sales@ipponusa.com).
