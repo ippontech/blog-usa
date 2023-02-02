@@ -16,14 +16,13 @@ High availability within the software world means a user can employ a technology
 
 If you ever drink a Caprisun Cooler or a kid's Juice box, they have these tiny straws that require extra effort to draw the liquid up. Compare this to drinking through a straw from Mcdonald's or a giant smoothie straw: Less effort for more volume. This same idea is how *vertical* scalability works. Increase the size of the machine, and theoretically, throughput increases.
 
-Increase the size of the machine, and theoretically, throughput increases.
 What would happen if the big straw were to crack, however? It would become even more difficult to suck the liquid through. Instead of a wide straw, let's use two, three, or even ten straws! Having multiple straws would still mean high throughput. And, if one of the straws were to crack, plenty of beverage would still flow through the other straws. A new straw could replace the broken straw without stopping the *slurp!*
 
 This multiple-straw analogy is the central concept behind "horizontal" scalability. Kubernetes is a highly scalable, resilient, and reliable architecture. Entando is built on Kubernetes and shares all of these excellent benefits.
 
 ### Scalability
 
-In our analogy, "scalability" would be defined as the ability to get more and more liquid on demand by adding more straws. Kubernetes similarly handles scalability. Engineers can *scale* that workload to have more ***pods*** if a particular workload in an application is struggling to keep up. When building applications with Entando, the underlying Kubernetes scaling functionality is exposed. Scaling the microservice bundles is done the same way any Kubernetes pod can.
+In our analogy, "scalability" would be defined as the ability to get more and more liquid on demand by adding more straws. Kubernetes similarly handles scalability. Engineers can *scale* that workload to have more ***pods*** if a particular workload in an application is struggling to keep up. When building applications with Entando, the underlying Kubernetes scaling functionality is exposed. A reflection of scaling in Kubernetes can be seen in the scaling structure with Entando's microservice bundles.
 
 ### Resiliency
 
@@ -39,7 +38,7 @@ Entando has options to configure a shared cache across multiple nodes. This conf
 
 # Databases
 
-Out of the box, Entando will create databases inside the Kubernetes cluster. Each application will have a database and mechanism by which it can import and export data. An external database will set up a more scalable approach. Entando makes these a breeze to set up by using dedicated custom resource definitions. Customers will have to configure the external database themselves, but once complete, adding it to the custom resource definition is very straightforward. The Entando Operator will automatically create tables, indices, and foreign keys.
+Out of the box, Entando will create databases inside the Kubernetes cluster. Each application will have a database and mechanism by which it can import and export data. Additionally, it is possible to use a newly-created or existing external database to set up a more scalable approach. Entando makes these a breeze to set up by using dedicated custom resource definitions. Customers will have to configure the external database themselves, but once complete, adding it to the custom resource definition is very straightforward. The Entando Operator will automatically create tables, indices, and foreign keys.
 
 Scaling a database used with Entando is very similar to scaling databases in general.
 
@@ -74,8 +73,8 @@ All this talk about scaling nodes and refreshing pods begs the question, what ma
 
 Configuring Kubernetes to have multiple Primary Nodes will bulletproof your application deployment. As mentioned before, Entando allows you to do this and supports it with minimal configuration. The recommended minimum number of Primary Nodes for a highly available Kubernetes deployment is 3.
 
-Having multiple masters also improves the network performance of the cluster because the multiple masters act together as a unified data center.  This all serves to reduce the possible failure of the etcd datastore, API server, controller manager and scheduler, and all of the worker nodes.  In a single Master Node setup
+Having multiple masters also improves the network performance of the cluster because the multiple masters act together as a unified data center.  This all serves to reduce the possible failure of the etcd datastore, API server, controller manager and scheduler, and all of the worker nodes.  To contrast, in a single Master Node setup, node failure will cause Application failure.
 
 # Conclusion
 
-Building application's on Kubernetes makes scaling easy. A cutting-edge platform like Entando ensures that your critical applications scale when and how they need to. If you want to learn more about Entando, check out the website [here](https://entando.com/). If you need help implementing Kubernetes or Entando in your organization, drop us a line at [contact@ippon.tech](mailto:contact@ippon.tech).
+Building applications on Kubernetes makes scaling easy. A cutting-edge platform like Entando ensures that your critical applications scale when and how they need to. If you want to learn more about Entando, check out the website [here](https://entando.com/). If you need help implementing Kubernetes or Entando in your organization, drop us a line at [contact@ippon.tech](mailto:contact@ippon.tech).
