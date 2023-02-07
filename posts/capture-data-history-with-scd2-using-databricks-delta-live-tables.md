@@ -16,11 +16,11 @@ image:
 
 # How Databricks Delta Live Tables (DLT) simplify your life
 
-Delta Live Tables is a framework for building reliable, maintainable, and testable data processing pipelines. You define the transformations to perform on your data, and Delta Live Tables manages task orchestration, cluster management, monitoring, data quality, and error handling.
+Delta Live Tables (DLT) is a framework for building reliable, maintainable, and testable data processing pipelines. You define the transformations to perform on your data, and Delta Live Tables will then manage the task orchestration, cluster management, monitoring, data quality, and error handling.
 
 One of the great things about DLT is that you can use Python decorators to handle things like table dependencies or data quality. Coupled with [Auto Loader](https://docs.databricks.com/ingestion/auto-loader/index.html), you will be able to load and transform your data with a very low amount of code. For more details and real examples, I suggest to take a look at these [example notebooks](https://github.com/databricks/delta-live-tables-notebooks).
 
-You can also build a streaming pipeline that runs all the time and will ingest your streaming data. Migrating from a regular batch pipeline requires minimal changes as all the syntax is the same and you will able to perform complex operations like joins and aggregations.
+You can also build a streaming pipeline that runs all the time and will ingest your streaming data. Migrating from a regular batch pipeline requires minimal changes as all the syntax is the same and you will be able to perform complex operations like joins and aggregations.
 
 # What is SCD2 (Slowly Changing Dimensions Type 2)?
 
@@ -49,9 +49,9 @@ For more details about all types of SCD, I recommend reading this [great blog](h
 
 # Retain history on your tables with DLT
 
-To capture your data changes and retain history with DLT, you will just need to use the function `dlt.apply_changes()` and provide the correct parameters. Those parameters are very important and are gonna be unique for each table. For more information about those arguments, please read [the documentation of apply_changes()](https://docs.databricks.com/workflows/delta-live-tables/delta-live-tables-cdc.html#apply-changes-function). Make also sure that your DLT pipeline has the configuration `pipelines.enableTrackHistory` set to `true` and that the edition is either `Pro` or `Advanced`.
+To capture your data changes and retain history with DLT, you will just need to use the function `dlt.apply_changes()` and provide the correct parameters. Those parameters are very important and are going to be unique for each table. For more information about those arguments, please read [the documentation of apply_changes()](https://docs.databricks.com/workflows/delta-live-tables/delta-live-tables-cdc.html#apply-changes-function). Make sure that your DLT pipeline also has the configuration `pipelines.enableTrackHistory` set to `true` and that the edition is either `Pro` or `Advanced`.
 
-Based on the dataset from above, here how it would look:
+Based on the dataset from above, here's how it would look:
 
 ```python
 import dlt
@@ -77,7 +77,7 @@ With very low changes to your DLT pipeline, the `stock_estimate_scd2` table will
 
 # Usage in the finance world
 
-The first kind of data that your data lake should have in order to have your Portfolio Managers happy are financials and filings data. Bloomberg data is usually the go to for that and your ELT process just has to process the data incrementally (since there is no estimate).
+To best support your portfolio managers, it's recommended that your data lake include financial and filings data. Bloomberg data is usually the best for that and your ELT process just has to process the data incrementally (since there is no estimate).
 
 Then usually the next goal is to support forecasts and estimates made by stock analysts on the future earnings of publicly traded companies. The two major companies that provide that kind of data are [Visible Alpha](https://visiblealpha.com/) and [Refinitiv](https://www.refinitiv.com/en/financial-data/company-data/ibes-estimates), but they provide daily snapshots of their estimates. Your Portfolio Managers will save a lot of time and make better decisions by having access to a row-level history using SCD2. That's why I recommend enhancing your ELT pipelines to support that feature by simply updating your DLT code or switching to the Databricks Lakehouse Platform.
 
