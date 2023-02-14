@@ -16,8 +16,7 @@ image:
 
 Una vez configurado, los usuarios podrán acceder y conectarse de forma directa usando librarias como `pandas`, `Apache Spark` ó herramientas como `Power BI` y `Tableau`, esto sin la necesidad de configurar y liberar una infrastructura especializada, los usuarios podrán empezar a hacer uso los datos compartidos en minutos.
 
-![](https://github.com/asaldivar10/blog-usa/blob/90b6c036eb0ac62496a5adc59b221a8515b406b3/images/2023/02/deltasharing.png)
-
+![](https://raw.githubusercontent.com/asaldivar10/blog-usa/blob/spanish-delta_sharing/images/2023/02/deltasharing.png)
 # instalación del conector para Python
 El conector para Python implementa el protocolo para leer datos en formato de tablas desde un servidor de `Delta Sharing`, estas tablas se pueden mostrar an un marco de datos ó `Dataframe` utilizando  pandas o apache Spark.
 
