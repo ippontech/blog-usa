@@ -19,7 +19,9 @@ Una vez configurado, los usuarios podrán acceder y conectarse de forma directa 
 # instalación del conector para Python
 El conector para Python implementa el protocolo para leer datos en formato de tablas desde un servidor de `Delta Sharing`, estas tablas se pueden mostrar an un marco de datos ó `Dataframe` utilizando  pandas o apache Spark.
 
-## instalar la libreria
+![](https://raw.githubusercontent.com/asaldivar10/blog-usa/blob/spanish-delta_sharing/images/2023/02/deltasharing.png)
+
+## Instalación de la libreria
 
 ```python
 # Python version 3.6+
