@@ -17,7 +17,7 @@ Databricks is doing a lot of optimization and caching by default so jobs and que
 
 Having a cluster that autoscale is great if you want to save money and if you don't have strict SLAs on your jobs/queries runtime. But you will realize that it is usually better to use a cluster with a fixed-size, especially if you know the volume of data being processed in advance. Upsizing your cluster is not instant and it usually takes 3/4 minutes to have new worker nodes ready because of their initialization script. Because of that delay, you will notice that your cluster is constantly changing size and acting kinda like a "roller coaster":
 
-![](https://raw.githubusercontent.com/Falydoor/blog-usa/images/2023/02/databricks-autoscaling.png)
+![](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-tips-and-optimization-databricks/images/2023/02/databricks-autoscaling.png)
 
 Don't get me wrong, that is the whole point of autoscaling but the wait time between each upsizing event has an impact. A streaming job will have more data to process by the time the first upzise is finished and then will probably have to upsize again as more data must be processed.
 
@@ -25,7 +25,7 @@ Don't get me wrong, that is the whole point of autoscaling but the wait time bet
 
 A complex ETL job that requires unions and joins across multiple tables will run faster on a cluster that uses very large instance types because having a reduce number of workers minimize the amount of data shuffled. Also your workers will have more RAM available which should avoid running into `OUT_OF_MEMORY` errors like below (DLT pipeline):
 
-![](https://raw.githubusercontent.com/Falydoor/blog-usa/images/2023/02/databricks-out-of-memory.png)
+![](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-tips-and-optimization-databricks/images/2023/02/databricks-out-of-memory.png)
 
 For more details, I recommend reading [this Databricks page about cluster size consideration](https://docs.databricks.com/clusters/cluster-config-best-practices.html#cluster-sizing-considerations) but you will realize that a low number of large instance types is always better than a high number of small instance types.
 
@@ -47,7 +47,7 @@ Partitioning your data is very important and you should always think before pick
 
 If you decide to partition your table on specific columns, you might to take a look at [Delta Lake generated columns](https://docs.databricks.com/delta/generated-columns.html). This will be very useful if your data is partitionned on a date/timestamp column because you will be able to query on year/month/day and have your query use a partition filter. With our previous example with our daily stock price table, we would use our column `file_date` (date of the stock price) to generate a `file_year` and `file_month` column and partition our table with those 2 columns. Then we can easily retrieve all prices for a given year or month and have Delta Lake generate the correct partition filter:
 
-![](https://raw.githubusercontent.com/Falydoor/blog-usa/images/2023/02/databricks-generated-columns.png)
+![](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-tips-and-optimization-databricks/images/2023/02/databricks-generated-columns.png)
 
 To resume, multiple approaches can be done in order to improve query speed or job duration but having a poorly designed table will be very hard to optimize. Most of the time, nothing need to be done and the default behavior from Databricks will be enough. But depending on your end user queries, z-ordering and caching will help you have faster queries.
 
