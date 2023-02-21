@@ -89,6 +89,8 @@ df = (spark.read
 - Se verifica el destinatario utilizando el token del proveedor para que se pueda ejecutar la consulta a la tabla de datos.
 - Delta sharing incluye un catalogo de unidad que ayuda con un amejor administración y controles de seguridad a la hora de compartir los datos a clientes externos e internos.
 
+# Conlcusión
 
+En este blog se mostró una pequeña introduccion a los que `Delta Sahring`, requerimientos basicos para dar acceso al consumidor de datos y como utilizando estas configuraciones, no nos limitamos a una sola plataforma para poder compartir datos almacenados en `Delta Lake`
 
 
