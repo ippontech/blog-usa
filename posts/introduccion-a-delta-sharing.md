@@ -12,9 +12,9 @@ image:
 ---
 
 # Introducción 
-[Delta Sharing](https://delta.io/sharing/) es un protocolo libre para intercambiar grndes cantidades de datos de forma segura en tiempo real entre organizaciones, accesa y transfiere de manera segura un conjunto de datos que se encuentra en systemas en la nube como AWS S3, Azure ADLS y Google GCS.
+[Delta Sharing](https://delta.io/sharing/) es un protocolo libre para intercambiar grandes cantidades de datos de forma segura en tiempo real entre organizaciones, accesa y transfiere de manera segura un conjunto de datos que se encuentra en systemas en la nube como AWS S3, Azure ADLS y Google GCS.
 
-Una vez configurado, los usuarios podrán acceder y conectarse de forma directa usando librerias como `pandas`, `Apache Spark` ó herramientas como `Power BI` y `Tableau`, esto sin la necesidad de configurar y liberar una infrastructura especializada, los usuarios podrán empezar a hacer uso los datos compartidos en minutos.
+Una vez configurado, los usuarios podrán acceder y conectarse de forma directa usando librerias como `pandas`, `Apache Spark` ó herramientas como `Databricks`, `Power BI` y `Tableau`, esto sin la necesidad de configurar y liberar una infrastructura especializada, los usuarios podrán empezar a hacer uso los datos compartidos en minutos.
 
 ![](https://github.com/asaldivar10/blog-usa/blob/spanish-delta_sharing/images/2023/02/deltasharing.png)
 # instalación del conector para Python
@@ -79,5 +79,16 @@ df = (spark.read
 ```
 
 # Beneficios de usar Delta Sharing
+
+## Mejora la capacidad del diseño
+- Los proveedores y destinatarios de datos no necesitan estar en la misma plataforma, la trastferencia es rapida, tiene bajo costo y se puede trasnferir en paralelo.
+
+- Los datos enviados a los consumidores siempre van a ser consistentes ya que el proveedor realizara las transacciones ACID en Deltalake.
+
+## Seguridad al compartir datos
+- Se verifica el destinatario utilizando el token del proveedor para que se pueda ejecutar la consulta a la tabla de datos.
+- Delta sharing incluye un catalogo de unidad que ayuda con un amejor administración y controles de seguridad a la hora de compartir los datos a clientes externos e internos.
+
+
 
 
