@@ -12,9 +12,9 @@ image:
 ---
 
 # Introducción 
-[Delta Sharing](https://delta.io/sharing/) es un protocolo libre para intercambiar grandes cantidades de datos de forma segura en tiempo real entre organizaciones, accesa y transfiere de manera segura un conjunto de datos que se encuentra en systemas en la nube como AWS S3, Azure ADLS y Google GCS.
+[Delta Sharing](https://delta.io/sharing/) es un protocolo libre para intercambiar grandes cantidades de datos de forma segura en tiempo real entre organizaciones, accesa y transfiere de manera segura un conjunto de datos que se encuentra en systemas en la nube como AWS S3, Azure ADLS y Google GCS, esto permite una conexión y administración de los datos a consumidores de datos internos ó externos que no se enentran en la misma plataforma.
 
-Una vez configurado, los usuarios podrán acceder y conectarse de forma directa usando librerias como `pandas`, `Apache Spark` ó herramientas como `Databricks`, `Power BI` y `Tableau`, esto sin la necesidad de configurar y liberar una infrastructura especializada, los usuarios podrán empezar a hacer uso los datos compartidos en minutos.
+Una vez configurado, los clientes destino podrán acceder y conectarse de forma directa usando librerias como `pandas`, `Apache Spark` ó herramientas como `Databricks`, `Power BI` y `Tableau`, esto sin la necesidad de configurar y armar una infrastructura especializada, los clientes que cuentes con el acceso requerido podrán empezar a hacer uso los datos compartidos en minutos.
 
 ![](https://github.com/asaldivar10/blog-usa/blob/spanish-delta_sharing/images/2023/02/deltasharing.png)
 # instalación del conector para Python
