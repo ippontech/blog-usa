@@ -86,7 +86,7 @@ df = (spark.read
 ## Mejora la capacidad del diseño
 - Los proveedores y destinatarios de datos no necesitan estar en la misma plataforma, la trastferencia es rapida, tiene bajo costo y se puede trasnferir en paralelo.
 
-- Los datos enviados a los consumidores siempre van a ser consistentes ya que el proveedor realizara las transacciones ACID en Deltalake.
+- Los datos enviados a los consumidores siempre van a ser consistentes ya que el proveedor realizara las transacciones [ACID](https://www.databricks.com/glossary/acid-transactions#:~:text=ACID%20is%20an%20acronym%20that,operations%20are%20called%20transactional%20systems.) en Deltalake.
 
 ## Seguridad al compartir datos
 - Se verifica el destinatario utilizando el token del proveedor para que se pueda ejecutar la consulta a la tabla de datos.
