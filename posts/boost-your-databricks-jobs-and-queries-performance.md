@@ -19,7 +19,7 @@ Having a cluster that autoscales is great if you want to save money and if you d
 
 Due to that delay, you will notice that your cluster is constantly growing and shrinking like a "roller coaster":
 
-![](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-boost-performance-databricks/images/2023/02/databricks-autoscaling.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/02/databricks-autoscaling.png)
 
 Don't get me wrong, this is the whole point of autoscaling but the wait time between each upsizing events has an impact. A streaming job will have more data to process by the time the first upsize is finished and then will probably have to upsize again as new data is processed. If your cluster has been idle with a low number of workers - running a heavy command will take longer because it will have to first complete the upsize before starting that command.
 
@@ -29,7 +29,7 @@ One last detail is due to node termination, any data cached will be lost when th
 
 A complex ETL job that requires unions and joins across multiple tables will run faster on a cluster that uses very large instance types. Having a reduced number of workers will minimize the amount of data shuffled. Your large workers will also have more RAM available and have less `OUT_OF_MEMORY` errors like below (DLT pipeline):
 
-![](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-boost-performance-databricks/images/2023/02/databricks-out-of-memory.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/02/databricks-out-of-memory.png)
 
  A low number of large instance types is always better than a high number of small instance types. For more details, I recommend reading [the Databricks page about cluster sizing considerations](https://docs.databricks.com/clusters/cluster-config-best-practices.html#cluster-sizing-considerations).
 
@@ -55,7 +55,7 @@ Partitioning your data is very important and you should always think before pick
 
 If you decide to partition your table on specific columns, you might to take a look at [Delta Lake generated columns](https://docs.databricks.com/delta/generated-columns.html). This will be very useful if your data is partitionned on a date/timestamp column because you will be able to query on year/month/day and use a partition filter. With the previous stock price table example, the column `file_date` (date of the stock price) can be used to generate a `file_year` and `file_month` column and then partition our table with those 2 columns. Then we can easily retrieve all prices for a given year or month and have Delta Lake generate the correct partition filter:
 
-![](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-boost-performance-databricks/images/2023/02/databricks-generated-columns.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/02/databricks-generated-columns.png)
 
 You can see that `2020` was correctly used as a partition filter and that value was generated from `file_date`.
 
