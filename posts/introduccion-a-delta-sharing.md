@@ -7,22 +7,21 @@ tags:
 - Python
 - AWS
 date: 2023-02-14T12:30:00.000Z
-title: "Delta Sharing - protocolo para datos compartidos de forma segura"
+title: "Delta Sharing - protocolo para compartir datos de forma segura"
 image: 
 ---
 
 # Introducción 
-[Delta Sharing](https://delta.io/sharing/) es un protocolo libre para intercambiar grandes cantidades de datos de forma segura en tiempo real entre organizaciones, accesa y transfiere de manera segura un conjunto de datos que se encuentra en systemas en la nube como AWS S3, Azure ADLS y Google GCS, esto permite una conexión y administración de los datos a consumidores de datos internos ó externos que no se enentran en la misma plataforma.
+[Delta Sharing](https://delta.io/sharing/) es un protocolo libre para intercambiar grandes cantidades de datos de forma segura en tiempo real entre organizaciones, accesa y transfiere de manera segura un `Dataset` que se encuentra almacenado con systemas en la nube como AWS S3, Azure ADLS y Google GCS, esto permite una conexión a los datos y administración de los consumidores de datos internos ó externos que no se enentran en la misma plataforma.
 
 ## Ecosistema de Delta Sharing
 ![](https://github.com/asaldivar10/blog-usa/blob/spanish-delta_sharing/images/2023/02/deltasharing-eco.png)
 
-Una vez configurado el servidor Delta Sharing, los clientes destino podrán acceder y conectarse de forma directa usando librerias como `pandas`, `Apache Spark` ó herramientas como `Databricks`, `Power BI` y `Tableau`, esto sin la necesidad de configurar y armar una infrastructura especializada, los clientes que cuentes con el acceso requerido podrán empezar a hacer uso los datos compartidos en minutos.
+Una vez configurada la conexión y permisos en el servidor Delta Sharing , los clientes destino podrán acceder y conectarse de forma directa usando librerias como `pandas`, `Apache Spark` ó herramientas como `Databricks`, `Power BI` y `Tableau`, esto sin la necesidad de crear y configurar una infrastructura especializada, los clientes que cuenten con el acceso requerido podrán empezar a hacer uso los datos compartidos en minutos.
 
 ![](https://github.com/asaldivar10/blog-usa/blob/spanish-delta_sharing/images/2023/02/deltasharing.png)
 # instalación del conector para Python
-El conector para Python implementa el protocolo para leer datos en formato de tablas desde un servidor de `Delta Sharing`, estas tablas se pueden mostrar an un marco de datos ó `Dataframe` utilizando  pandas o apache Spark.
-
+El conector para Python implementa el protocolo para leer datos en formato de tablas desde un servidor de `Delta Sharing`, estas tablas se pueden mostrar a un `Dataframe` utilizando  Pandas ó Apache Spark.
 
 
 ## Instalación de la libreria
@@ -33,7 +32,7 @@ pip install delta-sharing
 ```
 
 ## Crear el archivo de perfiles
-este archivo debe ser en formato JSON que contiene informacion para que el cliente que va a consumir los datos tenga acceso al servidor de Delta Sharing.
+este archivo debe ser en formato JSON que contiene información para que el cliente que va a consumir los datos tenga acceso al servidor de Delta Sharing.
 - `shareCredentialsVersion`: Es la version del archivo que es utilizado para el perfil especificado.
 - `endpoint`: La URL del servidor en donde se configuran los accessos.
 - `bearerToken`: La llave de acceso para el servidor.
@@ -44,13 +43,13 @@ este archivo debe ser en formato JSON que contiene informacion para que el clien
   "shareCredentialsVersion": 1,
   "endpoint": "https://sharing.delta.io/delta-sharing/",
   "bearerToken": "<token>",
-  "expirationTime": "2023-10-115T00:12:30.0Z"
+  "expirationTime": "2023-10-15T00:12:30.0Z"
 }
 
 ```
 ## Utilizar el conector para Python
 
-Una vez creado el archivo del perfil con las llaves de acceso y guardado como archivo local o en un almacenamiento remoto en la nube, se podra configurar el conector con ese perfil.
+Una vez creado el archivo del perfil con las llaves de acceso y guardado como archivo local ó en un almacenamiento remoto en la nube, se podra configurar el conector con ese perfil.
 
 ```python
 import delta_sharing
@@ -60,7 +59,7 @@ client = delta_sharing.SharingClient(profile_file)
 
 table_url = profile_file + "#<share-name>.<schema-name>.<table-name>"
 
-# Cargar los datos en Pandas Datframe
+# Cargar los datos en Pandas Dataframe
 delta_sharing.load_as_pandas(table_url)
 
 # Cargar los datos en PySpark Dataframe
@@ -94,6 +93,6 @@ df = (spark.read
 
 # Conlcusión
 
-En este blog se mostró una pequeña introduccion a los que `Delta Sahring`, requerimientos basicos para dar acceso al consumidor de datos y como utilizando estas configuraciones, no nos limitamos a una sola plataforma para poder compartir datos almacenados en `Delta Lake`
+En este blog se mostró una pequeña introduccion a `Delta Sahring` con sus requerimientos basicos para dar acceso al consumidor de datos y como utilizando estas configuraciones, no nos limitamos a una sola plataforma o systema para poder compartir datos almacenados en `Delta Lake`.
 
 
