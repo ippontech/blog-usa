@@ -17,7 +17,7 @@ image:
 ## Ecosistema de Delta Sharing
 ![](https://github.com/asaldivar10/blog-usa/blob/spanish-delta_sharing/images/2023/02/deltasharing-eco.png)
 
-Una vez configurada la conexión y permisos en el servidor Delta Sharing , los clientes destino podrán acceder y conectarse de forma directa usando librerias como `pandas`, `Apache Spark` o herramientas como `Databricks`, `Power BI` y `Tableau`, esto sin la necesidad de crear y configurar una infrastructura especializada, los clientes que cuenten con el acceso requerido podrán empezar a hacer uso los datos compartidos en minutos.
+Una vez configurada la conexión y permisos en el servidor Delta Sharing , los clientes destino podrán acceder y conectarse de forma directa usando librerias como `pandas`, `Apache Spark` o herramientas como `Databricks`, `Power BI` y `Tableau`, esto sin la necesidad de crear y configurar una infraestructura especializada, los clientes que cuenten con el acceso requerido podrán empezar a hacer uso los datos compartidos en minutos.
 
 ![](https://github.com/asaldivar10/blog-usa/blob/spanish-delta_sharing/images/2023/02/deltasharing.png)
 # instalación del conector para Python
@@ -49,7 +49,7 @@ este archivo debe ser en formato JSON que contiene información para que el clie
 ```
 ## Utilizar el conector para Python
 
-Una vez creado el archivo del perfil con las llaves de acceso y guardado como archivo local ó en un almacenamiento remoto en la nube, se podra configurar el conector con ese perfil.
+Una vez creado el archivo del perfil con las llaves de acceso y guardado como archivo local o en un almacenamiento remoto en la nube, se podra configurar el conector con ese perfil.
 
 ```python
 import delta_sharing
