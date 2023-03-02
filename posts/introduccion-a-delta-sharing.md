@@ -93,6 +93,6 @@ df = (spark.read
 
 # Conclusión
 
-En este blog se mostró una pequeña introducción a `Delta Sahring` con sus requerimientos básicos para dar acceso al consumidor de datos y como utilizando estas configuraciones, no nos limitamos a una sola plataforma o sistema para poder compartir datos almacenados en `Delta Lake`.
+En este blog se mostró una pequeña introducción a `Delta Sharing` con sus requerimientos básicos para dar acceso al consumidor de datos y como utilizando estas configuraciones, no nos limitamos a una sola plataforma o sistema para poder compartir datos almacenados en `Delta Lake`.
 
 
