@@ -20,7 +20,7 @@ image:
 Una vez configurada la conexión y permisos en el servidor Delta Sharing , los clientes destino podrán acceder y conectarse de forma directa usando librerias como `pandas`, `Apache Spark` o herramientas como `Databricks`, `Power BI` y `Tableau`, esto sin la necesidad de crear y configurar una infraestructura especializada, los clientes que cuenten con el acceso requerido podrán empezar a hacer uso los datos compartidos en minutos.
 
 ![](https://github.com/asaldivar10/blog-usa/blob/spanish-delta_sharing/images/2023/02/deltasharing.png)
-# instalación del conector para Python
+# Instalación del conector para Python
 El conector para Python implementa el protocolo para leer datos en formato de tablas desde un servidor de `Delta Sharing`, estas tablas se pueden mostrar a un `Dataframe` utilizando  Pandas o Apache Spark.
 
 
@@ -32,7 +32,7 @@ pip install delta-sharing
 ```
 
 ## Crear el archivo de perfiles
-este archivo debe ser en formato JSON que contiene información para que el cliente que va a consumir los datos tenga acceso al servidor de Delta Sharing.
+Este archivo debe ser en formato JSON que contiene información para que el cliente que va a consumir los datos tenga acceso al servidor de Delta Sharing.
 - `shareCredentialsVersion`: Es la versión del archivo que es utilizado para el perfil especificado.
 - `endpoint`: La URL del servidor en donde se configuran los accessos.
 - `bearerToken`: La llave de acceso para el servidor.
