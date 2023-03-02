@@ -83,7 +83,7 @@ df = (spark.read
 # Beneficios de usar Delta Sharing
 
 ## Mejora la capacidad del diseño
-- Los proveedores y destinatarios de datos no necesitan estar en la misma plataforma, la transferencia es rapida, tiene bajo costo y se puede transferir en paralelo.
+- Los proveedores y destinatarios de datos no necesitan estar en la misma plataforma, la transferencia es rápida, tiene bajo costo y se puede transferir en paralelo.
 
 - Los datos enviados a los consumidores siempre van a ser consistentes ya que el proveedor realizará las transacciones [ACID](https://www.databricks.com/glossary/acid-transactions#:~:text=ACID%20is%20an%20acronym%20that,operations%20are%20called%20transactional%20systems.) en Deltalake.
 
