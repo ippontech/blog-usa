@@ -85,7 +85,7 @@ df = (spark.read
 ## Mejora la capacidad del diseño
 - Admite el intercambio de datos en diferentes plataformas informáticas, lenguajes de programación y sistemas de almacenamiento.
 - Los datos enviados a los consumidores siempre serán consistentes ya que el proveedor realizará las transacciones [ACID](https://www.databricks.com/glossary/acid-transactions#:~:text=ACID%20is%20an%20acronym%20that,operations%20are%20called%20transactional%20systems.) en Deltalake.
-- Está disenado para superar los desafíos del intercambio de datos, como la necesidad de múltiples copias de datos, trasferencias de datos lentas y costos elevados.
+- Está diseñado para superar los desafíos del intercambio de datos, como la necesidad de múltiples copias de datos, transferencias de datos lentas y costos elevados.
 
 ## Seguridad al compartir datos
 - Provee control de acceso detallado y características de privacidad de datos, como el cifrado de datos para garantizar que los datos se compartan de manera segura.
