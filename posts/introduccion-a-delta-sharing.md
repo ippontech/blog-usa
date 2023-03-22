@@ -6,6 +6,7 @@ tags:
 - Delta Sharing
 - Python
 - Delta Lake
+- Open Source
 date: 2023-02-14T12:30:00.000Z
 title: "Delta Sharing - protocolo para compartir datos de manera segura"
 image: 
