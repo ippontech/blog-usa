@@ -16,7 +16,7 @@ date: 2023-03-17T00:00:00.000Z
 title: "Modernize your pipeline to be ARM-ready with multi-arch container builds"
 ---
 
-With the release of Amazon Web Service's Graviton processors and the pivot of Apple's ecosystem to ARM based processors, multi-arch images are becoming hugely popular. Don't get left behind, transforming your workloads to run on multiple architectures is now more obtainable than ever. Converting your pipeline to build multi-arch images is a relatively straightforward and quick process that pays off in a big way. At Ippon Technologies, we utilize docker's buildx plugin to achieve building multi-arch images, and you can too! Follows is a short getting started guide, as well as some discussion as why, as a developer, it is in your best interest to build multi-arch images. 
+ARM computing has been historically reserved for embedded and small portable devices, however, in recent years there has been a growing number of ARM products in cloud and laptop products. This includes AWS Graviton Compute Instances, Raspberry Pi's Cortex-A72 chip, Googles Tau T2A compute instances, Azures Ampre Alta machines, and the pivot of Apple's ecosystem to ARM based processors. I know what you are thinking, Graviton, Tau, and Ampre Alta are really cool names, I agree! Given this new wave of ARM products, it is important to support the ARM architecture with multi-arch container images. Converting your pipeline to build multi-arch images is a relatively straightforward and quick process that pays off in a larger user base and higher cost savings. At Ippon Technologies, we utilize docker's buildx plugin to achieve building multi-arch images. Below is a short getting started guide, as well as some discussion as why, as a developer, it is in your best interest to build multi-arch images. 
 
 # Why this work happens
 
@@ -24,9 +24,9 @@ With the release of Amazon Web Service's Graviton processors and the pivot of Ap
 
 Multi-arch images are great for shipping end-user software that may need to run on multiple different types of platforms. For instance, let's say there is a developer tool that has been Dockerized that is widely popular. With Apple's latest switch to ARM processors, not supporting the newly adopted architecture may decrease the size of the potential user base. If an organization is shipping software that is intended to run on an end-user's machine, supporting multiple architectures means the code will run natively on their machines. Some users may opt to not use the software if it is not supported natively. *Native* just means that a program can run on a machine without having to utilize a virtualization layer (for instance, Apple's Rosetta, or QEMU on windows). 
 
-## Larger Device Pool and Cost Savings
+## Cloud Device Pool and Cost Savings
 
-The term cloud agnostic means being able to run your application on any cloud provider.  The same goes for architecture. Architecture agnosticism means a piece of software can run on any cpu architecture (within reason).  Some examples include x86 (32 bit), arm64 (sometimes called aarch64), and amd64 (also known as x86_64).  These are by far the most popular choices.  Examples of arm64 offerings include Apple's M1 and M2 processors, AWS Graviton Compute Instances, Raspberry Pi's Cortex-A72 chip, Googles Tau T2A compute instances, and Azures Ampre Alta machines. I know what you are thinking, Graviton, Tau, and Ampre Alta are really cool names, I agree! Again, building multi-arch containers increases the number of devices that piece of software can run on.  Not only that, but certain workloads work better on different cpu architectures.  Also, not every architecture is created the same.  Certain architectures are more power efficient and can save you money!
+The term cloud agnostic means being able to run your application on any cloud provider. The same goes for architecture. Architecture agnosticism means a piece of software can run on any cpu architecture (within reason).  Some examples include x86 (32 bit), arm64 (sometimes called aarch64), and amd64 (also known as x86_64).  These are by far the most popular choices.  Again, building multi-arch containers increases the number of devices that piece of software can run on.  Not only that, but certain workloads work better on different cpu architectures, being more power efficient and can save you money!
 
 One final use case example before we dive into the how.  IOT applications have to run on resource constrained Single Board Computers.  This is especially true for greenfield IOT development where many different test devices may be used.  Having multi-arch images ready to go means being able to test across multiple devices.  It can even help keep a company alive.  If you had specifically built a piece of software to run on a Raspberry PI (ARM64), your company may have gone out of business during the pandemic when the things became impossible to find! 
 
@@ -34,20 +34,15 @@ One final use case example before we dive into the how.  IOT applications have t
 
 ## Either way, it's turtles all the way down<sup>1</sup>
 
-It may be confusing at first to understand exactly what it means to convert your existing workloads to be able to run on multiple architectures. Let us look at a gross oversimplification.... All programming languages inevitably end up just being ran as machine code, or cpu instruction sets, it's all 1s and 0s eventually. Some example instruction sets include CISC, and RISC. These acronyms just mean Complex or Reduced Instruction Set Computer repectively. The main point here is, that when your application runs, it may look different at the lowest level depending on what cpu you are running on.
+It may be confusing at first to understand exactly what it means to convert your existing workloads to be able to run on multiple architectures. Let us look at a gross oversimplification.... All code inevitably ends up being ran as machine code that uses a given CPU's instruction set. In other words, it's all 1s and 0s eventually. For x86_64 and ARM, look at the machine code that is running for each architecture and it will be different.
 
-The cool part about this whole thing is, changes in your application code may not even be required. Often times it is as easy as using a different compiler flag or instructing docker to use a plugin called `buildx`. That's right, these changes are made during a phase of the software development lifecycle called the release phase, specifically the "build process". For this article, we will be focused on a build process that takes place in a build pipeline, namely, gitlab pipelines. 
-
-## A Program's Birthplace Matters
-
-A general rule of thumb, is that in order for a program to run on a certain architecture, it needs to be built on the same architecture. Roughly, this translates to, putting your source code on an ARM machine and building it will result in a binary that can run on another ARM machine. If you have low level dependencies in your code that talk to hardware, then some code changes in the application code may be required, but we are gonna save that for a different blog.
-
-So if you have a gitlab pipeline and it uses a gitlab runner, how do you go about building for different architectures? This is where the docker buildx plugin comes in. The buildx plugin will "emulate" the desired architecture and build your artifact on that virtualization layer.  In other words, docker running inside docker. Another option would be to have two or three separate runner machines that have the base architecture. We are going to focus on the former example using buildx. The code changes that you make will happen inside your *pipeline as code* source file. For gitlab, this is the `.gitlab-ci.yml` file. If you are using Jenkins, it will be the Jenkinsfile, and github also has their own flavor, the concepts remain quite similar.
+The cool part about this whole thing is, changes in your application code may not even be required. Often times it is as easy as using a different compiler flag, running interpreted code with an interpreter compiled for a different architecture, or instructing `docker buildx` to build an image for a different architecutre. That's right, these changes are made during a phase of the software development lifecycle called the release phase, specifically the "build process". For this article, we will be focused on a build process that takes place in a build pipeline, namely, gitlab pipelines. 
 
 # What are the steps
 
-For some context, we will frame the following example with a Kubernetes cluster running on Amazon Web Service's EKS. For brevities sake, I am going to assume that you already have a kubernetes cluster running and some facility operating it. If you don't, here is a very brief version of how to get up and running. Please note, this is not the only application for running multi-arch images, but definitely a relevant one if you live and breath DevOps work as your day to day. 
+For some context, we will frame the following example with a Kubernetes cluster running on Amazon Web Service's EKS. For brevities sake, I am going to assume that you already have a Kubernetes cluster running and some facility operating it. If you don't, here is a very brief version of how to get up and running. Please note, this is not the only application for running multi-arch images, but definitely a relevant one if you live and breath DevOps work as your day to day. 
 
+It is necessary to attach an ARM64 node to your Kubernetes cluster to continue.
 ## Setting up an EKS cluster that can run ARM containers
 
 Let's create an AWS EKS cluster to run our examples on and to frame some ideas. First...
@@ -59,7 +54,7 @@ Let's create an AWS EKS cluster to run our examples on and to frame some ideas. 
 		* During Step 2, "Set Compute and Scaling Configuration," choose the AMI (Amazon Machine Image) called
 			`Amazon Linux 2 Arm (AL2_ARM_64)`
 
-Just like that, your kubernetes cluster is ready to run ARM work loads on Graviton. You could also add a regular AMD64 compute instance to the node group and operate a mixed architecture cluster. 
+Just like that, your Kubernetes cluster is ready to run ARM work loads on Graviton. You could also add a regular X86_64 compute instance to the node group and operate a mixed architecture cluster. 
 
 ## Telling Kubernetes where to launch your pods
 
@@ -112,7 +107,7 @@ Now this is typically where you would scamper off to the command line and run `d
 ```bash
 docker buildx create --use
 ```
-You may need to add some additional arguments to authenticate to your docker registy here. Check the [docs](https://docs.docker.com/engine/reference/commandline/buildx_use/) for any information or google any errors you may run into. Now it is time to run the actual build command. Back at the command prompt, run:
+You may need to add some additional arguments to authenticate to your docker registy in the above command. Check the [docs](https://docs.docker.com/engine/reference/commandline/buildx_use/) for any information or google any errors you may run into. Now it is time to run the actual build command. Back at the command prompt, run:
 ```bash
 `docker buildx build --platform linux/arm64,linux/amd64 -t <registry-url>/<image-name>:<image-tag> . --push`
 ```
@@ -149,7 +144,7 @@ spec:
 The manifest you just deployed contains a job spec. It will run the program until it's task is completed. Grab the pod name with `kubectl get pods` and then check the logs with `kubetcl logs <pod-name>`. You should see the system info printed to the output. 
 
 ## Multi-arch cluster
-It is possible to set a different AMI for additional node groups added to the EKS cluster. In other words, you can have a multi architecture cluster running amd64/x86, arm64, or any other number of architectures. To deploy a pod for the created image on `amd64`, use this manifest:
+It is possible to set a different AMI for additional node groups added to the EKS cluster. In other words, you can have a multi architecture cluster running amd64/x86_64, arm64, or any other number of architectures. To deploy a pod for the created image on `amd64`, use this manifest:
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -164,7 +159,7 @@ spec:
   nodeSelector:
     kubernetes.io/arch: amd64
 ```
-Notice that the `kubernetes.io/arch` field now reads `amd64` instead of `arm64`. This will make it so that the pod deploys to an x86 node and will thus pull down the x86 image. If a manifest without a `nodeSelector` is used, then it will be deployed to whichever node, and then pull down the appropriate image. 
+Notice that the `kubernetes.io/arch` field now reads `amd64` instead of `arm64`. This will make it so that the pod deploys to an x86_64 node and will thus pull down the x86_64 image. If a manifest without a `nodeSelector` is used, then it will be deployed to whichever node, and then pull down the appropriate image. 
 
 ## Running it in Gitlab
 
