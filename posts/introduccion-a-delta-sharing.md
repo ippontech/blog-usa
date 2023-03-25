@@ -16,11 +16,11 @@ image:
 [Delta Sharing](https://delta.io/sharing/) es un protocolo libre para intercambiar grandes cantidades de datos de manera segura y en tiempo real entre organizaciones, este accede y transfiere de manera segura un `Dataset` que se encuentra almacenado en la nube, en sistemas como AWS S3, Azure ADLS y Google GCS, permitiendo que los consumidores de datos internos o externos que no se encuentran en la misma plataforma, puedan acceder a ese `Dataset`.
 
 ## Ecosistema de Delta Sharing
-![](https://github.com/asaldivar10/blog-usa/blob/spanish-delta_sharing/images/2023/02/deltasharing-eco.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/02/deltasharing-eco.png)
 
 Una vez configurada la conexión y los permisos en el servidor de Delta Sharing, los clientes destino podrán acceder y conectarse de forma directa a los datos, usando librerías tales como `pandas`, `Apache Spark` o herramientas como `Databricks`, `Power BI` y `Tableau` Este acceso es posible sin la necesidad de crear y configurar una infraestructura especializada, logrando que los clientes que cuenten con el acceso requerido puedan empezar a hacer uso de los datos compartidos en cuestión de minutos.
 
-![](https://github.com/asaldivar10/blog-usa/blob/spanish-delta_sharing/images/2023/02/deltasharing.png)
+![](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/02/deltasharing.png)
 # Instalación del conector para Python
 El conector para Python implementa el protocolo para leer datos en formato de tablas desde un servidor de `Delta Sharing`. Estas tablas se pueden mostrar a un `Dataframe` utilizando  Pandas o Apache Spark.
 
@@ -96,5 +96,3 @@ df = (spark.read
 # Conclusión
 
 En este blog se mostró una pequeña introducción a `Delta Sharing` con sus requerimientos básicos para dar acceso al consumidor de datos. También se demostró como el uso de estas configuraciones, nos brinda más opciones fuera de limitarnos a una sola plataforma o sistema para poder compartir datos almacenados en `Delta Lake`.
-
-
