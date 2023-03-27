@@ -10,7 +10,7 @@ title: "Python in Production Part 4 of 5"
 image: 
 ---
 
-Welcome back to the Python in Production series.  In the [third part](https://templinkplaceholder) of the series, we learned how to convert our program into a runnable binary file.  Now that we have a runnable binary, we are ready to *integrate* our program into a system.  
+Welcome back to the Python in Production series.  In the [third part](https://blog.ippon.tech/python-in-production-part-3-of-5/) of the series, we learned how to convert our program into a runnable binary file.  Now that we have a runnable binary, we are ready to *integrate* our program into a system.  
 
 Putting your python program into production can look different depending on your use case.  The methods discussed in this series will work for a wide range of applications.  I will be using a remote server running Debian Linux.  Most linux distros have a software suite called **SystemD**.  
 
@@ -53,7 +53,7 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
-Following is an explanation of each line.
+Here is an explanation of each line.
 * `[Unit]` This section describes your service in the context of the rest of the system.
 * `Description=Simple API Service` is a short description of the service.
 * `After=network.target` tells systemd to wait until the network is up before starting our service.  This makes sense for most web applications.
@@ -71,7 +71,7 @@ Now that we have our systemd unit file, we are ready to put it, along with our p
 
 If you have been following along since the beginning of the series, then you will have a *binary* file called `simple_api` and a *systemd unit file* called `simple_api.service` in your current working directory.  In order to get these files onto our linux server, we are going to use a utility called ***scp***.
 
-SCP stands for **S**ecure **C**opy.  It is a simple command line utility that transfers files from your local machine, to a remote server (or the other way around!).  If you are more comfortable with an ftp utility, or a program such as filezilla, feel free to use that instead.  
+SCP stands for **S**ecure **C**opy **P**rotocol.  It is a simple command line utility that transfers files from your local machine, to a remote server (or the other way around!). SCP uses the same mechanism as SSH to secure your "over the wire" communications. If you are more comfortable with an ftp utility, or a program such as filezilla, feel free to use that instead.  
 
 ### Copy the Binary File onto Your Linux Server
 
@@ -81,7 +81,7 @@ If you are using an SSH key to access your server, then run this command on your
 scp -i {path_to_ssh_private_key_file} simple_api {user}@{server}:/home/{user}/simple_api
 ```
 
-My command looks like this (DON'T RUN THIS ONE!): 
+My command looks like this (***DON'T RUN THIS ONE!***): 
 
 ```bash
 scp -i ~/.ssh/id_ed25519 simple_api lward@python-blog.example.com:/home/lward/simple_api
@@ -92,7 +92,7 @@ If you are accessing your server via username and password, simply run this comm
 scp simple_api {user}@{server}:/home/{user}/simple_api
 ```
 
-An example (DON'T RUN THIS ONE!):
+An example (***DON'T RUN THIS ONE!***):
 
 ```bash
 scp simple_api lward@python-blog.example.com:/home/lward/simple_api
@@ -106,7 +106,7 @@ Again, run this command from your local machine, replacing the stuff in brackets
 scp -i {path_to_ssh_private_key_file} simple_api.service {user}@{server}:/home/{user}/simple_api.service
 ```
 
-The next step after copying both files on to our server, is to log into our server and complete our setup.  This next step will only need to be completed one time, and then it is good forever!
+After copying both files onto our server, the next step is to complete our setup.  This next step will only need to be completed once; it is good forever!
 
 ## Create Symlinks to our Files
 
@@ -141,7 +141,7 @@ systemctl --user enable simple_api.service
 systemctl --user start simple_api.service
 ```
 
-These three commands tell systemd to look for new unit files, add them to the list of things to start on boot, and then start the service.  To verify our service is indeed running, we will use another piece of software included with systemd, called `journald`.  In order to read the logs stored in `journald`, we use the command `journalctl`.  You may notice a patter emerging here! 
+These three commands tell systemd to look for new unit files, add them to the list of things to start on boot, and then start the service.  To verify our service is indeed running, we will use another piece of software included with systemd, called `journald`.  In order to read the logs stored in `journald`, we use the command `journalctl`.  You may notice a pattern emerging here! 
 ```bash
 journalctl --user-unit simple_api.service
 ```
@@ -228,7 +228,7 @@ export DEV_LOCATION="North Carolina"
 ./simple_api
 ```
 
-Use your browser to navigate to the site and you should see the new message `{"Message":"Hello, World! From North Carolina"}`.  When testing locally, we simply set an Environment Variable, but systemd actually has an option to load an environment file.  A few screens ago, we created a file called `simple_api.conf`.  We are going to put that file on our linux server in the `/etc/default/simple_api.conf` location.  Let's go ahead and update our unit file and then we will load it all onto our server.
+Use your browser to navigate the site and see the new message `{"Message":"Hello, World! From North Carolina"}`.  When testing locally, we set an Environment Variable, but systemd has an option to load an environment file.  Earlier, we created a file called `simple_api.conf`.  We will put that file on our Linux server in the `/etc/default/simple_api.conf` location.  Let's go ahead and update our unit file and then we will load it all onto our server.
 
 Change your simple_api.service file to reflect these changes:
 ```ini
@@ -275,7 +275,7 @@ lward@python-blog:~$ curl http://localhost:8000
 
 If you have made it this far, then I salute you, dedicated reader.  This series consists of 5 parts, and you are nearing the end of part 4.  Each part builds upon the previous part, and each part offers more value as far as ***lessons learned***.  To illuminate this point, I will now tell you why you are creating this configuration file versus hard coding 'North Carolina' into the source code.
 
-Let's say that down the road, I move to Virgina.  If I had hardcoded my location into my source code, I would need to rebuild, and relaunch my appilication to reflect this change.  Using an environment file in our systemd unit file, enables us to change aspects of our program *without* having to rebuild it.  With a tiny application like this, rebuilding would not really be that big of a struggle, but things get complicated as they get bigger.  Let's update our location to Virgina and then call it a day.
+Let's say that down the road, I move to Virginia.  If I had hardcoded my location into my source code, I would need to rebuild and relaunch my application to reflect this change.  Using an environment file in our systemd unit file enables us to change aspects of our program *without* having to rebuild it.  With a small application like this, rebuilding would be manageable, but things get complicated as applications get bigger.  Let's update our location to Virginia and then call it a day.
 
 Make sure you are logged into your remote server.  Run the following commands to update your Environment File.
 ```bash
@@ -285,4 +285,4 @@ curl http://localhost:8000
 {"Message":"Hello, World! From Virgina"}
 ```
 
-In the section 'Configure Your Program With an Environment File' we had to go through the arduous process of rebuilding our code, and relaunching it on our server.  In [part 5](https://temporarylink) of this series, we will automate most of this process using a build pipeline inside of a program called Jenkins.
+In the section 'Configure Your Program With an Environment File' we had to go through the arduous process of rebuilding our code, and relaunching it on our server.  In part 5 of this series, we will automate most of this process using a build pipeline inside of a program called Jenkins.
