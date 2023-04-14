@@ -77,6 +77,8 @@ Another scenario involves triggering actions only when certain conditions are me
 
 Read more on generator function [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
 
+![Example Generator](https://raw.githubusercontent.com/Nero-Link/blog-usa/master/images/2023/04/generator%20example.PNG)
+
 Here are some example scenarios for when you might want to use Redux Sagas in your app:
 - When you need to make an API request and need to handle the response (for example, show a spinner while the request is being made)
 - When making API calls that require complex error handling and retries
