@@ -1,4 +1,3 @@
-![Redux logo](https://redux-saga.js.org/img/Redux-Saga-Logo.png)
 # <img src="https://redux-saga.js.org/img/Redux-Saga-Logo.png" width="50"> Redux Sagas: All You Need to Know
 In the world of React web development, managing state is an essential task. Redux is a popular state management library used by many to store and manage the state of the application.
 
