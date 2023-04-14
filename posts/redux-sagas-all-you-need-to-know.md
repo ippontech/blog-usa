@@ -1,4 +1,4 @@
-## Redux Sagas: All You Need to Know
+# Redux Sagas: All You Need to Know
 In the world of React web development, managing state is an essential task. Redux is a popular state management library used by many to store and manage the state of the application.
 
 However, when it comes to handling complex async logic, Redux on its own isn't always enough. This is where Redux Sagas come in, providing a solution to deal with async logic in a more declarative way.
@@ -33,7 +33,7 @@ The Context API and Redux are two popular state-management libraries in React, a
 - Improved code organisation: Both Redux and the Context API provide a central location to manage your app's data, which can make your code easier to maintain and debug.
 - Improved performance: By managing your app's state in a central location, you can avoid unnecessary re-renders and improve the performance of your application.
 - Easier to reason about: By having a clear separation of concerns between your state management and your UI components, you can make it easier to reason about and debug your code.
-- 
+
 The Context API and Redux are both great tools for managing state in your app. The Context API provides a way to pass down state to child components without prop drilling, while Redux provides a global state management system. One advantage of using the Context API is that it's built into React, so you don't need to install any additional libraries. Redux, on the other hand, provides a more powerful and flexible state management system, making it a good choice for large and complex apps.
  
 ## Disadvantages of using Context API and Redux
@@ -78,13 +78,13 @@ Another scenario involves triggering actions only when certain conditions are me
 Read more on generator function here.
 
 Here are some example scenarios for when you might want to use Redux Sagas in your app:
-·       When you need to make an API request and need to handle the response (for example, show a spinner while the request is being made)
-·       When making API calls that require complex error handling and retries
-·       When handling authentication flows that involve multiple API calls and redirects
-·       When you need to manage a real-time connection between a client and a server (such as chat applications)
-·       When managing data synchronisation between multiple sources, such as databases or web services
-·       When creating animations or transitions that depend on a sequence of events
-·       When handling long-running background processes, file uploads or other tasks
+- When you need to make an API request and need to handle the response (for example, show a spinner while the request is being made)
+- When making API calls that require complex error handling and retries
+- When handling authentication flows that involve multiple API calls and redirects
+- When you need to manage a real-time connection between a client and a server (such as chat applications)
+- When managing data synchronisation between multiple sources, such as databases or web services
+- When creating animations or transitions that depend on a sequence of events
+- When handling long-running background processes, file uploads or other tasks
 
 Some other real-life applications of these examples:
 
