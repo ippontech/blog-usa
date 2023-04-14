@@ -24,7 +24,7 @@ Another advantage of using Redux Sagas is that they allow us to test our code mo
 ## Comparison to other state management
 Let’s compare Redux Sagas with other popular React state management libraries. The two we’ll look at are the Context API and Redux without Sagas.
  
-## Advantages of Context API and Redux
+### Advantages of Context API and Redux
 The Context API: is React's built-in state management solution, which received a major overhaul in React version 16.3. It allows us to share state between components without having to pass it as props.
 
 Redux: has become the go-to library for managing state in large-scale React applications. One of the critical advantages of Redux is that it allows us to manage complex state, as it keeps all state in one state tree. Redux also enforces the use of reducers, which provide a predictable way to update state.
@@ -36,7 +36,7 @@ The Context API and Redux are two popular state-management libraries in React, a
 
 The Context API and Redux are both great tools for managing state in your app. The Context API provides a way to pass down state to child components without prop drilling, while Redux provides a global state management system. One advantage of using the Context API is that it's built into React, so you don't need to install any additional libraries. Redux, on the other hand, provides a more powerful and flexible state management system, making it a good choice for large and complex apps.
  
-## Disadvantages of using Context API and Redux
+### Disadvantages of using Context API and Redux
 While both the Context API and Redux have their advantages, there are also some disadvantages to consider.
 
 The Context API is great for communicating data between components, but it requires a bit of setup to handle async operations effectively. On the other hand, Redux was designed for managing state and while it does offer some middleware for dealing with side effects, it can be limited.
@@ -48,7 +48,7 @@ Another disadvantage is that it can lead to over-engineering, as developers try 
 ## How do Sagas stack up?
 Redux Sagas offer a middle ground between these two and can be used alongside Redux or Context API to better manage complex async operations.
  
-## Advantages of using Sagas
+### Advantages of using Sagas
 Sagas have several advantages over other state management solutions such as the Context API and traditional Redux.
 
 First and foremost, they simplify the handling of asynchronous code that isn’t predictable. Sagas create a structured way to the dealing with the unpredictability of async code which makes it simpler to deal with. Unlike the Context API, Sagas also provides a central location for all side effects of the app, making it easier to maintain the application.
@@ -57,7 +57,7 @@ Secondly, Sagas allow you to model complex business logic as a series of steps a
 
 Finally, Sagas can be used with other Redux middleware, such as Thunks or Observables, to provide a powerful combination of tools for managing the state of your application.
  
-## Disadvantages of using Sagas
+### Disadvantages of using Sagas
 While Sagas provide many benefits, there are some disadvantages to using them. For instance, Sagas introduce extra complexity to your code, especially if you're not familiar with the concept of generators.
 
 Additionally, as with Redux, Sagas require more boilerplate code compared to other solutions, which can make your codebase more complicated to maintain.
@@ -75,7 +75,7 @@ In a nutshell, an ES6 generator can be exited and re-entered at a later stage, w
 
 Another scenario involves triggering actions only when certain conditions are met. Sagas has a helpful method called “take” that listens for specific actions to trigger by using only one loop.
 
-Read more on generator function here.
+Read more on generator function [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
 
 Here are some example scenarios for when you might want to use Redux Sagas in your app:
 - When you need to make an API request and need to handle the response (for example, show a spinner while the request is being made)
