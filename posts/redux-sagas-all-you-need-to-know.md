@@ -1,4 +1,6 @@
-![Redux logo](https://redux-saga.js.org/img/Redux-Saga-Logo.png) # Redux Sagas: All You Need to Know
+![Redux logo](https://redux-saga.js.org/img/Redux-Saga-Logo.png)
+<img src="https://redux-saga.js.org/img/Redux-Saga-Logo.png"  width="300">
+# Redux Sagas: All You Need to Know
 In the world of React web development, managing state is an essential task. Redux is a popular state management library used by many to store and manage the state of the application.
 
 However, when it comes to handling complex async logic, Redux on its own isn't always enough. This is where Redux Sagas come in, providing a solution to deal with async logic in a more declarative way.
