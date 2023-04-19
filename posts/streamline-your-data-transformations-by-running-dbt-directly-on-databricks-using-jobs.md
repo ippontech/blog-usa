@@ -17,7 +17,7 @@ Running [dbt (data build tool)](https://www.getdbt.com/) on Databricks is a grea
 
 If you never used dbt before, you will first need to be more familiar with few concepts like models and macros. I recommend reading the [documentation](https://docs.getdbt.com/docs/introduction) for more details.
 
-We first need a dataset, as a New Yorker I decided to pick a very controversial subject which is ... Pizzas! Our friend [Liam Guigley](https://elkue.com/nyc-slice/) went on a journey and ate 464 slices from multiple pizza places in NYC while logging everything. He also created a [spreadsheet](https://docs.google.com/spreadsheets/d/1EY3oi9ttxybG0A0Obtwey6BFu7QLqdHe02JApijgztg/edit#gid=0) and for this blog I created a table in Databricks with the data:
+We first need a dataset, as a New Yorker I decided to pick a very controversial subject which is ... Pizzas! Our friend [Liam Quigley](https://elkue.com/nyc-slice/) went on a journey and ate 464 slices from multiple pizza places in NYC while logging everything. He also created a [spreadsheet](https://docs.google.com/spreadsheets/d/1EY3oi9ttxybG0A0Obtwey6BFu7QLqdHe02JApijgztg/edit#gid=0) and for this blog I created a table in Databricks with the data:
 
 ![pizza raw](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-databricks-dbt/images/2023/04/databricks-dbt-pizza-raw.png)
 
@@ -49,11 +49,11 @@ The `dbt commands` is very important and defines the order of the dbt commands r
 
 You can configure the job to run on a schedule or trigger it manually. After triggering a run, you can monitor its progress in the Databricks UI or using the Databricks API. You can view the job run history, logs, and metrics. You can also configure alerts to notify you when the job fails or exceeds a certain threshold.
 
-The output of the Job run displays our dbt logs and they can be inspected to make sure that everything was completed successfully.
+The output of the Job run displays our dbt logs, and they can be inspected to make sure that everything was completed successfully.
 
 ![pizza raw](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-databricks-dbt/images/2023/04/databricks-dbt-logs.png)
 
-My dbt project is configured to run tests using dbt's generic tests and we can see that the test `unique_pizza_id` failed:
+My dbt project is configured to run tests using dbt's generic tests, and we can see that the test `unique_pizza_id` failed:
 
 ![pizza raw](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-databricks-dbt/images/2023/04/databricks-dbt-tests.png)
 
