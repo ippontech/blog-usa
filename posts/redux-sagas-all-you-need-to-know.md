@@ -1,4 +1,4 @@
-# <img src="https://redux-saga.js.org/img/Redux-Saga-Logo.png" width="50"> Redux Sagas: All You Need to Know
+# <img src="https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/04//Redux-Saga-Logo.png" width="50"> Redux Sagas: All You Need to Know
 In the world of React web development, managing state is an essential task. Redux is a popular state management library used by many to store and manage the state of the application.
 
 However, when it comes to handling complex async logic, Redux on its own isn't always enough. This is where Redux Sagas come in, providing a solution to deal with async logic in a more declarative way.
@@ -13,13 +13,9 @@ It also helps to decouple the business logic of handling asynchronous operations
 They are designed to be run in parallel with your Redux reducers, which means they don't block the main thread and can be used in conjunction with other Redux middleware (e.g., Redux Thunk).
  
 ## Why use Redux Sagas?
-One of the most significant advantages of Redux Sagas over other middleware like is their handling of side effects natively. As we know, side effects are the operations that affect our application's state outside the current scope of a function.
+One of the most significant advantages of Redux Sagas over other middleware is their handling of side effects natively. As we know, side effects are the operations that affect our application's state outside the current scope of a function.
 
 Sagas solve this problem by providing a simple way to manage and control these side effects. They also provide a centralised location for all your side effects code, which enables you to separate complex async logic from our components, making them more reusable. Sagas provide a more robust way to manage long-running processes such as WebSocket connections or polling APIs.
-
-They also provide an action dispatch flow that allows to pause, delay and cancel promises, making it easier to handle race conditions, manage errors and provide more control over side effects.
-
-Another advantage of using Redux Sagas is that they allow us to test our code more efficiently. Since Sagas manage async in a very isolated way, you can test them just like you test your reducers, which makes your app more robust over time.
  
 ## Comparison to other state management
 Let’s compare Redux Sagas with other popular React state management libraries. The two we’ll look at are the Context API and Redux without Sagas.
@@ -55,6 +51,10 @@ First and foremost, they simplify the handling of asynchronous code that isn’t
 
 Secondly, Sagas allow you to model complex business logic as a series of steps and handle errors and retries in a predictable way.
 
+They also provide an action dispatch flow that allows to pause, delay and cancel promises, making it easier to handle race conditions, manage errors and provide more control over side effects.
+
+Another advantage of using Redux Sagas is that they allow us to test our code more efficiently. Since Sagas manage async in a very isolated way, you can test them just like you test your reducers, which makes your app more robust over time.
+
 Finally, Sagas can be used with other Redux middleware, such as Thunks or Observables, to provide a powerful combination of tools for managing the state of your application.
  
 ### Disadvantages of using Sagas
@@ -71,28 +71,21 @@ Finally, when diagnosing Sagas, the different architecture can lead to confusion
 ## Example Scenarios of Redux Sagas
 Let’s consider a scenario where you need to make an API request that depends on information from a previous API request in order to run. Trying to chain promises can lead to complex code that is challenging to test and maintain. Sagas can take this entire asynchronous operation and manage it in a simpler, more flexible way, by using a generator function to coordinate the three async operations.
 
-In a nutshell, an ES6 generator can be exited and re-entered at a later stage, with their context saved across instances.Using the next method will step through the function until it finds the next instance of the yield expression.
+In a nutshell, an ES6 generator can be exited and re-entered at a later stage, with their context saved across instances. Using the next method will step through the function until it finds the next instance of the yield expression.
 
 Another scenario involves triggering actions only when certain conditions are met. Sagas has a helpful method called “take” that listens for specific actions to trigger by using only one loop.
 
 Read more on generator function [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
 
-![Example Generator](https://raw.githubusercontent.com/Nero-Link/blog-usa/master/images/2023/04/generator%20example.PNG)
-
-Here are some example scenarios for when you might want to use Redux Sagas in your app:
-- When you need to make an API request and need to handle the response (for example, show a spinner while the request is being made)
-- When making API calls that require complex error handling and retries
-- When handling authentication flows that involve multiple API calls and redirects
-- When you need to manage a real-time connection between a client and a server (such as chat applications)
-- When managing data synchronisation between multiple sources, such as databases or web services
-- When creating animations or transitions that depend on a sequence of events
-- When handling long-running background processes, file uploads or other tasks
+![Example Generator](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/04/generator%20example.PNG)
 
 Some other real-life applications of these examples:
 
+Handling API requests: When you need to make an API request and need to handle the response, you could, for example, show a spinner while the request is being made. also if making API calls that require complex error handling and retries
+
 User authentication: Use Sagas to handle user authentication, which involves making API requests, storing tokens in local storage, and redirecting the user based on their authentication status.
 
-Real-time updates: Use Sagas to handle real-time updates in your app, such as notifications, chat messages, or live data updates from sensors or IoT devices.
+Real-time updates: Use Sagas to handle real-time updates in your app between client and a server, such as chat applications, notifications, or live data updates from sensors or IoT devices. This also applies to managing data synchronisation between multiple sources, such as databases or web services and the client
 
 Multi-step form submission: Use Sagas to handle multi-step forms that involve multiple API requests, validation, error handling, and progress tracking.
  
