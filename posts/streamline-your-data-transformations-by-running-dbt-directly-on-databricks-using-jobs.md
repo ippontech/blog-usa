@@ -15,7 +15,7 @@ Running [dbt (data build tool)](https://www.getdbt.com/) on Databricks is a grea
 
 # Transform data with dbt
 
-If you never used dbt before, you will first need to be more familiar with few concepts like models and macros. I recommend reading the [documentation](https://docs.getdbt.com/docs/introduction) for more details.
+If you never used dbt before, you will first need to be more familiar with a few concepts like models and macros. I recommend reading the [documentation](https://docs.getdbt.com/docs/introduction) for more details.
 
 We first need a dataset, as a New Yorker I decided to pick a very controversial subject which is ... Pizzas! Our friend [Liam Quigley](https://elkue.com/nyc-slice/) went on a journey and ate 464 slices from multiple pizza places in NYC while logging everything. He also created a [spreadsheet](https://docs.google.com/spreadsheets/d/1EY3oi9ttxybG0A0Obtwey6BFu7QLqdHe02JApijgztg/edit#gid=0) and for this blog I created a table in Databricks with the data:
 
@@ -29,13 +29,13 @@ The second step is to create a dbt project that will transform our pizza raw tab
 
 # Why dbt and Databricks
 
-I am a huge fan of using dbt with Databricks and it is very easy to have them running together thanks to the [Databricks adapter](https://github.com/databricks/dbt-databricks). All models use Delta Lake out of the box and you also have few extra features like [snapshots](https://docs.getdbt.com/docs/build/snapshots) and [merge](https://docs.getdbt.com/reference/resource-configs/spark-configs#the-merge-strategy). Unity Catalog is supported and the adapter also includes SQL macros that are optimized to run with the [Photon runtime](https://docs.databricks.com/runtime/photon.html).
+I am a huge fan of using dbt with Databricks and it is very easy to have them running together thanks to the [Databricks adapter](https://github.com/databricks/dbt-databricks). All models use Delta Lake out of the box and you also have a few extra features like [snapshots](https://docs.getdbt.com/docs/build/snapshots) and [merge](https://docs.getdbt.com/reference/resource-configs/spark-configs#the-merge-strategy). Unity Catalog is supported and the adapter also includes SQL macros that are optimized to run with the [Photon runtime](https://docs.databricks.com/runtime/photon.html).
 
-Safe to say that Databricks with dbt pairs very well and is also a good alternative to Delta Live Tables for your ETL pipelines. For more details on the configuration and how to use the adapter, please read [this page](https://docs.getdbt.com/reference/resource-configs/spark-configs).
+It's safe to say that Databricks pairs very well with dbt and is also a good alternative to Delta Live Tables for your ETL pipelines. For more details on the configuration and how to use the adapter, please read [this page](https://docs.getdbt.com/reference/resource-configs/spark-configs).
 
 # Databricks Workflows
 
-Databricks Workflows is a fully-managed orchestration service that is highly reliable and also very easy to use. We're going to use that to create and run our dbt job directly on Databricks without configuring any external resources.
+Databricks Workflows is a fully-managed orchestration service that is highly reliable and very easy to use. We're going to use that to create and run our dbt job directly on Databricks without configuring any external resources.
 
 Before creating the dbt job, make sure that Databricks SQL is enabled for your workspace and that you have a SQL warehouse created. Also, your dbt project must be a Databricks Repos, it can't run directly from DBFS.
 
@@ -43,7 +43,7 @@ You can create a job in the Databricks UI or using the Databricks API. After cre
 
 ![pizza raw](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-databricks-dbt/images/2023/04/databricks-dbt-job.png)
 
-The `dbt commands` is very important and defines the order of the dbt commands ran by the task. Feel free to specify any flags like `--full-refresh` for a full refresh or `-m my_model` for a specific model. Don't forget to set the correct `schema` and also the right cluster to run the dbt CLI on.
+The `dbt commands` is very important and defines the order of the dbt commands run by the task. Feel free to specify any flags like `--full-refresh` for a full refresh or `-m my_model` for a specific model. Don't forget to set the correct `schema` and also the right cluster to run the dbt CLI on.
 
 # Run and monitor job
 
