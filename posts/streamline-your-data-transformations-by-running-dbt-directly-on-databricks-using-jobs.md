@@ -19,7 +19,7 @@ If you never used dbt before, you will first need to be more familiar with a few
 
 We first need a dataset, as a New Yorker I decided to pick a very controversial subject which is ... Pizzas! Our friend [Liam Quigley](https://elkue.com/nyc-slice/) went on a journey and ate 464 slices from multiple pizza places in NYC while logging everything. He also created a [spreadsheet](https://docs.google.com/spreadsheets/d/1EY3oi9ttxybG0A0Obtwey6BFu7QLqdHe02JApijgztg/edit#gid=0) and for this blog I created a table in Databricks with the data:
 
-![pizza raw](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-databricks-dbt/images/2023/04/databricks-dbt-pizza-raw.png)
+![pizza raw](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/04/databricks-dbt-pizza-raw.png)
 
 The second step is to create a dbt project that will transform our pizza raw table and create tables/views. I will use this [dbt project on Github](https://github.com/Falydoor/blog-databricks-dbt) that has 3 models:
 
@@ -41,7 +41,7 @@ Before creating the dbt job, make sure that Databricks SQL is enabled for your w
 
 You can create a job in the Databricks UI or using the Databricks API. After creating the job, add a new task that uses the type `dbt` and link the source to your dbt project:
 
-![pizza raw](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-databricks-dbt/images/2023/04/databricks-dbt-job.png)
+![pizza raw](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/04/databricks-dbt-job.png)
 
 The `dbt commands` is very important and defines the order of the dbt commands run by the task. Feel free to specify any flags like `--full-refresh` for a full refresh or `-m my_model` for a specific model. Don't forget to set the correct `schema` and also the right cluster to run the dbt CLI on.
 
@@ -51,15 +51,15 @@ You can configure the job to run on a schedule or trigger it manually. After tri
 
 The output of the Job run displays our dbt logs, and they can be inspected to make sure that everything was completed successfully.
 
-![pizza raw](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-databricks-dbt/images/2023/04/databricks-dbt-logs.png)
+![pizza raw](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/04/databricks-dbt-logs.png)
 
 My dbt project is configured to run tests using dbt's generic tests, and we can see that the test `unique_pizza_id` failed:
 
-![pizza raw](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-databricks-dbt/images/2023/04/databricks-dbt-tests.png)
+![pizza raw](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/04/databricks-dbt-tests.png)
 
 After a quick SQL query, we can find out what happened:
 
-![pizza raw](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-databricks-dbt/images/2023/04/databricks-dbt-dups.png)
+![pizza raw](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/04/databricks-dbt-dups.png)
 
 Looks like there is a mistake in our dataset unless it is normal to pay a different price for the same pizza...
 
