@@ -13,14 +13,14 @@ image:
 
 Welcome back to the Python in Production series.  In the [fourth part](https://templinkplaceholder) of the series, we learned how to run our program as a service on a linux machine using systemd.  In the part of the series, we will learn how to automate our build process using Jenkins.
 
-In order not to overwhelm, I am going to assume that you already have a Remote Server up and Running with Docker installed, or at the very least, Docker installed locally.  If you do not have Docker running, you can find the installation instructions [here](https://docs.docker.com/engine/install/). I am also going to assume that you have kept your code up to date in the github repository that we set up in part 1.  What we will learn how to do:
+ I assume you already have a Remote Server up and Running with Docker installed, or Docker installed locally.  If you do not have Docker running, you can find the installation instructions [here](https://docs.docker.com/engine/install/). I am also going to assume that you have kept your code up to date in the GitHub repository that we set up in part 1 and have been following along until now.  What we will learn how to do:
 * Write a Jenkinsfile
-* Connect Github to Jenkins
+* Connect GitHub to Jenkins
 * Create a Build Pipeline
 
 # Create a Jenkinsfile
 
-When we attach our github repository to Jenkins, we will be able to tell it to *look* in our repository for instructions on how to build our code.  Those instructions live in a file named `Jenkinsfile`.  In the top level project directory `sample-python-project`, create a file called `Jenkinsfile`.
+When we attach our GitHub repository to Jenkins, we will be able to tell it to *look* in our repository for instructions on how to build our code.  Those instructions live in a file named `Jenkinsfile`.  In the top level project directory `sample-python-project`, create a file called `Jenkinsfile`.
 ```bash
 touch Jenkinsfile
 ```
@@ -40,13 +40,13 @@ pipeline {
 
 ```
 
-The code here is fairly straightforward to read.  If you were to find this file in the interwebs and attempted to read it you might come to these conclusions.  This is a pipeline file for Jenkins.  It consists of one stage named `build`, that runs one step.  The step is simply a shell command to run our `build.sh` file.  Remember the `build.sh` file we created in part 3, it will now be used inside of our Jenkins runner.  A Jenkins runner is just a linux vm.
+The code here is fairly straightforward to read.  If you were to find this file in the interwebs and attempted to read it, you might come to these conclusions.  This is a pipeline file for Jenkins.  It consists of one stage named `build`, which runs one step.  The step is simply a shell command to run our `build.sh` file.  The `build.sh` file we created in part 3, will now be used inside of our Jenkins runner.  A Jenkins runner is just a Linux VM.
 
 # Install Jenkins Plugins
 
-## Github Plugin
+## GitHub Plugin
 
-Let's setup Jenkins to be able to pull our source code.  I will be using the Github plugin, because my source code is stored on Github.  Navigate to the left side bar and click on ***manage jenkins***.  Next, click on ***manage plugins***.  Search for `github` and install the `github` plugin.  Before you click install, we have one more plugin.
+Let's setup Jenkins to be able to pull our source code.  I will be using the GitHub plugin, because my source code is stored on GitHub.  Navigate to the left side bar and click on ***manage jenkins***.  Next, click on ***manage plugins***.  Search for `GitHub` and install the `GitHub` plugin.  Before you click install, we have one more plugin.
 
 ## Pipeline Plugin
 
@@ -56,12 +56,16 @@ When Jenkins pulls our source code, we want to be able to tell it to look for ou
 
 To create a Jenkins Job, click the `New Item` button on the left side bar. You should see the option `Pipeline`.  If you do not see this option, you may need to restart Jenkins.
 
+![jenkins_1](../images/2023/04/jenkins_1.png)
+
 Once you have named your job and gotten into the configuration screen, you will see there are many fields and options.  For Description, I wrote...
 ```text
 Build our sample-python-project.
 ```
 
-Beneath the description are some checkboxes.  The one we are interested in is `GitHub project`.  Click the box and populate your github url for the sample-python-project repository.  You can skip the build triggers section for now, but this is where you would come if you wanted to trigger a build via some type of automated action.
+Beneath the description are some checkboxes.  The one we are interested in is `GitHub project`.  Click the box and populate your GitHub url for the sample-python-project repository.  You can skip the build triggers section for now, but this is where you would come if you wanted to trigger a build via some type of automated action.
+
+![jenkins_2](../images/2023/04/jenkins_2.png)
 
 ## Pipeline setup
 
@@ -99,19 +103,21 @@ If you are still on the console output screen, then you are already half way the
 
 ## More Automation
 
-One way you could improve this process, is by adding a `post` build step to your pipeline file.  This post build step could send the artifcat to a S3 bucket, or simply move it to a more accesbile folder on the build machine.  If this binary is part of a larger build process, you may need to fire off some alerts, are initiate a different build pipeline in your post build step that uses the artifact as part of the whole.  The possibilities are truly endless.
+You could improve this process by adding a `post` build step to your pipeline file.  This post-build step could send the artifact to an S3 bucket or move it to a more accessible folder on the build machine.  If this binary is part of a more extensive build process, you may need to fire off some alerts or initiate a different build pipeline in your post-build step that uses the artifact as part of the whole.  The possibilities are truly endless.
 
 If you are having difficulty getting this process up and running, I have included an *ansible playbook* here to help get you started.  This playbook is how I deployed my very own Jenkins instance on my own VM.  It requires that you have ansible installed, and access to a remote virtual machine. 
 
 ## Ansible Playbook for *ready to go* Jenkins. 
 
-First, create a folder called ansible (outside of your sample-python-project) and cd into it.  Then create a folder called roles and cd into it.  Download the Caddy-Ansible role from github, and then go back to the ansible directory...
+Ansible is a suite of software tools that enables infrastructure as code. It is open-source and the suite includes software provisioning, configuration management, and application deployment functionality.
+
+First, create a folder called ansible (outside of your sample-python-project) and cd into it.  Then create a folder called roles and cd into it.  Download the Caddy-Ansible role from GitHub, and then go back to the ansible directory...
 ```bash
 mkdir ansible
 cd ansible
 mkdir roles
 cd roles
-git clone https://github.com/caddy-ansible/caddy-ansible
+git clone https://GitHub.com/caddy-ansible/caddy-ansible
 cd ..
 ```
 
@@ -121,7 +127,7 @@ touch hosts
 echo "example.com" > hosts
 ```
 
-Finally, creat the ansible playbook.  I named my `jenkins.yml`.  Make sure to replace `example.com` with your own server name.  Also be sure that the Dockerfile from above is inside the `ansbile` directory.
+Finally, create the ansible playbook.  I named mine `jenkins.yml`.  Make sure to replace `example.com` with your server name.  Also, be sure that the Dockerfile from above is inside the `ansible` directory.
 ```yaml
 # jenkins.yml
 ---
@@ -240,11 +246,11 @@ Run this playbook by typing: `ansible-playbook -i hosts jenkins.yml --extra-vars
 
 # The End
 
-If you made it all the way to the end of this series, from the beginning, then you have just finished a massive journey through a ton of awesome tech, and tools.  In this series, we covered the how's and why's of:
+If you made it all the way to the end of this series, then you have just finished a massive journey through a ton of awesome tech and tools.  In this series, we covered the hows and why's of:
 * Creating a Python virtual environment in [part 1](https://templinkplaceholder).
 * Using Python Modules and Packages in [part 2](https://templinkplaceholder).
 * Building a Single File Binary in [part 3](https://templinkplaceholder).
 * Running your Program as a Linux Service using Systemd in [part 4](https://templinkplaceholder).
 * Automating your Build Process with Jenkins in [part 5](https://templinkplaceholder).
 
-If you are a Software Engineer or a DevOps Engineer and want to implement some of these practices in your organization but need a little help, feel free to reach out to us!
+If you are a Software Engineer or a DevOps Engineer and want to implement some of these practices in your organization, Ippon Technologies can help! Contact [sales@ipponusa.com](mailto:sales@ipponusa.com) with any questions.
