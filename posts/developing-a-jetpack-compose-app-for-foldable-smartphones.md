@@ -28,7 +28,7 @@ Here are the different steps you will need to follow to set up a foldable emulat
 - Click on create device. 
 - Choose a foldable device (ex: 7.6 Fold-in with outer display or 6.7 Horizontal Fold-in) and its system image and click on finish.
 
-Congratulations ! Now you have a new runnable device in your device manager 😀.
+Congratulations ! Now you have a new runnable device in your device manager :smile:.
 
 ### Dependencies
 The following dependencies need to be implemented to work on foldable devices :
