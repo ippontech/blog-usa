@@ -10,7 +10,7 @@ date: 2023-06-15T12:00:00.000Z
 title: "Enhance your dbt Data Monitoring with Elementary"
 ---
 
-# Enhance your DBT Data Monitoring with Elementary
+# Enhance your dbt Data Monitoring with Elementary
 
 <p> This blog aims to provide a guide on implementing the Elementary package with DBT. The primary functionalities of this guide focus on: </p>
 
