@@ -8,6 +8,7 @@ tags:
   - Alerting
 date: 2023-06-15T12:00:00.000Z
 title: "Enhance your dbt Data Monitoring with Elementary"
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/06/Enhance-your-dbt-Data-Monitoring-with-Elementary.png
 ---
 
 # Enhance your dbt Data Monitoring with Elementary
