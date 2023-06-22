@@ -2,7 +2,7 @@
 authors:
   - Tyler Bridges
 tags:
-  - DBT
+  - dbt
   - Snowflake
   - Elementary
   - Alerting
