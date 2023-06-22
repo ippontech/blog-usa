@@ -29,7 +29,7 @@ Elementary's functionality revolves around its dbt package, which enables data m
 How to Setup
 ------------
 
-This guide provides instructions for setting up Elementary using DBT's jaffle_shop as an example project.
+This guide provides instructions for setting up Elementary using dbt's jaffle_shop as an example project.
 
 1.  Create a `packages.yml` file in your dbt project directory if it doesn't already exist. Add the following content to include the Elementary package. Depending on your DBT version, you may need to specify a particular version of dbt utils. Refer to the [Elementary documentation](https://docs.elementary-data.com/quickstart) for version compatibility details.
        
