@@ -14,7 +14,7 @@ title: "Enhance your dbt Data Monitoring with Elementary"
 
 <p> This blog aims to provide a guide on implementing the Elementary package with dbt. The primary functionalities of this guide focus on: </p>
 
-- Integrating Elementary with the jaffle_shop DBT project
+- Integrating Elementary with the jaffle_shop dbt project
 - Generating reports on datamart health.
 
 ***
@@ -31,7 +31,7 @@ How to Setup
 
 This guide provides instructions for setting up Elementary using dbt's jaffle_shop as an example project.
 
-1.  Create a `packages.yml` file in your dbt project directory if it doesn't already exist. Add the following content to include the Elementary package. Depending on your DBT version, you may need to specify a particular version of dbt utils. Refer to the [Elementary documentation](https://docs.elementary-data.com/quickstart) for version compatibility details.
+1.  Create a `packages.yml` file in your dbt project directory if it doesn't already exist. Add the following content to include the Elementary package. Depending on your dbt version, you may need to specify a particular version of dbt utils. Refer to the [Elementary documentation](https://docs.elementary-data.com/quickstart) for version compatibility details.
        
 ```
  packages:
