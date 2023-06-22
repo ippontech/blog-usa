@@ -12,7 +12,7 @@ title: "Enhance your dbt Data Monitoring with Elementary"
 
 # Enhance your dbt Data Monitoring with Elementary
 
-<p> This blog aims to provide a guide on implementing the Elementary package with DBT. The primary functionalities of this guide focus on: </p>
+<p> This blog aims to provide a guide on implementing the Elementary package with dbt. The primary functionalities of this guide focus on: </p>
 
 - Integrating Elementary with the jaffle_shop DBT project
 - Generating reports on datamart health.
