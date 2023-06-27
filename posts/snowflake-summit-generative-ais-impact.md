@@ -1,4 +1,4 @@
-Snowflake Summit is the world's largest data, apps, and AI conference. Coming to you live from Las Vegas, Nevada, from June 26 - 29, 2023, Snowflake shows off all of the latest advancements coming to the Snowflake Data Cloud - including advancements in generative AI and LLMs, Apache Iceberg, application development, and more. I'm not in sunny, hot Las Vegas, but I wanted to highlight some of the new advancements Snowflake announces and educate all of you on the cool stuff (cause *** Snowflake ***, get it? ) coming our way.
+Snowflake Summit is the world's largest data, apps, and AI conference. Coming to you live from Las Vegas, Nevada, from June 26 - 29, 2023, Snowflake shows off all of the latest advancements coming to the Snowflake Data Cloud - including advancements in generative AI and LLMs, Apache Iceberg, application development, and more. I'm not in sunny, hot Las Vegas, but I wanted to highlight some of the new advancements Snowflake announces and educate all of you on the cool stuff (cause ***Snowflake***, get it? ) coming our way.
 
 # Snowflake Summit 2023 Replay - Generative AI's Impact on Enterprise Data Innovation
 
