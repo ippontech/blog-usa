@@ -23,4 +23,4 @@ Snowflake currently has a Search Optimization Service (SO), which speeds up quer
 Snowflake also introduced the addition of more pruning features (now GA) to reduce the need to scan across entire datasets, enabling faster searches. TOP-K analytics can now enable customers to retrieve only the most relevant answers from a result set by rank. Finally, to help customers more easily analyze expensive queries and identify clauses or operators causing performance problems, Snowflake will make the Query Profile accessible via Programmatic access in GA.
 
 ----
-For more information on how Ippon Technologies can help your organization utilize Snowflake or Apache Iceberg for all of your data needs, contact sales@ipponusa.com.
+For more information on how Ippon Technologies, a Snowflake Partner, can help your organization utilize Snowflake for all of your data needs, contact sales@ipponusa.com.
