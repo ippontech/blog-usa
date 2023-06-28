@@ -28,7 +28,7 @@ As Jensen said, "This is the biggest computer revolution we’ve ever seen." In 
 All data gets collected --> In the vein of this presentation, in Snowflake. Currently, it isn't easy to pull answers from that data quickly and efficiently. Imagine a world where you can place a Large Language Model (LLM) in front of your customer support agents, and they can interact with it using human language, and it will talk back to you. You can thus turn your customer service data into a customer service application.
 
 4. Everybody is going to be an application developer
-All of the advancements in AI is leading to a revolution in the software development landscape. Using AI, we won't just be writing software anymore. We'll be writing applications. We will all be connecting our prompts, context, and Python commands to LLMs or the corporate database. The constant is that your data still needs to be fine-tuned.
+All of the advancements in AI are leading to a revolution in the software development landscape. Using AI, we won't just be writing software anymore. We'll be writing applications. We will all be connecting our prompts, context, and Python commands to LLMs or the corporate database. The constant is that your data still needs to be fine-tuned.
 
 5. Where do you expect that customers will get the most value from AI quickly?
 **Most quickly:** Ultimate democratization of data, augmented querying leading to more people interacting with the data you already have.
