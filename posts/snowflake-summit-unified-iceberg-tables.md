@@ -7,7 +7,7 @@ tags:
 - Snowflake Summit 2023
 date: 2023-06-27T13:33:00.000Z
 title: "Snowflake Summit 2023 Replay - Snowflake Iceberg Tables"
-image: 
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/06/snowflake_summit_2023_snowflake_iceberg_tables.png
 ---
 
 Snowflake Summit is the world's largest data, apps, and AI conference. Coming to you live from Las Vegas, Nevada, from June 26 - 29, 2023, Snowflake shows off all of the latest advancements coming to the Snowflake Data Cloud - including generative AI and LLMs, Apache Iceberg, application development, and more. I'm not in sunny, hot Las Vegas, but wanted to highlight some of the improvements Snowflake announced and educate all of you on the cool stuff (cause ***Snowflake***, get it?) coming our way.
