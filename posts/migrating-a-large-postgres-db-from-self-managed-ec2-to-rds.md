@@ -16,7 +16,7 @@ If your database came from an "earlier time" or your product started off small, 
 * Availability and Durability
 * Lower Administrative Burden (this one is underrated)
   
-A more exhaustive list of RDS goodness can be found [here](https://aws.amazon.com/rds/features/).  I want to zoom in on the "Lower Administrative Burden" benefit. It may not be totally clear what this means, unless you have ran a self managed database for some period of time. Headaches like, upgrading, creating read replicas, software patching, and blue green deployments, can consume a large chunk of your time when you are running a self managed database. All of these features can be automated and are available right out of the box with Amazon's RDS.
+A more exhaustive list of RDS goodness can be found [here](https://aws.amazon.com/rds/features/).  I want to zoom in on the "Lower Administrative Burden" benefit. It may not be totally clear what this means, unless you have ran a self managed database for some period of time. Headaches like upgrading, creating read replicas, software patching, and blue green deployments, can consume a large chunk of your time when you are running a self managed database. All of these features can be automated and are available right out of the box with Amazon's RDS.
 
 # Things to Consider When Planning a Migration
 
@@ -24,11 +24,13 @@ So you have committed to migrating, and now you are undertaking the task of plan
 
 ## Business Impacts
 
-There are a few areas of impact to the business when performing a database migration. First, disruption to business operations: Performing a database migration often requires downtime or reduced performance for the system, which can impact business operations. This can result in lost revenue, reduced productivity, and decreased customer satisfaction. Second, cost and resource implications: Database migrations can be complex and time-consuming, which can require significant investment in terms of time, resources, and cost. Depending on the size and complexity of the database, businesses may need to allocate significant resources to the migration project, which can impact other priorities and initiatives.
+There are a few areas of impact to the business when performing a database migration. First, disruption to business operations: Performing a database migration often requires downtime or reduced performance for the system, which can impact business operations. This can result in lost revenue, reduced productivity, and decreased customer satisfaction. Depending on your method of migration, you may even need to pause certain internal development efforts that would see the database being manipulated in certain ways. 
+
+Second, cost and resource implications: Database migrations can be complex and time-consuming, which can require significant investment in terms of time, resources, and cost. Depending on the size and complexity of the database, businesses may need to allocate significant resources to the migration project, which can impact other priorities and initiatives. So not only are you potentially having to pause other projects, but you may even need to pull engineers off of work they want to be doing, to aid in the effort of migration.
 
 Another thing that will impact your migration strategy from the business side is maintenance window length. If your product is largely not used over night, then you could theoretically have a nice long maintenance window. The opposite side of this coin is no maintenance window. The length of the maintenance window will be a key factor in choosing your migration strategy.
 
-## Get to Know the Schema
+## Get to Know the Database Schema
 
 The level of complexity of your database schema will also impact how you migrate your database. The schema defines the structure of the database, including the tables, columns, data types, and relationships between them. Understanding the schema can provide insights into how data is organized and stored, which can inform decisions about how to migrate the data to a new database. Here is a non-exhaustive list of things to identify:
 * Dependencies - impacts migration order
@@ -41,7 +43,7 @@ It is paramount to understand the database you are migrating at the deepest leve
 
 ## Get to Know the Data
 
-Getting to know the database schema, which tells you the shape of the data, is not enough. You also need to have an intimate understanding of the size of the tables. Tables with many rows, tables with lots of columns (wide tables), and tables that store LOBS (large objects) can all have different impacts on the migration. Pull some data, run some tests, and do some calculations. If your database contains LOBS, then find out what the maximum size of a single LOB is, as this will be crucial when utilizing certain strategies.
+Getting to know the database schema, which tells you the shape of the data, is not enough. You also need to have an intimate understanding of the size of the tables. Tables with many rows, tables with lots of columns (wide tables), and tables that store LOBS (large objects) can all have different impacts on the migration. Pull some data, run some tests, and do some calculations. If your database contains LOBS, then find out what the maximum size of a single LOB is, as this will be crucial when utilizing certain migration strategies.
 
 Tables that are very wide, or have lots of columns, are gonna take longer to migrate then tables that are skinny, or don't have very many rows. This is helpful information to have before hand as it aides in building your migration strategy. You may decide to migrate these larger tables separate from the rest of the data, or in parallel. Get to know the data, and don't make any assumptions.
 
