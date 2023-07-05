@@ -28,7 +28,7 @@ Want to know more? Check out my blog on Unified Iceberg Tables (here)[https://bl
 
 ## Platform Improvements
 
-I know, I know. It seems like we're taking a bit of a left turn from talking about all of the new announcements to Snowflake and the data processing industry as a whole. Just as important as the new features released, are the platform improvements Snowflake has been working on. During Summit this year, Snowflake announced a slew of platform updates, including the publich launch of the Snowflake Performance Index, the expansion of the Search Optimization Service (SO), and the introduction of TOP-K analytics.
+I know, I know. It seems like we're taking a bit of a left turn from talking about all of the new announcements to Snowflake and the data processing industry as a whole. Just as important as the new features released, are the platform improvements Snowflake has been working on. During Summit this year, Snowflake announced a slew of platform updates, including the public launch of the Snowflake Performance Index, the expansion of the Search Optimization Service (SO), and the introduction of TOP-K analytics.
 
 I detail all of the new Platform Performance updates (here)[https://blog.ippon.tech/snowflake-summit-2023-replay-snowflakes-put-the-customer-first-policy-improving-customers-price-for-performance/]!
 
@@ -39,7 +39,7 @@ Another key announcement from Snowflake this week was the announcement of Snowpa
 I dive a bit deeper into Snowpark Container Services (here)[https://blog.ippon.tech/snowflake-summit-2023-replay-snowpark-container-development/]!
 
 ## Document AI
-SSnowflake acquired Applica, a small company offering an AI-based text and document automation platform, late last year. Now, Snowflake has announced the launch of Document AI, now available in private preview. A new large language model (LLM), built from Applica's generative AI technology, Document AI, can help customers understand documents and put their unstructured data to work. Document AI allows you to ask questions in natural language from documents you have stored in Snowflake and operationalize an end-to-end pipeline in which you can provide feedback on the answers the model gives you to fine-tune and retrain it.
+Snowflake acquired Applica, a company offering an AI-based text and document automation platform, late last year. Now, Snowflake has announced the launch of Document AI, now available in private preview. A new large language model (LLM), built from Applica's generative AI technology, Document AI, can help customers understand documents and put their unstructured data to work. Document AI allows you to ask questions in natural language from documents you have stored in Snowflake and operationalize an end-to-end pipeline in which you can provide feedback on the answers the model gives you to fine-tune and retrain it.
 
 ![The Data Processing Pipeline involving Document AI as Snowflake sees it](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/06/snowflake_summit_2023_roundup_data_processing_pipeline_document_ai.png)
 
