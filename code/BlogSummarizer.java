@@ -38,12 +38,6 @@ public class BlogSummarizer {
                             if (!line.isEmpty()) {
                                 if (line.startsWith("authors:")) {
                                     author = scanner.nextLine().substring(2).replace(',', ' ');
-/*                                 } else if (line.startsWith("date:")) {
-                                    try {
-                                        date = line.substring(6);
-                                    } catch (StringIndexOutOfBoundsException e) {
-                                        date = "";
-                                    }*/
                                 } else if (line.startsWith("title:")) {
                                     title = line.substring(7);
                                 } else if (line.startsWith("tags:")) {
