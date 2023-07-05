@@ -21,13 +21,14 @@ public class BlogSummarizer {
             // write the header to the csv file
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
-                writer.write("Author,Date,Title\n");
+                writer.write("Author,Date,Title,Tags\n");
 
                 // if the directory exists, list the files
                 for (File file : directory.listFiles()) {
                     String author = "";
                     String date = "";
                     String title = "";
+                    String tags = "";
 
                     try {
                         // read each line of the file
@@ -37,19 +38,38 @@ public class BlogSummarizer {
                             if (!line.isEmpty()) {
                                 if (line.startsWith("authors:")) {
                                     author = scanner.nextLine().substring(2).replace(',', ' ');
-                                } else if (line.startsWith("date:")) {
+/*                                 } else if (line.startsWith("date:")) {
                                     try {
                                         date = line.substring(6);
                                     } catch (StringIndexOutOfBoundsException e) {
                                         date = "";
-                                    }
+                                    }*/
                                 } else if (line.startsWith("title:")) {
                                     title = line.substring(7);
+                                } else if (line.startsWith("tags:")) {
+                                    boolean stop = false;
+                                    while (!stop) {
+                                        String nextLine = scanner.nextLine();
+                                        if (nextLine.startsWith("-")) {
+                                            tags += nextLine.substring(2) + " ";
+                                        } else if (nextLine.startsWith("  -")) {
+                                            tags += nextLine.substring(4) + " ";
+                                        } else {
+                                            stop = true;
+                                            try {
+                                                if (nextLine.startsWith("date:")) {
+                                                    date = nextLine.substring(6);
+                                                }
+                                            } catch (StringIndexOutOfBoundsException e) {
+                                                date = "";
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
                         if (!author.isBlank() || !date.isBlank() || !title.isBlank()) {
-                            writer.write(author + "," + date + "," + title + "\n");
+                            writer.write(author + "," + date + "," + title + "," + tags + "\n");
                         }
                     } catch (FileNotFoundException fnfe) {
                         fnfe.printStackTrace();
