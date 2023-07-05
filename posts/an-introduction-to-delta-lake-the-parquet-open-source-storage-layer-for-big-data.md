@@ -58,6 +58,8 @@ Delta Lake supports generated columns which are a special type of columns whose 
 
 Here is how it can be done with Delta Lake:
 
+### Initial dataframe
+
 ```python
 import datetime
 
@@ -71,6 +73,8 @@ df = spark.createDataFrame(values, columns)
 ```
 
 ![df1](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-delta-lake/images/2023/07/delta-df1.png)
+
+### Add generated columns
 
 ```python
 from delta.tables import *
@@ -87,6 +91,8 @@ df.write.format("delta").mode("append").saveAsTable("default.blog")
 ```
 
 ![df2](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-delta-lake/images/2023/07/delta-df2.png)
+
+The 2 columns `year` and `month` were correctly generated based on `date`.
 
 # Read Data From a Table Without Spark With Polars
 
