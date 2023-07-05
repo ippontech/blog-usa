@@ -5,6 +5,7 @@ tags:
 - python
 - api
 - devops
+date: 2022-11-22T13:33:00.000Z
 title: "Python in Production Part 1 of 5"
 image: 
 ---
