@@ -96,7 +96,7 @@ The 2 columns `year` and `month` were correctly generated based on `date`.
 
 # Read Data From a Table Without Spark
 
-Since the underlying storage format of Delta Lake is parquet, any Python data analysis library (like Pandas) can technically read the data of a Delta table. But because Delta Lake keeps versions, reading directly the parquet files will include duplicates from all the previous versions. To avoid that, I recommend using two libraries that supports a Delta Lake table so you can query a specific version.
+Since the underlying storage format of Delta Lake is parquet, any Python data analysis library (like Pandas) can technically read the data of a Delta table. But because Delta Lake keeps versions, reading directly the parquet files will include duplicates from all the previous versions. To avoid that, I recommend using two libraries that supports Delta Lake.
 
 ## Polars
 
