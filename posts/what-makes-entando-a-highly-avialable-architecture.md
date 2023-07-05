@@ -6,8 +6,8 @@ tags:
 - kubernetes
 - devops
 - docker
-title: "What Makes Entando a Highly Available Architecture?"
 date: 2023-03-02T13:33:00.000Z
+title: "What Makes Entando a Highly Available Architecture?"
 image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2022/12/scalingkubernetesstraws.jpg
 ---
 
