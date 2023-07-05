@@ -22,7 +22,7 @@ Want to know more? Check out my blog on this session (here)[https://blog.ippon.t
 
 ## Unified Iceberg Tables
 
-Apache Iceberg is a high performance open table format for large analytics datasets. With Iceberg you can bring the simplicity of SQL to big data wwhile allowing engines like Spark, Presto and Hibe to work with the same tables at the same time. In 2022, Snowflake partnered with Iceberg to combine Snowflake's unique capabilities with Apache Iceberg and Parquet to help customers solve some common challenges they face with big data: control, cost, and interoperability. This year, Snowflake is deepening the partnership by introducing Snowflake Iceberg Tables, which will extend Snowflake's performance and governance to data stored in open formats.
+Apache Iceberg is a high-performance open table format for large analytics datasets. With Iceberg you can bring the simplicity of SQL to big data while allowing engines like Spark, Presto and Hive to work with the same tables at the same time. In 2022, Snowflake partnered with Iceberg to combine Snowflake's unique capabilities with Apache Iceberg and Parquet to help customers solve some common challenges they face with big data: control, cost, and interoperability. This year, Snowflake is deepening the partnership by introducing Snowflake Iceberg Tables, which will extend Snowflake's performance and governance to data stored in open formats.
 
 Want to know more? Check out my blog on Unified Iceberg Tables (here)[https://blog.ippon.tech/snowflake-summit-2023-replay-iceberg-tables/]!
 
@@ -47,7 +47,7 @@ During the demo, Snowflake's Polita Paulus discussed a snow goggle company calle
 
 ![Sample Document Processing with Document AI](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/06/snowflake_summit_2023_roundup_document_ai_sample_doc.png)
 
-Polita doesn't stop there. Like with all AI model, we sometimes get an incorrect answer when adding a new question as we're training the model. The cool part of Document AI is that the user can go in and manually correct the answer, providing feedback to Snowflake on how we can fine-tune the model, press a button to re-train, and then re-publish the model.
+Polita doesn't stop there. Like with all AI models, we sometimes get an incorrect answer when adding a new question as we're training the model. The cool part of Document AI is that the user can go in and manually correct the answer, providing feedback to Snowflake on how we can fine-tune the model, press a button to re-train, and then re-publish the model.
 
 Once the model has been published, it can be shared with other teams who can also use the new fine-tuned model. We can run the model on all inspection documents with a simple SQL query. Examining the results of that query, Polita showed us how it seems like every three months or so, the injection molding machine failed its inspection. She can share these insights with the quality engineering team. They can use this to run inspections every two to three months so the inspections stop failing. 
 
@@ -69,7 +69,7 @@ With the Native Application Framework, you can build, sell, and deploy applicati
 Many customers and Snowflake partners are already experimenting with the Snowflake Native App Framework, including Goldman Sachs, LiveRamp, and Capital One. Their apps, currently in development or private preview, cover a wide array of use cases from global data clean rooms, identity resolution, financial transaction analytics, and more. I can't wait to see the wide variety of apps that come onto the Snowflake Data Marketplace with the Native Application Framework!
 
 # Conclusion
-These are just six of all of the announcements and discussions that took place over Snowflake Summit this year. I hope this helped you get the lay of the land in the Snowflake Data Cloud with all of the new announcements! I can't wait to see how they grow and change over the upcoming months or how they're going to be used. Who knows? Maybe someone here at Ippon will explore a bit too.
+These are just six of all of the announcements and discussions that took place during Snowflake Summit this year. I hope this helped you get the lay of the land in the Snowflake Data Cloud with all of the new announcements! I can't wait to see how they grow and change over the upcoming months or how they're going to be used. Who knows? Maybe someone here at Ippon will explore a bit too.
 
 ----
 For more information on how Ippon Technologies, a Snowflake Partner, can help your organization utilize Snowflake for all of your data needs, contact sales@ipponusa.com.
