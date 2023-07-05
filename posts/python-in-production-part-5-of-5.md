@@ -7,6 +7,7 @@ tags:
 - devops
 - jenkins
 - ansible
+date: 2023-05-24T13:33:00.000Z
 title: "Python in Production Part 4 of 5"
 image: 
 ---
