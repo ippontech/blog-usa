@@ -19,7 +19,7 @@ Please note: this is not a Python programming best practices guide, but rather, 
 * Integrate and Monitor an Application Using Systemd
 * Test and Build an Application
 
-For this series, I will be using a wonderful Python Web Framework called FastAPI.  If you are not using FastAPI but still want to follow along, fear not, these steps can be used for almost any type of application.  I cannot promise that these steps will make your application successful, but they will certainly make the launch, maintenance, and continued development much easier.  Most of these things I would consider as being <em>adjacent</em> to your Python application development.
+For this series, I will be using a awesome Python Web Framework called FastAPI.  If you are not using FastAPI but still want to follow along, fear not, these steps can be used for almost any type of application.  I cannot promise that these steps will make your application successful, but they will certainly make the launch, maintenance, and continued development much easier.  Most of these things I would consider as being <em>adjacent</em> to your Python application development.
 
 This series is made up of 5 Parts:
 1. Introduction and Setup, Using a Virtual Environment to Manage Dependencies.
