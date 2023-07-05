@@ -39,7 +39,7 @@ Another key announcement from Snowflake this week was the announcement of Snowpa
 I dive a bit deeper into Snowpark Container Services (here)[https://blog.ippon.tech/snowflake-summit-2023-replay-snowpark-container-development/]!
 
 ## Document AI
-Snowflake acquired Applica late last year. Applica is a small company that offers an AI-based text and document automation platform. Now, Snowflake has announced the launch of Document AI, now available in private preview. A new large language model (LLM), built from Applica's generative AI technology, Document AI, can help customers understand documents and put their unstructured data to work. Document AI allows you to ask questions in natural language from documents you have stored in Snowflake and operationalize an end-to-end pipeline in which you can provide feedback on the answers the model gives you to fine-tune and retrain it.
+SSnowflake acquired Applica, a small company offering an AI-based text and document automation platform, late last year. Now, Snowflake has announced the launch of Document AI, now available in private preview. A new large language model (LLM), built from Applica's generative AI technology, Document AI, can help customers understand documents and put their unstructured data to work. Document AI allows you to ask questions in natural language from documents you have stored in Snowflake and operationalize an end-to-end pipeline in which you can provide feedback on the answers the model gives you to fine-tune and retrain it.
 
 ![The Data Processing Pipeline involving Document AI as Snowflake sees it](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/06/snowflake_summit_2023_roundup_data_processing_pipeline_document_ai.png)
 
