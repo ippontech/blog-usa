@@ -26,7 +26,7 @@ All the data files are stored using the [Parquet file format](https://parquet.ap
 
 ## ACID Transactions and Data Integrity
 
-A key feature of Delta Lake is that it brings ACID properties to large collections of data, stored as files, in a distributed file system or object store. That is very important, especially when multiple writers can concurrently modify a Delta table. Also, each table is self describing: all metadata for a Delta table is stored alongside the data. This design eliminates the need to maintain a separate metastore just to read the data and also allows static tables to be copied or moved using standard filesystem tools.
+A key feature of Delta Lake is that it brings ACID properties to large collections of data, stored as files, in a distributed file system or object store. That is very important, especially when multiple writers can concurrently modify a Delta table. Also, each table is self describing: all metadata for a Delta table is stored alongside the data. This design eliminates the need to maintain a separate metastore just to read the data and also allows static tables to be copied or moved using standard file system tools.
 
 # Key Features and Functionality
 
@@ -36,7 +36,7 @@ When writing data, if the schema of the source dataframe is different than the t
 
 ## Time Travel and Audit
 
-Table's history provides all the operations done to a table and each operation has a uniqute version. For audit purpose, it is very useful to know what kind of operation was done while knowing operation metrics like number of rows or files written.
+Table's history provides all the operations done to a table and each operation has a unique version. For audit purpose, it is very useful to know what kind of operation was done while knowing operation metrics like number of rows or files written.
 
 You can also query a table with a specific version or timestamp in order to retrieve an older snapshot, [more details here](https://docs.delta.io/latest/delta-batch.html#-deltatimetravel).
 
@@ -94,13 +94,13 @@ df.write.format("delta").mode("append").saveAsTable("default.blog")
 
 The 2 columns `year` and `month` were correctly generated based on `date`.
 
-# Read Data From a Table Without Spark With Polars
+# Read Data From a Table Without Spark
 
 Since the underlying storage format of Delta Lake is parquet, any Python data analysis library (like Pandas) can technically read the data of a Delta table. But because Delta Lake keeps versions, reading directly the parquet files will include duplicates from all the previous versions. To avoid that, I recommend using two libraries that supports a Delta Lake table so you can query a specific version.
 
 ## Polars
 
-If you like Pandas then you should definetly start using [Polars](https://www.pola.rs/) instead as it has better performances. The library also has a lazy API that is extremly useful when loading big dataset to avoid running memory or performance issues.
+If you like Pandas then you should definitely start using [Polars](https://www.pola.rs/) instead as it has better performances. The library also has a lazy API that is extremely useful when loading big dataset to avoid running memory or performance issues.
 
 Here is an example on how to read a Delta table with Polars ([more details here](https://pola-rs.github.io/polars/py-polars/html/reference/api/polars.read_delta.html#polars.read_delta)):
 
