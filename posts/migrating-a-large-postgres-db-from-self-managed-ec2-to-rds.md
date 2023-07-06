@@ -1,7 +1,13 @@
 ---
 authors:
 - Lucas Ward
-tags: Postgresql, ec2, rds, dms, aws, devops
+tags: 
+- Postgresql
+- DevOps
+- RDS
+- DMS
+- AWS
+date: 2023-07-06T12:00:00.000Z
 title: "AWS MAP - Migrating Postgres from Self-Managed EC2 to RDS"
 image: 
 ---
