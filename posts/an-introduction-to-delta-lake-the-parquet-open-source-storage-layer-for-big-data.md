@@ -72,7 +72,7 @@ columns = ["symbol", "date", "price"]
 df = spark.createDataFrame(values, columns)
 ```
 
-![df1](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-delta-lake/images/2023/07/delta-df1.png)
+![df1](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/images/2023/07/delta-df1.png)
 
 ### Add generated columns
 
@@ -90,7 +90,7 @@ DeltaTable.create(spark) \
 df.write.format("delta").mode("append").saveAsTable("default.blog")
 ```
 
-![df2](https://raw.githubusercontent.com/Falydoor/blog-usa/blog-delta-lake/images/2023/07/delta-df2.png)
+![df2](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/images/2023/07/delta-df2.png)
 
 The 2 columns `year` and `month` were correctly generated based on `date`.
 
