@@ -4,13 +4,13 @@ In this two part Blog Series, I would like to share with you an in-depth guide. 
 
 In order to get all of the data out of the source database and into RDS without ever stopping the source database, albeit briefly, we have to run this rube Goldberg process. If you are unsure what type of migration plan you need to run, please reference my other blog post [AWS MAP - Migrating Postgres from Self-Managed EC2 to RDS](temp.link). There are two main phases to the migration plan.  After all prerequisites have been met - Phase I can be kicked off. 
 
-Phase I - [[Full Load]]: use `pg_dump` and `\copy` to get the bulk of the data transferred. The full load portion utilize the maintenance read replica (see below) in a paused state and the RDS instance. DMS does provide a full load option, but on certain databases it can fail to complete. Part 1 of the series will cover all the steps to get through the Prerequisites section and Phase I.
+Phase I - Full Load: use `pg_dump` and `\copy` to get the bulk of the data transferred. The full load portion utilize the maintenance read replica (see below) in a paused state and the RDS instance. DMS does provide a full load option, but on certain databases it can fail to complete. Part 1 of the series will cover all the steps to get through the Prerequisites section and Phase I.
 
-Phase II - [[Change Data Capture]] with DMS: use multiple DMS tasks to transfer the remaining "data delta" into RDS.  The Data Delta is simply any data that has come into the database after pausing the Maintenance Read Replica. Phase II is performed against the Source Database, i.e. - the primary. Part 2 of the series will cover all the steps necessary to complete Phase II, and hopefully, the database migration.
+Phase II - Change Data Capture with DMS: use multiple DMS tasks to transfer the remaining "data delta" into RDS.  The Data Delta is simply any data that has come into the database after pausing the Maintenance Read Replica. Phase II is performed against the Source Database, i.e. - the primary. Part 2 of the series will cover all the steps necessary to complete Phase II, and hopefully, the database migration.
 
 ### Environment Notes
 
-Environment: For illustration purposes, consider this setup. A Client has a Primary Database, a Read Replica, and then a second "maintenance" Read Replica. Both read replicas are replicating from the primary database using built-in Postgres 9.6 "log shipping". See [[Postgres Replication - Log Shipping]]. Most of this plan can be adapted to work with different environment setups, I will try to describe in as much detail as possible where trade offs exist.
+Environment: For illustration purposes, consider this setup. A Client has a Primary Database, a Read Replica, and then a second "maintenance" Read Replica. Both read replicas are replicating from the primary database using built-in Postgres 9.6 "log shipping". See Postgres Replication - Log Shipping. Most of this plan can be adapted to work with different environment setups, I will try to describe in as much detail as possible where trade offs exist.
 
 Constraints - The primary database can not be stopped for any significant period of time, even for a maintenance window. The Secondary (read replica) similarly cannot be stopped for any period of time. A separate read replica was created to allow this work to be done and still maintain a strong Disaster Recovery Posture. 
 
@@ -20,7 +20,7 @@ Database size: approximately 4.5 TB. 10s of billions of rows with single tables 
 
 This strategy poses near *zero* risk to current production operations. If the migration is successful, the required maintenance window will just be a database "cut over". We utilize native Postgresql utilities and AWS DMS on top of `pglogical` for additional functionality and visibility. 
 
-We use `pglogical` to enable a [[cross version migration]].  This allows us to minimize the number of maintenance windows and high risk tasks within the production setup. 
+We use `pglogical` to enable a cross version migration.  This allows us to minimize the number of maintenance windows and high risk tasks within the production setup. 
 
 ### Naming Conventions
 
