@@ -416,6 +416,12 @@ select pg_is_wal_replay_paused();
 
 You can now log out of the Maintenance Read Replica, it's job is done and it has served its purpose.  Do not decommission this server until the migration has been successfully completed. If you have to do the migration again, you will once again need this replica.
 
+# Conclusion
+
+In Part 1 of this series, we handled several pre-migration setup tasks and installed some new software on our Source and Target Databases. We planned, tested, and completed Phase I of the database migration - Full Load. Next, head over to [Part 2](temp.link) of the series to configure and run AWS DMS Change Data Capture tasks to move the rest of the data over to RDS.
+
+If you get stuck of overwhelmed with the migration process, we have professionals standing by ready to provide assistance. Drop us a line at sales@ipponusa.com. 
+
 
 
 
