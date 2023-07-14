@@ -8,6 +8,14 @@ Phase I - Full Load: use `pg_dump` and `\copy` to get the bulk of the data trans
 
 Phase II - Change Data Capture with DMS: use multiple DMS tasks to transfer the remaining "data delta" into RDS.  The Data Delta is simply any data that has come into the database after pausing the Maintenance Read Replica. Phase II is performed against the Source Database, i.e. - the primary. Part 2 of the series will cover all the steps necessary to complete Phase II, and hopefully, the database migration.
 
+This diagram shows the AWS Infrastructure that is used for this migration.
+
+![Migration Overview](../images/2023/07/migration_blog_diagrams_infra.jpg)
+
+This diagram shows the timeline of the different phases of the migration.
+
+![Timeline Overview](../images/2023/07/migration_blog_diagrams_timeline.jpg)
+
 ### Environment Notes
 
 Environment: For illustration purposes, consider this setup. A Client has a Primary Database, a Read Replica, and then a second "maintenance" Read Replica. Both read replicas are replicating from the primary database using built-in Postgres 9.6 "log shipping". See Postgres Replication - Log Shipping. Most of this plan can be adapted to work with different environment setups, I will try to describe in as much detail as possible where trade offs exist.
@@ -259,6 +267,10 @@ If this step is confusing or if you feel like you are missing part of the puzzle
 - Under the section "Using native CDC start points to set up a CDC load of a PostgreSQL Source" there is a sub-section called "To use a new replication slot not previously created as part of another DMS task".
 	- This section is crucial. Because we are performing the full load portion of the migration outside of DMS, we will not have "previously created" a replication slot through DMS. 
 
+This diagram shows an overview of the logical separation between tables, replication sets, replication slots, and future DMS Tasks.
+
+![Table Separation](../images/2023/07/migration_blog_diagrams_split.jpg)
+
 ### Step 5 - Pause the Maintenance Read Replica
 
 Now that all of your database tables have been added to their respective replication sets, it's time to pause the Maintenance Read Replica and verify the existences of a usable `restart_lsn` (restart log sequence number). You can think of the log sequence number as a mile marker on the highway. You need this number to be able to tell DMS where to pick up replication.
@@ -320,7 +332,7 @@ Be sure to repalce `dms_slot_01`, `idms_slot_01` with what ever you named your r
 ```sql
 location | xid | jsonb_pretty ----------------+------------+----------------------------------- 354AD/3811D1C8 | 1504600818 | { + | | "action": "C", + | | "end_lsn": "354AD/3811D1C8", + | | "final_lsn": "354AD/3811D198"+ | | } (1 row)
 ```
-If it returns `0 rows` or says anything at all about a change, then the Log Sequence Number is valid and we are safe to proceed!
+If it returns `0 rows` or says anything at all about a change, then the Log Sequence Number is valid and we are safe to proceed! If you would like to understand better the Postgresql Internals surrounding the Write Ahead Log, check out [chapter 9 of this E-Book](https://www.interdb.jp/pg/pgsql09.html).
 
 ### Step 8 - Prep Target for Full Load
 
