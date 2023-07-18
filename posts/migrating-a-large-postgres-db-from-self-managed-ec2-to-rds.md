@@ -12,11 +12,11 @@ title: "AWS MAP - Migrating Postgres from Self-Managed EC2 to RDS"
 image: 
 ---
 
-The Amazon Web Services  (AWS) Migration Acceleration Program (MAP) is a comprehensive and proven cloud migration program based on AWS’s experience migrating thousands of enterprise customers to the cloud. As an AWS MAP Competency Partner, Ippon Technologies can help you achieve your cloud migration and modernization goals. Almost every enterprise migration will require at least one database to be migrated to the cloud. 
+The Amazon Web Services (AWS) Migration Acceleration Program (MAP) is a comprehensive and proven cloud migration program based on AWS’s experience migrating thousands of enterprise customers to the cloud. As an AWS MAP Competency Partner, Ippon Technologies can help you achieve your cloud migration and modernization goals. From our experience, almost every enterprise migration will require at least one database to be migrated to the cloud. 
 
-This article will focus on the methodologies used by AWS MAP professionals to migrate a massive Postgresql database from self-managed Amazon Elastic Compute Cloud (EC2) to AWS Relational Database System (RDS) and discuss why you should consider making this change. AWS RDS is a fantastic piece of technology and will absolutely be the go-to [recommendation](https://s3-us-west-2.amazonaws.com/map-2.0-customer-documentation/included-services/MAP_Included_Services_List.pdf) by AWS MAP professionals when modernizing or migrating your environments. 
+This article will focus on the methodologies used by AWS MAP professionals to migrate a massive Postgresql database from self-managed Amazon Elastic Compute Cloud (EC2) to AWS Relational Database System (RDS) and discuss why you should consider making this change. AWS RDS is a well-integrated, managed service, and will absolutely be the go-to [recommendation](https://s3-us-west-2.amazonaws.com/map-2.0-customer-documentation/included-services/MAP_Included_Services_List.pdf) by AWS MAP professionals when modernizing or migrating your environments. 
 
-Migrating a database from one place to another, or from one version to another, does not have to be a painful experience. Below, I describe some of the lessons learned from migrating a huge Postgresql database running on self-managed EC2 to Amazon's RDS.  First, let’s discuss why you may want to migrate to RDS. Next, I will cover some of the gotchas you will need to look out for. Finally, I will describe multiple different strategies for migration and the pros and cons of each.  Buckle up, this is about to be a wild ride!!! 
+Migrating a database from one place to another, or from one version to another, does not have to be a painful experience. Below, I describe some of the lessons learned from migrating a huge Postgresql database running on self-managed EC2 to Amazon's RDS.  First, we'll discuss why you may want to migrate to RDS. Next, I will cover some of the gotchas you will need to look out for. Finally, I will describe multiple different strategies for migration and the pros and cons of each.  Buckle up, this is about to be a wild ride!!! 
 
 # Why You Should Migrate From Self-Managed EC2 to AWS RDS
 
@@ -26,7 +26,7 @@ If your database came from an "earlier time" or your product started off small, 
 * Availability and durability
 * Lower administrative burden (this one is underrated)
 
-A more exhaustive list of RDS goodness can be found [here](https://aws.amazon.com/rds/features/).  I want to zoom in on the "lower Administrative Burden" benefit. It may not be totally clear what this means unless you have run a self-managed database for a significant period of time. Headaches like upgrading, creating read replicas, software patching, and blue-green deployments, can consume a large chunk of your time when you are running a self-managed database. All of these features can be automated and are available right out of the box with AWS’s RDS.
+A more exhaustive list of RDS goodness can be found [here](https://aws.amazon.com/rds/features/).  I want to zoom in on the "lower Administrative Burden" benefit. It may not be totally clear what this means unless you have run a self-managed database for a significant period of time. Headaches like upgrading, creating read replicas, software patching, and blue-green deployments can consume a large chunk of your time when you are running a self-managed database. All of these features can be automated and are available right out of the box with AWS’s RDS.
 
 # Things to Consider When Planning a Migration
 
@@ -88,11 +88,11 @@ Tools like Amazon's Database Migration Service (DMS) can do a lot of the legwork
 
 `Pg_basebackup` cannot be used to migrate to AWS’s RDS, but can be used to migrate from one self-managed EC2 instance to a different one. I mention it here simply for thoroughness, as you are likely to come across this method in your research. `pg_basebackup` creates a *physical* backup, at the file system level. This tends to be much faster than the logical backups that I will describe below. The reason this cannot be used to migrate to RDS is that the underlying filesystem is not exposed to the end user when using AWS’s RDS.
 
-It is also worth noting, that on large databases, this method will require a decent length maintenance window, as the database needs to be offline for it to be successful. 
+It is also worth noting, that on large databases, this method will require a decently-large maintenance window, as the database needs to be offline for it to be successful. 
 
 ## Using pg_dump and pg_restore
 
-`Pg_dump` and `pg_restore` will create a logical backup of your database. Instead of moving the actual data on the disk, it will use SQL-like statements to completely rebuild the database. There are loads of different options when employing this method. For instance, you can use `pg_dump` to dump your data into .csv files or have the files compressed. Once the data has been dumped onto the hard disk, it can then be loaded into the new database with `pg_restore`.
+`Pg_dump` and `pg_restore` will create a logical backup of your database. Instead of moving the actual data on the disk, it will use SQL-like statements to completely rebuild the database. There are many options when employing this method. For instance, you can use `pg_dump` to dump your data into .csv files or have the files compressed. Once the data has been dumped onto the hard disk, it can then be loaded into the new database with `pg_restore`.
 
 Another strategy utilizing `pg_dump` involves setting the output to stdin and piping it into SQL copy statements, so it doesn't hit the hard disk at all. This is helpful for really large databases where there may not be enough remaining room on disk, or where time is of the essence and it is better to just send the data over the network into the target database as it is being dumped. This strategy can also be used to migrate tables that may not be compatible with the `.csv` format.
 
@@ -100,7 +100,7 @@ When utilizing this strategy, you will want to make sure there are no schema dif
 
 ## Using pg_logical
 
-Logical replication is an amazing tool that can be used to create read replicas of databases and can stream data near real-time from a primary to a secondary database. It leverages the underlying native technology of Postgresql to achieve this. It can also be used to sync databases and perform migrations. There are loads of different options and methodologies that can be used to set this up and utilize it for migrations. The primary benefit is migrating a live database with little to no downtime, resulting in a very short maintenance window for a "cut over".
+Logical replication is an amazing tool that can be used to create read replicas of databases and can stream data near real-time from a primary to a secondary database. It leverages the underlying native technology of Postgresql to achieve this. It can also be used to sync databases and perform migrations. There are different options and methodologies that can be used to set this up and utilize it for migrations. The primary benefit is migrating a live database with little to no downtime, resulting in a very short maintenance window for a "cut over".
 
 In Postgresql, version 9.6 and below, `pg_logical` is one of the only ways to achieve logical replication. Without the plugin, replication is performed via "log shipping" and "log streaming". Although these methods of replication can be used to migrate to RDS, they do not support migrating across major versions. `pg_logical` can migrate a database across major versions and offers the most flexibility when it comes to specifying which tables to migrate, and when. This tool does not come without a steep learning curve, so be sure to do your research. If you are running Postgresql 10 or higher, logical replication is built in, although, using the `pg_logical` plugin may still provide some additional features.
 
