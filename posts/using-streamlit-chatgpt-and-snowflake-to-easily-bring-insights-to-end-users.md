@@ -26,7 +26,7 @@ A few other things you'll need for this demo are a Snowflake environment and Cha
 
 
 ## Creating the Skeleton of Our Streamlit App
-As we can see here, it's relatively easy to create our first streamlit application. But I wanted to explore how to display and interact with data in an application. So I created a python file and imported pandas and streamlit and ran my application using `streamlit run my_app.py`. Below is the code I ran:
+As we can see, it's relatively easy to create our first streamlit application. But I wanted to explore how to display and interact with data in an application. So I created a python file and imported pandas and streamlit and ran my application using `streamlit run my_app.py`. Below is the code I ran:
 
 ```python
 import streamlit as st
