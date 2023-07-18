@@ -59,7 +59,7 @@ This did exactly what I needed to. Now a user can put in whatever natural langua
 
 ### Step Two: The Data
 
-We're building a data driven application and have no data to interact with - which seems like an oversight, I know. This is where Snowflake comes in. Snowflake is a single, fully managaed solution for integrating and analyzing your data. We're going to use Snowflake to hold the datasets we are going to use for analysis.
+We're building a data driven application and have no data to interact with - which seems like an oversight, I know. This is where Snowflake comes in. Snowflake is a single-platform, fully managed solution for integrating and analyzing your data. We're going to use Snowflake to hold the datasets we are going to use for analysis.
 
 Out dataset of choice is Snowflake's Tasty Bytes data. Tasty Bytes is a Snowflake curated sample set of data depicting a global food truck network with localized menu options in 15 countries, 30 major cities and over 15 core brands. I setup Tasty Bytes in my Snowflake Account by following [this tutorial](https://quickstarts.snowflake.com/guide/tasty_bytes_introduction/index.html#1).
 
@@ -86,9 +86,11 @@ df = cursor.fetch_pandas_all()
 df
 ```
 
-I have all of my connection parameters for Snowflake in the environment variables. You can then use the connection to create the cursor and use the cursor to execute a query. To start, I began just grabbing 10 rows from the CUSTOMER_LOYALTY table. As you can see in my sample query, I provide the fully qualified path for the Snowflake table using the format [database].[schema].[table_name].
+I have all of my connection parameters for Snowflake in the environment variables. You can then use the connection to create the cursor and use the cursor to execute a query. To start, I began by grabbing 10 rows from the CUSTOMER_LOYALTY table. As you can see in my sample query, I provide the fully qualified path for the Snowflake table using the format [database].[schema].[table_name].
 
 At the end of this, when you refresh your application you should see the first 10 rows from the customer_loyalty table.
+
+> I would suggest enabling Streamlit's **Always Rerun** option, as it allows your application to refresh whenever you save it!
 
 ### Step Three: Sending User Input to ChatGPT
 As we saw in Step One, we can quite easily capture user input using Streamlit's built-in functions. But what if we want to submit our user input? We can do so using a form in streamlit.
@@ -134,7 +136,7 @@ if submit_button:
 How do we submit our captured input to ChatGPT? I started by signing up for an account with ChatGPT. For this entire exercise, you can use the $5 in credits ChatGPT gives you when you first sign up. I also added an API key to my user and added that key to my environment variables. This API Key is what we'll use to access the ChatGPT API. Finally, I pip installed and imported openai into my streamlit application.
 
 > #### An Aside on the ChatGPT Chat Completion Endpoint
-> The main mechanism we'll be using to interact with ChatGPT is the Chat Completion API Endpoint. As you can probably guess, the Chat Completion Endpoint returns a Model Response for the given conversation. Here is a sample call to the Chat Completion API in Python which I'll use to showcase the parameters we'll be using from here on out.
+> The main mechanism we'll be using to interact with ChatGPT is the Chat Completion API Endpoint. As you can probably guess, the Chat Completion Endpoint returns a Model Response for the given conversation. Here is a sample call to the Chat Completion API in Python which I'll use to describe the key parameters we'll be using from here on out.
 > 
 > ```python
 > # Example OpenAI Python library request
@@ -152,7 +154,7 @@ How do we submit our captured input to ChatGPT? I started by signing up for an a
 > ```
 > - Model: ID of the model to use. The standard models to use are `gpt-4` and `gpt-3.5-turbo`. As you see during this blog, I use `gpt-3.5-turbo` as the `gpt-4` model isn't available for free tier users quite yet.
 > 
-> - Messages: A list of messages comprising the conversation so far. Messages have a couple required elements, namely the Role and the Content. The role captures the role of the message author and is `system`, `user`, `assistant`, or `function`. The content captures the contents of the message. This is required for all messages and may be null for assistant messages with function calls.
+> - Messages: A list of messages comprising the conversation so far. Messages have a couple of required elements, namely the Role and the Content. The *role* captures the role of the message author and is `system`, `user`, `assistant`, or `function`. The *content* captures the contents of the message. This is required for all messages and may be null for assistant messages with function calls.
 > 
 > - Temperature: What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
 > 
@@ -170,7 +172,7 @@ As we can see from the query returned, ChatGPT has extrapolated column names and
 
 Challenge Number 2 is pretty easy. When we ask ChatGPT our question, all we need to add at the end is: `Do not include the question in your response. Do not provide explanations.`
 
-Challenge Number 1 is a little bit more difficult. The reason being, is how do we provide context to ChatGPT? Ideally, ChatGPT could use in addition to our database, schema, and table names, the columns, and their descriptions. If we're building this application to be able to look at all of the databases we use for reporting, it could lead to a large amount of information being provided to ChatGPT for context alone. Since this is a small scale demonstration, I chose to create a YAML file for my tables.
+Challenge Number 1 is a little bit more difficult. The reason being, is how do we provide context to ChatGPT? Ideally, ChatGPT could use in addition to our database, schema, and table names, the table's columns by name, and their descriptions. If we're building this application to be able to look at all of the databases we use for reporting, it could lead to a large amount of information being provided to ChatGPT for context alone. Since this is a small scale demonstration, I chose to create a YAML file for my tables.
 
 ```yaml
 table:
@@ -225,7 +227,7 @@ table:
       description: Customer's phone number
 ```
 
-I've included only a single table here and put this file, called `table_config.yaml` in a directory called `gpt_sql/config`. Now to provide this context to ChatGPT. All you need to do is read the YAML file in Python and change your message to include the yaml file. We can go ahead and do this in Python after where we setup our Snowflake connection.
+I've included only a single table here and put this file, called `table_config.yaml` in a directory called `gpt_sql/config`. Now to provide this context to ChatGPT, all you need to do is read the YAML file in Python and change your message to include the yaml file. We can go ahead and do this in Python after where we setup our Snowflake connection.
 
 ```python
 with open("gpt_sql/config/table_config.yml", "r") as file:
@@ -270,7 +272,7 @@ if submit_button:
 
 Note the additional change I've made to the message in this code snippet. Since we're using Snowflake and I like having the fully qualified name for Snowflake resources, I'm also asking ChatGPT to format the table_name in database.schema.table_name format. The function `st.code()` is a Streamlit function which formats outputs into Code Blocks for which you can specify a language.
 
-> I also have included a temperature of 0.2 when I submit a chat completion to ChatGPT. This is from some experimentation. I noticed that I was getting different queries every time, sometimes queries which did not return meaninful results. Reducing the temperature helped resolve that. I high encourage you to remove the temperature or experiment with it at this stage to see how the temperature value affects what you get back from ChatGPT.
+> I also have included a temperature of 0.2 when I submit a chat completion to ChatGPT. This is from some experimentation. I noticed that I was getting different queries every time and even sometimes queries which did not return meaninful results. Reducing the temperature helped resolve that. I high encourage you to remove the temperature or experiment with it at this stage to see how the temperature value affects what you get back from ChatGPT.
 
 We can now submit the query ChatGPT returns to Snowflake using `cursor.execute(query)` just as we did when we ran our query earlier.
 
@@ -286,7 +288,7 @@ st.dataframe(df)
 Now that we've examined the logic for returning an SQL query from ChatGPT and subsequently retrieving the data from Snowflake, we're about 75% of the way done with this exercise.
 
 ### Step Four: Summarizing Results
-It'd be nice if a tabular view of our data was all our stakeholders ever wanted from their reports. Sadly, it rarely ever is enough. So let's get ChatGPT to do the hard work for us and summarize our data. To do so, I added a checkbox to our Streamlit Form.
+It'd be nice if a tabular view of our data was all our stakeholders ever wanted from their reports. Sadly, a tabular view is rarely enough. So let's get ChatGPT to do the hard work for us and summarize our data. To do so, I added a checkbox to our Streamlit Form.
 
 ```python
 with st.form(key="my_form"):
@@ -327,8 +329,6 @@ The final thing a stakeholder could want from our application is a graph of the 
 The first thing I did was have ChatGPT tell me which chart would be the best to graph our data.
 
 ```python
-time.sleep(30)
-
 graph_message = [
     {
         "role": "user",
@@ -349,7 +349,6 @@ For our question, `How many customers signed up per day?` I noticed that ChatGPT
 ```python
 if "line chart" in chart_type.lower():
   ### get x and y columns for the chart from ChatGPT
-  time.sleep(5)
   xlm = [
       {
           "role": "user",
@@ -370,7 +369,6 @@ if "line chart" in chart_type.lower():
 
   x_axis = x_axis_col_list[0]
 
-  time.sleep(5)
   ylm = [
       {
           "role": "user",
@@ -394,7 +392,6 @@ if "line chart" in chart_type.lower():
 and
 ```python
 if "bar chart" in chart_type.lower():
-  time.sleep(5)
   xlm = [
       {
           "role": "user",
@@ -415,7 +412,6 @@ if "bar chart" in chart_type.lower():
 
   x_axis = x_axis_col_list[0]
 
-  time.sleep(5)
   ylm = [
       {
           "role": "user",
@@ -630,7 +626,8 @@ if submit_button:
 Finally, I wanted to share with you all some of the lessons I learned while working with ChatGPT to create this small application. 
 
 ### Phrasing Matters
-The real estate phrase "Location, Location, Location" can be quite easily coverted to ChatGPT to be "Phrasing, Phrasing, Phrasing". Because of what it is, ChatGPT often interprets the same phrase or question, in our case, to different results. I've seen two variations of query returned as a result: 
+The real estate phrase "Location, Location, Location" can be quite easily coverted to ChatGPT to be "Phrasing, Phrasing, Phrasing". Because of the model, ChatGPT often interprets the same phrase or question, in our case, to different results. I've seen two variations of a query returned as a result: 
+
 ```
 SELECT COUNT(DISTINCT customer_id) AS num_customers, DATE(sign_up_date) AS signup_day
 FROM pkrishnan_streamlit_db.raw_customer.customer_loyalty
@@ -648,16 +645,16 @@ Obviously only one of these queries is ideal if we are to gather meaningful insi
 This is where I had to experiment with setting different values for the temperature. ChatGPT actually provides a secondary method for narrowing the sampling range called `top_p`. With top_p, the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. ChatGPT suggests using only top_p or temperature when working with models. It may be worth experimenting between the two as you're foraying into using the ChatGPT API more. 
 
 ### Code Generation vs. Graph Generation
-Earlier, I alluded to having problems when generating the graph for our application. That is in part due to the lack of plugins and integrations with the ChatGPT API. I tried to use the ChatGPT API to generate the HTML Code for the graph itself. But no matter what phrasing I tried, I wasn't getting clean HTML code back. Additionally, even if you provide ChatGPT the entire dataset like I did, it still only returns back a sample HTML file complete with comments asking you to manually add in all of the X-points and Y-points. I'd be curious to see how the graph generation changes if you are on a paid ChatGPT subscription.
+Earlier, I alluded to having problems when generating the graph for our application. That is in part due to the lack of plugins and integrations with the ChatGPT API. I tried to use the ChatGPT API to generate the HTML Code for the graph itself. But no matter what phrasing I tried, I wasn't getting clean HTML code back. Additionally, even if you provide ChatGPT the entire dataset like I did, it still only returns back a sample HTML file complete with comments asking you to manually add in all of the X-points and Y-points. I'd be curious to see how the graph generation changes if you are on a paid ChatGPT subscription and using one of the plugins.
 
 ### Timeouts
 As you all are sure to have noticed, I have periodic `time.sleep()` function calls interspersed throughout the final Streamlit application. This is because I'm using ChatGPT's free tier which is limited to 3 API calls per minute.
 
 ### Cost of ChatGPT
-While building and running this application, I used about 20 cents of the \$5.00 credit I was given. ChatGPT prices per token and for the model I'm using, ChatGPT charged me \$0.0015 per 1K tokens for Inputs and \$0.002 per 1K tokens for Outputs. This cost is fairly cheap for a small scale application like the one we built. But it would be worth keeping an eye on for a large scale application with multiple calls to ChatGPT with a large context.
+While building and running this application, I used about 20 cents of the \$5.00 credit I was given. ChatGPT prices per token. For the model I'm using, ChatGPT charged me \$0.0015 per 1K tokens for Inputs and \$0.002 per 1K tokens for Outputs. This cost is fairly cheap for a small scale application like the one we built. But it would be worth keeping an eye on for a large scale application with multiple calls to ChatGPT with a large context.
 
 # Conclusion
-Thanks so much for taking the time to follow along in this quick exercise. As I mentioned in the beginning, this is one potential approach for integrating Generative AI with dashboards to democratize data for less technical stakeholders. As we've seen, ChatGPT is a powerful technology which can be used in a variety of ways. This application is just one of many ways it can be used in the data and analytics space. But we've also seen some of it's stumbling blocks and lessons learned while working with it. I hope you've learned something and had some fun experimenting with a technology that is brimming with potential.
+Thanks so much for taking the time to follow along in this quick exercise. As I mentioned in the beginning, this is one potential approach for integrating Generative AI with dashboards to democratize your data for less technical stakeholders. As we've seen, ChatGPT is a powerful technology which can be used in a variety of ways. This application is just one of many ways it can be used in the data and analytics space. But we've also seen some of it's stumbling blocks and lessons learned while working with it. I hope you've learned something and had some fun experimenting with a technology that is brimming with potential.
 
 ----
 For more information on how Ippon Technologies can help your organization utilize Snowflake or Streamlit for all of your data needs, contact sales@ipponusa.com.
