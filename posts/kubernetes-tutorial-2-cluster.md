@@ -23,7 +23,7 @@ I will not be re-writing their documentation on how to install their application
 After your installation, I recommend testing your local setup by following their [Hello World](https://docs.rancherdesktop.io/how-to-guides/hello-world-example) tutorial. After which you can have some confidence that your virtual k8s cluster is ready to go. 
 
 ## K3S
-Under the hood Rancher Desktop is using [K3s](https://k3s.io/) for Kubernetes instrumentation. Rancher has a nice diagram to show how this is running on your machine. I'll show it here. 
+Under the hood Rancher Desktop is using [K3s](https://k3s.io/) for Kubernetes implementation. Rancher has a nice diagram to show how this is running on your machine. I'll show it here. 
 
 ![Rancher Diagram](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/07/how-it-works-rancher-desktop.png)
 
@@ -54,7 +54,7 @@ As the road ahead isn't complete, I'll just list out the next few items we will 
 
 We've set up a cluster on your machine and hopefully armed you with more information about the individual services at play. For many, getting a cluster running is enough to start build and deploying apps. We will continue to add services to your cluster to make it more full service. 
 
-Moving forward I'll be using a local cluster built with three [Odroid HC4](https://www.hardkernel.com/shop/odroid-hc4/). The cluster deployed and clustered with K3S. The installation was assisted by [k3sup](https://github.com/alexellis/k3sup). Using Rancher Desktop is great as a quick start for testing and local development. But to really dive into cluster administration we need to move closer to our local network and away from virtualized environments.
+Moving forward I'll be using a local cluster built with three [Odroid HC4](https://www.hardkernel.com/shop/odroid-hc4/). The cluster deployed and clustered with K3S. The installation was assisted by [k3sup](https://github.com/alexellis/k3sup). The Odroid is running a custom image built by Armbian. Armbian specializes in single board computers and have already done the hard work setting up the linux kernel and attached embedded devices, the image can be found on [Armbian ODroid HC4](https://www.armbian.com/odroid-hc4/). Using Rancher Desktop is great as a quick start for testing and local development. But to really dive into cluster administration we need to move closer to our local network and away from virtualized environments.
 
 Here at IPPON we have experience with designing resilient large-scale application architectures. We do this by following the tech community's newest open-source tools and best practices. If you are designing your next system or in charge of a Kubernetes cluster, and in need of professional guidance, feel free to [contact me on LinkedIn](https://www.linkedin.com/in/daengr/) or [send us over a message](mailto:contact@ipponusa.com).
 
