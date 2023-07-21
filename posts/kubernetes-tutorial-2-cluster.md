@@ -5,7 +5,7 @@ tags:
 - Kubernetes
 date: 2021-09-07T12:21:50.000Z
 title: "Kubernetes Tutorial #2: Cluster"
-image: #New Image
+image: https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2023/07/Kubernetes-Tutorial-2-Cluster.png
 ---
 
 
