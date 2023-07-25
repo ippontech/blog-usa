@@ -3,11 +3,11 @@ authors:
 - Theo Lebrun
 tags:
 date: 2023-07-24T01:49:23.000Z
-title: "How AWS Glue Data Quality Will Help You Achieve Compliance With Confidence"
+title: "How AWS Glue Data Quality Helps You Achieve Compliance For Your Data Lake With Confidence"
 image: 
 ---
 
-The "recent" creation of data lakes by thousands of Organizations also created a new problematic: data swamps. It is very common to avoid key concepts like data quality because of time or cost constraints. Setting up a data quality framework can quickly become a huge project that requires critical features like alerting and scaling.
+The "recent" creation of data lakes by thousands of Organizations also created a new problem: data swamps. It is very common to avoid key concepts like data quality because of time or cost constraints. Setting up a data quality framework can quickly become a huge project that requires critical features like alerting and scaling.
 
 AWS recently announced the General Availability of [AWS Glue Data Quality](https://aws.amazon.com/glue/features/data-quality/) which aim to deliver high-quality data across your data lakes and existing pipelines. This blog will explore its capabilities and benefits to show how it revolutionizes the way businesses ensure data accuracy and reliability.
 
