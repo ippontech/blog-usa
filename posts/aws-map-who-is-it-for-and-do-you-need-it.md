@@ -5,6 +5,7 @@ tags:
 - AWS
 - AWS MAP
 - DevOps
+date: 2023-08-03T01:29:24.000Z
 title: "AWS MAP - Who is it for? Do you need it?"
 image: 
 ---
