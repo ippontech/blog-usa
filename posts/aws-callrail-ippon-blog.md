@@ -5,6 +5,8 @@ tags:
 - Cloud
 - AWS
 - AWS Map
+- Migration
+- DB Migration
 date: 2023-08-03T12:21:50.000Z
 title: "CallRail Paves the Way for Further Cloud Modernization Efforts by Migrating to Amazon RDS for PostgreSQL"
 image:
