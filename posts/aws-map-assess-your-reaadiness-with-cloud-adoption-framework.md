@@ -52,7 +52,7 @@ Key Stakeholders for this perspective include: Chief Transformation officer, CIO
 
 ## Platform
 
-The platform perspective delves into the intricate technical intricacies underpinning your organizational infrastructure. While each organization boasts its distinctive configuration, established methodologies exist to expedite cloud adoption. This frequently entails the establishment of a hybrid cloud/on-premises setup.
+The platform perspective delves into the technical intricacies underpinning your organizational infrastructure. While each organization boasts its distinctive configuration, established methodologies exist to expedite cloud adoption. This frequently entails the establishment of a hybrid cloud/on-premises setup.
 
 Leveraging the potentialities within this perspective becomes instrumental in the architectural and engineering aspects of the platform. This involves resource provisioning and orchestration, the integration of contemporary application development frameworks, data integration, and the assimilation of continuous integration and delivery.
 
