@@ -47,7 +47,7 @@ Install the `pglogical` extension on the Source (production primary database), a
 
 ### Create a Maintenance Read Replica
 
-In order to minimize risk and in an effort to not interfere with production, a fresh, separate read replica should be created and utilized for the migration. Replication will be paused on this separate read replica before performing full load, the current production read replica will continue to replicate and can still be used in the case of an emergency. Information surrounding the point in time backup will be garnered from this read replica and used to load any changed data after full load is completed.
+In order to minimize risk and in an effort to not interfere with production, a fresh, separate read replica should be created and utilized for the migration. Replication will be paused on this new separate read replica before performing full load, the current production read replica will continue to replicate and can still be used in the case of an emergency. Information surrounding the point in time backup will be garnered from this new read replica and used to load any changed data after full load is completed.
 
 ### Add pglogical repo to Source
 
@@ -102,9 +102,9 @@ pglogical          |       10 |    585589989 | f              |
 
 ### Install Target Version of PSQL on the Maintenance Read Replica
 
-We need to make sure that we have a version of `psql` on our machine that matches the version of PostgreSQL on the Target Database. Find out which version of PostgreSQL you are migrating to, and then install that version of the `psql` tool on that machine. 
+We need to make sure that we have a version of `psql` on our machine that matches the version of PostgreSQL on the Target Database. Find out which version of PostgreSQL you are migrating to, and then install that version of the `psql` tool on your machine. 
 
-Use what ever package manager your system supports.  Here is an example using Ubuntu 16.04:
+Use whichever package manager your system supports.  Here is an example using Ubuntu 16.04:
 ```bash
 apt list | grep postgresql-client
 sudo apt-get install -y postgresql-client-12
