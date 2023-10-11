@@ -1,10 +1,10 @@
-In this two part Blog Series, I would like to share with you an in-depth guide. The topic is migrating from a large, self managed Postgres database running on Elastic Compute Cloud (EC2).  The source database is running Postgres version 9.6. The target database for the migration is none other than Amazon Web Service's Relational Database System running Postgres engine version 12.
+In this two part Blog Series, I would like to share with you an in-depth guide. The topic is migrating from a large, self managed Postgres database running on Elastic Compute Cloud (EC2).  The source database is running Postgres version 9.6. The target database for the migration is none other than Amazon Web Service's Relational Database Service (RDS) running Postgres engine version 12.
 
 ## Overview 
 
-In order to get all of the data out of the source database and into RDS without ever stopping the source database, albeit briefly, we have to run this rube Goldberg process. If you are unsure what type of migration plan you need to run, please reference my other blog post [AWS MAP - Migrating Postgres from Self-Managed EC2 to RDS](temp.link). There are two main phases to the migration plan.  After all prerequisites have been met - Phase I can be kicked off. 
+In order to get all of the data out of the source database and into RDS without ever stopping the source database, albeit briefly, we have to run this Rube Goldberg process. If you are unsure what type of migration plan you need to run, please reference my other blog post [AWS MAP - Migrating Postgres from Self-Managed EC2 to RDS](temp.link). There are two main phases to the migration plan.  After all prerequisites have been met - Phase I can be kicked off. 
 
-Phase I - Full Load: use `pg_dump` and `\copy` to get the bulk of the data transferred. The full load portion utilize the maintenance read replica (see below) in a paused state and the RDS instance. DMS does provide a full load option, but on certain databases it can fail to complete. Part 1 of the series will cover all the steps to get through the Prerequisites section and Phase I.
+Phase I - Full Load: use `pg_dump` and `\copy` to get the bulk of the data transferred. The full load portion utilizes the maintenance read replica (see below) in a paused state and the RDS instance. DMS does provide a full load option, but on certain databases it can fail to complete. Part 1 of the series will cover all the steps to get through the Prerequisites section and Phase I.
 
 Phase II - Change Data Capture with DMS: use multiple DMS tasks to transfer the remaining "data delta" into RDS.  The Data Delta is simply any data that has come into the database after pausing the Maintenance Read Replica. Phase II is performed against the Source Database, i.e. - the primary. Part 2 of the series will cover all the steps necessary to complete Phase II, and hopefully, the database migration.
 
@@ -18,7 +18,7 @@ This diagram shows the timeline of the different phases of the migration.
 
 ### Environment Notes
 
-Environment: For illustration purposes, consider this setup. A Client has a Primary Database, a Read Replica, and then a second "maintenance" Read Replica. Both read replicas are replicating from the primary database using built-in Postgres 9.6 "log shipping". See Postgres Replication - Log Shipping. Most of this plan can be adapted to work with different environment setups, I will try to describe in as much detail as possible where trade offs exist.
+Environment: For illustration purposes, consider this setup. A Client has a Primary Database, a Read Replica, and then a second "maintenance" Read Replica. Both read replicas are replicating from the primary database using built-in Postgres 9.6 "log shipping". See [Postgres Replication - Log Shipping](https://www.postgresql.org/docs/9.6/warm-standby.html). Most of this plan can be adapted to work with different environment setups, I will try to describe in as much detail as possible where trade offs exist.
 
 Constraints - The primary database can not be stopped for any significant period of time, even for a maintenance window. The Secondary (read replica) similarly cannot be stopped for any period of time. A separate read replica was created to allow this work to be done and still maintain a strong Disaster Recovery Posture. 
 
@@ -32,7 +32,7 @@ We use `pglogical` to enable a cross version migration.  This allows us to minim
 
 ### Naming Conventions
 
-Primary = Source = Prouduction Database
+Primary = Source = Production Database
 Secondary = Production Read Replica
 Secondary = Maintenance Read Replica
 RDS = New Primary = Target 
@@ -170,7 +170,7 @@ SELECT * FROM pg_create_logical_replication_slot('dms_slot_05', 'pglogical');
 SELECT * FROM pg_create_logical_replication_slot('dms_slot_06', 'pglogical');
 ```
 
-After the database creates the replication slots, note the `restart_lsn` and the `confirmed_flush_lsn` for all slots on the Source (primary). This information can be used for troubleshooting purposes if a migration attempt fails (which it will, test, make tweaks, run again).
+After the database creates the replication slots, note the `restart_lsn` and the `confirmed_flush_lsn` for all slots on the Source (primary). This information can be used for troubleshooting purposes if a migration attempt fails (which it will - you will test, make tweaks and run again).
 ```sql
 --On the Source Database
 select * from pg_replication_slots;
@@ -208,7 +208,7 @@ select pglogical.create_node(node_name := 'provider1', dsn := 'host={ip_address}
 
 ### Step 3 - Create Replication Sets
 
-Create the replication sets. Note - the name of the replication sets must match the name of the replication slot. For instance - if the replication slot is `dms_slot_01` then the replication slot names are `dms_slot_01` and `idms_slot_01` respectively.  Each replication slot will have two replication sets named after it.
+Create the replication sets. Note - the name of the replication sets must match the name of the replication slot. For instance - if the replication slot is `dms_slot_01` then the replication set names are `dms_slot_01` and `idms_slot_01` respectively.  Each replication slot will have two replication sets named after it.
 ```sql
 --On the Source Database
 SELECT pglogical.create_replication_set('dms_slot_01', false, true, true, false);  
@@ -240,7 +240,7 @@ Add all of the tables that need to be migrated to the replication sets. NOTE - y
 - `dms_slot_03` - a Collection of larger tables with Primary Keys and Unique Constraints
 	- These tables may require different settings.
 - `dms_slot_04` - Similar to slot 2 but small tables and probably a lot more!
-- etc... These different replication sets (and therefor the replication slots they reference) will eventually be mapped to Change Data Capture (CDC) tasks in AWS DMS. Refer back to this step after reading the section on CDC in Part 2 if need be.
+- etc... These different replication sets (and therefore the replication slots they reference) will eventually be mapped to Change Data Capture (CDC) tasks in AWS DMS. Refer back to this step after reading the section on CDC in Part 2 if need be.
 
 NOTE: Set aside the list of tables that have a Primary Key and a separate Unique Constraint from the prerequisite steps. They will be used later before the Full Load process starts.
 
@@ -287,7 +287,7 @@ select pg_wal_replay_pause();
 select pg_is_wal_replay_paused();
 ```
 
-In earlier versions of Postgres, the *write ahead log* was called the *xlog*, which loosely means "transaction log". Version 10 of postgresql saw the name changed to the `wal_log`. The `wal_log` stands for write ahead log and is a core concept in database replication, not just for postgresql either. I highly recommend reading up on the `wal_log` as it is pivotal to understanding how and why this migration method works and the underlying mechanism behind it. More information regarding the write ahead log and postgresql interanl operations can be found [in the docs](https://www.postgresql.org/docs/9.6/wal.html).
+In earlier versions of Postgres, the *write ahead log* was called the *xlog*, which loosely means "transaction log". Version 10 of postgresql saw the name changed to the `wal_log`. The `wal_log` stands for write ahead log and is a core concept in database replication, not just for postgresql either. I highly recommend reading up on the `wal_log` as it is pivotal to understanding how and why this migration method works and the underlying mechanism behind it. More information regarding the write ahead log and postgresql internal operations can be found [in the docs](https://www.postgresql.org/docs/9.6/wal.html).
 
 Note: Now that the read replica is paused, it will begin storing `xlogs` or `wal_logs` on disk. Be sure to monitor your database system to ensure that storage does not run out! If you start to run out of storage space, you can change where the logs are stored by editing the `postgresql.conf` file and performing a config reload. If you are facing a disaster scenario and just need to free up space as fast as possible, then proceed to drop the logical replication slots on the source database. This will cause you to have to start back from step 1 if you are following this guide. 
 
@@ -328,7 +328,7 @@ For Postgresql version 10 or higher, the command is:
 ```sql
 SELECT lsn,xid, jsonb_pretty(data::jsonb) FROM pg_logical_slot_peek_changes('dms_slot_01',null, null, 'min_proto_version', '1', 'max_proto_version', '1', 'startup_params_format', '1', 'proto_format', 'json', 'pglogical.replication_set_names', 'dms_slot_01,idms_slot_01') where location='{LSN_FROM_MAINTENANCE_READ_REPLICA}';
 ```
-Be sure to repalce `dms_slot_01`, `idms_slot_01` with what ever you named your replication slots and replication sets. Replace `{LSN_FROM_MAINTENANCE_READ_REPLICA}` with the log sequence number. Run this command for each Logical Replication Slot and its respective replication sets.  We are simply looking for the command to *not* return an error. Here is a sample *successful* return value:
+Be sure to replace `dms_slot_01`, `idms_slot_01` with what ever you named your replication slots and replication sets. Replace `{LSN_FROM_MAINTENANCE_READ_REPLICA}` with the log sequence number. Run this command for each Logical Replication Slot and its respective replication sets.  We are simply looking for the command to *not* return an error. Here is a sample *successful* return value:
 ```sql
 location | xid | jsonb_pretty ----------------+------------+----------------------------------- 354AD/3811D1C8 | 1504600818 | { + | | "action": "C", + | | "end_lsn": "354AD/3811D1C8", + | | "final_lsn": "354AD/3811D198"+ | | } (1 row)
 ```
