@@ -21,13 +21,13 @@ If you are coming here from part 1, you should have everything that you need to 
 - The names of all the Logical Replication Slots that you setup in part 1.
 - A list of tables that have a Primary Key and a separate Unique Constraint.
 - An in-depth understanding of the data contained within the Source Database.
-Before we dive into the steps to setup and configure DMS, let's talk about some things we need to figure out before we proceed. Remember when we compiled the list of tables that have a Primary Key and a separate Unique Constraint? We need another similar list, but this time, a list of tables that have Large Objects, also known as LOBS. If you are unfamiliar with LOBs, then read up on them in the [documentation](https://www.postgresql.org/docs/15/largeobjects.html).
+Before we dive into the steps to setup and configure DMS, let's talk about some things we need to figure out before we proceed. Remember when we compiled the list of tables that have a Primary Key and a separate Unique Constraint? We need another similar list, but this time, a list of tables that have Large Objects, also known as LOBs. If you are unfamiliar with LOBs, then read up on them in the [documentation](https://www.postgresql.org/docs/15/largeobjects.html).
 
 ### Large Objects
 
 When performing Change Data Capture (CDC) with AWS DMS, tables with large objects have a couple of specific settings that need to be adjusted. In order to get the settings just right, we need to have a list of tables that contain LOBs. More importantly, for each table that has LOBs, we need a value, in kilobytes, of the largest possible LOB for that table. Here is an example, let's say we have a database table that is part of an integration, and one of the columns stores a large amount of JSON. We will need to figure out the maximum size of that JSON object across all the rows of the table. This will be a bit of a guessing game. You could take a few rows at random and check the size of the column and make an educated guess. 
 
-In addition to know what tables have lobs and what size to set for the max LOB, we also need to identify if there are any tables where "LOB Truncation" is acceptable. This will largely depend on the usage of the LOBs in this table, but if you are okay with *some *truncations*, i.e. - some missing JSON characters off the end of a large object that contains JSON, then there are different settings to be used that can speed up the process.
+In addition to knowing what tables have LOBs and what size to set for the max LOB, we also need to identify if there are any tables where "LOB Truncation" is acceptable. This will largely depend on the usage of the LOBs in this table, but if you are okay with *some *truncations*, i.e. - some missing JSON characters off the end of a large object that contains JSON, then there are different settings to be used that can speed up the process.
 
 When you have finished your analysis, you should have something akin to this table as the result:
 | Table       | Max LOB Size (Kb) | Truncations OKAY? |
@@ -74,9 +74,9 @@ The only other settings that will be the same across all DMS tasks are as follow
 
 Here is where things change based on which DMS Task, and therefore which replication slot, and therefore which tables we are considering...
 
-If the tables that this task references has the tables that `Have a primary key and a separate unique constraint`, make sure `batch-optimized apply` is disabled. For all other tasks (replication slots), it's okay to turn this on.
+If the tables that this task references `Have a primary key and a separate unique constraint`, make sure `batch-optimized apply` is disabled. For all other tasks (replication slots), it's okay to turn this on.
 
-If the tables that this task references have any tables that are included in your `Large Object` or `LOB` list that we compiled above, then we have specific settings to take care of. Set the large object settings to `Limited LOB Mode` and put in a value that makes sense for the "maximum lob size" based off of your list. If the DMS Task has a table where some truncations are not okay, then we have some more special settings to add below. 
+If the tables that this task references are included in your `Large Object` or `LOB` list that we compiled above, then we have specific settings to take care of. Set the large object settings to `Limited LOB Mode` and put in a value that makes sense for the "maximum LOB size" based off of your list. If the DMS Task has a table where some truncations are not okay, then we have some more special settings to add below. 
 
 Navigate passed the "full load" settings, as they won't be used, and go to the "Mapping Rules". This is where we will tell DMS all of the tables that exist in the replication slot that we are setting up. I recommend using the JSON editor, especially if you have tables in the slot that cannot have LOB truncations. Using the list from phase I that we used to setup our replication sets, make a list of tables in JSON format for the DMS task that matches exactly.
 
@@ -134,7 +134,7 @@ Here is some sample JSON that will match the sample replication set from part I:
 }
 ```
 
-Notice the `rule-type` - `table-settings` portion of the above example. The first 3 JSON "chunks" reference a table selection rule - specifying to the DMS task what tables are in what slot. The 4th section, that says `table-settings` is how you specify a LOB setting where truncations are not allowed. This setting will override the previously set limited lob mode for just the table specified.
+Notice the `rule-type` - `table-settings` portion of the above example. The first 3 JSON "chunks" reference a table selection rule - specifying to the DMS task what tables are in what slot. The 4th section, that says `table-settings` is how you specify a LOB setting where truncations are not allowed. This setting will override the previously set limited LOB mode for just the table specified.
 
 Finally, check the option that says you will `start manually` after creation. This way we can create all of our tasks, double check all of the settings and table mappings, and then start them all back to back. 
 
@@ -182,11 +182,11 @@ Throughout this process, you are certain to see some errors. Let's cover a few c
 
 ### Truncations
 
-First, let's talk about truncations. When dealing with Large Objects (LOBs), if DMS finds a LOB that is bigger than the size specified by the limited lob mode setting, and the table does not have a special `table-setting` for lobs in the table mapping, then you may see an error like this:
+First, let's talk about truncations. When dealing with Large Objects (LOBs), if DMS finds a LOB that is bigger than the size specified by the limited LOB mode setting, and the table does not have a special `table-setting` for LOBs in the table mapping, then you may see an error like this:
 ```bash
 2023-05-24T13:52:50 [SOURCE_CAPTURE  ]W:  Value of column 'column_name_001' in table 'schema.table_name_001' was truncated to 131072 bytes, actual length: 143687 bytes  (postgres_pglogical.c:2550)
 ```
-As you can see, our limited lob size was set to 132kb and we encountered a value for a column that was more than that. Because of this, the data aws truncated. If it is okay for a few truncations to occur on this table, then we can safely ignore it. The issue is when we are seeing lots of truncations. In that case, take note of the "actual length" and readjust the max lob size for your next attempt. 
+As you can see, our limited LOB size was set to 132kb and we encountered a value for a column that was more than that. Because of this, the data aws truncated. If it is okay for a few truncations to occur on this table, then we can safely ignore it. The issue is when we are seeing lots of truncations. In that case, take note of the "actual length" and readjust the max LOB size for your next attempt. 
 
 Most truncations that you see in cloudwatch will have a matching row in the `awsdms_apply_exceptions` table on the target. This is a great place to go for additional information regarding truncations. For example, if a JSON column is truncated, it could result in an apply exception "malformed JSON" - meaning the row that the truncated column came from had some JSON that got cut off. 
 
@@ -200,9 +200,9 @@ This by itself is not necessarily an error, rather just an info statement, but I
 
 ### Check the awsdms_apply_exceptions table
 
-DMS will create a table on the target that will contain any rows that were failed to be inserted. If you have wide spread misconfiguration, this table can quickly fill up. In a successful migration attempt, this table should be very small, containing only a few truncations, any duplicate key value errors that you would normally see in the production database operation logs, and failed "UPDATE" statements that say 0 rows affected.
+DMS will create a table on the target that will contain any rows that failed to be inserted. If you have wide spread misconfiguration, this table can quickly fill up. In a successful migration attempt, this table should be very small, containing only a few truncations, any duplicate key value errors that you would normally see in the production database operation logs, and failed "UPDATE" statements that say 0 rows affected.
 
-Most of the error messages will contain the failed SQL, including the table name an id - meaning they can be back filled after a successful migration. Keep an eye on this table and adjust your task settings as you see fit.
+Most of the error messages will contain the failed SQL, including the table name and id - meaning they can be back filled after a successful migration. Keep an eye on this table and adjust your task settings as you see fit.
 
 ### Inexplicable Failures
 
