@@ -16,7 +16,7 @@ In this blog I want to highlight two Amazon Web Services Generative AI products,
 
 In simple terms, Generative AI promises to "take a bunch of data" and use it gain hidden insights and *put the data to work* in various ways. It does this in a way that is very similar to how our brains work. It looks at all the data in all the different places, then says something based on what it saw. Fine tuning is like going back to school to learn more, and Retrieval Augmented Generation is like reviewing your notes before you attempt to say something. 
 
-The current Generative AI landscape is in high flux, but as time goes on, key services will be identified that aid in the adoption of generative AI. Amazon makes it to where you do not have to be a data scientist, or even a strong programmer to start leveraging AI and adapting your business to be more *artificially intelligent*. The road to adoption involves lots of new tech, new workflows, and *curating* your data.
+The current Generative AI landscape is in high flux, but as time goes on, key services will be identified that aid in the adoption of generative AI. Amazon makes it to where you do not have to be a data scientist, or even a strong programmer to start leveraging AI and enabling your business to be more *artificially intelligent*. The road to adoption involves lots of new tech, new workflows, and *curating* your data.
 
 # Amazon SageMaker
 
