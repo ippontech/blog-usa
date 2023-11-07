@@ -10,7 +10,7 @@ title: "Elevate Your Security Game with Amazon Security Lake and Amazon Kendra"
 image: 
 ---
 
-For most organizations, cybersecurity has always been an after thought. It typically takes a cataclysmic event happening to get companies to start taking security seriously, such as a ransomware attack. As we all know though, no matter how good your cybersecurity posture is, the human element has been and always will be the Achilles' heel. In today's fast-paced digital world, getting a leg up on cybersecurity entails meeting the users half way between policy and best practices. Today I want to tell you about two tools that can seriously change the cyber security game and give you a leg up on those threat actors: Amazon Security Lake and Amazon Kendra.
+For most organizations, cybersecurity has always been an after thought. It typically takes a cataclysmic event happening to get companies to start taking security seriously, such as a ransomware attack. As we all know though, no matter how good your cybersecurity posture is, the human element has been and always will be the Achilles' heel. In today's fast-paced digital world, getting a leg up on cybersecurity entails meeting the users half way between policy and best practices. Today I want to tell you about two tools that can seriously change the cyber security game and empower you to better defend against threat actors: Amazon Security Lake and Amazon Kendra.
 
 # The Human Factor: Security's Constant Nemesis
 
@@ -36,7 +36,7 @@ Using powerful AI-driven search and Retrieval Augmented Generation, Amazon kendr
 
 So, how can your security team begin to safely use generative AI to enhance their capabilities? First and foremost, embrace the power of Amazon Security Lake to centralize your security data. With this consolidated data at your fingertips, leverage the capabilities of Amazon Kendra to provide contextual guidance to your security team and builders.
 
-By doing so, you'll be on the path to reducing human error and increasing your ability to tackle novel, high-value opportunities. It's time to take your security game to the next level and stay one step ahead of those ever-evolving threats! If the bad guys can use AI to enhance their threats, than we give our selves permission to use it to stop them as well!
+By doing so, you'll be on the path to reducing human error and increasing your ability to tackle novel, high-value opportunities. It's time to take your security game to the next level and stay one step ahead of those ever-evolving threats! If the bad guys can use AI to enhance their threats, than we can give ourselves permission to use it to stop them as well!
 
 # Conclusion
 
