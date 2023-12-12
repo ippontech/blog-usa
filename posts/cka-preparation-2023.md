@@ -45,7 +45,7 @@ After around 6 weeks of training for 2 hours a day, I was able to pass CKA on th
 # Recommended training materials
 
 
-After some thorough research, it was noticed that currently the majority of those aiming to pass CKA certification use the following training materials:
+Through thorough research, I noticed that the majority of those aiming to pass CKA certification use the following training materials:
 
 **[Highly recommended]**
 - [Kubernetes documentation](https://kubernetes.io/), which is well-written and available for use during the exam. A person getting ready to tackle CKA certification should be very familiar with these pages. It is well known that time is of the essence during this test. You need to know what to do and type it fast. Reading through docs is not an option. Finding the needed snippet of code for your case is what you will use documentation for. An exam taker should be aware of what is available in the docs to be able to quickly find it.
