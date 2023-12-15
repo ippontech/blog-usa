@@ -3,6 +3,7 @@ authors:
 - Iryna Chmelyk
 tags:
 - Kubernetes
+- K8s
 - CKA Certification
 - Cloud
 - DevOps
@@ -21,11 +22,14 @@ Kubernetes [(K8s)](https://kubernetes.io/) is the most widely used open source c
 
 Depending on their career path, engineers can choose between three kinds of certifications:
 
-- [CKA](https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/) - Certified Kubernetes Administrator 
-- [CKAD](https://training.linuxfoundation.org/certification/certified-kubernetes-application-developer-ckad/) - Certified Kubernetes Application Developer 
-- [CKS](https://training.linuxfoundation.org/certification/certified-kubernetes-security-specialist/) - Certified Kubernetes Security Specialist
+- [CKA](https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/) - Certified Kubernetes Administrator. 
+  - Generally, the target audience for this certification is system administrators and operations teams working with K8s. During this test, engineers are given access to the environment where they are faced with real-world scenarios on cluster and storage management as well as network, security, and application troubleshooting. 
+- [CKAD](https://training.linuxfoundation.org/certification/certified-kubernetes-application-developer-ckad/) - Certified Kubernetes Application Developer. 
+  - This exam is often considered developer-oriented as it concentrates on application development, deployment, maintenance and observability on Kubernetes. Engineers looking into this exam should be proficient in designing and building secure applications as well as scaling, configuration and networking in K8s.
+- [CKS](https://training.linuxfoundation.org/certification/certified-kubernetes-security-specialist/) - Certified Kubernetes Security Specialist.
+  -  To qualify for this certification, specialists need to be competent in a broad range of best practices for securing applications and Kubernetes clusters during build, deployment and runtime. The tasks in certification are focused on cluster and system hardening as well as runtime security, logging and monitoring. CKA certification is required to be eligible to enroll for this program.
 
-This post offers guidance on preparation for the CKA exam which is considered the most challenging out of three Kubernetes certifications. During this test, engineers are given access to the environment where they are faced with real-world scenarios on cluster and storage management, network and application troubleshooting, etc.
+This post offers guidance on preparation for the CKA exam which is considered the most challenging out of three Kubernetes certifications.
 
 
 # CKA Exam Overview
