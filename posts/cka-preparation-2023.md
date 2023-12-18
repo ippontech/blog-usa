@@ -35,7 +35,7 @@ This post offers guidance on preparation for the CKA exam, which is considered t
 # CKA Exam Overview
 
 
-During the two-hour session, exam takers need to solve 17 tasks with varying levels of difficulty. These scenarios are weighted according to their complexity (1%, 4%, 8%, etc), and a total score of at least 66% is needed to pass. The work is performed on live clusters in the terminal window and access to Kubernetes documentation is available throughout the session. It is an online, proctored exam, meaning that you can take it from the comfort of your home, while a proctor watches you to ensure that no "extra" help is used to pass this certification. The main areas of focus in the CKA certification are:
+During the two-hour session, exam takers need to solve 17 tasks with varying levels of difficulty. These scenarios are weighted according to their complexity (1%, 4%, 8%, etc), and a total score of at least 66% is needed to pass. The work is performed on live clusters in the terminal window and access to Kubernetes documentation is available throughout the session. It is an online, proctored exam, meaning that you can take it from the comfort of your home while a proctor watches you to ensure that no extra "help" is used to pass this certification. The main areas of focus in the CKA certification are:
 
 - **Troubleshooting - 30%**
 - **Cluster Architecture, Installation & Configuration - 25%**
