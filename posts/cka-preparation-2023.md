@@ -9,7 +9,7 @@ tags:
 - DevOps
 date: 2023-12-12T11:29:50.000Z
 title: "CKA Certification Preparation: Why and How"
-image: https://github.com/iryna-chmelyk/blog-usa/blob/cka-preparation/images/2023/12/cka-certificate.png
+image: https://github.com/ippontech/blog-usa/blob/master/images/2023/12/cka-certificate.png
 ---
 
 ![Certificate](https://github.com/iryna-chmelyk/blog-usa/blob/cka-preparation/images/2023/12/cka-certificate.png)
