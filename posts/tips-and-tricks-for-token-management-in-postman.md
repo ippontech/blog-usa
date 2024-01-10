@@ -12,7 +12,7 @@ title: "Tips and Tricks for Token Management in Postman"
 image:
 ---
 
-![postman-logo](https://github.com/amoy-ippon/blog-usa/blob/master/images/2024/01/postman-logo.png)
+![postman-logo](https://github.com/amoyippon/blog-usa/blob/master/images/2024/01/postman-logo.png)
 
 # Overview
 Postman streamlines the API development process by offering a unified platform for designing and testing APIs. With powerful features like environment variables, automated testing scripts, and collection runners, developers can debug efficiently by simulating various scenarios.
@@ -57,7 +57,7 @@ pm.sendRequest(settings, (err, res) => {
 
 The above script sends a GET request to fetch the token with the necessary clientId and clientSecret, and saves the token to the postman environment variable ‘token’.
 
-![get-token-screenshot](https://github.com/amoy-ippon/blog-usa/blob/master/images/2024/01/postman-get-token.png)
+![get-token-screenshot](https://github.com/amoyippon/blog-usa/blob/master/images/2024/01/postman-get-token.png)
 
 # Token expiration management
 Postman introduced a feature in early 2023 that allowed for [token refresh support for OAuth 2.0](https://blog.postman.com/oauth-2-0-token-refresh-and-id-token-support/). This feature has made it much easier for developers to refresh OAuth 2.0 access tokens without needing to go through the entire authorization process again.
@@ -109,7 +109,7 @@ if (pm.response.code === 200) {
 }
 ```
 
-![unset-token-screenshot](https://github.com/amoy-ippon/blog-usa/blob/master/images/2024/01/postman-unset-token.png)
+![unset-token-screenshot](https://github.com/amoyippon/blog-usa/blob/master/images/2024/01/postman-unset-token.png)
 
 # Conclusion
 With these features that allow for efficient management within the Postman platform, developers can seamlessly integrate their API workflows. The use of Postman’s various script features contribute to a streamlined and efficient development. As Postman comes out with new features in the future, it is possible that these features may be  integrated into its platform altogether. For now, hopefully this post has given you some tips and tricks for how to do so on your own.
