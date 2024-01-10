@@ -19,7 +19,7 @@ Postman streamlines the API development process by offering a unified platform f
 
 This blog post will review tips and tricks on how to easily manage and automate the tokens used for API calls more effectively. We will also look at how to manage token-related workflows using Postman JavaScript objects, environment variables, and test scripts.
 
-# What’s a Pre-Request script?
+# What’s a Pre-Request Script?
 The pre-request script is Javascript code that Postman executes before an API request is made. Pre-request scripts can exist at the API request level or at the collection/folder level.
 
 ![prerequest-tab-screenshot](https://github.com/amoyippon/blog-usa/blob/master/images/2024/01/postman-prerequest-tab.png)
@@ -27,7 +27,9 @@ The pre-request script is Javascript code that Postman executes before an API re
 Any pre-request scripts located at the collection level will execute before EACH endpoint is called within the collection folder (more on that [here](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/#execution-order-of-scripts)). Since this is not necessary the purposes of this post, we will only review at the pre-request tab at the individual request level. 
 
 # Pre-request scripts vs Test scripts
-A Pre-request script is executed ***before*** an endpoint a request is made, and a Test script is executed ***after*** an endpoint a request is made. Both Pre-request and Test scripts use JavaScript. Together, they allow for seamless set up and testing of each endpoint.
+You can see in the above screenshot that there is another tab to the right of the Pre-request Script tab: the Tests tab. Although the Tests tab is generally used for API tests, it can also be used to execute any JavaScript code after the request is made. This includes logic that may assist in orchestration and/or clean-up of your development workflow.
+
+Here's the main difference between the two tabs: a Pre-request script is executed ***before*** an endpoint a request is made, and a Test script is executed ***after*** an endpoint a request is made. Both Pre-request and Test scripts use JavaScript. Together, they allow for seamless set up and testing of each endpoint.
 
 # Fetching a token with Pre-request scripts
 Rather than making two separate calls: one to fetch a token, and a second to actually call the API endpoint, it is possible to build the token fetching endpoint into the Pre-request script of the actual endpoint that you want the token to be used for.
@@ -96,7 +98,7 @@ if (now > Date(exp)) {
 console.log(jwtPayloadJson)
 ```
 
-Here, we use the `atob` library to decode the token that currently exists in our environment variable named `token`. We then compare the token expiration value to the current `Date()` value to determine if the token has expired.
+Here, we use the `atob` library (yes, you can use external JavaScript libraries in Postman scripts!) to decode the token that currently exists in our environment variable named `token`. We then compare the token expiration value to the current `Date()` value to determine if the token has expired.
 
 A new token is fetched *only* if the current token has expired. This reduces unnecessary calls for a token refresh before your request is made. If the token has not yet expired, then the token fetching endpoint is not called and the main API call is called as usual using the existing token.
 
