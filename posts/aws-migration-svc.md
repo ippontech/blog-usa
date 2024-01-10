@@ -12,7 +12,7 @@ image:
 Migrating applications and data to AWS can feel like navigating a labyrinth, but its abundance of services simplifies the process by fitting your unique data migration needs, minimizing downtime and maximizing efficiency for seamless data movement. 
 
 Here are some of the key AWS Migration and Data Transfer services, let this bird's-eye view guide you through your AWS migration journey
-![AWS Migration and Data Transfer Services](https://raw.githubusercontent.com/ippontech/blog-usa/master/images/2024/01/aws-migration-svc.png)
+![AWS Migration and Data Transfer Services](../images/2024/01/aws-migration-svc.png)
 Simplify your cloud migration journey with AWS Migration Hub - central console to manage and track all your migrations, from discovering on-premises servers and databases with Application Discovery Service (ADS) to analyzing costs and potential savings with Migration Evaluator.
 
 Choosing the right service depends on your specific needs and environment. For instance, if you want to migrate your databases with minimal downtime, AWS DMS is your go-to service.
