@@ -29,10 +29,10 @@ Any Pre-request scripts located at the collection level will execute before *eac
 # Pre-request scripts vs Test scripts
 You can see in the above screenshot that there is another tab to the right of the Pre-request Script tab: the Tests tab. Although the Tests tab is generally used for API tests, it can also be used to execute any JavaScript code after the request is made. This includes logic that may assist in orchestration and/or clean-up of your development workflow.
 
-Here's the simple difference between the two tabs: a Pre-request script is executed ***before*** an endpoint a request is made, and a Test script is executed ***after*** an endpoint a request is made. Both Pre-request and Test scripts use JavaScript. Together, they allow for seamless set up and testing of each endpoint.
+Here's the simple difference between the two tabs: a Pre-request script is executed ***before*** a request is made, and a Test script is executed ***after*** a request is made. Both Pre-request and Test scripts use JavaScript. Together, they allow for seamless set up and testing of each endpoint.
 
 # Fetching a token with Pre-request scripts
-Rather than making two separate calls: one to fetch a token, and a second to actually call the API endpoint, it is possible to build the token fetching endpoint into the Pre-request script of the actual endpoint that you want the token to be used for.
+Rather than making two separate calls: one to fetch a token, and a second to actually call the API endpoint, it is possible to build the token fetching endpoint into the Pre-request script of the endpoint that the token will be used for.
 
 In this scenario, the Pre-request script will look like this code snippet:
 
@@ -62,7 +62,7 @@ This script sends a GET request to fetch the token with the necessary credential
 ![get-token-screenshot](https://github.com/amoyippon/blog-usa/blob/master/images/2024/01/postman-get-token.png)
 
 # Token expiration management
-Postman introduced a feature in early 2023 that allowed for [token refresh support for OAuth 2.0](https://blog.postman.com/oauth-2-0-token-refresh-and-id-token-support/). This feature has made it easier for developers to refresh OAuth 2.0 access tokens without needing to go through the entire authorization process again.
+Postman introduced a feature in early 2023 that allows for [token refresh support for OAuth 2.0](https://blog.postman.com/oauth-2-0-token-refresh-and-id-token-support/). This feature has made it easier for developers to refresh OAuth 2.0 access tokens without needing to go through the entire authorization process again.
 
 However, for tokens that are not OAuth 2.0, it is **still** possible to automate the token refresh process with the Pre-requests scripts of an API request. You can do so by having the Pre-request script decode and read the expiration value, or `exp`, of an existing token and fetch a new token if the current one has expired. This can be done with the following example:
 
@@ -114,4 +114,4 @@ if (pm.response.code === 200) {
 ![unset-token-screenshot](https://github.com/amoyippon/blog-usa/blob/master/images/2024/01/postman-unset-token.png)
 
 # Conclusion
-With these features that allow for efficient management within the Postman platform, developers can seamlessly integrate their API workflows. The use of Postman’s various script features contribute to a streamlined and efficient development. As Postman comes out with new features in the future, it is possible that these features may be  integrated into its platform altogether. For now, hopefully this has provided you with some tips and helpful pointers for how to do so on your own.
+With these features that allow for efficient management within the Postman platform, developers can seamlessly integrate their API workflows. The use of Postman’s various script features contributes to a streamlined and efficient development. As Postman comes out with new features in the future, it is possible that these features may be  integrated into its platform altogether. For now, hopefully this has provided you with some tips and helpful pointers for how to do so on your own.
