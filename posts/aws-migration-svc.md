@@ -22,34 +22,27 @@ Let's take a closer look at AWS DMS in this blog.
 AWS DMS is a service that helps you migrate and replicate your databases, data warehouses, analytical workloads other data stores between on-premises, Amazon RDS, EC2 instances, different cloud providers and AWS. 
 
 ## Benefits
-* Minimal downtime. 
+### Minimal downtime
 The source database is fully operational during the migration. Changes made to the source during the migration are continuously replicated to the target database. 
 DMS can perform parallel data loads, optimizing the migration speed and minimizing the overall downtime required for the migration process.
-
-* Specific Database Needs
+### Specific Database Needs
 AWS DMS supports homogeneous migrations such as on-premises PostgreSQL to RDS PostgreSQL, and heterogeneous migrations between different database engines such as Microsoft SQL Server to Aurora using DMS Schema Conversion Tool (SCT). DMS Schema Conversion Tool can automatically convert your schema to ensure compatibility, saving you time and effort.
-
-* Modernization and Scalability
+### Modernization and Scalability
 Migrating to cloud-based managed services like Amazon Aurora offers increased scalability, automatic patching, and improved security compared to on-premises databases. AWS DMS simplifies this process by handling the data transfer and schema conversion. 
 As your data needs grow, on-premises infrastructure can become limiting. AWS DMS allows you to seamlessly scale your database capacity by migrating to larger AWS instances or services like Redshift. 
-
-* Flexibility and Agility
+### Flexibility and Agility
 If you have multiple databases on-premises or across different cloud providers, AWS DMS can help you consolidate them into a single, centralized location in the AWS cloud, simplifying management and improving data access. 
-
-* Disaster recovery and backup
+### Disaster recovery and backup
 You can perform one-time migrations or continuous data replication with CDC (Change Data Capture) to ensure near real-time backups and a seamless disaster recovery plan.
 DMS provides automatic failover. If your primary replication server fails for any reason, a backup replication server can take over with little or no interruption of service. 
 Data integrity validation throughout the process upholds data accuracy.
 Choose Multi-AZ deployment for high availability and enhanced failover support.
-
-* Cost Optimization
+### Cost Optimization
 Maintaining on-premises databases can be expensive due to hardware, software licensing. Migrating with AWS DMS can reduce these costs. Only pay for resources used with pay-as-you-go pricing.
 AWS DMS automates many of the tedious tasks involved in database migration, allowing your IT team to focus on other critical projects. 
-
-* Logging and Monitoring: 
+### Logging and Monitoring
 DMS offers detailed logs like task statuses, data transfer rates, and error messages. You can set up custom alerts for potential issues and monitor key metrics like replication lag and database performance.
-
-* Security
+### Security
 With DMS your data is encrypted at rest with AWS KMS and in transit with SSL/TLS. Granular IAM access controls ensure only authorized users can access your data, while continuous anomaly and threat detection add an extra layer of protection.
 
 
