@@ -17,6 +17,8 @@ image:
 # Overview
 Postman streamlines the API development process by offering a unified platform for designing and testing APIs. With powerful features like automated testing scripts, collection runners, and environment variables, developers can debug efficiently by simulating various scenarios. Postman tokens are instrumental in securing API communications. These tokens, obtained through various authentication methods like OAuth 2.0 or API keys, are then included in API requests.
 
+To call an API in Postman, a developer typically needs to attain a token or API key to authenticate the request. From a manual perspective, this would involve a separate API call to get the needed token.
+
 This blog post will review tips and tricks on how to easily manage and automate the tokens used for API calls more effectively. We will also look at how to manage token-related workflows using Postman JavaScript objects, environment variables, and test scripts.
 
 # What’s a Pre-Request Script?
