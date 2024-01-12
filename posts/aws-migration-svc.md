@@ -9,24 +9,25 @@ title: "AWS Migration and Data Transfer Services. Part 1 - DMS"
 image:
 ---
 
-Migrating applications and data to AWS can feel like navigating a labyrinth, but its abundance of services simplifies the process by fitting your unique data migration needs, minimizing downtime and maximizing efficiency for seamless data movement. 
+Migrating applications and data to AWS can feel like navigating a labyrinth, but its abundance of services simplifies the process by catering to your unique data migration needs, minimizing downtime, and maximizing efficiency for seamless data movement. 
 
-Here are some of the key AWS Migration and Data Transfer services, let this bird's-eye view guide you through your AWS migration journey
+Here are some of the key AWS Migration and Data Transfer services, let this bird's-eye view guide you through your AWS migration journey. 
+
 ![AWS Migration and Data Transfer Services](../images/2024/01/aws-migration-svc.png)
-Simplify your cloud migration journey with AWS Migration Hub - central console to manage and track all your migrations, from discovering on-premises servers and databases with Application Discovery Service (ADS) to analyzing costs and potential savings with Migration Evaluator.
+Simplify your cloud migration journey with AWS Migration Hub - Central Console to manage and track all your migrations, from discovering on-premises servers and databases with Application Discovery Service (ADS) to analyzing costs and potential savings with Migration Evaluator.
 
 Choosing the right service depends on your specific needs and environment. For instance, if you want to migrate your databases with minimal downtime, AWS DMS is your go-to service.
 Let's take a closer look at AWS DMS in this blog.
 
 ## What is AWS DMS? 
-AWS DMS is a service that helps you migrate and replicate your databases, data warehouses, analytical workloads other data stores between on-premises, Amazon RDS, EC2 instances, different cloud providers and AWS. 
+AWS DMS is a service that helps you migrate and replicate your databases, data warehouses, analytical workloads, and other data stores between on-premises, Amazon RDS, EC2 instances, different cloud providers, and AWS.
 
 ## Benefits
 ### Minimal downtime
 The source database is fully operational during the migration. Changes made to the source during the migration are continuously replicated to the target database. 
 DMS can perform parallel data loads, optimizing the migration speed and minimizing the overall downtime required for the migration process.
 ### Specific Database Needs
-AWS DMS supports homogeneous migrations such as on-premises PostgreSQL to RDS PostgreSQL, and heterogeneous migrations between different database engines such as Microsoft SQL Server to Aurora using DMS Schema Conversion Tool (SCT). DMS Schema Conversion Tool can automatically convert your schema to ensure compatibility, saving you time and effort.
+AWS DMS supports homogeneous migrations such as on-premises PostgreSQL to RDS PostgreSQL, and heterogeneous migrations between different database engines such as Microsoft SQL Server to Aurora using DMS Schema Conversion Tool (SCT). 
 ### Modernization and Scalability
 Migrating to cloud-based managed services like Amazon Aurora offers increased scalability, automatic patching, and improved security compared to on-premises databases. AWS DMS simplifies this process by handling the data transfer and schema conversion. 
 As your data needs grow, on-premises infrastructure can become limiting. AWS DMS allows you to seamlessly scale your database capacity by migrating to larger AWS instances or services like Redshift. 
